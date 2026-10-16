@@ -941,6 +941,10 @@ html.th-neon:not(.aff-calme) .bar::after{content:"";position:absolute;left:0;rig
 html.th-neon:not(.aff-calme) .hint{animation:nWide 37s ease-in-out infinite alternate!important;}
 @keyframes nWide{from{letter-spacing:0;}to{letter-spacing:.012em;}}
 
+.nant{display:none;}
+html.th-neon:not(.aff-calme) .nant{display:block;}
+html.th-neon:not(.aff-calme) .ants{border-color:transparent!important;}
+
 body.vide:not(.autre) #filters{display:flex;}
 body:not(.vide) .minis.cats{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:6px;padding:2px 2px 6px;scrollbar-width:none;}
 body:not(.vide) .minis.cats::-webkit-scrollbar{display:none;}
@@ -4968,6 +4972,51 @@ body:not(.vide) .toc{margin-top:8px;}
     if (!on()) return; var t = e.target.closest && e.target.closest(SEL);
     if (t && Math.random() < .4) setTimeout(function(){ halo(t); }, R(60, 900));
   }, true);
+
+  // Contours en tirets lumineux : ils glissent parfois d'une fraction de pixel, s'arrêtent, repartent dans l'autre sens. On ne sait jamais s'ils bougent.
+  var ANT_SEL = ".idb, .dice, #ccMe, .panel .env-sub", NS = "http://www.w3.org/2000/svg", ANTS_L = [];
+  function antsSetup(){
+    if (!on()) return;
+    document.querySelectorAll(ANT_SEL).forEach(function(el){
+      if (el._ant) { if (el._ant.svg.parentNode !== el) el.appendChild(el._ant.svg); return; }
+      if (!el.getBoundingClientRect().width) return;
+      var cs = getComputedStyle(el), bw = parseFloat(cs.borderTopWidth) || 1.5, col = cs.borderTopColor, m = col.match(/\d+(\.\d+)?/g);
+      if (!m || (m[3] !== undefined && +m[3] < .3) || (+m[0] * .3 + +m[1] * .59 + +m[2] * .11) < 90) col = (cs.getPropertyValue("--fc") || "").trim() || "#FF8ED8";
+      if (cs.position === "static") el.style.position = "relative";
+      var svg = document.createElementNS(NS, "svg"), r = document.createElementNS(NS, "rect");
+      svg.setAttribute("class", "nant"); svg.setAttribute("aria-hidden", "true");
+      svg.style.cssText = "position:absolute;left:" + (-bw) + "px;top:" + (-bw) + "px;width:calc(100% + " + 2 * bw + "px);height:calc(100% + " + 2 * bw + "px);pointer-events:none;overflow:visible;filter:drop-shadow(0 0 1.5px " + col + ")";
+      r.setAttribute("fill", "none"); r.setAttribute("stroke", col); r.setAttribute("stroke-width", bw);
+      var dash = Math.max(3, bw * 3); r.setAttribute("stroke-dasharray", dash + " " + dash);
+      svg.appendChild(r); el.appendChild(svg); el.classList.add("ants");
+      var a = { el:el, svg:svg, r:r, bw:bw, off:R(0, 20), v:0, until:0, size:"" };
+      el._ant = a; ANTS_L.push(a);
+    });
+  }
+  function antsSize(a){
+    var w = a.el.offsetWidth, h = a.el.offsetHeight, k = w + "x" + h; if (k === a.size) return; a.size = k;
+    var rad = Math.min(parseFloat(getComputedStyle(a.el).borderTopLeftRadius) || 0, h / 2, w / 2);
+    a.r.setAttribute("x", a.bw / 2); a.r.setAttribute("y", a.bw / 2); a.r.setAttribute("width", Math.max(0, w - a.bw)); a.r.setAttribute("height", Math.max(0, h - a.bw)); a.r.setAttribute("rx", Math.max(0, rad - a.bw / 2));
+  }
+  // Comportement irrégulier : arrêt, dérive très lente, rare petit à-coup, changement de sens.
+  function antsMood(a, now){
+    var x = Math.random();
+    if (x < .35) { a.v = 0; a.until = now + R(1500, 12000); }
+    else if (x < .9) { a.v = (Math.random() < .5 ? -1 : 1) * R(.08, .45); a.until = now + R(2000, 15000); }
+    else { a.v = (Math.random() < .5 ? -1 : 1) * R(1.2, 2.6); a.until = now + R(150, 500); }
+  }
+  var antsLast = 0;
+  setInterval(function(){
+    var now = Date.now(), dt = antsLast ? (now - antsLast) / 1000 : 0; antsLast = now;
+    if (!on()) return;
+    ANTS_L = ANTS_L.filter(function(a){ return a.el.isConnected; });
+    ANTS_L.forEach(function(a){
+      if (now > a.until) antsMood(a, now);
+      antsSize(a);
+      if (a.v) { a.off += a.v * dt; a.r.setAttribute("stroke-dashoffset", a.off.toFixed(2)); }
+    });
+  }, 90);
+  setInterval(antsSetup, 1500); antsSetup();
   setTimeout(bulbs, R(400, 2500)); setTimeout(letters, R(800, 4000)); setTimeout(halos, R(1500, 6000));
 })();
 </script>
