@@ -571,7 +571,7 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
 </section>
 
 <section id="conso" aria-label="Consommation et rapidité">
-  <div class="head row"><h2>Consommation et rapidité</h2><span class="eyebrow">coût et temps d’une tâche · relevé Artificial Analysis du 16 octobre</span></div>
+  <div class="head row"><h2>Consommation et rapidité</h2><span class="eyebrow">coût par tâche et réponse de 500 jetons · relevé Artificial Analysis du 16 octobre</span></div>
 
   <div class="panel">
     <div class="ph"><div class="pt"><span class="pt-ic" aria-hidden="true"><svg class="ic lg"><use href="#i-conso"/></svg></span><div><h3>Sonnet 5.5 « très élevé » ou Opus 5.5 « élevé » ?</h3><span class="eyebrow">deux réglages de qualité voisine : lequel consomme le moins ?</span></div></div></div>
@@ -582,7 +582,7 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
         <tr><th scope="row">Texte écrit par tâche (jetons)</th><td class="n">75 000</td><td class="n win">36 000</td></tr>
         <tr><th scope="row">Prix du million de jetons écrits</th><td class="n win">10 $</td><td class="n">20 $</td></tr>
         <tr><th scope="row">Coût d’une tâche</th><td class="n">2,01 $</td><td class="n win">1,82 $</td></tr>
-        <tr><th scope="row">Temps de réponse</th><td class="n win">39 s</td><td class="n">58 s</td></tr>
+        <tr><th scope="row">Réponse de 500 jetons · durée estimée</th><td class="n win">39 s</td><td class="n">58 s</td></tr>
       </tbody>
     </table></div>
     <p class="verdict">Non : Sonnet « très élevé » ne consomme pas moins. Il coûte deux fois moins au jeton, mais en écrit deux fois plus, pour un score plus bas. Son seul avantage est la vitesse. Pour consommer moins, le meilleur choix de la famille Claude est Opus en effort moyen (51 points pour 1,34 $) ; Sonnet n’est moins cher qu’aux niveaux plus bas, avec des scores plus bas (élevé : 47 points pour 0,88 $).</p>
@@ -596,20 +596,21 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
   </div>
 
   <div class="panel" id="csPanel">
-    <div class="ph"><div class="pt"><span class="pt-ic" aria-hidden="true"><svg class="ic lg"><use href="#i-speed"/></svg></span><div><h3>Tableau chiffré · tous les niveaux d’effort</h3><span class="eyebrow">coût, temps de réponse et vitesse d’écriture <span id="csCount"></span></span></div></div></div>
+    <div class="ph"><div class="pt"><span class="pt-ic" aria-hidden="true"><svg class="ic lg"><use href="#i-speed"/></svg></span><div><h3>Tableau chiffré · tous les niveaux d’effort</h3><span class="eyebrow">coût par tâche, réponse de 500 jetons et vitesse d’écriture <span id="csCount"></span></span></div></div></div>
     <div class="csctl" role="group" aria-label="Trier le tableau">
       <span class="eyebrow">Trier par</span>
-      <button type="button" class="sortb" data-sort="total" aria-pressed="true">Temps de réponse</button>
+      <button type="button" class="sortb" data-sort="total" aria-pressed="true">Réponse de 500 jetons</button>
       <button type="button" class="sortb" data-sort="cost" aria-pressed="false">Coût</button>
       <button type="button" class="sortb" data-sort="idx" aria-pressed="false">Indice</button>
       <button type="button" class="sortb" data-sort="model" aria-pressed="false">Modèle</button>
       <button type="button" class="sortb flt" id="only50" aria-pressed="false">Indice 50 et plus seulement</button>
     </div>
     <div class="scrollx"><table class="tbl" id="csTbl">
-      <thead><tr><th>Modèle</th><th>Effort</th><th>Indice</th><th>Coût par tâche</th><th>Temps de réponse</th><th>Écriture · jetons par seconde</th><th>Délai avant le 1<sup>er</sup> mot</th></tr></thead>
+      <thead><tr><th>Modèle</th><th>Effort</th><th>Indice</th><th>Coût par tâche</th><th>Réponse de 500 jetons · durée estimée</th><th>Écriture · jetons par seconde</th><th>Délai avant le 1<sup>er</sup> mot</th></tr></thead>
       <tbody id="csTable"></tbody>
     </table></div>
-    <p class="note">Temps de réponse : durée totale entre la question et la fin de la réponse. Le délai avant le premier mot inclut la réflexion, d’où les minutes en effort maximal. Indice : Artificial Analysis Intelligence Index ; les lignes teintées atteignent 50 points. Gemini 4 Argon : un seul niveau mesuré, au tarif de lancement (3,98 $ ensuite). Muse Wonder Full n’est pas chiffré par Artificial Analysis.</p>
+    <p class="note">La durée affichée est l’estimation d’Artificial Analysis pour recevoir une réponse de 500 jetons via une interface de programmation (API), traitement de la demande et réflexion compris. Elle ne mesure pas la durée d’un développement d’application dans ChatGPT ou Codex : plusieurs appels au modèle, les outils, les tests et les éventuelles attentes s’y ajoutent. Aucune durée complète comparable de développement d’application n’est renseignée ici. Voir la <a href="https://artificialanalysis.ai/models/gpt-6-1-sol/providers" target="_blank" rel="noopener">définition du test de 500 jetons</a>. Le coût par tâche porte sur les exercices de l’indice d’intelligence, une autre charge de travail. Indice : Artificial Analysis Intelligence Index ; les lignes teintées atteignent 50 points. Gemini 4 Argon : un seul niveau mesuré, au tarif de lancement (3,98 $ ensuite). Muse Wonder Full n’est pas chiffré par Artificial Analysis.</p>
+    <p class="note">Vérification du 16 octobre 2026 : durées, délais avant le premier mot et débits de GPT-6.1 Sol actualisés pour les efforts maximal et très élevé, d’après <a href="https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-vs-gpt-6-1-sol-xhigh" target="_blank" rel="noopener">Artificial Analysis</a>. Les autres valeurs restent celles du relevé initial et n’ont pas été revérifiées individuellement. Ces mesures varient selon le fournisseur et la charge du test.</p>
   </div>
 </section>
 
@@ -913,7 +914,7 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
       <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-sliders"/></svg></span><div><b>3. Des instructions permanentes</b><p>Réglées une fois : réponse en français, listes et tableaux, sigles développés, sources de haut niveau exigées, chiffres avec leur origine.</p></div></li>
       <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-memory"/></svg></span><div><b>4. La mémoire, relue et corrigée</b><p>Activée, elle reprend ce que l’IA sait de vous d’une conversation à l’autre. La relire de temps en temps évite qu’une erreur s’installe.</p></div></li>
       <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-puzzle"/></svg></span><div><b>5. Compétences et connexions</b><p>Des procédures réutilisables (compétences Claude, Gems) et l’accès à Drive ou Gmail évitent de tout réexpliquer.</p></div></li>
-      <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-gauge"/></svg></span><div><b>6. Le bon niveau d’effort</b><p>Maximal pour les questions difficiles, plus bas pour aller vite : de quelques secondes à plusieurs minutes (voir Rapidité).</p></div></li>
+      <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-gauge"/></svg></span><div><b>6. Le bon niveau d’effort</b><p>Maximal pour les questions difficiles, plus bas pour réduire la réflexion. Le test de réponse courte ci-dessus ne prédit pas la durée d’une tâche complète avec des outils.</p></div></li>
     </ol>
   </div>
 
@@ -1115,6 +1116,8 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
   <div class="head"><h2>Sources</h2></div>
   <ol class="sources">
     <li><a href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener">Artificial Analysis</a> — indice d’intelligence et coût par tâche (octobre)</li>
+    <li><a href="https://artificialanalysis.ai/models/gpt-6-1-sol/providers" target="_blank" rel="noopener">Artificial Analysis</a> — durée estimée d’une réponse de 500 jetons : définition du test, distinct d’un développement d’application ; vérifié le 16 octobre 2026</li>
+    <li><a href="https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-vs-gpt-6-1-sol-xhigh" target="_blank" rel="noopener">Artificial Analysis</a> — GPT-6.1 Sol maximal et très élevé : durées, délais avant le premier mot et débits actualisés le 16 octobre 2026</li>
     <li><a href="https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-high-vs-claude-sonnet-5-5-xhigh" target="_blank" rel="noopener">Artificial Analysis</a> — Sonnet 5.5 (très élevé) contre Opus 5.5 (élevé) : jetons, coût, temps</li>
     <li><a href="https://artificialanalysis.ai/articles/claude-sonnet-5-5" target="_blank" rel="noopener">Artificial Analysis</a> — Sonnet 5.5 : 193 000 jetons par tâche en effort maximal</li>
     <li><a href="https://www.lindy.ai/blog/sonnet-5-5-vs-opus-5-5" target="_blank" rel="noopener">Lindy</a> — coût par tâche à chaque niveau d’effort, limites d’abonnement</li>
@@ -1475,9 +1478,9 @@ const T = [
    ['Grok 4.7','xAI',2.73,'46 points seulement','API',3,{nr:1}],
    ['Qwen3.8 Max','Alibaba',5.41,'45 points seulement','API',2,{nr:1}]
   ]},
- {k:'speed', label:'Rapidité', sub:'temps de réponse à qualité comparable', unit:'s', inv:true, kind:'mesure', more:'#conso',
-  src:'Artificial Analysis · temps de réponse', url:'https://artificialanalysis.ai/leaderboards/models', date:'16 oct.',
-  verdict:'Temps de réponse complet au réglage le plus rapide qui atteint 50 points à l’indice d’intelligence : on compare des réponses de qualité voisine, pas des réglages au plus bas. Astra, Fable 5.1 et Opus 5.5 répondent en moins de 30 secondes ; en effort maximal, ces mêmes modèles réfléchissent de 4 à 11 minutes. Le tableau chiffré donne tous les niveaux d’effort.',
+ {k:'speed', label:'Réponse de 500 jetons', sub:'durée estimée du test technique, à indice d’intelligence comparable', unit:'s', inv:true, kind:'mesure', more:'#conso',
+  src:'Artificial Analysis · réponse de 500 jetons', url:'https://artificialanalysis.ai/models/gpt-6-1-sol/providers', date:'16 oct.',
+  verdict:'Durée estimée pour recevoir une réponse de 500 jetons, au réglage le plus rapide qui atteint 50 points à l’indice d’intelligence. Ce test technique inclut la réflexion du modèle avant sa réponse ; il ne chronomètre pas un développement d’application. Une tâche complète dans ChatGPT ou Codex peut enchaîner plusieurs appels, des outils et des tests, avec des attentes supplémentaires. Le tableau donne les réglages disponibles ; la durée complète d’un développement d’application n’est pas mesurée ici.',
   items:[
    ['GPT-6 Astra','OpenAI',17.5,'50 points ; 5 min en maximal',GPRO,4.5],
    ['Claude Fable 5.1','Anthropic',23.4,'51 points ; 4 min 25 en maximal',CMAX,4],
@@ -1485,7 +1488,7 @@ const T = [
    ['Claude Sonnet 5.5','Anthropic',38.6,'52 points ; 18,6 s en élevé pour 47 points ; 7 min 22 en maximal',CL,3.5],
    ['Gemini 4 Argon','Google',47,'Seul niveau mesuré ; 100 jetons par seconde',GEM,3],
    ['Muse Wonder','Meta',56.2,'Seul niveau mesuré ; 161 jetons par seconde',MUSEC,2.5],
-   ['GPT-6.1 Sol','OpenAI',56.7,'16 s en effort moyen pour 48 points ; 5 min 12 en maximal',GPLUS,2.5],
+   ['GPT-6.1 Sol','OpenAI',56.7,'Réponse de 500 jetons : 16 s en moyen (indice 48) ; 4 min 54 en maximal, vérifié le 16 octobre 2026',GPLUS,2.5],
    ['DeepSeek V4.1 Flash','DeepSeek',15.3,'39 points seulement ; 177 jetons par seconde','Gratuit',4.5,{nr:1,h:'DeepSeek V4'}],
    ['Gemini 3.1 Pro','Google',31,'30 points seulement ; 140 jetons par seconde',GEM,3.5,{nr:1}],
    ['Grok 4.7','xAI',36.3,'46 points seulement','API',3.5,{nr:1}]
@@ -1575,7 +1578,7 @@ function bindTips(root){
 
 /* ---------- carte des forces ---------- */
 const HK=['apps','design','sci','exp','innov','research','sources','fiab','gen','write','math','agents','memory','speed'];
-const SHORT={apps:'Applis',design:'Design',sci:'Science',exp:'Labo',innov:'Théories',research:'Recherche',sources:'Sources',fiab:'Fiabilité',gen:'Général',write:'Rédaction',math:'Maths',agents:'Projets',memory:'Mémoire',speed:'Vitesse'};
+const SHORT={apps:'Applis',design:'Design',sci:'Science',exp:'Labo',innov:'Théories',research:'Recherche',sources:'Sources',fiab:'Fiabilité',gen:'Général',write:'Rédaction',math:'Maths',agents:'Projets',memory:'Mémoire',speed:'Réponse courte'};
 const GROUPS=[['Créer',2],['Sciences',3],['S’informer',3],['Travailler',6]];
 const HM=['Claude Opus 5.5','Claude Sonnet 5.5','Claude Fable 5.1','GPT-6 Astra','GPT-6.1 Sol','Gemini 4 Argon','Muse Wonder','Gemini 3.1 Pro','Grok 4.7','DeepSeek V4'];
 const qstep=s=>s>=5?5:s>=4.5?4:s>=4?3:s>=3.5?2:1;
@@ -1632,7 +1635,7 @@ bindTips(document.getElementById('budget'));
 
 const chips=$('chips');
 const short=m=>m.replace(/^Claude /,'');
-const TSHORT={apps:'Applis',design:'Design',sci:'Science',exp:'Labo',innov:'Théories',sources:'Recherche web',research:'Recherche longue',fiab:'Fiabilité',gen:'Polyvalence',write:'Rédaction',agents:'Projets longs',math:'Maths',memory:'Mémoire',conso:'Consommation',speed:'Rapidité',img:'Images',video:'Vidéo'};
+const TSHORT={apps:'Applis',design:'Design',sci:'Science',exp:'Labo',innov:'Théories',sources:'Recherche web',research:'Recherche longue',fiab:'Fiabilité',gen:'Polyvalence',write:'Rédaction',agents:'Projets longs',math:'Maths',memory:'Mémoire',conso:'Consommation',speed:'Réponse de 500 jetons',img:'Images',video:'Vidéo'};
 const TG=[['Créer',['apps','design']],['Sciences',['sci','exp','innov']],['S’informer',['sources','research','fiab']],
           ['Travailler',['gen','write','agents','math','memory','conso','speed']],['Images & vidéo',['img','video']]];
 TG.forEach(([name,keys])=>{
@@ -1727,13 +1730,13 @@ const saved=store('boussole-usage');
 select(T.some(t=>t.k===saved)?saved:'sci'); centerTile(T.some(t=>t.k===saved)?saved:'sci');
 
 /* ---------- consommation et rapidité ---------- */
-  /* modèle, laboratoire, effort, indice, coût par tâche ($), jetons par seconde, délai avant le premier mot (s), temps de réponse (s) */
+  /* modèle, laboratoire, effort, indice, coût par tâche ($), jetons par seconde, délai avant le premier mot (s), durée estimée pour une réponse de 500 jetons (s) */
   const CS=[
    ['Claude Opus 5.5','Anthropic','low',42,0.55,83,9.05,15.04],['Claude Opus 5.5','Anthropic','medium',51,1.34,85,19.87,25.77],['Claude Opus 5.5','Anthropic','high',54,1.82,77,51.91,58.40],['Claude Opus 5.5','Anthropic','xhigh',56,3.46,76,141.84,148.42],['Claude Opus 5.5','Anthropic','max',58,5.98,96,679.24,684.46],
    ['Claude Sonnet 5.5','Anthropic','low',36,0.35,99,1.17,6.23],['Claude Sonnet 5.5','Anthropic','medium',41,0.48,105,2.46,7.21],['Claude Sonnet 5.5','Anthropic','high',47,0.88,103,13.75,18.62],['Claude Sonnet 5.5','Anthropic','xhigh',52,2.01,100,33.61,38.60],['Claude Sonnet 5.5','Anthropic','max',56,5.46,133,437.81,441.58],
    ['Claude Fable 5.1','Anthropic','low',47,2.37,57,3.05,11.85],['Claude Fable 5.1','Anthropic','medium',49,2.98,54,8.87,18.14],['Claude Fable 5.1','Anthropic','high',51,3.91,55,14.30,23.35],['Claude Fable 5.1','Anthropic','xhigh',53,5.98,63,85.76,93.65],['Claude Fable 5.1','Anthropic','max',53,7.63,72,258.47,265.43],
    ['GPT-6 Astra','OpenAI','low',46,0.82,42,3.01,14.84],['GPT-6 Astra','OpenAI','medium',50,1.54,44,6.71,17.52],['GPT-6 Astra','OpenAI','high',51,1.73,45,65.82,77.01],['GPT-6 Astra','OpenAI','xhigh',52,2.31,44,168.29,179.58],['GPT-6 Astra','OpenAI','max',53,3.26,44,288.16,299.46],
-   ['GPT-6.1 Sol','OpenAI','low',42,0.13,44,3.44,14.73],['GPT-6.1 Sol','OpenAI','medium',48,0.21,46,5.37,16.15],['GPT-6.1 Sol','OpenAI','high',50,0.32,51,46.77,56.65],['GPT-6.1 Sol','OpenAI','xhigh',51,0.39,51,169.26,179.04],['GPT-6.1 Sol','OpenAI','max',52,0.72,49,301.67,311.98],
+   ['GPT-6.1 Sol','OpenAI','low',42,0.13,44,3.44,14.73],['GPT-6.1 Sol','OpenAI','medium',48,0.21,46,5.37,16.15],['GPT-6.1 Sol','OpenAI','high',50,0.32,51,46.77,56.65],['GPT-6.1 Sol','OpenAI','xhigh',51,0.39,58.5,122.33,130.88],['GPT-6.1 Sol','OpenAI','max',52,0.72,61.1,285.47,293.66],
    ['Gemini 4 Argon','Google','high',53,1.99,100,null,47],
    ['Muse Wonder','Meta','max',52,4.52,161,40.62,56.20],
    ['Grok 4.7','xAI','low',42,1.25,64,3.87,11.72],['Grok 4.7','xAI','high',46,2.73,77,29.78,36.31],['Grok 4.7','xAI','xhigh',46,3.74,80,75.68,81.96],
@@ -1758,7 +1761,7 @@ select(T.some(t=>t.k===saved)?saved:'sci'); centerTile(T.some(t=>t.k===saved)?sa
         '<td><span class="cs-eff">'+(e?gauge(e[1])+e[0]:'sans raisonnement')+'</span></td>'+
         '<td class="n">'+r[3]+'</td>'+
         '<td class="n">'+money(r[4])+'<span class="mb" aria-hidden="true"><i style="width:'+(r[4]/maxC*100).toFixed(1)+'%"></i></span></td>'+
-        '<td class="n">'+tf(r[7])+'</td><td class="n">'+r[5]+'</td><td class="n">'+tf(r[6])+'</td></tr>';
+        '<td class="n">'+tf(r[7])+'</td><td class="n">'+String(r[5]).replace('.',',')+'</td><td class="n">'+tf(r[6])+'</td></tr>';
     }).join('');
     cnt.textContent='· '+rows.length+' lignes';
   }
@@ -1967,7 +1970,7 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
       connector.setAttribute('x2',Math.max(r.x,Math.min(px,r.x+w)));connector.setAttribute('y2',Math.max(r.y,Math.min(py,r.y+34)));
       const h=el('circle',{cx:px,cy:py,r:14,fill:'transparent',tabindex:0,role:'button','aria-label':pair(p)+' : '+tx.label+' '+fv(tx,p.x)+', '+ty.label+' '+fv(ty,p.y)},hits);
       h.style.cursor='pointer';
-      const show=()=>{ tt.innerHTML='<b>'+pair(p)+'</b><br>'+TSHORT[tx.k]+' : '+fv(tx,p.x)+'<br>'+TSHORT[ty.k]+' : '+fv(ty,p.y)+(p.nr?'<br>Hors classement':'');
+      const show=()=>{ tt.innerHTML='<b>'+pair(p)+'</b><br>'+TSHORT[tx.k]+' : '+fv(tx,p.x)+'<br>'+TSHORT[ty.k]+' : '+fv(ty,p.y)+(p.nr?'<br>Hors classement':'')+([tx.k,ty.k].includes('speed')?'<br>Test de réponse de 500 jetons ; durée du développement non mesurée.':'');
         tt.hidden=false;const scroll=box.parentElement,left=scroll.scrollLeft;
         tt.style.left=Math.max(left+4,Math.min(px+12,left+scroll.clientWidth-tt.offsetWidth-4))+'px';tt.style.top=Math.max(4,py-tt.offsetHeight-12)+'px'; };
       h.addEventListener('pointerenter',show); h.addEventListener('focus',show); h.addEventListener('click',show);
@@ -1984,6 +1987,7 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
     box.setAttribute('aria-label','Nuage de points : '+tx.label+' à l’horizontale, '+ty.label+' à la verticale. '+Pt.length+' configurations. Meilleurs compromis : '+top.slice(0,3).map(pair).join(', ')+'.');
     const source=t=>t.k==='conso'||t.k==='speed'?'Artificial Analysis, relevé du 16 octobre 2026':t.kind==='mesure'?t.src+(t.date?', relevé du '+t.date+' 2026':''): 'classement éditorial, note sur 5';
     note.textContent='Horizontal : '+tx.label+' ('+source(tx)+'), échelle '+ax.label+'. Vertical : '+ty.label+' ('+source(ty)+'), échelle '+ay.label+'. En mode automatique, une échelle logarithmique est utilisée lorsque les valeurs sont positives et que la plus grande vaut au moins huit fois la plus petite ; sinon, l’échelle est linéaire. Le classement des compromis reste identique quelle que soit l’échelle. Chaque point associe le même modèle et le même effort sur les deux critères. Tous les couples disposant des deux valeurs sont affichés, y compris sous 50 points d’indice d’intelligence. Les relevés sans effort précisé sont comparés entre eux, sans leur attribuer un niveau. Pointillés : médiane des configurations ; la zone jaune réunit celles qui dépassent cette médiane sur les deux critères. Points creux : hors des dix premiers d’un classement. Sur téléphone, le graphique défile horizontalement. Gemini 4 Argon : seul l’effort élevé est renseigné dans cette page.';
+    if([tx.k,ty.k].includes('speed')) note.textContent+=' La durée estimée pour 500 jetons et les autres critères proviennent de tests distincts : ce graphique ne mesure pas le temps nécessaire pour développer une application. Sol maximal et très élevé : durées et débits actualisés le 16 octobre 2026 ; les autres mesures conservent leur relevé initial. Voir les définitions et les sources dans le tableau Consommation et rapidité.';
   }
   sx.addEventListener('change',render); sy.addEventListener('change',render);
   scaleX.addEventListener('change',render);scaleY.addEventListener('change',render);
