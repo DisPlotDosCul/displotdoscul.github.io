@@ -900,6 +900,37 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
 html.aff-calme .ccg-on{transition:none;}
 @media (prefers-reduced-motion:reduce){.ccg-on{transition:none;}}
 
+.nvh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.nbulbs{display:none;}
+html.th-neon:not(.aff-calme) header.top::after{display:none;}
+html.th-neon:not(.aff-calme) .nbulbs{display:flex;justify-content:space-between;justify-self:center;width:min(260px,72%);height:8px;margin-top:2px;}
+.nbulbs i{width:5px;height:5px;margin-top:1.5px;border-radius:50%;background:#FFD98A;box-shadow:0 0 3px 1px rgba(255,205,110,.95),0 0 9px 2px rgba(255,170,60,.55);animation:nbGlow 5.5s ease-in-out infinite alternate;}
+.nbulbs i:nth-child(3n){animation-duration:7s;animation-delay:-2s;}
+.nbulbs i:nth-child(4n+1){animation-duration:6.2s;animation-delay:-4s;}
+.nbulbs i.b4{animation:nbOld 7.3s steps(1,end) infinite;}
+.nbulbs i.b11{animation:nbOld 11.7s steps(1,end) infinite -3s;}
+.nbulbs i.b15{animation:nbTired 9.1s ease-in-out infinite -1s;}
+@keyframes nbGlow{from{opacity:.72;}to{opacity:1;}}
+@keyframes nbOld{0%,61%,64%,66%,100%{opacity:1;}62%{opacity:.15;}65%{opacity:.35;}67%,69%{opacity:.1;}68%{opacity:.8;}70%{opacity:1;}}
+@keyframes nbTired{0%,100%{opacity:.95;}40%{opacity:.4;}43%{opacity:.85;}46%{opacity:.3;}55%{opacity:.6;}80%{opacity:1;}}
+html.th-neon:not(.aff-calme) h1{animation:nH 9s ease-in-out infinite alternate;}
+@keyframes nH{from{text-shadow:0 0 2px #FFFFFF,0 0 5px #FF6ACB,0 0 11px #FF2DA6,0 0 22px rgba(255,45,166,.45);}to{text-shadow:0 0 2px #FFFFFF,0 0 8px #FF6ACB,0 0 20px #FF2DA6,0 0 44px rgba(255,45,166,.85);}}
+html.th-neon:not(.aff-calme) .nl.fk1{animation:nL 8.3s linear infinite;}
+html.th-neon:not(.aff-calme) .nl.fk2{animation:nL 13.9s linear infinite -6s;}
+@keyframes nL{0%,71%,100%{opacity:1;}72%{opacity:.25;text-shadow:none;}73%{opacity:.9;}74%{opacity:.2;text-shadow:none;}76%{opacity:.55;}78%{opacity:1;}88%{opacity:1;}89%{opacity:.3;text-shadow:none;}90%{opacity:1;}}
+/* Lumières du ciel : elles montent et redescendent lentement, et dérivent. */
+html.th-neon:not(.aff-calme) body::before,html.th-neon:not(.aff-calme) body::after{content:"";position:fixed;inset:-15%;z-index:-1;pointer-events:none;}
+html.th-neon:not(.aff-calme) body::before{background:radial-gradient(40% 30% at 30% 18%,rgba(150,70,255,.30),transparent 70%),radial-gradient(35% 28% at 82% 55%,rgba(255,45,170,.20),transparent 70%),radial-gradient(38% 30% at 15% 85%,rgba(60,200,255,.16),transparent 70%);
+  animation:nSky 12s ease-in-out infinite alternate,nDrift 46s ease-in-out infinite alternate;}
+/* Illusion d'optique : une spirale à peine visible qui tourne très lentement et semble creuser la nuit. */
+html.th-neon:not(.aff-calme) body::after{background:repeating-conic-gradient(from 0deg at 50% 22%,rgba(190,140,255,.07) 0deg 6deg,transparent 6deg 18deg),repeating-radial-gradient(circle at 50% 22%,rgba(255,106,203,.06) 0 2px,transparent 2px 34px);
+  -webkit-mask:radial-gradient(60% 50% at 50% 22%,#000,transparent 75%);mask:radial-gradient(60% 50% at 50% 22%,#000,transparent 75%);animation:nSpin 140s linear infinite,nBreath 10s ease-in-out infinite alternate;transform-origin:50% 22%;}
+@keyframes nSky{from{opacity:.35;}to{opacity:1;}}
+@keyframes nDrift{from{transform:translate3d(-3%,-2%,0) scale(1);}to{transform:translate3d(3%,2%,0) scale(1.08);}}
+@keyframes nSpin{to{rotate:360deg;}}
+@keyframes nBreath{from{opacity:.4;scale:1;}to{opacity:1;scale:1.12;}}
+@media (prefers-reduced-motion:reduce){html.th-neon .nbulbs i,html.th-neon h1,html.th-neon .nl,html.th-neon body::before,html.th-neon body::after{animation:none!important;}}
+
 body.vide:not(.autre) #filters{display:flex;}
 body:not(.vide) .minis.cats{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:6px;padding:2px 2px 6px;scrollbar-width:none;}
 body:not(.vide) .minis.cats::-webkit-scrollbar{display:none;}
@@ -1058,7 +1089,8 @@ body:not(.vide) .toc{margin-top:8px;}
 
 <div class="wrap">
   <header class="top">
-    <h1>Ciné-club</h1>
+    <h1><span class="nvh">Ciné-club</span><span class="nlet" aria-hidden="true"><span class="nl">C</span><span class="nl">i</span><span class="nl">n</span><span class="nl fk1">é</span><span class="nl">-</span><span class="nl">c</span><span class="nl">l</span><span class="nl fk2">u</span><span class="nl">b</span></span></h1>
+    <div class="nbulbs" aria-hidden="true"><i class="b0"></i><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="b5"></i><i class="b6"></i><i class="b7"></i><i class="b8"></i><i class="b9"></i><i class="b10"></i><i class="b11"></i><i class="b12"></i><i class="b13"></i><i class="b14"></i><i class="b15"></i><i class="b16"></i></div>
     <button type="button" class="nuitb aab" id="aab" aria-haspopup="true" aria-expanded="false" aria-controls="aamenu" aria-label="Affichage" title="Affichage">Aa</button>
     <div class="aamenu" id="aamenu" role="group" aria-label="Affichage" hidden>
       <p class="aa-h">Taille</p>
@@ -1549,7 +1581,7 @@ body:not(.vide) .toc{margin-top:8px;}
     return h;
   }
   // ---------- Communauté : membres, conseils privés (« Pour moi »), fil, profils, bulle, signalements, visite guidée ----------
-  var TAB = "membres", MSG = {}, MSGQ = [{}, {}], MSGERR = null, MASQ = {}, SIGN = [], SEND = null, REPORT = null;
+  var TAB = "membres", MSG = {}, MSGALL = false, MSGQ = [{}, {}], MSGERR = null, MASQ = {}, SIGN = [], SEND = null, REPORT = null;
   function me(){ return CC.me || {}; }
   function bloques(){ return me().bloques || []; }
   function isBlocked(u){ return bloques().indexOf(u) >= 0; }
@@ -1570,12 +1602,18 @@ body:not(.vide) .toc{margin-top:8px;}
   // Écoutes : conseils reçus et envoyés, contenus masqués, signalements (administratrice).
   function listenCom(){
     if (!CC.uid || !CC.me) return;
-    [["to", 0], ["from", 1]].forEach(function(q){
-      fs.collection("messages").where(q[0], "==", CC.uid).onSnapshot(function(s){
-        var m = {}; s.docs.forEach(function(d){ var x = d.data() || {}; if (x[q[0]] === CC.uid) m[d.id] = Object.assign({ id:d.id }, x); });
-        MSGQ[q[1]] = m; MSG = Object.assign({}, MSGQ[0], MSGQ[1]); MSGERR = null; paintBar(); comRefresh();
-      }, function(e){ MSGERR = e; paintBar(); comRefresh(); });
-    });
+    var mine = function(){
+      [["to", 0], ["from", 1]].forEach(function(q){
+        fs.collection("messages").where(q[0], "==", CC.uid).onSnapshot(function(s){
+          var m = {}; s.docs.forEach(function(d){ var x = d.data() || {}; if (x[q[0]] === CC.uid) m[d.id] = Object.assign({ id:d.id }, x); });
+          MSGQ[q[1]] = m; MSG = Object.assign({}, MSGQ[0], MSGQ[1]); MSGERR = null; paintBar(); comRefresh();
+        }, function(e){ MSGERR = e; paintBar(); comRefresh(); });
+      });
+    };
+    fs.collection("messages").onSnapshot(function(s){
+      var m = {}; s.docs.forEach(function(d){ m[d.id] = Object.assign({ id:d.id }, d.data() || {}); });
+      MSGALL = true; MSG = m; MSGERR = null; paintBar(); comRefresh(); CC.hooks.forEach(function(f){ try { f(); } catch (e) {} });
+    }, function(){ MSGALL = false; mine(); });
     fs.collection("masques").onSnapshot(function(s){
       var m = {}; s.docs.forEach(function(d){ m[d.id] = 1; }); MASQ = m;
       CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); comRefresh();
@@ -1593,6 +1631,8 @@ body:not(.vide) .toc{margin-top:8px;}
     var T = {};
     Object.keys(MSG).forEach(function(k){
       var x = MSG[k], other = x.from === CC.uid ? x.to : x.from;
+      if (x.from !== CC.uid && x.to !== CC.uid && x.to !== "*") return;
+      if (x.to === "*" && x.from !== CC.uid && (inBulle(x.from) || me().bulle)) return;
       if (CC.hidden("msg", x.id, x.from === CC.uid ? "" : x.from)) return;
       var key = x.film + "|" + other, t = T[key] = T[key] || { key:key, film:x.film, titre:x.titre, annee:x.annee, other:other, list:[], last:"" };
       t.list.push(x); if (String(x.ajout) > t.last) t.last = String(x.ajout);
@@ -1617,6 +1657,12 @@ body:not(.vide) .toc{margin-top:8px;}
         if (!verb) return;
         out.push({ t:t, iso:r.maj, uid:u, film:id, titre:r.titre || id, annee:r.annee, txt:verb, note:r.note10 || 0 });
       });
+    });
+    Object.keys(MSG).forEach(function(k){
+      var x = MSG[k], t = Date.parse(x.ajout || "");
+      if (x.type !== "conseil" || !(t > lim) || x.from === CC.uid || inBulle(x.from) || CC.hidden("msg", x.id, x.from)) return;
+      var dest = x.to === "*" ? "à tout le monde" : x.to === CC.uid ? "à toi" : "à " + pseudoOf(x.to);
+      out.push({ t:t, iso:x.ajout, uid:x.from, film:x.film, titre:x.titre || x.film, annee:x.annee, txt:"conseille", apres:" " + dest, com:x.mot });
     });
     var C = CC.coms || {};
     Object.keys(C).forEach(function(fid){
@@ -1652,41 +1698,45 @@ body:not(.vide) .toc{margin-top:8px;}
   function renderPourMoi(){
     if (MSGERR) return '<p class="sh-note">Les conseils privés ne sont pas encore activés : Licia doit publier les nouvelles règles de la base (fichier « firestore.rules »).</p>';
     var T = threads();
-    if (!T.length) return '<p class="sh-note">Aucun conseil pour l\'instant. Pour en envoyer un : sous un film, touche « ♡ Conseiller », puis « Le conseiller à un membre… ».</p>';
+    if (!T.length) return '<p class="sh-note">Aucun conseil pour l\'instant. Pour en envoyer un : sous un film, touche « ♡ Conseiller », puis « Le conseiller… », à tout le monde ou à certaines personnes.</p>';
     return T.map(function(t){
       var first = t.list[0], fromMe = first.from === CC.uid, other = pseudoOf(t.other);
-      var head = fromMe ? "Tu as conseillé " + filmLabel(t) + " à " + other : other + " te conseille " + filmLabel(t);
+      var head = fromMe ? "Tu as conseillé " + filmLabel(t) + (t.other === "*" ? " à tout le monde" : " à " + other) : other + (first.to === "*" ? " conseille à tout le monde " : " te conseille ") + filmLabel(t);
       var msgs = t.list.map(function(x, i){
         var who = x.from === CC.uid ? "Toi" : pseudoOf(x.from);
         return x.mot ? '<div class="cmsg' + (x.from === CC.uid ? " moi" : "") + '"><b>' + esc(who) + '</b> « ' + esc(x.mot) + ' »' + (i ? flagBtn("msg", x.id, x.from === CC.uid ? "" : x.from, x.mot) : "") + '</div>' : "";
       }).join("");
       var open = SEND && SEND.reply === t.key;
-      var blocked = inBulle(t.other) || ((CC.profils[t.other] || {}).bloques || []).indexOf(CC.uid) >= 0;
+      var blocked = t.other === "*" || inBulle(t.other) || ((CC.profils[t.other] || {}).bloques || []).indexOf(CC.uid) >= 0;
       return '<div class="cthread"><div class="cth">' + esc(head) + '<small>' + esc(ago(t.last)) + '</small></div>' + msgs +
         (open ? '<div class="crep"><textarea id="ccRepTxt" class="ccin" maxlength="200" rows="2" placeholder="Ta réponse (200 caractères au plus)"></textarea><div class="plf-b"><button type="button" class="plf-ok ccsm" data-repsend="' + esc(t.key) + '">Envoyer</button><button type="button" class="plf-no ccsm" data-repno="1">Annuler</button></div></div>' : "") +
-        '<div class="plf-b">' + filmBtn(t.film, t.titre) + (open ? "" : blocked ? '<span class="sh-note">' + esc(other) + ' préfère rester dans sa bulle.</span>' : '<button type="button" class="plf-no ccsm" data-reply="' + esc(t.key) + '">Répondre</button>') +
+        '<div class="plf-b">' + filmBtn(t.film, t.titre) + (open || t.other === "*" ? "" : blocked ? '<span class="sh-note">' + esc(other) + ' préfère rester dans sa bulle.</span>' : '<button type="button" class="plf-no ccsm" data-reply="' + esc(t.key) + '">Répondre</button>') +
         (first.from !== CC.uid ? flagBtn("msg", first.id, first.from, first.mot).replace('class="ccflag"', 'class="ccflag lab"').replace('>⚑<', '>⚑ Signaler<') : "") + '</div></div>';
     }).join("");
   }
   function renderFil(){
     var F = feed();
-    if (!F.length) return '<p class="sh-note">Rien de nouveau ces 30 derniers jours. Les notes et commentaires des autres membres apparaîtront ici.</p>';
+    if (!F.length) return '<p class="sh-note">Rien de nouveau ces 30 derniers jours. Les notes, commentaires et conseils des autres membres apparaîtront ici.</p>';
     return '<div class="mlist">' + F.map(function(x){
-      var txt = pseudoOf(x.uid) + " " + x.txt + " " + x.titre + (x.annee ? " (" + x.annee + ")" : "") + (x.note ? " " + fmtN(x.note) + "/10" : "") + (x.com ? " : « " + x.com + " »" : "");
+      var txt = pseudoOf(x.uid) + " " + x.txt + " " + x.titre + (x.annee ? " (" + x.annee + ")" : "") + (x.apres || "") + (x.note ? " " + fmtN(x.note) + "/10" : "") + (x.com ? " : « " + x.com + " »" : "");
       return '<button type="button" class="mfilm fil" data-mfilm="' + esc(x.titre) + '"><span>' + esc(txt) + '</span><small>' + esc(ago(x.iso)) + '</small></button>';
     }).join("") + '</div>';
   }
   function renderSend(){
     var P = CC.profils, ids = Object.keys(P).filter(function(u){ return u !== CC.uid && P[u] && P[u].pseudo && !isBlocked(u); })
       .sort(function(a, b){ return String(P[a].pseudo).localeCompare(String(P[b].pseudo), "fr"); });
+    var ok = SEND.pub || SEND.tos.length;
     return '<h3>Conseiller ' + esc(filmLabel(SEND)) + '</h3>' +
-      (!ids.length ? '<p class="sh-note">Pas encore d\'autre membre. Envoie le lien de la page à un ami pour qu\'il te rejoigne.</p>' :
-      '<div class="mlist" role="radiogroup" aria-label="À qui ?">' + ids.map(function(u){
-        var no = inBulle(u) || (P[u].bloques || []).indexOf(CC.uid) >= 0;
-        return '<button type="button" class="mrow" role="radio" data-sendto="' + esc(u) + '" aria-checked="' + (SEND.to === u) + '"' + (no ? ' disabled' : '') + '><b>' + esc(P[u].pseudo) + '</b><span>' + (no ? "préfère rester dans sa bulle" : SEND.to === u ? "✓ choisi" : "") + '</span></button>';
-      }).join("") + '</div>' +
+      '<div class="ctabs" role="radiogroup" aria-label="À qui ?"><button type="button" class="chip" role="radio" data-aud="pub" aria-checked="' + !!SEND.pub + '" aria-pressed="' + !!SEND.pub + '">🌍 À tout le monde</button>' +
+      '<button type="button" class="chip" role="radio" data-aud="some" aria-checked="' + !SEND.pub + '" aria-pressed="' + !SEND.pub + '">👤 À certaines personnes</button></div>' +
+      '<p class="sh-note">' + (SEND.pub ? "Le conseil apparaît dans le fil de tous les membres." : "Les personnes choisies le reçoivent dans « Pour moi ». Il reste visible dans le fil des autres membres.") + '</p>' +
+      (SEND.pub ? "" : !ids.length ? '<p class="sh-note">Pas encore d\'autre membre. Envoie le lien de la page à un ami pour qu\'il te rejoigne.</p>' :
+      '<div class="mlist" role="group" aria-label="Personnes choisies">' + ids.map(function(u){
+        var no = inBulle(u) || (P[u].bloques || []).indexOf(CC.uid) >= 0, on = SEND.tos.indexOf(u) >= 0;
+        return '<button type="button" class="mrow" role="checkbox" data-sendto="' + esc(u) + '" aria-checked="' + on + '"' + (no ? ' disabled' : '') + '><b>' + esc(P[u].pseudo) + '</b><span>' + (no ? "préfère rester dans sa bulle" : on ? "✓ choisi" : "") + '</span></button>';
+      }).join("") + '</div>') +
       '<label class="ccl"><span>Un mot (facultatif)</span><textarea id="ccSendTxt" class="ccin" maxlength="200" rows="3" placeholder="Pourquoi ce film ? 200 caractères au plus">' + esc(SEND.mot || "") + '</textarea></label>' +
-      '<div class="plf-b"><button type="button" class="plf-ok" id="ccSendGo"' + (SEND.to ? "" : " disabled") + '>Envoyer le conseil</button><button type="button" class="plf-no" data-sendno="1">Annuler</button></div>') +
+      '<div class="plf-b"><button type="button" class="plf-ok" id="ccSendGo"' + (ok ? "" : " disabled") + '>' + (SEND.pub ? "Conseiller à tout le monde" : SEND.tos.length > 1 ? "Envoyer à " + SEND.tos.length + " personnes" : "Envoyer le conseil") + '</button><button type="button" class="plf-no" data-sendno="1">Annuler</button></div>' +
       '<p class="sh-note" id="ccSendNote"></p>';
   }
   function renderReport(){
@@ -1724,7 +1774,7 @@ body:not(.vide) .toc{margin-top:8px;}
   CC.sendFilm = function(fid){
     if (!CC.me) { openLogin(); return; }
     var info = (CC.filmInfo && CC.filmInfo(fid)) || {};
-    SEND = { film:fid, titre:info.t || fid, annee:info.y || "", to:"", mot:"" }; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0;
+    SEND = { film:fid, titre:info.t || fid, annee:info.y || "", pub:true, tos:[], mot:"" }; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0;
   };
   function sendMsg(to, film, titre, annee, mot, type){
     return fs.collection("messages").add({ from:CC.uid, to:to, film:film, titre:titre || "", annee:annee || "", mot:String(mot || "").trim().slice(0, 200), type:type, ajout:new Date().toISOString(), lu:false });
@@ -1783,11 +1833,13 @@ body:not(.vide) .toc{margin-top:8px;}
     var mb = t.closest("[data-mbr]"); if (mb) { CC.openMembers(mb.dataset.mbr); return; }
     var ct = t.closest("[data-ctab]"); if (ct) { TAB = ct.dataset.ctab; MSEL = ""; renderCom(); return; }
     var cs = t.closest("[data-cconseil]"); if (cs) { CC.sendFilm(cs.dataset.cconseil); return; }
-    var st = t.closest("[data-sendto]"); if (st && !st.disabled) { SEND.mot = ($("ccSendTxt") || {}).value || SEND.mot; SEND.to = st.dataset.sendto; renderCom(); return; }
+    var au = t.closest("[data-aud]"); if (au && SEND) { SEND.mot = ($("ccSendTxt") || {}).value || SEND.mot; SEND.pub = au.dataset.aud === "pub"; renderCom(); return; }
+    var st = t.closest("[data-sendto]"); if (st && !st.disabled) { SEND.mot = ($("ccSendTxt") || {}).value || SEND.mot; var u0 = st.dataset.sendto, ix = SEND.tos.indexOf(u0); if (ix >= 0) SEND.tos.splice(ix, 1); else SEND.tos.push(u0); renderCom(); return; }
     if (t.closest("[data-sendno]")) { SEND = null; renderCom(); return; }
     if (t.closest("#ccSendGo")) {
       var mot = ($("ccSendTxt") || {}).value || "", sn = $("ccSendNote"), go = $("ccSendGo"); go.disabled = true; sn.textContent = "Envoi…";
-      sendMsg(SEND.to, SEND.film, SEND.titre, SEND.annee, mot, "conseil").then(function(){ var who = pseudoOf(SEND.to); SEND = null; TAB = "pourmoi"; renderCom(); var n = $("msheetBody").querySelector(".ctabs"); if (n) n.insertAdjacentHTML("afterend", '<p class="sh-note ok">Conseil envoyé à ' + esc(who) + '.</p>'); },
+      var dests = SEND.pub ? ["*"] : SEND.tos.slice();
+      Promise.all(dests.map(function(d){ return sendMsg(d, SEND.film, SEND.titre, SEND.annee, mot, "conseil"); })).then(function(){ var who = SEND.pub ? "tout le monde" : SEND.tos.map(pseudoOf).join(", "); SEND = null; TAB = "pourmoi"; renderCom(); var n = $("msheetBody").querySelector(".ctabs"); if (n) n.insertAdjacentHTML("afterend", '<p class="sh-note ok">Conseil envoyé à ' + esc(who) + '.</p>'); },
         function(e){ go.disabled = false; sn.textContent = e && e.code === "permission-denied" ? "Pas envoyé : cette personne préfère rester dans sa bulle, ou les nouvelles règles de la base ne sont pas encore publiées." : "Pas envoyé, réessaie dans un instant."; sn.className = "sh-note err"; });
       return;
     }
@@ -2289,7 +2341,7 @@ body:not(.vide) .toc{margin-top:8px;}
   }
 
   // Les autres membres qui ont répondu pour ce film (leur note, ou vu / pas vu).
-  function ccSendBtn(f){ return window.CC && CC.me && !GUEST ? '<button type="button" class="chip cc-send" data-cconseil="' + esc(f.id) + '">Le conseiller à un membre…</button>' : ""; }
+  function ccSendBtn(f){ return window.CC && CC.me && !GUEST ? '<button type="button" class="chip cc-send" data-cconseil="' + esc(f.id) + '">📣 Le conseiller…</button>' : ""; }
   if (window.CC) CC.filmInfo = function(id){ var f = films[id]; return f ? { t:f.t, y:f.y } : null; };
   function mbrHtml(f){
     var P = window.CC && CC.uid ? CC.profils : null; if (!P) return "";

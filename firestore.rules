@@ -35,15 +35,16 @@ service cloud.firestore {
       allow write: if isAdmin() && perso(col);
     }
 
-    // Conseils privés entre membres : lus seulement par l'expéditeur et le destinataire.
-    // Refusés si le destinataire reste dans sa bulle ou a bloqué l'expéditeur.
+    // Conseils entre membres : visibles par tous les membres connectés (le site fonctionne comme un réseau social).
+    // Destinataire « * » : conseil à tout le monde. Sinon, refusé si le destinataire reste dans sa bulle ou a bloqué l'expéditeur.
     match /messages/{id} {
-      allow read: if signedIn() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+      allow read: if signedIn();
       allow create: if signedIn() && request.resource.data.from == request.auth.uid
         && request.resource.data.to is string && request.resource.data.to != request.auth.uid
         && request.resource.data.mot is string && request.resource.data.mot.size() <= 200
-        && profil(request.resource.data.to).get('bulle', false) != true
-        && !(request.auth.uid in profil(request.resource.data.to).get('bloques', []));
+        && (request.resource.data.to == '*' || (
+          profil(request.resource.data.to).get('bulle', false) != true
+          && !(request.auth.uid in profil(request.resource.data.to).get('bloques', []))));
       allow update: if signedIn() && resource.data.to == request.auth.uid
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lu']);
       allow delete: if signedIn() && (resource.data.from == request.auth.uid || isAdmin());
