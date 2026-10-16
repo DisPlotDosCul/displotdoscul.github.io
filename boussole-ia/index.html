@@ -432,6 +432,23 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
 .cs-eff .eg{height:11px}
 #csCount{font-family:var(--f-mono);text-transform:none;letter-spacing:0}
 @media (max-width:560px){.sortb.flt{margin-left:0}}
+
+#duo{padding-top:14px}
+.duoctl{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 10px}
+.duoctl label{display:flex;flex-direction:column;gap:4px;flex:1 1 200px;min-width:0}
+.duoctl select{font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);background:var(--surface);border:1.5px solid var(--accent);border-radius:10px;padding:9px 10px;width:100%;cursor:pointer}
+#duoSwap{align-self:flex-end;padding:9px 13px;font-size:15px}
+#duoChart{position:relative}
+#duoChart svg{display:block;max-width:100%;height:auto}
+#duoChart .empty{padding:40px 8px;text-align:center;color:var(--muted);margin:0}
+.duobest{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.duobest li{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:14px;padding:6px 10px;border-radius:9px;background:var(--surface-2)}
+.duobest li:first-child{background:color-mix(in oklab,var(--hi) 38%,var(--surface))}
+.duobest .rn{font-family:var(--f-mono);font-weight:700}
+.duobest .rn sup{font-size:9px}
+.duobest .nn{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.duobest .vv{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
+@media (max-width:560px){#duoSwap{order:3;flex:0 0 auto}}
 </style>
 </head>
 <body>
@@ -489,6 +506,7 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
 <nav class="anchors" aria-label="Sections">
   <div class="scroller">
     <a href="#classements" class="hl">Classements</a>
+    <a href="#duo" class="hl">Comparer 2 critères</a>
     <a href="#conso" class="hl">Consommation &amp; rapidité</a>
     <a href="#reponse">Plus fort qu’Opus ?</a>
     <a href="#usage">Carte des forces</a>
@@ -517,6 +535,27 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
     <p class="legend"><b>Effort</b> : la puissance de réflexion réglée pendant le test, de bas à maximal. Plus elle est élevée, plus le modèle réfléchit longtemps : meilleures réponses, mais plus lentes et plus coûteuses en quota. Dans l’appli, choisissez le même niveau pour obtenir ce résultat. Rang parmi des modèles distincts : un modèle testé à plusieurs niveaux d’effort ne compte qu’une fois, à son meilleur score. « Provisoire » : pas encore assez de votes. Classement éditorial : aucun test public ne départage ces modèles ; l’ordre et la note sur 5 sont une synthèse des chiffres cités.</p>
   </div>
 </div>
+</section>
+
+<section id="duo" aria-label="Comparer deux critères">
+  <div class="head row"><h2>Comparer deux critères</h2><span class="eyebrow">chaque point est un modèle · en haut à droite = le meilleur des deux</span></div>
+  <div class="chartbox">
+    <div class="duoctl">
+      <label><span class="eyebrow">Critère horizontal →</span><select id="duoX"></select></label>
+      <button type="button" class="sortb" id="duoSwap" aria-label="Inverser les deux critères">⇄</button>
+      <label><span class="eyebrow">Critère vertical ↑</span><select id="duoY"></select></label>
+    </div>
+    <div class="keys" aria-hidden="true">
+      <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="var(--s1)"/></svg>Anthropic (Claude)</span>
+      <span><svg width="12" height="12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="var(--s2)"/></svg>OpenAI (GPT)</span>
+      <span><svg width="12" height="12"><path d="M6 0.5 L11.5 6 L6 11.5 L0.5 6 Z" fill="var(--s3)"/></svg>Autres laboratoires</span>
+      <span><svg width="12" height="12"><circle cx="6" cy="6" r="4.2" fill="none" stroke="var(--muted)" stroke-width="1.6"/></svg>Hors classement</span>
+    </div>
+    <div id="duoChart" role="img"></div>
+    <span class="eyebrow">Meilleurs compromis entre les deux</span>
+    <ol class="duobest" id="duoBest"></ol>
+    <p class="note" id="duoNote"></p>
+  </div>
 </section>
 
 <section id="conso" aria-label="Consommation et rapidité">
@@ -1801,6 +1840,95 @@ function draw(){
 }
 draw();
 let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(draw,120);});
+
+/* ---------- comparer deux critères ---------- */
+(function(){
+  const sx=$('duoX'), sy=$('duoY'), box=$('duoChart'), best=$('duoBest'), note=$('duoNote');
+  if(!box) return;
+  TG.forEach(([name,keys])=>[sx,sy].forEach(sel=>{
+    const og=document.createElement('optgroup'); og.label=name;
+    keys.forEach(k=>{ const t=T.find(x=>x.k===k); if(!t) return; const o=document.createElement('option'); o.value=k; o.textContent=t.label; og.appendChild(o); });
+    sel.appendChild(og);
+  }));
+  const ok=k=>T.some(t=>t.k===k);
+  sx.value=ok(store('duo-x'))?store('duo-x'):'conso'; sy.value=ok(store('duo-y'))?store('duo-y'):'speed';
+  const grp=l=>l==='Anthropic'?'a':l==='OpenAI'?'o':'x';
+  const val=(t,i)=>t.kind==='editorial'?i.s:i.v;
+  const inv=t=>t.kind!=='editorial'&&!!t.inv;
+  const fv=(t,v)=>t.kind==='editorial'?fmt(v)+'/5':fmtVal(v,t.unit);
+  const nm=m=>m.replace(/^Claude /,'');
+  const tt=document.createElement('div'); tt.className='tt'; tt.hidden=true; box.appendChild(tt);
+  function ticks(lo,hi,n){
+    const raw=(hi-lo)/(n||4), p=Math.pow(10,Math.floor(Math.log10(raw))), f=raw/p, st=(f<1.5?1:f<3?2:f<7?5:10)*p, out=[];
+    for(let v=Math.ceil(lo/st)*st; v<=hi+1e-9; v+=st) out.push(+v.toFixed(6));
+    return out;
+  }
+  function msg(t){ const d=document.createElement('p'); d.className='empty'; d.textContent=t; box.appendChild(d); note.textContent=''; box.setAttribute('aria-label',t); }
+  function render(){
+    store('duo-x',sx.value); store('duo-y',sy.value);
+    const tx=T.find(t=>t.k===sx.value), ty=T.find(t=>t.k===sy.value);
+    box.querySelectorAll('svg,.empty').forEach(e=>e.remove()); best.innerHTML=''; tt.hidden=true;
+    if(tx===ty){ msg('Choisissez deux critères différents.'); return; }
+    const mx=new Map(); tx.items.forEach(i=>{ const v=val(tx,i); if(v!=null&&!mx.has(i.m)) mx.set(i.m,i); });
+    const Pt=[], seen=new Set();
+    ty.items.forEach(i=>{ const v=val(ty,i), ix=mx.get(i.m); if(v!=null&&ix&&!seen.has(i.m)){ seen.add(i.m); Pt.push({m:i.m,lab:i.lab,x:val(tx,ix),y:v,ix:ix,iy:i,nr:ix.nr||i.nr}); } });
+    if(Pt.length<3){ msg('Moins de trois modèles sont évalués sur ces deux critères : choisissez-en un autre.'); return; }
+    const dom=(a,t)=>{ let lo=Math.min(...a), hi=Math.max(...a); const pad=(hi-lo)*0.1||1; const l0=lo; lo-=pad; hi+=pad; if(l0>=0&&lo<0) lo=0; if(t.kind==='editorial') hi=Math.min(hi,5.25); return [lo,hi]; };
+    const [xlo,xhi]=dom(Pt.map(p=>p.x),tx), [ylo,yhi]=dom(Pt.map(p=>p.y),ty);
+    const W=Math.max(box.clientWidth,300), H=W<560?Math.round(W*1.05):Math.min(470,Math.round(W*0.56));
+    const m={l:W<560?52:62,r:14,t:28,b:44}, pw=W-m.l-m.r, ph=H-m.t-m.b;
+    const nx=v=>inv(tx)?(xhi-v)/(xhi-xlo):(v-xlo)/(xhi-xlo), ny=v=>inv(ty)?(yhi-v)/(yhi-ylo):(v-ylo)/(yhi-ylo);
+    const X=v=>m.l+nx(v)*pw, Y=v=>m.t+(1-ny(v))*ph;
+    const svg=el('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H}); box.insertBefore(svg,tt);
+    const med=a=>{ const b=[...a].sort((p,q)=>p-q), k=b.length>>1; return b.length%2?b[k]:(b[k-1]+b[k])/2; };
+    const cx=X(med(Pt.map(p=>p.x))), cy=Y(med(Pt.map(p=>p.y)));
+    const g=el('g',{},svg);
+    el('rect',{x:cx,y:m.t,width:W-m.r-cx,height:cy-m.t,fill:'var(--hi)',opacity:.22,rx:6},g);
+    ticks(Math.min(xlo,xhi),Math.max(xlo,xhi),W<560?3:4).forEach(v=>{ const x=X(v); if(x<m.l-1||x>W-m.r+1) return;
+      el('line',{x1:x,x2:x,y1:m.t,y2:H-m.b,stroke:'var(--grid)','stroke-width':1},g);
+      const t=el('text',{x:x,y:H-m.b+16,'text-anchor':x>W-m.r-26?'end':x<m.l+26?'start':'middle','font-size':11,fill:'var(--muted)'},g); t.textContent=fv(tx,v); });
+    ticks(Math.min(ylo,yhi),Math.max(ylo,yhi)).forEach(v=>{ const y=Y(v); if(y<m.t-1||y>H-m.b+1) return;
+      el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1},g);
+      const t=el('text',{x:m.l-7,y:y+4,'text-anchor':'end','font-size':11,fill:'var(--muted)'},g); t.textContent=fv(ty,v); });
+    el('line',{x1:cx,x2:cx,y1:m.t,y2:H-m.b,stroke:'var(--axis)','stroke-dasharray':'4 4'},g);
+    el('line',{x1:m.l,x2:W-m.r,y1:cy,y2:cy,stroke:'var(--axis)','stroke-dasharray':'4 4'},g);
+    el('line',{x1:m.l,x2:W-m.r,y1:H-m.b,y2:H-m.b,stroke:'var(--axis)'},g);
+    const q1=el('text',{x:W-m.r-8,y:m.t+16,'text-anchor':'end','font-size':12.5,'font-weight':700,fill:'var(--olive)'},g); q1.textContent='✓ Bon sur les deux';
+    const q3=el('text',{x:m.l+8,y:H-m.b-8,'text-anchor':'start','font-size':12,fill:'var(--muted)'},g); q3.textContent='Moins bon sur les deux';
+    const xt=el('text',{x:W-m.r,y:H-6,'text-anchor':'end','font-size':11.5,'font-weight':600,fill:'var(--ink)'},g); xt.textContent=TSHORT[tx.k]+' : mieux à droite →';
+    const yt=el('text',{x:m.l-m.l+4,y:14,'text-anchor':'start','font-size':11.5,'font-weight':600,fill:'var(--ink)'},g); yt.textContent='↑ '+TSHORT[ty.k]+' : mieux en haut';
+    const marks=el('g',{},svg), labels=el('g',{},svg), hits=el('g',{},svg), placed=[[W-m.r-130,m.t+2,W-m.r,m.t+20],[m.l,H-m.b-22,m.l+160,H-m.b]];
+    Pt.forEach(p=>{ p.s=(nx(p.x)+ny(p.y))/2; });
+    [...Pt].sort((a,b)=>b.s-a.s).forEach(p=>{
+      const px=X(p.x), py=Y(p.y), gr=grp(p.lab);
+      const mk=marker(marks,px,py,gr,p.nr?4.5:6);
+      if(p.nr){ mk.setAttribute('fill','var(--surface)'); mk.setAttribute('stroke',COL[gr]); mk.setAttribute('stroke-width',2); }
+      const label=nm(p.m), w=label.length*6.3+4, hgt=13;
+      const cand=[[10,4,'start'],[-10,4,'end'],[0,-11,'middle'],[0,19,'middle'],[10,-8,'start'],[-10,-8,'end'],[10,15,'start'],[-10,15,'end']];
+      const box_=c=>{ const x0=c[2]==='start'?px+c[0]:c[2]==='end'?px+c[0]-w:px-w/2; return [x0,py+c[1]-hgt+3,x0+w,py+c[1]+3]; };
+      const free=b=>b[0]>=2&&b[2]<=W-2&&b[1]>=m.t-4&&b[3]<=H-m.b+2&&!placed.some(q=>b[0]<q[2]&&b[2]>q[0]&&b[1]<q[3]&&b[3]>q[1])&&!Pt.some(o=>o!==p&&X(o.x)>b[0]-3&&X(o.x)<b[2]+3&&Y(o.y)>b[1]-3&&Y(o.y)<b[3]+3);
+      let c=cand.find(c=>free(box_(c)));
+      if(c){ placed.push(box_(c));
+        const t=el('text',{x:px+c[0],y:py+c[1],'text-anchor':c[2],'font-size':12,'font-weight':p.nr?400:600,fill:p.nr?'var(--muted)':'var(--ink)'},labels); t.textContent=label; }
+      const h=el('circle',{cx:px,cy:py,r:14,fill:'transparent',tabindex:0,role:'button','aria-label':p.m+' : '+tx.label+' '+fv(tx,p.x)+', '+ty.label+' '+fv(ty,p.y)},hits);
+      h.style.cursor='pointer';
+      const show=()=>{ tt.innerHTML='<b>'+p.m+'</b><br>'+TSHORT[tx.k]+' : '+fv(tx,p.x)+'<br>'+TSHORT[ty.k]+' : '+fv(ty,p.y)+(p.nr?'<br>Hors classement':'');
+        tt.style.left=Math.min(Math.max(px,70),W-70)+'px'; tt.style.top=py+'px'; tt.hidden=false; };
+      h.addEventListener('pointerenter',show); h.addEventListener('focus',show); h.addEventListener('click',show);
+      h.addEventListener('pointerleave',()=>tt.hidden=true); h.addEventListener('blur',()=>tt.hidden=true);
+    });
+    const top=[...Pt].filter(p=>!p.nr).sort((a,b)=>b.s-a.s).slice(0,5);
+    top.forEach((p,i)=>{ const li=document.createElement('li');
+      li.innerHTML='<span class="rn">'+ord(i+1)+'</span><span class="nn">'+p.m+'</span><span class="vv">'+fv(tx,p.x)+' · '+fv(ty,p.y)+'</span>'; best.appendChild(li); });
+    box.setAttribute('aria-label','Nuage de points : '+tx.label+' à l’horizontale, '+ty.label+' à la verticale. Meilleurs compromis : '+top.slice(0,3).map(p=>p.m).join(', ')+'.');
+    note.textContent='Horizontal : '+tx.label+' ('+(tx.kind==='mesure'?tx.src:'classement éditorial, note sur 5')+'). Vertical : '+ty.label+' ('+(ty.kind==='mesure'?ty.src:'classement éditorial, note sur 5')+'). Pointillés : valeur médiane des modèles affichés ; la zone jaune réunit ceux qui font mieux que la moitié des autres sur les deux critères. Chaque valeur vient du réglage testé par sa source, parfois différent d’un critère à l’autre. Points creux : modèles hors des dix premiers ou sous le seuil de qualité d’un des deux classements.';
+  }
+  sx.addEventListener('change',render); sy.addEventListener('change',render);
+  $('duoSwap').addEventListener('click',()=>{ const a=sx.value; sx.value=sy.value; sy.value=a; render(); });
+  let rr; window.addEventListener('resize',()=>{ clearTimeout(rr); rr=setTimeout(render,120); });
+  render();
+})();
+
 })();
 </script>
 
