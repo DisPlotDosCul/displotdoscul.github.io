@@ -433,28 +433,28 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
 #csCount{font-family:var(--f-mono);text-transform:none;letter-spacing:0}
 @media (max-width:560px){.sortb.flt{margin-left:0}}
 
-#duo{padding-top:14px}
+#duo,#trio{padding-top:14px}
 .duoctl{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 10px}
 .duoctl label{display:flex;flex-direction:column;gap:4px;flex:1 1 200px;min-width:0}
 .duoctl select{font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);background:var(--surface);border:1.5px solid var(--accent);border-radius:10px;padding:9px 10px;width:100%;cursor:pointer}
-#duoSwap{align-self:flex-end;padding:9px 13px;font-size:15px}
+#duoSwap,#trioSwap{align-self:flex-end;padding:9px 13px;font-size:15px}
 .duoscales select{font-size:13px;border-color:var(--line);padding:6px 10px}
 .duoscroll{overflow-x:auto}
-#duoChart{position:relative;min-width:760px}
-#duoChart svg{display:block;max-width:100%;height:auto}
-#duoChart text{font-family:var(--f-body)}
-#duoChart .duolabel{cursor:pointer}
-#duoChart .tt{transform:none;white-space:normal;width:max-content;max-width:min(290px,calc(100vw - 80px))}
-#duoChart .empty{padding:40px 8px;text-align:center;color:var(--muted);margin:0}
+#duoChart,#trioChart{position:relative;min-width:760px}
+#duoChart svg,#trioChart svg{display:block;max-width:100%;height:auto}
+#duoChart text,#trioChart text{font-family:var(--f-body)}
+#duoChart .duolabel,#trioChart .duolabel{cursor:pointer}
+#duoChart .tt,#trioChart .tt{transform:none;white-space:normal;width:max-content;max-width:min(290px,calc(100vw - 80px))}
+#duoChart .empty,#trioChart .empty{padding:40px 8px;text-align:center;color:var(--muted);margin:0}
 .duobest{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
 .duobest li{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:14px;padding:6px 10px;border-radius:9px;background:var(--surface-2)}
 .duobest li:first-child{background:color-mix(in oklab,var(--hi) 38%,var(--surface))}
 .duobest .rn{font-family:var(--f-mono);font-weight:700}
 .duobest .rn sup{font-size:9px}
 .duobest .nn{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#duo .duobest .nn{white-space:normal;line-height:1.3}
+#duo .duobest .nn,#trio .duobest .nn{white-space:normal;line-height:1.3}
 .duobest .vv{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
-@media (max-width:560px){#duoSwap{order:3;flex:0 0 auto}}
+@media (max-width:560px){#duoSwap,#trioSwap{order:3;flex:0 0 auto}#trio .duobest li{grid-template-columns:28px minmax(0,1fr)}#trio .duobest .vv{grid-column:2;white-space:normal;text-align:left}}
 </style>
 </head>
 <body>
@@ -513,6 +513,7 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
   <div class="scroller">
     <a href="#classements" class="hl">Classements</a>
     <a href="#duo" class="hl">Comparer 2 critères</a>
+    <a href="#trio" class="hl">Comparer 3 critères</a>
     <a href="#conso" class="hl">Consommation &amp; rapidité</a>
     <a href="#reponse">Plus fort qu’Opus ?</a>
     <a href="#usage">Carte des forces</a>
@@ -567,6 +568,36 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
     <ol class="duobest" id="duoBest"></ol>
     <details><summary>Toutes les configurations comparées</summary><ul class="duobest" id="duoAll"></ul></details>
     <p class="note" id="duoNote"></p>
+  </div>
+</section>
+
+<section id="trio" aria-label="Comparer trois critères">
+  <div class="head row"><h2>Comparer trois critères</h2><span class="eyebrow">chaque point est un couple modèle + effort</span></div>
+  <div class="chartbox">
+    <div class="duoctl">
+      <label><span class="eyebrow">Premier critère · horizontal →</span><select id="trioX"></select></label>
+      <button type="button" class="sortb" id="trioSwap" aria-label="Inverser les deux critères">⇄</button>
+      <label><span class="eyebrow">Deuxième critère · vertical ↑</span><select id="trioY"></select></label>
+      <label><span class="eyebrow">Troisième critère · taille des disques</span><select id="trioZ"></select></label>
+    </div>
+    <div class="duoctl duoscales">
+      <label><span class="eyebrow">Échelle horizontale</span><select id="trioScaleX"><option value="auto">Automatique</option><option value="linear">Linéaire</option><option value="log">Logarithmique</option></select></label>
+      <label><span class="eyebrow">Échelle verticale</span><select id="trioScaleY"><option value="auto">Automatique</option><option value="linear">Linéaire</option><option value="log">Logarithmique</option></select></label>
+      <label><span class="eyebrow">Échelle des disques</span><select id="trioScaleZ"><option value="auto">Automatique</option><option value="linear">Linéaire</option><option value="log">Logarithmique</option></select></label>
+    </div>
+    <span class="eyebrow" id="trioCount" aria-live="polite"></span>
+    <div class="keys" id="trioSizeKey" aria-live="polite"></div>
+    <div class="keys" aria-hidden="true">
+      <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="var(--s1)"/></svg>Anthropic (Claude)</span>
+      <span><svg width="12" height="12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="var(--s2)"/></svg>OpenAI (GPT)</span>
+      <span><svg width="12" height="12"><path d="M6 0.5 L11.5 6 L6 11.5 L0.5 6 Z" fill="var(--s3)"/></svg>Autres laboratoires</span>
+      <span><svg width="12" height="12"><circle cx="6" cy="6" r="4.2" fill="none" stroke="var(--muted)" stroke-width="1.6"/></svg>Hors classement</span>
+    </div>
+    <div class="duoscroll" tabindex="0" role="region" aria-label="Graphique des configurations, défilement horizontal sur petit écran"><div id="trioChart" role="group"></div></div>
+    <span class="eyebrow">Meilleurs compromis entre les trois</span>
+    <ol class="duobest" id="trioBest"></ol>
+    <details><summary>Toutes les configurations comparées</summary><ul class="duobest" id="trioAll"></ul></details>
+    <p class="note" id="trioNote"></p>
   </div>
 </section>
 
@@ -1856,19 +1887,22 @@ function draw(){
 draw();
 let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(draw,120);});
 
-/* ---------- comparer deux critères ---------- */
-(function(){
-  const sx=$('duoX'), sy=$('duoY'), box=$('duoChart'), best=$('duoBest'), note=$('duoNote');
+/* ---------- comparer deux ou trois critères ---------- */
+function compareCriteria(prefix){
+  const node=id=>$(prefix+id);
+  const sx=node('X'), sy=node('Y'), sz=node('Z'), box=node('Chart'), best=node('Best'), note=node('Note');
   if(!box) return;
-  const scaleX=$('duoScaleX'), scaleY=$('duoScaleY');
-  [scaleX,scaleY].forEach((s,i)=>{const saved=store('duo-scale-'+i);s.value=['linear','log'].includes(saved)?saved:'auto';});
-  TG.forEach(([name,keys])=>[sx,sy].forEach(sel=>{
+  const scaleX=node('ScaleX'), scaleY=node('ScaleY'), scaleZ=node('ScaleZ');
+  const criteriaControls=[sx,sy,sz].filter(Boolean), scaleControls=[scaleX,scaleY,scaleZ].filter(Boolean);
+  scaleControls.forEach((s,i)=>{const saved=store(prefix+'-scale-'+i);s.value=['linear','log'].includes(saved)?saved:'auto';});
+  TG.forEach(([name,keys])=>criteriaControls.forEach(sel=>{
     const og=document.createElement('optgroup'); og.label=name;
     keys.forEach(k=>{ const t=T.find(x=>x.k===k); if(!t) return; const o=document.createElement('option'); o.value=k; o.textContent=t.label; og.appendChild(o); });
     sel.appendChild(og);
   }));
   const ok=k=>T.some(t=>t.k===k);
-  sx.value=ok(store('duo-x'))?store('duo-x'):'conso'; sy.value=ok(store('duo-y'))?store('duo-y'):'speed';
+  sx.value=ok(store(prefix+'-x'))?store(prefix+'-x'):'conso'; sy.value=ok(store(prefix+'-y'))?store(prefix+'-y'):'speed';
+  if(sz) sz.value=ok(store(prefix+'-z'))?store(prefix+'-z'):'apps';
   const grp=l=>l==='Anthropic'?'a':l==='OpenAI'?'o':'x';
   const val=(t,i)=>t.kind==='editorial'?i.s:i.v;
   const inv=t=>t.kind!=='editorial'&&!!t.inv;
@@ -1910,17 +1944,26 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
   }
   function msg(t){ const d=document.createElement('p'); d.className='empty'; d.textContent=t; box.appendChild(d); note.textContent=''; box.setAttribute('aria-label',t); }
   function render(){
-    store('duo-x',sx.value); store('duo-y',sy.value);
-    const tx=T.find(t=>t.k===sx.value), ty=T.find(t=>t.k===sy.value);
-    box.querySelectorAll('svg,.empty').forEach(e=>e.remove()); best.innerHTML=''; $('duoAll').innerHTML=''; $('duoCount').textContent=''; tt.hidden=true;
-    if(tx===ty){ msg('Choisissez deux critères différents.'); return; }
+    store(prefix+'-x',sx.value); store(prefix+'-y',sy.value);if(sz) store(prefix+'-z',sz.value);
+    const tx=T.find(t=>t.k===sx.value), ty=T.find(t=>t.k===sy.value), tz=sz?T.find(t=>t.k===sz.value):null;
+    const selected=[tx,ty,tz].filter(Boolean), number=tz?'trois':'deux';
+    box.querySelectorAll('svg,.empty').forEach(e=>e.remove()); best.innerHTML=''; node('All').innerHTML=''; node('Count').textContent=''; tt.hidden=true;
+    if(sz) node('SizeKey').innerHTML='';
+    if(new Set(selected).size!==selected.length){ msg('Choisissez '+number+' critères différents.'); return; }
     const mx=new Map(); measures(tx).forEach(i=>{ if(!mx.has(key(i))) mx.set(key(i),i); });
+    const mz=tz?new Map(measures(tz).map(i=>[key(i),i])):null;
     const Pt=[], seen=new Set();
-    measures(ty).forEach(i=>{ const id=key(i), ix=mx.get(id); if(ix&&!seen.has(id)){ seen.add(id); Pt.push({m:i.m,lab:i.lab,e:i.e,x:val(tx,ix),y:val(ty,i),ix:ix,iy:i,nr:ix.nr||i.nr}); } });
-    $('duoCount').textContent=Pt.length+' configuration'+(Pt.length>1?'s':'')+' comparée'+(Pt.length>1?'s':'')+' · même effort sur les deux critères';
-    if(!Pt.length){ msg('Aucune configuration ne dispose de valeurs pour ces deux critères au même niveau d’effort. Les relevés sans effort précisé sont uniquement comparés entre eux.'); return; }
-    const ax=axis(Pt.map(p=>p.x),tx,scaleX), ay=axis(Pt.map(p=>p.y),ty,scaleY);
-    store('duo-scale-0',scaleX.value);store('duo-scale-1',scaleY.value);
+    measures(ty).forEach(i=>{ const id=key(i), ix=mx.get(id), iz=mz?.get(id); if(ix&&(!tz||iz)&&!seen.has(id)){ seen.add(id); Pt.push({m:i.m,lab:i.lab,e:i.e,x:val(tx,ix),y:val(ty,i),z:tz?val(tz,iz):null,ix:ix,iy:i,nr:!!(ix.nr||i.nr||iz?.nr)}); } });
+    node('Count').textContent=Pt.length+' configuration'+(Pt.length>1?'s':'')+' comparée'+(Pt.length>1?'s':'')+' · même effort sur les '+number+' critères';
+    if(!Pt.length){ msg('Aucune configuration ne dispose de valeurs pour ces '+number+' critères au même niveau d’effort. Les relevés sans effort précisé sont uniquement comparés entre eux.'); return; }
+    const ax=axis(Pt.map(p=>p.x),tx,scaleX), ay=axis(Pt.map(p=>p.y),ty,scaleY), az=tz?axis(Pt.map(p=>p.z),tz,scaleZ):null;
+    scaleControls.forEach((s,i)=>store(prefix+'-scale-'+i,s.value));
+    const values=p=>fv(tx,p.x)+' · '+fv(ty,p.y)+(tz?' · '+fv(tz,p.z):'');
+    const radius=p=>az?Math.sqrt(36+288*Math.max(0,Math.min(1,az.norm(p.z)))):6;
+    if(tz){
+      const sorted=Pt.map(p=>p.z).sort((a,b)=>a-b), low=inv(tz)?sorted[sorted.length-1]:sorted[0], high=inv(tz)?sorted[0]:sorted[sorted.length-1];
+      node('SizeKey').innerHTML=low===high?'Disques de même taille : '+tz.label+' = '+fv(tz,low):'<span><svg width="40" height="36" aria-hidden="true"><circle cx="20" cy="18" r="'+radius({z:low})+'" fill="var(--accent)" opacity=".3"/></svg>Petit disque : '+fv(tz,low)+'</span><span><svg width="40" height="36" aria-hidden="true"><circle cx="20" cy="18" r="'+radius({z:high})+'" fill="var(--accent)" opacity=".3"/></svg>Grand disque : '+fv(tz,high)+'</span><span>Plus grand = meilleur pour « '+tz.label+' » · échelle '+az.label+'</span>';
+    }
     const W=Math.max(box.clientWidth,760), H=Math.max(520,Math.min(1000,Pt.length*22));
     const m={l:68,r:30,t:42,b:54}, pw=W-m.l-m.r, ph=H-m.t-m.b;
     const nx=ax.norm, ny=ay.norm;
@@ -1941,8 +1984,8 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
     el('line',{x1:m.l,x2:W-m.r,y1:H-m.b,y2:H-m.b,stroke:'var(--axis)'},g);
     const xt=el('text',{x:W-m.r,y:H-6,'text-anchor':'end','font-size':11.5,'font-weight':600,fill:'var(--ink)'},g); xt.textContent=TSHORT[tx.k]+' · échelle '+ax.label+' · mieux à droite →';
     const yt=el('text',{x:4,y:18,'text-anchor':'start','font-size':11.5,'font-weight':600,fill:'var(--ink)'},g); yt.textContent='↑ '+TSHORT[ty.k]+' · échelle '+ay.label+' · mieux en haut';
-    const marks=el('g',{},svg), labels=el('g',{},svg), hits=el('g',{},svg), placed=[];
-    Pt.forEach(p=>{ p.s=(ax.rank(p.x)+ay.rank(p.y))/2; });
+    const bubbles=el('g',{},svg), marks=el('g',{},svg), labels=el('g',{},svg), hits=el('g',{},svg), placed=[];
+    Pt.forEach(p=>{ p.s=(ax.rank(p.x)+ay.rank(p.y)+(az?az.rank(p.z):0))/selected.length; });
     function placeLabel(px,py,w,h){
       let best=null, distance=Infinity;
       function consider(x,y){
@@ -1950,7 +1993,7 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
         const dx=Math.max(x-px,0,px-x-w), dy=Math.max(y-py,0,py-y-h);
         const d=dx*dx+dy*dy+0.02*((x+w/2-px)**2+(y+h/2-py)**2);
         if(d>=distance||placed.some(q=>x<q.x+q.w+4&&x+w+4>q.x&&y<q.y+q.h+4&&y+h+4>q.y)) return;
-        if(Pt.some(q=>X(q.x)>x-14&&X(q.x)<x+w+14&&Y(q.y)>y-14&&Y(q.y)<y+h+14)) return;
+        if(Pt.some(q=>{const r=az?radius(q)+4:14;return X(q.x)>x-r&&X(q.x)<x+w+r&&Y(q.y)>y-r&&Y(q.y)<y+h+r;})) return;
         best={x,y,w,h}; distance=d;
       }
       consider(px+16,py-h/2);consider(px-w-16,py-h/2);
@@ -1959,6 +2002,7 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
     }
     [...Pt].sort((a,b)=>b.s-a.s).forEach(p=>{
       const px=X(p.x), py=Y(p.y), gr=grp(p.lab);
+      if(az) el('circle',{class:'criterion-bubble',cx:px,cy:py,r:radius(p),fill:COL[gr],opacity:.22,stroke:COL[gr],'stroke-width':1,'aria-hidden':'true'},bubbles);
       const mk=marker(marks,px,py,gr,p.nr?4.5:6);
       if(p.nr){ mk.setAttribute('fill','var(--surface)'); mk.setAttribute('stroke',COL[gr]); mk.setAttribute('stroke-width',2); }
       const connector=el('line',{x1:px,y1:py,stroke:COL[gr],'stroke-width':1,opacity:.7,'pointer-events':'none'},labels);
@@ -1968,9 +2012,9 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
       const w=Math.ceil(Math.max(name.getComputedTextLength(),level.getComputedTextLength()))+12, r=placeLabel(px,py,w,34);
       bg.setAttribute('width',w);lg.setAttribute('transform','translate('+r.x+' '+r.y+')');
       connector.setAttribute('x2',Math.max(r.x,Math.min(px,r.x+w)));connector.setAttribute('y2',Math.max(r.y,Math.min(py,r.y+34)));
-      const h=el('circle',{cx:px,cy:py,r:14,fill:'transparent',tabindex:0,role:'button','aria-label':pair(p)+' : '+tx.label+' '+fv(tx,p.x)+', '+ty.label+' '+fv(ty,p.y)},hits);
+      const h=el('circle',{cx:px,cy:py,r:Math.max(14,radius(p)+2),fill:'transparent',tabindex:0,role:'button','aria-label':pair(p)+' : '+tx.label+' '+fv(tx,p.x)+', '+ty.label+' '+fv(ty,p.y)+(tz?', '+tz.label+' '+fv(tz,p.z):'')},hits);
       h.style.cursor='pointer';
-      const show=()=>{ tt.innerHTML='<b>'+pair(p)+'</b><br>'+TSHORT[tx.k]+' : '+fv(tx,p.x)+'<br>'+TSHORT[ty.k]+' : '+fv(ty,p.y)+(p.nr?'<br>Hors classement':'')+([tx.k,ty.k].includes('speed')?'<br>Test de réponse de 500 jetons ; durée du développement non mesurée.':'');
+      const show=()=>{ tt.innerHTML='<b>'+pair(p)+'</b><br>'+TSHORT[tx.k]+' : '+fv(tx,p.x)+'<br>'+TSHORT[ty.k]+' : '+fv(ty,p.y)+(tz?'<br>'+TSHORT[tz.k]+' : '+fv(tz,p.z):'')+(p.nr?'<br>Hors classement':'')+(selected.some(t=>t.k==='speed')?'<br>Test de réponse de 500 jetons ; durée du développement non mesurée.':'');
         tt.hidden=false;const scroll=box.parentElement,left=scroll.scrollLeft;
         tt.style.left=Math.max(left+4,Math.min(px+12,left+scroll.clientWidth-tt.offsetWidth-4))+'px';tt.style.top=Math.max(4,py-tt.offsetHeight-12)+'px'; };
       h.addEventListener('pointerenter',show); h.addEventListener('focus',show); h.addEventListener('click',show);
@@ -1980,22 +2024,25 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
     });
     const top=[...Pt].filter(p=>!p.nr).sort((a,b)=>b.s-a.s).slice(0,5);
     top.forEach((p,i)=>{ const li=document.createElement('li');
-      li.innerHTML='<span class="rn">'+ord(i+1)+'</span><span class="nn">'+pair(p)+'</span><span class="vv">'+fv(tx,p.x)+' · '+fv(ty,p.y)+'</span>'; best.appendChild(li); });
+      li.innerHTML='<span class="rn">'+ord(i+1)+'</span><span class="nn">'+pair(p)+'</span><span class="vv">'+values(p)+'</span>'; best.appendChild(li); });
     [...Pt].sort((a,b)=>a.m.localeCompare(b.m,'fr')||(ELAB[a.e]?.[1]||0)-(ELAB[b.e]?.[1]||0)).forEach(p=>{
-      const li=document.createElement('li'); li.innerHTML='<span class="rn">·</span><span class="nn">'+pair(p)+'</span><span class="vv">'+fv(tx,p.x)+' · '+fv(ty,p.y)+'</span>'; $('duoAll').appendChild(li);
+      const li=document.createElement('li'); li.innerHTML='<span class="rn">·</span><span class="nn">'+pair(p)+'</span><span class="vv">'+values(p)+'</span>'; node('All').appendChild(li);
     });
-    box.setAttribute('aria-label','Nuage de points : '+tx.label+' à l’horizontale, '+ty.label+' à la verticale. '+Pt.length+' configurations. Meilleurs compromis : '+top.slice(0,3).map(pair).join(', ')+'.');
+    box.setAttribute('aria-label','Nuage de points : '+tx.label+' à l’horizontale, '+ty.label+' à la verticale.'+(tz?' Taille des disques : '+tz.label+', plus grand signifie meilleur.':'')+' '+Pt.length+' configurations. Meilleurs compromis : '+top.slice(0,3).map(pair).join(', ')+'.');
     const source=t=>t.k==='conso'||t.k==='speed'?'Artificial Analysis, relevé du 16 octobre 2026':t.kind==='mesure'?t.src+(t.date?', relevé du '+t.date+' 2026':''): 'classement éditorial, note sur 5';
     note.textContent='Horizontal : '+tx.label+' ('+source(tx)+'), échelle '+ax.label+'. Vertical : '+ty.label+' ('+source(ty)+'), échelle '+ay.label+'. En mode automatique, une échelle logarithmique est utilisée lorsque les valeurs sont positives et que la plus grande vaut au moins huit fois la plus petite ; sinon, l’échelle est linéaire. Le classement des compromis reste identique quelle que soit l’échelle. Chaque point associe le même modèle et le même effort sur les deux critères. Tous les couples disposant des deux valeurs sont affichés, y compris sous 50 points d’indice d’intelligence. Les relevés sans effort précisé sont comparés entre eux, sans leur attribuer un niveau. Pointillés : médiane des configurations ; la zone jaune réunit celles qui dépassent cette médiane sur les deux critères. Points creux : hors des dix premiers d’un classement. Sur téléphone, le graphique défile horizontalement. Gemini 4 Argon : seul l’effort élevé est renseigné dans cette page.';
-    if([tx.k,ty.k].includes('speed')) note.textContent+=' La durée estimée pour 500 jetons et les autres critères proviennent de tests distincts : ce graphique ne mesure pas le temps nécessaire pour développer une application. Sol maximal et très élevé : durées et débits actualisés le 16 octobre 2026 ; les autres mesures conservent leur relevé initial. Voir les définitions et les sources dans le tableau Consommation et rapidité.';
+    if(tz) note.textContent=note.textContent.replace('Chaque point associe le même modèle et le même effort sur les deux critères.','Chaque point associe le même modèle et le même effort sur les trois critères.')+' Taille des disques : '+tz.label+' ('+source(tz)+'), échelle '+az.label+'. Plus le disque est grand, meilleur est le résultat sur ce critère, y compris lorsque les petites valeurs sont préférables. Les compromis sont classés selon la moyenne des trois critères normalisés, à poids égal, indépendamment des échelles d’affichage. La zone jaune porte uniquement sur les deux axes.';
+    if(selected.some(t=>t.k==='speed')) note.textContent+=' La durée estimée pour 500 jetons et les autres critères proviennent de tests distincts : ce graphique ne mesure pas le temps nécessaire pour développer une application. Sol maximal et très élevé : durées et débits actualisés le 16 octobre 2026 ; les autres mesures conservent leur relevé initial. Voir les définitions et les sources dans le tableau Consommation et rapidité.';
   }
-  sx.addEventListener('change',render); sy.addEventListener('change',render);
-  scaleX.addEventListener('change',render);scaleY.addEventListener('change',render);
-  $('duoSwap').addEventListener('click',()=>{ const a=sx.value; sx.value=sy.value; sy.value=a;const s=scaleX.value;scaleX.value=scaleY.value;scaleY.value=s;render(); });
+  criteriaControls.forEach(s=>s.addEventListener('change',render));
+  scaleControls.forEach(s=>s.addEventListener('change',render));
+  node('Swap').addEventListener('click',()=>{ const a=sx.value; sx.value=sy.value; sy.value=a;const s=scaleX.value;scaleX.value=scaleY.value;scaleY.value=s;render(); });
   let rr; window.addEventListener('resize',()=>{ clearTimeout(rr); rr=setTimeout(render,120); });
   render();
   if(document.fonts) document.fonts.ready.then(render);
-})();
+}
+compareCriteria('duo');
+compareCriteria('trio');
 
 })();
 </script>
