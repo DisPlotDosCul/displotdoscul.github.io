@@ -438,8 +438,13 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
 .duoctl label{display:flex;flex-direction:column;gap:4px;flex:1 1 200px;min-width:0}
 .duoctl select{font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);background:var(--surface);border:1.5px solid var(--accent);border-radius:10px;padding:9px 10px;width:100%;cursor:pointer}
 #duoSwap{align-self:flex-end;padding:9px 13px;font-size:15px}
-#duoChart{position:relative}
+.duoscales select{font-size:13px;border-color:var(--line);padding:6px 10px}
+.duoscroll{overflow-x:auto}
+#duoChart{position:relative;min-width:760px}
 #duoChart svg{display:block;max-width:100%;height:auto}
+#duoChart text{font-family:var(--f-body)}
+#duoChart .duolabel{cursor:pointer}
+#duoChart .tt{transform:none;white-space:normal;width:max-content;max-width:min(290px,calc(100vw - 80px))}
 #duoChart .empty{padding:40px 8px;text-align:center;color:var(--muted);margin:0}
 .duobest{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
 .duobest li{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:14px;padding:6px 10px;border-radius:9px;background:var(--surface-2)}
@@ -546,6 +551,10 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
       <button type="button" class="sortb" id="duoSwap" aria-label="Inverser les deux critères">⇄</button>
       <label><span class="eyebrow">Critère vertical ↑</span><select id="duoY"></select></label>
     </div>
+    <div class="duoctl duoscales">
+      <label><span class="eyebrow">Échelle horizontale</span><select id="duoScaleX"><option value="auto">Automatique</option><option value="linear">Linéaire</option><option value="log">Logarithmique</option></select></label>
+      <label><span class="eyebrow">Échelle verticale</span><select id="duoScaleY"><option value="auto">Automatique</option><option value="linear">Linéaire</option><option value="log">Logarithmique</option></select></label>
+    </div>
     <span class="eyebrow" id="duoCount" aria-live="polite"></span>
     <div class="keys" aria-hidden="true">
       <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="var(--s1)"/></svg>Anthropic (Claude)</span>
@@ -553,7 +562,7 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
       <span><svg width="12" height="12"><path d="M6 0.5 L11.5 6 L6 11.5 L0.5 6 Z" fill="var(--s3)"/></svg>Autres laboratoires</span>
       <span><svg width="12" height="12"><circle cx="6" cy="6" r="4.2" fill="none" stroke="var(--muted)" stroke-width="1.6"/></svg>Hors classement</span>
     </div>
-    <div id="duoChart" role="group"></div>
+    <div class="duoscroll" tabindex="0" role="region" aria-label="Graphique des configurations, défilement horizontal sur petit écran"><div id="duoChart" role="group"></div></div>
     <span class="eyebrow">Meilleurs compromis entre les deux</span>
     <ol class="duobest" id="duoBest"></ol>
     <details><summary>Toutes les configurations comparées</summary><ul class="duobest" id="duoAll"></ul></details>
@@ -1848,6 +1857,8 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
 (function(){
   const sx=$('duoX'), sy=$('duoY'), box=$('duoChart'), best=$('duoBest'), note=$('duoNote');
   if(!box) return;
+  const scaleX=$('duoScaleX'), scaleY=$('duoScaleY');
+  [scaleX,scaleY].forEach((s,i)=>{const saved=store('duo-scale-'+i);s.value=['linear','log'].includes(saved)?saved:'auto';});
   TG.forEach(([name,keys])=>[sx,sy].forEach(sel=>{
     const og=document.createElement('optgroup'); og.label=name;
     keys.forEach(k=>{ const t=T.find(x=>x.k===k); if(!t) return; const o=document.createElement('option'); o.value=k; o.textContent=t.label; og.appendChild(o); });
@@ -1877,6 +1888,23 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
     for(let v=Math.ceil(lo/st)*st; v<=hi+1e-9; v+=st) out.push(+v.toFixed(6));
     return out;
   }
+  function axis(values,t,control){
+    const min=Math.min(...values), max=Math.max(...values), positive=min>0;
+    if(control.value==='log'&&!positive) control.value='auto';
+    const log=positive&&(control.value==='log'||control.value==='auto'&&max/min>=8);
+    const transform=log?Math.log10:v=>v, a=transform(min), b=transform(max), pad=(b-a)*0.22||(log?0.15:1);
+    let lo=a-pad, hi=b+pad;
+    if(!log&&min>=0) lo=Math.max(0,lo);
+    if(!log&&t.kind==='editorial') hi=Math.min(hi,5.25);
+    const norm=v=>inv(t)?(hi-transform(v))/(hi-lo):(transform(v)-lo)/(hi-lo);
+    /* Le classement des compromis reste indépendant du choix d’échelle. */
+    const rankPad=(max-min)*0.1||1, rankLo=min>=0?Math.max(0,min-rankPad):min-rankPad, rankHi=t.kind==='editorial'?Math.min(max+rankPad,5.25):max+rankPad;
+    const rank=v=>inv(t)?(rankHi-v)/(rankHi-rankLo):(v-rankLo)/(rankHi-rankLo);
+    const steps=[];
+    if(log){for(let p=Math.floor(lo);p<=Math.ceil(hi);p++) for(const f of [1,2,5]){const v=f*10**p;if(Math.log10(v)>=lo&&Math.log10(v)<=hi) steps.push(v);}}
+    else steps.push(...ticks(lo,hi,5));
+    return {norm,rank,steps,label:log?'logarithmique':'linéaire'};
+  }
   function msg(t){ const d=document.createElement('p'); d.className='empty'; d.textContent=t; box.appendChild(d); note.textContent=''; box.setAttribute('aria-label',t); }
   function render(){
     store('duo-x',sx.value); store('duo-y',sy.value);
@@ -1888,50 +1916,64 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
     measures(ty).forEach(i=>{ const id=key(i), ix=mx.get(id); if(ix&&!seen.has(id)){ seen.add(id); Pt.push({m:i.m,lab:i.lab,e:i.e,x:val(tx,ix),y:val(ty,i),ix:ix,iy:i,nr:ix.nr||i.nr}); } });
     $('duoCount').textContent=Pt.length+' configuration'+(Pt.length>1?'s':'')+' comparée'+(Pt.length>1?'s':'')+' · même effort sur les deux critères';
     if(!Pt.length){ msg('Aucune configuration ne dispose de valeurs pour ces deux critères au même niveau d’effort. Les relevés sans effort précisé sont uniquement comparés entre eux.'); return; }
-    const dom=(a,t)=>{ let lo=Math.min(...a), hi=Math.max(...a); const pad=(hi-lo)*0.1||1; const l0=lo; lo-=pad; hi+=pad; if(l0>=0&&lo<0) lo=0; if(t.kind==='editorial') hi=Math.min(hi,5.25); return [lo,hi]; };
-    const [xlo,xhi]=dom(Pt.map(p=>p.x),tx), [ylo,yhi]=dom(Pt.map(p=>p.y),ty);
-    const W=Math.max(box.clientWidth,300), H=Math.max(W<560?Math.round(W*1.05):Math.min(470,Math.round(W*0.56)),Math.min(800,Pt.length*18));
-    const m={l:W<560?52:62,r:14,t:28,b:44}, pw=W-m.l-m.r, ph=H-m.t-m.b;
-    const nx=v=>inv(tx)?(xhi-v)/(xhi-xlo):(v-xlo)/(xhi-xlo), ny=v=>inv(ty)?(yhi-v)/(yhi-ylo):(v-ylo)/(yhi-ylo);
+    const ax=axis(Pt.map(p=>p.x),tx,scaleX), ay=axis(Pt.map(p=>p.y),ty,scaleY);
+    store('duo-scale-0',scaleX.value);store('duo-scale-1',scaleY.value);
+    const W=Math.max(box.clientWidth,760), H=Math.max(520,Math.min(1000,Pt.length*22));
+    const m={l:68,r:30,t:42,b:54}, pw=W-m.l-m.r, ph=H-m.t-m.b;
+    const nx=ax.norm, ny=ay.norm;
     const X=v=>m.l+nx(v)*pw, Y=v=>m.t+(1-ny(v))*ph;
     const svg=el('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H}); box.insertBefore(svg,tt);
     const med=a=>{ const b=[...a].sort((p,q)=>p-q), k=b.length>>1; return b.length%2?b[k]:(b[k-1]+b[k])/2; };
     const cx=X(med(Pt.map(p=>p.x))), cy=Y(med(Pt.map(p=>p.y)));
     const g=el('g',{},svg);
     el('rect',{x:cx,y:m.t,width:W-m.r-cx,height:cy-m.t,fill:'var(--hi)',opacity:.22,rx:6},g);
-    ticks(Math.min(xlo,xhi),Math.max(xlo,xhi),W<560?3:4).forEach(v=>{ const x=X(v); if(x<m.l-1||x>W-m.r+1) return;
+    ax.steps.forEach(v=>{ const x=X(v); if(x<m.l-1||x>W-m.r+1) return;
       el('line',{x1:x,x2:x,y1:m.t,y2:H-m.b,stroke:'var(--grid)','stroke-width':1},g);
       const t=el('text',{x:x,y:H-m.b+16,'text-anchor':x>W-m.r-26?'end':x<m.l+26?'start':'middle','font-size':11,fill:'var(--muted)'},g); t.textContent=fv(tx,v); });
-    ticks(Math.min(ylo,yhi),Math.max(ylo,yhi)).forEach(v=>{ const y=Y(v); if(y<m.t-1||y>H-m.b+1) return;
+    ay.steps.forEach(v=>{ const y=Y(v); if(y<m.t-1||y>H-m.b+1) return;
       el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1},g);
       const t=el('text',{x:m.l-7,y:y+4,'text-anchor':'end','font-size':11,fill:'var(--muted)'},g); t.textContent=fv(ty,v); });
     el('line',{x1:cx,x2:cx,y1:m.t,y2:H-m.b,stroke:'var(--axis)','stroke-dasharray':'4 4'},g);
     el('line',{x1:m.l,x2:W-m.r,y1:cy,y2:cy,stroke:'var(--axis)','stroke-dasharray':'4 4'},g);
     el('line',{x1:m.l,x2:W-m.r,y1:H-m.b,y2:H-m.b,stroke:'var(--axis)'},g);
-    const q1=el('text',{x:W-m.r-8,y:m.t+16,'text-anchor':'end','font-size':12.5,'font-weight':700,fill:'var(--olive)'},g); q1.textContent='✓ Bon sur les deux';
-    const q3=el('text',{x:m.l+8,y:H-m.b-8,'text-anchor':'start','font-size':12,fill:'var(--muted)'},g); q3.textContent='Moins bon sur les deux';
-    const xt=el('text',{x:W-m.r,y:H-6,'text-anchor':'end','font-size':11.5,'font-weight':600,fill:'var(--ink)'},g); xt.textContent=TSHORT[tx.k]+' : mieux à droite →';
-    const yt=el('text',{x:m.l-m.l+4,y:14,'text-anchor':'start','font-size':11.5,'font-weight':600,fill:'var(--ink)'},g); yt.textContent='↑ '+TSHORT[ty.k]+' : mieux en haut';
-    const marks=el('g',{},svg), labels=el('g',{},svg), hits=el('g',{},svg), placed=[[W-m.r-130,m.t+2,W-m.r,m.t+20],[m.l,H-m.b-22,m.l+160,H-m.b]];
-    Pt.forEach(p=>{ p.s=(nx(p.x)+ny(p.y))/2; });
+    const xt=el('text',{x:W-m.r,y:H-6,'text-anchor':'end','font-size':11.5,'font-weight':600,fill:'var(--ink)'},g); xt.textContent=TSHORT[tx.k]+' · échelle '+ax.label+' · mieux à droite →';
+    const yt=el('text',{x:4,y:18,'text-anchor':'start','font-size':11.5,'font-weight':600,fill:'var(--ink)'},g); yt.textContent='↑ '+TSHORT[ty.k]+' · échelle '+ay.label+' · mieux en haut';
+    const marks=el('g',{},svg), labels=el('g',{},svg), hits=el('g',{},svg), placed=[];
+    Pt.forEach(p=>{ p.s=(ax.rank(p.x)+ay.rank(p.y))/2; });
+    function placeLabel(px,py,w,h){
+      let best=null, distance=Infinity;
+      function consider(x,y){
+        if(x<m.l+4||x+w>W-m.r-4||y<m.t+4||y+h>H-m.b-4) return;
+        const dx=Math.max(x-px,0,px-x-w), dy=Math.max(y-py,0,py-y-h);
+        const d=dx*dx+dy*dy+0.02*((x+w/2-px)**2+(y+h/2-py)**2);
+        if(d>=distance||placed.some(q=>x<q.x+q.w+4&&x+w+4>q.x&&y<q.y+q.h+4&&y+h+4>q.y)) return;
+        if(Pt.some(q=>X(q.x)>x-14&&X(q.x)<x+w+14&&Y(q.y)>y-14&&Y(q.y)<y+h+14)) return;
+        best={x,y,w,h}; distance=d;
+      }
+      consider(px+16,py-h/2);consider(px-w-16,py-h/2);
+      for(let y=m.t+4;y+h<=H-m.b-4;y+=12) for(let x=m.l+4;x+w<=W-m.r-4;x+=12) consider(x,y);
+      placed.push(best);return best;
+    }
     [...Pt].sort((a,b)=>b.s-a.s).forEach(p=>{
       const px=X(p.x), py=Y(p.y), gr=grp(p.lab);
       const mk=marker(marks,px,py,gr,p.nr?4.5:6);
       if(p.nr){ mk.setAttribute('fill','var(--surface)'); mk.setAttribute('stroke',COL[gr]); mk.setAttribute('stroke-width',2); }
-      const label=nm(p.m)+' · '+effort(p.e), w=label.length*6.3+4, hgt=13;
-      const cand=[[10,4,'start'],[-10,4,'end'],[0,-11,'middle'],[0,19,'middle'],[10,-8,'start'],[-10,-8,'end'],[10,15,'start'],[-10,15,'end']];
-      const box_=c=>{ const x0=c[2]==='start'?px+c[0]:c[2]==='end'?px+c[0]-w:px-w/2; return [x0,py+c[1]-hgt+3,x0+w,py+c[1]+3]; };
-      const free=b=>b[0]>=2&&b[2]<=W-2&&b[1]>=m.t-4&&b[3]<=H-m.b+2&&!placed.some(q=>b[0]<q[2]&&b[2]>q[0]&&b[1]<q[3]&&b[3]>q[1])&&!Pt.some(o=>o!==p&&X(o.x)>b[0]-3&&X(o.x)<b[2]+3&&Y(o.y)>b[1]-3&&Y(o.y)<b[3]+3);
-      let c=cand.find(c=>free(box_(c)));
-      if(c){ placed.push(box_(c));
-        const t=el('text',{x:px+c[0],y:py+c[1],'text-anchor':c[2],'font-size':12,'font-weight':p.nr?400:600,fill:p.nr?'var(--muted)':'var(--ink)'},labels); t.textContent=label; }
+      const connector=el('line',{x1:px,y1:py,stroke:COL[gr],'stroke-width':1,opacity:.7,'pointer-events':'none'},labels);
+      const lg=el('g',{class:'duolabel'},labels), bg=el('rect',{height:34,rx:5,fill:'var(--surface)',stroke:'var(--line)'},lg);
+      const name=el('text',{x:6,y:13,'font-size':12,'font-weight':600,fill:'var(--ink)'},lg);name.textContent=nm(p.m);
+      const level=el('text',{x:6,y:28,'font-size':11,fill:'var(--muted)'},lg);level.textContent=ELAB[p.e]?'effort '+effort(p.e):effort(p.e);
+      const w=Math.ceil(Math.max(name.getComputedTextLength(),level.getComputedTextLength()))+12, r=placeLabel(px,py,w,34);
+      bg.setAttribute('width',w);lg.setAttribute('transform','translate('+r.x+' '+r.y+')');
+      connector.setAttribute('x2',Math.max(r.x,Math.min(px,r.x+w)));connector.setAttribute('y2',Math.max(r.y,Math.min(py,r.y+34)));
       const h=el('circle',{cx:px,cy:py,r:14,fill:'transparent',tabindex:0,role:'button','aria-label':pair(p)+' : '+tx.label+' '+fv(tx,p.x)+', '+ty.label+' '+fv(ty,p.y)},hits);
       h.style.cursor='pointer';
       const show=()=>{ tt.innerHTML='<b>'+pair(p)+'</b><br>'+TSHORT[tx.k]+' : '+fv(tx,p.x)+'<br>'+TSHORT[ty.k]+' : '+fv(ty,p.y)+(p.nr?'<br>Hors classement':'');
-        tt.style.left=Math.min(Math.max(px,70),W-70)+'px'; tt.style.top=py+'px'; tt.hidden=false; };
+        tt.hidden=false;const scroll=box.parentElement,left=scroll.scrollLeft;
+        tt.style.left=Math.max(left+4,Math.min(px+12,left+scroll.clientWidth-tt.offsetWidth-4))+'px';tt.style.top=Math.max(4,py-tt.offsetHeight-12)+'px'; };
       h.addEventListener('pointerenter',show); h.addEventListener('focus',show); h.addEventListener('click',show);
       h.addEventListener('pointerleave',()=>tt.hidden=true); h.addEventListener('blur',()=>tt.hidden=true);
       h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}if(e.key==='Escape') tt.hidden=true;});
+      lg.addEventListener('pointerenter',show);lg.addEventListener('click',show);lg.addEventListener('pointerleave',()=>tt.hidden=true);
     });
     const top=[...Pt].filter(p=>!p.nr).sort((a,b)=>b.s-a.s).slice(0,5);
     top.forEach((p,i)=>{ const li=document.createElement('li');
@@ -1941,12 +1983,14 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
     });
     box.setAttribute('aria-label','Nuage de points : '+tx.label+' à l’horizontale, '+ty.label+' à la verticale. '+Pt.length+' configurations. Meilleurs compromis : '+top.slice(0,3).map(pair).join(', ')+'.');
     const source=t=>t.k==='conso'||t.k==='speed'?'Artificial Analysis, relevé du 16 octobre 2026':t.kind==='mesure'?t.src+(t.date?', relevé du '+t.date+' 2026':''): 'classement éditorial, note sur 5';
-    note.textContent='Horizontal : '+tx.label+' ('+source(tx)+'). Vertical : '+ty.label+' ('+source(ty)+'). Chaque point associe le même modèle et le même effort sur les deux critères. Tous les couples disposant des deux valeurs sont affichés, y compris sous 50 points d’indice d’intelligence. Les relevés sans effort précisé sont comparés entre eux, sans leur attribuer un niveau. Pointillés : médiane des configurations ; la zone jaune réunit celles qui dépassent cette médiane sur les deux critères. Points creux : hors des dix premiers d’un classement. Gemini 4 Argon : seul l’effort élevé est renseigné dans cette page.';
+    note.textContent='Horizontal : '+tx.label+' ('+source(tx)+'), échelle '+ax.label+'. Vertical : '+ty.label+' ('+source(ty)+'), échelle '+ay.label+'. En mode automatique, une échelle logarithmique est utilisée lorsque les valeurs sont positives et que la plus grande vaut au moins huit fois la plus petite ; sinon, l’échelle est linéaire. Le classement des compromis reste identique quelle que soit l’échelle. Chaque point associe le même modèle et le même effort sur les deux critères. Tous les couples disposant des deux valeurs sont affichés, y compris sous 50 points d’indice d’intelligence. Les relevés sans effort précisé sont comparés entre eux, sans leur attribuer un niveau. Pointillés : médiane des configurations ; la zone jaune réunit celles qui dépassent cette médiane sur les deux critères. Points creux : hors des dix premiers d’un classement. Sur téléphone, le graphique défile horizontalement. Gemini 4 Argon : seul l’effort élevé est renseigné dans cette page.';
   }
   sx.addEventListener('change',render); sy.addEventListener('change',render);
-  $('duoSwap').addEventListener('click',()=>{ const a=sx.value; sx.value=sy.value; sy.value=a; render(); });
+  scaleX.addEventListener('change',render);scaleY.addEventListener('change',render);
+  $('duoSwap').addEventListener('click',()=>{ const a=sx.value; sx.value=sy.value; sy.value=a;const s=scaleX.value;scaleX.value=scaleY.value;scaleY.value=s;render(); });
   let rr; window.addEventListener('resize',()=>{ clearTimeout(rr); rr=setTimeout(render,120); });
   render();
+  if(document.fonts) document.fonts.ready.then(render);
 })();
 
 })();
