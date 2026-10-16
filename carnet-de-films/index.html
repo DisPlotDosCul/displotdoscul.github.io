@@ -904,32 +904,33 @@ html.aff-calme .ccg-on{transition:none;}
 .nbulbs{display:none;}
 html.th-neon:not(.aff-calme) header.top::after{display:none;}
 html.th-neon:not(.aff-calme) .nbulbs{display:flex;justify-content:space-between;justify-self:center;width:min(260px,72%);height:8px;margin-top:2px;}
-.nbulbs i{width:5px;height:5px;margin-top:1.5px;border-radius:50%;background:#FFD98A;box-shadow:0 0 3px 1px rgba(255,205,110,.95),0 0 9px 2px rgba(255,170,60,.55);animation:nbGlow 5.5s ease-in-out infinite alternate;}
-.nbulbs i:nth-child(3n){animation-duration:7s;animation-delay:-2s;}
-.nbulbs i:nth-child(4n+1){animation-duration:6.2s;animation-delay:-4s;}
-.nbulbs i.b4{animation:nbOld 7.3s steps(1,end) infinite;}
-.nbulbs i.b11{animation:nbOld 11.7s steps(1,end) infinite -3s;}
-.nbulbs i.b15{animation:nbTired 9.1s ease-in-out infinite -1s;}
-@keyframes nbGlow{from{opacity:.72;}to{opacity:1;}}
-@keyframes nbOld{0%,61%,64%,66%,100%{opacity:1;}62%{opacity:.15;}65%{opacity:.35;}67%,69%{opacity:.1;}68%{opacity:.8;}70%{opacity:1;}}
-@keyframes nbTired{0%,100%{opacity:.95;}40%{opacity:.4;}43%{opacity:.85;}46%{opacity:.3;}55%{opacity:.6;}80%{opacity:1;}}
-html.th-neon:not(.aff-calme) h1{animation:nH 9s ease-in-out infinite alternate;}
-@keyframes nH{from{text-shadow:0 0 2px #FFFFFF,0 0 5px #FF6ACB,0 0 11px #FF2DA6,0 0 22px rgba(255,45,166,.45);}to{text-shadow:0 0 2px #FFFFFF,0 0 8px #FF6ACB,0 0 20px #FF2DA6,0 0 44px rgba(255,45,166,.85);}}
-html.th-neon:not(.aff-calme) .nl.fk1{animation:nL 8.3s linear infinite;}
-html.th-neon:not(.aff-calme) .nl.fk2{animation:nL 13.9s linear infinite -6s;}
-@keyframes nL{0%,71%,100%{opacity:1;}72%{opacity:.25;text-shadow:none;}73%{opacity:.9;}74%{opacity:.2;text-shadow:none;}76%{opacity:.55;}78%{opacity:1;}88%{opacity:1;}89%{opacity:.3;text-shadow:none;}90%{opacity:1;}}
+.nbulbs i{width:5px;height:5px;margin-top:1.5px;border-radius:50%;background:#FFD98A;box-shadow:0 0 3px 1px rgba(255,205,110,.95),0 0 9px 2px rgba(255,170,60,.55);}
+/* Les animations néon passent aussi en « Grand confort » ; seul l'affichage calme les coupe. */
+html.th-neon:not(.aff-calme) .nbulbs i{animation:nbGlow 3.2s ease-in-out infinite alternate!important;}
+html.th-neon:not(.aff-calme) .nbulbs i:nth-child(3n){animation-duration:4.1s!important;animation-delay:-1.3s!important;}
+html.th-neon:not(.aff-calme) .nbulbs i:nth-child(4n+1){animation-duration:2.7s!important;animation-delay:-2.2s!important;}
+html.th-neon:not(.aff-calme) .nbulbs i.b4{animation:nbOld 3.7s steps(1,end) infinite!important;}
+html.th-neon:not(.aff-calme) .nbulbs i.b11{animation:nbOld 5.3s steps(1,end) infinite -2s!important;}
+html.th-neon:not(.aff-calme) .nbulbs i.b15{animation:nbTired 4.4s ease-in-out infinite -1s!important;}
+@keyframes nbGlow{from{opacity:.3;transform:scale(.8);}to{opacity:1;transform:scale(1.1);}}
+@keyframes nbOld{0%,100%{opacity:1;}30%{opacity:.05;}33%{opacity:.9;}36%{opacity:.05;}39%{opacity:1;}70%{opacity:1;}71%{opacity:0;}78%{opacity:0;}79%{opacity:.6;}81%{opacity:1;}}
+@keyframes nbTired{0%,100%{opacity:1;}20%{opacity:.15;}25%{opacity:.8;}35%{opacity:.1;}60%{opacity:.5;}75%{opacity:1;}}
+html.th-neon:not(.aff-calme) h1{animation:nH 4.5s ease-in-out infinite alternate!important;}
+@keyframes nH{from{text-shadow:0 0 1px #FFFFFF,0 0 3px #FF6ACB,0 0 6px #FF2DA6;}to{text-shadow:0 0 3px #FFFFFF,0 0 10px #FF6ACB,0 0 26px #FF2DA6,0 0 56px rgba(255,45,166,.95);}}
+html.th-neon:not(.aff-calme) .nl.fk1{animation:nL 4.3s linear infinite!important;}
+html.th-neon:not(.aff-calme) .nl.fk2{animation:nL 6.1s linear infinite -2.5s!important;}
+@keyframes nL{0%,55%,100%{opacity:1;}56%{opacity:.12;text-shadow:none;}58%{opacity:.9;}60%{opacity:.08;text-shadow:none;}64%{opacity:.5;}67%{opacity:1;}85%{opacity:1;}86%{opacity:.15;text-shadow:none;}88%{opacity:1;}}
 /* Lumières du ciel : elles montent et redescendent lentement, et dérivent. */
 html.th-neon:not(.aff-calme) body::before,html.th-neon:not(.aff-calme) body::after{content:"";position:fixed;inset:-15%;z-index:-1;pointer-events:none;}
-html.th-neon:not(.aff-calme) body::before{background:radial-gradient(40% 30% at 30% 18%,rgba(150,70,255,.30),transparent 70%),radial-gradient(35% 28% at 82% 55%,rgba(255,45,170,.20),transparent 70%),radial-gradient(38% 30% at 15% 85%,rgba(60,200,255,.16),transparent 70%);
-  animation:nSky 12s ease-in-out infinite alternate,nDrift 46s ease-in-out infinite alternate;}
-/* Illusion d'optique : une spirale à peine visible qui tourne très lentement et semble creuser la nuit. */
-html.th-neon:not(.aff-calme) body::after{background:repeating-conic-gradient(from 0deg at 50% 22%,rgba(190,140,255,.07) 0deg 6deg,transparent 6deg 18deg),repeating-radial-gradient(circle at 50% 22%,rgba(255,106,203,.06) 0 2px,transparent 2px 34px);
-  -webkit-mask:radial-gradient(60% 50% at 50% 22%,#000,transparent 75%);mask:radial-gradient(60% 50% at 50% 22%,#000,transparent 75%);animation:nSpin 140s linear infinite,nBreath 10s ease-in-out infinite alternate;transform-origin:50% 22%;}
-@keyframes nSky{from{opacity:.35;}to{opacity:1;}}
-@keyframes nDrift{from{transform:translate3d(-3%,-2%,0) scale(1);}to{transform:translate3d(3%,2%,0) scale(1.08);}}
+html.th-neon:not(.aff-calme) body::before{background:radial-gradient(40% 30% at 30% 18%,rgba(150,70,255,.45),transparent 70%),radial-gradient(35% 28% at 82% 55%,rgba(255,45,170,.32),transparent 70%),radial-gradient(38% 30% at 15% 85%,rgba(60,200,255,.26),transparent 70%);
+  animation:nSky 7s ease-in-out infinite alternate,nDrift 24s ease-in-out infinite alternate!important;}
+/* Illusion d'optique : une spirale qui tourne lentement et semble creuser la nuit. */
+html.th-neon:not(.aff-calme) body::after{background:repeating-conic-gradient(from 0deg at 50% 22%,rgba(190,140,255,.13) 0deg 6deg,transparent 6deg 18deg),repeating-radial-gradient(circle at 50% 22%,rgba(255,106,203,.10) 0 2px,transparent 2px 34px);
+  -webkit-mask:radial-gradient(60% 50% at 50% 22%,#000,transparent 75%);mask:radial-gradient(60% 50% at 50% 22%,#000,transparent 75%);animation:nSpin 60s linear infinite,nBreath 6s ease-in-out infinite alternate!important;transform-origin:50% 22%;}
+@keyframes nSky{from{opacity:.15;}to{opacity:1;}}
+@keyframes nDrift{from{transform:translate3d(-6%,-3%,0) scale(1);}to{transform:translate3d(6%,3%,0) scale(1.15);}}
 @keyframes nSpin{to{rotate:360deg;}}
-@keyframes nBreath{from{opacity:.4;scale:1;}to{opacity:1;scale:1.12;}}
-@media (prefers-reduced-motion:reduce){html.th-neon .nbulbs i,html.th-neon h1,html.th-neon .nl,html.th-neon body::before,html.th-neon body::after{animation:none!important;}}
+@keyframes nBreath{from{opacity:.3;scale:1;}to{opacity:1;scale:1.2;}}
 
 body.vide:not(.autre) #filters{display:flex;}
 body:not(.vide) .minis.cats{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:6px;padding:2px 2px 6px;scrollbar-width:none;}
