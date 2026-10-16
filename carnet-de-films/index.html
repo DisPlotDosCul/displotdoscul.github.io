@@ -942,6 +942,30 @@ html.th-neon:not(.aff-calme) .nillu i{display:block;height:120px;}
 html.th-neon:not(.aff-calme) .nillu .ouchi{background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22224%22 height=%22120%22%3E%3Cdefs%3E%3Cpattern id=%22h%22 width=%2228%22 height=%228%22 patternUnits=%22userSpaceOnUse%22%3E%3Crect width=%2228%22 height=%228%22 fill=%22%2307030D%22/%3E%3Crect width=%2214%22 height=%224%22 fill=%22%23FF6ACB%22/%3E%3Crect x=%2214%22 y=%224%22 width=%2214%22 height=%224%22 fill=%22%23FF6ACB%22/%3E%3C/pattern%3E%3Cpattern id=%22v%22 width=%228%22 height=%2228%22 patternUnits=%22userSpaceOnUse%22%3E%3Crect width=%228%22 height=%2228%22 fill=%22%2307030D%22/%3E%3Crect width=%224%22 height=%2214%22 fill=%22%235CE1FF%22/%3E%3Crect x=%224%22 y=%2214%22 width=%224%22 height=%2214%22 fill=%22%235CE1FF%22/%3E%3C/pattern%3E%3C/defs%3E%3Crect width=%22224%22 height=%22120%22 fill=%22url(%23h)%22/%3E%3Ccircle cx=%22112%22 cy=%2260%22 r=%2240%22 fill=%22url(%23v)%22/%3E%3C/svg%3E") center/224px 120px repeat-x;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
 html.th-neon:not(.aff-calme) .nillu .grid{height:176px;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22%3E%3Crect y=%2220%22 width=%2244%22 height=%224.5%22 fill=%22%236A6286%22/%3E%3Crect x=%2220%22 width=%224.5%22 height=%2244%22 fill=%22%236A6286%22/%3E%3Ccircle cx=%2222.25%22 cy=%2222.25%22 r=%223.6%22 fill=%22%23FFFFFF%22/%3E%3C/svg%3E") center/44px 44px;-webkit-mask:radial-gradient(70% 70% at 50% 50%,#000 40%,transparent);mask:radial-gradient(70% 70% at 50% 50%,#000 40%,transparent);}
 
+/* Barre de progression : dents de scie (dérive de Fraser-Wilcox) qui semblent avancer, et un glissement réel d'un demi-pixel par seconde. */
+html.th-neon:not(.aff-calme) .progress{height:9px;background:repeating-linear-gradient(270deg,#0A0414 0,#2A1450 10px,#6E5A92 13px,#0A0414 13px) 0 0/13px 100%;}
+html.th-neon:not(.aff-calme) .progress i{background:repeating-linear-gradient(90deg,#12061F 0,var(--vu) 10px,#FFFFFF 13px,#12061F 13px) 0 0/13px 100%;animation:nCreep 52s linear infinite!important;}
+@keyframes nCreep{to{background-position:26px 0;}}
+/* Cases des catégories : un anneau en dents de scie autour du bord semble tourner ; rien ne bouge vraiment. */
+html.th-neon:not(.aff-calme) .minis.cats .mini .sq{position:relative;}
+html.th-neon:not(.aff-calme) .minis.cats .mini .sq::before{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:2.5px;pointer-events:none;opacity:.6;
+  background:repeating-conic-gradient(from 7deg,#05020A 0 5deg,var(--fc) 5deg 7deg,#FFFFFF 7deg 12deg,color-mix(in srgb,var(--fc) 45%,#FFFFFF) 12deg 14deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);}
+html.th-neon:not(.aff-calme) .minis.cats .mini:nth-child(even) .sq::before{background:repeating-conic-gradient(from 3deg,color-mix(in srgb,var(--fc) 45%,#FFFFFF) 0 2deg,#FFFFFF 2deg 7deg,var(--fc) 7deg 9deg,#05020A 9deg 14deg);}
+/* Sous la barre de recherche : un mur du café, droit mais qui paraît de travers. */
+html.th-neon:not(.aff-calme) .bar{border-bottom-color:transparent;margin-bottom:calc(18.4px + 6px);}
+html.th-neon:not(.aff-calme) .bar::after{content:"";position:absolute;left:0;right:0;bottom:-18.4px;height:18.4px;pointer-events:none;opacity:.8;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2218.4%22%3E%3Crect x=%22-40%22 y=%220%22 width=%2220%22 height=%228%22 fill=%22%2305020A%22/%3E%3Crect x=%22-20%22 y=%220%22 width=%2220%22 height=%228%22 fill=%22%23FFE6F6%22/%3E%3Crect x=%220%22 y=%220%22 width=%2220%22 height=%228%22 fill=%22%2305020A%22/%3E%3Crect x=%2220%22 y=%220%22 width=%2220%22 height=%228%22 fill=%22%23FFE6F6%22/%3E%3Crect x=%2240%22 y=%220%22 width=%2220%22 height=%228%22 fill=%22%2305020A%22/%3E%3Crect x=%2260%22 y=%220%22 width=%2220%22 height=%228%22 fill=%22%23FFE6F6%22/%3E%3Crect y=%228%22 width=%2240%22 height=%221.2%22 fill=%22%238A7FA6%22/%3E%3Crect x=%22-33%22 y=%229%22 width=%2220%22 height=%228%22 fill=%22%2305020A%22/%3E%3Crect x=%22-13%22 y=%229%22 width=%2220%22 height=%228%22 fill=%22%23FFE6F6%22/%3E%3Crect x=%227%22 y=%229%22 width=%2220%22 height=%228%22 fill=%22%2305020A%22/%3E%3Crect x=%2227%22 y=%229%22 width=%2220%22 height=%228%22 fill=%22%23FFE6F6%22/%3E%3Crect x=%2247%22 y=%229%22 width=%2220%22 height=%228%22 fill=%22%2305020A%22/%3E%3Crect x=%2267%22 y=%229%22 width=%2220%22 height=%228%22 fill=%22%23FFE6F6%22/%3E%3Crect y=%2217%22 width=%2240%22 height=%221.2%22 fill=%22%238A7FA6%22/%3E%3C/svg%3E") 0 0/40px 18.4px repeat-x;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+/* Les phrases d'aide s'élargissent et se resserrent si lentement que l'œil n'est jamais sûr. */
+html.th-neon:not(.aff-calme) .hint{animation:nWide 31s ease-in-out infinite alternate!important;}
+@keyframes nWide{from{letter-spacing:0;}to{letter-spacing:.045em;}}
+/* Chasseur lilas : fixer la croix ; un point vert qui n'existe pas tourne, puis les points roses s'effacent. */
+html.th-neon:not(.aff-calme) .nillu .lilas{position:relative;justify-self:center;width:190px;height:190px;border-radius:24px;background:#A9A6B3;}
+html.th-neon:not(.aff-calme) .nillu .lilas b{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px;border-radius:50%;background:radial-gradient(circle,#E25FE0 0 25%,rgba(226,95,224,.55) 50%,rgba(226,95,224,0) 72%);
+  transform:rotate(calc(var(--k) * 30deg)) translateY(-68px);animation:nLilas 1.2s step-end infinite!important;animation-delay:calc(var(--k) * .1s - 1.2s)!important;}
+html.th-neon:not(.aff-calme) .nillu .lilas::after{content:"+";position:absolute;inset:0;display:grid;place-items:center;font:700 22px/1 var(--font);color:#000;}
+@keyframes nLilas{0%{opacity:0;}8.34%{opacity:1;}}
+
 body.vide:not(.autre) #filters{display:flex;}
 body:not(.vide) .minis.cats{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:6px;padding:2px 2px 6px;scrollbar-width:none;}
 body:not(.vide) .minis.cats::-webkit-scrollbar{display:none;}
@@ -4909,7 +4933,7 @@ body:not(.vide) .toc{margin-top:8px;}
 // Néon : pannes d'ampoules et de lettres, halos qui s'allument au hasard sur quelques boutons. Rien de régulier.
 (function(){
   var de = document.documentElement, wrap = document.querySelector(".wrap");
-  if (wrap && !document.querySelector(".nillu")) wrap.insertAdjacentHTML("beforeend", '<div class="nillu" aria-hidden="true"><i class="ouchi"></i><i class="grid"></i></div>');
+  if (wrap && !document.querySelector(".nillu")) wrap.insertAdjacentHTML("beforeend", '<div class="nillu" aria-hidden="true"><i class="ouchi"></i><div class="lilas">' + Array.apply(null, Array(12)).map(function(_, k){ return '<b style="--k:' + k + '"></b>'; }).join("") + '</div><i class="grid"></i></div>');
   function on(){ return de.classList.contains("th-neon") && !de.classList.contains("aff-calme") && !document.hidden; }
   function R(a, b){ return a + Math.random() * (b - a); }
   function pick(a){ return a[Math.floor(Math.random() * a.length)]; }
