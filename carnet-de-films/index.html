@@ -869,6 +869,7 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
 .mrow,.mfilm{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;font:500 15px/1.25 var(--font);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;}
 .mrow span,.mfilm small{color:var(--muted);font-size:13px;}
 .mfilm b{flex:none;font-size:13.5px;color:var(--k-s-2C6660);}
+.mview{width:100%;margin:2px 0 4px;}
 .mh{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
 </style>
 <script>
@@ -1038,8 +1039,8 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
     </div>
     <div class="chips" id="filters" role="group" aria-label="Filtrer">
       <button class="chip" data-f="all" aria-pressed="true" title="Tous les films">Tous</button>
-      <button class="chip" data-f="todo" aria-pressed="false" title="Films sans réponse" aria-label="À répondre : films sans réponse">À répondre</button>
-      <button class="chip" data-f="rate" aria-pressed="false" title="Films vus, pas encore notés sur 10" aria-label="À noter : films vus, pas encore notés sur 10">À noter</button>
+      <button class="chip" data-f="todo" aria-pressed="false" title="Films sans réponse" aria-label="Films sans réponse">❓ Sans réponse</button>
+      <button class="chip" data-f="rate" aria-pressed="false" title="Films vus, pas encore notés sur 10" aria-label="Films vus, pas encore notés sur 10">☆ Vus, pas notés</button>
       <button class="chip" data-f="seen" aria-pressed="false" title="Films déjà vus">Vus</button>
       <button class="chip" data-f="no" aria-pressed="false">À voir</button>
     </div>
@@ -1141,7 +1142,12 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
     storageBucket:"cineclub-displotdoscul.firebasestorage.app", messagingSenderId:"638647051579", appId:"1:638647051579:web:32ea9cf25fb3ece88e431e" };
   var ADMIN_EMAIL = "shaman.harp@gmail.com";
   function ls(k, v){ try { if (v === undefined) return localStorage.getItem(k); if (v === null || v === "") localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} return null; }
-  var CC = window.CC = { uid:"", admin:false, me:null, meLoaded:false, profils:{}, hooks:[], lsKey:"-" + (ls("ccUid") || "anon") };
+  var CC = window.CC = { uid:"", admin:false, me:null, meLoaded:false, profils:{}, hooks:[], lsKey:"-" + (ls("ccUid") || "anon"), view:"", viewName:"" };
+  // Visite du carnet d'un autre membre (en lecture seule), gardée le temps de l'onglet.
+  function ss(k, v){ try { if (v === undefined) return sessionStorage.getItem(k); if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch (e) {} return null; }
+  if (ss("ccView") && ls("ccUid")) { CC.view = ss("ccView"); CC.viewName = ss("ccViewName") || "ce membre"; }
+  CC.enterView = function(uid){ var p = CC.profils[uid]; if (!p) return; if (uid === CC.uid) { CC.exitView(); return; } ss("ccView", uid); ss("ccViewName", p.pseudo || ""); window.scrollTo(0, 0); location.reload(); };
+  CC.exitView = function(){ ss("ccView", null); ss("ccViewName", null); window.scrollTo(0, 0); location.reload(); };
   window.claude = window.claude || {};
   var $ = function(id){ return document.getElementById(id); };
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]; }); }
@@ -1181,6 +1187,7 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
     CC.admin = !!(u && u.email === ADMIN_EMAIL && u.emailVerified);
     // Chaque compte a sa propre mémoire locale : on recharge une fois si elle ne correspond pas.
     if ((ls("ccUid") || "") !== CC.uid) { ls("ccUid", CC.uid); location.reload(); return new Promise(function(){}); }
+    if (CC.view && !CC.uid) { CC.exitView(); return new Promise(function(){}); }
     return null;
   });
 
@@ -1198,7 +1205,9 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
       var m = {}; s.docs.forEach(function(d){ m[d.id] = d.data() || {}; });
       CC.profils = m; CC.me = m[CC.uid] || null;
       var firstLoad = !CC.meLoaded; CC.meLoaded = true;
-      meCbs.forEach(function(f){ try { f(CC.me); } catch (e) {} });
+      if (CC.view && !m[CC.view]) { CC.exitView(); return; }
+      if (CC.view) CC.viewName = m[CC.view].pseudo || CC.viewName;
+      meCbs.forEach(function(f){ try { f(); } catch (e) {} });
       paintBar();
       if (firstLoad && !CC.me) openLogin();
       var sg = otherSig();
@@ -1213,7 +1222,8 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
       limit:function(){ return api; },
       onSnapshot:function(cb){
         var prev = null;
-        var f = function(me){
+        var f = function(){
+          var me = CC.view ? CC.profils[CC.view] : CC.me;
           var map = (me && me[field]) || {}, docs = [], ch = [];
           var mk = function(id, v){ return { id:id, exists:true, data:function(){ return v; } }; };
           Object.keys(map).forEach(function(id){
@@ -1226,8 +1236,8 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
           prev = map;
           cb({ docs:docs, docChanges:function(){ return ch; } });
         };
-        if (!CC.uid) { f(null); return function(){}; }
-        meCbs.push(f); if (CC.meLoaded) f(CC.me);
+        if (!CC.uid) { f(); return function(){}; }
+        meCbs.push(f); if (CC.meLoaded) f();
         return function(){ var i = meCbs.indexOf(f); if (i >= 0) meCbs.splice(i, 1); };
       },
       doc:function(id){
@@ -1272,6 +1282,7 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
   // ---------- Connexion, pseudo, membres ----------
   function paintBar(){
     var b = $("ccMe"), m = $("ccMbr"); if (!b) return;
+    var g = $("gpill"); if (g && CC.view) g.textContent = "📖 Carnet de " + CC.viewName + " · Revenir au mien";
     b.textContent = !CC.uid ? "Se connecter" : CC.me ? "👤 " + CC.me.pseudo : "👤 Choisir mon pseudo";
     b.setAttribute("aria-label", !CC.uid ? "Se connecter" : "Mon compte");
     m.hidden = !CC.uid || !CC.me;
@@ -1365,6 +1376,8 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
       var noted = ids2.filter(function(id){ return rep[id].note10; }), others = ids2.filter(function(id){ return !rep[id].note10; });
       var row = function(id){ var x = rep[id]; return '<button type="button" class="mfilm" data-mfilm="' + esc(x.titre || id) + '"><span>' + esc(x.titre || id) + (x.annee ? ' <small>' + esc(x.annee) + '</small>' : "") + '</span><b>' + (x.note10 ? "★ " + fmtN(x.note10) + "/10" : esc(LAB[x.etat] || x.etat)) + '</b></button>'; };
       h = '<button type="button" class="plf-no" data-msel="">‹ Tous les membres</button><h3>' + esc(p.pseudo) + '</h3>' +
+        (MSEL !== CC.uid && MSEL !== CC.view ? '<button type="button" class="plf-ok mview" data-mview="' + esc(MSEL) + '">📖 Ouvrir le carnet ' + (/^[aeiouyéèêh]/i.test(p.pseudo) ? "d'" : "de ") + esc(p.pseudo) + '</button>' : "") +
+        (CC.view && MSEL === CC.uid ? '<button type="button" class="plf-ok mview" data-mback="1">📖 Revenir à mon carnet</button>' : "") +
         '<p class="sh-note">' + noted.length + ' film' + (noted.length > 1 ? "s" : "") + ' noté' + (noted.length > 1 ? "s" : "") + ' · ' + others.length + ' autre' + (others.length > 1 ? "s" : "") + ' réponse' + (others.length > 1 ? "s" : "") + '. Touche un film pour le retrouver dans le carnet.</p>' +
         (noted.length ? '<div class="mlist">' + noted.map(row).join("") + '</div>' : "") +
         (others.length ? '<div class="mh">Sans note</div><div class="mlist">' + others.map(row).join("") + '</div>' : "") +
@@ -1382,6 +1395,8 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
     if (t.closest("#ccSave")) { saveProfile(); return; }
     if (t.closest("#ccOut")) { auth.signOut(); return; }
     var ms = t.closest("[data-msel]"); if (ms) { MSEL = ms.dataset.msel; renderMembers(); $("msheet").scrollTop = 0; return; }
+    var mv = t.closest("[data-mview]"); if (mv) { CC.enterView(mv.dataset.mview); return; }
+    if (t.closest("[data-mback]")) { CC.exitView(); return; }
     var mb = t.closest("[data-mbr]"); if (mb) { CC.openMembers(mb.dataset.mbr); return; }
     var mf = t.closest("[data-mfilm]");
     if (mf) { sheetOpen(""); var q = $("q"); if (q) { q.value = mf.dataset.mfilm; q.dispatchEvent(new Event("input", { bubbles:true })); q.scrollIntoView({ block:"center" }); } }
@@ -1465,13 +1480,16 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
     "s08-liste-cauchemar":["", "Les films et séries liés au cauchemar de Licia."],
     "s24-nouveau-malaise":["", "Des films dérangeants mais soignés, dans la lignée de ses 10/10 : Crash, Canine, Shining, Irréversible."]
   };
-  function sTitre(s){ var o = (!isMine() || (CCM() && LICIA_S[s.id])) && AUTRE_S[s.id]; return (o && o[0]) || s.titre || ""; }
+  function sTitre(s){
+    if (s._sugg) return isMine() ? "Suggestions pour toi" : "Ses suggestions de films";
+    var o = (!isMine() || (CCM() && LICIA_S[s.id])) && AUTRE_S[s.id]; return (o && o[0]) || s.titre || ""; }
   function sSous(s){
-    var o = (!isMine() || (CCM() && LICIA_S[s.id])) && AUTRE_S[s.id]; if (o && o[1]) return o[1];
+    if (s._sugg) return isMine() ? "Des films que les autres membres ont adorés, choisis d'après tes notes : plus vos goûts se ressemblent, plus leur avis compte." : "Des films que les autres membres ont adorés, choisis d'après ses notes.";
+    var o = (!isMine() || (CCM() && LICIA_S[s.id])) && AUTRE_S[s.id]; if (o && o[1]) return PERSO_S[s.id] ? o[1].replace(/Licia/g, VN()) : o[1];
     var t = s.sous_titre || "";
     return !isMine() && s.auto === "conseils" ? t.replace(/ et te conseille\.$/, " et conseille à Licia.") : t;
   }
-  function fLabel(f){ return f && f.id === "carnet" && !isMine() ? "Carnet de Licia" : (f && f.label) || ""; }
+  function fLabel(f){ return f && f.id === "carnet" && !isMine() ? "Carnet " + (/^[aeiouyéèêh]/i.test(VN()) ? "d'" : "de ") + VN() : (f && f.label) || ""; }
   var STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>';
   var LABELS = { vu:"Vu", pas_fini:"Pas fini", oublie:"Oublié", pas_vu:"Pas vu" };
   var TITLES = { vu:"Vu en entier", pas_fini:"Commencé puis abandonné", oublie:"Vu, mais je ne m'en souviens plus", pas_vu:"Pas vu" };
@@ -1479,6 +1497,7 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
   function isSeen(e){ return e === "vu" || e === "pas_fini"; }
   var GUEST = /^#invite\b/.test(location.hash || ""), GSFX = GUEST ? "-invite" : "";
   try { if (sessionStorage.getItem("carnetVueAmisV1") === "1") { GUEST = true; GSFX = "-invite"; } } catch (e) {}
+  if (window.CC && CC.view) { GUEST = true; GSFX = "-vue-" + CC.view; }
   var CCK = window.CC ? CC.lsKey : ""; var LS = "carnetFilmsV2" + GSFX + CCK;
   // note = ancienne note sur 5 (gardée pour mémoire), note10 = note sur 10.
   function seenish(a){ return a.etat === "vu" || a.etat === "pas_fini"; }
@@ -1568,7 +1587,10 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
   function CCA(){ return !!(window.CC && CC.admin); }
   function CCM(){ return !!(window.CC && CC.uid && !CC.admin); }
   // Listes faites pour Licia : un membre les voit décrites comme celles de Licia.
-  var LICIA_S = { "s00-pour-toi":1, "s26-ta-vie":1, "s08-liste-cauchemar":1, "s24-nouveau-malaise":1 };
+  var LICIA_S = { "s08-liste-cauchemar":1, "s24-nouveau-malaise":1 };
+  // Nom de la personne dont on regarde le carnet (Licia par défaut).
+  function VN(){ return (window.CC && CC.view && CC.viewName) || "Licia"; }
+  var PERSO_S = { "ma-liste":1, "s16-classement":1, "s15-oublies":1, "s18-mes-statistiques":1, "s00-pour-toi":1 };
   function applyRole(){
     document.body.classList.toggle("autre", !isMine());
     document.body.classList.toggle("lecteur", ROLE === "lecteur");
@@ -1809,7 +1831,7 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
           '<button type="button" class="chip np-ok" data-newok="1">OK</button></span>'
         : '<button type="button" class="chip autre-p" data-newp="1">＋ Nouvelle personne</button>') : "") +
       motFields(f) + '</div>' : "";
-    var ro = n10 ? "Noté <b>" + fmtN(n10) + "</b>/10 par Licia" : "";
+    var ro = n10 ? "Noté <b>" + fmtN(n10) + "</b>/10 par " + VN() : "";
     var meta = [f.y, f.c, f.d].filter(function(x){ return x; }).map(esc);
     if (MV_INFO[f.mv]) meta.push('<button type="button" class="mvb" data-mv="' + esc(f.mv) + '" title="Voir les films de ce mouvement">' + esc(MV_INFO[f.mv].label) + '</button>');
     return '<div class="info"><div class="th"><div class="t">' + esc(f.t) + '</div>' + est + (ro ? '<span class="ro">' + ro + '</span>' : "") + '</div><div class="m">' + meta.join(" · ") + '</div>' +
@@ -1827,7 +1849,7 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
     var P = window.CC && CC.uid ? CC.profils : null; if (!P) return "";
     var out = [];
     Object.keys(P).forEach(function(u){
-      if (u === CC.uid) return;
+      if (u === CC.uid || u === CC.view) return;
       var pr = P[u] || {}, r = pr.rep && pr.rep[f.id]; if (!r || !r.etat) return;
       out.push({ n:r.note10 || 0, h:'<button type="button" class="mbr" data-mbr="' + esc(u) + '">' + esc(pr.pseudo || "?") + ' · ' + (r.note10 ? "★ " + fmtN(r.note10) : esc(LABELS[r.etat] || r.etat)) + '</button>' });
     });
@@ -4060,6 +4082,35 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
     var fm = b.closest("form[data-plform]"); if (fm) pickSugg(fm, b.dataset.sugpick);
   });
 
+  // Suggestions de chaque membre (sauf Licia, qui garde les siennes) : les films notés 7/10 ou plus par les autres membres,
+  // pas encore vus, avec plus de poids pour les membres aux goûts proches (notes communes peu éloignées).
+  function ctxProfile(){ return window.CC && CC.uid ? (CC.view ? CC.profils[CC.view] : CC.me) : null; }
+  function suggestFor(){
+    var me = ctxProfile();
+    if (!me || me.slug === "licia") return;
+    sections.forEach(function(s){ if (s.id === "s26-ta-vie") s.cache = true; });
+    var s0 = sections.filter(function(s){ return s.id === "s00-pour-toi"; })[0]; if (!s0) return;
+    var mine = me.rep || {}, P = CC.profils, self = CC.view || CC.uid, sc = {};
+    Object.keys(P).forEach(function(u){
+      if (u === self) return;
+      var r = (P[u] && P[u].rep) || {}, n = 0, d = 0;
+      Object.keys(mine).forEach(function(id){ var a = mine[id], b = r[id]; if (a && b && a.note10 && b.note10) { n++; d += Math.abs(a.note10 - b.note10); } });
+      var w = n >= 3 ? Math.max(0.15, 1 - d / n / 5) : 0.4;
+      Object.keys(r).forEach(function(id){
+        var x = r[id], m = mine[id]; if (!x || !x.note10 || !films[id]) return;
+        if (m && (m.etat === "vu" || m.etat === "pas_fini")) return;
+        var e = sc[id] = sc[id] || { s:0, w:0, who:[] }; e.s += w * x.note10; e.w += w; e.who.push([P[u].pseudo || "?", x.note10, w]);
+      });
+    });
+    var list = Object.keys(sc).map(function(id){ var e = sc[id]; return { id:id, v:e.s / e.w, c:e.w, who:e.who }; })
+      .filter(function(x){ return x.v >= 7; })
+      .sort(function(a, b){ return (b.v + Math.min(b.c, 3) * 0.3) - (a.v + Math.min(a.c, 3) * 0.3); }).slice(0, 40);
+    s0.films = list.map(function(x, i){
+      x.who.sort(function(a, b){ return (b[2] - a[2]) || (b[1] - a[1]); });
+      return Object.assign({}, films[x.id], { sid:s0.id, _i:i, _h:null, r:"Aimé par " + x.who.slice(0, 3).map(function(w){ return w[0] + " (" + fmtN(w[1]) + "/10)"; }).join(", ") });
+    });
+    s0._sugg = true;
+  }
   function setSections(docs){
     FICHE = {}; var envs = null, fams = null, mouvs = null, secDocs = [];
     RANG = null;
@@ -4109,6 +4160,7 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
       .sort(secCmp);
     films = {}; SECT = {}; MV_COUNT = {};
     sections.forEach(function(s){ var fam = famOf(s); SECT[s.id] = (fam ? fam.label + " " : "") + (s.titre || ""); s.films.forEach(function(f){ if (!films[f.id]) films[f.id] = f; }); });
+    suggestFor();
     Object.keys(films).forEach(function(id){ var m = films[id].mv; if (m) MV_COUNT[m] = (MV_COUNT[m] || 0) + 1; });
     // Époques : une liste par décennie, faite à partir de tous les films. Les anciennes listes d'époque restent en réserve, cachées.
     if (FAM_OF.epoques) {
@@ -4174,7 +4226,7 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
     window.scrollTo(0, 0);
     setStatus(GUEST ? "Tu vois le carnet comme tes amis." : "Retour à ton carnet.");
   }
-  $("gpill").addEventListener("click", function(){ setGuest(false); });
+  $("gpill").addEventListener("click", function(){ if (window.CC && CC.view) { CC.exitView(); return; } setGuest(false); });
   $("gpill").hidden = !GUEST;
   if (GUEST) decideRole();
   use.then(function(db){
