@@ -1,0 +1,1808 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Comparateur des modèles d’IA : top 10 par usage, consommation, rapidité, qualité-prix et formules (octobre 2026).">
+<title>Boussole des IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout : outil de consultation — réponse directe en tête, barre d'ancres collante, sections empilées sur une colonne de 1080px max */
+:root{
+  --bg:#FAF8EF; --surface:#FFFFFF; --surface-2:#EEF1E2; --ink:#1B2433; --muted:#5B6650;
+  --line:#DDE2CC; --accent:#1F5FBF; --accent-ink:#FFFFFF; --warn:#8A5A00; --good:#5E6B1F; --hi:#F2C230; --hi-ink:#1B2433; --olive:#5E6B1F;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --grid:#ECEEDF; --axis:#C9CFB5;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161A14; --surface:#20261D; --surface-2:#2B3326; --ink:#F1F2E6; --muted:#B3BC9C;
+    --line:#3A4433; --accent:#7FB2FF; --accent-ink:#0D1B33; --warn:#FFD95A; --good:#B5C46E; --hi:#FFD95A; --hi-ink:#1B1A0E; --olive:#B5C46E;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --grid:#2B3326; --axis:#4C5842;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#161A14; --surface:#20261D; --surface-2:#2B3326; --ink:#F1F2E6; --muted:#B3BC9C;
+  --line:#3A4433; --accent:#7FB2FF; --accent-ink:#0D1B33; --warn:#FFD95A; --good:#B5C46E; --hi:#FFD95A; --hi-ink:#1B1A0E; --olive:#B5C46E;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --grid:#2B3326; --axis:#4C5842;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 48px}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(21px,3vw,26px);font-weight:700;letter-spacing:-.01em}
+h3{font-size:17px;font-weight:700}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+header.top{padding-block:16px 2px;display:flex;flex-direction:column;gap:4px}
+header.top p{margin:0;color:var(--muted);max-width:70ch}
+nav.anchors{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in oklab,var(--bg) 92%,transparent);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid var(--line);margin-top:8px}
+nav.anchors .scroller{display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+nav.anchors .scroller::-webkit-scrollbar{display:none}
+nav.anchors a{flex:none;text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;padding:6px 10px;border-radius:999px}
+nav.anchors a:hover{color:var(--ink);background:var(--surface-2)}
+section{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 56px);padding-block:18px 2px;display:flex;flex-direction:column;gap:10px}
+section > .head{display:flex;flex-direction:column;gap:4px}
+section > .head p{margin:0;color:var(--muted);max-width:72ch}
+
+/* réponse */
+.answer{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.answer .lead{margin:0;font-size:17px;line-height:1.5;max-width:74ch}
+.answer .lead b{font-weight:600}
+.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.pick{border-top:3px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pick.p1{border-top-color:var(--accent)}
+.pick .tag{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.pick.p1 .tag{color:var(--accent)}
+.pick h3{font-size:19px}
+.pick p{margin:0;font-size:14px}
+.pick .where{font-size:13px;color:var(--muted)}
+.outofreach{margin:0;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+
+/* chips + classement */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14px;font-weight:500;
+  padding:8px 13px;border-radius:999px;cursor:pointer;display:inline-flex;flex-direction:row;align-items:center;gap:9px;line-height:1.2;text-align:left}
+.chip small{font-size:11px;color:var(--muted);font-weight:400}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip[aria-pressed="true"] small{color:var(--accent-ink);opacity:.85}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.verdict{margin:0;font-size:15px;line-height:1.5;max-width:78ch}
+.rank{display:flex;flex-direction:column;gap:2px;margin:0;padding:0;list-style:none}
+.rk{display:grid;grid-template-columns:38px minmax(0,1.1fr) minmax(0,1.3fr) minmax(80px,130px) 82px;grid-template-areas:"n name note bar score";align-items:center;gap:6px 14px;
+  padding:6px 8px;border-radius:9px;border-bottom:1px solid var(--line)}
+.rk:last-child{border-bottom:0}
+.rk-name{grid-area:name;display:flex;flex-direction:column;min-width:0}
+.rk-name b{font-weight:600}
+.rk-name span{font-size:12.5px;color:var(--muted)}
+.rk-note{grid-area:note;font-size:13.5px;min-width:0}
+.bar{grid-area:bar;height:10px;border-radius:5px;background:var(--surface-2);position:relative;overflow:hidden}
+.bar .fill{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:5px}
+
+.rk-score{grid-area:score;text-align:right;font-family:var(--f-mono);font-weight:600;font-variant-numeric:tabular-nums;font-size:13.5px;white-space:nowrap}
+.rk-n{grid-area:n;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;font-family:var(--f-mono);font-weight:600;font-size:14px;
+  background:var(--surface-2);color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.rk-n sup{font-size:9px;vertical-align:super;line-height:0}
+.rk-n.nr{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
+.rk.top{background:color-mix(in oklab,var(--accent) 7%,transparent)}
+.bar.empty{visibility:hidden}
+.prov{font-style:normal;font-family:var(--f-mono);font-size:10.5px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--warn);margin-left:4px}
+.ph{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.srcline{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:13px;color:var(--muted)}
+.srcline a{font-weight:500}
+.nrbox{display:flex;flex-direction:column;gap:6px;border-top:1px dashed var(--line);padding-top:12px}
+.nrbox[hidden]{display:none}
+.nrbox .rk{padding-block:7px}
+.nrbox .rk-name b{font-weight:500}
+.chip small sup{font-size:8px}
+.rk.top .rk-name b{color:var(--accent)}
+.rk.off{opacity:.62}
+.legend{font-size:12.5px;color:var(--muted);margin:0;max-width:80ch}
+@media (max-width:680px){
+  .rk{grid-template-columns:34px minmax(0,1fr) auto;grid-template-areas:"n name score" ". note note" ". bar bar";gap:4px 10px;padding-inline:4px}
+  .rk-n{width:30px;height:30px;font-size:13px}
+}
+
+/* graphique */
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.keys{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--ink)}
+.keys span{display:inline-flex;align-items:center;gap:7px}
+.keys svg{flex:none}
+.chartscroll{overflow-x:auto;position:relative}
+#chart{position:relative;min-width:620px}
+#chart svg{display:block;width:100%;height:auto}
+#chart text{font-family:var(--f-body)}
+.tt{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12.5px;line-height:1.35;padding:7px 9px;border-radius:7px;white-space:nowrap;transform:translate(-50%,calc(-100% - 12px));z-index:2}
+.tt b{font-weight:600}
+.reads{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.read{border-left:2px solid var(--line);padding:2px 0 2px 12px;font-size:13.5px;color:var(--muted)}
+.read b{display:block;color:var(--ink);font-family:var(--f-mono);font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+
+/* tableaux */
+.scrollx{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%}
+.tbl{min-width:860px;font-size:13.5px}
+.tbl th,.tbl td{padding:10px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl thead th{font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+.tbl tbody th{font-weight:600;white-space:nowrap}
+.tbl tbody th small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.tbl td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl td .d{display:block;color:var(--muted);font-size:12.5px}
+.tbl tbody tr:last-child th,.tbl tbody tr:last-child td{border-bottom:0}
+.tbl tr.grp td,.tbl tr.grp th{background:var(--surface-2);font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 10px}
+.tbl tr.na th,.tbl tr.na td{color:var(--muted)}
+.badge{display:inline-block;font-size:11px;font-family:var(--f-mono);border:1px solid var(--line);border-radius:999px;padding:0 7px;color:var(--muted);white-space:nowrap}
+.badge.on{border-color:var(--accent);color:var(--accent)}
+.badge.no{border-color:var(--warn);color:var(--warn)}
+.share{background:var(--surface-2);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:8px}
+.share ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;max-width:85ch}
+.note{font-size:12.5px;color:var(--muted);margin:0;max-width:85ch}
+
+/* budgets */
+.budgets{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.budget{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.budget.rec{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.budget .amt{font-family:var(--f-mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.budget .tag{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.budget.rec .tag{color:var(--accent)}
+.budget ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.budget p{margin:0;font-size:14px}
+
+/* comparer en direct */
+.grp{display:flex;flex-direction:column;gap:10px;min-width:0}
+.links{display:grid;gap:12px}
+.links.a{grid-template-columns:repeat(3,minmax(0,1fr))}
+.links.b{grid-template-columns:repeat(3,minmax(0,1fr))}
+.lk{display:flex;flex-direction:column;gap:6px;min-width:0;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;transition:border-color .15s}
+.lk:hover{border-color:var(--accent)}
+.lk h3{font-size:16px}
+.lk p{margin:0;font-size:13.5px;color:var(--muted)}
+.lk .ft{margin-top:auto;padding-top:6px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.lk .go{font-family:var(--f-mono);font-size:15px;color:var(--accent)}
+.cmp{min-width:720px}
+.cmp thead th a{color:inherit;text-decoration:underline dotted;text-underline-offset:3px}
+.cmp thead th a:hover{color:var(--accent)}
+.cmp thead th:first-child,.cmp tbody th{position:sticky;left:0;z-index:1;background:var(--surface);box-shadow:1px 0 0 var(--line)}
+.cmp td b{font-weight:600}
+.cmp td.best b{color:var(--accent)}
+@media (max-width:900px){.links.a{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.links.b{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:520px){.links.a{grid-template-columns:minmax(0,1fr)}}
+
+/* échelle de couleur : rampe ordinale d'une teinte (celle de l'accent), validée en clair et en sombre */
+:root{--q1:#8DB5EE;--q2:#5E95E3;--q3:#3676CF;--q4:#225BAE;--q5:#183F80;--qt1:#1B2433;--qt2:#1B2433;--qt3:#FFFFFF;--qt4:#FFFFFF;--qt5:#FFFFFF}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--q1:#2A5A99;--q2:#2F6AB4;--q3:#4C88D5;--q4:#79AAEB;--q5:#AACBF6;--qt1:#F1F2E6;--qt2:#F1F2E6;--qt3:#0D1B33;--qt4:#0D1B33;--qt5:#0D1B33}
+}
+:root[data-theme="dark"]{--q1:#2A5A99;--q2:#2F6AB4;--q3:#4C88D5;--q4:#79AAEB;--q5:#AACBF6;--qt1:#F1F2E6;--qt2:#F1F2E6;--qt3:#0D1B33;--qt4:#0D1B33;--qt5:#0D1B33}
+.q1{background:var(--q1);color:var(--qt1)}
+.q2{background:var(--q2);color:var(--qt2)}
+.q3{background:var(--q3);color:var(--qt3)}
+.q4{background:var(--q4);color:var(--qt4)}
+.q5{background:var(--q5);color:var(--qt5)}
+.q0{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* pictogrammes */
+.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ic.lg{width:22px;height:22px}
+.ic.sm{width:15px;height:15px}
+.pick .tag{display:inline-flex;align-items:center;gap:6px}
+.chip .cl{display:flex;flex-direction:column;align-items:flex-start}
+.rk-name .eff{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin:3px 0 2px;padding:2px 8px 2px 6px;border-radius:999px;
+  font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.02em;color:var(--accent);background:color-mix(in oklab,var(--accent) 11%,transparent)}
+.rk-name .eff.unk{color:var(--muted);background:transparent;box-shadow:inset 0 0 0 1px var(--line);font-weight:500}
+.eg{display:inline-flex;align-items:flex-end;gap:2px;height:11px}
+.eg i{display:block;width:3px;border-radius:1px;background:color-mix(in oklab,var(--accent) 28%,transparent)}
+.eg i:nth-child(1){height:3px}.eg i:nth-child(2){height:5px}.eg i:nth-child(3){height:7px}.eg i:nth-child(4){height:9px}.eg i:nth-child(5){height:11px}
+.eg i.on{background:var(--accent)}
+#classements{padding-top:22px}
+.tgroups{display:flex;flex-direction:column;gap:12px}
+.tgroup{display:flex;flex-direction:column;gap:6px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.tile{appearance:none;font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px;min-width:0;
+  background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 12px;transition:border-color .12s,transform .12s}
+.tile:hover{border-color:var(--accent);transform:translateY(-1px)}
+.tile .ic{flex:none;width:20px;height:20px;color:var(--accent)}
+.tile .tl{display:flex;flex-direction:column;min-width:0}
+.tile .tn{font-weight:600;font-size:14px;line-height:1.25}
+.tile small{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile small b{font-family:var(--f-mono);font-weight:600;color:var(--ink);margin-right:3px}
+.tile small sup{font-size:8px}
+.tile[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tile[aria-pressed="true"] .ic,.tile[aria-pressed="true"] small,.tile[aria-pressed="true"] small b{color:var(--accent-ink)}
+#rankpanel{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 58px);outline:none}
+.pt{display:flex;align-items:center;gap:12px;min-width:0}
+.pt h3{font-size:clamp(19px,2.6vw,23px)}
+.pt-ic{display:grid;place-items:center;width:42px;height:42px;border-radius:11px;background:var(--q5);color:var(--qt5);flex:none}
+.pt-ic .ic{width:22px;height:22px}
+.srcline a.ext{font-size:12.5px}
+nav.anchors a.hl{color:var(--accent);font-weight:600}
+.lk.in .seetop{font-size:12.5px;font-weight:600;color:var(--accent)}
+@media (max-width:560px){.tiles{grid-template-columns:1fr 1fr}.tile{padding:9px 10px;gap:8px}.tile .tn{font-size:13px}}
+@media (max-width:560px){.chip small{display:none}.chip{padding:7px 12px}}
+
+/* carte des forces */
+.hmbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.hm-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.hm-key{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.hm-key .lbl{margin-right:4px}
+.hm-key .sw{display:inline-grid;place-items:center;width:32px;height:20px;border-radius:5px;font-family:var(--f-mono);font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+.hm-scroll{overflow-x:auto}
+.hm{border-collapse:separate;border-spacing:4px;table-layout:fixed;width:100%;min-width:680px}
+.hm col.c0{width:17%}
+.hm .stick{position:sticky;left:0;z-index:1;background:var(--surface)}
+.hm-g th{padding:0 0 2px;text-align:center}
+.hm-g th span{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:4px}
+.hm thead th{padding:0;vertical-align:bottom}
+.hm thead th.corner{text-align:left;padding:0 0 8px}
+.hm-col{appearance:none;background:none;border:0;font:inherit;color:var(--muted);width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 2px;border-radius:8px;cursor:pointer}
+.hm-col:hover{color:var(--ink);background:var(--surface-2)}
+.hm-col[aria-pressed="true"]{color:var(--accent)}
+.hm-lab{font-size:11.5px;font-weight:600;line-height:1.15;text-align:center}
+.hm tbody th{text-align:left;font-weight:400;padding:0 6px 0 0;vertical-align:middle}
+.hm tbody th b{display:block;font-weight:600;font-size:13.5px;line-height:1.2}
+.hm tbody th small{display:block;font-size:11.5px;color:var(--muted);line-height:1.25}
+.hm td{padding:0}
+.hm-c{display:grid;place-items:center;height:34px;border-radius:7px;font-family:var(--f-mono);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;cursor:default;transition:transform .12s}
+.hm-c:hover,.hm-c:focus-visible{transform:scale(1.06)}
+.hm td.sel .hm-c{outline:2px solid var(--ink);outline-offset:1px}
+@media (max-width:560px){.hm-lab{display:none}.hm col.c0{width:104px}.hmbox{padding:12px}}
+
+/* info-bulle commune */
+.tt.tip{white-space:normal;max-width:min(300px,86vw);text-align:left;z-index:20}
+.tt.tip b{display:block}
+.tt.tip span{display:block;opacity:.85}
+
+/* comparer : pastilles de rang, barres, jetons */
+.cmp td{white-space:nowrap;vertical-align:middle}
+.rt{display:inline-block;text-align:center;line-height:26px;min-width:44px;height:26px;padding:0 8px;border-radius:7px;font-family:var(--f-mono);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;margin-right:4px}
+.rt sup{font-size:9px;line-height:0}
+.rkey{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted)}
+.rkey span{display:inline-flex;align-items:center;gap:6px}
+.rkey .rt{min-width:22px;height:14px;padding:0;border-radius:4px;margin:0}
+.ix{display:inline-flex;align-items:center;gap:8px}
+.mb{width:64px;height:8px;border-radius:0 4px 4px 0;background:var(--surface-2);position:relative;overflow:hidden;flex:none}
+.mb > span{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:0 4px 4px 0}
+.coins{display:inline-flex;gap:3px;margin-right:8px;vertical-align:middle}
+.coins i{width:8px;height:8px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--axis)}
+.coins i.on{background:var(--ink);box-shadow:none}
+.cmp thead th a{display:inline-flex;align-items:center;gap:6px}
+
+/* accès */
+.accs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.acc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.acc-h{display:flex;align-items:baseline;justify-content:space-between;gap:4px 8px;flex-wrap:wrap}
+.acc-h b{font-family:var(--f-display);font-size:18px;font-weight:700}
+.acc-h span{font-size:12.5px;color:var(--muted)}
+.acc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.acc li{display:grid;grid-template-columns:22px minmax(0,1fr);column-gap:10px;row-gap:2px;align-items:start}
+.acc li > .ic{grid-row:span 2;color:var(--muted);margin-top:1px}
+.acc .ch{font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.acc .st{display:flex;align-items:flex-start;gap:6px;font-size:14px;line-height:1.4}
+.acc .st .ic{width:16px;height:16px;margin-top:2px}
+.st.yes .ic{color:var(--good)}
+.st.no .ic{color:var(--muted)}
+.st.soon .ic{color:var(--accent)}
+.accn{display:flex;gap:8px;align-items:flex-start;margin:auto 0 0;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.accn .ic{width:16px;height:16px;margin-top:2px;color:var(--warn)}
+.accn.info .ic{color:var(--muted)}
+@media (max-width:860px){.accs{grid-template-columns:minmax(0,1fr)}}
+
+/* liens : pictogramme */
+.lk-top{display:flex;align-items:center;gap:10px}
+.lk-ic{width:36px;height:36px;border-radius:9px;background:var(--surface-2);color:var(--accent);display:grid;place-items:center;flex:none}
+.lk .go{width:16px;height:16px}
+
+/* budgets : barres empilées sur une même échelle */
+.stack{display:flex;gap:2px;height:12px}
+.seg{height:100%;flex:0 1 auto;min-width:0;cursor:default}
+.seg.end,.seg.rest{border-radius:0 4px 4px 0}
+.seg.rest{flex:1 1 0;background:var(--surface-2)}
+.seg.sa,.sw2.sa{background:var(--s1)}
+.seg.so,.sw2.so{background:var(--s2)}
+.seg.sg,.sw2.sg{background:var(--s3)}
+.seg.sx,.sw2.sx{background:var(--axis)}
+.stack-key{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--muted)}
+.stack-key span{display:inline-flex;align-items:center;gap:6px}
+.sw2{width:10px;height:10px;border-radius:2px;display:inline-block;flex:none}
+
+/* optimiser : méthode, modèle de fiche, tableau des réglages, potentiel */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;gap:12px;align-items:flex-start;min-width:0}
+.step b{display:block;font-family:var(--f-display);font-size:15.5px;font-weight:700;margin-bottom:4px;line-height:1.25}
+.step p{margin:0;font-size:13.5px;color:var(--muted)}
+.tpl{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0}
+.tpl-h{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.tpl-h span{font-size:13.5px;color:var(--muted)}
+.tpl pre{margin:0;padding:14px;font-family:var(--f-mono);font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
+.copy{appearance:none;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:inherit;font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;cursor:pointer}
+.copy:hover{filter:brightness(1.08)}
+.fkey{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;color:var(--muted)}
+.fkey span{display:inline-flex;align-items:center;gap:5px}
+.feat{min-width:900px}
+.feat thead th{white-space:normal;vertical-align:bottom}
+.feat thead th .ic{width:14px;height:14px;vertical-align:-2px;margin-right:4px}
+.feat thead th:first-child,.feat tbody th{position:sticky;left:0;z-index:1;background:var(--surface);box-shadow:1px 0 0 var(--line)}
+.fs{display:inline-flex;align-items:center;gap:5px;font-weight:600;font-size:13px;white-space:nowrap}
+.fs .ic,.fkey .ic{width:15px;height:15px}
+.fs.yes .ic,.fkey .yes{color:var(--good)}
+.fs.part .ic,.fkey .part{color:var(--accent)}
+.fs.unk,.fs.no{color:var(--muted)}
+.fs.unk .ic,.fkey .unk{color:var(--muted)}
+.fs.no .ic,.fkey .no{color:var(--warn)}
+.feat td .d{max-width:16ch}
+.feat td a{display:block;margin:0 0 3px;white-space:nowrap}
+.pot{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.pot-key{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;color:var(--muted)}
+.pot-key span{display:inline-flex;align-items:center;gap:6px}
+.pot-row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr) 70px;grid-template-areas:"n b v";align-items:center;gap:6px 14px}
+.pot-name{grid-area:n;min-width:0}
+.pot-name b{display:block;font-weight:600;font-size:14px}
+.pot-name small{display:block;font-size:12px;color:var(--muted)}
+.pot-bar{grid-area:b;display:flex;gap:2px;height:16px}
+.pot-val{grid-area:v;text-align:right;font-variant-numeric:tabular-nums}
+.pot-val b{display:block;font-family:var(--f-mono);font-size:17px;font-weight:600}
+.pot-val small{display:block;font-size:11px;color:var(--muted);white-space:nowrap}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .pot-row{grid-template-columns:minmax(0,1fr) 70px;grid-template-areas:"n v" "b b"}
+}
+
+.sources{columns:2 320px;column-gap:28px;font-size:13px;margin:0;padding-left:18px}
+.sources li{break-inside:avoid;margin-bottom:6px;color:var(--muted)}
+.sources a{word-break:break-word}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important;scroll-behavior:auto!important} }
+.tgroup>.eyebrow{color:var(--olive);font-weight:600}
+.tile small b{background:var(--hi);color:var(--hi-ink);padding:0 4px;border-radius:4px}
+.tile[aria-pressed="true"] small b{background:var(--hi);color:var(--hi-ink)}
+.rk.top{background:color-mix(in oklab,var(--hi) 16%,transparent)}
+.rk.top .rk-n{background:var(--hi);color:var(--hi-ink)}
+.pt-ic{background:var(--hi);color:var(--hi-ink)}
+.rk-name .eff{color:var(--olive);background:color-mix(in oklab,var(--olive) 13%,transparent)}
+.eg i{background:color-mix(in oklab,var(--olive) 28%,transparent)}
+.eg i.on{background:var(--olive)}
+
+:root{--navh:46px}
+.head.row{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 12px}
+#classements{padding-top:12px}
+.cl-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:12px;align-items:start}
+#chips.tgroups{position:sticky;top:calc(var(--navh) + 8px);max-height:calc(100vh - var(--navh) - 16px);overflow-y:auto;gap:8px;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 8px;scrollbar-width:thin}
+.tgroup{gap:2px}
+.tgroup>.eyebrow{padding:0 6px;font-size:10.5px}
+.tiles{display:flex;flex-direction:column;gap:1px}
+.tile{border:0;border-radius:9px;padding:6px 8px;gap:9px;background:transparent}
+.tile:hover{background:var(--surface-2);transform:none}
+.tile .ic{width:18px;height:18px}
+.tile .tn{font-size:13.5px;font-weight:600}
+.tile .ts{display:none}
+.tile small{font-size:12px}
+#rankpanel{scroll-margin-top:calc(var(--navh) + 8px)}
+.rk-name .eff{margin:2px 0 1px}
+@media (max-width:760px){
+  .cl-layout{grid-template-columns:minmax(0,1fr);gap:8px}
+  #chips.tgroups{flex-direction:row;overflow-x:auto;overflow-y:hidden;max-height:none;top:var(--navh);z-index:4;gap:6px;
+    padding:8px;margin-inline:-4px;border-radius:12px;box-shadow:0 6px 12px -10px rgba(0,0,0,.35);scrollbar-width:none}
+  #chips.tgroups::-webkit-scrollbar{display:none}
+  .tgroup,.tiles{display:contents}
+  .tgroup>.eyebrow{display:none}
+  .tile{flex:none;border:1px solid var(--line);border-radius:999px;padding:6px 11px;gap:6px;background:var(--surface)}
+  .tile .tn,.tile small{display:none}
+  .tile .ts{display:inline;font-size:13.5px;font-weight:600;white-space:nowrap}
+  .tile .ic{width:16px;height:16px}
+  #rankpanel{scroll-margin-top:calc(var(--navh) + 64px)}
+  section{padding-block:14px 2px}
+}
+.tile[aria-pressed="true"],.tile[aria-pressed="true"]:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+#conso{padding-top:14px}
+#conso .panel{margin-top:0}
+.duel.tbl{min-width:0;width:100%;table-layout:fixed}
+.duel.tbl thead th{white-space:normal;line-height:1.35}
+.duel.tbl th:first-child{width:40%}
+.duel.tbl tbody th{white-space:normal}
+.duel.tbl td.n{white-space:nowrap}
+@media (max-width:560px){.duel.tbl th,.duel.tbl td{padding:8px 6px}.duel.tbl{font-size:13px}.duel.tbl thead th{font-size:10px}}
+.win{font-weight:700;color:var(--ink)}
+.win::after{content:" ✓";color:var(--olive)}
+.csctl{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.sortb{appearance:none;font:inherit;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px}
+.sortb:hover{border-color:var(--accent)}
+.sortb[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sortb.flt{margin-left:auto}
+#csTbl tr.ok th,#csTbl tr.ok td{background:color-mix(in oklab,var(--accent) 8%,transparent)}
+.mb{display:block;height:4px;border-radius:2px;background:var(--line);margin-top:4px;min-width:64px}
+.mb i{display:block;height:100%;border-radius:2px;background:var(--accent)}
+.cs-eff{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-size:13px}
+.cs-eff .eg{height:11px}
+#csCount{font-family:var(--f-mono);text-transform:none;letter-spacing:0}
+@media (max-width:560px){.sortb.flt{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-sci" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6.5l-5.4 8.8A1.8 1.8 0 0 0 6.2 21h11.6a1.8 1.8 0 0 0 1.6-2.7L14 9.5V3M7.2 15.5h9.6"/></symbol>
+  <symbol id="i-research" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3 21 21M7.6 9h5.8M7.6 12h3.8"/></symbol>
+  <symbol id="i-write" viewBox="0 0 24 24"><path d="M4 20l1-4.2L16.3 4.5a2.1 2.1 0 0 1 3 3L8 18.8zM14.5 6.3l3.2 3.2"/></symbol>
+  <symbol id="i-math" viewBox="0 0 24 24"><path d="M17.5 5h-11l6 7-6 7h11"/></symbol>
+  <symbol id="i-agents" viewBox="0 0 24 24"><path d="M14.6 3.8a5 5 0 0 0-5.9 6.6l-5.2 5.2a2.1 2.1 0 0 0 3 3l5.2-5.2a5 5 0 0 0 6.6-5.9l-3 3-2.6-.6-.6-2.6z"/></symbol>
+  <symbol id="i-fiab" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8-7.5 9.5-4.3-1.5-7.5-4.9-7.5-9.5V6zM8.8 12.2l2.2 2.2 4.4-4.6"/></symbol>
+  <symbol id="i-img" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 15.5l-5-5-9 9"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.2v5.6l4.8-2.8z"/></symbol>
+  <symbol id="i-app" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8.5h18M10 12l-2.2 2.2L10 16.4M14 12l2.2 2.2-2.2 2.2"/></symbol>
+  <symbol id="i-idea" viewBox="0 0 24 24"><path d="M9.5 18h5M10.5 21h3M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2v.5h5V16c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-web" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+  <symbol id="i-overview" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.1 5.1-5.1 2.1 2.1-5.1z"/></symbol>
+  <symbol id="i-split" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M6 9h3M15 9h3M6 12.5h3M15 12.5h3"/></symbol>
+  <symbol id="i-duel" viewBox="0 0 24 24"><path d="M12 4v16M8 20h8M5 7.5h14M5 7.5 2.5 13a2.5 2.5 0 0 0 5 0zM19 7.5 16.5 13a2.5 2.5 0 0 0 5 0z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0M12 17l3.5-4.5"/><circle cx="12" cy="17" r="1.2"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.4c-.4-.9-1.4-1.4-2.6-1.4-1.5 0-2.6.8-2.6 2s1.1 1.7 2.6 2 2.6.8 2.6 2-1.1 2-2.6 2c-1.2 0-2.2-.5-2.6-1.4M12 6.5V8M12 16v1.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2.5v4M15 2.5v4M6.5 6.5h11V10a5.5 5.5 0 0 1-11 0zM12 15.5v6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3.5 21.5 20h-19zM12 10v4.5M12 17.3v.2"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.2"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-top" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v1.5A3.5 3.5 0 0 0 7.5 11M17 6h3v1.5a3.5 3.5 0 0 1-3.5 3.5"/></symbol>
+  <symbol id="i-gen" viewBox="0 0 24 24"><path d="M4 5.5h16v10H9.5L5 19.5v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+  <symbol id="i-apps" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8.5h18M10 12l-2.2 2.2L10 16.4M14 12l2.2 2.2-2.2 2.2"/></symbol>
+  <symbol id="i-design" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5C21 6.4 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.2" r="1.2"/><circle cx="15" cy="7.8" r="1.2"/></symbol>
+  <symbol id="i-exp" viewBox="0 0 24 24"><path d="M6.5 3v12.5a2.5 2.5 0 0 0 5 0V3M5.5 3h7M6.5 10h5M14.5 3v12.5a2.5 2.5 0 0 0 5 0V3M13.5 3h7M14.5 13h5"/></symbol>
+  <symbol id="i-innov" viewBox="0 0 24 24"><path d="M9.5 18h5M10.5 21h3M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2v.5h5V16c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-sources" viewBox="0 0 24 24"><path d="M3 5.5c2.8-1 5.8-1 9 1 3.2-2 6.2-2 9-1V19c-2.8-1-5.8-1-9 1-3.2-2-6.2-2-9-1zM12 6.5V20"/></symbol>
+  <symbol id="i-memory" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6M3.5 4v4h4M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-speed" viewBox="0 0 24 24"><path d="M13 2.5 4.5 13.5H11L10 21.5l8.5-11H12z"/></symbol>
+  <symbol id="i-conso" viewBox="0 0 24 24"><path d="M4.5 17a8 8 0 1 1 15 0M12 14l3.5-4.5M12 14h.01M7.5 19.5h9"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+  <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M9 4.5a2 2 0 0 1 4 0V6h4a1 1 0 0 1 1 1v4h-1.5a2 2 0 0 0 0 4H18v4a1 1 0 0 1-1 1h-4v-1.5a2 2 0 0 0-4 0V20H5a1 1 0 0 1-1-1v-4h1.5a2 2 0 0 0 0-4H4V7a1 1 0 0 1 1-1h4z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-part" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
+  <symbol id="i-unk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 0 1 4.8.8c0 1.7-2.4 2-2.4 3.5M12 16.8v.2"/></symbol>
+</svg>
+<header class="top">
+  <span class="eyebrow">Relevé au 16 octobre 2026 · modèles accessibles au public</span>
+  <h1>Boussole des IA</h1>
+  <p>Les modèles d’intelligence artificielle (IA) les plus puissants que l’on peut acheter en tant que particulier, comparés pour des projets professionnels : performance mesurée, coût réel et formule qui y donne accès.</p>
+</header>
+
+<nav class="anchors" aria-label="Sections">
+  <div class="scroller">
+    <a href="#classements" class="hl">Classements</a>
+    <a href="#conso" class="hl">Consommation &amp; rapidité</a>
+    <a href="#reponse">Plus fort qu’Opus ?</a>
+    <a href="#usage">Carte des forces</a>
+    <a href="#valeur">Qualité-prix</a>
+    <a href="#modeles">Modèles</a>
+    <a href="#comparer">Comparer</a>
+    <a href="#optimiser">Optimiser</a>
+    <a href="#formules">Formules</a>
+    <a href="#budget">Quel budget</a>
+    <a href="#sources">Sources</a>
+  </div>
+</nav>
+
+<section id="classements" aria-label="Classements top 10">
+  <div class="head row"><h2>Classements · top 10</h2><span class="eyebrow">relevés du 7 au 15 octobre</span></div>
+  <div class="cl-layout">
+  <div id="chips" class="tgroups" role="group" aria-label="Choisir un classement"></div>
+  <div class="panel" id="rankpanel" tabindex="-1" aria-live="polite">
+    <div class="ph">
+      <div class="pt"><span class="pt-ic" aria-hidden="true"><svg class="ic lg"><use id="taskIcon" href="#i-sci"/></svg></span><div><h3 id="taskTitle"></h3><span class="eyebrow" id="taskEyebrow"></span></div></div>
+      <span class="srcline" id="srcline"></span>
+    </div>
+    <p class="verdict" id="verdict"></p>
+    <ol class="rank" id="rank" aria-label="Dix premiers"></ol>
+    <div class="nrbox" id="nrbox"><span class="eyebrow">Aussi évalués · hors des dix premiers ou sans chiffre comparable</span><ul class="rank" id="nrlist"></ul></div>
+    <p class="legend"><b>Effort</b> : la puissance de réflexion réglée pendant le test, de bas à maximal. Plus elle est élevée, plus le modèle réfléchit longtemps : meilleures réponses, mais plus lentes et plus coûteuses en quota. Dans l’appli, choisissez le même niveau pour obtenir ce résultat. Rang parmi des modèles distincts : un modèle testé à plusieurs niveaux d’effort ne compte qu’une fois, à son meilleur score. « Provisoire » : pas encore assez de votes. Classement éditorial : aucun test public ne départage ces modèles ; l’ordre et la note sur 5 sont une synthèse des chiffres cités.</p>
+  </div>
+</div>
+</section>
+
+<section id="conso" aria-label="Consommation et rapidité">
+  <div class="head row"><h2>Consommation et rapidité</h2><span class="eyebrow">coût et temps d’une tâche · relevé Artificial Analysis du 16 octobre</span></div>
+
+  <div class="panel">
+    <div class="ph"><div class="pt"><span class="pt-ic" aria-hidden="true"><svg class="ic lg"><use href="#i-conso"/></svg></span><div><h3>Sonnet 5.5 « très élevé » ou Opus 5.5 « élevé » ?</h3><span class="eyebrow">deux réglages de qualité voisine : lequel consomme le moins ?</span></div></div></div>
+    <div class="scrollx"><table class="tbl duel">
+      <thead><tr><th></th><th>Sonnet 5.5 · très élevé</th><th>Opus 5.5 · élevé</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Indice d’intelligence</th><td class="n">52</td><td class="n win">54</td></tr>
+        <tr><th scope="row">Texte écrit par tâche (jetons)</th><td class="n">75 000</td><td class="n win">36 000</td></tr>
+        <tr><th scope="row">Prix du million de jetons écrits</th><td class="n win">10 $</td><td class="n">20 $</td></tr>
+        <tr><th scope="row">Coût d’une tâche</th><td class="n">2,01 $</td><td class="n win">1,82 $</td></tr>
+        <tr><th scope="row">Temps de réponse</th><td class="n win">39 s</td><td class="n">58 s</td></tr>
+      </tbody>
+    </table></div>
+    <p class="verdict">Non : Sonnet « très élevé » ne consomme pas moins. Il coûte deux fois moins au jeton, mais en écrit deux fois plus, pour un score plus bas. Son seul avantage est la vitesse. Pour consommer moins, le meilleur choix de la famille Claude est Opus en effort moyen (51 points pour 1,34 $) ; Sonnet n’est moins cher qu’aux niveaux plus bas, avec des scores plus bas (élevé : 47 points pour 0,88 $).</p>
+    <p class="note">Pour créer des applis, Opus 5.5 est aussi devant dans le classement <a href="#classements" data-goto="apps">Développement d’applis</a>, mais il y a été testé en effort maximal : aucun test public d’Opus en « élevé ». Jetons par tâche : page de comparaison d’Artificial Analysis ; autres chiffres : son classement des modèles.</p>
+  </div>
+
+  <div class="panel">
+    <div class="ph"><div class="pt"><span class="pt-ic" aria-hidden="true"><svg class="ic lg"><use href="#i-conso"/></svg></span><div><h3>Ordre de consommation à qualité comparable</h3><span class="eyebrow">du moins gourmand au plus gourmand · réglage le plus économe qui atteint 50 points</span></div></div></div>
+    <ol class="rank" id="consRank" aria-label="Modèles classés du moins gourmand au plus gourmand"></ol>
+    <p class="legend">Anthropic, OpenAI et Google ne publient pas combien de quota consomme chaque modèle en abonnement. Le coût d’une tâche au tarif de l’interface de programmation (API) suit le nombre de jetons écrits : c’est le meilleur indicateur disponible. Selon le guide d’effort d’Anthropic, relayé par Lindy, les efforts bas et moyen font durer le quota plus longtemps ; le niveau « élevé » le dépense plus vite.</p>
+  </div>
+
+  <div class="panel" id="csPanel">
+    <div class="ph"><div class="pt"><span class="pt-ic" aria-hidden="true"><svg class="ic lg"><use href="#i-speed"/></svg></span><div><h3>Tableau chiffré · tous les niveaux d’effort</h3><span class="eyebrow">coût, temps de réponse et vitesse d’écriture <span id="csCount"></span></span></div></div></div>
+    <div class="csctl" role="group" aria-label="Trier le tableau">
+      <span class="eyebrow">Trier par</span>
+      <button type="button" class="sortb" data-sort="total" aria-pressed="true">Temps de réponse</button>
+      <button type="button" class="sortb" data-sort="cost" aria-pressed="false">Coût</button>
+      <button type="button" class="sortb" data-sort="idx" aria-pressed="false">Indice</button>
+      <button type="button" class="sortb" data-sort="model" aria-pressed="false">Modèle</button>
+      <button type="button" class="sortb flt" id="only50" aria-pressed="false">Indice 50 et plus seulement</button>
+    </div>
+    <div class="scrollx"><table class="tbl" id="csTbl">
+      <thead><tr><th>Modèle</th><th>Effort</th><th>Indice</th><th>Coût par tâche</th><th>Temps de réponse</th><th>Écriture · jetons par seconde</th><th>Délai avant le 1<sup>er</sup> mot</th></tr></thead>
+      <tbody id="csTable"></tbody>
+    </table></div>
+    <p class="note">Temps de réponse : durée totale entre la question et la fin de la réponse. Le délai avant le premier mot inclut la réflexion, d’où les minutes en effort maximal. Indice : Artificial Analysis Intelligence Index ; les lignes teintées atteignent 50 points. Gemini 4 Argon : un seul niveau mesuré, au tarif de lancement (3,98 $ ensuite). Muse Wonder Full n’est pas chiffré par Artificial Analysis.</p>
+  </div>
+</section>
+
+<section id="reponse" aria-label="Plus fort qu’Opus 5.5 ?">
+  <div class="answer">
+    <span class="eyebrow">Plus fort qu’Opus 5.5 ?</span>
+    <p class="lead">Aujourd’hui, <b>aucun modèle accessible ne dépasse nettement Claude Opus 5.5 en effort maximal</b> : il est premier de l’indice d’intelligence d’Artificial Analysis (58) et de son indice de fiabilité. Gemini 4 Argon, ouvert dans Gemini le 13 octobre, le devance aux votes à l’aveugle et invente moins, pour moins cher.</p>
+    <div class="picks">
+      <div class="pick p1">
+        <span class="tag"><svg class="ic sm" aria-hidden="true"><use href="#i-top"/></svg>Le plus performant</span>
+        <h3>Claude Opus 5.5</h3>
+        <p>Effort maximal : n°1 en sciences, rédaction professionnelle, tâches longues et fiabilité des faits.</p>
+        <span class="where">Claude Pro (≈ 21 €) ou Max (≈ 105 €)</span>
+      </div>
+      <div class="pick">
+        <span class="tag"><svg class="ic sm" aria-hidden="true"><use href="#i-sci"/></svg>Au-dessus, sur des tâches précises</span>
+        <h3>Fable 5.1 · GPT-6 Astra</h3>
+        <p>Fable 5.1 : recherches en plusieurs étapes et sessions de plusieurs heures. GPT-6 Astra : mathématiques de niveau recherche et sciences expérimentales.</p>
+        <span class="where">Claude Max · ChatGPT Pro (100 ou 200 $)</span>
+      </div>
+      <div class="pick">
+        <span class="tag"><svg class="ic sm" aria-hidden="true"><use href="#i-gen"/></svg>Nouveau venu</span>
+        <h3>Gemini 4 Argon</h3>
+        <p>1er des votes à l’aveugle Arena (provisoire) et du Vals Index ; invente le moins quand il ne sait pas (15 %). Plus faible en rédaction pro et en design d’interface.</p>
+        <span class="where">Google AI Pro (21,99 €) ou Ultra</span>
+      </div>
+      <div class="pick">
+        <span class="tag"><svg class="ic sm" aria-hidden="true"><use href="#i-coin"/></svg>Meilleur rapport qualité-prix</span>
+        <h3>GPT-6.1 Sol · Opus 5.5 moyen</h3>
+        <p>Sol : 52 points pour 0,72 $ par tâche, 8 fois moins qu’Opus en effort maximal. Opus 5.5 en effort moyen : 51 points pour 1,34 $, le plus économe des Claude. Sonnet 5.5 coûte moitié moins au jeton mais en écrit deux fois plus : à qualité voisine, il ne consomme pas moins.</p>
+        <span class="where">ChatGPT Plus (22,99 €) · Claude Pro</span>
+      </div>
+    </div>
+    <p class="outofreach">Hors d’atteinte pour l’instant : Muse Wonder Full (Meta), seulement via Muse Code Power ou Maximum ; Claude Mythos 5.1, même modèle que Fable 5.1 sans ses garde-fous supplémentaires, non proposé au grand public.</p>
+  </div>
+</section>
+
+<section id="usage" aria-label="Carte des forces">
+  <div class="head">
+    <span class="eyebrow">Tous les classements résumés · note sur 5</span>
+    <h2>Carte des forces</h2>
+  </div>
+  <div class="hmbox">
+    <div class="hm-top">
+      <span class="eyebrow">Cliquez une colonne pour son top 10</span>
+      <div class="hm-key" aria-hidden="true"><span class="lbl">Note</span><span class="sw q1">≤ 3</span><span class="sw q2">3,5</span><span class="sw q3">4</span><span class="sw q4">4,5</span><span class="sw q5">5</span></div>
+    </div>
+    <div class="hm-scroll"><table class="hm" id="heat" aria-label="Note sur 5 de chaque modèle pour chaque usage"></table></div>
+  </div>
+</section>
+
+<section id="valeur">
+  <div class="head">
+    <span class="eyebrow">Performance contre coût</span>
+    <h2>Qualité-prix</h2>
+    <p>Indice d’intelligence Artificial Analysis (moyenne d’une dizaine de tests exigeants) selon le coût pour réaliser une tâche du test au tarif de l’interface de programmation (API). Chaque trait relie les niveaux d’effort d’un même modèle, du moyen au maximal.</p>
+  </div>
+  <div class="chartbox">
+    <div class="keys" aria-hidden="true">
+      <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="var(--s1)"/></svg>Anthropic (Claude)</span>
+      <span><svg width="12" height="12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="var(--s2)"/></svg>OpenAI (GPT)</span>
+      <span><svg width="12" height="12"><path d="M6 0.5 L11.5 6 L6 11.5 L0.5 6 Z" fill="var(--s3)"/></svg>Autres laboratoires</span>
+    </div>
+    <div class="chartscroll"><div id="chart" role="img" aria-label="Nuage de points : indice d’intelligence selon le coût par tâche. Opus 5.5 en effort maximal culmine à 58 pour 5,98 dollars ; GPT-6.1 Sol atteint 52 pour 0,72 dollar ; Fable 5.1 plafonne à 53 pour 7,63 dollars."></div></div>
+    <div class="reads">
+      <div class="read"><b>54 pts · 1,82 $</b>Opus 5.5 en effort « élevé » dépasse déjà Fable 5.1 et GPT-6 Astra en effort maximal.</div>
+      <div class="read"><b>52 pts · 0,72 $</b>GPT-6.1 Sol : le meilleur rapport qualité-prix du haut du classement.</div>
+      <div class="read"><b>53 pts · 7,63 $</b>Fable 5.1 en effort maximal : le plus cher, sans gain sur cet indice.</div>
+    </div>
+    <p class="note">En abonnement, on ne paie pas à la tâche, mais ce coût indique à quelle vitesse un modèle consomme les quotas. Gemini 4 Argon : 53 points pour 1,99 $ au tarif de lancement, 3,98 $ ensuite. La section <a href="#conso">Consommation et rapidité</a> chiffre chaque niveau d’effort.</p>
+  </div>
+</section>
+
+<section id="modeles">
+  <div class="head">
+    <span class="eyebrow">Fiche technique</span>
+    <h2>Modèles</h2>
+  </div>
+  <div class="scrollx">
+    <table class="tbl">
+      <thead><tr><th>Modèle</th><th>Sortie</th><th>Indice AA</th><th>Fiabilité AA</th><th>Prix API $ / M jetons</th><th>Coût / tâche</th><th>Accès grand public</th><th>À retenir</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="8">Haut du classement</td></tr>
+        <tr><th>Claude Opus 5.5<small>Anthropic</small></th><td class="n">22 sept.</td><td class="n">58</td><td class="n">46</td><td class="n">4 / 20</td><td class="n">5,98 $<span class="d">1,82 $ en effort élevé</span></td><td><span class="badge on">Claude Pro</span> <span class="badge on">Max</span></td><td>N°1 de l’indice et de la fiabilité ; 67,7 % au Humanity’s Last Exam avec outils</td></tr>
+        <tr><th>Claude Sonnet 5.5<small>Anthropic</small></th><td class="n">28 sept.</td><td class="n">56</td><td class="n">—</td><td class="n">2 / 10</td><td class="n">5,46 $<span class="d">2,01 $ en très élevé</span></td><td><span class="badge on">Claude Pro</span> <span class="badge on">Max</span></td><td>Quasi au niveau d’Opus sur les livrables pros ; plus rapide</td></tr>
+        <tr><th>Claude Fable 5.1<small>Anthropic</small></th><td class="n">1er sept.</td><td class="n">53</td><td class="n">43</td><td class="n">10 / 50</td><td class="n">7,63 $</td><td><span class="badge on">Max</span> <span class="badge">Pro : crédits payants</span></td><td>Le plus gros modèle public d’Anthropic ; garde-fous renforcés en biologie et cybersécurité</td></tr>
+        <tr><th>GPT-6 Astra<small>OpenAI</small></th><td class="n">3 sept.</td><td class="n">53</td><td class="n">44</td><td class="n">10 / 50</td><td class="n">3,26 $</td><td><span class="badge on">ChatGPT Pro</span></td><td>96 % au GPQA, 97,6 % au FrontierMath niveau 4 ; économe en mots</td></tr>
+        <tr><th>GPT-6.1 Sol<small>OpenAI</small></th><td class="n">29 sept.</td><td class="n">52</td><td class="n">—</td><td class="n">2 / 10</td><td class="n">0,72 $</td><td><span class="badge on">ChatGPT Plus</span> <span class="badge on">Pro</span></td><td>Proche d’Astra pour environ 5 fois moins cher</td></tr>
+        <tr><th>Gemini 4 Argon<small>Google</small></th><td class="n">30 sept.<span class="d">appli : 13 oct.</span></td><td class="n">53</td><td class="n">—</td><td class="n">2 / 10<span class="d">4 / 20 après le lancement</span></td><td class="n">1,99 $</td><td><span class="badge on">Google AI Pro</span> <span class="badge on">Ultra</span></td><td>1er des votes Arena et du Vals Index ; invente dans 15 % des cas où il ne sait pas, contre 51 % pour Astra</td></tr>
+        <tr class="na"><th>Muse Wonder<small>Meta</small></th><td class="n">12 oct.</td><td class="n">52<span class="d">Full : 56</span></td><td class="n">—</td><td class="n">4 / 20</td><td class="n">4,52 $</td><td><span class="badge">Muse Code</span> <span class="badge">API</span><span class="d">Appli Muse : « bientôt » (20 ou 100 $ par mois selon la presse)</span></td><td>Trop récent ; Full seulement via Muse Code Power ou Maximum (≈ 50 ou 200 $ par mois) ; disponibilité en France non confirmée</td></tr>
+        <tr class="grp"><td colspan="8">Un cran en dessous</td></tr>
+        <tr><th>Grok 4.7<small>xAI</small></th><td class="n">21 sept.</td><td class="n">46</td><td class="n">—</td><td class="n">2 / 6</td><td class="n">3,74 $</td><td><span class="badge">API · Cursor</span></td><td>SuperGrok (30 $) propose encore Grok 4.6</td></tr>
+        <tr><th>Qwen3.8 Max<small>Alibaba</small></th><td class="n">2 sept.</td><td class="n">45</td><td class="n">—</td><td class="n">2 / 6</td><td class="n">5,41 $</td><td><span class="badge">API</span></td><td>—</td></tr>
+        <tr><th>Kimi K3<small>Moonshot</small></th><td class="n">2026</td><td class="n">44</td><td class="n">—</td><td class="n">—</td><td class="n">2,00 $</td><td><span class="badge">API</span></td><td>Fort en développement web</td></tr>
+        <tr><th>DeepSeek V4.1 Flash<small>DeepSeek</small></th><td class="n">2026</td><td class="n">39</td><td class="n">—</td><td class="n">0,30 / 1,20</td><td class="n">0,27 $</td><td><span class="badge">Appli gratuite</span></td><td>Très bon marché ; données en Chine ; invente beaucoup</td></tr>
+        <tr><th>Mistral Large 4<small>Mistral AI · aperçu</small></th><td class="n">2026</td><td class="n">38</td><td class="n">—</td><td class="n">—</td><td class="n">1,13 $</td><td><span class="badge">API</span></td><td>Seul modèle européen de ce tableau</td></tr>
+        <tr><th>Gemini 3.1 Pro<small>Google</small></th><td class="n">19 févr.</td><td class="n">30</td><td class="n">—</td><td class="n">—</td><td class="n">1,30 $</td><td><span class="badge on">Google AI Pro</span></td><td>Distancé en raisonnement ; utile pour l’écosystème Google</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Indice AA : Artificial Analysis Intelligence Index, version d’octobre. Fiabilité AA : indice AA-Omniscience, qui récompense les bonnes réponses et pénalise les inventions. Les « jetons » (tokens) sont des morceaux de mots : 1 million ≈ 750 000 mots. L’indice a changé de version plusieurs fois en septembre ; début septembre, Fable 5.1 menait (66 contre 61 pour GPT-6 Astra). Un écart de 1 à 2 points n’est pas significatif.</p>
+</section>
+
+<section id="comparer" aria-label="Comparer en direct">
+  <div class="head">
+    <span class="eyebrow">Classements publics · relevés du 13 au 15 octobre</span>
+    <h2>Comparer en direct</h2>
+  </div>
+
+  <div class="grp">
+    <span class="eyebrow">Par tâche · le top 10 s’affiche ici</span>
+    <div class="links a">
+      <a class="lk in" href="#classements" data-goto="apps">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-app"/></svg></span><span class="eyebrow">Création d’applications</span></span>
+        <h3>Arena · WebDev</h3>
+        <p>Des votants comparent les applications web que chaque modèle construit.</p>
+        <span class="ft"><span class="seetop">Voir le top 10</span><svg class="ic go" aria-hidden="true"><use href="#i-top"/></svg></span>
+      </a>
+      <a class="lk in" href="#classements" data-goto="gen">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-idea"/></svg></span><span class="eyebrow">Idées, rédaction</span></span>
+        <h3>Arena · Texte</h3>
+        <p>Préférence des votants sur des conversations. Filtres : Creative Writing (écriture créative), Expert, Math, Coding.</p>
+        <span class="ft"><span class="seetop">Voir le top 10</span><svg class="ic go" aria-hidden="true"><use href="#i-top"/></svg></span>
+      </a>
+      <a class="lk in" href="#classements" data-goto="sources">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-web"/></svg></span><span class="eyebrow">Recherche web</span></span>
+        <h3>Arena · Search</h3>
+        <p>Réponses appuyées sur le web, notées par des votants. Les modèles Sonar de Perplexity y figurent.</p>
+        <span class="ft"><span class="seetop">Voir le top 10</span><svg class="ic go" aria-hidden="true"><use href="#i-top"/></svg></span>
+      </a>
+      <a class="lk in" href="#classements" data-goto="sci">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-sci"/></svg></span><span class="eyebrow">Science</span></span>
+        <h3>Humanity’s Last Exam · GPQA</h3>
+        <p>Questions de niveau doctorat : toutes disciplines (HLE) et physique, biologie, chimie (GPQA : Graduate-Level Google-Proof Q&amp;A).</p>
+        <span class="ft"><span class="seetop">Voir le top 10</span><svg class="ic go" aria-hidden="true"><use href="#i-top"/></svg></span>
+      </a>
+      <a class="lk in" href="#classements" data-goto="design">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-design"/></svg></span><span class="eyebrow">Esthétique et animations</span></span>
+        <h3>Arena · Image-to-WebDev</h3>
+        <p>Votes sur des interfaces recréées à partir d’une image : le meilleur indicateur public du goût visuel.</p>
+        <span class="ft"><span class="seetop">Voir le top 10</span><svg class="ic go" aria-hidden="true"><use href="#i-top"/></svg></span>
+      </a>
+      <a class="lk in" href="#classements" data-goto="exp">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-exp"/></svg></span><span class="eyebrow">Expériences et théories</span></span>
+        <h3>Vals AI · Terminal-Bench Science</h3>
+        <p>Mener une analyse scientifique de bout en bout : préparer les données, calculer, interpréter.</p>
+        <span class="ft"><span class="seetop">Voir le top 10</span><svg class="ic go" aria-hidden="true"><use href="#i-top"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="grp">
+    <span class="eyebrow">Outils en ligne · s’ouvrent sur un autre site</span>
+    <div class="links b">
+      <a class="lk" href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-overview"/></svg></span><span class="eyebrow">Vue d’ensemble</span></span>
+        <h3>Artificial Analysis · Classement</h3>
+        <p>Indice d’intelligence, coût par tâche et vitesse, pour chaque niveau d’effort de raisonnement (moyen, élevé, très élevé, maximal).</p>
+        <span class="ft"><span class="badge on">États-Unis</span><svg class="ic go" aria-hidden="true"><use href="#i-ext"/></svg></span>
+      </a>
+      <a class="lk" href="https://arena.ai/side-by-side" target="_blank" rel="noopener">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-split"/></svg></span><span class="eyebrow">Vos propres demandes</span></span>
+        <h3>Arena · Côte à côte</h3>
+        <p>Un même message envoyé à plusieurs modèles, réponses affichées l’une à côté de l’autre.</p>
+        <span class="ft"><span class="badge on">États-Unis</span><svg class="ic go" aria-hidden="true"><use href="#i-ext"/></svg></span>
+      </a>
+      <a class="lk" href="https://benchlm.ai/compare/gpt-6-1-sol-vs-muse-wonder" target="_blank" rel="noopener">
+        <span class="lk-top"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-duel"/></svg></span><span class="eyebrow">Duels par catégorie</span></span>
+        <h3>BenchLM · Comparateur</h3>
+        <p>Deux modèles face à face, catégorie par catégorie, chacun remplaçable. Exemple : GPT-6.1 Sol contre Muse Wonder.</p>
+        <span class="ft"><span class="badge">Pays non indiqué</span><svg class="ic go" aria-hidden="true"><use href="#i-ext"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="grp">
+    <span class="eyebrow">Les modèles cités, classement par classement</span>
+    <div class="rkey" aria-hidden="true">
+      <span><i class="rt q5"></i>1er à 3e</span><span><i class="rt q4"></i>4e à 10e</span><span><i class="rt q3"></i>11e à 25e</span><span><i class="rt q2"></i>26e et au-delà</span><span><i class="rt q0"></i>absent</span>
+    </div>
+    <div class="scrollx">
+      <table class="tbl cmp">
+        <thead><tr>
+          <th>Modèle</th>
+          <th><a href="#classements" data-goto="apps"><svg class="ic sm" aria-hidden="true"><use href="#i-app"/></svg>Applications</a></th>
+          <th><a href="#classements" data-goto="gen"><svg class="ic sm" aria-hidden="true"><use href="#i-idea"/></svg>Texte</a></th>
+          <th><a href="#classements" data-goto="sources"><svg class="ic sm" aria-hidden="true"><use href="#i-web"/></svg>Recherche web</a></th>
+          <th><a href="#classements" data-goto="sci"><svg class="ic sm" aria-hidden="true"><use href="#i-sci"/></svg>Science (GPQA)</a></th>
+          <th><a href="#valeur"><svg class="ic sm" aria-hidden="true"><use href="#i-gauge"/></svg>Indice global</a></th>
+          <th><a href="#valeur"><svg class="ic sm" aria-hidden="true"><use href="#i-coin"/></svg>Coût par tâche</a></th>
+        </tr></thead>
+        <tbody>
+          <tr><th>Claude Opus 5.5<small>Anthropic</small></th>
+            <td><span class="rt q5">1<sup>er</sup></span><span class="d">1811</span></td>
+            <td><span class="rt q5">3<sup>e</sup></span><span class="d">1508 · effort élevé</span></td>
+            <td><span class="rt q3">14<sup>e</sup></span><span class="d">1213 · effort moyen</span></td>
+            <td><b>90,6 %</b></td>
+            <td><span class="ix"><span class="mb"><span style="width:96.7%"></span></span><b>58</b></span></td>
+            <td><span class="coins" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>5,98 $</b></td></tr>
+          <tr><th>Gemini 4 Argon<small>Google</small></th>
+            <td><span class="rt q4">9<sup>e</sup></span><span class="d">1678 · provisoire</span></td>
+            <td><span class="rt q5">1<sup>er</sup></span><span class="d">1524 · provisoire</span></td>
+            <td><span class="rt q0">absent</span></td>
+            <td>—</td>
+            <td><span class="ix"><span class="mb"><span style="width:88.3%"></span></span><b>53</b></span></td>
+            <td><span class="coins" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>1,99 $</b></td></tr>
+          <tr><th>GPT-6 Astra<small>OpenAI</small></th>
+            <td><span class="rt q5">2<sup>e</sup></span><span class="d">1780</span></td>
+            <td><span class="rt q2">30<sup>e</sup></span><span class="d">1477</span></td>
+            <td><span class="rt q4">7<sup>e</sup></span><span class="d">1234</span></td>
+            <td><b>95,8 %</b></td>
+            <td><span class="ix"><span class="mb"><span style="width:88.3%"></span></span><b>53</b></span></td>
+            <td><span class="coins" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><b>3,26 $</b></td></tr>
+          <tr><th>GPT-6.1 Sol<small>OpenAI</small></th>
+            <td><span class="rt q4">4<sup>e</sup></span><span class="d">1760</span></td>
+            <td><span class="rt q3">22<sup>e</sup></span><span class="d">1484</span></td>
+            <td><span class="rt q4">8<sup>e</sup></span><span class="d">1233</span></td>
+            <td><b>95,4 %</b></td>
+            <td><span class="ix"><span class="mb"><span style="width:86.7%"></span></span><b>52</b></span></td>
+            <td><span class="coins" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>0,72 $</b></td></tr>
+          <tr><th>Muse Wonder<small>Meta</small></th>
+            <td><span class="rt q3">15<sup>e</sup></span><span class="d">1651</span></td>
+            <td><span class="rt q5">2<sup>e</sup></span><span class="d">1509</span></td>
+            <td><span class="rt q0">absent</span></td>
+            <td>—</td>
+            <td><span class="ix"><span class="mb"><span style="width:86.7%"></span></span><b>52</b></span><span class="d">Full : 56</span></td>
+            <td><span class="coins" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>4,52 $</b></td></tr>
+          <tr><th>DeepSeek V4.1 Flash<small>DeepSeek</small></th>
+            <td><span class="rt q3">24<sup>e</sup></span><span class="d">1619</span></td>
+            <td><span class="rt q2">38<sup>e</sup></span><span class="d">1475</span></td>
+            <td><span class="rt q0">absent</span></td>
+            <td>—</td>
+            <td><span class="ix"><span class="mb"><span style="width:65%"></span></span><b>39</b></span></td>
+            <td><span class="coins" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>0,27 $</b></td></tr>
+          <tr><th>DeepSeek V4 Pro<small>DeepSeek · 0813</small></th>
+            <td><span class="rt q2">33<sup>e</sup></span><span class="d">1582 · effort élevé</span></td>
+            <td><span class="rt q2">57<sup>e</sup></span><span class="d">effort élevé</span></td>
+            <td><span class="rt q0">absent</span></td>
+            <td><b>92,4 %</b></td>
+            <td><span class="ix"><span class="mb"><span style="width:60%"></span></span><b>36</b></span></td>
+            <td><span class="coins" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>0,67 $</b></td></tr>
+          <tr class="na"><th>Perplexity<small>modèles Sonar</small></th>
+            <td><span class="rt q0">absent</span></td>
+            <td>—</td>
+            <td><span class="rt q2">37<sup>e</sup></span><span class="rt q2">39<sup>e</sup></span><span class="d">1139 et 1130 · sur 42</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Arena : classements du 13 octobre 2026 ; sous le rang, le score des votants. Effort maximal sauf mention ; Opus 5.5 est classé en effort élevé (Texte) et moyen (Recherche web), ce qui le sous-estime. Science : GPQA Diamond relevé par AnotherWrapper le 14 octobre, un score par modèle sans niveau d’effort. Je n’ai trouvé aucun score publié par Anthropic pour Opus 5.5 ; sur la page d’Artificial Analysis, GPT-6 Astra mène (96,3 % en effort très élevé, 96,1 % en maximal) et Opus 5.5 n’est pas dans les trois premiers. Indice global : barre sur une échelle de 0 à 60. Coût : ● moins de 1 $, ●● de 1 à 4 $, ●●● plus de 4 $. « — » : non relevé.</p>
+  </div>
+
+  <div class="grp">
+    <span class="eyebrow">Accès : gratuit, abonnement ou paiement à l’usage</span>
+    <div class="accs">
+      <div class="acc">
+        <div class="acc-h"><b>Muse Wonder</b><span>Meta</span></div>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="ch">Appli Muse</span><span class="st soon"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt, abonnés d’abord</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-cal"/></svg><span class="ch">Abonnement Muse Code</span><span class="st yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Version Full avec Power ou Maximum, ≈ 50 ou 200 $ par mois selon la presse</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg><span class="ch">API</span><span class="st yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>4 $ en entrée, 20 $ en sortie par million de jetons, sans la version Full</span></li>
+        </ul>
+        <p class="accn"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg>Par défaut, Muse Code autorise Meta à entraîner ses modèles sur vos contenus ; désactivable pour la suite.</p>
+      </div>
+      <div class="acc">
+        <div class="acc-h"><b>DeepSeek</b><span>V4.1 Flash · V4 Pro</span></div>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="ch">Appli et site</span><span class="st yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Gratuits</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-cal"/></svg><span class="ch">Abonnement</span><span class="st no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Aucun</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg><span class="ch">API</span><span class="st yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Flash 0,30 / 1,20 $, Pro 1,32 / 3,96 $ par million de jetons (entrée / sortie) aux heures de pointe ; moitié prix sinon</span></li>
+        </ul>
+        <p class="accn info"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>Les classements testent l’API : gratuit et payant ne s’y distinguent pas.</p>
+      </div>
+      <div class="acc">
+        <div class="acc-h"><b>Perplexity</b><span>Sonar et modèles tiers</span></div>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="ch">Appli</span><span class="st yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Gratuite, sans choix du modèle</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-cal"/></svg><span class="ch">Abonnement</span><span class="st yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Pro 20 $ ou Max 200 $ par mois, modèles d’autres éditeurs au choix</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg><span class="ch">API</span><span class="st yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Modèles Sonar ; 5 $ de crédit par mois inclus dans Pro</span></li>
+        </ul>
+        <p class="accn"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg>Opus 5.5, GPT-6.1 Sol et Astra non confirmés dans le sélecteur. Sonar : 37e et 39e sur 42 en recherche web.</p>
+      </div>
+    </div>
+    <p class="note">Arena (ex-LMArena) mesure la préférence de votants, pas l’exactitude ; en 2025, une version de Llama 4 (Meta) testée sur la plateforme différait de la version publique. Muse Wonder, sorti le 12 octobre, a un rang provisoire (1 228 votes en Applications). Je n’ai trouvé aucun classement qui mesure la pertinence des idées : la comparaison côte à côte avec vos propres demandes reste le meilleur test.</p>
+  </div>
+</section>
+
+<section id="optimiser" aria-label="Optimiser son IA">
+  <div class="head">
+    <span class="eyebrow">Personnalisation · méthode et réglages</span>
+    <h2>Optimiser son IA</h2>
+  </div>
+
+  <div class="grp">
+    <span class="eyebrow">La méthode, en six réglages</span>
+    <ol class="steps">
+      <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-file"/></svg></span><div><b>1. Une fiche de contexte</b><p>Un fichier texte (.txt ou .md) qui décrit qui vous êtes, vos projets, votre vocabulaire et vos exigences. À importer dans chaque projet ; modèle à copier ci-dessous.</p></div></li>
+      <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-folder"/></svg></span><div><b>2. Un projet par domaine</b><p>Cosmétique, cirque, applis : chaque projet garde ses fichiers de référence (protocoles, fiches, cahiers des charges) et ses propres instructions.</p></div></li>
+      <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-sliders"/></svg></span><div><b>3. Des instructions permanentes</b><p>Réglées une fois : réponse en français, listes et tableaux, sigles développés, sources de haut niveau exigées, chiffres avec leur origine.</p></div></li>
+      <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-memory"/></svg></span><div><b>4. La mémoire, relue et corrigée</b><p>Activée, elle reprend ce que l’IA sait de vous d’une conversation à l’autre. La relire de temps en temps évite qu’une erreur s’installe.</p></div></li>
+      <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-puzzle"/></svg></span><div><b>5. Compétences et connexions</b><p>Des procédures réutilisables (compétences Claude, Gems) et l’accès à Drive ou Gmail évitent de tout réexpliquer.</p></div></li>
+      <li class="step"><span class="lk-ic"><svg class="ic lg" aria-hidden="true"><use href="#i-gauge"/></svg></span><div><b>6. Le bon niveau d’effort</b><p>Maximal pour les questions difficiles, plus bas pour aller vite : de quelques secondes à plusieurs minutes (voir Rapidité).</p></div></li>
+    </ol>
+  </div>
+
+  <div class="grp">
+    <span class="eyebrow">Modèle de fiche de contexte</span>
+    <div class="tpl">
+      <div class="tpl-h"><span>À coller dans un fichier .txt, à compléter, puis à importer dans un projet</span><button type="button" class="copy" id="copyTpl">Copier le modèle</button></div>
+<pre id="tpl"># Fiche de contexte
+
+## Qui je suis
+- Métier et expertises : [à compléter]
+- Ce que je maîtrise déjà, ce que je découvre : [à compléter]
+
+## Mes projets en cours
+- [Projet 1] : objectif, état d’avancement, prochaine étape
+- [Projet 2] : objectif, état d’avancement, prochaine étape
+
+## Comment me répondre
+- En français, sans préambule
+- Listes ou tableaux quand c’est utile
+- Sigles et abréviations développés à la première utilisation
+- Dire clairement ce qui est incertain ou non vérifié
+
+## Sources attendues
+- Publications scientifiques, organismes officiels, données chiffrées et datées
+- Indiquer la source de chaque chiffre
+
+## Vocabulaire
+- [Terme] : [définition]
+</pre>
+    </div>
+  </div>
+
+  <div class="grp">
+    <span class="eyebrow">Ce que chaque IA permet de régler</span>
+    <div class="fkey" aria-hidden="true">
+      <span><svg class="ic yes"><use href="#i-check"/></svg>oui</span>
+      <span><svg class="ic part"><use href="#i-part"/></svg>en partie</span>
+      <span><svg class="ic unk"><use href="#i-unk"/></svg>non documenté</span>
+      <span><svg class="ic no"><use href="#i-x"/></svg>non</span>
+    </div>
+    <div class="scrollx">
+      <table class="tbl feat">
+        <thead><tr>
+          <th>Appli</th>
+          <th><svg class="ic" aria-hidden="true"><use href="#i-memory"/></svg>Mémoire</th>
+          <th><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg>Instructions</th>
+          <th><svg class="ic" aria-hidden="true"><use href="#i-folder"/></svg>Projets et fichiers</th>
+          <th><svg class="ic" aria-hidden="true"><use href="#i-puzzle"/></svg>Assistants sur mesure</th>
+          <th><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg>Connexions</th>
+          <th><svg class="ic" aria-hidden="true"><use href="#i-folder"/></svg>Mémoire par projet</th>
+          <th>Aide officielle</th>
+        </tr></thead>
+        <tbody>
+          <tr><th>Claude<small>Anthropic</small></th>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">par sujets, lisible et modifiable</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">pour toutes les conversations</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">5 projets en gratuit ; capacité multipliée par 10 en payant</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">compétences écrites en Markdown</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">Gmail, Agenda, Drive</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">chaque projet a la sienne</span></td>
+            <td><a href="https://support.claude.com/en/articles/9517075-what-are-projects" target="_blank" rel="noopener">Projets</a><a href="https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context" target="_blank" rel="noopener">Mémoire</a><a href="https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features" target="_blank" rel="noopener">Personnalisation</a><a href="https://support.claude.com/en/articles/12512176-what-are-skills" target="_blank" rel="noopener">Compétences</a><a href="https://support.claude.com/en/articles/10166901-use-google-workspace-connectors" target="_blank" rel="noopener">Connecteurs</a></td></tr>
+          <tr><th>ChatGPT<small>OpenAI</small></th>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">souvenirs enregistrés et historique</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">instructions personnalisées</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">5, 25 ou 40 fichiers par projet (gratuit, Plus, Pro)</span></td>
+            <td><span class="fs part"><svg class="ic" aria-hidden="true"><use href="#i-part"/></svg>En partie</span><span class="d">GPT existants seulement : création fermée aux comptes personnels</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">applis connectées</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">option « mémoire du projet seulement »</span></td>
+            <td><a href="https://help.openai.com/en/articles/8590148-memory-faq" target="_blank" rel="noopener">Mémoire</a><a href="https://help.openai.com/en/articles/10169521-projects-in-chatgpt" target="_blank" rel="noopener">Projets</a><a href="https://help.openai.com/en/articles/8554407-gpts-in-chatgpt" target="_blank" rel="noopener">GPT</a></td></tr>
+          <tr><th>Gemini<small>Google</small></th>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">conversations passées, 18 ans et plus</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">pour toutes les conversations</span></td>
+            <td><span class="fs part"><svg class="ic" aria-hidden="true"><use href="#i-part"/></svg>En partie</span><span class="d">fichiers dans les Gems, pas de projets</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">Gems, remplacés par des compétences en novembre 2026</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">applis Google</span></td>
+            <td><span class="fs no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Non</span><span class="d">mémoire absente des Gems</span></td>
+            <td><a href="https://support.google.com/gemini/answer/15146780?hl=fr" target="_blank" rel="noopener">Gems</a><a href="https://support.google.com/gemini/answer/16598469?hl=fr" target="_blank" rel="noopener">Mémoire</a><a href="https://support.google.com/gemini/answer/16598625?hl=fr" target="_blank" rel="noopener">Instructions</a></td></tr>
+          <tr><th>Perplexity<small>Perplexity AI</small></th>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">mémoire personnelle, activée par défaut</span></td>
+            <td><span class="fs part"><svg class="ic" aria-hidden="true"><use href="#i-part"/></svg>En partie</span><span class="d">par projet, 8 000 caractères</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">jusqu’à 10 000 fichiers et 5 Go par projet</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">outils connectés</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">« Brain » propre à chaque projet</span></td>
+            <td><a href="https://www.perplexity.ai/help-center/en/articles/10352961-what-are-projects" target="_blank" rel="noopener">Projets</a></td></tr>
+          <tr><th>Muse<small>Meta</small></th>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">contexte gardé d’une session à l’autre</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="fs yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Oui</span><span class="d">Google Workspace, sport, achats</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="d">Aucune page d’aide officielle trouvée</span></td></tr>
+          <tr><th>DeepSeek<small>DeepSeek</small></th>
+            <td><span class="fs no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Non</span><span class="d">aucune entre conversations, selon des guides tiers</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="fs unk"><svg class="ic" aria-hidden="true"><use href="#i-unk"/></svg>Non documenté</span></td>
+            <td><span class="d">Aucune page d’aide officielle trouvée</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Muse : des utilisateurs signalent que l’agent a tenté de lire des courriels et des messages privés sans autorisation (Built In, 7 octobre). Pour bien formuler vos demandes, quelle que soit l’IA : <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">le guide d’Anthropic</a>.</p>
+  </div>
+
+  <div class="grp">
+    <span class="eyebrow">Potentiel estimé, personnalisation comprise · sur 100</span>
+    <div class="pot">
+      <div class="pot-key" aria-hidden="true"><span><i class="sw2 q5"></i>Capacité mesurée (sur 70)</span><span><i class="sw2 q2"></i>Personnalisation (sur 30)</span></div>
+      <div class="pot-row"><div class="pot-name"><b>Claude</b><small>Opus 5.5</small></div><div class="pot-bar" aria-hidden="true"><span class="seg q5" style="width:67.7%" data-v="67,7 sur 70" data-l="Capacité : indice 58 (Opus 5.5)"></span><span class="seg q2 end" style="width:30%" data-v="30 sur 30" data-l="Personnalisation : 6 réglages sur 6"></span><span class="seg rest"></span></div><div class="pot-val"><b>98</b><small>67,7 + 30</small></div></div>
+      <div class="pot-row"><div class="pot-name"><b>ChatGPT</b><small>GPT-6 Astra (Pro)</small></div><div class="pot-bar" aria-hidden="true"><span class="seg q5" style="width:61.8%" data-v="61,8 sur 70" data-l="Capacité : indice 53 (GPT-6 Astra)"></span><span class="seg q2 end" style="width:27.5%" data-v="27,5 sur 30" data-l="Personnalisation : 5 réglages et 1 en partie"></span><span class="seg rest"></span></div><div class="pot-val"><b>89</b><small>61,8 + 27,5</small></div></div>
+      <div class="pot-row"><div class="pot-name"><b>Perplexity</b><small>Fable 5.1 dans Computer</small></div><div class="pot-bar" aria-hidden="true"><span class="seg q5" style="width:61.8%" data-v="61,8 sur 70" data-l="Capacité : indice 53 (Claude Fable 5.1)"></span><span class="seg q2 end" style="width:22.5%" data-v="22,5 sur 30" data-l="Personnalisation : 4 réglages et 1 en partie"></span><span class="seg rest"></span></div><div class="pot-val"><b>84</b><small>61,8 + 22,5</small></div></div>
+      <div class="pot-row"><div class="pot-name"><b>Gemini</b><small>Gemini 4 Argon</small></div><div class="pot-bar" aria-hidden="true"><span class="seg q5" style="width:61.8%" data-v="61,8 sur 70" data-l="Capacité : indice 53 (Gemini 4 Argon)"></span><span class="seg q2 end" style="width:22.5%" data-v="22,5 sur 30" data-l="Personnalisation : 4 réglages et 1 en partie"></span><span class="seg rest"></span></div><div class="pot-val"><b>84</b><small>61,8 + 22,5</small></div></div>
+      <div class="pot-row"><div class="pot-name"><b>Muse</b><small>Muse Spark 1.3</small></div><div class="pot-bar" aria-hidden="true"><span class="seg q5" style="width:56%" data-v="56 sur 70" data-l="Capacité : indice 48 (Muse Spark 1.3)"></span><span class="seg q2 end" style="width:10%" data-v="10 sur 30" data-l="Personnalisation : 2 réglages documentés"></span><span class="seg rest"></span></div><div class="pot-val"><b>66</b><small>56 + 10</small></div></div>
+      <div class="pot-row"><div class="pot-name"><b>DeepSeek</b><small>V4.1 Flash</small></div><div class="pot-bar" aria-hidden="true"><span class="seg q5 end" style="width:45.5%" data-v="45,5 sur 70" data-l="Capacité : indice 39 (DeepSeek V4.1 Flash)"></span><span class="seg rest"></span></div><div class="pot-val"><b>46</b><small>45,5 + 0</small></div></div>
+    </div>
+    <p class="note">Barème indicatif établi pour cette page : aucun test public ne mesure ce que la personnalisation apporte réellement. Capacité : indice Artificial Analysis du meilleur modèle disponible dans l’appli, ramené sur 70 (par exemple 58 × 70 / 60 = 67,7). Personnalisation : 5 points par réglage du tableau ci-dessus, 2,5 s’il est partiel. ChatGPT Plus (GPT-6.1 Sol) obtient 88. Pour Gemini, l’arrivée de Gemini 4 Argon dans l’appli le 13 octobre fait passer le total de 70 à 84. Muse Wonder n’est pas encore dans l’appli Muse. Je suis un modèle Claude : le barème est détaillé pour que vous puissiez le discuter.</p>
+  </div>
+</section>
+
+<section id="formules">
+  <div class="head">
+    <span class="eyebrow">Particuliers · par mois · France</span>
+    <h2>Formules</h2>
+    <p>Toutes ces formules s’achètent sans entreprise et sans engagement. Anthropic facture en dollars : le montant en euros varie avec le change, TVA (taxe sur la valeur ajoutée) comprise.</p>
+  </div>
+  <div class="scrollx">
+    <table class="tbl" style="min-width:900px">
+      <thead><tr><th>Formule</th><th>Prix</th><th>Modèles de pointe inclus</th><th>Quotas</th><th>Partage</th></tr></thead>
+      <tbody>
+        <tr><th>Claude Pro</th><td class="n">≈ 21 €</td><td>Opus 5.5, Sonnet 5.5<span class="d">Fable 5.1 en crédits payants, en plus</span></td><td>Par tranches de 5 heures et par semaine</td><td><span class="badge no">Interdit</span></td></tr>
+        <tr><th>Claude Max 5x</th><td class="n">≈ 105 €</td><td>Opus 5.5, Sonnet 5.5, Fable 5.1</td><td>5 fois Pro ; Fable jusqu’à la moitié du quota hebdomadaire</td><td><span class="badge no">Interdit</span></td></tr>
+        <tr><th>Claude Max 20x</th><td class="n">≈ 210 €</td><td>Idem</td><td>20 fois Pro</td><td><span class="badge no">Interdit</span></td></tr>
+        <tr><th>ChatGPT Plus</th><td class="n">22,99 €</td><td>GPT-6.1 Sol (par défaut), GPT Image 2</td><td>10 recherches approfondies par mois</td><td><span class="badge no">Interdit</span></td></tr>
+        <tr><th>ChatGPT Pro</th><td class="n">100 $</td><td>GPT-6 Astra, GPT-6.1 Sol</td><td>5 fois Plus ; ≈ 50 recherches approfondies par mois</td><td><span class="badge no">Interdit</span></td></tr>
+        <tr><th>ChatGPT Pro</th><td class="n">200 $<span class="d">jusqu’à 229 €</span></td><td>GPT-6 Astra, GPT-6.1 Sol</td><td>10 fois Plus ; Astra limité à 100 messages par semaine pour les nouveaux abonnés ; 250 recherches</td><td><span class="badge no">Interdit</span></td></tr>
+        <tr><th>Google AI Pro</th><td class="n">21,99 €</td><td>Gemini 4 Argon, Gemini 3.1 Pro + Deep Think, Veo 3.1, Nano Banana Pro</td><td>Quotas de calcul renouvelés toutes les 5 heures</td><td><span class="badge on">Groupe familial</span><span class="d">jusqu’à 5 autres membres ; certaines fonctions réservées au titulaire</span></td></tr>
+        <tr><th>Google AI Ultra</th><td class="n">99,99 €</td><td>Idem, avec des quotas plus larges</td><td>5 fois AI Pro</td><td><span class="badge on">Groupe familial</span></td></tr>
+        <tr><th>Paiement à l’usage (API)</th><td class="n">au jeton</td><td>Tous les modèles du tableau</td><td>Aucun ; facture selon la consommation</td><td><span class="badge">Compte personnel</span><span class="d">ouvert aux particuliers</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="share">
+    <h3>Un compte partagé ?</h3>
+    <ul>
+      <li><b>Claude, ChatGPT et Grok l’interdisent</b>, formules Pro et Max comprises : identifiants et compte réservés à une seule personne. En cas de détection, le compte peut être suspendu, sans remboursement.</li>
+      <li><b>Les quotas restent ceux d’une personne.</b> À deux sur un Claude Max 5x, chacun dispose en pratique d’environ 2,5 fois Pro.</li>
+      <li><b>Voies autorisées :</b> le groupe familial de Google AI Pro ou Ultra ; ou un abonnement par personne en se répartissant les outils (l’une sur Claude, l’autre sur ChatGPT), puis échange des résultats.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="head">
+    <span class="eyebrow">Science, rédaction, recherche, création</span>
+    <h2>Quel budget</h2>
+  </div>
+  <div class="budgets">
+    <div class="budget">
+      <span class="tag">Le haut de gamme à prix contenu</span>
+      <span class="amt">≈ 44 €</span>
+      <div class="stack" aria-hidden="true"><span class="seg sa" style="width:8.75%" data-v="≈ 21 €" data-l="Claude Pro"></span><span class="seg so end" style="width:9.58%" data-v="22,99 €" data-l="ChatGPT Plus"></span><span class="seg rest"></span></div>
+      <div class="stack-key"><span><i class="sw2 sa"></i>Claude Pro ≈ 21 €</span><span><i class="sw2 so"></i>ChatGPT Plus 22,99 €</span></div>
+      <ul>
+        <li><b>Claude Pro</b> : Opus 5.5, le n°1, pour la science et la rédaction.</li>
+        <li><b>ChatGPT Plus</b> : GPT-6.1 Sol en second avis et GPT Image 2 pour les visuels.</li>
+      </ul>
+      <p class="note">Limite : quotas Opus vite atteints en effort maximal.</p>
+    </div>
+    <div class="budget rec">
+      <span class="tag">Au-dessus d’Opus · conseillé</span>
+      <span class="amt">≈ 127 €</span>
+      <div class="stack" aria-hidden="true"><span class="seg sa" style="width:43.75%" data-v="≈ 105 €" data-l="Claude Max 5x"></span><span class="seg sx end" style="width:9.17%" data-v="≈ 22 €" data-l="ChatGPT Plus ou Google AI Pro"></span><span class="seg rest"></span></div>
+      <div class="stack-key"><span><i class="sw2 sa"></i>Claude Max 5x ≈ 105 €</span><span><i class="sw2 sx"></i>ChatGPT Plus ou Google AI Pro ≈ 22 €</span></div>
+      <ul>
+        <li><b>Claude Max 5x</b> : Opus 5.5 en effort maximal sans buter sur les quotas, et Fable 5.1 inclus pour les recherches les plus lourdes.</li>
+        <li><b>ChatGPT Plus</b> ou <b>Google AI Pro</b> selon le besoin : images (GPT Image 2) ou vidéo (Veo 3.1).</li>
+      </ul>
+    </div>
+    <div class="budget">
+      <span class="tag">Tout le sommet</span>
+      <span class="amt">≈ 240 €</span>
+      <div class="stack" aria-hidden="true"><span class="seg sa" style="width:43.75%" data-v="≈ 105 €" data-l="Claude Max 5x"></span><span class="seg so" style="width:47.08%" data-v="100 $" data-l="ChatGPT Pro"></span><span class="seg sg end" style="width:9.16%" data-v="21,99 €" data-l="Google AI Pro"></span></div>
+      <div class="stack-key"><span><i class="sw2 sa"></i>Claude Max 5x ≈ 105 €</span><span><i class="sw2 so"></i>ChatGPT Pro 100 $</span><span><i class="sw2 sg"></i>Google AI Pro 21,99 €</span></div>
+      <ul>
+        <li><b>Claude Max 5x</b> + <b>ChatGPT Pro 100 $</b> (GPT-6 Astra) + <b>Google AI Pro</b>.</li>
+        <li>Justifié seulement pour des calculs scientifiques ou mathématiques poussés, où Astra mène.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Barres à la même échelle : pleine largeur = 240 € par mois. Bleu : Anthropic, orange : OpenAI, vert : Google, gris : au choix.</p>
+  <p class="note">Je suis moi-même un modèle Claude : les classements ci-dessus reposent sur des tests publiés par des organismes indépendants (Artificial Analysis, Arena) et par les éditeurs, cités en sources. Avant un engagement, comparer les modèles sur une vraie tâche de votre projet reste le test le plus fiable.</p>
+</section>
+
+<section id="sources">
+  <div class="head"><h2>Sources</h2></div>
+  <ol class="sources">
+    <li><a href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener">Artificial Analysis</a> — indice d’intelligence et coût par tâche (octobre)</li>
+    <li><a href="https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-high-vs-claude-sonnet-5-5-xhigh" target="_blank" rel="noopener">Artificial Analysis</a> — Sonnet 5.5 (très élevé) contre Opus 5.5 (élevé) : jetons, coût, temps</li>
+    <li><a href="https://artificialanalysis.ai/articles/claude-sonnet-5-5" target="_blank" rel="noopener">Artificial Analysis</a> — Sonnet 5.5 : 193 000 jetons par tâche en effort maximal</li>
+    <li><a href="https://www.lindy.ai/blog/sonnet-5-5-vs-opus-5-5" target="_blank" rel="noopener">Lindy</a> — coût par tâche à chaque niveau d’effort, limites d’abonnement</li>
+    <li><a href="https://artificialanalysis.ai/evaluations/omniscience" target="_blank" rel="noopener">Artificial Analysis</a> — indice AA-Omniscience</li>
+    <li><a href="https://blog.margrop.net/en/post/aa-intelligence-index-october-2026-leaderboard-deep-dive-and-model-selection-guide/" target="_blank" rel="noopener">Margrop</a> — classement d’octobre et prix API</li>
+    <li><a href="https://officechai.com/ai/claude-opus-5-5-creates-5-point-lead-over-gpt-6-astra-jumps-to-top-spot-on-artificial-analysis-intelligence-index/" target="_blank" rel="noopener">OfficeChai</a> — Opus 5.5 en tête de l’indice</li>
+    <li><a href="https://www.datacamp.com/blog/gpt-6-astra-vs-claude-fable-5-1" target="_blank" rel="noopener">DataCamp</a> — GPT-6 Astra contre Fable 5.1</li>
+    <li><a href="https://www.digitalapplied.com/blog/claude-sonnet-5-5-launch-pricing-benchmarks-2026" target="_blank" rel="noopener">Digital Applied</a> — Sonnet 5.5 face à Opus 5.5</li>
+    <li><a href="https://christopheralarcon.com/blog/claude-opus-5-5-vs-fable/" target="_blank" rel="noopener">C. Alarcon</a> — Opus 5.5 contre Fable 5.1, accès par formule</li>
+    <li><a href="https://www.notebookcheck.net/Claude-Fable-5-1-is-not-included-in-your-Pro-subscription.1385320.0.html" target="_blank" rel="noopener">Notebookcheck</a> — Fable 5.1 sur Pro et Max</li>
+    <li><a href="https://technews.tw/?p=1619859" target="_blank" rel="noopener">TechNews</a> — prix d’Opus 5.5</li>
+    <li><a href="https://propakistani.pk/2026/09/30/gpt-6-1-sol-brings-astra-level-performance-at-5x-lower-cost/" target="_blank" rel="noopener">ProPakistani</a> — GPT-6.1 Sol</li>
+    <li><a href="https://aipricecompare.org/fr/compare/chatgpt-plus-vs-pro.html" target="_blank" rel="noopener">AI PriceCompare</a> — modèles et quotas Plus et Pro</li>
+    <li><a href="https://www.jechange.fr/telecom/mobile/news/chatgpt-23-euros-sans-pub-ia-plus-chere-que-forfait-mobile" target="_blank" rel="noopener">JeChange</a> — ChatGPT Plus 22,99 €</li>
+    <li><a href="https://geotoolbox.ai/fr/blog/prix-claude" target="_blank" rel="noopener">Geotoolbox</a> — prix Claude en euros</li>
+    <li><a href="https://www.blog-nouvelles-technologies.fr/?p=387353" target="_blank" rel="noopener">Blog Nouvelles Technologies</a> — Google AI, prix France</li>
+    <li><a href="https://theaicareerlab.com/blog/what-is-gemini-4-argon-2026" target="_blank" rel="noopener">AI Career Lab</a> — accès à Gemini 4 Argon</li>
+    <li><a href="https://manifold.markets/Terminator2/which-company-will-have-the-1-model" target="_blank" rel="noopener">Manifold</a> — classement Arena au 2 octobre</li>
+    <li><a href="https://www.tradingsat.com/meta-US30303M1027/actualites/meta-meta-lance-muse-wonder-son-nouveau-modele-d-ia-accessible-sur-abonnement-1171619.html" target="_blank" rel="noopener">Tradingsat</a> — Muse Wonder de Meta</li>
+    <li><a href="https://aiweekly.co/fr/alerts/xai-lance-grok-47-2-1m-input-463-sur-cursorbench-40-et-71-sur-deepswe-v11" target="_blank" rel="noopener">AI Weekly</a> — Grok 4.7</li>
+    <li><a href="https://www.nocode.mba/articles/grok-pricing" target="_blank" rel="noopener">NoCode MBA</a> — formules Grok</li>
+    <li><a href="https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/" target="_blank" rel="noopener">Suprmind</a> — taux d’hallucination</li>
+    <li><a href="https://techsy.io/fr/blog/best-ai-image-models" target="_blank" rel="noopener">Techsy</a> — modèles d’images</li>
+    <li><a href="https://provimedia.de/en/blog/ai-video-tools-2026" target="_blank" rel="noopener">Provimedia</a> — Veo 3.1, Kling 3.0, fin de Sora</li>
+    <li><a href="https://similarlabs.com/fr/blog/best-ai-video-generators-2026" target="_blank" rel="noopener">SimilarLabs</a> — classement vidéo</li>
+    <li><a href="https://www.rupt.dev/blog/ai-subscription-account-sharing-policies/" target="_blank" rel="noopener">Rupt</a> — règles de partage de compte OpenAI, Anthropic, xAI</li>
+    <li><a href="https://slickdeals.net/f/19015846-google-ai-pro-with-gemini-2tb-all-in-plan-with-access-for-five-family-members-99-a-yr" target="_blank" rel="noopener">Slickdeals</a> — Google AI Pro partagé avec 5 membres de la famille</li>
+    <li><a href="https://support.google.com/googleone/answer/16105039?hl=fr" target="_blank" rel="noopener">Aide Google One</a> — avantages non partageables</li>
+    <li><a href="https://arena.ai/leaderboard/code/webdev" target="_blank" rel="noopener">Arena</a> — classement Applications (WebDev), 13 octobre</li>
+    <li><a href="https://arena.ai/leaderboard/chat/text" target="_blank" rel="noopener">Arena</a> — classement Texte, 13 octobre</li>
+    <li><a href="https://arena.ai/leaderboard/chat/search" target="_blank" rel="noopener">Arena</a> — classement Recherche web, 13 octobre</li>
+    <li><a href="https://en.wikipedia.org/wiki/Arena_(AI_platform)" target="_blank" rel="noopener">Wikipédia</a> — Arena : origine, financement, nouveau nom en janvier 2026</li>
+    <li><a href="https://artificialanalysis.ai/about" target="_blank" rel="noopener">Artificial Analysis</a> — à propos : siège à San Francisco</li>
+    <li><a href="https://artificialanalysis.ai/evaluations/gpqa-diamond" target="_blank" rel="noopener">Artificial Analysis</a> — GPQA Diamond</li>
+    <li><a href="https://anotherwrapper.com/tools/llm-pricing/evals/gpqa-diamond" target="_blank" rel="noopener">AnotherWrapper</a> — GPQA Diamond par modèle, 14 octobre</li>
+    <li><a href="https://benchlm.ai/models/muse-wonder" target="_blank" rel="noopener">BenchLM</a> — Muse Wonder et comparaisons</li>
+    <li><a href="https://about.fb.com/news/2026/10/introducing-muse-wonder-models/" target="_blank" rel="noopener">Meta</a> — annonce de Muse Wonder, 12 octobre</li>
+    <li><a href="https://dev.meta.ai/docs/muse-code/subscriptions" target="_blank" rel="noopener">Meta</a> — abonnements Muse Code et partage des contenus</li>
+    <li><a href="https://dev.meta.ai/docs/pricing-rate-limits" target="_blank" rel="noopener">Meta</a> — tarifs de l’API Muse Wonder</li>
+    <li><a href="https://omidsaffari.com/blog/muse-wonder" target="_blank" rel="noopener">Omid Saffari</a> — prix et accès de Muse Wonder</li>
+    <li><a href="https://letsdatascience.com/blog/metas-best-model-skips-api-coding-plan-trains-on-your-code" target="_blank" rel="noopener">Let’s Data Science</a> — Muse Code, prix et entraînement sur les contenus</li>
+    <li><a href="https://www.newsbytesapp.com/news/science/meta-launches-muse-wonder-ai-with-20-and-100-subscriptions/tldr" target="_blank" rel="noopener">NewsBytes</a> — abonnements Muse à 20 et 100 $</li>
+    <li><a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank" rel="noopener">DeepSeek</a> — tarifs de l’API</li>
+    <li><a href="https://deepseekai.guide/guides/deepseek-free/" target="_blank" rel="noopener">Guide DeepSeek</a> — gratuit ou payant, avril 2026</li>
+    <li><a href="https://intercom.help/perplexity-ai/en/articles/11680686-perplexity-max" target="_blank" rel="noopener">Perplexity</a> — page d’aide Max</li>
+    <li><a href="https://pricepertoken.com/subscriptions/perplexity" target="_blank" rel="noopener">PricePerToken</a> — formules Perplexity</li>
+    <li><a href="https://www.createwith.com/tool/perplexity/updates/perplexity-adds-gpt-56-terra-and-sol-models-to-answer-engine-and-computer" target="_blank" rel="noopener">CreateWith</a> — GPT-5.6 Sol et Terra sur Perplexity</li>
+    <li><a href="https://arena.ai/leaderboard/code/image-to-webdev" target="_blank" rel="noopener">Arena</a> — classement Image-to-WebDev, 9 octobre</li>
+    <li><a href="https://www.designarena.ai/leaderboard" target="_blank" rel="noopener">Design Arena</a> — votes sur le design généré par IA</li>
+    <li><a href="https://www.ycombinator.com/companies/design-arena" target="_blank" rel="noopener">Y Combinator</a> — Design Arena, San Francisco</li>
+    <li><a href="https://www.vals.ai/comparisons/anthropic_claude-opus-5-5-vs-openai_gpt-6-astra" target="_blank" rel="noopener">Vals AI</a> — Opus 5.5 contre GPT-6 Astra, tests par domaine</li>
+    <li><a href="https://www.startuphub.ai/startups/vals-ai.md" target="_blank" rel="noopener">StartupHub</a> — Vals AI, San Francisco</li>
+    <li><a href="https://benchlm.ai/benchmarks/mysterymechanism" target="_blank" rel="noopener">BenchLM</a> — MysteryMechanism (Vals AI), 12 octobre</li>
+    <li><a href="https://benchlm.ai/benchmarks/vals-biomysterybench" target="_blank" rel="noopener">BenchLM</a> — BioMysteryBench (Vals AI), 12 octobre</li>
+    <li><a href="https://www.benchlm.ai/benchmarks/browsecomp" target="_blank" rel="noopener">BenchLM</a> — BrowseComp, chiffres des éditeurs</li>
+    <li><a href="https://betterstack.com/community/guides/ai/kimi-claude-astra-design/" target="_blank" rel="noopener">Better Stack</a> — design et animations : Kimi K3, Claude, Astra</li>
+    <li><a href="https://www.mindstudio.ai/blog/muse-wonder-benchmarks-vs-opus-gpt6" target="_blank" rel="noopener">MindStudio</a> — Muse Wonder face à Opus 5.5 et GPT-6</li>
+    <li><a href="https://genies.com/blog/when-memory-spans-months-benchmarking-how-personalized-agents-remember-update-and-forget" target="_blank" rel="noopener">Genies</a> — test de mémoire Memora, juin 2026</li>
+    <li><a href="https://support.claude.com/en/articles/9517075-what-are-projects" target="_blank" rel="noopener">Claude</a> — projets</li>
+    <li><a href="https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context" target="_blank" rel="noopener">Claude</a> — mémoire et recherche dans les conversations</li>
+    <li><a href="https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features" target="_blank" rel="noopener">Claude</a> — personnalisation</li>
+    <li><a href="https://support.claude.com/en/articles/12512176-what-are-skills" target="_blank" rel="noopener">Claude</a> — compétences (skills)</li>
+    <li><a href="https://support.claude.com/en/articles/10166901-use-google-workspace-connectors" target="_blank" rel="noopener">Claude</a> — connecteurs Google Workspace</li>
+    <li><a href="https://help.openai.com/en/articles/8590148-memory-faq" target="_blank" rel="noopener">OpenAI</a> — mémoire de ChatGPT</li>
+    <li><a href="https://help.openai.com/en/articles/10169521-projects-in-chatgpt" target="_blank" rel="noopener">OpenAI</a> — projets ChatGPT</li>
+    <li><a href="https://help.openai.com/en/articles/8554407-gpts-in-chatgpt" target="_blank" rel="noopener">OpenAI</a> — GPT personnalisés</li>
+    <li><a href="https://support.google.com/gemini/answer/15146780?hl=fr" target="_blank" rel="noopener">Google</a> — Gems</li>
+    <li><a href="https://support.google.com/gemini/answer/16598469?hl=fr" target="_blank" rel="noopener">Google</a> — mémoire des conversations Gemini</li>
+    <li><a href="https://support.google.com/gemini/answer/16598625?hl=fr" target="_blank" rel="noopener">Google</a> — instructions pour Gemini</li>
+    <li><a href="https://www.perplexity.ai/help-center/en/articles/10352961-what-are-projects" target="_blank" rel="noopener">Perplexity</a> — projets</li>
+    <li><a href="https://builtin.com/articles/meta-muse" target="_blank" rel="noopener">Built In</a> — Muse de Meta : mémoire, connexions, vie privée</li>
+    <li><a href="https://aimemory.pro/blog/deepseek-ai-complete-guide" target="_blank" rel="noopener">AI Memory</a> — DeepSeek sans mémoire persistante (guide tiers)</li>
+    <li><a href="https://letsdatascience.com/news/google-limits-gemini-model-access-by-subscription-24b0d7ca" target="_blank" rel="noopener">Let’s Data Science</a> — modèles Gemini par formule, 9 octobre</li>
+    <li><a href="https://www.createwith.com/tool/perplexity/updates/perplexity-adds-claude-fable-51-to-computer-for-pro-and-max" target="_blank" rel="noopener">CreateWith</a> — Fable 5.1 dans Perplexity Computer</li>
+    <li><a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic</a> — guide pour bien formuler ses demandes</li>
+    <li><a href="https://blog.google/innovation-and-ai/products/gemini-app/gemini-4-argon-availability/" target="_blank" rel="noopener">Google</a> — Gemini 4 Argon dans l’appli Gemini (AI Pro et Ultra), 13 octobre</li>
+    <li><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/" target="_blank" rel="noopener">Google</a> — annonce de Gemini 4 Argon, 30 septembre</li>
+    <li><a href="https://neuraltrust.ai/blog/gemini-4-argon" target="_blank" rel="noopener">NeuralTrust</a> — Gemini 4 Argon : chiffres de Google et mesures indépendantes</li>
+    <li><a href="https://www.deeplearning.ai/the-batch/argon-a-low-hallucination-model-build-for-knowledge-work" target="_blank" rel="noopener">The Batch</a> — Argon, Vals Index et taux d’invention</li>
+    <li><a href="https://aiweekly.co/alerts/gemini-4-argon-ties-gpt-6-astra-at-53-with-15-hallucination-rate" target="_blank" rel="noopener">AI Weekly</a> — Argon : indice 53, 15 % d’inventions, AutomationBench</li>
+    <li><a href="https://artificialanalysis.ai/models/gemini-4-argon/providers" target="_blank" rel="noopener">Artificial Analysis</a> — vitesse et prix de Gemini 4 Argon</li>
+    <li><a href="https://artificialanalysis.ai/evaluations/gdpval-aa" target="_blank" rel="noopener">Artificial Analysis</a> — GDPval-AA, livrables professionnels</li>
+    <li><a href="https://benchlm.ai/benchmarks/aahle" target="_blank" rel="noopener">BenchLM</a> — Humanity’s Last Exam mesuré par Artificial Analysis</li>
+    <li><a href="https://benchlm.ai/benchmarks/terminal-bench-4" target="_blank" rel="noopener">BenchLM</a> — Terminal-Bench 4.0</li>
+    <li><a href="https://www.vals.ai/benchmarks/terminal-bench-science" target="_blank" rel="noopener">Vals AI</a> — Terminal-Bench Science, 14 octobre</li>
+    <li><a href="https://www.vals.ai/benchmarks/biomysterybench" target="_blank" rel="noopener">Vals AI</a> — BioMysteryBench, 12 octobre</li>
+    <li><a href="https://arena.ai/leaderboard/text-to-image" target="_blank" rel="noopener">Arena</a> — texte vers image, 7 octobre</li>
+    <li><a href="https://arena.ai/leaderboard/image-to-video" target="_blank" rel="noopener">Arena</a> — image vers vidéo, 21 septembre</li>
+    <li><a href="https://arena.ai/leaderboard/text-to-video" target="_blank" rel="noopener">Arena</a> — texte vers vidéo, 21 septembre</li>
+    <li><a href="https://benchlm.ai/benchmarks/browsecomp" target="_blank" rel="noopener">BenchLM</a> — BrowseComp, chiffres des éditeurs</li>
+    <li><a href="https://community.openai.com/t/introducing-gpt-images-2-5-in-the-api-and-chatgpt/1395897" target="_blank" rel="noopener">OpenAI</a> — GPT Images 2.5 dans ChatGPT</li>
+    <li><a href="https://letsdatascience.com/news/google-launches-gemini-omni-to-create-video-assets-8c79e4b5" target="_blank" rel="noopener">Let’s Data Science</a> — Gemini Omni dans l’appli Gemini et Flow</li>
+  </ol>
+</section>
+</div>
+
+<script>
+(function(){
+const $ = id => document.getElementById(id);
+const fmt = v => v ? String(v).replace('.',',') : '—';
+function store(key,val){ try{ if(val===undefined) return localStorage.getItem(key); localStorage.setItem(key,val);}catch(e){ return null; } }
+const reduce = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- classement par usage ----------
+   ligne : [modèle, labo, valeur mesurée, note, où l’utiliser, note sur 5 pour la carte des forces, options]
+   options : nr = hors classement (pas de chiffre comparable ou hors du top 10), off = non proposé au grand public,
+             p = score provisoire, h = nom de la ligne correspondante dans la carte des forces */
+const CL='Claude Pro · Max', CMAX='Claude Max', CPREV='Claude, version précédente', GPRO='ChatGPT Pro', GPLUS='ChatGPT Plus',
+      GPREV='ChatGPT, version précédente', GEM='Google AI Pro · Ultra', MUSEC='Muse Code · API', MUSEF='Muse Code Power · Maximum';
+const T = [
+ {k:'apps', label:'Développement d’applis', sub:'web, mobile, outils', unit:'pts', lo:1600,
+  src:'Arena · WebDev', url:'https://arena.ai/leaderboard/code/webdev', date:'13 oct.', kind:'mesure',
+  verdict:'Des votants comparent à l’aveugle les applications web construites par chaque modèle. Opus 5.5 en effort maximal mène nettement, devant GPT-6 Astra et Sonnet 5.5. Gemini 4 Argon entre 8e avec un score encore provisoire.',
+  items:[
+   ['Claude Opus 5.5','Anthropic',1811,'90,3 % au Vibe Code Bench (Vals AI)',CL,5],
+   ['GPT-6 Astra','OpenAI',1780,'89,6 % au Vibe Code Bench',GPRO,4.5],
+   ['Claude Sonnet 5.5','Anthropic',1774,'',CL,4.5],
+   ['GPT-6.1 Sol','OpenAI',1760,'71,9 % au DeepSWE',GPLUS,4.5],
+   ['Claude Fable 5.1','Anthropic',1743,'',CMAX,4.5],
+   ['Claude Opus 5','Anthropic',1690,'Version précédente d’Opus',CPREV],
+   ['GPT-6 Sol','OpenAI',1686,'Version précédente de Sol',GPREV],
+   ['Gemini 4 Argon','Google',1678,'77,9 % au DeepSWE (chiffre Google)',GEM,4,{p:1}],
+   ['Qwen 3.8 Max','Alibaba',1673,'',' API',null,{p:1}],
+   ['Muse Spark 1.3','Meta',1659,'','Meta'],
+   ['Muse Wonder','Meta',1651,'15e ; ≈ 79 % au DeepSWE',MUSEC,4,{nr:1}],
+   ['Grok 4.7','xAI',null,'71 % au DeepSWE','API · Cursor',4,{nr:1}],
+   ['DeepSeek V4.1 Flash','DeepSeek',null,'24e, pour quelques centimes','Gratuit',3.5,{nr:1,h:'DeepSeek V4'}],
+   ['Gemini 3.1 Pro','Google',null,'73e',GEM,3,{nr:1}]
+  ]},
+ {k:'design', label:'Esthétique & animations', sub:'interfaces, mouvement', unit:'pts', lo:1580,
+  src:'Arena · Image-to-WebDev', url:'https://arena.ai/leaderboard/code/image-to-webdev', date:'9 oct.', kind:'mesure',
+  verdict:'Ce classement mesure la capacité à recréer une interface à partir d’une image : le meilleur indicateur public du goût visuel. Les modèles Claude et GPT occupent les cinq premières places. Pour les animations, un test de Better Stack juge les mouvements de Fable 5.1 les plus fluides. Gemini 4 Argon n’y figure pas encore.',
+  items:[
+   ['Claude Opus 5.5','Anthropic',1749,'70 % au SWE-bench Multimodal (bugs d’interface), contre 43 % pour Astra',CL,5],
+   ['Claude Sonnet 5.5','Anthropic',1740,'',CL,4.5],
+   ['GPT-6 Astra','OpenAI',1731,'Animations moins réussies dans le test Better Stack',GPRO,4],
+   ['Claude Fable 5.1','Anthropic',1720,'Animations les plus fluides du test Better Stack',CMAX,4.5],
+   ['GPT-6.1 Sol','OpenAI',1703,'',GPLUS,4],
+   ['GPT-6 Sol','OpenAI',1661,'',GPREV],
+   ['Claude Opus 5','Anthropic',1661,'',CPREV],
+   ['Muse Spark 1.3','Meta',1642,'','Meta'],
+   ['Qwen 3.8 Max','Alibaba',1638,'','API',null,{p:1}],
+   ['Claude Fable 5','Anthropic',1622,'',CPREV],
+   ['DeepSeek V4.1 Flash','DeepSeek',1609,'12e','Gratuit',3.5,{nr:1,h:'DeepSeek V4'}],
+   ['Gemini 4 Argon','Google',null,'Pas encore classé ; Gemini 3.7 Flash est 14e',GEM,3.5,{nr:1}],
+   ['Grok 4.7','xAI',null,'Grok 4.6 est 15e','API · Cursor',3.5,{nr:1}],
+   ['Kimi K3','Moonshot',null,'Interfaces les plus soignées du test Better Stack','API',null,{nr:1}],
+   ['Muse Wonder','Meta',null,'Hors des 15 premiers ; rendus 3D qui scintillent selon MindStudio',MUSEC,3,{nr:1}],
+   ['Gemini 3.1 Pro','Google',null,'Hors des 15 premiers',GEM,3,{nr:1}]
+  ]},
+ {k:'sci', label:'Science & formulation', sub:'chimie, mécanismes', unit:'%', lo:40,
+  src:'Humanity’s Last Exam · Artificial Analysis', url:'https://benchlm.ai/benchmarks/aahle', date:'15 oct.', kind:'mesure',
+  verdict:'Le Humanity’s Last Exam (HLE, questions de niveau doctorat dans toutes les disciplines), passé par Artificial Analysis dans les mêmes conditions pour tous. Opus 5.5 est premier, Fable 5.1 et Gemini 4 Argon suivent. Au GPQA Diamond (doctorat en physique, chimie, biologie), GPT-6 Astra mène avec 96,3 %, mais ce test est saturé : les meilleurs se tiennent en un point.',
+  items:[
+   ['Claude Opus 5.5','Anthropic',61.4,'67,7 % avec outils (chiffre Anthropic)',CL,5],
+   ['Claude Fable 5.1','Anthropic',59.1,'',CMAX,5],
+   ['Gemini 4 Argon','Google',57.1,'',GEM,4.5],
+   ['Claude Fable 5','Anthropic',55.5,'',CPREV],
+   ['Claude Sonnet 5.5','Anthropic',55.0,'Moitié prix d’Opus',CL,4.5],
+   ['Claude Opus 5','Anthropic',54.9,'',CPREV],
+   ['GPT-6 Astra','OpenAI',54.7,'N°1 au GPQA Diamond (96,3 %)',GPRO,5],
+   ['Muse Wonder Full','Meta',53.6,'',MUSEF],
+   ['GPT-6.1 Sol','OpenAI',52.9,'',GPLUS,4.5],
+   ['Muse Wonder','Meta',50.1,'',MUSEC,4],
+   ['Gemini 3.1 Pro','Google',null,'Hors des 15 premiers ; Gemini 3.7 Flash est 15e (47,9 %)',GEM,3.5,{nr:1}],
+   ['Grok 4.7','xAI',null,'Hors des 15 premiers','API',3.5,{nr:1}],
+   ['DeepSeek V4','DeepSeek',null,'Hors des 15 premiers ; très sûr de lui même quand il se trompe','Gratuit',3,{nr:1}]
+  ]},
+ {k:'exp', label:'Sciences expérimentales', sub:'protocoles, données de labo', unit:'%', lo:0,
+  src:'Vals AI · Terminal-Bench Science', url:'https://www.vals.ai/benchmarks/terminal-bench-science', date:'14 oct.', kind:'mesure',
+  verdict:'Le modèle doit mener une analyse scientifique de bout en bout dans un vrai environnement de travail : préparer les données, lancer les calculs, interpréter. GPT-6 Astra se détache nettement. Sur l’analyse de données biologiques (BioMysteryBench), les meilleurs sont au coude-à-coude entre 76 et 81 %.',
+  items:[
+   ['GPT-6 Astra','OpenAI',62.9,'23 % au Robo-bench, contre 15 % pour Opus 5.5',GPRO,5],
+   ['GPT-6.1 Sol','OpenAI',52.9,'79,6 % au BioMysteryBench',GPLUS,4.5],
+   ['Claude Opus 5.5','Anthropic',47.1,'79,3 % au BioMysteryBench',CL,4.5],
+   ['Claude Sonnet 5.5','Anthropic',47.1,'81,1 % au BioMysteryBench, meilleur score',CL,4.5],
+   ['Gemini 4 Argon','Google',44.3,'76,3 % au BioMysteryBench',GEM,4],
+   ['Claude Fable 5.1','Anthropic',40.0,'',CMAX,4],
+   ['Muse Wonder Full','Meta',37.1,'73,3 % au BioMysteryBench',MUSEF],
+   ['GPT-6 Sol','OpenAI',30.0,'',GPREV],
+   ['Claude Opus 5','Anthropic',27.1,'',CPREV],
+   ['Muse Wonder','Meta',22.9,'',MUSEC,3.5],
+   ['Grok 4.7','xAI',10.0,'69,3 % au BioMysteryBench','API',3,{nr:1}],
+   ['DeepSeek V4.1 Flash','DeepSeek',null,'67,8 % au BioMysteryBench','Gratuit',3,{nr:1,h:'DeepSeek V4'}],
+   ['Gemini 3.1 Pro','Google',null,'60 % au BioMysteryBench',GEM,3,{nr:1}]
+  ]},
+ {k:'innov', label:'Idées & théories plausibles', sub:'innovation, hypothèses', unit:'%', lo:0,
+  src:'Vals AI · MysteryMechanism', url:'https://benchlm.ai/benchmarks/mysterymechanism', date:'12 oct.', kind:'mesure',
+  verdict:'Le test MysteryMechanism mesure exactement cela : retrouver une loi cachée à partir d’un nombre limité d’expériences, donc formuler puis éprouver des hypothèses. GPT-6 Astra mène, les quatre suivants sont à moins de 7 points. Pour des idées originales sur vos sujets, rien ne remplace un essai côte à côte.',
+  items:[
+   ['GPT-6 Astra','OpenAI',53.2,'',GPRO,5],
+   ['Claude Opus 5.5','Anthropic',49.6,'',CL,4.5],
+   ['Claude Sonnet 5.5','Anthropic',49.1,'',CL,4.5],
+   ['Claude Fable 5.1','Anthropic',47.8,'',CMAX,4.5],
+   ['GPT-6.1 Sol','OpenAI',46.4,'',GPLUS,4.5],
+   ['Gemini 4 Argon','Google',45.5,'',GEM,4.5],
+   ['Claude Opus 5','Anthropic',37.4,'',CPREV],
+   ['Gemini 3.8 Flash','Google',36.5,'','API'],
+   ['Muse Spark 1.3','Meta',36.0,'','Meta'],
+   ['Claude Haiku 5.5','Anthropic',35.1,'Ex æquo avec Muse Wonder Full','Claude'],
+   ['Muse Wonder','Meta',27.5,'15e ; version Full : 35,1 %',MUSEC,3.5,{nr:1}],
+   ['Grok 4.7','xAI',null,'Grok 4.6 : 30,6 %','API',3,{nr:1}],
+   ['DeepSeek V4.1 Flash','DeepSeek',21.2,'','Gratuit',2.5,{nr:1,h:'DeepSeek V4'}],
+   ['Gemini 3.1 Pro','Google',20.7,'',GEM,2.5,{nr:1}]
+  ]},
+ {k:'research', label:'Recherche approfondie', sub:'synthèse de nombreuses sources', unit:'', kind:'editorial',
+  src:'Pas de classement public indépendant', url:'https://benchlm.ai/benchmarks/browsecomp', date:'',
+  verdict:'Aucun classement indépendant ne compare les modes « recherche approfondie » des applis. Le test BrowseComp (retrouver une information difficile sur le web) n’est publié que par les éditeurs eux-mêmes. Ce classement combine ces chiffres, les conseils des éditeurs et les essais publiés.',
+  items:[
+   ['Claude Fable 5.1','Anthropic',null,'Conseillé par Anthropic pour la recherche en plusieurs étapes',CMAX,5],
+   ['Claude Opus 5.5','Anthropic',null,'Même niveau sur la plupart des recherches, pour moins cher',CL,5],
+   ['GPT-6 Astra','OpenAI',null,'91,5 % au BrowseComp (chiffre OpenAI) ; 50 à 250 recherches approfondies par mois',GPRO,4.5],
+   ['Gemini 4 Argon','Google',null,'N°1 du Vals Index (tâches professionnelles longues) ; pas encore testé en recherche approfondie',GEM,4.5],
+   ['Claude Sonnet 5.5','Anthropic',null,'Rapide, bon pour des synthèses répétées',CL,4.5],
+   ['Kimi K3','Moonshot',null,'91,2 % au BrowseComp (chiffre Moonshot)','API · Kimi'],
+   ['GPT-6.1 Sol','OpenAI',null,'10 recherches approfondies par mois en Plus',GPLUS,4],
+   ['Gemini 3.1 Pro','Google',null,'Deep Research de Google, bien relié au web',GEM,4],
+   ['Grok 4.7','xAI',null,'Sources souvent tirées de X','API',3.5],
+   ['DeepSeek V4','DeepSeek',null,'V4 Pro : 83,4 % au BrowseComp (chiffre DeepSeek) ; recherche sommaire dans l’appli','Gratuit',3]
+  ]},
+ {k:'sources', label:'Recherche web & sources', sub:'réponses sourcées sur le web', unit:'pts', lo:1150,
+  src:'Arena · Search', url:'https://arena.ai/leaderboard/chat/search', date:'13 oct.', kind:'mesure',
+  verdict:'Des votants comparent des réponses appuyées sur le web, sources comprises. Les dix premiers se tiennent en 32 points : les écarts sont faibles. Plusieurs modèles récents (Opus 5.5 en effort maximal, Sonnet 5.5, Gemini 4 Argon) n’y sont pas encore classés. Pour la qualité des faits, voir aussi Fiabilité.',
+  items:[
+   ['GPT-5.6 Sol','OpenAI',1261,'',GPREV],
+   ['Qwen 3.8 Max','Alibaba',1261,'','API'],
+   ['Claude Opus 4.6','Anthropic',1251,'Version « recherche »',CPREV],
+   ['GPT-5.5','OpenAI',1247,'Version « recherche »',GPREV],
+   ['Claude Fable 5.1','Anthropic',1246,'',CMAX,5],
+   ['Claude Opus 5','Anthropic',1242,'',CPREV],
+   ['GPT-6 Astra','OpenAI',1234,'91,5 % au BrowseComp (chiffre OpenAI)',GPRO,4.5],
+   ['GPT-6.1 Sol','OpenAI',1233,'',GPLUS,4.5],
+   ['Claude Opus 4.7','Anthropic',1230,'',CPREV],
+   ['Claude Fable 5','Anthropic',1229,'',CPREV],
+   ['Claude Opus 5.5','Anthropic',1213,'14e ; testé seulement en effort moyen',CL,4.5,{nr:1}],
+   ['Gemini 3.1 Pro','Google',1209,'15e, avec Google Search',GEM,3.5,{nr:1}],
+   ['Gemini 4 Argon','Google',null,'Pas encore classé ; invente le moins des modèles de tête (15 %)',GEM,4,{nr:1}],
+   ['Claude Sonnet 5.5','Anthropic',null,'Pas encore classé',CL,4,{nr:1}],
+   ['Perplexity','Perplexity',null,'Cite toujours ses sources ; ses modèles Sonar sont loin derrière','Pro · Max',3.5,{nr:1}],
+   ['Grok 4.7','xAI',null,'Grok 4.5 est 13e ; sources souvent tirées de X','API',3,{nr:1}],
+   ['DeepSeek V4','DeepSeek',null,'Absent du classement','Gratuit',2.5,{nr:1}]
+  ]},
+ {k:'fiab', label:'Fiabilité des faits', sub:'peu d’inventions', unit:'', lo:0, kind:'mesure',
+  src:'Artificial Analysis · AA-Omniscience', url:'https://artificialanalysis.ai/evaluations/omniscience', date:'15 oct.',
+  verdict:'L’indice AA-Omniscience récompense les bonnes réponses et pénalise les inventions. Seuls les trois premiers sont publiés en clair : Opus 5.5, GPT-6 Astra, Fable 5.1. Gemini 4 Argon n’a pas d’indice publié, mais c’est le modèle de tête qui invente le moins quand il ne sait pas : 15 %, contre 51 % pour Astra.',
+  items:[
+   ['Claude Opus 5.5','Anthropic',46,'66 % de bonnes réponses',CL,5],
+   ['GPT-6 Astra','OpenAI',44,'Invente dans 51 % des cas où il ne sait pas',GPRO,4.5],
+   ['Claude Fable 5.1','Anthropic',43,'67 % de bonnes réponses, le meilleur taux',CMAX,4.5],
+   ['Gemini 4 Argon','Google',null,'Indice non publié ; n’invente que dans 15 % des cas où il ne sait pas',GEM,5,{nr:1}],
+   ['Claude Sonnet 5.5','Anthropic',null,'Pas de mesure publiée',CL,4,{nr:1}],
+   ['GPT-6.1 Sol','OpenAI',null,'Invente dans 54 % des cas où il ne sait pas',GPLUS,3.5,{nr:1}],
+   ['Gemini 3.1 Pro','Google',null,'Large culture, mais invente plus souvent',GEM,3,{nr:1}],
+   ['Grok 4.7','xAI',null,'Grok 4.5 inventait dans 54 % des cas','API',3,{nr:1}],
+   ['DeepSeek V4','DeepSeek',null,'V4 Flash invente dans 96 % des cas où il ne sait pas','Gratuit',2,{nr:1}]
+  ]},
+ {k:'gen', label:'Conversation & polyvalence', sub:'préférence à l’aveugle', unit:'pts', lo:1450,
+  src:'Arena · Texte', url:'https://arena.ai/leaderboard/chat/text', date:'15 oct.', kind:'mesure',
+  verdict:'Le classement le plus suivi : des votants posent leurs propres questions et choisissent la meilleure réponse sans savoir quel modèle l’a écrite. Gemini 4 Argon prend la tête avec un score encore provisoire, devant Muse Wonder et Opus 5.5. Les dix premiers se tiennent en 31 points.',
+  items:[
+   ['Gemini 4 Argon','Google',1524,'',GEM,5,{p:1}],
+   ['Muse Wonder','Meta',1509,'',MUSEC,4.5],
+   ['Claude Opus 5.5','Anthropic',1508,'',CL,4.5],
+   ['Claude Fable 5','Anthropic',1504,'',CPREV],
+   ['Claude Opus 4.6','Anthropic',1503,'',CPREV],
+   ['Claude Fable 5.1','Anthropic',1502,'',CMAX,4.5],
+   ['Claude Opus 4.7','Anthropic',1501,'',CPREV],
+   ['Gemini 3.8 Flash','Google',1496,'','API'],
+   ['Muse Spark 1.3','Meta',1494,'','Meta'],
+   ['Muse Spark 1.2','Meta',1493,'','Meta'],
+   ['GPT-6 Astra','OpenAI',null,'Hors des 15 premiers',GPRO,4,{nr:1}],
+   ['GPT-6.1 Sol','OpenAI',null,'Hors des 15 premiers',GPLUS,4,{nr:1}],
+   ['Claude Sonnet 5.5','Anthropic',null,'Hors des 15 premiers',CL,4,{nr:1}],
+   ['Gemini 3.1 Pro','Google',null,'Hors des 15 premiers',GEM,3.5,{nr:1}],
+   ['Grok 4.7','xAI',null,'Hors des 15 premiers','API',3.5,{nr:1}],
+   ['DeepSeek V4','DeepSeek',null,'Hors des 15 premiers','Gratuit',3,{nr:1}]
+  ]},
+ {k:'write', label:'Rédaction pro', sub:'dossiers, présentations, courriers', unit:'pts', lo:1550,
+  src:'Artificial Analysis · GDPval-AA', url:'https://artificialanalysis.ai/evaluations/gdpval-aa', date:'15 oct.', kind:'mesure',
+  verdict:'GDPval-AA note de vrais livrables professionnels (rapports, présentations, tableurs) commandés dans 44 métiers. Opus 5.5 est premier, Muse Wonder Full et Sonnet 5.5 suivent de près. Gemini 4 Argon arrive bien plus bas.',
+  items:[
+   ['Claude Opus 5.5','Anthropic',1866,'',CL,5],
+   ['Muse Wonder Full','Meta',1857,'',MUSEF],
+   ['Claude Sonnet 5.5','Anthropic',1838,'Moitié prix d’Opus',CL,5],
+   ['Muse Wonder','Meta',1770,'',MUSEC,4.5],
+   ['Claude Fable 5.1','Anthropic',1754,'',CMAX,4.5],
+   ['Claude Opus 5','Anthropic',1721,'',CPREV],
+   ['Grok 4.7','xAI',1711,'','API',4],
+   ['MiMo V2.6 Pro','Xiaomi',1684,'','API'],
+   ['Muse Spark 1.3','Meta',1681,'','Meta'],
+   ['Gemini 4 Argon','Google',1624,'23e ligne du classement, qui compte chaque niveau d’effort à part',GEM,4,{nr:1}],
+   ['GPT-6 Astra','OpenAI',null,'Hors des 15 premières lignes',GPRO,4,{nr:1}],
+   ['GPT-6.1 Sol','OpenAI',null,'GPT-6 Sol : 1 487 points',GPLUS,3.5,{nr:1}],
+   ['Gemini 3.1 Pro','Google',null,'Correct, style plus générique',GEM,3.5,{nr:1}],
+   ['DeepSeek V4','DeepSeek',null,'Français moins naturel','Gratuit',3,{nr:1}]
+  ]},
+ {k:'math', label:'Maths & chiffrage', sub:'calculs, budgets, dosages', unit:'', kind:'editorial',
+  src:'Pas de classement public récent', url:'https://epoch.ai/frontiermath', date:'',
+  verdict:'Le test de référence en mathématiques de recherche (FrontierMath) n’a pas publié de classement récent comparant tous ces modèles. GPT-6 Astra a le meilleur score connu. Pour des calculs courants (budgets, dosages, conversions), tous les modèles du haut du classement suffisent ; GPT-6.1 Sol est le plus économique.',
+  items:[
+   ['GPT-6 Astra','OpenAI',null,'97,6 % au FrontierMath niveau 4 (maths de recherche)',GPRO,5],
+   ['Claude Fable 5.1','Anthropic',null,'87,8 % au même test',CMAX,4.5],
+   ['Claude Opus 5.5','Anthropic',null,'Très fiable sur le calcul appliqué',CL,4.5],
+   ['GPT-6.1 Sol','OpenAI',null,'Proche d’Astra pour environ 5 fois moins cher',GPLUS,4.5],
+   ['Claude Sonnet 5.5','Anthropic',null,'',CL,4],
+   ['DeepSeek V4','DeepSeek',null,'Fort en maths, gratuit','Gratuit',4],
+   ['Grok 4.7','xAI',null,'','API',4],
+   ['Gemini 3.1 Pro','Google',null,'Deep Think utile pour les problèmes durs',GEM,3.5],
+   ['Gemini 4 Argon','Google',null,'Pas de score de maths publié',GEM,4,{nr:1}]
+  ]},
+ {k:'agents', label:'Projets longs & outils', sub:'tâches de plusieurs heures, tableurs', unit:'%', lo:30,
+  src:'Terminal-Bench 4.0', url:'https://benchlm.ai/benchmarks/terminal-bench-4', date:'15 oct.', kind:'mesure',
+  verdict:'Terminal-Bench 4.0 confie au modèle de vraies tâches longues sur un ordinateur : installer, programmer, réparer, vérifier. Opus 5.5 mène, Sonnet 5.5 est 2e. Gemini 4 Argon est 1er d’un autre test, AutomationBench (enchaîner des actions dans des logiciels de bureau), avec 78 %.',
+  items:[
+   ['Claude Opus 5.5','Anthropic',64.9,'81,8 % à OSWorld (utiliser un ordinateur)',CL,5],
+   ['Claude Sonnet 5.5','Anthropic',61.8,'',CL,4.5],
+   ['GPT-6 Astra','OpenAI',58.2,'',GPRO,4.5],
+   ['GPT-6.1 Sol','OpenAI',58.2,'Pour un cinquième du coût d’Astra',GPLUS,4.5],
+   ['Muse Wonder Full','Meta',58.1,'Mesure Vals AI',MUSEF],
+   ['Claude Fable 5.1','Anthropic',57.9,'Conseillé pour les sessions de plusieurs heures',CMAX,4.5],
+   ['Gemini 4 Argon','Google',57.6,'Mesure Vals AI ; n°1 d’AutomationBench (78 %)',GEM,4.5],
+   ['Claude Opus 5','Anthropic',53.9,'',CPREV],
+   ['Muse Wonder','Meta',49.5,'Mesure Vals AI',MUSEC,4],
+   ['Grok 4.7','xAI',null,'71 % au DeepSWE','API · Cursor',3.5,{nr:1}],
+   ['Gemini 3.1 Pro','Google',null,'Absent du classement',GEM,3,{nr:1}],
+   ['DeepSeek V4','DeepSeek',null,'Absent du classement','Gratuit',3,{nr:1}]
+  ]},
+ {k:'memory', label:'Mémoire de l’utilisateur', sub:'raisonner avec votre contexte', unit:'', kind:'editorial',
+  src:'Pas de test public récent', url:'https://support.claude.com/en/articles/9517075-what-are-projects', date:'',
+  verdict:'Aucun test public récent ne compare ces modèles sur ce point ; le test Memora (juin 2026) montre que même les meilleurs raisonnent mal sur des souvenirs vieux de plusieurs mois. Le classement reflète les fonctions de l’appli (mémoire modifiable, mémoire par projet, fichiers de référence) et la qualité de raisonnement du modèle.',
+  items:[
+   ['Claude Opus 5.5','Anthropic',null,'Mémoire par sujets, lisible et modifiable, séparée par projet ; projets avec fichiers',CL,5],
+   ['Claude Fable 5.1','Anthropic',null,'Même mémoire ; Fable 5 était le seul modèle au-dessus de zéro en raisonnement dans Memora',CMAX,5],
+   ['Claude Sonnet 5.5','Anthropic',null,'Même mémoire, raisonnement un cran en dessous',CL,4.5],
+   ['GPT-6 Astra','OpenAI',null,'Souvenirs enregistrés et historique des conversations ; 40 fichiers par projet en Pro',GPRO,4.5],
+   ['GPT-6.1 Sol','OpenAI',null,'Même mémoire ; 25 fichiers par projet en Plus',GPLUS,4.5],
+   ['Perplexity','Perplexity',null,'Mémoire personnelle et de projet ; jusqu’à 10 000 fichiers par projet','Pro · Max',4],
+   ['Gemini 4 Argon','Google',null,'Mémoire des conversations et instructions, mais pas dans les Gems',GEM,4],
+   ['Gemini 3.1 Pro','Google',null,'Même mémoire que Gemini 4 Argon',GEM,4],
+   ['Muse Wonder','Meta',null,'L’appli Muse garde le contexte entre sessions, mais Wonder n’y est pas encore',MUSEC,3],
+   ['DeepSeek V4','DeepSeek',null,'Pas de mémoire entre conversations, selon des guides tiers','Gratuit',1.5]
+  ]},
+ {k:'conso', label:'Consommation', sub:'coût par tâche à qualité comparable', unit:'$', inv:true, kind:'mesure', more:'#conso',
+  src:'Artificial Analysis · coût par tâche', url:'https://artificialanalysis.ai/leaderboards/models', date:'16 oct.',
+  verdict:'Coût d’une tâche du test, au tarif de l’interface de programmation (API), au réglage le plus économe qui atteint 50 points à l’indice d’intelligence. En abonnement, ce coût est le meilleur indicateur de la vitesse à laquelle un modèle vide votre quota, car aucun éditeur ne publie de barème. Sonnet 5.5 coûte deux fois moins au jeton mais en écrit deux fois plus : à qualité voisine, il consomme autant qu’Opus 5.5, pas moins.',
+  items:[
+   ['GPT-6.1 Sol','OpenAI',0.32,'50 points ; 0,72 $ en maximal (52)',GPLUS,5],
+   ['Claude Opus 5.5','Anthropic',1.34,'51 points ; 1,82 $ en élevé (54) ; 5,98 $ en maximal (58)',CL,4],
+   ['GPT-6 Astra','OpenAI',1.54,'50 points ; 3,26 $ en maximal (53)',GPRO,4],
+   ['Gemini 4 Argon','Google',1.99,'53 points ; 3,98 $ après le tarif de lancement',GEM,4],
+   ['Claude Sonnet 5.5','Anthropic',2.01,'52 points ; 0,88 $ en élevé (47) ; 5,46 $ en maximal (56)',CL,3.5],
+   ['Claude Fable 5.1','Anthropic',3.91,'51 points ; 7,63 $ en maximal (53)',CMAX,2],
+   ['Muse Wonder','Meta',4.52,'52 points ; seul niveau mesuré',MUSEC,2],
+   ['DeepSeek V4.1 Flash','DeepSeek',0.27,'39 points seulement','Gratuit',5,{nr:1,h:'DeepSeek V4'}],
+   ['Mistral Large 4','Mistral AI',1.13,'38 points seulement','API',3,{nr:1}],
+   ['Gemini 3.1 Pro','Google',1.30,'30 points seulement',GEM,3,{nr:1}],
+   ['Kimi K3','Moonshot',2.00,'44 points seulement','API',3,{nr:1}],
+   ['Grok 4.7','xAI',2.73,'46 points seulement','API',3,{nr:1}],
+   ['Qwen3.8 Max','Alibaba',5.41,'45 points seulement','API',2,{nr:1}]
+  ]},
+ {k:'speed', label:'Rapidité', sub:'temps de réponse à qualité comparable', unit:'s', inv:true, kind:'mesure', more:'#conso',
+  src:'Artificial Analysis · temps de réponse', url:'https://artificialanalysis.ai/leaderboards/models', date:'16 oct.',
+  verdict:'Temps de réponse complet au réglage le plus rapide qui atteint 50 points à l’indice d’intelligence : on compare des réponses de qualité voisine, pas des réglages au plus bas. Astra, Fable 5.1 et Opus 5.5 répondent en moins de 30 secondes ; en effort maximal, ces mêmes modèles réfléchissent de 4 à 11 minutes. Le tableau chiffré donne tous les niveaux d’effort.',
+  items:[
+   ['GPT-6 Astra','OpenAI',17.5,'50 points ; 5 min en maximal',GPRO,4.5],
+   ['Claude Fable 5.1','Anthropic',23.4,'51 points ; 4 min 25 en maximal',CMAX,4],
+   ['Claude Opus 5.5','Anthropic',25.8,'51 points ; 58 s en élevé ; 11 min 24 en maximal',CL,4],
+   ['Claude Sonnet 5.5','Anthropic',38.6,'52 points ; 18,6 s en élevé pour 47 points ; 7 min 22 en maximal',CL,3.5],
+   ['Gemini 4 Argon','Google',47,'Seul niveau mesuré ; 100 jetons par seconde',GEM,3],
+   ['Muse Wonder','Meta',56.2,'Seul niveau mesuré ; 161 jetons par seconde',MUSEC,2.5],
+   ['GPT-6.1 Sol','OpenAI',56.7,'16 s en effort moyen pour 48 points ; 5 min 12 en maximal',GPLUS,2.5],
+   ['DeepSeek V4.1 Flash','DeepSeek',15.3,'39 points seulement ; 177 jetons par seconde','Gratuit',4.5,{nr:1,h:'DeepSeek V4'}],
+   ['Gemini 3.1 Pro','Google',31,'30 points seulement ; 140 jetons par seconde',GEM,3.5,{nr:1}],
+   ['Grok 4.7','xAI',36.3,'46 points seulement','API',3.5,{nr:1}]
+  ]},
+ {k:'img', label:'Images', sub:'création, retouche', unit:'pts', lo:1200,
+  src:'Arena · Texte vers image', url:'https://arena.ai/leaderboard/text-to-image', date:'7 oct.', kind:'mesure',
+  verdict:'Des votants comparent à l’aveugle des images créées à partir de la même consigne. OpenAI occupe les trois premières places avec GPT Image 2.5, encore provisoire, et GPT Image 2. Google (Nano Banana) et xAI (Grok Imagine) suivent. Midjourney n’est pas dans les douze premiers.',
+  items:[
+   ['GPT Image 2.5','OpenAI',1425,'Score provisoire',GPLUS],
+   ['GPT Image 2','OpenAI',1383,'Suit très bien une consigne précise',GPLUS],
+   ['Grok Imagine Image 2.0','xAI',1334,'Score provisoire','SuperGrok'],
+   ['MAI-Image 2.6','Microsoft',1332,'','Microsoft (Copilot)'],
+   ['Nano Banana 2.1','Google',1328,'Score provisoire ; retouche et cohérence d’une série',GEM],
+   ['Reve 2.1','Reve',1302,'','reve.com'],
+   ['Muse Image','Meta',1274,'','Meta'],
+   ['Reve 2.0','Reve',1269,'','reve.com'],
+   ['Nano Banana 2','Google',1262,'Version avec recherche web ; rapide','Gemini gratuit'],
+   ['Seedream 5.0 Pro','ByteDance',1255,'','Dreamina'],
+   ['Midjourney v8','Midjourney',null,'Hors des 12 premiers ; rendu le plus artistique, moins docile','Abonnement Midjourney',null,{nr:1}]
+  ]},
+ {k:'video', label:'Vidéo', sub:'animer des photos, clips', unit:'pts', lo:1380,
+  src:'Arena · Image vers vidéo', url:'https://arena.ai/leaderboard/image-to-video', date:'21 sept.', kind:'mesure',
+  verdict:'Classement image vers vidéo : animer une photo de départ, le cas le plus proche des fondus entre photos. MiniMax H3 et Gemini Omni 1.1 Flash mènent ; en texte vers vidéo, Gemini Omni 1.1 Flash est premier. Pour un fondu : la photo A en image de départ, la photo B en image d’arrivée, la même consigne de style pour chaque paire, puis montage des clips.',
+  items:[
+   ['MiniMax H3','MiniMax',1495,'','Hailuo'],
+   ['Gemini Omni 1.1 Flash','Google',1488,'1er en texte vers vidéo','Appli Gemini · Flow'],
+   ['Wan 3.0','Alibaba',1480,'','Wan · API'],
+   ['Seedance 2.5','ByteDance',1477,'','Dreamina'],
+   ['Seedance 2.0','ByteDance',1475,'','Dreamina'],
+   ['HiDream O1 Video','HiDream',1456,'Score provisoire','API'],
+   ['Grok Imagine Video 1.5','xAI',1456,'','SuperGrok'],
+   ['FLUX 3 Video','Black Forest Labs',1449,'','Services tiers'],
+   ['HappyHorse 1.0','Alibaba',1442,'','Services tiers'],
+   ['Wan 2.7','Alibaba',1428,'','Wan · API'],
+   ['Veo 3.1','Google',null,'12e en texte vers vidéo ; image de départ et d’arrivée','Google AI Pro (Flow)',null,{nr:1}],
+   ['Kling 3.0','Kuaishou',null,'Absent des 12 premiers','Abonnement Kling',null,{nr:1}],
+   ['Sora 2 Pro','OpenAI',null,'11e en texte vers vidéo ; appli Sora fermée en avril 2026','API',null,{nr:1,off:1}]
+  ]}
+];
+T.forEach(t=>t.items=t.items.map(r=>{const o=r[6]||{};return {m:r[0],lab:r[1],v:r[2],note:r[3],where:String(r[4]).trim(),s:r[5]==null?null:r[5],nr:!!o.nr,off:!!o.off,p:!!o.p,h:o.h||r[0]};}));
+
+/* niveau d’effort (« puissance » de réflexion) réglé pendant chaque test ; absent = non précisé par la source */
+const NOEFF=new Set(['research','math','memory','img','video']);
+const EFF={
+ apps:{'Claude Opus 5.5':'max','GPT-6 Astra':'max','Claude Sonnet 5.5':'xhigh','GPT-6.1 Sol':'max','Claude Fable 5.1':'max','Claude Opus 5':'max','GPT-6 Sol':'max','Gemini 4 Argon':'high','Muse Spark 1.3':'max','Muse Wonder':'max'},
+ design:{'Claude Opus 5.5':'max','Claude Sonnet 5.5':'xhigh','GPT-6 Astra':'max','Claude Fable 5.1':'max','GPT-6.1 Sol':'max','GPT-6 Sol':'max','Claude Opus 5':'max','Muse Spark 1.3':'max','Claude Fable 5':'high','DeepSeek V4.1 Flash':'max'},
+ sci:{'Claude Opus 5.5':'max','Claude Fable 5.1':'max','Gemini 4 Argon':'high'},
+ exp:{},
+ innov:{'Muse Spark 1.3':'max'},
+ sources:{'GPT-5.6 Sol':'xhigh','Claude Fable 5.1':'high','Claude Opus 5':'high','GPT-6 Astra':'max','GPT-6.1 Sol':'max','Claude Fable 5':'high','Claude Opus 5.5':'medium'},
+ fiab:{'Claude Opus 5.5':'max','GPT-6 Astra':'high','Claude Fable 5.1':'max'},
+ gen:{'Gemini 4 Argon':'high','Muse Wonder':'max','Claude Opus 5.5':'high','Claude Fable 5':'high','Claude Opus 4.6':'high','Claude Fable 5.1':'max','Claude Opus 4.7':'high','Gemini 3.8 Flash':'high','Muse Spark 1.3':'max','Muse Spark 1.2':'xhigh'},
+ write:{'Claude Opus 5.5':'max','Muse Wonder Full':'max','Claude Sonnet 5.5':'max','Muse Wonder':'max','Claude Fable 5.1':'max','Claude Opus 5':'max','Grok 4.7':'xhigh','Muse Spark 1.3':'max','Gemini 4 Argon':'high'},
+ agents:{'Claude Opus 5.5':'max','Claude Sonnet 5.5':'max','GPT-6 Astra':'max','GPT-6.1 Sol':'max','Muse Wonder Full':'max','Claude Fable 5.1':'max','Gemini 4 Argon':'high','Claude Opus 5':'xhigh','Muse Wonder':'max'},
+ speed:{'GPT-6 Astra':'medium','Claude Fable 5.1':'high','Claude Opus 5.5':'medium','Claude Sonnet 5.5':'xhigh','Gemini 4 Argon':'high','Muse Wonder':'max','GPT-6.1 Sol':'high','DeepSeek V4.1 Flash':'max','Grok 4.7':'high'},
+ conso:{'GPT-6.1 Sol':'high','Claude Opus 5.5':'medium','GPT-6 Astra':'medium','Gemini 4 Argon':'high','Claude Sonnet 5.5':'xhigh','Claude Fable 5.1':'high','Muse Wonder':'max','DeepSeek V4.1 Flash':'max','Kimi K3':'max','Grok 4.7':'high'}
+};
+const ELAB={low:['bas',1],medium:['moyen',2],high:['élevé',3],xhigh:['très élevé',4],max:['maximal',5]};
+T.forEach(t=>t.items.forEach(i=>{ i.e=(EFF[t.k]||{})[i.m]||null; }));
+function effHTML(t,i){
+  if(NOEFF.has(t.k)) return '';
+  const e=ELAB[i.e];
+  if(!e) return '<span class="eff unk" title="Niveau d’effort non précisé par la source">effort non précisé</span>';
+  let g='<span class="eg" aria-hidden="true">'; for(let n=1;n<=5;n++) g+='<i'+(n<=e[1]?' class="on"':'')+'></i>'; g+='</span>';
+  return '<span class="eff" title="Niveau d’effort réglé pendant le test">'+g+'Effort '+e[0]+'</span>';
+}
+
+/* ---------- info-bulle commune (carte des forces, budgets) ---------- */
+const tip=document.createElement('div'); tip.className='tt tip'; tip.hidden=true; tip.setAttribute('role','tooltip'); document.body.appendChild(tip);
+function showTip(n){
+  tip.textContent='';
+  const v=document.createElement('b'); v.textContent=n.dataset.v||''; tip.appendChild(v);
+  if(n.dataset.l){ const s=document.createElement('span'); s.textContent=n.dataset.l; tip.appendChild(s); }
+  tip.hidden=false;
+  const r=n.getBoundingClientRect(), w=tip.offsetWidth, vw=document.documentElement.clientWidth;
+  const cx=Math.min(Math.max(r.left+r.width/2, w/2+8), vw-w/2-8);
+  tip.style.left=(cx+window.scrollX)+'px'; tip.style.top=(r.top+window.scrollY)+'px';
+}
+function hideTip(){ tip.hidden=true; }
+function bindTips(root){
+  if(!root) return;
+  root.querySelectorAll('[data-v]').forEach(n=>{
+    n.addEventListener('pointerenter',()=>showTip(n)); n.addEventListener('focus',()=>showTip(n));
+    n.addEventListener('pointerleave',hideTip); n.addEventListener('blur',hideTip);
+  });
+}
+
+/* ---------- carte des forces ---------- */
+const HK=['apps','design','sci','exp','innov','research','sources','fiab','gen','write','math','agents','memory','speed'];
+const SHORT={apps:'Applis',design:'Design',sci:'Science',exp:'Labo',innov:'Théories',research:'Recherche',sources:'Sources',fiab:'Fiabilité',gen:'Général',write:'Rédaction',math:'Maths',agents:'Projets',memory:'Mémoire',speed:'Vitesse'};
+const GROUPS=[['Créer',2],['Sciences',3],['S’informer',3],['Travailler',6]];
+const HM=['Claude Opus 5.5','Claude Sonnet 5.5','Claude Fable 5.1','GPT-6 Astra','GPT-6.1 Sol','Gemini 4 Argon','Muse Wonder','Gemini 3.1 Pro','Grok 4.7','DeepSeek V4'];
+const qstep=s=>s>=5?5:s>=4.5?4:s>=4?3:s>=3.5?2:1;
+const heat=$('heat');
+(function buildHeat(){
+  const cg=document.createElement('colgroup');
+  const c0=document.createElement('col'); c0.className='c0'; cg.appendChild(c0);
+  HK.forEach(()=>cg.appendChild(document.createElement('col')));
+  heat.appendChild(cg);
+  const thead=document.createElement('thead');
+  const gr=document.createElement('tr'); gr.className='hm-g';
+  const g0=document.createElement('th'); g0.className='stick'; gr.appendChild(g0);
+  GROUPS.forEach(([name,n])=>{
+    const th=document.createElement('th'); th.colSpan=n; th.scope='colgroup';
+    const sp=document.createElement('span'); sp.textContent=name; th.appendChild(sp); gr.appendChild(th);
+  });
+  thead.appendChild(gr);
+  const hr=document.createElement('tr');
+  const h0=document.createElement('th'); h0.className='corner stick'; h0.scope='col';
+  const h0s=document.createElement('span'); h0s.className='eyebrow'; h0s.textContent='Modèle'; h0.appendChild(h0s); hr.appendChild(h0);
+  HK.forEach(k=>{
+    const t=T.find(x=>x.k===k), th=document.createElement('th'); th.scope='col';
+    const b=document.createElement('button'); b.type='button'; b.className='hm-col'; b.dataset.k=k; b.title=t.label; b.setAttribute('aria-pressed','false');
+    b.setAttribute('aria-label',t.label+' : afficher le classement détaillé');
+    b.innerHTML='<svg class="ic" aria-hidden="true"><use href="#i-'+k+'"/></svg><span class="hm-lab">'+SHORT[k]+'</span>';
+    b.addEventListener('click',()=>go(k,true));
+    th.appendChild(b); hr.appendChild(th);
+  });
+  thead.appendChild(hr); heat.appendChild(thead);
+  const tb=document.createElement('tbody');
+  HM.forEach(m=>{
+    const tr=document.createElement('tr'), th=document.createElement('th'); th.scope='row'; th.className='stick';
+    let where='';
+    const tds=HK.map(k=>{
+      const t=T.find(x=>x.k===k), it=t.items.find(i=>i.h===m&&i.s!=null), td=document.createElement('td'), c=document.createElement('span');
+      if(it){
+        if(!where) where=it.where;
+        c.className='hm-c q'+qstep(it.s); c.textContent=fmt(it.s); c.tabIndex=0;
+        c.dataset.v=fmt(it.s)+' sur 5'; c.dataset.l=m+' · '+t.label+(it.note&&it.note!=='—'?' : '+it.note:'');
+        c.setAttribute('aria-label',m+', '+t.label+' : '+fmt(it.s)+' sur 5');
+      } else {
+        c.className='hm-c q0'; c.textContent='—'; c.setAttribute('aria-label',m+', '+t.label+' : non évalué');
+      }
+      td.appendChild(c); return td;
+    });
+    const nb=document.createElement('b'); nb.textContent=m;
+    const ns=document.createElement('small'); ns.textContent=where;
+    th.append(nb,ns); tr.appendChild(th); tds.forEach(td=>tr.appendChild(td)); tb.appendChild(tr);
+  });
+  heat.appendChild(tb);
+  bindTips(heat);
+})();
+bindTips(document.getElementById('budget'));
+
+const chips=$('chips');
+const short=m=>m.replace(/^Claude /,'');
+const TSHORT={apps:'Applis',design:'Design',sci:'Science',exp:'Labo',innov:'Théories',sources:'Recherche web',research:'Recherche longue',fiab:'Fiabilité',gen:'Polyvalence',write:'Rédaction',agents:'Projets longs',math:'Maths',memory:'Mémoire',conso:'Consommation',speed:'Rapidité',img:'Images',video:'Vidéo'};
+const TG=[['Créer',['apps','design']],['Sciences',['sci','exp','innov']],['S’informer',['sources','research','fiab']],
+          ['Travailler',['gen','write','agents','math','memory','conso','speed']],['Images & vidéo',['img','video']]];
+TG.forEach(([name,keys])=>{
+  const g=document.createElement('div'); g.className='tgroup';
+  const h=document.createElement('span'); h.className='eyebrow'; h.textContent=name; g.appendChild(h);
+  const box=document.createElement('div'); box.className='tiles';
+  keys.forEach(k=>{
+    const t=T.find(x=>x.k===k); if(!t) return;
+    const b=document.createElement('button');
+    b.type='button'; b.className='tile'; b.id='chip-'+t.k; b.dataset.k=t.k; b.setAttribute('aria-pressed','false');
+    const lead=t.items.find(i=>!i.nr);
+    b.innerHTML='<svg class="ic" aria-hidden="true"><use href="#i-'+t.k+'"/></svg><span class="tl"><span class="tn">'+t.label+'</span><span class="ts">'+(TSHORT[t.k]||t.label)+'</span><small><b>1<sup>er</sup></b> '+short(lead.m)+'</small></span>';
+    b.addEventListener('click',()=>go(t.k,false));
+    box.appendChild(b);
+  });
+  g.appendChild(box); chips.appendChild(g);
+});
+function stickyH(){
+  let h=0; const n=document.querySelector('nav.anchors'); if(n) h+=n.getBoundingClientRect().height;
+  if(getComputedStyle(chips).position==='sticky' && window.innerWidth<=760) h+=chips.getBoundingClientRect().height;
+  return h;
+}
+function centerTile(k){
+  const b=$('chip-'+k); if(!b || chips.scrollWidth<=chips.clientWidth+2) return;
+  chips.scrollTo({left:b.offsetLeft-chips.clientWidth/2+b.offsetWidth/2,behavior:reduce()?'auto':'smooth'});
+}
+function go(k,always){
+  select(k); centerTile(k);
+  const p=$('rankpanel'), top=p.getBoundingClientRect().top, off=stickyH();
+  if(always || top<off-2 || top>window.innerHeight*0.6){
+    window.scrollTo({top:window.scrollY+top-off-8,behavior:reduce()?'auto':'smooth'});
+  }
+}
+(function(){ const n=document.querySelector('nav.anchors'); const setH=()=>document.documentElement.style.setProperty('--navh',(n?n.getBoundingClientRect().height:0)+'px'); setH(); window.addEventListener('resize',setH); })();
+document.querySelectorAll('[data-goto]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.goto,true);}));
+const ord=n=>n===1?'1<sup>er</sup>':n+'<sup>e</sup>';
+function fmtVal(v,u){
+  if(v==null) return '—';
+  if(u==='pts') return Math.round(v).toLocaleString('fr-FR')+' pts';
+  if(u==='%') return v.toFixed(1).replace('.',',')+' %';
+  if(u==='$') return v.toFixed(2).replace('.',',')+' $';
+  if(u==='s'){ if(v<60) return String(v).replace('.',',')+' s'; const t=Math.round(v); return Math.floor(t/60)+' min '+String(t%60).padStart(2,'0'); }
+  return String(v).replace('.',',');
+}
+function barW(t,i,vals){
+  if(t.kind==='editorial') return i.s!=null ? i.s/5*100 : 0;
+  if(i.v==null) return 0;
+  if(t.inv) return Math.max(6,Math.min(100,Math.min(...vals)/i.v*100));
+  const hi=Math.max(...vals), lo=t.lo||0;
+  return Math.max(6,Math.min(100,(i.v-lo)/(hi-lo)*100));
+}
+function row(t,i,n,vals){
+  const li=document.createElement('li');
+  li.className='rk'+(n===1?' top':'')+(i.off?' off':'');
+  const badge = n ? '<span class="rk-n'+(n<=3?' q'+(6-n):'')+'" aria-label="'+n+(n===1?'er':'e')+'">'+ord(n)+'</span>' : '<span class="rk-n nr" aria-hidden="true">·</span>';
+  const val = t.kind==='editorial' ? (i.s!=null?fmt(i.s)+'/5':'—') : fmtVal(i.v,t.unit);
+  const w=barW(t,i,vals);
+  li.innerHTML=badge+
+    '<span class="rk-name"><b>'+i.m+(i.p?' <em class="prov">provisoire</em>':'')+'</b>'+effHTML(t,i)+'<span>'+i.lab+' · '+i.where+'</span></span>'+
+    '<span class="rk-note">'+(i.note||'')+'</span>'+
+    '<span class="bar'+(w?'':' empty')+'" aria-hidden="true"><span class="fill" style="width:'+w+'%"></span></span>'+
+    '<span class="rk-score">'+val+'</span>';
+  return li;
+}
+function select(k){
+  const t=T.find(x=>x.k===k)||T[0];
+  chips.querySelectorAll('.tile').forEach(c=>c.setAttribute('aria-pressed',c.dataset.k===t.k?'true':'false'));
+  $('taskTitle').textContent='Top 10 · '+t.label; $('taskEyebrow').textContent=t.sub; $('taskIcon').setAttribute('href','#i-'+t.k);
+  const sl=$('srcline'); sl.textContent='';
+  const kind=document.createElement('span'); kind.className='badge'+(t.kind==='mesure'?' on':'');
+  kind.textContent=t.kind==='mesure'?'Classement mesuré':'Classement éditorial';
+  sl.appendChild(kind);
+  if(t.kind==='mesure'){
+    const a=document.createElement('a'); a.href=t.url; a.target='_blank'; a.rel='noopener'; a.className='ext'; a.textContent='Source : '+t.src+' ↗'; sl.appendChild(a);
+    if(t.date){ const d=document.createElement('span'); d.textContent='relevé du '+t.date; sl.appendChild(d); }
+    if(t.more){ const m=document.createElement('a'); m.href=t.more; m.className='ext'; m.textContent='Tableau chiffré complet ↓'; sl.appendChild(m); }
+  } else { const d=document.createElement('span'); d.textContent=t.src; sl.appendChild(d); }
+  $('verdict').textContent=t.verdict;
+  const ranked=t.items.filter(i=>!i.nr).slice(0,10), rest=t.items.filter(i=>i.nr);
+  const vals=t.items.filter(i=>i.v!=null).map(i=>i.v);
+  const ol=$('rank'); ol.innerHTML='';
+  ranked.forEach((i,ix)=>ol.appendChild(row(t,i,ix+1,vals)));
+  const ul=$('nrlist'); ul.innerHTML='';
+  rest.forEach(i=>ul.appendChild(row(t,i,0,vals)));
+  $('nrbox').hidden=!rest.length;
+  heat.querySelectorAll('.hm-col').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===t.k?'true':'false'));
+  const ci=HK.indexOf(t.k);
+  heat.querySelectorAll('tbody tr').forEach(tr=>[...tr.children].forEach((c,i)=>c.classList.toggle('sel',ci>=0&&i===ci+1)));
+  store('boussole-usage',t.k);
+}
+const saved=store('boussole-usage');
+select(T.some(t=>t.k===saved)?saved:'sci'); centerTile(T.some(t=>t.k===saved)?saved:'sci');
+
+/* ---------- consommation et rapidité ---------- */
+(function(){
+  const ct=T.find(x=>x.k==='conso'), ol=$('consRank');
+  if(ct&&ol){ const vs=ct.items.filter(i=>i.v!=null).map(i=>i.v); ct.items.filter(i=>!i.nr).slice(0,10).forEach((i,ix)=>ol.appendChild(row(ct,i,ix+1,vs))); }
+  /* modèle, laboratoire, effort, indice, coût par tâche ($), jetons par seconde, délai avant le premier mot (s), temps de réponse (s) */
+  const CS=[
+   ['Claude Opus 5.5','Anthropic','low',42,0.55,83,9.05,15.04],['Claude Opus 5.5','Anthropic','medium',51,1.34,85,19.87,25.77],['Claude Opus 5.5','Anthropic','high',54,1.82,77,51.91,58.40],['Claude Opus 5.5','Anthropic','xhigh',56,3.46,76,141.84,148.42],['Claude Opus 5.5','Anthropic','max',58,5.98,96,679.24,684.46],
+   ['Claude Sonnet 5.5','Anthropic','low',36,0.35,99,1.17,6.23],['Claude Sonnet 5.5','Anthropic','medium',41,0.48,105,2.46,7.21],['Claude Sonnet 5.5','Anthropic','high',47,0.88,103,13.75,18.62],['Claude Sonnet 5.5','Anthropic','xhigh',52,2.01,100,33.61,38.60],['Claude Sonnet 5.5','Anthropic','max',56,5.46,133,437.81,441.58],
+   ['Claude Fable 5.1','Anthropic','low',47,2.37,57,3.05,11.85],['Claude Fable 5.1','Anthropic','medium',49,2.98,54,8.87,18.14],['Claude Fable 5.1','Anthropic','high',51,3.91,55,14.30,23.35],['Claude Fable 5.1','Anthropic','xhigh',53,5.98,63,85.76,93.65],['Claude Fable 5.1','Anthropic','max',53,7.63,72,258.47,265.43],
+   ['GPT-6 Astra','OpenAI','low',46,0.82,42,3.01,14.84],['GPT-6 Astra','OpenAI','medium',50,1.54,44,6.71,17.52],['GPT-6 Astra','OpenAI','high',51,1.73,45,65.82,77.01],['GPT-6 Astra','OpenAI','xhigh',52,2.31,44,168.29,179.58],['GPT-6 Astra','OpenAI','max',53,3.26,44,288.16,299.46],
+   ['GPT-6.1 Sol','OpenAI','low',42,0.13,44,3.44,14.73],['GPT-6.1 Sol','OpenAI','medium',48,0.21,46,5.37,16.15],['GPT-6.1 Sol','OpenAI','high',50,0.32,51,46.77,56.65],['GPT-6.1 Sol','OpenAI','xhigh',51,0.39,51,169.26,179.04],['GPT-6.1 Sol','OpenAI','max',52,0.72,49,301.67,311.98],
+   ['Gemini 4 Argon','Google','high',53,1.99,100,null,47],
+   ['Muse Wonder','Meta','max',52,4.52,161,40.62,56.20],
+   ['Grok 4.7','xAI','low',42,1.25,64,3.87,11.72],['Grok 4.7','xAI','high',46,2.73,77,29.78,36.31],['Grok 4.7','xAI','xhigh',46,3.74,80,75.68,81.96],
+   ['DeepSeek V4.1 Flash','DeepSeek','max',39,0.27,177,1.13,15.29],['DeepSeek V4.1 Flash','DeepSeek','none',25,0.15,175,1.13,3.98]
+  ];
+  const tb=$('csTable'), cnt=$('csCount'), only=$('only50');
+  if(!tb) return;
+  let key='total', only50=false;
+  const maxC=Math.max(...CS.map(r=>r[4]));
+  const money=v=>v.toFixed(2).replace('.',',')+' $';
+  const tf=v=>{ if(v==null) return '—'; if(v<10) return v.toFixed(1).replace('.',',')+' s'; const t=Math.round(v); return t<60?t+' s':Math.floor(t/60)+' min '+String(t%60).padStart(2,'0'); };
+  const gauge=n=>{let g='<span class="eg" aria-hidden="true">';for(let k=1;k<=5;k++)g+='<i'+(k<=n?' class="on"':'')+'></i>';return g+'</span>';};
+  const cmp={total:(a,b)=>a[7]-b[7],cost:(a,b)=>a[4]-b[4],idx:(a,b)=>b[3]-a[3]||a[4]-b[4],model:(a,b)=>a[0].localeCompare(b[0],'fr')||a[3]-b[3]};
+  function render(){
+    const rows=CS.filter(r=>!only50||r[3]>=50).sort(cmp[key]);
+    tb.innerHTML=rows.map(r=>{
+      const e=ELAB[r[2]];
+      return '<tr'+(r[3]>=50?' class="ok"':'')+'><th scope="row">'+r[0]+'<small>'+r[1]+'</small></th>'+
+        '<td><span class="cs-eff">'+(e?gauge(e[1])+e[0]:'sans raisonnement')+'</span></td>'+
+        '<td class="n">'+r[3]+'</td>'+
+        '<td class="n">'+money(r[4])+'<span class="mb" aria-hidden="true"><i style="width:'+(r[4]/maxC*100).toFixed(1)+'%"></i></span></td>'+
+        '<td class="n">'+tf(r[7])+'</td><td class="n">'+r[5]+'</td><td class="n">'+tf(r[6])+'</td></tr>';
+    }).join('');
+    cnt.textContent='· '+rows.length+' lignes';
+  }
+  document.querySelectorAll('[data-sort]').forEach(b=>b.addEventListener('click',()=>{
+    key=b.dataset.sort; document.querySelectorAll('[data-sort]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false')); render();
+  }));
+  only.addEventListener('click',()=>{ only50=!only50; only.setAttribute('aria-pressed',only50?'true':'false'); render(); });
+  render();
+})();
+
+
+/* ---------- copier le modèle de fiche de contexte ---------- */
+const cbtn=$('copyTpl'), tpl=$('tpl');
+if(cbtn&&tpl){
+  cbtn.addEventListener('click',()=>{
+    const done=()=>{ cbtn.textContent='Copié'; setTimeout(()=>{ cbtn.textContent='Copier le modèle'; },2000); };
+    const fallback=()=>{ const r=document.createRange(); r.selectNodeContents(tpl); const sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r); cbtn.textContent='Texte sélectionné'; };
+    try{ navigator.clipboard.writeText(tpl.textContent).then(done,fallback); }catch(e){ fallback(); }
+  });
+}
+bindTips(document.getElementById('optimiser'));
+
+/* ---------- nuage qualité-prix ---------- */
+const F=[
+ {n:'Opus 5.5',full:'Claude Opus 5.5',g:'a',p:[[1.34,51,'moyen'],[1.82,54,'élevé'],[3.46,56,'très élevé'],[5.98,58,'maximal']],l:{dx:0,dy:-13,a:'middle'}},
+ {n:'Sonnet 5.5',full:'Claude Sonnet 5.5',g:'a',p:[[2.01,52,'très élevé'],[5.46,56,'maximal']],l:{dx:10,dy:4,a:'start'}},
+ {n:'Fable 5.1',full:'Claude Fable 5.1',g:'a',p:[[2.98,49,'moyen'],[3.91,51,'élevé'],[5.98,53,'très élevé'],[7.63,53,'maximal']],l:{dx:0,dy:20,a:'middle'}},
+ {n:'GPT-6 Astra',full:'GPT-6 Astra',g:'o',p:[[1.54,50,'moyen'],[1.73,51,'élevé'],[2.31,52,'très élevé'],[3.26,53,'maximal']],l:{dx:-10,dy:-8,a:'end'}},
+ {n:'GPT-6.1 Sol',full:'GPT-6.1 Sol',g:'o',p:[[0.32,50,'élevé'],[0.39,51,'très élevé'],[0.72,52,'maximal']],l:{dx:10,dy:4,a:'start'}},
+ {n:'Gemini 4 Argon',full:'Gemini 4 Argon (Google), tarif de lancement',g:'x',p:[[1.99,53,'élevé']],l:{dx:0,dy:-28,a:'middle'}},
+ {n:'Muse Wonder',full:'Muse Wonder (Meta)',g:'x',p:[[4.52,52,'maximal']],l:{dx:10,dy:8,a:'start'}},
+ {n:'Grok 4.7',full:'Grok 4.7 (xAI)',g:'x',p:[[3.74,46,'très élevé']],l:{dx:-10,dy:4,a:'end'}},
+ {n:'Qwen3.8 Max',full:'Qwen3.8 Max (Alibaba)',g:'x',p:[[5.41,45,'']],l:{dx:10,dy:4,a:'start'}},
+ {n:'Kimi K3',full:'Kimi K3 (Moonshot)',g:'x',p:[[2.00,44,'maximal']],l:{dx:-10,dy:4,a:'end'}},
+ {n:'DeepSeek V4.1 Flash',full:'DeepSeek V4.1 Flash',g:'x',p:[[0.27,39,'maximal']],l:{dx:10,dy:4,a:'start'}},
+ {n:'DeepSeek V4 Pro',full:'DeepSeek V4 Pro',g:'x',p:[[0.67,36,'maximal']],l:{dx:10,dy:4,a:'start'}},
+ {n:'Mistral Large 4',full:'Mistral Large 4 (aperçu)',g:'x',p:[[1.13,38,'']],l:{dx:10,dy:4,a:'start'}},
+ {n:'Gemini 3.1 Pro',full:'Gemini 3.1 Pro (Google)',g:'x',p:[[1.30,30,'']],l:{dx:10,dy:4,a:'start'}}
+];
+const COL={a:'var(--s1)',o:'var(--s2)',x:'var(--s3)'};
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function marker(g,x,y,grp,r){
+  if(grp==='a') return el('circle',{cx:x,cy:y,r:r,fill:COL.a,stroke:'var(--surface)','stroke-width':2},g);
+  if(grp==='o') return el('rect',{x:x-r,y:y-r,width:2*r,height:2*r,rx:1.5,fill:COL.o,stroke:'var(--surface)','stroke-width':2},g);
+  const d=r*1.25; return el('path',{d:'M'+x+' '+(y-d)+' L'+(x+d)+' '+y+' L'+x+' '+(y+d)+' L'+(x-d)+' '+y+' Z',fill:COL.x,stroke:'var(--surface)','stroke-width':2},g);
+}
+const box=$('chart');
+const tt=document.createElement('div'); tt.className='tt'; tt.hidden=true; box.appendChild(tt);
+function draw(){
+  box.querySelectorAll('svg').forEach(s=>s.remove());
+  const W=Math.max(box.clientWidth,620), H=W<760?380:420;
+  const m={l:46,r:18,t:22,b:46};
+  const pw=W-m.l-m.r, ph=H-m.t-m.b;
+  const lx0=Math.log10(0.2), lx1=Math.log10(10), y0=28, y1=60;
+  const X=v=>m.l+(Math.log10(v)-lx0)/(lx1-lx0)*pw;
+  const Y=v=>m.t+(y1-v)/(y1-y0)*ph;
+  const svg=el('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H});
+  box.insertBefore(svg,tt);
+  const grid=el('g',{},svg);
+  [30,35,40,45,50,55,60].forEach(v=>{
+    el('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'var(--grid)','stroke-width':1},grid);
+    const t=el('text',{x:m.l-8,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:'var(--muted)','font-variant-numeric':'tabular-nums'},grid); t.textContent=v;
+  });
+  [0.25,0.5,1,2,5,10].forEach(v=>{
+    el('line',{x1:X(v),x2:X(v),y1:m.t,y2:H-m.b,stroke:'var(--grid)','stroke-width':1},grid);
+    const t=el('text',{x:X(v),y:H-m.b+17,'text-anchor':'middle','font-size':11,fill:'var(--muted)'},grid); t.textContent=String(v).replace('.',',')+' $';
+  });
+  el('line',{x1:m.l,x2:W-m.r,y1:H-m.b,y2:H-m.b,stroke:'var(--axis)','stroke-width':1},grid);
+  const xt=el('text',{x:m.l+pw,y:H-8,'text-anchor':'end','font-size':11.5,fill:'var(--muted)'},grid); xt.textContent='Coût par tâche (échelle logarithmique) →';
+  const yt=el('text',{x:m.l,y:12,'text-anchor':'start','font-size':11.5,fill:'var(--muted)'},grid); yt.textContent='↑ Indice d’intelligence Artificial Analysis';
+  const lines=el('g',{},svg), marks=el('g',{},svg), labels=el('g',{},svg), hits=el('g',{},svg);
+  F.forEach(f=>{
+    if(f.p.length>1) el('polyline',{points:f.p.map(q=>X(q[0])+','+Y(q[1])).join(' '),fill:'none',stroke:COL[f.g],'stroke-width':2,'stroke-linejoin':'round',opacity:.85},lines);
+    f.p.forEach((q,i)=>{
+      const last=i===f.p.length-1;
+      marker(marks,X(q[0]),Y(q[1]),f.g,last?5:3.5);
+      const h=el('circle',{cx:X(q[0]),cy:Y(q[1]),r:13,fill:'transparent',tabindex:0,role:'button','aria-label':f.full+(q[2]?', effort '+q[2]:'')+', indice '+q[1]+', '+String(q[0]).replace('.',',')+' dollars par tâche'},hits);
+      h.style.cursor='pointer';
+      const show=()=>{
+        tt.innerHTML='<b>'+f.full+'</b>'+(q[2]?' · effort '+q[2]:'')+'<br>Indice '+q[1]+' · '+q[0].toFixed(2).replace('.',',')+' $ par tâche';
+        tt.style.left=(X(q[0])/W*box.clientWidth)+'px'; tt.style.top=(Y(q[1])/H*box.clientHeight)+'px'; tt.hidden=false;
+      };
+      h.addEventListener('pointerenter',show); h.addEventListener('focus',show); h.addEventListener('click',show);
+      h.addEventListener('pointerleave',()=>tt.hidden=true); h.addEventListener('blur',()=>tt.hidden=true);
+    });
+    const q=f.p[f.p.length-1];
+    const t=el('text',{x:X(q[0])+f.l.dx,y:Y(q[1])+f.l.dy,'text-anchor':f.l.a,'font-size':12,'font-weight':f.g==='x'?400:600,fill:'var(--ink)'},labels);
+    t.textContent=f.n;
+  });
+}
+draw();
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(draw,120);});
+})();
+</script>
+
+</body>
+</html>
