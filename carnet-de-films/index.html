@@ -1,5 +1,4 @@
 <!doctype html><html lang="fr"><head><title>Ciné-club</title><meta name="description" content="Le carnet de films partagé : notes, listes et conseils entre amis."><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Ciné-club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Limelight&display=swap">
@@ -872,6 +871,9 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
 .mview{width:100%;margin:2px 0 4px;}
 .mh{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
 
+.tretry{font:600 13px/1 var(--font);margin-left:6px;padding:7px 11px;border-radius:99px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer;}
+.impl{margin:0;padding-left:18px;font-size:14px;display:grid;gap:3px;}
+
 body.vide:not(.autre) #filters{display:flex;}
 body:not(.vide) .minis.cats{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:6px;padding:2px 2px 6px;scrollbar-width:none;}
 body:not(.vide) .minis.cats::-webkit-scrollbar{display:none;}
@@ -1165,7 +1167,9 @@ body:not(.vide) .toc{margin-top:8px;}
 (function(){
   var CFG = { apiKey:"AIzaSyAjvzP8i2UYZxJqfJUygmCq1jo3sSoVZys", authDomain:"cineclub-displotdoscul.firebaseapp.com", projectId:"cineclub-displotdoscul",
     storageBucket:"cineclub-displotdoscul.firebasestorage.app", messagingSenderId:"638647051579", appId:"1:638647051579:web:32ea9cf25fb3ece88e431e" };
-  var ADMIN_EMAIL = "shaman.harp@gmail.com";
+  // Administratrice reconnue par l'empreinte (SHA-256) de son adresse : l'adresse elle-même n'apparaît pas dans la page.
+  var ADMIN_SHA = "65c788e6acf1bcd06aca88fd2ff5d057db1a7ebe900419c2daec3e35c77673a2";
+  function sha(t){ try { return crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)).then(function(b){ return Array.prototype.map.call(new Uint8Array(b), function(x){ return (x < 16 ? "0" : "") + x.toString(16); }).join(""); }); } catch (e) { return Promise.resolve(""); } }
   function ls(k, v){ try { if (v === undefined) return localStorage.getItem(k); if (v === null || v === "") localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} return null; }
   var CC = window.CC = { uid:"", admin:false, me:null, meLoaded:false, profils:{}, hooks:[], lsKey:"-" + (ls("ccUid") || "anon"), view:"", viewName:"" };
   // Visite du carnet d'un autre membre (en lecture seule), gardée le temps de l'onglet.
@@ -1178,6 +1182,10 @@ body:not(.vide) .toc{margin-top:8px;}
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]; }); }
   function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
   CC.slug = function(p){ return norm(p).split(/\s+/)[0].replace(/[^a-z0-9]/g, "") || "ami"; };
+  // Identifiant stable d'un membre : « pid » (ancien prénom pour les comptes d'avant, « m_ » + compte pour les nouveaux).
+  CC.pidOf = function(p){ return p ? String(p.pid || p.slug || "") : ""; };
+  CC.pid = function(){ return CC.pidOf(CC.me); };
+  CC.nameOfPid = function(pid){ var P = CC.profils; for (var u in P) if (CC.pidOf(P[u]) === pid) return P[u].pseudo || ""; return ""; };
   if (!window.firebase || !firebase.initializeApp) {
     window.claude.use = function(){ return Promise.resolve(null); };
     return;
@@ -1208,8 +1216,11 @@ body:not(.vide) .toc{margin-top:8px;}
       });
     });
   }).then(function(u){
+    return (u && u.email && u.emailVerified ? sha(String(u.email).toLowerCase()) : Promise.resolve("")).then(function(h){ return [u, h]; });
+  }).then(function(uh){
+    var u = uh[0];
     CC.uid = u ? u.uid : ""; CC.user = u || null;
-    CC.admin = !!(u && u.email === ADMIN_EMAIL && u.emailVerified);
+    CC.admin = !!(u && uh[1] === ADMIN_SHA);
     // Chaque compte a sa propre mémoire locale : on recharge une fois si elle ne correspond pas.
     if ((ls("ccUid") || "") !== CC.uid) { ls("ccUid", CC.uid); location.reload(); return new Promise(function(){}); }
     if (CC.view && !CC.uid) { CC.exitView(); return new Promise(function(){}); }
@@ -1222,7 +1233,7 @@ body:not(.vide) .toc{margin-top:8px;}
     var o = {}; Object.keys(CC.profils).forEach(function(u){ if (u !== CC.uid) o[u] = [CC.profils[u].pseudo, CC.profils[u].rep]; });
     return JSON.stringify(o) + "|" + ((CC.me || {}).pseudo || "");
   }
-  var SIG = "";
+  var SIG = "", PIDFIX = false;
   boot.then(function(){
     paintBar();
     if (!CC.uid) return;
@@ -1235,10 +1246,11 @@ body:not(.vide) .toc{margin-top:8px;}
       meCbs.forEach(function(f){ try { f(); } catch (e) {} });
       paintBar();
       if (firstLoad && !CC.me) openLogin();
+      if (CC.me && !CC.me.pid && !PIDFIX) { PIDFIX = true; fs.collection("profils").doc(CC.uid).update({ pid:CC.me.slug || ("m_" + CC.uid) }).catch(function(){ PIDFIX = false; }); }
       var sg = otherSig();
       if (sg !== SIG) { SIG = sg; CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); }
       if (!$("msheet").hidden) renderMembers();
-    }, function(){});
+    }, function(e){ CC.loadErr && CC.loadErr("les profils des membres", e); });
   });
 
   // « reponses » et « maliste » : ranges dans le profil de la personne connectée, vus par le carnet comme des collections.
@@ -1285,7 +1297,7 @@ body:not(.vide) .toc{margin-top:8px;}
       set:function(d){ var x = clean(d); if (inject) x.uid = CC.uid; return r.set(x).catch(mapErr); },
       update:function(d){ return r.update(clean(d)).catch(mapErr); },
       delete:function(){ return r.delete().catch(mapErr); } }; }
-    function wq(q){ return { limit:function(n){ return wq(q.limit(n)); }, onSnapshot:function(a, b){ return q.onSnapshot(a, b); }, doc:function(id){ return wd(c.doc(id)); } }; }
+    function wq(q){ return { limit:function(){ return wq(q); }, onSnapshot:function(a, b){ return q.onSnapshot(a, b); }, doc:function(id){ return wd(c.doc(id)); } }; }
     return wq(c);
   }
   window.claude.use = function(what){
@@ -1330,7 +1342,7 @@ body:not(.vide) .toc{margin-top:8px;}
       h = '<h3>' + esc(CC.me.pseudo) + '</h3><p class="sh-note">Connecté' + (CC.user && CC.user.email ? " avec " + esc(CC.user.email) : "") + (CC.admin ? " · tu gères le carnet" : "") + '</p>' +
         '<label class="ccl"><span>Changer de pseudo</span><input type="text" id="ccPseudo" class="ccin" maxlength="30" value="' + esc(CC.me.pseudo) + '"></label>' +
         '<div class="plf-b"><button type="button" class="plf-ok" id="ccSave">Enregistrer</button><button type="button" class="plf-no" id="ccOut">Se déconnecter</button></div>' +
-        (CC.admin ? '<div class="ccadm"><b>Importer mes données</b><span class="sh-note">Le fichier préparé par Claude (films, réponses, liste, playlists).</span><input type="file" id="ccFile" accept=".json,application/json"></div>' : "");
+        (CC.admin ? '<div class="ccadm"><b>Importer des données</b><span class="sh-note">Un fichier préparé par Claude (films, réponses, liste, playlists). Tu verras ce qui sera ajouté ou remplacé avant toute écriture.</span><input type="file" id="ccFile" accept=".json,application/json"><div id="ccImp"></div></div>' : "");
     }
     $("lsheetBody").innerHTML = h + '<p class="sh-note" id="ccNote"></p><div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
   }
@@ -1338,13 +1350,13 @@ body:not(.vide) .toc{margin-top:8px;}
     var p = ($("ccPseudo").value || "").trim().replace(/\s+/g, " ").slice(0, 30);
     if (!p) { note("Écris un prénom ou un pseudo.", true); return; }
     p = p.charAt(0).toUpperCase() + p.slice(1);
-    var slug = CC.admin ? "licia" : CC.slug(p);
-    var taken = Object.keys(CC.profils).some(function(u){ return u !== CC.uid && CC.profils[u].slug === slug; });
-    if (taken) { note("Ce prénom est déjà pris : ajoute une initiale (par exemple « " + p + " B. »).", true); return; }
-    var ref = fs.collection("profils").doc(CC.uid);
+    var same = function(x){ return norm(x).trim().replace(/\s+/g, " "); };
+    var taken = Object.keys(CC.profils).some(function(u){ return u !== CC.uid && same(CC.profils[u].pseudo || "") === same(p); });
+    if (taken) { note("Ce pseudo est déjà celui d'un autre membre : choisis-en un un peu différent.", true); return; }
+    var ref = fs.collection("profils").doc(CC.uid), isNew = !CC.me, pid = CC.admin ? "licia" : "m_" + CC.uid;
     note("Enregistrement…");
-    var w = CC.me ? ref.update({ pseudo:p, slug:slug }) : ref.set({ pseudo:p, slug:slug, rep:{}, liste:{}, cree:new Date().toISOString() });
-    w.then(function(){ if (!CC.me || slug !== CC.me.slug) location.reload(); else { note("C'est enregistré."); } }, function(){ note("Pas enregistré, réessaie dans un instant.", true); });
+    var w = isNew ? ref.set({ pseudo:p, pid:pid, slug:pid, rep:{}, liste:{}, cree:new Date().toISOString() }) : ref.update({ pseudo:p });
+    w.then(function(){ if (isNew) location.reload(); else note("C'est enregistré."); }, function(){ note("Pas enregistré, réessaie dans un instant.", true); });
   }
   function sendLink(){
     var em = ($("ccEmail").value || "").trim();
@@ -1362,30 +1374,111 @@ body:not(.vide) .toc{margin-top:8px;}
       else if (!(e && e.code === "auth/popup-closed-by-user")) note("La connexion Google n'a pas marché, essaie le lien par e-mail.", true);
     });
   }
+  // ---------- Import encadré (réservé à l'administratrice) ----------
+  // Validation, aperçu (ajouts / remplacements), sauvegarde téléchargeable, lots suivis et reprise sans doublon (identifiants fixes).
+  var IMP = null;
+  function isObj(x){ return x && typeof x === "object" && !Array.isArray(x); }
+  function validateImport(o){
+    var errs = [];
+    if (!isObj(o)) return ["Le fichier ne contient pas un objet."];
+    var allowed = ["catalogue", "reponses", "maliste", "conseils", "commentaires", "idees", "propositions"];
+    Object.keys(o).forEach(function(k){ if (allowed.indexOf(k) < 0) errs.push("Partie inconnue : « " + k + " »."); });
+    allowed.forEach(function(k){ if (o[k] != null && !isObj(o[k])) errs.push("« " + k + " » doit être un objet."); });
+    Object.keys(o.catalogue || {}).forEach(function(id){
+      var d = o.catalogue[id];
+      if (!isObj(d)) errs.push("Liste « " + id + " » invalide.");
+      else if (d.films != null && !Array.isArray(d.films)) errs.push("Liste « " + id + " » : « films » doit être un tableau.");
+    });
+    Object.keys(o.reponses || {}).forEach(function(id){
+      var r = o.reponses[id];
+      if (!isObj(r) || (r.etat != null && typeof r.etat !== "string") || (r.note10 != null && typeof r.note10 !== "number")) errs.push("Réponse « " + id + " » invalide.");
+    });
+    ["conseils", "commentaires", "idees", "propositions"].forEach(function(c){
+      Object.keys(o[c] || {}).forEach(function(id){ if (!isObj(o[c][id])) errs.push(c + " « " + id + " » invalide."); });
+    });
+    Object.keys(o).forEach(function(k){ if (isObj(o[k])) Object.keys(o[k]).forEach(function(id){ if (!/^[A-Za-z0-9_\-.~:@+]{1,200}$/.test(id) || /^\.\.?$/.test(id)) errs.push("Identifiant non valable : « " + id + " »."); }); });
+    return errs.slice(0, 12);
+  }
+  function hashStr(s){ var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36) + "-" + s.length; }
+  function download(name, obj){
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(obj, null, 1)], { type:"application/json" }));
+    a.download = name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
   function importFile(file){
     if (!CC.admin || !file) return;
     var r = new FileReader();
     r.onload = function(){
-      var o; try { o = JSON.parse(r.result); } catch (e) { note("Ce fichier n'est pas lisible.", true); return; }
-      note("Import en cours…");
-      var jobs = [], b = fs.batch(), n = 0;
-      function add(ref, data, merge){ if (merge) b.set(ref, data, { merge:true }); else b.set(ref, data); if (++n >= 400) { jobs.push(b.commit()); b = fs.batch(); n = 0; } }
-      Object.keys(o.catalogue || {}).forEach(function(id){ add(fs.collection("films").doc(id), o.catalogue[id]); });
-      ["conseils", "commentaires", "idees", "propositions"].forEach(function(c){
-        Object.keys(o[c] || {}).forEach(function(id){ add(fs.collection(c).doc(id), Object.assign({}, o[c][id], { uid:CC.uid })); });
-      });
-      add(fs.collection("profils").doc(CC.uid), { rep:o.reponses || {}, liste:o.maliste || {} }, true);
-      jobs.push(b.commit());
-      Promise.all(jobs).then(function(){ note("Import terminé : " + Object.keys(o.catalogue || {}).length + " listes, " + Object.keys(o.reponses || {}).length + " réponses. La page va se recharger."); setTimeout(function(){ location.reload(); }, 2500); },
-        function(e){ note("L'import a échoué" + (e && e.code === "permission-denied" ? " : connecte-toi avec ton adresse Gmail." : ", réessaie."), true); });
+      var o; try { o = JSON.parse(r.result); } catch (e) { note("Ce fichier n'est pas lisible (JSON invalide).", true); return; }
+      var errs = validateImport(o);
+      if (errs.length) { note("Import refusé, rien n'a été écrit. " + errs.join(" "), true); return; }
+      note("Lecture des données actuelles pour l'aperçu…");
+      var cols = ["films", "conseils", "commentaires", "idees", "propositions"], src = { films:"catalogue" };
+      Promise.all(cols.map(function(c){ return fs.collection(c).get().then(function(s){ var m = {}; s.docs.forEach(function(d){ m[d.id] = d.data(); }); return m; }); })).then(function(cur){
+        var CUR = {}; cols.forEach(function(c, i){ CUR[c] = cur[i]; });
+        var me = CC.me || {}, ops = [], prev = { films:{}, conseils:{}, commentaires:{}, idees:{}, propositions:{}, rep:{}, liste:{} }, stat = {};
+        cols.forEach(function(c){
+          var part = o[src[c] || c] || {}, add = 0, rep = 0;
+          Object.keys(part).forEach(function(id){
+            if (CUR[c][id]) { rep++; prev[c][id] = CUR[c][id]; } else add++;
+            var data = c === "films" ? part[id] : Object.assign({}, part[id], { uid:CC.uid });
+            ops.push({ c:c, id:id, data:data });
+          });
+          stat[c] = [add, rep];
+        });
+        ["rep", "liste"].forEach(function(f){
+          var part = o[f === "rep" ? "reponses" : "maliste"] || {}, add = 0, rep = 0;
+          Object.keys(part).forEach(function(id){ if (me[f] && me[f][id]) { rep++; prev[f][id] = me[f][id]; } else add++; });
+          stat[f] = [add, rep];
+          var ids = Object.keys(part);
+          for (var i = 0; i < ids.length; i += 300) {
+            var chunk = {}; ids.slice(i, i + 300).forEach(function(id){ chunk[id] = part[id]; });
+            var d = {}; d[f] = chunk; ops.push({ c:"profils", id:CC.uid, data:d, merge:true });
+          }
+        });
+        var job = "ccImport-" + hashStr(r.result), batches = [];
+        var BS = window.__IMPB || 300;
+        for (var i = 0; i < ops.length; i += BS) batches.push(ops.slice(i, i + BS));
+        IMP = { job:job, batches:batches, prev:prev, done:JSON.parse(ls(job) || "[]") };
+        var L = { films:"listes de films", conseils:"conseils", commentaires:"commentaires", idees:"idées", propositions:"propositions", rep:"réponses", liste:"films de ta liste" };
+        var lines = Object.keys(L).filter(function(k){ return stat[k] && (stat[k][0] || stat[k][1]); }).map(function(k){ return "<li><b>" + L[k] + "</b> : " + stat[k][0] + " ajout(s), " + stat[k][1] + " remplacement(s)</li>"; });
+        $("ccImp").innerHTML = '<p class="sh-note">Ce fichier va écrire :</p><ul class="impl">' + lines.join("") + '</ul>' +
+          (IMP.done.length ? '<p class="sh-note">Un import de ce même fichier s\'est arrêté en cours : ' + IMP.done.length + ' lot(s) sur ' + batches.length + ' déjà écrits. « Importer » reprendra la suite.</p>' : "") +
+          '<div class="plf-b"><button type="button" class="plf-no" id="ccBackup">Télécharger une sauvegarde</button><button type="button" class="plf-ok" id="ccImpGo">Importer</button><button type="button" class="plf-no" id="ccImpNo">Annuler</button></div>';
+        note("Rien n'est encore écrit. Télécharge d'abord la sauvegarde des données qui seront remplacées.");
+      }, function(){ note("Impossible de lire les données actuelles : vérifie ta connexion et que tu es connectée avec ton adresse Gmail.", true); });
     };
     r.readAsText(file);
+  }
+  function runImport(){
+    if (!IMP) return;
+    var i = 0, n = IMP.batches.length, ok = IMP.done.slice();
+    function next(){
+      while (i < n && ok.indexOf(i) >= 0) i++;
+      if (i >= n) { ls(IMP.job, null); $("ccImp").innerHTML = ""; note("Import terminé : " + n + " lot(s) écrits. La page va se recharger."); IMP = null; setTimeout(function(){ location.reload(); }, 2000); return; }
+      note("Écriture du lot " + (i + 1) + " sur " + n + "…");
+      var b = fs.batch();
+      IMP.batches[i].forEach(function(op){ var ref = fs.collection(op.c).doc(op.id); if (op.merge) b.set(ref, op.data, { merge:true }); else b.set(ref, op.data); });
+      b.commit().then(function(){ ok.push(i); IMP.done = ok; ls(IMP.job, JSON.stringify(ok)); i++; next(); }, function(e){
+        note("Import partiel : " + ok.length + " lot(s) sur " + n + " écrits, le lot " + (i + 1) + " a échoué" + (e && e.code === "permission-denied" ? " (droits refusés)" : "") +
+          ". Touche « Importer » pour reprendre : les lots déjà écrits ne seront pas refaits.", true);
+      });
+    }
+    next();
   }
   // Membres : la liste, puis le profil de chacun (ses films vus et ses notes).
   var MSEL = "";
   CC.openMembers = function(uid){ MSEL = uid || ""; renderMembers(); sheetOpen("msheet"); $("msheet").scrollTop = 0; };
   var LAB = { vu:"Vu", pas_fini:"Pas fini", oublie:"Oublié", pas_vu:"Pas vu" };
   function fmtN(n){ return String(Math.round((+n || 0) * 10) / 10).replace(".", ","); }
+  function linkHtml(u){
+    var used = {}; Object.keys(CC.profils).forEach(function(x){ used[CC.pidOf(CC.profils[x])] = 1; });
+    var free = (CC.playlists || []).filter(function(p){ return !used[p.prenom]; });
+    if (!free.length) return "";
+    return '<div class="ccadm"><b>Relier à une playlist existante</b><span class="sh-note">Si ce membre est l\'auteur d\'une ancienne playlist, relie-la à son compte.</span>' +
+      '<select id="ccLink" class="ccin"><option value="">Choisir…</option>' + free.map(function(p){ return '<option value="' + esc(p.prenom) + '">' + esc(p.titre || p.prenom) + '</option>'; }).join("") + '</select>' +
+      '<div class="plf-b"><button type="button" class="plf-no" data-mlink="' + esc(u) + '">Relier</button></div></div>';
+  }
   function renderMembers(){
     var P = CC.profils, h = "";
     if (!MSEL || !P[MSEL]) {
@@ -1403,6 +1496,7 @@ body:not(.vide) .toc{margin-top:8px;}
       h = '<button type="button" class="plf-no" data-msel="">‹ Tous les membres</button><h3>' + esc(p.pseudo) + '</h3>' +
         (MSEL !== CC.uid && MSEL !== CC.view ? '<button type="button" class="plf-ok mview" data-mview="' + esc(MSEL) + '">📖 Ouvrir le carnet ' + (/^[aeiouyéèêh]/i.test(p.pseudo) ? "d'" : "de ") + esc(p.pseudo) + '</button>' : "") +
         (CC.view && MSEL === CC.uid ? '<button type="button" class="plf-ok mview" data-mback="1">📖 Revenir à mon carnet</button>' : "") +
+        (CC.admin && MSEL !== CC.uid ? linkHtml(MSEL) : "") +
         '<p class="sh-note">' + noted.length + ' film' + (noted.length > 1 ? "s" : "") + ' noté' + (noted.length > 1 ? "s" : "") + ' · ' + others.length + ' autre' + (others.length > 1 ? "s" : "") + ' réponse' + (others.length > 1 ? "s" : "") + '. Touche un film pour le retrouver dans le carnet.</p>' +
         (noted.length ? '<div class="mlist">' + noted.map(row).join("") + '</div>' : "") +
         (others.length ? '<div class="mh">Sans note</div><div class="mlist">' + others.map(row).join("") + '</div>' : "") +
@@ -1419,6 +1513,10 @@ body:not(.vide) .toc{margin-top:8px;}
     if (t.closest("#ccGoogle")) { google(); return; }
     if (t.closest("#ccSave")) { saveProfile(); return; }
     if (t.closest("#ccOut")) { auth.signOut(); return; }
+    if (t.closest("#ccBackup")) { if (IMP) { download("cineclub-sauvegarde-" + new Date().toISOString().slice(0, 10) + ".json", IMP.prev); note("Sauvegarde téléchargée. Tu peux maintenant importer."); } return; }
+    if (t.closest("#ccImpGo")) { runImport(); return; }
+    if (t.closest("#ccImpNo")) { IMP = null; $("ccImp").innerHTML = ""; note("Import annulé, rien n'a été écrit."); return; }
+    var lk = t.closest("[data-mlink]"); if (lk) { var sel = $("ccLink"); if (sel && sel.value) fs.collection("profils").doc(lk.dataset.mlink).update({ pid:sel.value }).then(function(){ renderMembers(); }, function(){ alert("Pas enregistré."); }); return; }
     var ms = t.closest("[data-msel]"); if (ms) { MSEL = ms.dataset.msel; renderMembers(); $("msheet").scrollTop = 0; return; }
     var mv = t.closest("[data-mview]"); if (mv) { CC.enterView(mv.dataset.mview); return; }
     if (t.closest("[data-mback]")) { CC.exitView(); return; }
@@ -1553,7 +1651,7 @@ body:not(.vide) .toc{margin-top:8px;}
   var HOST = "pl-ajouts", HOSTRAW = null;
   // Conseils à envoyer : quand on ne peut pas écrire dans le carnet, les conseils attendent ici (dans ce navigateur)
   // puis partent par message ; la propriétaire colle ce message dans le carnet pour les valider.
-  var ENV_KEY = "carnetEnvoiV1" + GSFX, ENVOI = [];
+  var ENV_KEY = "carnetEnvoiV1" + GSFX + CCK, ENVOI = [];
   try { ENVOI = JSON.parse(localStorage.getItem(ENV_KEY) || "[]"); if (!Array.isArray(ENVOI)) ENVOI = []; } catch (e) { ENVOI = []; }
   ENVOI = ENVOI.filter(function(x){ return x && x.pid && x.t; });
   function keepEnvoi(){ try { localStorage.setItem(ENV_KEY, JSON.stringify(ENVOI)); } catch (e) {} }
@@ -1572,7 +1670,7 @@ body:not(.vide) .toc{margin-top:8px;}
     return FORM.url + "?" + q.join("&");
   }
   // Conseils envoyés par le formulaire depuis ce navigateur, en attendant qu'ils arrivent dans la playlist.
-  var FS_KEY = "carnetFormV1" + GSFX, FSENT = {};
+  var FS_KEY = "carnetFormV1" + GSFX + CCK, FSENT = {};
   try { FSENT = JSON.parse(localStorage.getItem(FS_KEY) || "{}") || {}; } catch (e) { FSENT = {}; }
   function keepFsent(){ try { localStorage.setItem(FS_KEY, JSON.stringify(FSENT)); } catch (e) {} }
   function person(pid){ return PEOPLE.filter(function(x){ return x.id === pid; })[0] || { id:pid, label:pid === "_" ? "Quelqu'un d'autre" : pid, sid:"" }; }
@@ -1764,6 +1862,15 @@ body:not(.vide) .toc{margin-top:8px;}
   function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/œ/g, "oe").replace(/æ/g, "ae"); }
 
   var TOAST_T = null;
+  // Erreur de chargement : un message clair avec « Réessayer » (recharge la page).
+  function loadErr(what, e){
+    var t = $("toast"); if (!t) return;
+    var off = navigator.onLine === false || (e && e.code === "unavailable");
+    t.innerHTML = esc((off ? "Pas de connexion : " : "Chargement impossible : ") + what + (off ? " s'afficheront au retour du réseau." : ".")) + ' <button type="button" class="tretry" data-retry="1">Réessayer</button>';
+    t.className = "toast err"; t.hidden = false; clearTimeout(TOAST_T);
+  }
+  if (window.CC) CC.loadErr = function(w, e){ loadErr(w, e); };
+  document.addEventListener("click", function(ev){ if (ev.target.closest && ev.target.closest("[data-retry]")) location.reload(); });
   function setStatus(text, isErr){
     var el = $("status"); el.textContent = text || ""; el.className = "status" + (isErr ? " err" : "");
     // Quand le haut de la page n'est plus à l'écran, le message s'affiche aussi en bas, quelques secondes.
@@ -1842,7 +1949,7 @@ body:not(.vide) .toc{margin-top:8px;}
     var open = OPEN_PL === f.sid + "|" + f.id;
     var plb = PEOPLE.length || useForm() || ROLE !== "lecteur" ? '<button type="button" class="plb" data-pl="1" aria-expanded="' + open + '">♡ Conseiller</button>' : "";
     var plc = (PEOPLE.length || useForm() || ROLE !== "lecteur") && open ? '<div class="plc" role="group" aria-label="Qui conseille ce film ?"><span class="plq">Qui donne son avis ?</span>' +
-      (CCM() ? PEOPLE.filter(function(p){ return CC.me && p.id === CC.me.slug; }) : PEOPLE).map(function(p){
+      (CCM() ? PEOPLE.filter(function(p){ return CC.me && p.id === CC.pid(); }) : PEOPLE).map(function(p){
         var on = !!(CONSEILS[p.id] && CONSEILS[p.id][f.id]) || (ROLE === "lecteur" && envIdx(p.id, f.id) >= 0);
         var no = on && (ROLE === "lecteur" ? (ENVOI[envIdx(p.id, f.id)] || {}).avis === "non" : isNon(p.id, f.id));
         return '<button type="button" class="chip" data-pn="' + esc(p.id) + '" aria-pressed="' + on + '">' + (on ? (no ? "👎 " : "♥ ") : "") + esc(p.label) + '</button>';
@@ -1856,7 +1963,7 @@ body:not(.vide) .toc{margin-top:8px;}
           '<button type="button" class="chip np-ok" data-newok="1">OK</button></span>'
         : '<button type="button" class="chip autre-p" data-newp="1">＋ Nouvelle personne</button>') : "") +
       motFields(f) + '</div>' : "";
-    var ro = n10 ? "Noté <b>" + fmtN(n10) + "</b>/10 par " + VN() : "";
+    var ro = n10 ? "Noté <b>" + fmtN(n10) + "</b>/10 par " + esc(VN()) : "";
     var meta = [f.y, f.c, f.d].filter(function(x){ return x; }).map(esc);
     if (MV_INFO[f.mv]) meta.push('<button type="button" class="mvb" data-mv="' + esc(f.mv) + '" title="Voir les films de ce mouvement">' + esc(MV_INFO[f.mv].label) + '</button>');
     return '<div class="info"><div class="th"><div class="t">' + esc(f.t) + '</div>' + est + (ro ? '<span class="ro">' + ro + '</span>' : "") + '</div><div class="m">' + meta.join(" · ") + '</div>' +
@@ -2342,7 +2449,7 @@ body:not(.vide) .toc{margin-top:8px;}
   var ID_TYPES = [{ id:"theme", l:"Thème", fam:"themes" }, { id:"courant", l:"Courant", fam:"mouvements" }, { id:"genre", l:"Type de film", fam:"ecole" },
     { id:"envie", l:"Envie", fam:"envies" }, { id:"autre", l:"Autre", fam:"playlists" }];
   var IDEES = {}, ideeCol = null, IDRAFT = { type:"theme", nom:"", films:"", prenom:"" }, ID_DEL = "", ID_DEL_T = null;
-  var IDS_KEY = "carnetIdeesV1", IDSENT = [];
+  var IDS_KEY = "carnetIdeesV1" + CCK, IDSENT = [];
   try { IDSENT = JSON.parse(localStorage.getItem(IDS_KEY) || "[]"); if (!Array.isArray(IDSENT)) IDSENT = []; } catch (e) { IDSENT = []; }
   function keepIdsent(){ try { localStorage.setItem(IDS_KEY, JSON.stringify(IDSENT)); } catch (e) {} }
   function idType(t){ return ID_TYPES.filter(function(x){ return x.id === t; })[0] || ID_TYPES[4]; }
@@ -2695,7 +2802,7 @@ body:not(.vide) .toc{margin-top:8px;}
     if (CCM()) {
       if (!propCol || !CC.me) { setStatus("Connecte-toi d'abord (bouton en haut).", true); return; }
       ADDQ = null; renderAll(); setStatus("Envoi…");
-      propCol.doc(CC.me.slug + "__" + Date.now().toString(36)).set({ prenom:CC.me.slug, titre:t, annee:yy ? String(yy) : "", mot:"", ajout:new Date().toISOString() })
+      propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:"", ajout:new Date().toISOString() })
         .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(){ setStatus("Pas envoyé, réessaie dans un instant.", true); });
       return;
     }
@@ -2817,17 +2924,39 @@ body:not(.vide) .toc{margin-top:8px;}
     $("prog").style.width = total ? Math.round(100 * answered / total) + "%" : "0";
   }
 
-  function save(id, prev){
+  // Réponses pas encore confirmées par la base : gardées sur cet appareil, renvoyées à la reprise du réseau ou à l'ouverture.
+  var PEND_KEY = "carnetAttenteV1" + GSFX + CCK, PEND = {};
+  try { PEND = JSON.parse(localStorage.getItem(PEND_KEY) || "{}") || {}; } catch (e) { PEND = {}; }
+  function keepPend(){ try { localStorage.setItem(PEND_KEY, JSON.stringify(PEND)); } catch (e) {} }
+  function pendSay(){
+    var n = Object.keys(PEND).length; if (!n) return;
+    setStatus(navigator.onLine === false ? "Hors connexion : " + n + " réponse" + (n > 1 ? "s" : "") + " gardée" + (n > 1 ? "s" : "") + " sur cet appareil, envoi au retour du réseau."
+      : n + " réponse" + (n > 1 ? "s" : "") + " en attente d'envoi…");
+  }
+  // On attend la liste des films pour renvoyer une réponse complète (titre, année) ; sinon, nouvel essai après son chargement.
+  function resendPend(){ if (!Object.keys(films).length) return; Object.keys(PEND).forEach(function(id){ save(id, null, true); }); }
+  window.addEventListener("online", function(){ if (Object.keys(PEND).length) resendPend(); });
+  window.addEventListener("offline", pendSay);
+  function flushNotes(){ Object.keys(NOTE_T).forEach(function(id){ clearTimeout(NOTE_T[id].t); var p = NOTE_T[id].prev; delete NOTE_T[id]; save(id, p); }); }
+  window.addEventListener("pagehide", flushNotes);
+  document.addEventListener("visibilitychange", function(){ if (document.hidden) flushNotes(); });
+  function save(id, prev, retry){
     keepLocal();
+    if (!retry) { PEND[id] = { a:answers[id] || null, t:Date.now() }; keepPend(); }
     if (!col) return;
-    var a = answers[id], f = films[id];
-    setStatus("Enregistrement…");
+    var a = answers[id], f = films[id] || {}, mark = (PEND[id] || {}).t;
+    setStatus(navigator.onLine === false ? "Hors connexion : gardé sur cet appareil, envoi au retour du réseau." : "Enregistrement…");
     queues[id] = (queues[id] || Promise.resolve()).then(function(){
       if (a && (a.etat || a.note)) {
-        return col.doc(id).set({ etat:a.etat || "", note:a.note || 0, note10:a.note10 || 0, titre:f.t, annee:f.y, cineaste:f.d || "", section:f.sid, maj:new Date().toISOString() });
+        return col.doc(id).set({ etat:a.etat || "", note:a.note || 0, note10:a.note10 || 0, titre:f.t || "", annee:f.y || "", cineaste:f.d || "", section:f.sid || "", maj:new Date().toISOString() });
       }
       return col.doc(id).delete();
-    }).then(function(){ setStatus("Enregistré"); }, function(e){
+    }).then(function(){
+      if (PEND[id] && PEND[id].t === mark) { delete PEND[id]; keepPend(); }
+      if (Object.keys(PEND).length) pendSay(); else setStatus("Enregistré");
+    }, function(e){
+      if (!(e && e.code === "invalid_argument")) { setStatus("Échec de l'enregistrement : gardé sur cet appareil, nouvel essai au retour du réseau ou à la prochaine ouverture.", true); return; }
+      delete PEND[id]; keepPend();
       if (e && e.code === "invalid_argument") {
         // Ce n'est pas la propriétaire : on remet la réponse d'avant et on passe en lecture.
         if (prev) answers[id] = prev; else delete answers[id];
@@ -2986,7 +3115,7 @@ body:not(.vide) .toc{margin-top:8px;}
     return chosen.map(function(p){
       var cur = ROLE === "lecteur" ? (ENVOI[envIdx(p.id, f.id)] || {}).mot || "" : (MOTS[p.id] || {})[f.id] || "";
       var no = ROLE === "lecteur" ? (ENVOI[envIdx(p.id, f.id)] || {}).avis === "non" : isNon(p.id, f.id), me = ROLE === "lecteur";
-      var av = '<span class="av-t" role="group" aria-label="Avis' + (p.label ? " " + de(p.label) : "") + '">' +
+      var av = '<span class="av-t" role="group" aria-label="Avis' + (p.label ? " " + esc(de(p.label)) : "") + '">' +
         '<button type="button" class="av-b oui" data-avis="' + esc(p.id) + '" data-v="oui" aria-pressed="' + !no + '">👍 ' + (me ? "Je le conseille" : "Conseille") + '</button>' +
         '<button type="button" class="av-b non" data-avis="' + esc(p.id) + '" data-v="non" aria-pressed="' + no + '">👎 ' + (me ? "Je ne le conseille pas" : "Ne conseille pas") + '</button></span>';
       var lab = ROLE === "lecteur" ? "Ton mot sur le film" + (p.label ? " (pour la playlist " + de(p.label) + ")" : "") : "Le mot " + de(p.label);
@@ -3019,7 +3148,7 @@ body:not(.vide) .toc{margin-top:8px;}
       });
   }
   // Le prénom écrit par une personne qui n'est pas dans la liste (gardé sur cet appareil pour la prochaine fois).
-  var MONNOM_KEY = "carnetMonNomV1";
+  var MONNOM_KEY = "carnetMonNomV1" + CCK;
   function monNom(){ try { return localStorage.getItem(MONNOM_KEY) || ""; } catch (e) { return ""; } }
   function saveNom(id, nm){
     var i = envIdx("_", id); if (i < 0) return;
@@ -3052,20 +3181,20 @@ body:not(.vide) .toc{margin-top:8px;}
     });
   }
   // Commentaires : chacun choisit son nom (ou en écrit un autre) et laisse une ou deux lignes.
-  var COMS = {}, comCol = null, OPEN_COM = "", NOM_KEY = "carnetNomV1";
+  var COMS = {}, comCol = null, OPEN_COM = "", NOM_KEY = "carnetNomV1" + CCK;
   function comsHtml(f){
     var l = (COMS[f.id] || []).slice(-3), more = (COMS[f.id] || []).length - l.length, mine = ROLE === "proprio" && !GUEST && CCA();
     var pend = ROLE === "lecteur" ? ENVOI.filter(function(x){ return x.kind === "com" && x.id === f.id; }) : [];
     if (!l.length && !pend.length) return "";
     return '<div class="cmts">' + (more > 0 ? '<div class="cmt-more">💬 ' + more + ' commentaire' + (more > 1 ? "s" : "") + ' plus ancien' + (more > 1 ? "s" : "") + '</div>' : "") +
-      l.map(function(c){ return '<div class="cmt"><span class="cmt-t"><b>' + esc(c.nom || c.prenom) + '</b> ' + esc(c.texte) + '</span>' +
+      l.map(function(c){ var cn = (window.CC && c.uid && CC.profils[c.uid] && CC.profils[c.uid].pseudo) || c.nom || c.prenom; return '<div class="cmt"><span class="cmt-t"><b>' + esc(cn) + '</b> ' + esc(c.texte) + '</span>' +
         (mine || (window.CC && CC.uid && c.uid === CC.uid) ? '<button type="button" class="cmt-x" data-cdel="' + esc(c.id) + '" aria-label="Supprimer ce commentaire" title="Supprimer">✕</button>' : "") + '</div>'; }).join("") +
       pend.map(function(x){ return '<div class="cmt wait"><span class="cmt-t"><b>' + esc(x.nom) + '</b> ' + esc(x.com) + '</span><small>à valider</small></div>'; }).join("") + '</div>';
   }
   function comForm(f){
     if (OPEN_COM !== f.sid + "|" + f.id) return "";
     var last = ""; try { last = localStorage.getItem(NOM_KEY) || ""; } catch (e) {}
-    var opts = CCM() && CC.me ? [{ v:CC.me.slug, l:CC.me.pseudo }] : (ROLE !== "lecteur" ? [{ v:"licia", l:"Licia" }] : []).concat(PEOPLE.map(function(p){ return { v:p.id, l:p.label }; }));
+    var opts = CCM() && CC.me ? [{ v:CC.pid(), l:CC.me.pseudo }] : (ROLE !== "lecteur" ? [{ v:"licia", l:"Licia" }] : []).concat(PEOPLE.map(function(p){ return { v:p.id, l:p.label }; }));
     if ((!last || CCM()) && opts.length) last = opts[0].v;
     var other = last && !opts.some(function(o){ return o.v === last; });
     return '<div class="cform" role="group" aria-label="Commenter ' + esc(f.t) + '">' +
@@ -3084,6 +3213,7 @@ body:not(.vide) .toc{margin-top:8px;}
     if (!nom) { setStatus("Écris ton prénom."); nin.hidden = false; nin.focus(); return; }
     nom = nom.charAt(0).toUpperCase() + nom.slice(1);
     var pid = norm(nom).split(" ")[0].replace(/[^a-z0-9]/g, "") || "anonyme";
+    if (CCM() && CC.me) { pid = CC.pid(); nom = CC.me.pseudo; }
     try { localStorage.setItem(NOM_KEY, sel.value === "__autre" ? nom : sel.value); } catch (e) {}
     function viaForm(){
       ENVOI.push({ kind:"com", pid:PEOPLE.some(function(p){ return p.id === pid; }) ? pid : pid, nom:nom, id:id, t:f.t || "", y:f.y || "", com:txt });
@@ -4114,7 +4244,7 @@ body:not(.vide) .toc{margin-top:8px;}
   function ctxProfile(){ return window.CC && CC.uid ? (CC.view ? CC.profils[CC.view] : CC.me) : null; }
   function suggestFor(){
     var me = ctxProfile();
-    if (!me || me.slug === "licia") return;
+    if (!me || CC.pidOf(me) === "licia") return;
     sections.forEach(function(s){ if (s.id === "s26-ta-vie") s.cache = true; });
     var s0 = sections.filter(function(s){ return s.id === "s00-pour-toi"; })[0]; if (!s0) return;
     var mine = me.rep || {}, P = CC.profils, self = CC.view || CC.uid, sc = {};
@@ -4168,12 +4298,14 @@ body:not(.vide) .toc{margin-top:8px;}
     ENVIES = rankBy(envs || [], RANG && RANG.listes && RANG.listes.envies); ENV_OF = {}; LABEL_OF = {};
     ENVIES.forEach(function(e){ LABEL_OF[e.id] = e.label; (e.sous || []).forEach(function(s){ ENV_OF[s.id] = e.id; LABEL_OF[s.id] = e.label + " " + s.label; }); });
     if (env1 && !ENVIES.some(function(e){ return e.id === env1; })) { env1 = ""; env2 = ""; }
+    if (window.CC) CC.playlists = secDocs.filter(function(d){ return d.x.auto === "conseils"; }).map(function(d){ return { prenom:String(d.x.prenom), titre:d.x.titre || "" }; });
     // Chaque membre a sa playlist, même sans liste créée par Licia.
     var CCP = (window.CC && CC.profils) || {};
     Object.keys(CCP).forEach(function(u){
-      var pr = CCP[u]; if (!pr || !pr.slug || !pr.pseudo || pr.slug === "licia") return;
-      if (secDocs.some(function(d){ return d.x.auto === "conseils" && String(d.x.prenom) === pr.slug; })) return;
-      secDocs.push({ id:"pl-" + pr.slug, x:{ auto:"conseils", famille:"playlists", films:[], ordre:0.9, prenom:pr.slug, titre:pr.pseudo,
+      var pr = CCP[u], pid = CC.pidOf(pr); if (!pr || !pid || !pr.pseudo || pid === "licia") return;
+      var own = secDocs.filter(function(d){ return d.x.auto === "conseils" && String(d.x.prenom) === pid; })[0];
+      if (own) { own.x = Object.assign({}, own.x, { titre:pr.pseudo }); return; }
+      secDocs.push({ id:"pl-" + pid, x:{ auto:"conseils", famille:"playlists", films:[], ordre:0.9, prenom:pid, titre:pr.pseudo,
         sous_titre:"Les films " + que(pr.pseudo) + " a aimés et conseille." } });
     });
     sections = secDocs.map(function(d){
@@ -4217,6 +4349,7 @@ body:not(.vide) .toc{margin-top:8px;}
       s.films.forEach(function(f){ var r = f.r || ""; if (!DESC[f.id] && r.length >= 45 && r.indexOf("Dans ton historique MUBI") !== 0) DESC[f.id] = r; });
     });
     renderAll();
+    if (typeof PEND !== "undefined" && Object.keys(PEND).length && col) resendPend();
   }
 
   var useUser = window.claude && typeof window.claude.use === "function" ? window.claude.use("user") : Promise.resolve(null);
@@ -4244,7 +4377,7 @@ body:not(.vide) .toc{margin-top:8px;}
   function setGuest(on){
     GUEST = !!on; GSFX = GUEST ? "-invite" : "";
     try { if (GUEST) sessionStorage.setItem("carnetVueAmisV1", "1"); else sessionStorage.removeItem("carnetVueAmisV1"); } catch (e) {}
-    LS = "carnetFilmsV2" + GSFX + CCK; LSL = "carnetListeV1" + GSFX + CCK; ENV_KEY = "carnetEnvoiV1" + GSFX; FS_KEY = "carnetFormV1" + GSFX;
+    LS = "carnetFilmsV2" + GSFX + CCK; LSL = "carnetListeV1" + GSFX + CCK; ENV_KEY = "carnetEnvoiV1" + GSFX + CCK; FS_KEY = "carnetFormV1" + GSFX + CCK;
     try { ENVOI = JSON.parse(localStorage.getItem(ENV_KEY) || "[]"); if (!Array.isArray(ENVOI)) ENVOI = []; } catch (e) { ENVOI = []; }
     try { FSENT = JSON.parse(localStorage.getItem(FS_KEY) || "{}") || {}; } catch (e) { FSENT = {}; }
     DENIED = false; TAB = ""; OPEN_PL = "";
@@ -4299,13 +4432,13 @@ body:not(.vide) .toc{margin-top:8px;}
       });
       if (Object.keys(FSENT).length !== fk.length) { keepFsent(); changed = true; }
       if (changed) { var anc = anchors(null); renderAll(); restore(anc); }
-    }, function(){});
+    }, function(e){ if (window.CC && CC.uid) loadErr("les playlists", e); });
     comCol = db.collection("commentaires");
     comCol.limit(2000).onSnapshot(function(snap){
       var next = {};
       snap.docs.forEach(function(d){ var x = d.data() || {}; if (!x.film || !x.texte) return; (next[x.film] = next[x.film] || []).push({ id:d.id, prenom:x.prenom || "", nom:x.nom || x.prenom || "", texte:x.texte, ajout:x.ajout || "", uid:x.uid || "" }); });
       Object.keys(next).forEach(function(k){ next[k].sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); }); });
-      var sig = function(m){ return Object.keys(m).sort().map(function(k){ return k + ":" + m[k].map(function(c){ return c.id; }).join("|"); }).join(","); };
+      var sig = function(m){ return Object.keys(m).sort().map(function(k){ return k + ":" + m[k].map(function(c){ return c.id + "~" + c.texte + "~" + c.nom + "~" + c.uid + "~" + c.ajout; }).join("|"); }).join(","); };
       if (sig(next) === sig(COMS)) return;
       COMS = next;
       // Un commentaire envoyé par le formulaire et maintenant dans le carnet quitte la liste à valider.
@@ -4313,7 +4446,7 @@ body:not(.vide) .toc{margin-top:8px;}
       ENVOI = ENVOI.filter(function(x){ return x.kind !== "com" || !(next[x.id] || []).some(function(c){ return c.texte === x.com; }); });
       if (ENVOI.length !== nb) { keepEnvoi(); renderEnv(); }
       var anc = anchors(null); renderAll(); restore(anc);
-    }, function(){});
+    }, function(e){ if (window.CC && CC.uid) loadErr("les commentaires", e); });
     ideeCol = db.collection("idees");
     ideeCol.limit(500).onSnapshot(function(snap){
       var next = {};
@@ -4325,7 +4458,7 @@ body:not(.vide) .toc{margin-top:8px;}
       var sig = function(m){ return Object.keys(m).sort().map(function(k){ var x = m[k]; return k + "|" + x.nom + "|" + x.statut + "|" + x.films + "|" + x.type; }).join(","); };
       if (sig(next) === sig(IDEES)) return;
       IDEES = next; idRefresh();
-    }, function(){});
+    }, function(e){ if (window.CC && CC.uid) loadErr("les idées", e); });
     propCol = db.collection("propositions");
     propCol.limit(500).onSnapshot(function(snap){
       var next = {};
@@ -4336,7 +4469,7 @@ body:not(.vide) .toc{margin-top:8px;}
       var changed = propSig(next) !== propSig(PROPS);
       PROPS = next;
       if (changed) { var anc = anchors(null); renderAll(); restore(anc); }
-    }, function(){});
+    }, function(e){ if (window.CC && CC.uid) loadErr("les propositions", e); });
     listCol.limit(1000).onSnapshot(function(snap){
       var next = {};
       snap.docs.forEach(function(d){ next[d.id] = (d.data() || {}).ajout || "1"; });
@@ -4347,13 +4480,14 @@ body:not(.vide) .toc{margin-top:8px;}
         if (diff.length <= 40 && renderAutos()) diff.forEach(refreshFilm); else renderAll();
         restore(anc);
       }
-    }, function(){});
+    }, function(e){ if (window.CC && CC.uid) loadErr("ta liste", e); });
     var LASTCAT = null;
     if (window.CC) CC.hooks.push(function(){ if (LASTCAT) { var anc = anchors(null); setSections(LASTCAT); restore(anc); } });
     db.collection("catalogue").onSnapshot(function(snap){
       LASTCAT = snap.docs;
       var anc = anchors(null); setSections(snap.docs); restore(anc);
-    }, function(){
+    }, function(e){
+      loadErr("la liste de films", e);
       $("main").innerHTML = '<p class="notice">La liste de films n\'a pas pu se charger. Recharge la page.</p>';
     });
     var firstAnswers = true;
@@ -4362,11 +4496,15 @@ body:not(.vide) .toc{margin-top:8px;}
         firstAnswers = false;
         answers = {};
         snap.docs.forEach(function(doc){ answers[doc.id] = pack(doc.data() || {}); });
+        // Les changements faits sur cet appareil et pas encore confirmés passent devant la version reçue, puis repartent.
+        Object.keys(PEND).forEach(function(id){ if (PEND[id].a) answers[id] = PEND[id].a; else delete answers[id]; });
         keepLocal(); renderAll();
+        if (Object.keys(PEND).length) { pendSay(); resendPend(); }
         return;
       }
       var changed = [], full = false;
       snap.docChanges().forEach(function(ch){
+        if (PEND[ch.doc.id]) return;
         var id = ch.doc.id, before = (answers[id] || {}).etat || "", beforeN = (answers[id] || {}).note10 || 0;
         if (ch.type === "removed") { if (!answers[id]) return; delete answers[id]; }
         else {
@@ -4383,7 +4521,7 @@ body:not(.vide) .toc{margin-top:8px;}
       if (changed.length > 40) { var anc = anchors(null); renderAll(); restore(anc); }
       else if (full) { var anc2 = anchors(null); if (renderAutos()) changed.forEach(refreshFilm); else renderAll(); restore(anc2); }
       else changed.forEach(refreshFilm);
-    }, function(){ setStatus("Les réponses ne se synchronisent plus. Recharge la page.", true); });
+    }, function(e){ loadErr("tes réponses", e); });
   });
 })();
 </script>

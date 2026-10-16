@@ -1,0 +1,64 @@
+rules_version = '2';
+// Règles proposées pour Ciné-club (à coller dans la console Firebase : Firestore Database > Règles > Publier).
+// L'administratrice est reconnue par l'empreinte SHA-256 de son adresse e-mail vérifiée : l'adresse n'est pas écrite ici.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return signedIn() && request.auth.token.email_verified == true
+        && hashing.sha256(request.auth.token.email.lower()).toBase64() == 'ZceI5qzxvNBqyoj9L/XQV9safr6QBBnC2uw+Ncd2c6I=';
+    }
+    function perso(col) { return col in ['conseils', 'commentaires', 'idees', 'propositions']; }
+    function profil(uid) { return get(/databases/$(database)/documents/profils/$(uid)).data; }
+
+    // Catalogue : lu par tous (même sans compte), écrit par l'administratrice seulement.
+    match /films/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Profils (pseudo, réponses, liste, goûts, bulle, blocages) : lus par les membres connectés, écrits par leur seul propriétaire.
+    // L'administratrice peut seulement relier un membre à une ancienne playlist (champ pid).
+    match /profils/{uid} {
+      allow read: if signedIn();
+      allow create, update, delete: if signedIn() && request.auth.uid == uid;
+      allow update: if isAdmin() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['pid']);
+    }
+
+    // Conseils de playlist, commentaires, idées, propositions : créés avec le bon identifiant d'auteur,
+    // modifiés ou supprimés par leur auteur ou par l'administratrice.
+    match /{col}/{id} {
+      allow read: if signedIn() && perso(col);
+      allow create: if signedIn() && perso(col) && request.resource.data.uid == request.auth.uid;
+      allow update: if signedIn() && perso(col) && resource.data.uid == request.auth.uid && request.resource.data.uid == request.auth.uid;
+      allow delete: if signedIn() && perso(col) && resource.data.uid == request.auth.uid;
+      allow write: if isAdmin() && perso(col);
+    }
+
+    // Conseils privés entre membres : lus seulement par l'expéditeur et le destinataire.
+    // Refusés si le destinataire reste dans sa bulle ou a bloqué l'expéditeur.
+    match /messages/{id} {
+      allow read: if signedIn() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+      allow create: if signedIn() && request.resource.data.from == request.auth.uid
+        && request.resource.data.to is string && request.resource.data.to != request.auth.uid
+        && request.resource.data.mot is string && request.resource.data.mot.size() <= 200
+        && profil(request.resource.data.to).get('bulle', false) != true
+        && !(request.auth.uid in profil(request.resource.data.to).get('bloques', []));
+      allow update: if signedIn() && resource.data.to == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lu']);
+      allow delete: if signedIn() && (resource.data.from == request.auth.uid || isAdmin());
+    }
+
+    // Signalements : créés par un membre connecté, lus et traités par l'administratrice seulement.
+    match /signalements/{id} {
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Contenus masqués pour tous par l'administratrice.
+    match /masques/{id} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+  }
+}
