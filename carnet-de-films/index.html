@@ -874,6 +874,32 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
 .tretry{font:600 13px/1 var(--font);margin-left:6px;padding:7px 11px;border-radius:99px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer;}
 .impl{margin:0;padding-left:18px;font-size:14px;display:grid;gap:3px;}
 
+.cc-send{flex-basis:100%;justify-content:center;border-style:solid;font-weight:600;}
+.ctabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
+.ctabs .chip[aria-pressed="true"]{background:var(--k-s-F9E3A8);color:var(--k-s-4A3300);border-color:var(--k-b-C8963A);font-weight:600;}
+.cthread{display:grid;gap:6px;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;}
+.cth{font-weight:600;font-size:15px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.cth small{font-weight:400;color:var(--muted);font-size:12.5px;}
+.cmsg{font-size:14.5px;line-height:1.4;background:var(--k-s-EAF5F6);color:var(--k-s-0B4F5E);border-radius:10px;padding:6px 9px;}
+.cmsg.moi{background:var(--k-s-F5F0E2);color:var(--ink);}
+.ccsm{padding:8px 12px;font-size:13.5px;}
+.ccflag{border:0;background:transparent;color:var(--muted);font:600 13px/1 var(--font);cursor:pointer;padding:3px 5px;margin-left:4px;opacity:.75;}
+.ccflag.lab{border:1.5px solid var(--line);border-radius:99px;padding:8px 11px;opacity:1;}
+.ccsw{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer;}
+.ccsw input{width:20px;height:20px;margin-top:1px;flex:none;accent-color:var(--k-s-2C6660);}
+.ccsw small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px;}
+.cgouts{margin:0;font-style:italic;font-size:15px;}
+.sh-note.ok{color:var(--fini);font-weight:600;}
+.mfilm.fil span{white-space:normal;}
+.mfilm.fil small{flex:none;}
+.ccguide{position:fixed;left:12px;right:12px;max-width:420px;margin:0 auto;z-index:30;background:var(--paper);color:var(--ink);border:2px solid var(--k-b-C8963A);border-radius:16px;padding:12px 14px;box-shadow:0 8px 30px rgba(44,34,48,.3);display:grid;gap:6px;}
+.ccguide p{margin:0;font-size:15px;line-height:1.4;}
+.ccguide b{font-size:16.5px;}
+.ccg-n{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em;}
+.ccg-on{box-shadow:0 0 0 4px var(--k-s-F6D27A) !important;border-radius:14px;transition:box-shadow .25s;}
+html.aff-calme .ccg-on{transition:none;}
+@media (prefers-reduced-motion:reduce){.ccg-on{transition:none;}}
+
 body.vide:not(.autre) #filters{display:flex;}
 body:not(.vide) .minis.cats{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:6px;padding:2px 2px 6px;scrollbar-width:none;}
 body:not(.vide) .minis.cats::-webkit-scrollbar{display:none;}
@@ -1050,12 +1076,13 @@ body:not(.vide) .toc{margin-top:8px;}
       <button type="button" class="aa-sw" data-opt="calme" role="switch" aria-checked="false"><b>Calme</b><span>Sans animation, couleurs douces (TDAH, autisme)</span></button>
       <button type="button" class="aa-sw" data-opt="lecture" role="switch" aria-checked="false"><b>Lecture facilitée</b><span>Lettres plus lisibles et espacées (dyslexie)</span></button>
       <button type="button" class="aa-intro" data-intro="1">🎭 Revoir le lever de rideau</button>
+      <button type="button" class="aa-intro" data-guide="1">🧭 Revoir la visite guidée</button>
     </div>
     <button type="button" class="nuitb ambb" id="nuitb" aria-label="Ambiance" title="Ambiance"><span id="ambIc" class="amb-ic"></span><i class="amb-a" aria-hidden="true">A</i></button>
 </header>
 
   <div class="bar">
-    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Membres</button><button type="button" class="chip ccb" id="ccMe">Se connecter</button></div>
+    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button></div>
     <div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
     <p class="hint hint-q">Cherchez un film, un cinéaste ou un thème <span class="fl" aria-hidden="true">↓</span></p>
@@ -1146,6 +1173,7 @@ body:not(.vide) .toc{margin-top:8px;}
   </div>
   <p class="sh-note" id="shNote"></p>
 </div>
+<div class="ccguide" id="ccGuide" role="dialog" aria-label="Visite guidée" hidden></div>
 <div class="sheet" id="lsheet" role="dialog" aria-modal="false" aria-label="Mon compte" hidden><div id="lsheetBody"></div></div>
 <div class="sheet" id="msheet" role="dialog" aria-modal="false" aria-label="Membres" hidden><div id="msheetBody"></div></div>
 <div class="sheet" id="vsheet" role="dialog" aria-modal="false" aria-labelledby="vsheet-h" hidden>
@@ -1231,7 +1259,7 @@ body:not(.vide) .toc{margin-top:8px;}
   var meCbs = [];
   function otherSig(){
     var o = {}; Object.keys(CC.profils).forEach(function(u){ if (u !== CC.uid) o[u] = [CC.profils[u].pseudo, CC.profils[u].rep]; });
-    return JSON.stringify(o) + "|" + ((CC.me || {}).pseudo || "");
+    return JSON.stringify(o) + "|" + ((CC.me || {}).pseudo || "") + "|" + JSON.stringify((CC.me || {}).bloques || []);
   }
   var SIG = "", PIDFIX = false;
   boot.then(function(){
@@ -1249,7 +1277,8 @@ body:not(.vide) .toc{margin-top:8px;}
       if (CC.me && !CC.me.pid && !PIDFIX) { PIDFIX = true; fs.collection("profils").doc(CC.uid).update({ pid:CC.me.slug || ("m_" + CC.uid) }).catch(function(){ PIDFIX = false; }); }
       var sg = otherSig();
       if (sg !== SIG) { SIG = sg; CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); }
-      if (!$("msheet").hidden) renderMembers();
+      if (firstLoad && CC.me) listenCom();
+      if (!$("msheet").hidden) renderCom();
     }, function(e){ CC.loadErr && CC.loadErr("les profils des membres", e); });
   });
 
@@ -1320,8 +1349,10 @@ body:not(.vide) .toc{margin-top:8px;}
   function paintBar(){
     var b = $("ccMe"), m = $("ccMbr"); if (!b) return;
     var g = $("gpill"); if (g && CC.view) g.textContent = "📖 Carnet de " + CC.viewName + " · Revenir au mien";
-    b.textContent = !CC.uid ? "Se connecter" : CC.me ? "👤 " + CC.me.pseudo : "👤 Choisir mon pseudo";
-    b.setAttribute("aria-label", !CC.uid ? "Se connecter" : "Mon compte");
+    b.textContent = !CC.uid ? "👤 Se connecter" : CC.me ? "👤 Mon compte" : "👤 Choisir mon pseudo";
+    var n = typeof unread === "function" && CC.me && !CC.me.bulle ? unread() : 0;
+    m.textContent = "👥 Communauté" + (n ? " · " + n : "");
+    m.setAttribute("aria-label", "Communauté" + (n ? ", " + n + " conseil" + (n > 1 ? "s" : "") + " non lu" + (n > 1 ? "s" : "") : ""));
     m.hidden = !CC.uid || !CC.me;
   }
   function sheetOpen(id){ ["lsheet", "msheet"].forEach(function(k){ var s = $(k); if (s) s.hidden = k !== id; }); }
@@ -1341,10 +1372,21 @@ body:not(.vide) .toc{margin-top:8px;}
     } else {
       h = '<h3>' + esc(CC.me.pseudo) + '</h3><p class="sh-note">Connecté' + (CC.user && CC.user.email ? " avec " + esc(CC.user.email) : "") + (CC.admin ? " · tu gères le carnet" : "") + '</p>' +
         '<label class="ccl"><span>Changer de pseudo</span><input type="text" id="ccPseudo" class="ccin" maxlength="30" value="' + esc(CC.me.pseudo) + '"></label>' +
+        '<label class="ccl"><span>Mes goûts en une phrase</span><textarea id="ccGouts" class="ccin" maxlength="140" rows="2" placeholder="Par exemple : le cinéma qui dérange et les films d\'animation">' + esc(CC.me.gouts || "") + '</textarea></label>' +
+        '<label class="ccsw"><input type="checkbox" id="ccBulle"' + (CC.me.bulle ? " checked" : "") + '><span><b>Rester dans ma bulle</b><small>Tu n\'apparais pas dans le fil, personne ne peut te conseiller de film, et le fil disparaît pour toi. Tes notes restent visibles.</small></span></label>' +
         '<div class="plf-b"><button type="button" class="plf-ok" id="ccSave">Enregistrer</button><button type="button" class="plf-no" id="ccOut">Se déconnecter</button></div>' +
+        (CC.admin ? modHtml() : "") +
         (CC.admin ? '<div class="ccadm"><b>Importer des données</b><span class="sh-note">Un fichier préparé par Claude (films, réponses, liste, playlists). Tu verras ce qui sera ajouté ou remplacé avant toute écriture.</span><input type="file" id="ccFile" accept=".json,application/json"><div id="ccImp"></div></div>' : "");
     }
     $("lsheetBody").innerHTML = h + '<p class="sh-note" id="ccNote"></p><div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
+  }
+  function modHtml(){
+    if (!SIGN.length) return '<div class="ccadm"><b>Signalements</b><span class="sh-note">Aucun signalement.</span></div>';
+    var T = { com:"Commentaire", msg:"Conseil", gouts:"Phrase de profil" };
+    return '<div class="ccadm"><b>Signalements (' + SIGN.length + ')</b>' + SIGN.map(function(x){
+      return '<div class="cthread"><div class="cth">' + esc(T[x.type] || x.type) + ' de ' + esc(pseudoOf(x.auteur)) + '<small>signalé par ' + esc(pseudoOf(x.uid)) + ' · ' + esc(ago(x.ajout)) + '</small></div>' +
+        '<div class="cmsg">« ' + esc(x.extrait || "") + ' »</div><div class="plf-b"><button type="button" class="plf-ok ccsm" data-masq="' + esc(x.id) + '">Masquer pour tous</button><button type="button" class="plf-no ccsm" data-laisse="' + esc(x.id) + '">Laisser visible</button></div></div>';
+    }).join("") + '</div>';
   }
   function saveProfile(){
     var p = ($("ccPseudo").value || "").trim().replace(/\s+/g, " ").slice(0, 30);
@@ -1355,7 +1397,8 @@ body:not(.vide) .toc{margin-top:8px;}
     if (taken) { note("Ce pseudo est déjà celui d'un autre membre : choisis-en un un peu différent.", true); return; }
     var ref = fs.collection("profils").doc(CC.uid), isNew = !CC.me, pid = CC.admin ? "licia" : "m_" + CC.uid;
     note("Enregistrement…");
-    var w = isNew ? ref.set({ pseudo:p, pid:pid, slug:pid, rep:{}, liste:{}, cree:new Date().toISOString() }) : ref.update({ pseudo:p });
+    var g = $("ccGouts") ? String($("ccGouts").value || "").trim().replace(/\s+/g, " ").slice(0, 140) : null;
+    var w = isNew ? ref.set({ pseudo:p, pid:pid, slug:pid, rep:{}, liste:{}, cree:new Date().toISOString() }) : ref.update(g == null ? { pseudo:p } : { pseudo:p, gouts:g });
     w.then(function(){ if (isNew) location.reload(); else note("C'est enregistré."); }, function(){ note("Pas enregistré, réessaie dans un instant.", true); });
   }
   function sendLink(){
@@ -1468,7 +1511,7 @@ body:not(.vide) .toc{margin-top:8px;}
   }
   // Membres : la liste, puis le profil de chacun (ses films vus et ses notes).
   var MSEL = "";
-  CC.openMembers = function(uid){ MSEL = uid || ""; renderMembers(); sheetOpen("msheet"); $("msheet").scrollTop = 0; };
+  CC.openMembers = function(uid){ MSEL = uid || ""; TAB = "membres"; SEND = null; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0; };
   var LAB = { vu:"Vu", pas_fini:"Pas fini", oublie:"Oublié", pas_vu:"Pas vu" };
   function fmtN(n){ return String(Math.round((+n || 0) * 10) / 10).replace(".", ","); }
   function linkHtml(u){
@@ -1479,7 +1522,7 @@ body:not(.vide) .toc{margin-top:8px;}
       '<select id="ccLink" class="ccin"><option value="">Choisir…</option>' + free.map(function(p){ return '<option value="' + esc(p.prenom) + '">' + esc(p.titre || p.prenom) + '</option>'; }).join("") + '</select>' +
       '<div class="plf-b"><button type="button" class="plf-no" data-mlink="' + esc(u) + '">Relier</button></div></div>';
   }
-  function renderMembers(){
+  function membersHtml(){
     var P = CC.profils, h = "";
     if (!MSEL || !P[MSEL]) {
       var ids = Object.keys(P).filter(function(u){ return P[u] && P[u].pseudo; }).sort(function(a, b){ return String(P[a].pseudo).localeCompare(String(P[b].pseudo), "fr"); });
@@ -1496,18 +1539,235 @@ body:not(.vide) .toc{margin-top:8px;}
       h = '<button type="button" class="plf-no" data-msel="">‹ Tous les membres</button><h3>' + esc(p.pseudo) + '</h3>' +
         (MSEL !== CC.uid && MSEL !== CC.view ? '<button type="button" class="plf-ok mview" data-mview="' + esc(MSEL) + '">📖 Ouvrir le carnet ' + (/^[aeiouyéèêh]/i.test(p.pseudo) ? "d'" : "de ") + esc(p.pseudo) + '</button>' : "") +
         (CC.view && MSEL === CC.uid ? '<button type="button" class="plf-ok mview" data-mback="1">📖 Revenir à mon carnet</button>' : "") +
+        profileExtra(MSEL) +
         (CC.admin && MSEL !== CC.uid ? linkHtml(MSEL) : "") +
         '<p class="sh-note">' + noted.length + ' film' + (noted.length > 1 ? "s" : "") + ' noté' + (noted.length > 1 ? "s" : "") + ' · ' + others.length + ' autre' + (others.length > 1 ? "s" : "") + ' réponse' + (others.length > 1 ? "s" : "") + '. Touche un film pour le retrouver dans le carnet.</p>' +
-        (noted.length ? '<div class="mlist">' + noted.map(row).join("") + '</div>' : "") +
+        (noted.length ? '<div class="mh">Toutes ses notes</div><div class="mlist">' + noted.map(row).join("") + '</div>' : "") +
         (others.length ? '<div class="mh">Sans note</div><div class="mlist">' + others.map(row).join("") + '</div>' : "") +
         (!ids2.length ? '<p class="sh-note">Pas encore de réponse.</p>' : "");
     }
+    return h;
+  }
+  // ---------- Communauté : membres, conseils privés (« Pour moi »), fil, profils, bulle, signalements, visite guidée ----------
+  var TAB = "membres", MSG = {}, MSGQ = [{}, {}], MSGERR = null, MASQ = {}, SIGN = [], SEND = null, REPORT = null;
+  function me(){ return CC.me || {}; }
+  function bloques(){ return me().bloques || []; }
+  function isBlocked(u){ return bloques().indexOf(u) >= 0; }
+  function inBulle(u){ var p = CC.profils[u]; return !!(p && p.bulle); }
+  function masked(type, id){ return !!MASQ[type + "_" + id]; }
+  CC.hidden = function(type, id, author){ return masked(type, id) || (author && isBlocked(author)); };
+  function pseudoOf(u){ var p = CC.profils[u]; return (p && p.pseudo) || "Un membre"; }
+  function deN(n){ return (/^[aeiouyéèêh]/i.test(n) ? "d'" : "de ") + n; }
+  function ago(iso){
+    var t = Date.parse(iso); if (isNaN(t)) return "";
+    var m = Math.round((Date.now() - t) / 60000);
+    if (m < 1) return "à l'instant"; if (m < 60) return "il y a " + m + " min";
+    var h = Math.round(m / 60); if (h < 24) return "il y a " + h + " h";
+    var d = Math.round(h / 24); return "il y a " + d + " j";
+  }
+  function filmLabel(x){ return (x.titre || x.film || "") + (x.annee ? " (" + x.annee + ")" : ""); }
+
+  // Écoutes : conseils reçus et envoyés, contenus masqués, signalements (administratrice).
+  function listenCom(){
+    if (!CC.uid || !CC.me) return;
+    [["to", 0], ["from", 1]].forEach(function(q){
+      fs.collection("messages").where(q[0], "==", CC.uid).onSnapshot(function(s){
+        var m = {}; s.docs.forEach(function(d){ var x = d.data() || {}; if (x[q[0]] === CC.uid) m[d.id] = Object.assign({ id:d.id }, x); });
+        MSGQ[q[1]] = m; MSG = Object.assign({}, MSGQ[0], MSGQ[1]); MSGERR = null; paintBar(); comRefresh();
+      }, function(e){ MSGERR = e; paintBar(); comRefresh(); });
+    });
+    fs.collection("masques").onSnapshot(function(s){
+      var m = {}; s.docs.forEach(function(d){ m[d.id] = 1; }); MASQ = m;
+      CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); comRefresh();
+    }, function(){});
+    if (CC.admin) fs.collection("signalements").onSnapshot(function(s){
+      SIGN = s.docs.map(function(d){ return Object.assign({ id:d.id }, d.data()); }).sort(function(a, b){ return String(b.ajout).localeCompare(String(a.ajout)); });
+      if (!$("lsheet").hidden) renderLogin();
+    }, function(){});
+  }
+  function unread(){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && !CC.hidden("msg", x.id, x.from); }).length; }
+  function comRefresh(){ if (!$("msheet").hidden) renderCom(); }
+
+  // Fils de conversation : un par film et par personne.
+  function threads(){
+    var T = {};
+    Object.keys(MSG).forEach(function(k){
+      var x = MSG[k], other = x.from === CC.uid ? x.to : x.from;
+      if (CC.hidden("msg", x.id, x.from === CC.uid ? "" : x.from)) return;
+      var key = x.film + "|" + other, t = T[key] = T[key] || { key:key, film:x.film, titre:x.titre, annee:x.annee, other:other, list:[], last:"" };
+      t.list.push(x); if (String(x.ajout) > t.last) t.last = String(x.ajout);
+    });
+    return Object.keys(T).map(function(k){ var t = T[k]; t.list.sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); }); return t; })
+      .sort(function(a, b){ return b.last.localeCompare(a.last); });
+  }
+  function markRead(){
+    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.to === CC.uid && !x.lu) { x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); } });
+    paintBar();
+  }
+
+  // Fil d'activité : dernières notes et commentaires des autres membres (30 jours, 40 éléments), sans nouvelle lecture.
+  function feed(){
+    var out = [], lim = Date.now() - 30 * 864e5, P = CC.profils;
+    Object.keys(P).forEach(function(u){
+      if (u === CC.uid || inBulle(u) || isBlocked(u)) return;
+      var rep = P[u].rep || {};
+      Object.keys(rep).forEach(function(id){
+        var r = rep[id], t = Date.parse(r.maj || ""); if (!(t > lim)) return;
+        var verb = r.note10 ? "a noté" : r.etat === "vu" ? "a vu" : r.etat === "pas_fini" ? "a commencé" : "";
+        if (!verb) return;
+        out.push({ t:t, iso:r.maj, uid:u, film:id, titre:r.titre || id, annee:r.annee, txt:verb, note:r.note10 || 0 });
+      });
+    });
+    var C = CC.coms || {};
+    Object.keys(C).forEach(function(fid){
+      (C[fid] || []).forEach(function(c){
+        var t = Date.parse(c.ajout || ""); if (!(t > lim) || !c.uid || c.uid === CC.uid || inBulle(c.uid) || CC.hidden("com", c.id, c.uid)) return;
+        var info = (CC.filmInfo && CC.filmInfo(fid)) || {};
+        out.push({ t:t, iso:c.ajout, uid:c.uid, film:fid, titre:info.t || fid, annee:info.y, txt:"a commenté", com:c.texte });
+      });
+    });
+    return out.sort(function(a, b){ return b.t - a.t; }).slice(0, 40);
+  }
+
+  // Ressemblance des goûts : 100 % moins 10 % par point d'écart moyen sur les films notés tous les deux (au moins 3).
+  function common(u){
+    var a = me().rep || {}, b = (CC.profils[u] || {}).rep || {}, seen = 0, n = 0, d = 0;
+    var seenish = function(x){ return x && (x.etat === "vu" || x.etat === "pas_fini"); };
+    Object.keys(a).forEach(function(id){
+      if (seenish(a[id]) && seenish(b[id])) seen++;
+      if (a[id] && b[id] && a[id].note10 && b[id].note10) { n++; d += Math.abs(a[id].note10 - b[id].note10); }
+    });
+    return { seen:seen, n:n, pct:n >= 3 ? Math.max(0, Math.round(100 - d / n * 10)) : null };
+  }
+
+  function tabsHtml(){
+    var n = unread(), bulle = me().bulle;
+    var t = [["membres", "Membres"], ["pourmoi", "Pour moi" + (n && !bulle ? " · " + n : "")]];
+    if (!bulle) t.push(["fil", "Fil"]);
+    return '<div class="ctabs" role="tablist">' + t.map(function(x){ return '<button type="button" class="chip" role="tab" data-ctab="' + x[0] + '" aria-selected="' + (TAB === x[0]) + '" aria-pressed="' + (TAB === x[0]) + '">' + esc(x[1]) + '</button>'; }).join("") + '</div>';
+  }
+  function filmBtn(fid, titre){ return '<button type="button" class="plf-no ccsm" data-mfilm="' + esc(titre || fid) + '">Voir le film</button>'; }
+  function flagBtn(type, id, author, extrait){ return author && author !== CC.uid ? '<button type="button" class="ccflag" data-report="' + esc(type + "|" + id + "|" + author) + '" data-extrait="' + esc(String(extrait || "").slice(0, 140)) + '" aria-label="Signaler" title="Signaler">⚑</button>' : ""; }
+
+  function renderPourMoi(){
+    if (MSGERR) return '<p class="sh-note">Les conseils privés ne sont pas encore activés : Licia doit publier les nouvelles règles de la base (fichier « firestore.rules »).</p>';
+    var T = threads();
+    if (!T.length) return '<p class="sh-note">Aucun conseil pour l\'instant. Pour en envoyer un : sous un film, touche « ♡ Conseiller », puis « Le conseiller à un membre… ».</p>';
+    return T.map(function(t){
+      var first = t.list[0], fromMe = first.from === CC.uid, other = pseudoOf(t.other);
+      var head = fromMe ? "Tu as conseillé " + filmLabel(t) + " à " + other : other + " te conseille " + filmLabel(t);
+      var msgs = t.list.map(function(x, i){
+        var who = x.from === CC.uid ? "Toi" : pseudoOf(x.from);
+        return x.mot ? '<div class="cmsg' + (x.from === CC.uid ? " moi" : "") + '"><b>' + esc(who) + '</b> « ' + esc(x.mot) + ' »' + (i ? flagBtn("msg", x.id, x.from === CC.uid ? "" : x.from, x.mot) : "") + '</div>' : "";
+      }).join("");
+      var open = SEND && SEND.reply === t.key;
+      var blocked = inBulle(t.other) || ((CC.profils[t.other] || {}).bloques || []).indexOf(CC.uid) >= 0;
+      return '<div class="cthread"><div class="cth">' + esc(head) + '<small>' + esc(ago(t.last)) + '</small></div>' + msgs +
+        (open ? '<div class="crep"><textarea id="ccRepTxt" class="ccin" maxlength="200" rows="2" placeholder="Ta réponse (200 caractères au plus)"></textarea><div class="plf-b"><button type="button" class="plf-ok ccsm" data-repsend="' + esc(t.key) + '">Envoyer</button><button type="button" class="plf-no ccsm" data-repno="1">Annuler</button></div></div>' : "") +
+        '<div class="plf-b">' + filmBtn(t.film, t.titre) + (open ? "" : blocked ? '<span class="sh-note">' + esc(other) + ' préfère rester dans sa bulle.</span>' : '<button type="button" class="plf-no ccsm" data-reply="' + esc(t.key) + '">Répondre</button>') +
+        (first.from !== CC.uid ? flagBtn("msg", first.id, first.from, first.mot).replace('class="ccflag"', 'class="ccflag lab"').replace('>⚑<', '>⚑ Signaler<') : "") + '</div></div>';
+    }).join("");
+  }
+  function renderFil(){
+    var F = feed();
+    if (!F.length) return '<p class="sh-note">Rien de nouveau ces 30 derniers jours. Les notes et commentaires des autres membres apparaîtront ici.</p>';
+    return '<div class="mlist">' + F.map(function(x){
+      var txt = pseudoOf(x.uid) + " " + x.txt + " " + x.titre + (x.annee ? " (" + x.annee + ")" : "") + (x.note ? " " + fmtN(x.note) + "/10" : "") + (x.com ? " : « " + x.com + " »" : "");
+      return '<button type="button" class="mfilm fil" data-mfilm="' + esc(x.titre) + '"><span>' + esc(txt) + '</span><small>' + esc(ago(x.iso)) + '</small></button>';
+    }).join("") + '</div>';
+  }
+  function renderSend(){
+    var P = CC.profils, ids = Object.keys(P).filter(function(u){ return u !== CC.uid && P[u] && P[u].pseudo && !isBlocked(u); })
+      .sort(function(a, b){ return String(P[a].pseudo).localeCompare(String(P[b].pseudo), "fr"); });
+    return '<h3>Conseiller ' + esc(filmLabel(SEND)) + '</h3>' +
+      (!ids.length ? '<p class="sh-note">Pas encore d\'autre membre. Envoie le lien de la page à un ami pour qu\'il te rejoigne.</p>' :
+      '<div class="mlist" role="radiogroup" aria-label="À qui ?">' + ids.map(function(u){
+        var no = inBulle(u) || (P[u].bloques || []).indexOf(CC.uid) >= 0;
+        return '<button type="button" class="mrow" role="radio" data-sendto="' + esc(u) + '" aria-checked="' + (SEND.to === u) + '"' + (no ? ' disabled' : '') + '><b>' + esc(P[u].pseudo) + '</b><span>' + (no ? "préfère rester dans sa bulle" : SEND.to === u ? "✓ choisi" : "") + '</span></button>';
+      }).join("") + '</div>' +
+      '<label class="ccl"><span>Un mot (facultatif)</span><textarea id="ccSendTxt" class="ccin" maxlength="200" rows="3" placeholder="Pourquoi ce film ? 200 caractères au plus">' + esc(SEND.mot || "") + '</textarea></label>' +
+      '<div class="plf-b"><button type="button" class="plf-ok" id="ccSendGo"' + (SEND.to ? "" : " disabled") + '>Envoyer le conseil</button><button type="button" class="plf-no" data-sendno="1">Annuler</button></div>') +
+      '<p class="sh-note" id="ccSendNote"></p>';
+  }
+  function renderReport(){
+    return '<h3>Signaler</h3><p class="sh-note">« ' + esc(REPORT.extrait || "Ce contenu") + ' »</p>' +
+      '<p class="sh-note">Licia, qui gère le Ciné-club, le verra et pourra le masquer pour tout le monde.</p>' +
+      '<label class="ccsw"><input type="checkbox" id="ccBlock"> Ne plus voir les messages de ' + esc(pseudoOf(REPORT.author)) + ' (il ou elle ne pourra plus te conseiller de film)</label>' +
+      '<div class="plf-b"><button type="button" class="plf-ok" id="ccReportGo">Signaler</button><button type="button" class="plf-no" data-reportno="1">Annuler</button></div><p class="sh-note" id="ccRepNote"></p>';
+  }
+  function profileExtra(u){
+    var p = CC.profils[u] || {}, rep = p.rep || {}, h = "";
+    if (p.gouts && !CC.hidden("gouts", u, u === CC.uid ? "" : u)) h += '<p class="cgouts">« ' + esc(p.gouts) + ' »' + flagBtn("gouts", u, u === CC.uid ? "" : u, p.gouts) + '</p>';
+    var top = Object.keys(rep).filter(function(id){ return rep[id] && rep[id].note10; }).sort(function(a, b){ return rep[b].note10 - rep[a].note10; }).slice(0, 5);
+    if (top.length) h += '<div class="mh">Ses 5 films préférés</div><div class="mlist">' + top.map(function(id){ var x = rep[id]; return '<button type="button" class="mfilm" data-mfilm="' + esc(x.titre || id) + '"><span>' + esc(x.titre || id) + (x.annee ? ' <small>' + esc(x.annee) + '</small>' : "") + '</span><b>★ ' + fmtN(x.note10) + '/10</b></button>'; }).join("") + '</div>';
+    if (u !== CC.uid && CC.me) {
+      var c = common(u);
+      h += '<div class="mh">Vos points communs</div><p class="sh-note">' + c.seen + ' film' + (c.seen > 1 ? "s" : "") + ' vu' + (c.seen > 1 ? "s" : "") + ' tous les deux' +
+        (c.pct != null ? ' · goûts proches à ' + c.pct + ' %<br><small>Calcul : 100 % moins 10 % par point d\'écart moyen entre vos notes, sur vos ' + c.n + ' films notés tous les deux.</small>' : ' · pas encore assez de notes communes (3 au moins) pour comparer vos goûts.') + '</p>';
+    }
+    return h;
+  }
+  function renderCom(){
+    var h;
+    if (SEND && !SEND.reply) h = renderSend();
+    else if (REPORT) h = renderReport();
+    else {
+      if (TAB === "fil" && me().bulle) TAB = "membres";
+      h = tabsHtml();
+      if (TAB === "pourmoi") { h += renderPourMoi(); markRead(); }
+      else if (TAB === "fil") h += renderFil();
+      else h += membersHtml();
+    }
     $("msheetBody").innerHTML = h + '<div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
   }
+  CC.openCom = function(tab){ TAB = tab || TAB || "membres"; SEND = null; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0; };
+  CC.sendFilm = function(fid){
+    if (!CC.me) { openLogin(); return; }
+    var info = (CC.filmInfo && CC.filmInfo(fid)) || {};
+    SEND = { film:fid, titre:info.t || fid, annee:info.y || "", to:"", mot:"" }; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0;
+  };
+  function sendMsg(to, film, titre, annee, mot, type){
+    return fs.collection("messages").add({ from:CC.uid, to:to, film:film, titre:titre || "", annee:annee || "", mot:String(mot || "").trim().slice(0, 200), type:type, ajout:new Date().toISOString(), lu:false });
+  }
+
+  // ---------- Visite guidée (3 bulles), après le lever de rideau, une fois par appareil et par compte ----------
+  var GKEY = "ccGuideV1" + CC.lsKey, GI = -1;
+  var GSTEPS = [
+    { sel:"#toc", t:"Les catégories", d:"Touchez un carré pour ouvrir ses listes de films." },
+    { sel:".qwrap", t:"Chercher et répondre", d:"Cherchez un film ici. Sous chaque film, dites si vous l'avez vu, puis notez-le sur 10." },
+    { sel:"#ccMbr", alt:"#ccMe", t:"La communauté", d:"Les carnets des autres membres, les conseils qu'on vous envoie et, si vous préférez, « Rester dans ma bulle » dans Mon compte." }
+  ];
+  function guideShow(){
+    var g = $("ccGuide"); if (!g) return;
+    if (GI < 0 || GI >= GSTEPS.length) { g.hidden = true; document.querySelectorAll(".ccg-on").forEach(function(x){ x.classList.remove("ccg-on"); }); return; }
+    var st = GSTEPS[GI], el = document.querySelector(st.sel);
+    if (!el || el.hidden || !el.getBoundingClientRect().width) el = st.alt ? document.querySelector(st.alt) : null;
+    document.querySelectorAll(".ccg-on").forEach(function(x){ x.classList.remove("ccg-on"); });
+    if (el) { el.classList.add("ccg-on"); el.scrollIntoView({ block:"center", behavior:"auto" }); }
+    g.innerHTML = '<div class="ccg-n">' + (GI + 1) + ' / ' + GSTEPS.length + '</div><b>' + esc(st.t) + '</b><p>' + esc(st.d) + '</p><div class="plf-b"><button type="button" class="plf-ok" data-gnext="1">' + (GI === GSTEPS.length - 1 ? "Terminé" : "Suivant") + '</button><button type="button" class="plf-no" data-gskip="1">Passer la visite</button></div>';
+    g.hidden = false;
+    var r = el ? el.getBoundingClientRect() : null, H = window.innerHeight;
+    g.style.top = r && r.bottom + 12 + 190 < H ? (r.bottom + 12) + "px" : r && r.top - 12 - 190 > 0 ? Math.max(8, r.top - 12 - g.offsetHeight) + "px" : "auto";
+    g.style.bottom = g.style.top === "auto" ? "16px" : "auto";
+    var b = g.querySelector("[data-gnext]"); if (b) b.focus({ preventScroll:true });
+  }
+  CC.startGuide = function(){ GI = 0; guideShow(); };
+  function guideEnd(){ GI = -1; guideShow(); ls(GKEY, "1"); }
+  (function waitIntro(){
+    var n = 0, iv = setInterval(function(){
+      var it = $("intro"), toc = $("toc");
+      if (++n > 240) { clearInterval(iv); return; }
+      if (it && !it.hidden) return;
+      if (!toc || !toc.children.length) return;
+      clearInterval(iv);
+      if (!ls(GKEY)) setTimeout(CC.startGuide, 400);
+    }, 500);
+  })();
+
   document.addEventListener("click", function(ev){
     var t = ev.target.closest ? ev.target : null; if (!t) return;
     if (t.closest("#ccMe")) { openLogin(); return; }
-    if (t.closest("#ccMbr")) { CC.openMembers(""); return; }
+    if (t.closest("#ccMbr")) { MSEL = ""; CC.openCom(unread() && !me().bulle ? "pourmoi" : TAB); return; }
     if (t.closest("[data-ccclose]")) { sheetOpen(""); return; }
     if (t.closest("#ccSend")) { sendLink(); return; }
     if (t.closest("#ccGoogle")) { google(); return; }
@@ -1516,15 +1776,67 @@ body:not(.vide) .toc{margin-top:8px;}
     if (t.closest("#ccBackup")) { if (IMP) { download("cineclub-sauvegarde-" + new Date().toISOString().slice(0, 10) + ".json", IMP.prev); note("Sauvegarde téléchargée. Tu peux maintenant importer."); } return; }
     if (t.closest("#ccImpGo")) { runImport(); return; }
     if (t.closest("#ccImpNo")) { IMP = null; $("ccImp").innerHTML = ""; note("Import annulé, rien n'a été écrit."); return; }
-    var lk = t.closest("[data-mlink]"); if (lk) { var sel = $("ccLink"); if (sel && sel.value) fs.collection("profils").doc(lk.dataset.mlink).update({ pid:sel.value }).then(function(){ renderMembers(); }, function(){ alert("Pas enregistré."); }); return; }
-    var ms = t.closest("[data-msel]"); if (ms) { MSEL = ms.dataset.msel; renderMembers(); $("msheet").scrollTop = 0; return; }
+    var lk = t.closest("[data-mlink]"); if (lk) { var sel = $("ccLink"); if (sel && sel.value) fs.collection("profils").doc(lk.dataset.mlink).update({ pid:sel.value }).then(function(){ renderCom(); }, function(){ alert("Pas enregistré."); }); return; }
+    var ms = t.closest("[data-msel]"); if (ms) { MSEL = ms.dataset.msel; TAB = "membres"; renderCom(); $("msheet").scrollTop = 0; return; }
     var mv = t.closest("[data-mview]"); if (mv) { CC.enterView(mv.dataset.mview); return; }
     if (t.closest("[data-mback]")) { CC.exitView(); return; }
     var mb = t.closest("[data-mbr]"); if (mb) { CC.openMembers(mb.dataset.mbr); return; }
+    var ct = t.closest("[data-ctab]"); if (ct) { TAB = ct.dataset.ctab; MSEL = ""; renderCom(); return; }
+    var cs = t.closest("[data-cconseil]"); if (cs) { CC.sendFilm(cs.dataset.cconseil); return; }
+    var st = t.closest("[data-sendto]"); if (st && !st.disabled) { SEND.mot = ($("ccSendTxt") || {}).value || SEND.mot; SEND.to = st.dataset.sendto; renderCom(); return; }
+    if (t.closest("[data-sendno]")) { SEND = null; renderCom(); return; }
+    if (t.closest("#ccSendGo")) {
+      var mot = ($("ccSendTxt") || {}).value || "", sn = $("ccSendNote"), go = $("ccSendGo"); go.disabled = true; sn.textContent = "Envoi…";
+      sendMsg(SEND.to, SEND.film, SEND.titre, SEND.annee, mot, "conseil").then(function(){ var who = pseudoOf(SEND.to); SEND = null; TAB = "pourmoi"; renderCom(); var n = $("msheetBody").querySelector(".ctabs"); if (n) n.insertAdjacentHTML("afterend", '<p class="sh-note ok">Conseil envoyé à ' + esc(who) + '.</p>'); },
+        function(e){ go.disabled = false; sn.textContent = e && e.code === "permission-denied" ? "Pas envoyé : cette personne préfère rester dans sa bulle, ou les nouvelles règles de la base ne sont pas encore publiées." : "Pas envoyé, réessaie dans un instant."; sn.className = "sh-note err"; });
+      return;
+    }
+    var rp = t.closest("[data-reply]"); if (rp) { SEND = { reply:rp.dataset.reply }; renderCom(); var ta = $("ccRepTxt"); if (ta) ta.focus(); return; }
+    if (t.closest("[data-repno]")) { SEND = null; renderCom(); return; }
+    var rs = t.closest("[data-repsend]");
+    if (rs) {
+      var th = threads().filter(function(x){ return x.key === rs.dataset.repsend; })[0], txt = (($("ccRepTxt") || {}).value || "").trim();
+      if (!th || !txt) { var ta2 = $("ccRepTxt"); if (ta2) ta2.focus(); return; }
+      rs.disabled = true;
+      sendMsg(th.other, th.film, th.titre, th.annee, txt, "reponse").then(function(){ SEND = null; renderCom(); }, function(){ rs.disabled = false; alert("Réponse pas envoyée : réessaie dans un instant."); });
+      return;
+    }
+    var rpt = t.closest("[data-report]"); if (rpt) { var a = rpt.dataset.report.split("|"); REPORT = { type:a[0], id:a[1], author:a[2], extrait:rpt.dataset.extrait || "" }; SEND = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0; return; }
+    if (t.closest("[data-reportno]")) { REPORT = null; renderCom(); return; }
+    if (t.closest("#ccReportGo")) {
+      var R = REPORT, blk = $("ccBlock") && $("ccBlock").checked, rn = $("ccRepNote");
+      fs.collection("signalements").add({ uid:CC.uid, type:R.type, cible:R.id, auteur:R.author, extrait:String(R.extrait).slice(0, 140), ajout:new Date().toISOString() })
+        .then(function(){ return blk ? fs.collection("profils").doc(CC.uid).update({ bloques:firebase.firestore.FieldValue.arrayUnion(R.author) }) : null; })
+        .then(function(){ REPORT = null; renderCom(); var n = $("msheetBody"); n.insertAdjacentHTML("afterbegin", '<p class="sh-note ok">Merci, c\'est signalé.' + (blk ? " Tu ne verras plus ses messages." : "") + '</p>'); CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); },
+          function(){ rn.textContent = "Pas envoyé, réessaie dans un instant."; rn.className = "sh-note err"; });
+      return;
+    }
+    var mq = t.closest("[data-masq]"), ll = t.closest("[data-laisse]");
+    if (mq || ll) {
+      var x = SIGN.filter(function(z){ return z.id === (mq || ll).dataset[mq ? "masq" : "laisse"]; })[0]; if (!x) return;
+      (mq ? fs.collection("masques").doc(x.type + "_" + x.cible).set({ type:x.type, cible:x.cible, auteur:x.auteur, ajout:new Date().toISOString() }) : Promise.resolve())
+        .then(function(){ return fs.collection("signalements").doc(x.id).delete(); }).catch(function(){ alert("Pas enregistré, réessaie."); });
+      return;
+    }
+    if (t.closest("[data-gnext]")) { GI++; if (GI >= GSTEPS.length) guideEnd(); else guideShow(); return; }
+    if (t.closest("[data-gskip]")) { guideEnd(); return; }
+    if (t.closest("[data-guide]")) { var am = $("aamenu"); if (am) { am.hidden = true; var ab = $("aab"); if (ab) ab.setAttribute("aria-expanded", "false"); } CC.startGuide(); return; }
     var mf = t.closest("[data-mfilm]");
     if (mf) { sheetOpen(""); var q = $("q"); if (q) { q.value = mf.dataset.mfilm; q.dispatchEvent(new Event("input", { bubbles:true })); q.scrollIntoView({ block:"center" }); } }
   });
-  document.addEventListener("change", function(ev){ if (ev.target && ev.target.id === "ccFile") importFile(ev.target.files[0]); });
+  document.addEventListener("change", function(ev){
+    if (ev.target && ev.target.id === "ccFile") importFile(ev.target.files[0]);
+    if (ev.target && ev.target.id === "ccBulle") {
+      var on = ev.target.checked;
+      fs.collection("profils").doc(CC.uid).update({ bulle:on }).then(function(){ note(on ? "Tu restes dans ta bulle." : "Tu sors de ta bulle."); }, function(){ ev.target.checked = !on; note("Pas enregistré, réessaie.", true); });
+    }
+  });
+  // Échap ferme les volets et la visite guidée.
+  document.addEventListener("keydown", function(ev){
+    if (ev.key !== "Escape") return;
+    if (GI >= 0) { guideEnd(); return; }
+    ["lsheet", "msheet"].forEach(function(k){ var x = $(k); if (x && !x.hidden) x.hidden = true; });
+  });
   document.addEventListener("keydown", function(ev){
     if (ev.key !== "Enter" || !ev.target) return;
     if (ev.target.id === "ccEmail") sendLink(); else if (ev.target.id === "ccPseudo") saveProfile();
@@ -1962,7 +2274,7 @@ body:not(.vide) .toc{margin-top:8px;}
         ? '<span class="np"><input type="text" class="np-in" maxlength="30" placeholder="Prénom" aria-label="Prénom de la personne qui conseille ce film" autocomplete="off">' +
           '<button type="button" class="chip np-ok" data-newok="1">OK</button></span>'
         : '<button type="button" class="chip autre-p" data-newp="1">＋ Nouvelle personne</button>') : "") +
-      motFields(f) + '</div>' : "";
+      motFields(f) + ccSendBtn(f) + '</div>' : "";
     var ro = n10 ? "Noté <b>" + fmtN(n10) + "</b>/10 par " + esc(VN()) : "";
     var meta = [f.y, f.c, f.d].filter(function(x){ return x; }).map(esc);
     if (MV_INFO[f.mv]) meta.push('<button type="button" class="mvb" data-mv="' + esc(f.mv) + '" title="Voir les films de ce mouvement">' + esc(MV_INFO[f.mv].label) + '</button>');
@@ -1977,11 +2289,13 @@ body:not(.vide) .toc{margin-top:8px;}
   }
 
   // Les autres membres qui ont répondu pour ce film (leur note, ou vu / pas vu).
+  function ccSendBtn(f){ return window.CC && CC.me && !GUEST ? '<button type="button" class="chip cc-send" data-cconseil="' + esc(f.id) + '">Le conseiller à un membre…</button>' : ""; }
+  if (window.CC) CC.filmInfo = function(id){ var f = films[id]; return f ? { t:f.t, y:f.y } : null; };
   function mbrHtml(f){
     var P = window.CC && CC.uid ? CC.profils : null; if (!P) return "";
     var out = [];
     Object.keys(P).forEach(function(u){
-      if (u === CC.uid || u === CC.view) return;
+      if (u === CC.uid || u === CC.view || (CC.hidden && CC.hidden("x", "", u))) return;
       var pr = P[u] || {}, r = pr.rep && pr.rep[f.id]; if (!r || !r.etat) return;
       out.push({ n:r.note10 || 0, h:'<button type="button" class="mbr" data-mbr="' + esc(u) + '">' + esc(pr.pseudo || "?") + ' · ' + (r.note10 ? "★ " + fmtN(r.note10) : esc(LABELS[r.etat] || r.etat)) + '</button>' });
     });
@@ -3183,11 +3497,13 @@ body:not(.vide) .toc{margin-top:8px;}
   // Commentaires : chacun choisit son nom (ou en écrit un autre) et laisse une ou deux lignes.
   var COMS = {}, comCol = null, OPEN_COM = "", NOM_KEY = "carnetNomV1" + CCK;
   function comsHtml(f){
-    var l = (COMS[f.id] || []).slice(-3), more = (COMS[f.id] || []).length - l.length, mine = ROLE === "proprio" && !GUEST && CCA();
+    var all = (COMS[f.id] || []).filter(function(c){ return !(window.CC && CC.hidden && CC.hidden("com", c.id, c.uid)); });
+    var l = all.slice(-3), more = all.length - l.length, mine = ROLE === "proprio" && !GUEST && CCA();
     var pend = ROLE === "lecteur" ? ENVOI.filter(function(x){ return x.kind === "com" && x.id === f.id; }) : [];
     if (!l.length && !pend.length) return "";
     return '<div class="cmts">' + (more > 0 ? '<div class="cmt-more">💬 ' + more + ' commentaire' + (more > 1 ? "s" : "") + ' plus ancien' + (more > 1 ? "s" : "") + '</div>' : "") +
       l.map(function(c){ var cn = (window.CC && c.uid && CC.profils[c.uid] && CC.profils[c.uid].pseudo) || c.nom || c.prenom; return '<div class="cmt"><span class="cmt-t"><b>' + esc(cn) + '</b> ' + esc(c.texte) + '</span>' +
+        (window.CC && CC.me && c.uid && c.uid !== CC.uid ? '<button type="button" class="ccflag" data-report="com|' + esc(c.id) + '|' + esc(c.uid) + '" data-extrait="' + esc(c.texte) + '" aria-label="Signaler ce commentaire" title="Signaler">⚑</button>' : "") +
         (mine || (window.CC && CC.uid && c.uid === CC.uid) ? '<button type="button" class="cmt-x" data-cdel="' + esc(c.id) + '" aria-label="Supprimer ce commentaire" title="Supprimer">✕</button>' : "") + '</div>'; }).join("") +
       pend.map(function(x){ return '<div class="cmt wait"><span class="cmt-t"><b>' + esc(x.nom) + '</b> ' + esc(x.com) + '</span><small>à valider</small></div>'; }).join("") + '</div>';
   }
@@ -4440,7 +4756,7 @@ body:not(.vide) .toc{margin-top:8px;}
       Object.keys(next).forEach(function(k){ next[k].sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); }); });
       var sig = function(m){ return Object.keys(m).sort().map(function(k){ return k + ":" + m[k].map(function(c){ return c.id + "~" + c.texte + "~" + c.nom + "~" + c.uid + "~" + c.ajout; }).join("|"); }).join(","); };
       if (sig(next) === sig(COMS)) return;
-      COMS = next;
+      COMS = next; if (window.CC) CC.coms = COMS;
       // Un commentaire envoyé par le formulaire et maintenant dans le carnet quitte la liste à valider.
       var nb = ENVOI.length;
       ENVOI = ENVOI.filter(function(x){ return x.kind !== "com" || !(next[x.id] || []).some(function(c){ return c.texte === x.com; }); });
