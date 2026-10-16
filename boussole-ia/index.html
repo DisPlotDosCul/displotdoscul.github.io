@@ -447,6 +447,7 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
 .duobest .rn{font-family:var(--f-mono);font-weight:700}
 .duobest .rn sup{font-size:9px}
 .duobest .nn{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#duo .duobest .nn{white-space:normal;line-height:1.3}
 .duobest .vv{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
 @media (max-width:560px){#duoSwap{order:3;flex:0 0 auto}}
 </style>
@@ -538,22 +539,24 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
 </section>
 
 <section id="duo" aria-label="Comparer deux critères">
-  <div class="head row"><h2>Comparer deux critères</h2><span class="eyebrow">chaque point est un modèle · en haut à droite = le meilleur des deux</span></div>
+  <div class="head row"><h2>Comparer deux critères</h2><span class="eyebrow">chaque point est un couple modèle + effort</span></div>
   <div class="chartbox">
     <div class="duoctl">
       <label><span class="eyebrow">Critère horizontal →</span><select id="duoX"></select></label>
       <button type="button" class="sortb" id="duoSwap" aria-label="Inverser les deux critères">⇄</button>
       <label><span class="eyebrow">Critère vertical ↑</span><select id="duoY"></select></label>
     </div>
+    <span class="eyebrow" id="duoCount" aria-live="polite"></span>
     <div class="keys" aria-hidden="true">
       <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="var(--s1)"/></svg>Anthropic (Claude)</span>
       <span><svg width="12" height="12"><rect x="1" y="1" width="10" height="10" rx="1.5" fill="var(--s2)"/></svg>OpenAI (GPT)</span>
       <span><svg width="12" height="12"><path d="M6 0.5 L11.5 6 L6 11.5 L0.5 6 Z" fill="var(--s3)"/></svg>Autres laboratoires</span>
       <span><svg width="12" height="12"><circle cx="6" cy="6" r="4.2" fill="none" stroke="var(--muted)" stroke-width="1.6"/></svg>Hors classement</span>
     </div>
-    <div id="duoChart" role="img"></div>
+    <div id="duoChart" role="group"></div>
     <span class="eyebrow">Meilleurs compromis entre les deux</span>
     <ol class="duobest" id="duoBest"></ol>
+    <details><summary>Toutes les configurations comparées</summary><ul class="duobest" id="duoAll"></ul></details>
     <p class="note" id="duoNote"></p>
   </div>
 </section>
@@ -1715,9 +1718,6 @@ const saved=store('boussole-usage');
 select(T.some(t=>t.k===saved)?saved:'sci'); centerTile(T.some(t=>t.k===saved)?saved:'sci');
 
 /* ---------- consommation et rapidité ---------- */
-(function(){
-  const ct=T.find(x=>x.k==='conso'), ol=$('consRank');
-  if(ct&&ol){ const vs=ct.items.filter(i=>i.v!=null).map(i=>i.v); ct.items.filter(i=>!i.nr).slice(0,10).forEach((i,ix)=>ol.appendChild(row(ct,i,ix+1,vs))); }
   /* modèle, laboratoire, effort, indice, coût par tâche ($), jetons par seconde, délai avant le premier mot (s), temps de réponse (s) */
   const CS=[
    ['Claude Opus 5.5','Anthropic','low',42,0.55,83,9.05,15.04],['Claude Opus 5.5','Anthropic','medium',51,1.34,85,19.87,25.77],['Claude Opus 5.5','Anthropic','high',54,1.82,77,51.91,58.40],['Claude Opus 5.5','Anthropic','xhigh',56,3.46,76,141.84,148.42],['Claude Opus 5.5','Anthropic','max',58,5.98,96,679.24,684.46],
@@ -1730,6 +1730,9 @@ select(T.some(t=>t.k===saved)?saved:'sci'); centerTile(T.some(t=>t.k===saved)?sa
    ['Grok 4.7','xAI','low',42,1.25,64,3.87,11.72],['Grok 4.7','xAI','high',46,2.73,77,29.78,36.31],['Grok 4.7','xAI','xhigh',46,3.74,80,75.68,81.96],
    ['DeepSeek V4.1 Flash','DeepSeek','max',39,0.27,177,1.13,15.29],['DeepSeek V4.1 Flash','DeepSeek','none',25,0.15,175,1.13,3.98]
   ];
+(function(){
+  const ct=T.find(x=>x.k==='conso'), ol=$('consRank');
+  if(ct&&ol){ const vs=ct.items.filter(i=>i.v!=null).map(i=>i.v); ct.items.filter(i=>!i.nr).slice(0,10).forEach((i,ix)=>ol.appendChild(row(ct,i,ix+1,vs))); }
   const tb=$('csTable'), cnt=$('csCount'), only=$('only50');
   if(!tb) return;
   let key='total', only50=false;
@@ -1857,6 +1860,17 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
   const inv=t=>t.kind!=='editorial'&&!!t.inv;
   const fv=(t,v)=>t.kind==='editorial'?fmt(v)+'/5':fmtVal(v,t.unit);
   const nm=m=>m.replace(/^Claude /,'');
+  const effort=e=>ELAB[e]?ELAB[e][0]:e==='none'?'sans raisonnement':'effort non précisé';
+  const pair=p=>p.m+' · '+effort(p.e);
+  const key=i=>JSON.stringify([i.m,i.e||null]);
+  /* Coût et rapidité : toutes les mesures par effort, sans le seuil de 50 points du classement. */
+  function measures(t){
+    if(t.k!=='conso'&&t.k!=='speed') return t.items.filter(i=>!i.off&&Number.isFinite(val(t,i)));
+    const column=t.k==='conso'?4:7;
+    const rows=CS.filter(r=>Number.isFinite(r[column])).map(r=>({m:r[0],lab:r[1],e:r[2],v:r[column],nr:false}));
+    const covered=new Set(rows.map(key));
+    return rows.concat(t.items.filter(i=>!i.off&&Number.isFinite(i.v)&&!covered.has(key(i))));
+  }
   const tt=document.createElement('div'); tt.className='tt'; tt.hidden=true; box.appendChild(tt);
   function ticks(lo,hi,n){
     const raw=(hi-lo)/(n||4), p=Math.pow(10,Math.floor(Math.log10(raw))), f=raw/p, st=(f<1.5?1:f<3?2:f<7?5:10)*p, out=[];
@@ -1867,15 +1881,16 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
   function render(){
     store('duo-x',sx.value); store('duo-y',sy.value);
     const tx=T.find(t=>t.k===sx.value), ty=T.find(t=>t.k===sy.value);
-    box.querySelectorAll('svg,.empty').forEach(e=>e.remove()); best.innerHTML=''; tt.hidden=true;
+    box.querySelectorAll('svg,.empty').forEach(e=>e.remove()); best.innerHTML=''; $('duoAll').innerHTML=''; $('duoCount').textContent=''; tt.hidden=true;
     if(tx===ty){ msg('Choisissez deux critères différents.'); return; }
-    const mx=new Map(); tx.items.forEach(i=>{ const v=val(tx,i); if(v!=null&&!mx.has(i.m)) mx.set(i.m,i); });
+    const mx=new Map(); measures(tx).forEach(i=>{ if(!mx.has(key(i))) mx.set(key(i),i); });
     const Pt=[], seen=new Set();
-    ty.items.forEach(i=>{ const v=val(ty,i), ix=mx.get(i.m); if(v!=null&&ix&&!seen.has(i.m)){ seen.add(i.m); Pt.push({m:i.m,lab:i.lab,x:val(tx,ix),y:v,ix:ix,iy:i,nr:ix.nr||i.nr}); } });
-    if(Pt.length<3){ msg('Moins de trois modèles sont évalués sur ces deux critères : choisissez-en un autre.'); return; }
+    measures(ty).forEach(i=>{ const id=key(i), ix=mx.get(id); if(ix&&!seen.has(id)){ seen.add(id); Pt.push({m:i.m,lab:i.lab,e:i.e,x:val(tx,ix),y:val(ty,i),ix:ix,iy:i,nr:ix.nr||i.nr}); } });
+    $('duoCount').textContent=Pt.length+' configuration'+(Pt.length>1?'s':'')+' comparée'+(Pt.length>1?'s':'')+' · même effort sur les deux critères';
+    if(!Pt.length){ msg('Aucune configuration ne dispose de valeurs pour ces deux critères au même niveau d’effort. Les relevés sans effort précisé sont uniquement comparés entre eux.'); return; }
     const dom=(a,t)=>{ let lo=Math.min(...a), hi=Math.max(...a); const pad=(hi-lo)*0.1||1; const l0=lo; lo-=pad; hi+=pad; if(l0>=0&&lo<0) lo=0; if(t.kind==='editorial') hi=Math.min(hi,5.25); return [lo,hi]; };
     const [xlo,xhi]=dom(Pt.map(p=>p.x),tx), [ylo,yhi]=dom(Pt.map(p=>p.y),ty);
-    const W=Math.max(box.clientWidth,300), H=W<560?Math.round(W*1.05):Math.min(470,Math.round(W*0.56));
+    const W=Math.max(box.clientWidth,300), H=Math.max(W<560?Math.round(W*1.05):Math.min(470,Math.round(W*0.56)),Math.min(800,Pt.length*18));
     const m={l:W<560?52:62,r:14,t:28,b:44}, pw=W-m.l-m.r, ph=H-m.t-m.b;
     const nx=v=>inv(tx)?(xhi-v)/(xhi-xlo):(v-xlo)/(xhi-xlo), ny=v=>inv(ty)?(yhi-v)/(yhi-ylo):(v-ylo)/(yhi-ylo);
     const X=v=>m.l+nx(v)*pw, Y=v=>m.t+(1-ny(v))*ph;
@@ -1903,25 +1918,30 @@ let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(dra
       const px=X(p.x), py=Y(p.y), gr=grp(p.lab);
       const mk=marker(marks,px,py,gr,p.nr?4.5:6);
       if(p.nr){ mk.setAttribute('fill','var(--surface)'); mk.setAttribute('stroke',COL[gr]); mk.setAttribute('stroke-width',2); }
-      const label=nm(p.m), w=label.length*6.3+4, hgt=13;
+      const label=nm(p.m)+' · '+effort(p.e), w=label.length*6.3+4, hgt=13;
       const cand=[[10,4,'start'],[-10,4,'end'],[0,-11,'middle'],[0,19,'middle'],[10,-8,'start'],[-10,-8,'end'],[10,15,'start'],[-10,15,'end']];
       const box_=c=>{ const x0=c[2]==='start'?px+c[0]:c[2]==='end'?px+c[0]-w:px-w/2; return [x0,py+c[1]-hgt+3,x0+w,py+c[1]+3]; };
       const free=b=>b[0]>=2&&b[2]<=W-2&&b[1]>=m.t-4&&b[3]<=H-m.b+2&&!placed.some(q=>b[0]<q[2]&&b[2]>q[0]&&b[1]<q[3]&&b[3]>q[1])&&!Pt.some(o=>o!==p&&X(o.x)>b[0]-3&&X(o.x)<b[2]+3&&Y(o.y)>b[1]-3&&Y(o.y)<b[3]+3);
       let c=cand.find(c=>free(box_(c)));
       if(c){ placed.push(box_(c));
         const t=el('text',{x:px+c[0],y:py+c[1],'text-anchor':c[2],'font-size':12,'font-weight':p.nr?400:600,fill:p.nr?'var(--muted)':'var(--ink)'},labels); t.textContent=label; }
-      const h=el('circle',{cx:px,cy:py,r:14,fill:'transparent',tabindex:0,role:'button','aria-label':p.m+' : '+tx.label+' '+fv(tx,p.x)+', '+ty.label+' '+fv(ty,p.y)},hits);
+      const h=el('circle',{cx:px,cy:py,r:14,fill:'transparent',tabindex:0,role:'button','aria-label':pair(p)+' : '+tx.label+' '+fv(tx,p.x)+', '+ty.label+' '+fv(ty,p.y)},hits);
       h.style.cursor='pointer';
-      const show=()=>{ tt.innerHTML='<b>'+p.m+'</b><br>'+TSHORT[tx.k]+' : '+fv(tx,p.x)+'<br>'+TSHORT[ty.k]+' : '+fv(ty,p.y)+(p.nr?'<br>Hors classement':'');
+      const show=()=>{ tt.innerHTML='<b>'+pair(p)+'</b><br>'+TSHORT[tx.k]+' : '+fv(tx,p.x)+'<br>'+TSHORT[ty.k]+' : '+fv(ty,p.y)+(p.nr?'<br>Hors classement':'');
         tt.style.left=Math.min(Math.max(px,70),W-70)+'px'; tt.style.top=py+'px'; tt.hidden=false; };
       h.addEventListener('pointerenter',show); h.addEventListener('focus',show); h.addEventListener('click',show);
       h.addEventListener('pointerleave',()=>tt.hidden=true); h.addEventListener('blur',()=>tt.hidden=true);
+      h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}if(e.key==='Escape') tt.hidden=true;});
     });
     const top=[...Pt].filter(p=>!p.nr).sort((a,b)=>b.s-a.s).slice(0,5);
     top.forEach((p,i)=>{ const li=document.createElement('li');
-      li.innerHTML='<span class="rn">'+ord(i+1)+'</span><span class="nn">'+p.m+'</span><span class="vv">'+fv(tx,p.x)+' · '+fv(ty,p.y)+'</span>'; best.appendChild(li); });
-    box.setAttribute('aria-label','Nuage de points : '+tx.label+' à l’horizontale, '+ty.label+' à la verticale. Meilleurs compromis : '+top.slice(0,3).map(p=>p.m).join(', ')+'.');
-    note.textContent='Horizontal : '+tx.label+' ('+(tx.kind==='mesure'?tx.src:'classement éditorial, note sur 5')+'). Vertical : '+ty.label+' ('+(ty.kind==='mesure'?ty.src:'classement éditorial, note sur 5')+'). Pointillés : valeur médiane des modèles affichés ; la zone jaune réunit ceux qui font mieux que la moitié des autres sur les deux critères. Chaque valeur vient du réglage testé par sa source, parfois différent d’un critère à l’autre. Points creux : modèles hors des dix premiers ou sous le seuil de qualité d’un des deux classements.';
+      li.innerHTML='<span class="rn">'+ord(i+1)+'</span><span class="nn">'+pair(p)+'</span><span class="vv">'+fv(tx,p.x)+' · '+fv(ty,p.y)+'</span>'; best.appendChild(li); });
+    [...Pt].sort((a,b)=>a.m.localeCompare(b.m,'fr')||(ELAB[a.e]?.[1]||0)-(ELAB[b.e]?.[1]||0)).forEach(p=>{
+      const li=document.createElement('li'); li.innerHTML='<span class="rn">·</span><span class="nn">'+pair(p)+'</span><span class="vv">'+fv(tx,p.x)+' · '+fv(ty,p.y)+'</span>'; $('duoAll').appendChild(li);
+    });
+    box.setAttribute('aria-label','Nuage de points : '+tx.label+' à l’horizontale, '+ty.label+' à la verticale. '+Pt.length+' configurations. Meilleurs compromis : '+top.slice(0,3).map(pair).join(', ')+'.');
+    const source=t=>t.k==='conso'||t.k==='speed'?'Artificial Analysis, relevé du 16 octobre 2026':t.kind==='mesure'?t.src+(t.date?', relevé du '+t.date+' 2026':''): 'classement éditorial, note sur 5';
+    note.textContent='Horizontal : '+tx.label+' ('+source(tx)+'). Vertical : '+ty.label+' ('+source(ty)+'). Chaque point associe le même modèle et le même effort sur les deux critères. Tous les couples disposant des deux valeurs sont affichés, y compris sous 50 points d’indice d’intelligence. Les relevés sans effort précisé sont comparés entre eux, sans leur attribuer un niveau. Pointillés : médiane des configurations ; la zone jaune réunit celles qui dépassent cette médiane sur les deux critères. Points creux : hors des dix premiers d’un classement. Gemini 4 Argon : seul l’effort élevé est renseigné dans cette page.';
   }
   sx.addEventListener('change',render); sy.addEventListener('change',render);
   $('duoSwap').addEventListener('click',()=>{ const a=sx.value; sx.value=sy.value; sy.value=a; render(); });
