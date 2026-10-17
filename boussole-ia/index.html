@@ -473,6 +473,11 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
 .cs-src{font-size:12px;color:var(--muted);white-space:nowrap}
 .cs-src b{color:var(--ink);font-weight:600}
 #duoChart .empty,#trioChart .empty{position:sticky;left:0;max-width:calc(100vw - 72px)}
+#glitch .gl-t th small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+#glitch .gl-t td{font-size:13.5px;vertical-align:top}
+#glitch .gl-src{font-size:12px;color:var(--muted)}
+#glitch .gl-picks{display:grid;gap:6px;margin-top:12px}
+#glitch .gl-picks p{margin:0}
 </style>
 </head>
 <body>
@@ -540,6 +545,7 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
     <a href="#optimiser">Optimiser</a>
     <a href="#formules">Formules</a>
     <a href="#budget">Quel budget</a>
+    <a href="#glitch">Applis glitch</a>
     <a href="#sources">Sources</a>
   </div>
 </nav>
@@ -1161,9 +1167,40 @@ nav.anchors a.hl{color:var(--accent);font-weight:600}
   <p class="note">Je suis moi-même un modèle Claude : les classements ci-dessus reposent sur des tests publiés par des organismes indépendants (Artificial Analysis, Arena) et par les éditeurs, cités en sources. Avant un engagement, comparer les modèles sur une vraie tâche de votre projet reste le test le plus fiable.</p>
 </section>
 
+<section id="glitch" aria-label="Applications de glitch numérique">
+  <div class="head row"><h2>Applis de glitch numérique</h2><span class="eyebrow">relevé du 17 octobre 2026 · prix publics</span></div>
+  <div class="panel">
+    <div class="csctl" role="group" aria-label="Filtrer les applis">
+      <button type="button" class="sortb" data-gf="" aria-pressed="true">Toutes</button>
+      <button type="button" class="sortb" data-gf="tel" aria-pressed="false">Sur téléphone</button>
+      <button type="button" class="sortb" data-gf="pc" aria-pressed="false">Sur ordinateur</button>
+      <button type="button" class="sortb" data-gf="libre" aria-pressed="false">Gratuites</button>
+      <button type="button" class="sortb" data-gf="direct" aria-pressed="false">En direct</button>
+    </div>
+    <div class="scrollx"><table class="tbl gl-t">
+      <thead><tr><th>Appli</th><th>Prix</th><th>Vidéo</th><th>Datamosh</th><th>En direct</th><th>Pour quoi faire</th><th>Source</th></tr></thead>
+      <tbody id="glRows"><tr data-g="tel"><th scope="row">Glitché<small>iPhone, iPad</small></th><td>Gratuit ; abonnement 7,99 $ par mois ou 29,99 $ par an ; 49,99 $ à vie</td><td>oui</td><td>oui (filtre)</td><td>oui, caméra en direct</td><td>Effets instantanés sur téléphone, plus de 40 filtres</td><td class="gl-src">App Store, relevé du 17 octobre 2026</td></tr><tr data-g="tel"><th scope="row">Glitch Art Studio<small>iPhone, iPad</small></th><td>Gratuit ; version PRO de 8,99 à 39,99 €</td><td>oui, export en 4K et en GIF (image animée)</td><td>oui (filtre)</td><td>non</td><td>Retouche fine : masques, 9 modes de fusion, tri de pixels, VHS, ASCII</td><td class="gl-src">App Store France, relevé du 17 octobre 2026</td></tr><tr data-g="tel"><th scope="row">Glitch Lab<small>Android</small></th><td>Gratuit ; Pro 8,49 € une fois</td><td>non mentionnée</td><td>non mentionné</td><td>non</td><td>Photos : effets qu'on étire et pince du doigt</td><td class="gl-src">AndroidWorld</td></tr><tr data-g="pc libre"><th scope="row">Mosh-Lite (ex-PhotoMosh)<small>Navigateur web</small></th><td>Gratuit</td><td>oui, export limité et filigrane</td><td>oui (effet)</td><td>oui, webcam</td><td>Essayer sans rien installer, 27 effets</td><td class="gl-src">moshpro.app, relevé du 17 octobre 2026</td></tr><tr data-g="pc"><th scope="row">Mosh-Pro<small>Windows, macOS</small></th><td>49 $ une fois ou 24 $ par an (−29 % en France)</td><td>oui, jusqu'à 4K à 60 images par seconde</td><td>oui (effet)</td><td>oui, webcam</td><td>Clips et visuels de musique, plus de 60 effets</td><td class="gl-src">moshpro.app, relevé du 17 octobre 2026</td></tr><tr data-g="pc"><th scope="row">Datamosh 2<small>Module pour Adobe After Effects</small></th><td>59,99 $ (plus l'abonnement After Effects)</td><td>oui</td><td>oui, vrai datamosh</td><td>non</td><td>Montage professionnel : plus de 60 algorithmes, cartes d'intensité</td><td class="gl-src">aescripts et Toolfarm, relevé du 17 octobre 2026</td></tr><tr data-g="libre direct"><th scope="row">Hydra<small>Navigateur web (ordinateur ou téléphone)</small></th><td>Gratuit, libre</td><td>oui, synthèse vidéo</td><td>par rétroaction d'images</td><td>oui, codé en direct</td><td>Visuels de scène en direct, en écrivant quelques lignes de code</td><td class="gl-src">hydra.ojack.xyz</td></tr><tr data-g="pc libre direct"><th scope="row">TouchDesigner<small>Windows, macOS</small></th><td>Gratuit à usage non commercial (1280 × 1280 pixels au plus) ; 600 $ en usage commercial</td><td>oui</td><td>oui, à construire soi-même</td><td>oui, caméra, son, capteurs</td><td>Installations et spectacles interactifs, par nœuds reliés</td><td class="gl-src">Derivative, relevé du 17 octobre 2026</td></tr></tbody>
+    </table></div>
+    <div class="gl-picks">
+      <p><b>Sur téléphone, tout de suite</b> : Glitché pour filmer avec les effets en direct ; Glitch Art Studio pour retoucher avec précision.</p>
+      <p><b>Gratuit sur ordinateur</b> : Mosh-Lite pour essayer ; Hydra ou TouchDesigner (version non commerciale) pour aller plus loin.</p>
+      <p><b>Vidéo professionnelle</b> : Mosh-Pro, simple et sans abonnement obligatoire ; Datamosh 2 si vous montez déjà dans After Effects.</p>
+      <p><b>Spectacle ou installation</b> : TouchDesigner, qui réagit à la caméra, au son et aux capteurs.</p>
+    </div>
+    <p class="note">Datamosh : effet obtenu en abîmant la compression d'une vidéo, si bien que les images fondent les unes dans les autres. « Vrai datamosh » : l'outil manipule réellement les données de compression ; « filtre » ou « effet » : il imite ce rendu. Prix en dollars quand l'éditeur n'affiche pas d'euros ; ils peuvent varier selon le pays et changer sans préavis. Glitch Lab : prix et fonctions d'après un article d'AndroidWorld, non revérifiés sur Google Play.</p>
+  </div>
+</section>
+
 <section id="sources">
   <div class="head"><h2>Sources</h2></div>
   <ol class="sources">
+    <li><a href="https://apps.apple.com/app/id634467171" target="_blank" rel="noopener">App Store</a> — Glitché : prix et fonctions, 17 octobre 2026</li>
+    <li><a href="https://apps.apple.com/fr/app/glitch-art-studio-cam-effects/id1434795782" target="_blank" rel="noopener">App Store France</a> — Glitch Art Studio, 17 octobre 2026</li>
+    <li><a href="https://androidworld.nl/apps/app-van-de-week-bewerk-je-fotos-op-een-originele-manier-met-glitch-lab/" target="_blank" rel="noopener">AndroidWorld</a> — Glitch Lab</li>
+    <li><a href="https://moshpro.app/" target="_blank" rel="noopener">Mosh</a> — Mosh-Lite et Mosh-Pro (ex-PhotoMosh), 17 octobre 2026</li>
+    <li><a href="https://aescripts.com/authors/plugin-play/" target="_blank" rel="noopener">aescripts</a> et <a href="https://www.toolfarm.com/?p=22167" target="_blank" rel="noopener">Toolfarm</a> — Datamosh 2, 17 octobre 2026</li>
+    <li><a href="https://hydra.ojack.xyz/docs/" target="_blank" rel="noopener">Hydra</a> — documentation</li>
+    <li><a href="https://docs.derivative.ca/TouchDesigner_Products" target="_blank" rel="noopener">Derivative</a> — éditions et prix de TouchDesigner, 17 octobre 2026</li>
     <li><a href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener">Artificial Analysis</a> — indice d’intelligence et coût par tâche (octobre)</li>
     <li><a href="https://artificialanalysis.ai/models/gpt-6-1-sol/providers" target="_blank" rel="noopener">Artificial Analysis</a> — durée estimée d’une réponse de 500 jetons : définition du test, distinct d’un développement d’application ; vérifié le 16 octobre 2026</li>
     <li><a href="https://artificialanalysis.ai/models/comparisons/gpt-6-1-sol-vs-gpt-6-1-sol-xhigh" target="_blank" rel="noopener">Artificial Analysis</a> — GPT-6.1 Sol maximal et très élevé : durées, délais avant le premier mot et débits actualisés le 16 octobre 2026</li>
@@ -2156,6 +2193,14 @@ function compareCriteria(prefix){
   render();
   if(document.fonts) document.fonts.ready.then(render);
 }
+(function(){
+  const box=document.getElementById('glRows'); if(!box) return;
+  document.querySelectorAll('[data-gf]').forEach(b=>b.addEventListener('click',()=>{
+    const g=b.dataset.gf;
+    document.querySelectorAll('[data-gf]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+    box.querySelectorAll('tr').forEach(tr=>{ tr.hidden=!!g&&!tr.dataset.g.split(' ').includes(g); });
+  }));
+})();
 compareCriteria('duo');
 compareCriteria('trio');
 
