@@ -307,6 +307,53 @@
      "d": "Alfred Hitchcock",
      "r": "Un musicien pris pour un braqueur : l'injustice vécue de l'intérieur, d'après une histoire vraie."
     }
+   ],
+   "parties": [
+    {
+     "titre": "Classiques",
+     "aide": "Les grands films du genre",
+     "ids": [
+      "les-miserables-1934",
+      "le-corbeau-1943",
+      "detour-1945",
+      "les-desempares-1949",
+      "le-grand-chantage-1957",
+      "le-faux-coupable-1956",
+      "the-servant-1963",
+      "garde-a-vue-1981"
+     ]
+    },
+    {
+     "titre": "Réalisation atypique",
+     "aide": "Une manière de filmer qui surprend",
+     "ids": [
+      "dogville-2003",
+      "exotica-1994",
+      "serie-noire-1979",
+      "cache-2005"
+     ]
+    },
+    {
+     "titre": "Émotion forte",
+     "aide": "Du côté de celui qu'on accuse",
+     "ids": [
+      "une-separation-2011",
+      "la-chasse-2012",
+      "une-affaire-de-famille-2018",
+      "monsieur-hire-1989"
+     ]
+    },
+    {
+     "titre": "Malaise et rire nerveux",
+     "aide": "On rit, mais on serre les dents",
+     "ids": [
+      "hard-day-2014",
+      "petits-meurtres-entre-amis-1994",
+      "un-plan-simple-1998",
+      "fargo-1996",
+      "parasite-2019"
+     ]
+    }
    ]
   },
   "s29-cinema-coreen": {
