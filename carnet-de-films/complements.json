@@ -231,13 +231,6 @@
      "r": "Tout un village tenu par des lettres anonymes : le chantage devient une épidémie."
     },
     {
-     "id": "la-victime-1961",
-     "t": "La Victime",
-     "y": 1961,
-     "d": "Basil Dearden",
-     "r": "Le premier film anglais à nommer l'homosexualité, quand elle exposait encore au chantage."
-    },
-    {
      "id": "fargo-1996",
      "t": "Fargo",
      "y": 1996,
@@ -278,13 +271,6 @@
      "y": 2018,
      "d": "Hirokazu Kore-eda",
      "r": "De petits vols, et soudain le soupçon d'un enlèvement : vu du côté de ceux qu'on juge."
-    },
-    {
-     "id": "un-heros-2021",
-     "t": "Un héros",
-     "y": 2021,
-     "d": "Asghar Farhadi",
-     "r": "Emprisonné pour une dette, puis soupçonné de mensonge et d'escroquerie : le point de vue de l'accusé."
     },
     {
      "id": "une-separation-2011",
@@ -536,17 +522,6 @@
    "e": 8,
    "p": "Un jeune aristocrate londonien engage un valet parfait ; peu à peu, le domestique prend le pouvoir dans la maison, jusqu'à inverser les rôles."
   },
-  "la-victime-1961": {
-   "c": "Royaume-Uni",
-   "k": [
-    "noir-et-blanc",
-    "injustice",
-    "suspense"
-   ],
-   "mv": "classiques-europeens",
-   "e": 6,
-   "p": "Un avocat londonien en vue décide de démasquer le réseau qui fait chanter les hommes homosexuels, au risque de révéler son propre secret."
-  },
   "petits-meurtres-entre-amis-1994": {
    "c": "Royaume-Uni",
    "k": [
@@ -601,17 +576,6 @@
    "mv": "japon",
    "e": 8,
    "p": "Une famille pauvre de Tokyo vit de petits vols et recueille une fillette maltraitée ; le jour où tout se découvre, on les soupçonne de crimes bien plus graves."
-  },
-  "un-heros-2021": {
-   "c": "Iran",
-   "k": [
-    "injustice",
-    "societe",
-    "suspense"
-   ],
-   "mv": "iran",
-   "e": 7,
-   "p": "Un homme emprisonné pour une dette rend un sac de pièces d'or trouvé dans la rue et devient un héros ; puis on le soupçonne d'avoir tout inventé."
   },
   "une-separation-2011": {
    "c": "Iran",
