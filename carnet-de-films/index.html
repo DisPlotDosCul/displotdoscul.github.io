@@ -900,6 +900,13 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
 html.aff-calme .ccg-on{transition:none;}
 @media (prefers-reduced-motion:reduce){.ccg-on{transition:none;}}
 
+.idkind{display:grid;gap:8px;margin-bottom:10px;}
+.idkind .chip{justify-content:flex-start;width:100%;background:var(--paper);border-color:var(--fc);padding:12px 14px;font-size:15.5px;font-weight:600;color:var(--ink);border-radius:14px;}
+.idkind .chip[aria-pressed="true"]{background:var(--fg,var(--fb));border-color:var(--fic,var(--fi));color:var(--fi);box-shadow:inset 0 0 0 1px var(--fic,var(--fi));}
+.idf textarea{font:400 16px/1.35 var(--font);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0;resize:vertical;}
+.idc-x{font-weight:500;}
+.idc.bug .idk{background:transparent;}
+
 .nvh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .nbulbs{display:none;}
 html.th-neon:not(.aff-calme) header.top::after{display:none;}
@@ -1123,6 +1130,7 @@ body:not(.vide) .toc{margin-top:8px;}
       <button type="button" class="aa-sw" data-opt="lecture" role="switch" aria-checked="false"><b>Lecture facilitée</b><span>Lettres plus lisibles et espacées (dyslexie)</span></button>
       <button type="button" class="aa-intro" data-intro="1">🎭 Revoir le lever de rideau</button>
       <button type="button" class="aa-intro" data-guide="1">🧭 Revoir la visite guidée</button>
+      <button type="button" class="aa-intro" data-bugbtn="1">🐞 Signaler un bug</button>
     </div>
     <button type="button" class="nuitb ambb" id="nuitb" aria-label="Ambiance" title="Ambiance"><span id="ambIc" class="amb-ic"></span><i class="amb-a" aria-hidden="true">A</i></button>
 </header>
@@ -2828,7 +2836,11 @@ body:not(.vide) .toc{margin-top:8px;}
   var IDEES_FAM = { id:"idees", idees:true, label:"Boîte à idées" };
   var ID_TYPES = [{ id:"theme", l:"Thème", fam:"themes" }, { id:"courant", l:"Courant", fam:"mouvements" }, { id:"genre", l:"Type de film", fam:"ecole" },
     { id:"envie", l:"Envie", fam:"envies" }, { id:"autre", l:"Autre", fam:"playlists" }];
-  var IDEES = {}, ideeCol = null, IDRAFT = { type:"theme", nom:"", films:"", prenom:"" }, ID_DEL = "", ID_DEL_T = null;
+  var ID_KINDS = [{ id:"amelio", l:"✨ Une amélioration", tag:"Amélioration" }, { id:"categorie", l:"🏷️ Une nouvelle catégorie", tag:"" }, { id:"bug", l:"🐞 Un bug", tag:"Bug" }];
+  function idKind(k){ return ID_KINDS.filter(function(x){ return x.id === k; })[0] || ID_KINDS[1]; }
+  function idTech(){ var de = document.documentElement, amb = ["jour", "crep", "neon"].filter(function(x){ return de.classList.contains("th-" + x); })[0] || "";
+    return ("Écran " + window.innerWidth + "×" + window.innerHeight + " · ambiance " + amb + " · onglet " + (TAB || "accueil") + " · " + navigator.userAgent).slice(0, 300); }
+  var IDEES = {}, ideeCol = null, IDRAFT = { kind:"", type:"theme", nom:"", films:"", texte:"", prenom:"" }, ID_DEL = "", ID_DEL_T = null;
   var IDS_KEY = "carnetIdeesV1" + CCK, IDSENT = [];
   try { IDSENT = JSON.parse(localStorage.getItem(IDS_KEY) || "[]"); if (!Array.isArray(IDSENT)) IDSENT = []; } catch (e) { IDSENT = []; }
   function keepIdsent(){ try { localStorage.setItem(IDS_KEY, JSON.stringify(IDSENT)); } catch (e) {} }
@@ -2836,7 +2848,8 @@ body:not(.vide) .toc{margin-top:8px;}
   function idClean(v, n){ return String(v || "").trim().replace(/\s+/g, " ").slice(0, n); }
   function idLect(){ return ROLE === "lecteur" || GUEST; }
   function idMe(){ return ROLE === "proprio" && !GUEST && CCA(); }
-  function idPrenom(){ var p = idClean(IDRAFT.prenom !== "" ? IDRAFT.prenom : monNom(), 30); return p.charAt(0).toUpperCase() + p.slice(1); }
+  function idPseudo(){ return window.CC && CC.me && CC.me.pseudo ? String(CC.me.pseudo) : ""; }
+  function idPrenom(){ var p = idClean(idPseudo() || (IDRAFT.prenom !== "" ? IDRAFT.prenom : monNom()), 30); return p.charAt(0).toUpperCase() + p.slice(1); }
   // Idées envoyées par le formulaire depuis ce téléphone : affichées « en route » jusqu'à leur arrivée (ou trois jours).
   function idPending(){
     var noms = {}; Object.keys(IDEES).forEach(function(k){ noms[norm(IDEES[k].nom)] = 1; });
@@ -2846,43 +2859,60 @@ body:not(.vide) .toc{margin-top:8px;}
     return IDSENT;
   }
   function ideeUrl(){
-    var t = idType(IDRAFT.type), nom = idClean(IDRAFT.nom, 80), films = idClean(IDRAFT.films, 200);
+    var t = idType(IDRAFT.type), nom = idClean(IDRAFT.nom, 80), films = idClean(IDRAFT.films, 200), tx = idClean(IDRAFT.texte, 500);
+    if (IDRAFT.kind === "amelio") return formUrl({ prenom:idClean(idPrenom(), 30), titre:"✨ Amélioration", mot:tx });
+    if (IDRAFT.kind === "bug") return formUrl({ prenom:idClean(idPrenom(), 30), titre:"🐞 Bug", mot:tx + " — " + idTech() });
     return formUrl({ prenom:idClean(idPrenom(), 30), titre:"💡 " + t.l + " : " + nom, mot:films ? "Films : " + films : "" });
   }
   function idLink(){ var a = document.querySelector("#toc [data-idsend]"); if (a) a.href = ideeUrl(); }
   function ideeBtn(){
     var n = Object.keys(IDEES).length;
     return '<button type="button" class="idb" data-tile="idees" style="' + famStyle(IDEES_FAM) + '"><span class="ic">' + famIcon("idees") + '</span>' +
-      '<span><b>Boîte à idées</b>Proposez une catégorie, un thème, un courant…</span>' + (n ? '<span class="idn">' + n + ' idée' + (n > 1 ? "s" : "") + '</span>' : "") + '</button>';
+      '<span><b>Boîte à idées</b>Une amélioration, une catégorie, un bug à signaler…</span>' + (n ? '<span class="idn">' + n + ' idée' + (n > 1 ? "s" : "") + '</span>' : "") + '</button>';
   }
   function ideeCard(x, wait){
-    var t = idType(x.type), ok = x.statut === "retenue", del = ID_DEL === x.id;
-    return '<div class="idc' + (ok ? " ok" : "") + (wait ? " wait" : "") + '"><div class="idc-t"><span class="idk" style="' + famStyle({ id:t.fam }) + '">' + esc(t.l) + '</span>' + esc(x.nom) + '</div>' +
+    var t = idType(x.type), ok = x.statut === "retenue", del = ID_DEL === x.id, k = x.kind === "amelio" || x.kind === "bug" ? idKind(x.kind) : null;
+    return '<div class="idc' + (ok ? " ok" : "") + (wait ? " wait" : "") + (k ? " " + x.kind : "") + '"><div class="idc-t">' +
+      (k ? '<span class="idk">' + esc(k.tag) + '</span><span class="idc-x">' + esc(x.texte || x.nom) + '</span>' : '<span class="idk" style="' + famStyle({ id:t.fam }) + '">' + esc(t.l) + '</span>' + esc(x.nom)) + '</div>' +
       (x.films ? '<div class="idc-f">Par exemple : ' + esc(x.films) + '</div>' : "") +
-      '<div class="idc-m">' + (wait ? "Envoyée depuis ce téléphone · elle arrivera vers 2 h du matin" : "Proposée par " + esc(x.prenom || "quelqu'un") + (fdate(x.ajout) ? " · le " + esc(fdate(x.ajout)) : "")) + '</div>' +
-      (ok ? '<div class="idc-s">✓ Retenue par Licia</div>' : "") +
-      (idMe() && !wait ? '<div class="idc-b"><button type="button" data-idok="' + esc(x.id) + '" aria-pressed="' + ok + '">' + (ok ? "✓ Retenue" : "✓ Retenir") + '</button>' +
+      '<div class="idc-m">' + (wait ? "Envoyée depuis ce téléphone · elle arrivera vers 2 h du matin" : (x.kind === "bug" ? "Signalé par " : x.kind === "amelio" ? "Proposée par " : "Proposée par ") + esc(x.prenom || "quelqu'un") + (fdate(x.ajout) ? " · le " + esc(fdate(x.ajout)) : "")) + '</div>' +
+      (ok ? '<div class="idc-s">' + (x.kind === "bug" ? "✓ Corrigé par Licia" : "✓ Retenue par Licia") + '</div>' : "") +
+      (idMe() && !wait && x.kind === "bug" && x.tech ? '<div class="idc-m">' + esc(x.tech) + '</div>' : "") +
+      (idMe() && !wait ? '<div class="idc-b"><button type="button" data-idok="' + esc(x.id) + '" aria-pressed="' + ok + '">' + (x.kind === "bug" ? (ok ? "✓ Corrigé" : "✓ Marquer corrigé") : ok ? "✓ Retenue" : "✓ Retenir") + '</button>' +
         '<button type="button" data-iddel="' + esc(x.id) + '"' + (del ? ' class="sur"' : "") + '>' + (del ? "Retirer pour de bon ?" : "✕ Retirer") + '</button></div>' : "") + '</div>';
   }
   function ideesList(){
     var list = Object.keys(IDEES).map(function(k){ return Object.assign({ id:k }, IDEES[k]); })
       .sort(function(a, b){ return String(b.ajout).localeCompare(String(a.ajout)); });
-    var pend = idLect() ? idPending() : [], h = '<p class="ids-h">Les idées proposées' + (list.length ? " · " + list.length : "") + '</p><div class="ids">';
-    if (!list.length && !pend.length) h += '<p class="id-n">Aucune idée pour l\'instant. La vôtre sera la première !</p>';
+    var pend = idLect() ? idPending() : [], h = '<p class="ids-h">Déjà proposé' + (list.length ? " · " + list.length : "") + '</p><div class="ids">';
+    if (!list.length && !pend.length) h += '<p class="id-n">Rien pour l\'instant. La vôtre sera la première !</p>';
     pend.forEach(function(x){ h += ideeCard(x, true); });
     list.forEach(function(x){ h += ideeCard(x, false); });
     return h + '</div>';
   }
   function ideesHtml(){
-    var d = IDRAFT, lect = idLect();
-    return hintP("Proposez une nouvelle catégorie") +
+    var d = IDRAFT, lect = idLect(), k = d.kind;
+    var choix = '<div class="idkind" role="group" aria-label="Que voulez-vous proposer ?">' + ID_KINDS.map(function(x){
+      return '<button type="button" class="chip" data-idkind="' + x.id + '" aria-pressed="' + (k === x.id) + '">' + esc(x.l) + '</button>'; }).join("") + '</div>';
+    var prenom = idMe() || idPseudo() ? "" : '<label><span>Votre prénom</span><input name="prenom" maxlength="30" value="' + esc(d.prenom !== "" ? d.prenom : monNom()) + '"></label>';
+    var envoi = function(lbl){ return lect ? '<a class="plf-ok" data-idsend="1" href="' + esc(ideeUrl()) + '" target="_blank" rel="noopener">' + lbl + '</a>' +
+          '<p class="id-n">Le formulaire s\'ouvre déjà rempli : touchez « Envoyer » dedans. Il apparaîtra ici vers 2 h du matin.</p>'
+        : '<button type="submit" class="plf-ok">' + lbl + '</button>'; };
+    if (k === "amelio" || k === "bug") return hintP("Que voulez-vous proposer ?") + choix +
+      '<form class="idf" data-idform="1" autocomplete="off">' +
+      '<label><span>' + (k === "bug" ? "Que s'est-il passé ?" : "Votre idée pour améliorer le Ciné-club") + '</span><textarea name="texte" maxlength="500" rows="4" placeholder="' +
+        (k === "bug" ? "Ex. : dans « Époques », le bouton « Vu » ne répond pas sur mon téléphone" : "Ex. : pouvoir trier ma liste par durée") + '">' + esc(d.texte) + '</textarea></label>' +
+      prenom + (k === "bug" ? '<p class="id-n">La taille de l\'écran, l\'ambiance et le navigateur sont joints pour aider à corriger.</p>' : "") +
+      envoi(k === "bug" ? "🐞 Signaler le bug" : "✨ Envoyer l'idée") + '</form><div class="idsw">' + ideesList() + '</div>';
+    if (k !== "categorie") return hintP("Que voulez-vous proposer ?") + choix + '<div class="idsw">' + ideesList() + '</div>';
+    return hintP("Que voulez-vous proposer ?") + choix +
       '<form class="idf" data-idform="1" autocomplete="off">' +
       '<div class="idl"><span>C\'est une idée de…</span><div class="idty" role="group" aria-label="Type d\'idée">' + ID_TYPES.map(function(t){
         return '<button type="button" class="chip" data-idtype="' + t.id + '" aria-pressed="' + (d.type === t.id) + '">' + esc(t.l) + '</button>';
       }).join("") + '</div></div>' +
       '<label><span>Son nom</span><input name="nom" maxlength="80" placeholder="Ex. : Films tournés sous l\'eau" value="' + esc(d.nom) + '"></label>' +
       '<label><span>Des films qui iraient dedans <i>(facultatif)</i></span><input name="films" maxlength="200" placeholder="Ex. : Le Grand Bleu, Abyss" value="' + esc(d.films) + '"></label>' +
-      (idMe() ? "" : '<label><span>Votre prénom</span><input name="prenom" maxlength="30" value="' + esc(d.prenom !== "" ? d.prenom : monNom()) + '"></label>') +
+      (idMe() || idPseudo() ? "" : '<label><span>Votre prénom</span><input name="prenom" maxlength="30" value="' + esc(d.prenom !== "" ? d.prenom : monNom()) + '"></label>') +
       (lect ? '<a class="plf-ok" data-idsend="1" href="' + esc(ideeUrl()) + '" target="_blank" rel="noopener">💡 Envoyer l\'idée</a>' +
           '<p class="id-n">Le formulaire s\'ouvre déjà rempli : touchez « Envoyer » dedans. Votre idée apparaîtra ici vers 2 h du matin.</p>'
         : '<button type="submit" class="plf-ok">💡 Ajouter l\'idée</button>') +
@@ -2895,22 +2925,24 @@ body:not(.vide) .toc{margin-top:8px;}
   }
   function idFocus(name){ var i = document.querySelector('#toc form[data-idform] [name="' + name + '"]'); if (i) i.focus(); }
   function idCheck(){
-    if (!idClean(IDRAFT.nom, 80)) { setStatus("Écrivez le nom de votre idée.", true); idFocus("nom"); return false; }
+    if (IDRAFT.kind !== "categorie") { if (!idClean(IDRAFT.texte, 500)) { setStatus(IDRAFT.kind === "bug" ? "Décrivez ce qui s'est passé." : "Écrivez votre idée.", true); idFocus("texte"); return false; } }
+    else if (!idClean(IDRAFT.nom, 80)) { setStatus("Écrivez le nom de votre idée.", true); idFocus("nom"); return false; }
     if (!idMe() && !idClean(idPrenom(), 30)) { setStatus("Écrivez votre prénom.", true); idFocus("prenom"); return false; }
     return true;
   }
   function addIdee(){
     if (idLect()) { setStatus("Touchez « 💡 Envoyer l'idée » : le formulaire s'ouvre déjà rempli."); return; }
     if (!idCheck()) return;
-    var d = IDRAFT, nom = idClean(d.nom, 80), pr = idMe() ? "Licia" : idClean(idPrenom(), 30);
+    var d = IDRAFT, tx = idClean(d.texte, 500), nom = d.kind === "categorie" ? idClean(d.nom, 80) : tx.slice(0, 80), pr = idMe() ? "Licia" : idClean(idPrenom(), 30);
     pr = pr.charAt(0).toUpperCase() + pr.slice(1);
     if (!ideeCol) { setStatus("Pas enregistré : connectez-vous d'abord (bouton en haut).", true); return; }
-    var ref = ideeCol.doc(), data = { type:d.type, nom:nom, films:idClean(d.films, 200), prenom:pr, ajout:new Date().toISOString(), statut:"", source:"carnet" };
+    var ref = ideeCol.doc(), data = { kind:d.kind, type:d.kind === "categorie" ? d.type : d.kind, nom:nom, films:d.kind === "categorie" ? idClean(d.films, 200) : "", texte:d.kind === "categorie" ? "" : tx,
+      tech:d.kind === "bug" ? idTech() : "", prenom:pr, ajout:new Date().toISOString(), statut:"", source:"carnet" };
     var before = Object.assign({}, IDRAFT);
     if (!idMe()) try { localStorage.setItem(MONNOM_KEY, pr); } catch (e) {}
-    IDEES[ref.id] = data; IDRAFT = { type:d.type, nom:"", films:"", prenom:d.prenom };
+    IDEES[ref.id] = data; IDRAFT = { kind:d.kind, type:d.type, nom:"", films:"", texte:"", prenom:d.prenom };
     keepToc(renderToc); setStatus("Enregistrement…");
-    ref.set(data).then(function(){ setStatus("Merci ! « " + nom + " » est dans la boîte à idées."); }, function(e){
+    ref.set(data).then(function(){ setStatus(d.kind === "bug" ? "Merci ! Le bug est signalé à Licia." : d.kind === "amelio" ? "Merci ! Votre idée est dans la boîte." : "Merci ! « " + nom + " » est dans la boîte à idées."); }, function(e){
       delete IDEES[ref.id]; IDRAFT = before;
       if (e && e.code === "invalid_argument") { denied(); keepToc(renderToc); setStatus("Pas enregistré dans le carnet : envoyez l'idée par le formulaire, juste au-dessus.", true); }
       else { keepToc(renderToc); setStatus("Pas enregistré, réessayez dans un instant.", true); }
@@ -2937,6 +2969,8 @@ body:not(.vide) .toc{margin-top:8px;}
     ideeCol.doc(id).delete().then(function(){ setStatus("Idée retirée."); }, function(){ IDEES[id] = x; idRefresh(); setStatus("Pas retiré, réessayez dans un instant.", true); });
   }
   $("toc").addEventListener("click", function(ev){
+    var kd = ev.target.closest("[data-idkind]");
+    if (kd) { IDRAFT.kind = IDRAFT.kind === kd.dataset.idkind ? "" : kd.dataset.idkind; keepToc(renderToc); var f0 = document.querySelector('#toc form[data-idform] textarea, #toc form[data-idform] input[name="nom"]'); if (f0) f0.focus({ preventScroll:true }); return; }
     var ty = ev.target.closest("[data-idtype]");
     if (ty) {
       IDRAFT.type = ty.dataset.idtype;
@@ -2947,10 +2981,10 @@ body:not(.vide) .toc{margin-top:8px;}
     if (sd) {
       if (!idCheck()) { ev.preventDefault(); return; }
       sd.href = ideeUrl();
-      var pr = idClean(idPrenom(), 30), x = { type:IDRAFT.type, nom:idClean(IDRAFT.nom, 80), films:idClean(IDRAFT.films, 200), prenom:pr, ajout:new Date().toISOString() };
+      var pr = idClean(idPrenom(), 30), tx0 = idClean(IDRAFT.texte, 500), x = { kind:IDRAFT.kind, type:IDRAFT.type, nom:IDRAFT.kind === "categorie" ? idClean(IDRAFT.nom, 80) : tx0.slice(0, 80), texte:tx0, films:idClean(IDRAFT.films, 200), prenom:pr, ajout:new Date().toISOString() };
       try { localStorage.setItem(MONNOM_KEY, pr); } catch (e) {}
       setTimeout(function(){
-        IDSENT.push(x); keepIdsent(); IDRAFT = { type:IDRAFT.type, nom:"", films:"", prenom:IDRAFT.prenom };
+        IDSENT.push(x); keepIdsent(); IDRAFT = { kind:IDRAFT.kind, type:IDRAFT.type, nom:"", films:"", texte:"", prenom:IDRAFT.prenom };
         keepToc(renderToc);
         setStatus("Formulaire ouvert : touchez « Envoyer » dedans. Votre idée arrivera vers 2 h du matin.");
       }, 400);
@@ -2966,6 +3000,12 @@ body:not(.vide) .toc{margin-top:8px;}
   $("toc").addEventListener("submit", function(ev){
     var fm = ev.target.closest("form[data-idform]"); if (!fm) return;
     ev.preventDefault(); addIdee();
+  });
+  document.addEventListener("click", function(ev){
+    if (!ev.target.closest || !ev.target.closest("[data-bugbtn]")) return;
+    var am = $("aamenu"); if (am) { am.hidden = true; var ab = $("aab"); if (ab) ab.setAttribute("aria-expanded", "false"); }
+    IDRAFT.kind = "bug"; TAB = "idees"; renderToc();
+    var tx = document.querySelector('#toc form[data-idform] textarea'); $("toc").scrollIntoView({ block:"start" }); if (tx) tx.focus({ preventScroll:true });
   });
   // Mini-icônes des sous-catégories : une image parlante, dans une pastille de couleur.
   var MINI_L = { idees:"Idées", carnet:"Carnet", playlists:"Playlists", mouvements:"Courants", ecole:"École", cours:"Cours", themes:"Thèmes", epoques:"Époques", envies:"Envies", sante:"Santé mentale" };
@@ -4834,10 +4874,11 @@ body:not(.vide) .toc{margin-top:8px;}
       var next = {};
       snap.docs.forEach(function(d){
         var x = d.data() || {}; if (!x.nom) return;
-        next[d.id] = { type:String(x.type || "autre"), nom:String(x.nom).slice(0, 80), films:String(x.films || "").slice(0, 200), prenom:String(x.prenom || "").slice(0, 30),
+        next[d.id] = { kind:x.kind === "amelio" || x.kind === "bug" ? x.kind : "categorie", texte:String(x.texte || "").slice(0, 500), tech:String(x.tech || "").slice(0, 300),
+          type:String(x.type || "autre"), nom:String(x.nom).slice(0, 80), films:String(x.films || "").slice(0, 200), prenom:String(x.prenom || "").slice(0, 30),
           ajout:String(x.ajout || ""), statut:x.statut === "retenue" ? "retenue" : "", source:String(x.source || "") };
       });
-      var sig = function(m){ return Object.keys(m).sort().map(function(k){ var x = m[k]; return k + "|" + x.nom + "|" + x.statut + "|" + x.films + "|" + x.type; }).join(","); };
+      var sig = function(m){ return Object.keys(m).sort().map(function(k){ var x = m[k]; return k + "|" + x.nom + "|" + x.statut + "|" + x.films + "|" + x.type + "|" + x.kind + "|" + x.texte; }).join(","); };
       if (sig(next) === sig(IDEES)) return;
       IDEES = next; idRefresh();
     }, function(e){ if (window.CC && CC.uid) loadErr("les idées", e); });
