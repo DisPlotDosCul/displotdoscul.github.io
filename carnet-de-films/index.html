@@ -940,6 +940,18 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 .qz-o .chip[aria-pressed="true"]{background:var(--k-s-F9E3A8);color:var(--k-s-4A3300);border-color:var(--k-b-C8963A);font-weight:600;}
 .qz-h{font:700 13px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
 
+.pf-type{margin:0 0 8px;font-size:15.5px;}
+.pf-type small{font-size:13px;color:var(--muted);}
+.pf-rows{display:grid;gap:9px;margin-bottom:6px;}
+.pf-l{display:flex;justify-content:space-between;gap:10px;font-size:14px;}
+.pf-l span{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.pf-bar{display:flex;height:9px;border-radius:99px;overflow:hidden;background:var(--line);margin-top:4px;}
+.pf-bar i{display:block;height:100%;}
+.pf-bar .b{background:#5E9E57;}
+.pf-bar .m{background:#D9A53A;}
+.pf-bar .x{background:#C2554B;}
+.pf-k{font-size:12.5px;color:var(--muted);margin-top:2px;}
+
 .nvh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .nbulbs{display:none;}
 html.th-neon:not(.aff-calme) header.top::after{display:none;}
@@ -2691,6 +2703,37 @@ body:not(.vide) .toc{margin-top:8px;}
     Object.keys(films).forEach(function(id){ if (+(answers[id] || {}).note10 && !seen[id]) { seen[id] = 1; out.push(films[id]); } });
     return out.sort(function(x, y){ return ((answers[y.id] || {}).note10 - (answers[x.id] || {}).note10) || String(x.t).localeCompare(String(y.t), "fr"); });
   }
+  var PF = [
+    ["relations", "Relations humaines", "Cœur sensible", "les histoires d'amour, de famille, d'enfance et les comédies"],
+    ["esthetique", "Esthétique", "Esthète", "l'image, la couleur, l'étrange et le poétique"],
+    ["sombre", "Sombre", "Explorateur·rice de l'ombre", "l'horreur, le malaise et ce qui dérange"],
+    ["frisson", "Sensations fortes", "Chercheur·se de frissons", "le suspense, l'aventure et la science-fiction"],
+    ["reflexion", "Réflexion", "Esprit curieux", "les documentaires, l'histoire et la société"]
+  ];
+  function profilHtml(){
+    var all = [], by = {};
+    Object.keys(films).forEach(function(id){
+      var n = +((answers[id] || {}).note10) || 0; if (!n) return;
+      all.push(n); var ks = films[id].k || [];
+      PF.forEach(function(p){ if (RFAC[p[0]].some(function(k){ return ks.indexOf(k) >= 0; })) (by[p[0]] = by[p[0]] || []).push(n); });
+    });
+    if (all.length < 5) return '<p class="st-note">Note au moins 5 films pour découvrir ton profil.</p>';
+    var mu = all.reduce(function(t, x){ return t + x; }, 0) / all.length;
+    var rows = PF.map(function(p){
+      var L = by[p[0]] || [], n = L.length, m = n ? L.reduce(function(t, x){ return t + x; }, 0) / n : 0;
+      var bien = L.filter(function(x){ return x >= 7; }).length, pas = L.filter(function(x){ return x < 5; }).length;
+      return { p:p, n:n, m:m, d:n >= 3 ? (m - mu) * n / (n + 2) : -99, b:n ? Math.round(bien / n * 100) : 0, x:n ? Math.round(pas / n * 100) : 0 };
+    });
+    var ok = rows.filter(function(r){ return r.n >= 3; }).sort(function(a, b){ return b.d - a.d; });
+    var head = ok.length ? '<p class="pf-type">Ton profil : <b>' + esc(ok[0].p[2]) + '</b>' + (ok[1] && ok[0].d - ok[1].d < .4 ? ", avec une bonne part de <b>" + esc(ok[1].p[2]) + "</b>" : "") +
+      '.<br><small>Tu notes au-dessus de ta moyenne (' + fr1(mu) + '/10) les films sur ' + esc(ok[0].p[3]) + '.</small></p>' : '<p class="st-note">Note au moins 3 films d\'une même famille pour voir ton profil.</p>';
+    return head + '<div class="pf-rows">' + rows.map(function(r){
+      var moy = r.n ? 100 - r.b - r.x : 0;
+      return '<div class="pf-row"><div class="pf-l"><b>' + esc(r.p[1]) + '</b><span>' + (r.n ? fr1(r.m) + '/10 · ' + r.n + ' film' + (r.n > 1 ? "s" : "") : "aucun film noté") + '</span></div>' +
+        (r.n ? '<div class="pf-bar" role="img" aria-label="' + r.b + ' % bien notés, ' + moy + ' % moyens, ' + r.x + ' % mal notés"><i class="b" style="width:' + r.b + '%"></i><i class="m" style="width:' + moy + '%"></i><i class="x" style="width:' + r.x + '%"></i></div>' +
+          '<div class="pf-k">' + r.b + ' % bien notés · ' + r.x + ' % pas aimés</div>' : "") + '</div>';
+    }).join("") + '</div><p class="st-note">Bien notés : 7 et plus ; pas aimés : moins de 5. Un film peut compter dans plusieurs familles. Familles de goûts d\'après Rentfrow, Goldberg et Zilca (2011).</p>';
+  }
   function statsHtml(s, i){
     var ids = Object.keys(films), vus = 0, oub = 0, rated = [], sum = 0, byC = {}, byM = {}, seenMv = {};
     ids.forEach(function(id){
@@ -2734,6 +2777,7 @@ body:not(.vide) .toc{margin-top:8px;}
         '<div class="st-tile"><b>' + (rated.length ? fr1(sum / rated.length) : "–") + '</b><span>note moyenne sur 10</span></div>' +
         '<div class="st-tile"><b>' + oub + '</b><span>films oubliés</span></div>' +
       '</div>' +
+      '<div class="st-b"><h3>Ton profil de cinéphile</h3>' + profilHtml() + '</div>' +
       '<div class="st-b"><div class="st-hd"><h3>Ton top 10</h3>' + (top ? '<button type="button" class="shb" data-sharetop="1" aria-label="Partager ton top 10">↗ Partager</button>' : "") + '</div>' + (top ? '<ol class="st-top">' + top + '</ol>' : '<p class="st-note">Note des films sur 10 pour voir ton top ici.</p>') + '</div>' +
       '<div class="st-b"><h3>Tes notes par pays</h3>' + rows(byC, "pays", 2) + '</div>' +
       '<div class="st-b"><h3>Tes notes par mouvement</h3>' + rows(byM, "mv", 2) + '</div>' +
