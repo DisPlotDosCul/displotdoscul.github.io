@@ -922,6 +922,7 @@ html.aff-calme .ccg-on{transition:none;}
 .nt-l li button{position:absolute;right:0;top:0;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px;}
 .nt-clear{justify-self:start;border:1.5px dashed var(--line);background:transparent;color:var(--muted);border-radius:99px;padding:7px 12px;font:600 13px/1 var(--font);cursor:pointer;}
 html.aff-calme .nt-btn{box-shadow:none;}
+.nt-out{width:100%;box-sizing:border-box;font:400 13px/1.35 var(--font);color:var(--ink);background:var(--paper);border:1.5px dashed var(--line);border-radius:10px;padding:8px 10px;margin-top:6px;}
 
 .nvh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .nbulbs{display:none;}
@@ -2874,11 +2875,20 @@ body:not(.vide) .toc{margin-top:8px;}
       return (i + 1) + ". [" + k + "] " + (x.kind === "categorie" ? x.nom + (x.films ? " — films : " + x.films : "") : (x.texte || x.nom)) + " — " + (x.prenom || "?") + ", " + (fdate(x.ajout) || "") + (x.tech ? " — " + x.tech : "");
     }).join("\n");
   }
-  function copyText(txt, what){
-    if (!txt) { setStatus("Rien à copier."); return; }
-    var done = function(){ setStatus("C'est copié (" + what + ") : collez-le dans la conversation avec Claude."); };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function(){ window.prompt("Copiez ce texte :", txt); });
-    else window.prompt("Copiez ce texte :", txt);
+  // Copier : retour visible sur le bouton lui-même, et le texte affiché en dessous pour le copier à la main si le téléphone refuse.
+  function copyText(txt, what, btn){
+    var lab = btn ? btn.textContent : "", show = function(m){ if (!btn) { setStatus(m); return; } btn.textContent = m; clearTimeout(btn._t); btn._t = setTimeout(function(){ btn.textContent = lab; }, 3000); };
+    var box = btn && btn.parentNode ? btn.parentNode.parentNode.querySelector(".nt-out") : null;
+    if (!txt) { show("Rien à copier pour l'instant"); return; }
+    if (btn && !box) { btn.parentNode.insertAdjacentHTML("afterend", '<textarea class="nt-out" readonly rows="6" aria-label="Texte copié"></textarea>'); box = btn.parentNode.nextElementSibling; }
+    if (box) { box.value = txt; }
+    var fallback = function(){
+      var ok = false;
+      try { var ta = box || document.createElement("textarea"); if (!box) { ta.value = txt; document.body.appendChild(ta); } ta.focus(); ta.select(); ta.setSelectionRange(0, txt.length); ok = document.execCommand("copy"); if (!box) ta.remove(); } catch (e) {}
+      show(ok ? "✓ Copié" : "Sélectionnez le texte ci-dessous et copiez-le");
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function(){ show("✓ Copié : collez-le à Claude"); }, fallback);
+    else fallback();
   }
   // ---------- Carnet de notes de Licia : un onglet sur le bord droit, visible par elle seule ----------
   var NOTES_KEY = "ccNotesLiciaV1", NOTES = [];
@@ -2923,7 +2933,7 @@ body:not(.vide) .toc{margin-top:8px;}
     }
     if (t.closest("[data-ntcopy]")) {
       var mine = NOTES.length ? "Mes idées pour le Ciné-club (" + NOTES.length + ")\n" + NOTES.map(function(n, i){ return (i + 1) + ". " + n.t + " (" + (fdate(n.d) || "") + " · " + n.w + ")"; }).join("\n") : "";
-      copyText([mine, idTodo()].filter(Boolean).join("\n\n"), "vos notes et les suggestions des membres");
+      copyText([mine, idTodo()].filter(Boolean).join("\n\n"), "vos notes et les suggestions des membres", t.closest("[data-ntcopy]"));
     }
   });
   document.addEventListener("keydown", function(ev){
@@ -3073,7 +3083,7 @@ body:not(.vide) .toc{margin-top:8px;}
       }, 400);
       return;
     }
-    if (ev.target.closest("[data-idcopy]")) { copyText(idTodo(), "suggestions copiées"); return; }
+    if (ev.target.closest("[data-idcopy]")) { copyText(idTodo(), "suggestions copiées", ev.target.closest("[data-idcopy]")); return; }
     var okb = ev.target.closest("[data-idok]"); if (okb) { setIdeeStatut(okb.dataset.idok); return; }
     var del = ev.target.closest("[data-iddel]"); if (del) delIdee(del.dataset.iddel);
   });
