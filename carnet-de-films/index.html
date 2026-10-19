@@ -940,8 +940,9 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 .qz-o .chip[aria-pressed="true"]{background:var(--k-s-F9E3A8);color:var(--k-s-4A3300);border-color:var(--k-b-C8963A);font-weight:600;}
 .qz-h{font:700 13px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
 
-.pf-type{margin:0 0 8px;font-size:15.5px;}
+.pf-type{margin:0 0 6px;font-size:15.5px;}
 .pf-type small{font-size:13px;color:var(--muted);}
+.pf-combo{margin:0 0 10px;font-size:14px;}
 .pf-rows{display:grid;gap:9px;margin-bottom:6px;}
 .pf-l{display:flex;justify-content:space-between;gap:10px;font-size:14px;}
 .pf-l span{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;}
@@ -2164,7 +2165,14 @@ body:not(.vide) .toc{margin-top:8px;}
   var OUBLI_P = "Oublié, à revoir à deux : ";
   // Mon estimation ne s'affiche que pour les films « Pas vu », « Oublié » et « Pas fini ».
   // Un film pas encore répondu en a une aussi, sauf s'il vient de ton historique MUBI (déjà vu, oublié ou pas fini).
-  var RECO = { sig:"", P:{} }, RECO_MIN = 10, RECO_MIN_QUIZ = 5;
+  var RECO = { sig:"", P:{} }, RECO_MIN = 10, RECO_MIN_QUIZ = 5, FAM5 = {}, FAM5_K = ["esthetique", "sombre", "frisson", "reflexion", "relations"];
+  // Part de chaque famille dans un film (dixièmes, total 10), analysée film par film ; à défaut, d'après ses mots-clés, à parts égales.
+  function famW(f){
+    var w = FAM5[f.id];
+    if (w && w.length === 5) return FAM5_K.map(function(k, i){ return +w.charAt(i) / 10; });
+    var ks = f.k || [], hit = FAM5_K.map(function(k){ return RFAC[k].some(function(x){ return ks.indexOf(x) >= 0; }) ? 1 : 0; }), n = hit.reduce(function(a, b){ return a + b; }, 0);
+    return hit.map(function(h){ return n ? h / n : 0; });
+  }
   var RFAC = { sombre:["horreur","violence","malaise","paranoia","folie","vengeance","enfants-inquietants"],
     esthetique:["couleurs","contemplatif","noir-et-blanc","muet","danse","musique","reve","neons","retro","animation"],
     reflexion:["documentaire","histoire","societe","temps","histoire-vraie","injustice"],
@@ -2180,7 +2188,8 @@ body:not(.vide) .toc{margin-top:8px;}
     String(f.d || "").replace(/ et /g, ",").split(",").forEach(function(p){ p = p.trim(); if (p) out.push("d|" + p); });
     if (f.y) { out.push("dec|" + Math.floor(+f.y / 10) * 10); if (+f.y < 1970) out.push("an|1"); }
     if (f.c && !/^(France|États-Unis)$/.test(String(f.c).trim())) out.push("mo|1");
-    Object.keys(RFAC).forEach(function(fa){ if (RFAC[fa].some(function(k){ return ks.indexOf(k) >= 0; })) out.push("fa|" + fa); });
+    if (FAM5[f.id]) famW(f).forEach(function(w, i){ if (w >= .3) out.push("fa|" + FAM5_K[i]); });
+    else Object.keys(RFAC).forEach(function(fa){ if (RFAC[fa].some(function(k){ return ks.indexOf(k) >= 0; })) out.push("fa|" + fa); });
     f._rf = out; return out;
   }
   function rQuiz(){ var p = typeof ctxProfile === "function" ? ctxProfile() : null; return p && p.quiz || null; }
@@ -2704,35 +2713,40 @@ body:not(.vide) .toc{margin-top:8px;}
     return out.sort(function(x, y){ return ((answers[y.id] || {}).note10 - (answers[x.id] || {}).note10) || String(x.t).localeCompare(String(y.t), "fr"); });
   }
   var PF = [
-    ["relations", "Relations humaines", "Cœur sensible", "les histoires d'amour, de famille, d'enfance et les comédies"],
-    ["esthetique", "Esthétique", "Esthète", "l'image, la couleur, l'étrange et le poétique"],
+    ["esthetique", "Esthétique", "Esthète", "l'image, la forme et l'étrangeté"],
     ["sombre", "Sombre", "Explorateur·rice de l'ombre", "l'horreur, le malaise et ce qui dérange"],
-    ["frisson", "Sensations fortes", "Chercheur·se de frissons", "le suspense, l'aventure et la science-fiction"],
-    ["reflexion", "Réflexion", "Esprit curieux", "les documentaires, l'histoire et la société"]
+    ["frisson", "Sensations fortes", "Chercheur·se de frissons", "le suspense, l'aventure et l'action"],
+    ["reflexion", "Réflexion", "Esprit curieux", "les documentaires, l'histoire et la société"],
+    ["relations", "Relations humaines", "Cœur sensible", "l'amour, la famille et la comédie"]
   ];
   function profilHtml(){
-    var all = [], by = {};
-    Object.keys(films).forEach(function(id){
-      var n = +((answers[id] || {}).note10) || 0; if (!n) return;
-      all.push(n); var ks = films[id].k || [];
-      PF.forEach(function(p){ if (RFAC[p[0]].some(function(k){ return ks.indexOf(k) >= 0; })) (by[p[0]] = by[p[0]] || []).push(n); });
+    var R = [];
+    Object.keys(films).forEach(function(id){ var n = +((answers[id] || {}).note10) || 0; if (n) R.push({ n:n, w:famW(films[id]) }); });
+    if (R.length < 5) return '<p class="st-note">Note au moins 5 films pour découvrir ton profil.</p>';
+    var mu = R.reduce(function(t, x){ return t + x.n; }, 0) / R.length;
+    var rows = PF.map(function(p, k){
+      var W = 0, S = 0, B = 0, X = 0;
+      R.forEach(function(x){ var w = x.w[k]; if (!w) return; W += w; S += w * x.n; if (x.n >= 7) B += w; if (x.n < 5) X += w; });
+      return { p:p, W:W, m:W ? S / W : 0, d:W >= 2 ? (S / W - mu) * W / (W + 2) : -99, b:W ? Math.round(B / W * 100) : 0, x:W ? Math.round(X / W * 100) : 0 };
     });
-    if (all.length < 5) return '<p class="st-note">Note au moins 5 films pour découvrir ton profil.</p>';
-    var mu = all.reduce(function(t, x){ return t + x; }, 0) / all.length;
-    var rows = PF.map(function(p){
-      var L = by[p[0]] || [], n = L.length, m = n ? L.reduce(function(t, x){ return t + x; }, 0) / n : 0;
-      var bien = L.filter(function(x){ return x >= 7; }).length, pas = L.filter(function(x){ return x < 5; }).length;
-      return { p:p, n:n, m:m, d:n >= 3 ? (m - mu) * n / (n + 2) : -99, b:n ? Math.round(bien / n * 100) : 0, x:n ? Math.round(pas / n * 100) : 0 };
-    });
-    var ok = rows.filter(function(r){ return r.n >= 3; }).sort(function(a, b){ return b.d - a.d; });
-    var head = ok.length ? '<p class="pf-type">Ton profil : <b>' + esc(ok[0].p[2]) + '</b>' + (ok[1] && ok[0].d - ok[1].d < .4 ? ", avec une bonne part de <b>" + esc(ok[1].p[2]) + "</b>" : "") +
-      '.<br><small>Tu notes au-dessus de ta moyenne (' + fr1(mu) + '/10) les films sur ' + esc(ok[0].p[3]) + '.</small></p>' : '<p class="st-note">Note au moins 3 films d\'une même famille pour voir ton profil.</p>';
+    var ok = rows.filter(function(r){ return r.W >= 2; }).sort(function(a, b){ return b.d - a.d; });
+    // Combinaison préférée : les films où deux familles pèsent chacune au moins 30 %.
+    var best = null;
+    for (var a = 0; a < 5; a++) for (var b = a + 1; b < 5; b++) {
+      var L = R.filter(function(x){ return x.w[a] >= .3 && x.w[b] >= .3; });
+      if (L.length < 4) continue;
+      var m = L.reduce(function(t, x){ return t + x.n; }, 0) / L.length, sc = (m - mu) * L.length / (L.length + 8);
+      if (!best || sc > best.sc) best = { a:a, b:b, m:m, n:L.length, sc:sc };
+    }
+    var head = ok.length ? '<p class="pf-type">Ton profil : <b>' + esc(ok[0].p[2]) + '</b>' + (ok[1] && ok[0].d - ok[1].d < .25 ? ", avec une bonne part de <b>" + esc(ok[1].p[2]) + "</b>" : "") +
+      '.<br><small>Tu notes au-dessus de ta moyenne (' + fr1(mu) + '/10) les films où dominent ' + esc(ok[0].p[3]) + '.</small></p>' : '<p class="st-note">Note un peu plus de films pour voir ton profil.</p>';
+    if (best && best.m > mu) head += '<p class="pf-combo">Ta combinaison préférée : <b>' + esc(PF[best.a][1]) + ' + ' + esc(PF[best.b][1].toLowerCase()) + '</b> · ' + fr1(best.m) + '/10 sur ' + best.n + ' films</p>';
     return head + '<div class="pf-rows">' + rows.map(function(r){
-      var moy = r.n ? 100 - r.b - r.x : 0;
-      return '<div class="pf-row"><div class="pf-l"><b>' + esc(r.p[1]) + '</b><span>' + (r.n ? fr1(r.m) + '/10 · ' + r.n + ' film' + (r.n > 1 ? "s" : "") : "aucun film noté") + '</span></div>' +
-        (r.n ? '<div class="pf-bar" role="img" aria-label="' + r.b + ' % bien notés, ' + moy + ' % moyens, ' + r.x + ' % mal notés"><i class="b" style="width:' + r.b + '%"></i><i class="m" style="width:' + moy + '%"></i><i class="x" style="width:' + r.x + '%"></i></div>' +
+      var moy = r.W ? 100 - r.b - r.x : 0, n = Math.round(r.W);
+      return '<div class="pf-row"><div class="pf-l"><b>' + esc(r.p[1]) + '</b><span>' + (r.W >= .5 ? fr1(r.m) + '/10 · ≈ ' + n + ' film' + (n > 1 ? "s" : "") : "pas encore de film") + '</span></div>' +
+        (r.W >= .5 ? '<div class="pf-bar" role="img" aria-label="' + r.b + ' % bien notés, ' + moy + ' % moyens, ' + r.x + ' % pas aimés"><i class="b" style="width:' + r.b + '%"></i><i class="m" style="width:' + moy + '%"></i><i class="x" style="width:' + r.x + '%"></i></div>' +
           '<div class="pf-k">' + r.b + ' % bien notés · ' + r.x + ' % pas aimés</div>' : "") + '</div>';
-    }).join("") + '</div><p class="st-note">Bien notés : 7 et plus ; pas aimés : moins de 5. Un film peut compter dans plusieurs familles. Familles de goûts d\'après Rentfrow, Goldberg et Zilca (2011).</p>';
+    }).join("") + '</div><p class="st-note">Chaque film est réparti entre les familles (par exemple 60 % esthétique, 40 % sombre) et compte une seule fois au total : « ≈ 20 films » additionne ces parts. Bien notés : 7 et plus ; pas aimés : moins de 5. Familles de goûts d\'après Rentfrow, Goldberg et Zilca (2011).</p>';
   }
   function statsHtml(s, i){
     var ids = Object.keys(films), vus = 0, oub = 0, rated = [], sum = 0, byC = {}, byM = {}, seenMv = {};
@@ -5251,7 +5265,7 @@ body:not(.vide) .toc{margin-top:8px;}
       return out;
     }
     fetch("complements.json", { cache:"no-cache" }).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
-      if (!j) return; COMP = j;
+      if (!j) return; COMP = j; FAM5 = j.familles || {};
       if (LASTCAT) { var anc = anchors(null); setSections(compDocs(LASTCAT)); restore(anc); }
     }).catch(function(){});
     if (window.CC) CC.hooks.push(function(){ if (LASTCAT) { var anc = anchors(null); setSections(compDocs(LASTCAT)); restore(anc); } });
