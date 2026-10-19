@@ -2867,12 +2867,13 @@ body:not(.vide) .toc{margin-top:8px;}
   function idMe(){ return ROLE === "proprio" && !GUEST && CCA(); }
   // Texte des suggestions non traitées, numérotées, prêt à coller dans la conversation avec Claude.
   function idTodo(){
-    var L = Object.keys(IDEES).map(function(k){ return Object.assign({ id:k }, IDEES[k]); }).filter(function(x){ return x.statut !== "retenue"; })
+    // Toutes les suggestions, sauf les bugs déjà marqués corrigés ; « retenue » veut dire gardée, pas faite.
+    var L = Object.keys(IDEES).map(function(k){ return Object.assign({ id:k }, IDEES[k]); }).filter(function(x){ return !(x.kind === "bug" && x.statut === "retenue"); })
       .sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); });
     if (!L.length) return "";
-    return "Suggestions des membres non traitées (" + L.length + ")\n" + L.map(function(x, i){
+    return "Suggestions des membres (" + L.length + ")\n" + L.map(function(x, i){
       var k = x.kind === "bug" ? "Bug" : x.kind === "amelio" ? "Amélioration" : "Catégorie (" + idType(x.type).l + ")";
-      return (i + 1) + ". [" + k + "] " + (x.kind === "categorie" ? x.nom + (x.films ? " — films : " + x.films : "") : (x.texte || x.nom)) + " — " + (x.prenom || "?") + ", " + (fdate(x.ajout) || "") + (x.tech ? " — " + x.tech : "");
+      return (i + 1) + ". [" + k + (x.statut === "retenue" ? ", retenue" : "") + "] " + (x.kind === "categorie" ? x.nom + (x.films ? " — films : " + x.films : "") : (x.texte || x.nom)) + " — " + (x.prenom || "?") + ", " + (fdate(x.ajout) || "") + (x.tech ? " — " + x.tech : "");
     }).join("\n");
   }
   // Copier : retour visible sur le bouton lui-même, et le texte affiché en dessous pour le copier à la main si le téléphone refuse.
@@ -2977,7 +2978,7 @@ body:not(.vide) .toc{margin-top:8px;}
     var list = Object.keys(IDEES).map(function(k){ return Object.assign({ id:k }, IDEES[k]); })
       .sort(function(a, b){ return String(b.ajout).localeCompare(String(a.ajout)); });
     var pend = idLect() ? idPending() : [], h = '<p class="ids-h">Déjà proposé' + (list.length ? " · " + list.length : "") + '</p>' +
-      ((window.CC && CC.admin) || idMe() ? '<div class="idc-b"><button type="button" data-idcopy="1">📋 Tout copier (non traitées)</button></div>' : "") + '<div class="ids">';
+      ((window.CC && CC.admin) || idMe() ? '<div class="idc-b"><button type="button" data-idcopy="1">📋 Tout copier</button></div>' : "") + '<div class="ids">';
     if (!list.length && !pend.length) h += '<p class="id-n">Rien pour l\'instant. La vôtre sera la première !</p>';
     pend.forEach(function(x){ h += ideeCard(x, true); });
     list.forEach(function(x){ h += ideeCard(x, false); });
