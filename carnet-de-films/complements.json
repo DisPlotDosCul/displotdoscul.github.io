@@ -157,8 +157,8 @@
   "s36-chantage-emprise": {
    "famille": "themes",
    "ordre": 1.368,
-   "titre": "Chantage et emprise",
-   "sous_titre": "Un secret à cacher, et quelqu'un qui s'en sert pour tenir l'autre : chantages, dissimulations et relations d'emprise.",
+   "titre": "Petite faute, grand soupçon",
+   "sous_titre": "Une faute minime, quelqu'un qui sait, et le soupçon d'un crime bien plus grave : vécu du côté de celui qu'on accuse ou qu'on tient par un secret.",
    "films": [
     {
      "id": "hard-day-2014",
@@ -257,6 +257,69 @@
      "y": 2005,
      "d": "Michael Haneke",
      "r": "Des cassettes anonymes réveillent une faute d'enfance enfouie."
+    },
+    {
+     "id": "les-miserables-1934",
+     "t": "Les Misérables",
+     "y": 1934,
+     "d": "Raymond Bernard",
+     "r": "Un pain volé, puis une vie entière sous la menace d'être dénoncé ; Thénardier le croit assassin à tort."
+    },
+    {
+     "id": "monsieur-hire-1989",
+     "t": "Monsieur Hire",
+     "y": 1989,
+     "d": "Patrice Leconte",
+     "r": "Une petite faute ancienne, un voyeur, et tout un quartier qui le croit assassin."
+    },
+    {
+     "id": "une-affaire-de-famille-2018",
+     "t": "Une affaire de famille",
+     "y": 2018,
+     "d": "Hirokazu Kore-eda",
+     "r": "De petits vols, et soudain le soupçon d'un enlèvement : vu du côté de ceux qu'on juge."
+    },
+    {
+     "id": "un-heros-2021",
+     "t": "Un héros",
+     "y": 2021,
+     "d": "Asghar Farhadi",
+     "r": "Emprisonné pour une dette, puis soupçonné de mensonge et d'escroquerie : le point de vue de l'accusé."
+    },
+    {
+     "id": "une-separation-2011",
+     "t": "Une séparation",
+     "y": 2011,
+     "d": "Asghar Farhadi",
+     "r": "Un geste d'énervement, et l'accusation d'avoir tué un enfant à naître : la plus proche de l'intrigue cherchée."
+    },
+    {
+     "id": "garde-a-vue-1981",
+     "t": "Garde à vue",
+     "y": 1981,
+     "d": "Claude Miller",
+     "r": "Un interrogatoire où de petits secrets deviennent des preuves d'un crime atroce."
+    },
+    {
+     "id": "dogville-2003",
+     "t": "Dogville",
+     "y": 2003,
+     "d": "Lars von Trier",
+     "r": "Recherchée par la police pour un crime qu'elle n'a pas commis, Grace devient l'otage d'un village qui menace de la dénoncer."
+    },
+    {
+     "id": "la-chasse-2012",
+     "t": "La Chasse",
+     "y": 2012,
+     "d": "Thomas Vinterberg",
+     "r": "Un éducateur accusé à tort d'un crime atroce, vu de son côté jusqu'au bout."
+    },
+    {
+     "id": "le-faux-coupable-1956",
+     "t": "Le Faux Coupable",
+     "y": 1956,
+     "d": "Alfred Hitchcock",
+     "r": "Un musicien pris pour un braqueur : l'injustice vécue de l'intérieur, d'après une histoire vraie."
     }
    ]
   },
@@ -505,6 +568,72 @@
    "mv": "classiques-europeens",
    "e": 7,
    "p": "Dans une petite ville, des lettres anonymes signées « le Corbeau » dénoncent les secrets de chacun ; la peur et le soupçon gagnent tout le monde."
+  },
+  "les-miserables-1934": {
+   "c": "France",
+   "k": [
+    "noir-et-blanc",
+    "injustice",
+    "histoire"
+   ],
+   "mv": "classiques-europeens",
+   "e": 7,
+   "p": "Jean Valjean, condamné au bagne pour un pain volé, refait sa vie sous un autre nom ; l'inspecteur Javert ne le lâche pas, et Thénardier finit par l'accuser d'un meurtre qu'il n'a pas commis."
+  },
+  "monsieur-hire-1989": {
+   "c": "France",
+   "k": [
+    "obsession",
+    "malaise",
+    "injustice"
+   ],
+   "mv": "auteur-francais",
+   "e": 8,
+   "p": "Un tailleur solitaire, déjà condamné autrefois pour une faute mineure, épie chaque soir sa jeune voisine ; quand une fille est tuée dans le quartier, tout le monde le soupçonne."
+  },
+  "une-affaire-de-famille-2018": {
+   "c": "Japon",
+   "k": [
+    "famille",
+    "societe",
+    "larmes"
+   ],
+   "mv": "japon",
+   "e": 8,
+   "p": "Une famille pauvre de Tokyo vit de petits vols et recueille une fillette maltraitée ; le jour où tout se découvre, on les soupçonne de crimes bien plus graves."
+  },
+  "un-heros-2021": {
+   "c": "Iran",
+   "k": [
+    "injustice",
+    "societe",
+    "suspense"
+   ],
+   "mv": "iran",
+   "e": 7,
+   "p": "Un homme emprisonné pour une dette rend un sac de pièces d'or trouvé dans la rue et devient un héros ; puis on le soupçonne d'avoir tout inventé."
+  },
+  "une-separation-2011": {
+   "c": "Iran",
+   "k": [
+    "famille",
+    "injustice",
+    "suspense"
+   ],
+   "mv": "iran",
+   "e": 8,
+   "p": "À Téhéran, un homme renvoie l'aide-soignante de son père après une dispute ; elle perd l'enfant qu'elle attendait, et il est accusé d'avoir causé sa mort."
+  },
+  "garde-a-vue-1981": {
+   "c": "France",
+   "k": [
+    "huis-clos",
+    "suspense",
+    "paranoia"
+   ],
+   "mv": "auteur-francais",
+   "e": 8,
+   "p": "Le soir du réveillon, un notaire est interrogé comme simple témoin dans une affaire de meurtres d'enfants ; ses petits mensonges et ses secrets de couple le rendent de plus en plus suspect."
   }
  }
 }
