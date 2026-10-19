@@ -1,0 +1,272 @@
+{
+ "note": "Compléments du catalogue ajoutés par Claude ; fusionnés au chargement, la base Firebase passe avant.",
+ "sections": {
+  "s28-un-seul-plan": {
+   "films": [
+    {
+     "id": "pvc-1-2007",
+     "t": "PVC-1",
+     "y": 2007,
+     "d": "Spiros Stathoulopoulos",
+     "r": "Un seul plan de 85 minutes, sans aucune coupe."
+    },
+    {
+     "id": "timecode-2000",
+     "t": "Timecode",
+     "y": 2000,
+     "d": "Mike Figgis",
+     "r": "Quatre plans continus de 93 minutes, côte à côte sur le même écran."
+    },
+    {
+     "id": "la-casa-muda-2010",
+     "t": "La Casa muda",
+     "y": 2010,
+     "d": "Gustavo Hernández",
+     "r": "Présenté comme un seul plan de 78 minutes, en temps réel."
+    },
+    {
+     "id": "adolescence-serie-2025",
+     "t": "Adolescence (série)",
+     "y": 2025,
+     "d": "Philip Barantini",
+     "r": "Série : chacun des quatre épisodes d'une heure est un seul plan, par le réalisateur de The Chef."
+    }
+   ]
+  },
+  "s22-nouveau-mer": {
+   "films": [
+    {
+     "id": "le-grand-bleu-1988",
+     "t": "Le Grand Bleu",
+     "y": 1988,
+     "d": "Luc Besson",
+     "r": "L'apnée selon Luc Besson : Jacques Mayol et Enzo Molinari, toujours plus profond."
+    },
+    {
+     "id": "all-is-lost-2013",
+     "t": "All Is Lost",
+     "y": 2013,
+     "d": "J. C. Chandor",
+     "r": "Un homme seul face à l'océan, presque sans un mot."
+    },
+    {
+     "id": "kon-tiki-2012",
+     "t": "Kon-Tiki",
+     "y": 2012,
+     "d": "Joachim Rønning et Espen Sandberg",
+     "r": "Cent jours sur un radeau, au milieu du Pacifique."
+    },
+    {
+     "id": "ponyo-sur-la-falaise-2008",
+     "t": "Ponyo sur la falaise",
+     "y": 2008,
+     "d": "Hayao Miyazaki",
+     "r": "La petite sirène revue par Miyazaki, en aquarelles."
+    },
+    {
+     "id": "leviathan-2012",
+     "t": "Leviathan",
+     "y": 2012,
+     "d": "Lucien Castaing-Taylor et Véréna Paravel",
+     "r": "La pêche industrielle filmée de l'intérieur, comme un cauchemar marin."
+    },
+    {
+     "id": "oceans-2009",
+     "t": "Océans",
+     "y": 2009,
+     "d": "Jacques Perrin et Jacques Cluzaud",
+     "r": "Les créatures marines filmées au plus près, de la surface aux abysses."
+    },
+    {
+     "id": "chasing-coral-2017",
+     "t": "Chasing Coral",
+     "y": 2017,
+     "d": "Jeff Orlowski",
+     "r": "Des plongeurs filment la mort des coraux, vague de chaleur après vague de chaleur."
+    },
+    {
+     "id": "les-dents-de-la-mer-1975",
+     "t": "Les Dents de la mer",
+     "y": 1975,
+     "d": "Steven Spielberg",
+     "r": "Le grand requin blanc qui a vidé les plages de l'été 1975."
+    },
+    {
+     "id": "la-forme-de-l-eau-2017",
+     "t": "La Forme de l'eau",
+     "y": 2017,
+     "d": "Guillermo del Toro",
+     "r": "Une créature amphibie retenue dans un laboratoire secret, et une femme muette qui l'aime."
+    },
+    {
+     "id": "blackfish-2013",
+     "t": "Blackfish",
+     "y": 2013,
+     "d": "Gabriela Cowperthwaite",
+     "r": "Les orques en captivité, à travers l'histoire de Tilikum."
+    },
+    {
+     "id": "mission-blue-2014",
+     "t": "Mission Blue",
+     "y": 2014,
+     "d": "Robert Nixon et Fisher Stevens",
+     "r": "Sylvia Earle, une vie de plongées pour défendre la vie marine."
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Océan",
+     "aide": "La mer, l'apnée, les marins et les sirènes",
+     "ids": [
+      "abyss-1989",
+      "ondine-2009",
+      "le-chant-de-la-mer-2014",
+      "the-lure-2015",
+      "la-tortue-rouge-2016",
+      "aquarela-2018",
+      "the-lighthouse-2019",
+      "becoming-cousteau-2021",
+      "the-deepest-breath-2023",
+      "breath-2017",
+      "flow-2024",
+      "le-grand-bleu-1988",
+      "all-is-lost-2013",
+      "kon-tiki-2012",
+      "ponyo-sur-la-falaise-2008",
+      "leviathan-2012"
+     ]
+    },
+    {
+     "titre": "Vie marine",
+     "aide": "Les animaux et les créatures des profondeurs",
+     "ids": [
+      "le-monde-du-silence-1956",
+      "deep-blue-2003",
+      "the-cove-la-baie-de-la-honte-2009",
+      "la-sagesse-de-la-pieuvre-2020",
+      "oceans-2009",
+      "chasing-coral-2017",
+      "les-dents-de-la-mer-1975",
+      "la-forme-de-l-eau-2017",
+      "blackfish-2013",
+      "mission-blue-2014"
+     ]
+    }
+   ]
+  }
+ },
+ "fiches": {
+  "timecode-2000": {
+   "p": "L'écran est coupé en quatre : quatre caméras tournent chacune un seul plan de 93 minutes, en même temps, autour d'une société de production de Los Angeles.",
+   "c": "États-Unis",
+   "k": [
+    "huis-clos",
+    "temps",
+    "obsession"
+   ],
+   "mv": "independant-americain",
+   "e": 7
+  },
+  "pvc-1-2007": {
+   "p": "Une femme se réveille avec un collier piégé fixé autour du cou ; on suit, sans aucune coupe, la course pour le désamorcer dans la campagne colombienne. D'après un fait réel.",
+   "c": "Colombie",
+   "k": [
+    "suspense",
+    "histoire-vraie",
+    "malaise"
+   ],
+   "mv": "auteur-monde",
+   "e": 8
+  },
+  "la-casa-muda-2010": {
+   "p": "Une jeune femme et son père passent la nuit dans une maison de campagne isolée qu'ils doivent remettre en état ; des bruits viennent de l'étage.",
+   "c": "Uruguay",
+   "k": [
+    "horreur",
+    "huis-clos",
+    "malaise"
+   ],
+   "mv": "nouvelle-horreur",
+   "e": 7
+  },
+  "adolescence-serie-2025": {
+   "p": "Un garçon de 13 ans est arrêté au petit matin pour le meurtre d'une camarade de classe ; quatre épisodes pour comprendre comment on en est arrivé là.",
+   "c": "Royaume-Uni",
+   "k": [
+    "serie",
+    "societe",
+    "malaise"
+   ],
+   "mv": "series",
+   "e": 8
+  },
+  "blackfish-2013": {
+   "p": "Tilikum, orque capturée jeune et exhibée dans des parcs marins, et les drames qui ont suivi : un réquisitoire contre la captivité des cétacés.",
+   "c": "États-Unis",
+   "k": [
+    "documentaire",
+    "ocean",
+    "injustice"
+   ],
+   "mv": "doc-nature",
+   "e": 7
+  },
+  "mission-blue-2014": {
+   "p": "Le portrait de l'océanographe Sylvia Earle, qui plonge depuis soixante ans et se bat pour protéger les océans.",
+   "c": "États-Unis",
+   "k": [
+    "documentaire",
+    "plongee",
+    "ocean"
+   ],
+   "mv": "doc-nature",
+   "e": 6
+  },
+  "kon-tiki-2012": {
+   "p": "En 1947, Thor Heyerdahl et cinq compagnons traversent le Pacifique sur un radeau de balsa pour prouver que la Polynésie a pu être peuplée depuis l'Amérique du Sud.",
+   "c": "Norvège",
+   "k": [
+    "histoire-vraie",
+    "exploits",
+    "ocean"
+   ],
+   "mv": "auteur-europeen",
+   "e": 6
+  },
+  "all-is-lost-2013": {
+   "p": "Un navigateur seul, joué par Robert Redford, voit son voilier percé par un conteneur au milieu de l'océan Indien ; presque aucun mot de tout le film.",
+   "c": "États-Unis",
+   "k": [
+    "huis-clos",
+    "ocean",
+    "exploits"
+   ],
+   "mv": "independant-americain",
+   "e": 7
+  },
+  "ponyo-sur-la-falaise-2008": {
+   "p": "Une petite fille-poisson s'échappe de chez son père, sorcier des mers, pour vivre auprès d'un garçon qui l'a recueillie ; la mer monte avec elle.",
+   "c": "Japon",
+   "k": [
+    "animation",
+    "conte",
+    "ocean",
+    "sirenes"
+   ],
+   "mv": "ghibli",
+   "e": 7
+  },
+  "leviathan-2012": {
+   "p": "Des caméras fixées partout sur un chalutier au large du Massachusetts : la pêche industrielle, de nuit, sans un mot de commentaire, comme un rêve sombre.",
+   "c": "États-Unis, France, Royaume-Uni",
+   "k": [
+    "documentaire",
+    "ocean",
+    "malaise",
+    "contemplatif"
+   ],
+   "mv": "doc-observation",
+   "e": 8
+  }
+ }
+}
