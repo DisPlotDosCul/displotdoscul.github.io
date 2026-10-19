@@ -932,6 +932,14 @@ section[data-auto="classement"] .seg button{font-size:12px;padding:7px 8px;}
 section[data-auto="classement"] .acts > button{font-size:12px;padding:6px 8px;min-height:0;}
 section[data-auto="classement"] .stars button{transform:scale(.88);}
 
+.qz-panel{gap:10px;}
+.qz-q{display:grid;gap:6px;font-size:14.5px;}
+.qz-q small{color:var(--muted);}
+.qz-o{display:flex;flex-wrap:wrap;gap:6px;}
+.qz-o .chip{padding:7px 11px;font-size:13.5px;}
+.qz-o .chip[aria-pressed="true"]{background:var(--k-s-F9E3A8);color:var(--k-s-4A3300);border-color:var(--k-b-C8963A);font-weight:600;}
+.qz-h{font:700 13px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
 .nvh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .nbulbs{display:none;}
 html.th-neon:not(.aff-calme) header.top::after{display:none;}
@@ -1161,7 +1169,7 @@ body:not(.vide) .toc{margin-top:8px;}
 </header>
 
   <div class="bar">
-    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button></div>
+    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" hidden>🎬 Mes goûts</button></div>
     <div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
     <p class="hint hint-q">Cherchez un film, un cinéaste ou un thème <span class="fl" aria-hidden="true">↓</span></p>
@@ -2144,7 +2152,77 @@ body:not(.vide) .toc{margin-top:8px;}
   var OUBLI_P = "Oublié, à revoir à deux : ";
   // Mon estimation ne s'affiche que pour les films « Pas vu », « Oublié » et « Pas fini ».
   // Un film pas encore répondu en a une aussi, sauf s'il vient de ton historique MUBI (déjà vu, oublié ou pas fini).
+  var RECO = { sig:"", P:{} }, RECO_MIN = 10, RECO_MIN_QUIZ = 5;
+  var RFAC = { sombre:["horreur","violence","malaise","paranoia","folie","vengeance","enfants-inquietants"],
+    esthetique:["couleurs","contemplatif","noir-et-blanc","muet","danse","musique","reve","neons","retro","animation"],
+    reflexion:["documentaire","histoire","societe","temps","histoire-vraie","injustice"],
+    frisson:["suspense","exploits","sf","chute","huis-clos"],
+    relations:["amour","famille","comedie","doux","enfance","larmes","conte","humour-absurde"] };
+  var RGW = { k:.6, mv:1, c:.4, d:1.3, dec:.4, fa:.7, an:.5, mo:.5 }, RGW2 = { k:1, mv:1.5, c:.6, d:3, dec:.5, fa:.8, an:.3, mo:.3 };
+  function rFeats(f){
+    if (f._rf) return f._rf;
+    var out = [], ks = f.k || [];
+    ks.forEach(function(k){ out.push("k|" + k); });
+    if (f.mv) out.push("mv|" + f.mv);
+    String(f.c || "").split(",").forEach(function(p){ p = p.trim(); if (p) out.push("c|" + p); });
+    String(f.d || "").replace(/ et /g, ",").split(",").forEach(function(p){ p = p.trim(); if (p) out.push("d|" + p); });
+    if (f.y) { out.push("dec|" + Math.floor(+f.y / 10) * 10); if (+f.y < 1970) out.push("an|1"); }
+    if (f.c && !/^(France|États-Unis)$/.test(String(f.c).trim())) out.push("mo|1");
+    Object.keys(RFAC).forEach(function(fa){ if (RFAC[fa].some(function(k){ return ks.indexOf(k) >= 0; })) out.push("fa|" + fa); });
+    f._rf = out; return out;
+  }
+  function rQuiz(){ var p = typeof ctxProfile === "function" ? ctxProfile() : null; return p && p.quiz || null; }
+  function rBuild(){
+    var ids = Object.keys(answers).filter(function(id){ return answers[id] && answers[id].note10 && films[id]; }).sort();
+    var q = rQuiz(), sig = ids.map(function(id){ return id + ":" + answers[id].note10; }).join(",") + "|" + JSON.stringify(q || 0) + "|" + Object.keys(films).length + "|" + (window.CC && CC.view || "");
+    if (sig === RECO.sig) return;
+    RECO = { sig:sig, P:{}, n:ids.length };
+    if (ids.length < (q ? RECO_MIN_QUIZ : RECO_MIN)) return;
+    var mu = ids.reduce(function(s, id){ return s + answers[id].note10; }, 0) / ids.length, W = {}, N = {};
+    ids.forEach(function(id){ var r = answers[id].note10 - mu; rFeats(films[id]).forEach(function(x){ W[x] = (W[x] || 0) + r; N[x] = (N[x] || 0) + 1; }); });
+    // Questionnaire : chaque réponse compte comme trois notes fictives, +2 ou −2 autour de la moyenne.
+    if (q) {
+      var prior = function(x, v){ if (!v) return; W[x] = (W[x] || 0) + v * 2 * 3; N[x] = (N[x] || 0) + 3; };
+      Object.keys(RFAC).forEach(function(fa){ prior("fa|" + fa, +q[fa] || 0); });
+      prior("an|1", +q.anciens || 0); prior("mo|1", +q.monde || 0); prior("k|contemplatif", +q.lent || 0);
+      if (+q.sens) { prior("fa|reflexion", +q.sens); prior("k|larmes", +q.sens); prior("fa|frisson", -q.sens * .5); }
+    }
+    // Les autres membres : un film qu'ils notent au-dessus de leur propre moyenne gagne un peu.
+    var C = {}, CN = {}, P = (window.CC && CC.profils) || {}, self = window.CC && (CC.view || CC.uid);
+    Object.keys(P).forEach(function(u){
+      if (u === self) return;
+      var rp = (P[u] && P[u].rep) || {}, ks = Object.keys(rp).filter(function(id){ return rp[id] && rp[id].note10; });
+      if (ks.length < 5) return;
+      var m = ks.reduce(function(s, id){ return s + rp[id].note10; }, 0) / ks.length;
+      ks.forEach(function(id){ C[id] = (C[id] || 0) + rp[id].note10 - m; CN[id] = (CN[id] || 0) + 1; });
+    });
+    var vec = function(f){ var v = {}; rFeats(f).forEach(function(x){ var g = x.split("|")[0]; v[x] = (v[x] || 0) + RGW2[g]; }); return v; };
+    var rated = ids.slice(-300).map(function(id){ return { v:vec(films[id]), r:answers[id].note10 - mu }; });
+    Object.keys(films).forEach(function(id){
+      var a = answers[id]; if (a && a.note10) return;
+      var f = films[id], fs0 = rFeats(f), num = 0, den = 0;
+      fs0.forEach(function(x){ var g = x.split("|")[0]; den += RGW[g]; if (W[x] != null) num += RGW[g] * (1 - Math.exp(-N[x] / 2)) * W[x] / (N[x] + 2); });
+      var d1 = den ? num / den * 3 : 0, vf = vec(f), sims = [];
+      rated.forEach(function(o){
+        var inter = 0, sa = 0, sb = 0;
+        for (var x in vf) { sa += vf[x]; if (o.v[x]) inter += Math.min(vf[x], o.v[x]); }
+        for (var y in o.v) sb += o.v[y];
+        var s = inter / (sa + sb - inter || 1); if (s > 0) sims.push([s, o.r]);
+      });
+      sims.sort(function(a, b){ return b[0] - a[0]; }); sims = sims.slice(0, 10);
+      var sn = 0, sd = 1; sims.forEach(function(s){ sn += s[0] * s[1]; sd += s[0]; });
+      var d2 = 1.5 * sn / sd, cm = CN[id] ? C[id] / (CN[id] + 2) : 0;
+      RECO.P[id] = Math.max(1, Math.min(10, Math.round(mu + (d1 + d2) / 2 + .5 * cm)));
+    });
+  }
   function estOf(f){
+    if (window.CC) {
+      var e0 = (answers[f.id] || {}).etat || "", adm = CC.admin && !(CC.view && CC.view !== CC.uid);
+      if (!CC.uid) return 0;
+      if (adm) { if (e0 === "vu" || (!e0 && f.m)) return 0; return f.e || 0; }
+      if (e0 === "vu") return 0;
+      rBuild(); return RECO.P[f.id] || 0;
+    }
     if (CCM()) return 0;
     var e = (answers[f.id] || {}).etat || "";
     if (e === "vu" || (!e && f.m)) return 0;
@@ -2357,7 +2435,7 @@ body:not(.vide) .toc{margin-top:8px;}
     var text = p ? '<div class="why">' + esc(p) + '</div>' + (why ? '<div class="ctx">' + esc(why) + '</div>' : "")
                  : (why ? '<div class="why">' + esc(why) + '</div>' : "");
     var ev = estOf(f);
-    var est = ev ? '<span class="estp" title="Mon estimation">Estimé <b>' + ev + '</b>/10</span>' : "";
+    var est = ev ? '<span class="estp" title="' + (window.CC && CC.uid && !CC.admin ? "Estimation d'après tes notes et tes goûts" : "Mon estimation") + '">Estimé <b>' + ev + '</b>/10</span>' : "";
     var who = whoLikes(f.id), envw = ROLE === "lecteur" ? PEOPLE.filter(function(p){ return envIdx(p.id, f.id) >= 0; }) : [];
     var fsw = ROLE === "lecteur" ? Object.keys(FSENT).filter(function(k){ return k.split("|")[1] === f.id && !(CONSEILS[k.split("|")[0]] || {})[f.id]; })
       .map(function(k){ var pid = k.split("|")[0]; return pid === "_" ? "" : person(pid).label; }) : [];
@@ -2976,6 +3054,59 @@ body:not(.vide) .toc{margin-top:8px;}
   document.addEventListener("keydown", function(ev){
     if (ev.key === "Escape") { var p = $("ntPanel"); if (p && !p.hidden) p.hidden = true; }
     if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey) && ev.target.id === "ntTxt") { var a = document.querySelector("[data-ntadd]"); if (a) a.click(); }
+  });
+  var QZ_Q = [
+    ["sombre", "Les films sombres et dérangeants : horreur, malaise, violence"],
+    ["esthetique", "Les films à l'image forte, étranges ou poétiques"],
+    ["reflexion", "Les films qui font réfléchir : documentaires, histoire, société"],
+    ["frisson", "Le suspense, l'aventure, la science-fiction"],
+    ["relations", "Les histoires d'amour, de famille, les comédies"],
+    ["anciens", "Les films anciens, en noir et blanc"],
+    ["monde", "Le cinéma du monde entier, en version sous-titrée"],
+    ["lent", "Les films lents, où l'on prend son temps"]
+  ];
+  var QZ_SEED = ["shining-1980", "titanic-1997", "pulp-fiction-1994", "in-the-mood-for-love-2000", "matrix-1999", "la-la-land-2016", "mulholland-drive-2001", "le-parrain-1972", "2001-l-odyssee-de-l-espace-1968", "parasite-2019"];
+  var QZ = null;
+  function qzHtml(){
+    var q = QZ, seeds = QZ_SEED.filter(function(id){ return films[id] && !((answers[id] || {}).note10); });
+    var opt = function(k, v, l){ return '<button type="button" class="chip" data-qz="' + k + '" data-v="' + v + '" aria-pressed="' + (String(q[k]) === String(v)) + '">' + l + '</button>'; };
+    var n = Object.keys(answers).filter(function(id){ return answers[id] && answers[id].note10; }).length;
+    return '<div class="nt-h"><b>Mes goûts</b><button type="button" class="nt-x" data-qzclose="1" aria-label="Fermer">✕</button></div>' +
+      QZ_Q.map(function(x){ return '<div class="qz-q"><span>' + esc(x[1]) + '</span><div class="qz-o">' + opt(x[0], 1, "J'adore") + opt(x[0], 0, "Ça dépend") + opt(x[0], -1, "Pas pour moi") + '</div></div>'; }).join("") +
+      '<div class="qz-q"><span>Au cinéma, je cherche surtout…</span><div class="qz-o">' + opt("sens", -1, "À passer un bon moment") + opt("sens", 0, "Les deux") + opt("sens", 1, "À être bouleversé·e, à réfléchir") + '</div></div>' +
+      (seeds.length ? '<div class="qz-h">Et ces films, si vous les avez vus ?</div>' + seeds.map(function(id){
+        var f = films[id];
+        return '<div class="qz-q"><span>' + esc(f.t) + ' <small>' + esc(f.y || "") + '</small></span><div class="qz-o">' + opt("f:" + id, 9, "Adoré") + opt("f:" + id, 7, "Bien") + opt("f:" + id, 4, "Bof") + opt("f:" + id, "", "Pas vu") + '</div></div>';
+      }).join("") : "") +
+      '<p class="id-n">' + n + ' film' + (n > 1 ? "s" : "") + ' noté' + (n > 1 ? "s" : "") + '. Les estimations apparaissent à partir de ' + RECO_MIN_QUIZ + ' films notés avec ce questionnaire, ou ' + RECO_MIN + ' sans.</p>' +
+      '<div class="nt-b"><button type="button" class="plf-ok" data-qzsave="1">Enregistrer</button></div>';
+  }
+  function qzSync(){ var b = $("ccQuiz"); if (b) b.hidden = !(window.CC && CC.me && !GUEST && !(CC.view && CC.view !== CC.uid)); }
+  document.body.insertAdjacentHTML("beforeend", '<div class="nt-panel qz-panel" id="qzPanel" role="dialog" aria-label="Mes goûts" hidden></div>');
+  setInterval(qzSync, 1500); setTimeout(qzSync, 300);
+  document.addEventListener("click", function(ev){
+    var t = ev.target; if (!t.closest) return;
+    var p = $("qzPanel");
+    if (t.closest("#ccQuiz")) { QZ = Object.assign({}, (CC.me && CC.me.quiz) || {}); p.innerHTML = qzHtml(); p.hidden = false; return; }
+    if (!t.closest("#qzPanel")) return;
+    if (t.closest("[data-qzclose]")) { p.hidden = true; return; }
+    var o = t.closest("[data-qz]");
+    if (o) { QZ[o.dataset.qz] = o.dataset.v === "" ? "" : +o.dataset.v; o.parentNode.querySelectorAll("[data-qz]").forEach(function(b){ b.setAttribute("aria-pressed", b === o ? "true" : "false"); }); return; }
+    if (t.closest("[data-qzsave]")) {
+      var quiz = { v:1, ajout:new Date().toISOString() };
+      QZ_Q.concat([["sens"]]).forEach(function(x){ if (QZ[x[0]] !== undefined && QZ[x[0]] !== "") quiz[x[0]] = +QZ[x[0]]; });
+      Object.keys(QZ).forEach(function(k){
+        if (k.indexOf("f:") !== 0 || QZ[k] === "" || QZ[k] == null) return;
+        var id = k.slice(2); if (!films[id]) return;
+        var prev = answers[id] ? Object.assign({}, answers[id]) : null;
+        answers[id] = pack({ etat:"vu", note10:+QZ[k] }); save(id, prev);
+      });
+      if (CC.me) CC.me.quiz = quiz;
+      RECO.sig = "";
+      firebase.firestore().collection("profils").doc(CC.uid).update({ quiz:quiz }).catch(function(){});
+      p.hidden = true; renderAll();
+      setStatus("Vos goûts sont enregistrés.");
+    }
   });
   function idPseudo(){ return window.CC && CC.me && CC.me.pseudo ? String(CC.me.pseudo) : ""; }
   function idPrenom(){ var p = idClean(idPseudo() || (IDRAFT.prenom !== "" ? IDRAFT.prenom : monNom()), 30); return p.charAt(0).toUpperCase() + p.slice(1); }
