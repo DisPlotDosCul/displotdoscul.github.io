@@ -5071,6 +5071,8 @@ body:not(.vide) .toc{margin-top:8px;}
           return x;
         } });
       });
+      // Nouvelles listes qui n'existent pas encore dans la base.
+      Object.keys(S).forEach(function(id){ if (!seen[id] && S[id].titre) out.push({ id:id, data:function(){ return JSON.parse(JSON.stringify(S[id])); } }); });
       return out;
     }
     fetch("complements.json", { cache:"no-cache" }).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){

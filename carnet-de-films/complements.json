@@ -153,6 +153,123 @@
      ]
     }
    ]
+  },
+  "s36-chantage-emprise": {
+   "famille": "themes",
+   "ordre": 1.368,
+   "titre": "Chantage et emprise",
+   "sous_titre": "Un secret à cacher, et quelqu'un qui s'en sert pour tenir l'autre : chantages, dissimulations et relations d'emprise.",
+   "films": [
+    {
+     "id": "hard-day-2014",
+     "t": "Hard Day",
+     "y": 2014,
+     "d": "Kim Seong-hun",
+     "r": "Le maître-chanteur au bout du fil, et un policier qui s'enfonce : le rire nerveux du thriller coréen."
+    },
+    {
+     "id": "detour-1945",
+     "t": "Détour",
+     "y": 1945,
+     "d": "Edgar G. Ulmer",
+     "r": "Tourné en six jours avec trois sous : un homme devenu la marionnette de celle qui sait."
+    },
+    {
+     "id": "serie-noire-1979",
+     "t": "Série noire",
+     "y": 1979,
+     "d": "Alain Corneau",
+     "r": "Patrick Dewaere à bout de nerfs, dialogues de Georges Perec : grotesque, sordide et parfois très drôle."
+    },
+    {
+     "id": "exotica-1994",
+     "t": "Exotica",
+     "y": 1994,
+     "d": "Atom Egoyan",
+     "r": "Le chantage au service d'une obsession, révélée pièce par pièce, dans une lumière hypnotique."
+    },
+    {
+     "id": "un-plan-simple-1998",
+     "t": "Un plan simple",
+     "y": 1998,
+     "d": "Sam Raimi",
+     "r": "Des secrets partagés qui deviennent des armes, dans la neige de Fargo."
+    },
+    {
+     "id": "les-desempares-1949",
+     "t": "Les Désemparés",
+     "y": 1949,
+     "d": "Max Ophüls",
+     "r": "Un chantage qui se change en tendresse inattendue."
+    },
+    {
+     "id": "the-servant-1963",
+     "t": "The Servant",
+     "y": 1963,
+     "d": "Joseph Losey",
+     "r": "L'emprise filmée pièce par pièce, dans une maison qui change de maître."
+    },
+    {
+     "id": "petits-meurtres-entre-amis-1994",
+     "t": "Petits meurtres entre amis",
+     "y": 1994,
+     "d": "Danny Boyle",
+     "r": "Un secret partagé dans un appartement, et l'amitié qui se change en surveillance."
+    },
+    {
+     "id": "le-grand-chantage-1957",
+     "t": "Le Grand Chantage",
+     "y": 1957,
+     "d": "Alexander Mackendrick",
+     "r": "Le chantage comme métier, dans les nuits de New York filmées par James Wong Howe."
+    },
+    {
+     "id": "le-corbeau-1943",
+     "t": "Le Corbeau",
+     "y": 1943,
+     "d": "Henri-Georges Clouzot",
+     "r": "Tout un village tenu par des lettres anonymes : le chantage devient une épidémie."
+    },
+    {
+     "id": "la-victime-1961",
+     "t": "La Victime",
+     "y": 1961,
+     "d": "Basil Dearden",
+     "r": "Le premier film anglais à nommer l'homosexualité, quand elle exposait encore au chantage."
+    },
+    {
+     "id": "fargo-1996",
+     "t": "Fargo",
+     "y": 1996,
+     "d": "Joel et Ethan Coen",
+     "r": "Un mari endetté fait enlever sa femme, et tout déraille."
+    },
+    {
+     "id": "parasite-2019",
+     "t": "Parasite",
+     "y": 2019,
+     "d": "Bong Joon-ho",
+     "r": "Une famille infiltre une autre, et chacun finit par tenir l'autre par un secret."
+    },
+    {
+     "id": "cache-2005",
+     "t": "Caché",
+     "y": 2005,
+     "d": "Michael Haneke",
+     "r": "Des cassettes anonymes réveillent une faute d'enfance enfouie."
+    }
+   ]
+  },
+  "s29-cinema-coreen": {
+   "films": [
+    {
+     "id": "hard-day-2014",
+     "t": "Hard Day",
+     "y": 2014,
+     "d": "Kim Seong-hun",
+     "r": "Le maître-chanteur au bout du fil, et un policier qui s'enfonce : le rire nerveux du thriller coréen."
+    }
+   ]
   }
  },
  "fiches": {
@@ -267,6 +384,127 @@
    ],
    "mv": "doc-observation",
    "e": 8
+  },
+  "hard-day-2014": {
+   "c": "Corée du Sud",
+   "k": [
+    "suspense",
+    "humour-absurde",
+    "violence"
+   ],
+   "mv": "coree",
+   "e": 8,
+   "p": "Un policier corrompu renverse un homme en pleine nuit et cache le corps dans le cercueil de sa propre mère ; un mystérieux témoin se met à l'appeler et à lui donner des ordres."
+  },
+  "detour-1945": {
+   "c": "États-Unis",
+   "k": [
+    "noir-et-blanc",
+    "suspense",
+    "malaise"
+   ],
+   "mv": "film-noir",
+   "e": 7,
+   "p": "Un pianiste en route pour la Californie se retrouve avec le cadavre de l'homme qui l'a pris en stop et endosse son identité ; une passagère devine tout et le tient."
+  },
+  "serie-noire-1979": {
+   "c": "France",
+   "k": [
+    "marginaux",
+    "violence",
+    "humour-absurde"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "p": "Dans une banlieue grise, un petit vendeur au porte-à-porte, minable et fébrile, se laisse entraîner au crime par une jeune fille que sa tante prostitue."
+  },
+  "exotica-1994": {
+   "c": "Canada",
+   "k": [
+    "obsession",
+    "malaise",
+    "neons"
+   ],
+   "mv": "auteur-canadien",
+   "e": 7,
+   "p": "Un contrôleur fiscal fréquente chaque soir le même club de strip-tease de Toronto ; il tient un vendeur d'animaux exotiques par ses trafics et l'entraîne dans son obsession."
+  },
+  "un-plan-simple-1998": {
+   "c": "États-Unis",
+   "k": [
+    "suspense",
+    "obsession",
+    "violence"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 8,
+   "p": "Dans le Minnesota enneigé, deux frères et un ami trouvent plus de quatre millions de dollars dans un avion écrasé et décident de les garder ; chacun devient l'otage des autres."
+  },
+  "les-desempares-1949": {
+   "c": "États-Unis",
+   "k": [
+    "noir-et-blanc",
+    "famille",
+    "suspense"
+   ],
+   "mv": "film-noir",
+   "e": 6,
+   "p": "Pour protéger sa fille, une mère de famille cache le corps de l'homme qu'elle fréquentait ; un maître-chanteur se présente, et un lien étrange naît entre eux."
+  },
+  "le-grand-chantage-1957": {
+   "c": "États-Unis",
+   "k": [
+    "noir-et-blanc",
+    "societe",
+    "violence"
+   ],
+   "mv": "film-noir",
+   "e": 6,
+   "p": "À Broadway, un chroniqueur tout-puissant (Burt Lancaster) tient la ville par ses échos ; un attaché de presse prêt à tout (Tony Curtis) fait le sale travail pour lui."
+  },
+  "the-servant-1963": {
+   "c": "Royaume-Uni",
+   "k": [
+    "huis-clos",
+    "malaise",
+    "obsession"
+   ],
+   "mv": "modernite-europeenne",
+   "e": 8,
+   "p": "Un jeune aristocrate londonien engage un valet parfait ; peu à peu, le domestique prend le pouvoir dans la maison, jusqu'à inverser les rôles."
+  },
+  "la-victime-1961": {
+   "c": "Royaume-Uni",
+   "k": [
+    "noir-et-blanc",
+    "injustice",
+    "suspense"
+   ],
+   "mv": "classiques-europeens",
+   "e": 6,
+   "p": "Un avocat londonien en vue décide de démasquer le réseau qui fait chanter les hommes homosexuels, au risque de révéler son propre secret."
+  },
+  "petits-meurtres-entre-amis-1994": {
+   "c": "Royaume-Uni",
+   "k": [
+    "huis-clos",
+    "humour-absurde",
+    "paranoia"
+   ],
+   "mv": "auteur-europeen",
+   "e": 8,
+   "p": "Trois colocataires d'Édimbourg trouvent leur nouveau locataire mort, à côté d'une valise pleine d'argent ; ils gardent l'argent et font disparaître le corps."
+  },
+  "le-corbeau-1943": {
+   "c": "France",
+   "k": [
+    "noir-et-blanc",
+    "paranoia",
+    "societe"
+   ],
+   "mv": "classiques-europeens",
+   "e": 7,
+   "p": "Dans une petite ville, des lettres anonymes signées « le Corbeau » dénoncent les secrets de chacun ; la peur et le soupçon gagnent tout le monde."
   }
  }
 }
