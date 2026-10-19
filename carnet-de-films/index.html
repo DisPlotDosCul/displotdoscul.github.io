@@ -2743,7 +2743,7 @@ body:not(.vide) .toc{margin-top:8px;}
     if (best && best.m > mu) head += '<p class="pf-combo">Ta combinaison préférée : <b>' + esc(PF[best.a][1]) + ' + ' + esc(PF[best.b][1].toLowerCase()) + '</b> · ' + fr1(best.m) + '/10 sur ' + best.n + ' films</p>';
     return head + '<div class="pf-rows">' + rows.map(function(r){
       var moy = r.W ? 100 - r.b - r.x : 0, n = Math.round(r.W);
-      return '<div class="pf-row"><div class="pf-l"><b>' + esc(r.p[1]) + '</b><span>' + (r.W >= .5 ? fr1(r.m) + '/10 · ≈ ' + n + ' film' + (n > 1 ? "s" : "") : "pas encore de film") + '</span></div>' +
+      return '<div class="pf-row"><div class="pf-l"><b>' + esc(r.p[1]) + '</b><span>' + (r.W >= .5 ? fr1(r.m) + '/10 · ≈ ' + n + ' film' + (n > 1 ? "s" : "") + (r.W < 5 ? " · à confirmer" : "") : "pas encore de film") + '</span></div>' +
         (r.W >= .5 ? '<div class="pf-bar" role="img" aria-label="' + r.b + ' % bien notés, ' + moy + ' % moyens, ' + r.x + ' % pas aimés"><i class="b" style="width:' + r.b + '%"></i><i class="m" style="width:' + moy + '%"></i><i class="x" style="width:' + r.x + '%"></i></div>' +
           '<div class="pf-k">' + r.b + ' % bien notés · ' + r.x + ' % pas aimés</div>' : "") + '</div>';
     }).join("") + '</div><p class="st-note">Chaque film est réparti entre les familles (par exemple 60 % esthétique, 40 % sombre) et compte une seule fois au total : « ≈ 20 films » additionne ces parts. Bien notés : 7 et plus ; pas aimés : moins de 5. Familles de goûts d\'après Rentfrow, Goldberg et Zilca (2011).</p>';
@@ -2757,18 +2757,22 @@ body:not(.vide) .toc{margin-top:8px;}
       if (a.etat === "oublie") oub++;
       if (!n) return;
       rated.push(f); sum += n;
-      String(f.c || "").split(/\s*,\s*/).forEach(function(c){ if (c) (byC[c] = byC[c] || []).push(n); });
-      if (f.mv && MV_INFO[f.mv]) (byM[f.mv] = byM[f.mv] || []).push(n);
+      var cs = String(f.c || "").split(/\s*,\s*/).filter(function(c){ return c; });
+      cs.forEach(function(c){ (byC[c] = byC[c] || []).push({ n:n, w:1 / cs.length }); });
+      if (f.mv && MV_INFO[f.mv]) (byM[f.mv] = byM[f.mv] || []).push({ n:n, w:1 });
     });
-    function avg(a){ return a.reduce(function(t, x){ return t + x; }, 0) / a.length; }
+    function wsum(a){ return a.reduce(function(t, x){ return t + x.w; }, 0); }
+    function avg(a){ return a.reduce(function(t, x){ return t + x.w * x.n; }, 0) / (wsum(a) || 1); }
+    var MU0 = sum && rated.length ? sum / rated.length : 6;
+    function shr(a){ var w = wsum(a); return (avg(a) * w + MU0 * 3) / (w + 3); }
     function rows(map, label, min){
       var r = Object.keys(map).filter(function(k){ return map[k].length >= min; })
-        .sort(function(x, y){ return (avg(map[y]) - avg(map[x])) || (map[y].length - map[x].length); });
+        .sort(function(x, y){ return (shr(map[y]) - shr(map[x])) || (map[y].length - map[x].length); });
       if (!r.length) return '<p class="st-note">Note au moins deux films d\'un même ' + (label === "pays" ? "pays" : "mouvement") + ' pour le voir ici.</p>';
       return '<div class="st-rows">' + r.map(function(k){
         var nm = label === "pays" ? k : MV_INFO[k].label;
         return '<div class="st-row"><span><b>' + esc(nm) + '</b></span><span>' + fr1(avg(map[k])) + '/10 · ' + map[k].length + ' film' + (map[k].length > 1 ? "s" : "") + '</span></div>';
-      }).join("") + '</div>';
+      }).join("") + '</div>' + (label === "pays" ? '<p class="st-note">Un film coproduit par plusieurs pays compte pour une part dans chacun. Ordre : un pays ou un mouvement vu peu de fois est ramené vers ta moyenne, pour ne pas passer devant avec deux films seulement.</p>' : "");
     }
     rated = topRated();
     var topList = TOP_ORDER ? TOP_ORDER.map(function(id){ return films[id]; }).filter(function(f){ return f; }) : rated.slice(0, 10);
