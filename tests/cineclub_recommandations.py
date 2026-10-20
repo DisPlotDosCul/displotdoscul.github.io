@@ -87,6 +87,9 @@ def run():
         assert page.locator(".rime-card .estp").count() == 0
         target = ids(page)[0]
         page.locator(".rime-open").first.click()
+        page.keyboard.press("Escape")
+        assert page.locator("#rsheet").is_hidden()
+        page.locator(".rime-open").first.click()
         page.locator("#rsGo").click()
         page.locator(f'#main .film[data-id="{target}"]').first.wait_for()
         page.locator("#q").fill("Un film gardé au catalogue")
