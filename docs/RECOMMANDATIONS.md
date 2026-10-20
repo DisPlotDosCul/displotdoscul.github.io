@@ -37,6 +37,28 @@ ou un mouvement commun ; elles ne prétendent pas résumer une scène précise. 
 voisinages dépendent de la qualité des fiches, dont certaines sont « à vérifier ».
 La rime est une proposition de regard, pas une promesse de goût.
 
+Les films qui appartenaient uniquement aux suggestions antérieures restent dans
+le catalogue et dans la recherche, même si leur ancienne rubrique change de forme.
+
+## Validation
+
+Le test `python3 tests/cineclub_recommandations.py` vérifie trois propositions
+distinctes sans score affiché, l'exclusion des films vus, une phrase par lien,
+l'ouverture d'une fiche, la stabilité pendant une notation et le renouvellement
+explicite de la séance. Il vérifie aussi le choix manuel d'un premier film et la
+préservation des anciens films dans la recherche.
+
+Les essais du 20 octobre 2026 passent à 360 et 1 440 pixels, jour et néon, sans
+débordement horizontal ni erreur de console. Un compte sans notes et sans avis
+d'autres membres peut composer une séance en choisissant son premier film.
+Les seuls enregistrements de test sont les notes explicitement données au profil
+fictif ; aucune donnée réelle n'est utilisée.
+
+| | Jour | Néon |
+|---|---|---|
+| Téléphone | [Capture](captures/recommandations/telephone-jour.png) | [Capture](captures/recommandations/telephone-neon.png) |
+| Ordinateur | [Capture](captures/recommandations/ordinateur-jour.png) | [Capture](captures/recommandations/ordinateur-neon.png) |
+
 ## Questions à valider
 
 - [ ] La rime lointaine est-elle la bonne porte d'entrée parmi les cinq approches ?
