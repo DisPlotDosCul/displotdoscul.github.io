@@ -1,0 +1,30 @@
+name: Ciné-club — ciel et captures
+on:
+  pull_request:
+    paths:
+      - carnet-de-films/**
+      - tests/cineclub_ciel.py
+      - tests/cineclub_fixture.py
+      - .github/workflows/cineclub-ciel.yml
+permissions:
+  contents: read
+jobs:
+  ciel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Préparer le navigateur de test
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Explorer le ciel avec des membres fictifs
+        run: python tests/cineclub_ciel.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cineclub-ciel-captures
+          path: docs/captures/ciel/
