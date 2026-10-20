@@ -59,3 +59,22 @@ navigateur, lien malformé, téléphone à 360 pixels, ordinateur, jour et néon
 - [ ] Le ton des images et des phrases laisse-t-il assez de place à l'imaginaire ?
 - [ ] Les trois chemins se distinguent-ils assez sans devenir un questionnaire ?
 - [ ] Le carnet gardé sur l'appareil et le partage par lien conviennent-ils ?
+
+## Réalisation et essais
+
+Le test `python3 tests/cineclub_derive.py` a été exécuté le 20 octobre 2026 sur
+téléphone à 360 pixels et ordinateur à 1 440 pixels. Jour et néon, départ libre
+ou par une image proposée, trois chemins distincts, retour en arrière, nom Unicode,
+conservation après rechargement, relecture et reprise : contrôles réussis.
+
+Le lien a été ouvert dans un nouveau navigateur : le nom et les trois films sont
+retrouvés sans sauvegarde automatique. Un nom contenant du HTML reste du texte,
+et un lien malformé produit un message discret. Le partage ne contient que la
+version du format, le nom, l'image, les identifiants publics des films et les chemins.
+Aucune écriture Firebase, aucune requête imprévue et aucune erreur de console.
+Grand confort ne provoque pas de débordement horizontal.
+
+| | Jour | Néon |
+|---|---|---|
+| Téléphone | [Capture](captures/derive/telephone-jour.png) | [Capture](captures/derive/telephone-neon.png) |
+| Ordinateur | [Capture](captures/derive/ordinateur-jour.png) | [Capture](captures/derive/ordinateur-neon.png) |
