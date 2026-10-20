@@ -22,7 +22,7 @@ header.top{position:relative;display:grid;gap:8px;text-align:center;margin-botto
 @media (max-width:370px){header.top{padding-top:30px;}}
 .nuitb[aria-pressed="true"]{color:var(--k-s-FFD58A);background:var(--k-s-2C2230);border-color:var(--k-b-2C2230);}
 h1{margin:0;font-family:"Limelight","Jost",serif;font-weight:400;font-size:clamp(32px,8vw,46px);letter-spacing:.02em;line-height:1.05;text-wrap:balance;color:var(--k-s-7A1F2B);}
-header.top::after{content:"";justify-self:center;width:min(260px,72%);height:8px;margin-top:2px;
+header.top::after{content:"";justify-self:center;width:min(176px,55%);height:8px;margin-top:2px;
   background:radial-gradient(circle,var(--k-s-E2A93B) 0 2.3px,transparent 2.8px) 0 50%/15px 8px space no-repeat;filter:drop-shadow(0 0 2.5px rgba(226,169,59,.75));}
 .bar{position:relative;z-index:5;background:transparent;padding-block:8px 7px;
   border-bottom:1px solid var(--line);display:grid;gap:7px;}
@@ -662,7 +662,7 @@ html.intro-on,html.intro-on body{overflow:hidden;}
 .ch-a.ch-ra{font-size:20px;letter-spacing:-.04em;}
 .ch-a.ch-ca{font-weight:400;color:var(--k-s-6A7A5A);}
 .ch-n{margin:0;font-size:16px;color:var(--muted);text-align:center;}
-.intro-x{position:absolute;z-index:5;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));font:600 16px/1 var(--font);
+.intro-x{position:absolute;z-index:5;right:14px;bottom:calc(44px + env(safe-area-inset-bottom,0px));font:600 16px/1 var(--font);
   color:#F5D58A;background:rgba(20,11,7,.55);border:1.5px solid rgba(245,213,138,.6);border-radius:99px;padding:12px 18px;cursor:pointer;}
 .intro-x[hidden]{display:none;}
 .intro.fin{opacity:0;transition:opacity .45s ease;}
@@ -854,6 +854,23 @@ html.th-crep:not(.aff-calme) .minis.cats .mini .sq{box-shadow:0 2px 10px rgba(40
 html.th-neon:not(.aff-calme) .idb{box-shadow:0 0 16px -6px var(--fc);}
 html.th-neon.aff-calme h1{color:#F3E6FF;}
 
+
+/* Des commandes regroupées, avec la même respiration lumineuse. */
+.hint-q{text-align:left;font-size:12.5px;cursor:text;}
+.hint-q .fl{display:inline-block;margin-right:5px;}
+.pn-r{width:auto!important;padding-inline:10px!important;font-size:12.5px!important;}
+.cc-wink{--cc-cue:var(--muted);animation:ccButtonWink 5.2s ease-in-out 1;}
+html.th-neon .cc-wink{--cc-cue:#ff9bd6;}
+@keyframes ccButtonWink{0%,100%{box-shadow:0 0 0 0 transparent;}45%,60%{box-shadow:0 0 17px -5px var(--cc-cue),inset 0 0 12px -8px var(--cc-cue);}}
+html.aff-calme .cc-wink,html.aff-grand .cc-wink{animation:none!important;}
+@media(prefers-reduced-motion:reduce){.cc-wink{animation:none!important;}}
+@media(max-width:480px){
+  .bar .ccbar{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;}
+  .bar .ccbar .ccb{grid-column:span 2;min-width:0;min-height:44px;padding:5px 4px;font-size:12.5px;line-height:1.15;white-space:normal;justify-content:center;text-align:center;}
+  .bar .ccbar #skyToggle,.bar .ccbar #drToggle{grid-column:span 3;font-size:13px;}
+  html.aff-grand .bar .ccbar .ccb{font-size:14px;}
+}
+
 .ccbar{display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap;}
 .ccbar .ccb{font-weight:600;}
 .ccbar #ccMe{background:var(--k-s-F9E3A8);color:var(--k-s-4A3300);border-color:var(--k-b-C8963A);}
@@ -1009,17 +1026,16 @@ html.aff-grand .drift button{min-height:44px;}
 .nvh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .nbulbs{display:none;}
 html.th-neon:not(.aff-calme) header.top::after{display:none;}
-/* L'écriteau : panneau sombre dans un cadre de métal vissé ; les lettres sont des tubes roses, une lettre éteinte laisse voir son tube. */
-html.th-neon:not(.aff-calme) h1{position:relative;justify-self:center;padding:8px 22px 11px;border-radius:12px;background:linear-gradient(180deg,#1A1022,#0B0610);border:3px solid #3A3144;
-  box-shadow:0 2px 0 #0004,0 0 0 1px #000,inset 0 1px 0 rgba(255,255,255,.07);color:#FFF0FA;text-shadow:0 0 1px #FFFFFF,0 0 4px #FF8ED8,0 0 10px #FF3FB0,0 0 22px rgba(255,45,166,.7);
+/* L'écriteau : sans cadre ; les lettres sont des tubes roses, une lettre éteinte laisse voir son tube. */
+html.th-neon:not(.aff-calme) h1{position:relative;justify-self:center;padding:8px 22px 11px;background:transparent;border:0;
+  box-shadow:none;color:#FFF0FA;text-shadow:0 0 1px #FFFFFF,0 0 4px #FF8ED8,0 0 10px #FF3FB0,0 0 22px rgba(255,45,166,.7);
   animation:nSway 23s ease-in-out infinite alternate!important;transform-origin:50% -40px;}
-html.th-neon:not(.aff-calme) h1::after{content:"";position:absolute;inset:-1px;pointer-events:none;border-radius:10px;
-  background:radial-gradient(circle at 6px 6px,#8E8698 0 1.6px,#2A2430 2.2px,transparent 2.6px),radial-gradient(circle at calc(100% - 6px) 6px,#8E8698 0 1.6px,#2A2430 2.2px,transparent 2.6px),radial-gradient(circle at 6px calc(100% - 6px),#8E8698 0 1.6px,#2A2430 2.2px,transparent 2.6px),radial-gradient(circle at calc(100% - 6px) calc(100% - 6px),#8E8698 0 1.6px,#2A2430 2.2px,transparent 2.6px);}
+html.th-neon:not(.aff-calme) h1::after{content:none;}
 html.th-neon:not(.aff-calme) .nl.off,html.th-neon:not(.aff-calme) h1.sign-off .nl{color:#4A2440;text-shadow:none;}
 html.th-neon:not(.aff-calme) .nl.dim{color:#C98AB6;text-shadow:0 0 3px #FF3FB0;}
-/* Ampoules : même nombre et même espacement qu'au début ; verre ambré, filament chaud, éclat inégal d'une ampoule à l'autre.
+/* Ampoules : une rampe plus courte ; verre ambré, filament chaud, éclat inégal d'une ampoule à l'autre.
    Une ampoule qui s'éteint refroidit en un dixième de seconde ; elle se rallume plus vite. */
-html.th-neon:not(.aff-calme) .nbulbs{display:flex;justify-content:space-between;align-items:center;justify-self:center;width:min(260px,72%);height:8px;margin-top:2px;
+html.th-neon:not(.aff-calme) .nbulbs{display:flex;justify-content:space-between;align-items:center;justify-self:center;width:min(176px,55%);height:8px;margin-top:2px;
   animation:nSway 29s ease-in-out infinite alternate-reverse!important;transform-origin:50% -60px;}
 .nbulbs i{width:5px;height:5px;border-radius:50%;background:radial-gradient(circle at 50% 42%,#FFF8E0 0 18%,#FFD27A 42%,#E2922C 78%,#8C4E12 100%);
   box-shadow:0 0 2px .5px rgba(255,214,140,.95),0 0 7px 1.5px rgba(255,160,60,.5);filter:brightness(var(--br,1)) hue-rotate(var(--hu,0deg));
@@ -1232,7 +1248,7 @@ html.sky-on #rsheet{z-index:50;}
 <div class="wrap">
   <header class="top">
     <h1><span class="nvh">Ciné-club</span><span class="nlet" aria-hidden="true"><span class="nl">C</span><span class="nl">i</span><span class="nl">n</span><span class="nl">é</span><span class="nl">-</span><span class="nl">c</span><span class="nl">l</span><span class="nl">u</span><span class="nl">b</span></span></h1>
-    <div class="nbulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="nbulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <button type="button" class="nuitb aab" id="aab" aria-haspopup="true" aria-expanded="false" aria-controls="aamenu" aria-label="Affichage" title="Affichage">Aa</button>
     <div class="aamenu" id="aamenu" role="group" aria-label="Affichage" hidden>
       <p class="aa-h">Taille</p>
@@ -1250,6 +1266,7 @@ html.sky-on #rsheet{z-index:50;}
       <button type="button" class="aa-sw" data-opt="calme" role="switch" aria-checked="false"><b>Calme</b><span>Sans animation, couleurs douces (TDAH, autisme)</span></button>
       <button type="button" class="aa-sw" data-opt="lecture" role="switch" aria-checked="false"><b>Lecture facilitée</b><span>Lettres plus lisibles et espacées (dyslexie)</span></button>
       <button type="button" class="aa-intro" data-intro="1">🎭 Revoir le lever de rideau</button>
+      <button type="button" class="aa-intro" id="ccRanger" hidden>⇅ Ranger les catégories</button>
       <button type="button" class="aa-intro" data-guide="1">🧭 Revoir la visite guidée</button>
       <button type="button" class="aa-intro" data-bugbtn="1">🐞 Signaler un bug</button>
     </div>
@@ -1260,7 +1277,7 @@ html.sky-on #rsheet{z-index:50;}
     <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" hidden>🧭 Boussole cinéma</button></div>
     <div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
-    <p class="hint hint-q">Cherchez un film, un cinéaste ou un thème <span class="fl" aria-hidden="true">↓</span></p>
+    <label class="hint hint-q" for="q"><span class="fl" aria-hidden="true">↓</span> Chercher un film, un cinéaste ou un thème</label>
     <div class="row-tools">
       <div class="qwrap"><input type="search" id="q" placeholder="Film, cinéaste, thème…" aria-label="Chercher un film, un·e cinéaste ou un thème"><button type="button" class="qx" id="qx" aria-label="Effacer la recherche" hidden>✕</button></div>
       <button type="button" class="view" id="view" aria-pressed="false" title="Tous les films à la suite, du plus au moins susceptible de te plaire" hidden>Tout classé</button>
@@ -1406,6 +1423,7 @@ html.sky-on #rsheet{z-index:50;}
   }
   firebase.initializeApp(CFG);
   var auth = firebase.auth(), fs = firebase.firestore();
+  auth.languageCode = "fr";
   try { fs.enablePersistence({ synchronizeTabs:true }).catch(function(){}); } catch (e) {}
   CC.auth = auth; CC.fs = fs;
   function clean(d){ return JSON.parse(JSON.stringify(d || {})); }
@@ -2117,7 +2135,7 @@ html.sky-on #rsheet{z-index:50;}
     "s26-ta-vie":["Des films qui lui ressemblent", "Des films choisis d'après la vie de Licia : l'équilibre et le cirque, l'apnée et la mer, l'escalade, les nuits de festival, les guimbardes, les animaux et le goût d'une vie simple."],
     "s16-classement":["Ses films notés", "Tous les films que Licia a notés sur 10, du mieux noté au moins bien noté."],
     "s15-oublies":["Vus mais oubliés", "Les films que Licia a vus il y a longtemps et un peu oubliés."],
-    "s18-mes-statistiques":["Ses statistiques", "Ses chiffres, son top 10, ses notes par pays et par mouvement."],
+    "s18-mes-statistiques":["Ses statistiques", "Ses chiffres, son top 20, ses notes par pays et par mouvement."],
     "s08-liste-cauchemar":["", "Les films et séries liés au cauchemar de Licia."],
     "s24-nouveau-malaise":["", "Des films dérangeants mais soignés, dans la lignée de ses 10/10 : Crash, Canine, Shining, Irréversible."]
   };
@@ -2804,7 +2822,7 @@ html.sky-on #rsheet{z-index:50;}
       (s.auto === "conseils" ? plExtraHtml(s) : "") + '</section>';
   }
 
-  // Mes statistiques : tes chiffres, ton top 10, tes notes par pays et par mouvement, les mouvements à explorer.
+  // Mes statistiques : tes chiffres, ton top 20, tes notes par pays et par mouvement, les mouvements à explorer.
   function fr1(x){ return (Math.round(x * 10) / 10).toFixed(1).replace(".", ",").replace(/,0$/, ""); }
   function topRated(){
     var seen = {}, out = [];
@@ -2874,7 +2892,7 @@ html.sky-on #rsheet{z-index:50;}
       }).join("") + '</div>' + (label === "pays" ? '<p class="st-note">Un film coproduit par plusieurs pays compte pour une part dans chacun. Ordre : un pays ou un mouvement vu peu de fois est ramené vers ta moyenne, pour ne pas passer devant avec deux films seulement.</p>' : "");
     }
     rated = topRated();
-    var topList = TOP_ORDER ? TOP_ORDER.map(function(id){ return films[id]; }).filter(function(f){ return f; }) : rated.slice(0, 10);
+    var topList = TOP_ORDER ? TOP_ORDER.map(function(id){ return films[id]; }).filter(function(f){ return f; }) : rated.slice(0, 20);
     var top = topList.map(function(f, i){
       var tid = esc(f.id);
       return '<li><span class="num">' + (i + 1) + '.</span><span class="tt">' + esc(f.t) + (f.y ? ' <span>(' + esc(f.y) + ')</span>' : "") + '</span>' +
@@ -2895,7 +2913,7 @@ html.sky-on #rsheet{z-index:50;}
         '<div class="st-tile"><b>' + oub + '</b><span>films oubliés</span></div>' +
       '</div>' +
       '<div class="st-b"><h3>Ton profil de cinéphile</h3>' + profilHtml() + '</div>' +
-      '<div class="st-b"><div class="st-hd"><h3>Ton top 10</h3>' + (top ? '<button type="button" class="shb" data-sharetop="1" aria-label="Partager ton top 10">↗ Partager</button>' : "") + '</div>' + (top ? '<ol class="st-top">' + top + '</ol>' : '<p class="st-note">Note des films sur 10 pour voir ton top ici.</p>') + '</div>' +
+      '<div class="st-b"><div class="st-hd"><h3>Ton top 20</h3>' + (top ? '<button type="button" class="shb" data-sharetop="1" aria-label="Partager ton top 20">↗ Partager</button>' : "") + '</div>' + (top ? '<ol class="st-top">' + top + '</ol>' : '<p class="st-note">Note des films sur 10 pour voir ton top ici.</p>') + '</div>' +
       '<div class="st-b"><h3>Tes notes par pays</h3>' + rows(byC, "pays", 2) + '</div>' +
       '<div class="st-b"><h3>Tes notes par mouvement</h3>' + rows(byM, "mv", 2) + '</div>' +
       '<div class="st-b"><h3>Mouvements pas encore explorés</h3>' + (todo.length ? '<div class="st-mv">' + todo.map(function(m){
@@ -3060,17 +3078,15 @@ html.sky-on #rsheet{z-index:50;}
           : '<span class="ic">' + famIcon(k) + '</span><span class="ml">' + esc(MINI_L[k] || String(x.label).split(" ")[0]) + '</span>') +
         (act ? '<span class="mdot" aria-hidden="true"></span>' : "") + '</button>';
     }).join("") + '</div>';
-    var top = !f && !SHOW && !query ? hintP("Ou explorez les catégories") : "";
+    var top = !f && !SHOW && !query ? '<p class="hint">Catégories</p>' : "";
     if (!f) { el.innerHTML = top + minis + ideeBtn(); return; }
     var canRang = ROLE === "proprio" && !GUEST && !f.idees && CCA();
     if (f.idees) body = ideesHtml();
     else if (RANGER && canRang) body = rangerHtml(f, fams);
     else if (f.mouvements || f.envies) {
-      var g1 = f.mouvements ? mv1 : env1;
-      body = hintP(f.mouvements ? (g1 ? "Choisissez un courant, ou voyez toute la période" : "Choisissez une période") :
-        (g1 ? "Précisez votre envie, ou voyez tous ses films" : "Choisissez une envie")) + (f.mouvements ? mvChips() : envChips());
+      body = (f.mouvements ? mvChips() : envChips());
     } else {
-      body = !(TOCDATA[f.id] || []).length ? '<p class="pn-vide">Aucune liste avec ce filtre.</p>' : hintP("Choisissez une liste") + '<div class="subs">' + (TOCDATA[f.id] || []).map(function(x, i){
+      body = !(TOCDATA[f.id] || []).length ? '<p class="pn-vide">Aucune liste avec ce filtre.</p>' : '<div class="subs">' + (TOCDATA[f.id] || []).map(function(x, i){
         var pic = x.auto === "conseils" ? '<span class="em av" style="--ec:' + tc(AV_C[i % AV_C.length]) + '">' + esc(String(x.titre || "?").charAt(0).toUpperCase()) + '</span>'
                 : subIc(SUB_IC[x.id] || SUB_AUTO[x.auto]);
         var on = !!SHOW && SHOW.k === "sec" && SHOW.id === x.id;
@@ -3083,7 +3099,7 @@ html.sky-on #rsheet{z-index:50;}
     TOC_FIT = true;
     el.innerHTML = minis + '<div class="panel" id="drill" style="' + famStyle(f) + '">' +
       '<div class="pn-h"><span class="ic">' + famIcon(key) + '</span><b>' + esc(fLabel(f)) + '</b>' +
-      (canRang ? '<button type="button" class="pn-x pn-r" data-ranger="1" aria-pressed="' + RANGER + '" aria-label="Changer l\'ordre" title="Changer l\'ordre">⇅</button>' : "") +
+      (canRang ? '<button type="button" class="pn-x pn-r" data-ranger="1" aria-pressed="' + RANGER + '" aria-label="Changer l\'ordre" title="Changer l\'ordre">⇅ Ranger</button>' : "") +
       '<button type="button" class="pn-x" data-tback="1" aria-label="Fermer ' + esc(fLabel(f)) + '">✕</button></div>' + body + '</div>';
   }
   // Après l'affichage du panneau : chaque nom qui ne tient pas sur deux lignes passe sur toute la largeur.
@@ -3187,6 +3203,7 @@ html.sky-on #rsheet{z-index:50;}
   function notesSync(){
     var b = $("ntBtn"), on = !!(window.CC && CC.admin);
     if (b) b.hidden = !on;
+    var rg = $("ccRanger"); if (rg) rg.hidden = !on || GUEST || ROLE !== "proprio" || !sections.length;
     if (!on) { var p = $("ntPanel"); if (p) p.hidden = true; }
   }
   document.body.insertAdjacentHTML("beforeend", '<button type="button" class="nt-btn" id="ntBtn" hidden aria-label="Mes idées pour le site" title="Mes idées pour le site">✎</button><div class="nt-panel" id="ntPanel" role="dialog" aria-label="Mes idées pour le site" hidden></div>');
@@ -3346,7 +3363,7 @@ html.sky-on #rsheet{z-index:50;}
     }
     body.innerHTML=h;
   }
-  function drOpen(){drRead();$("drift").hidden=false;document.querySelector(".wrap").inert=true;document.documentElement.classList.add("drift-on");drRender();$("drClose").focus({preventScroll:true});}
+  function drOpen(){if(!$("rsheet").hidden)$("rsClose").click();drRead();$("drift").hidden=false;document.querySelector(".wrap").inert=true;document.documentElement.classList.add("drift-on");drRender();$("drClose").focus({preventScroll:true});}
   function drClose(){var host=$("drift");host.hidden=true;host.inert=false;$("rsheet").hidden=true;$("rsAgain").hidden=false;document.querySelector(".wrap").inert=false;document.documentElement.classList.remove("drift-on");$("drToggle").focus({preventScroll:true});}
   function drStart(seed){seed=String(seed||"").trim().slice(0,160);if(seed.length<2){drNote("Une image en quelques mots.");return;}var id=drFirst(seed);if(!id){drNote("Le catalogue se prépare encore.");return;}DR.mode="";DR.current={n:"",seed:seed,steps:[{id:id,by:"image"}]};drRender();}
   function drFilm(id){if(!films[id])return;pickRandom({ids:[id],label:"Dérive onirique"});$("rsK").textContent="Un écho du rêve";$("rsAgain").hidden=true;$("drift").inert=true;$("rsClose").focus({preventScroll:true});}
@@ -3416,7 +3433,7 @@ html.sky-on #rsheet{z-index:50;}
   function ideeBtn(){
     var n = Object.keys(IDEES).length;
     return '<button type="button" class="idb" data-tile="idees" style="' + famStyle(IDEES_FAM) + '"><span class="ic">' + famIcon("idees") + '</span>' +
-      '<span><b>Boîte à idées</b>Une amélioration, une catégorie, un bug à signaler…</span>' + (n ? '<span class="idn">' + n + ' idée' + (n > 1 ? "s" : "") + '</span>' : "") + '</button>';
+      '<span><b>Boîte à idées</b>Proposer · Signaler</span>' + (n ? '<span class="idn">' + n + ' idée' + (n > 1 ? "s" : "") + '</span>' : "") + '</button>';
   }
   function ideeCard(x, wait){
     var t = idType(x.type), ok = x.statut === "retenue", del = ID_DEL === x.id, k = x.kind === "amelio" || x.kind === "bug" ? idKind(x.kind) : null;
@@ -3644,6 +3661,7 @@ html.sky-on #rsheet{z-index:50;}
   }
 
   function renderAll(){
+    var tk = frzKey(); if (TOP_KEY !== tk) { TOP_KEY = tk; TOP_ORDER = null; }
     var ae = document.activeElement, afm = ae && ae.closest && ae.closest("form[data-plform]");
     var fst = afm ? { sel:'form[data-plform="' + CSS.escape(afm.dataset.plform) + '"]', name:ae.name, pos:ae.selectionStart } : null;
     renderAll0();
@@ -3959,9 +3977,9 @@ html.sky-on #rsheet{z-index:50;}
     });
   }
 
-  // Réglage fin d'une note (+ / −) : on enregistre et on reclasse une fois les clics finis.
-  // TOP_ORDER : l'ordre du top 10 figé pendant que tu règles une note, pour que rien ne bouge sous le doigt.
-  var NOTE_T = {}, FULL_T = null, TOP_ORDER = null;
+  // Réglage fin d'une note (+ / −) : enregistrement différé, sans déplacer les films.
+  // Le top 20 se reclasse au changement de catégorie, de recherche ou de membre.
+  var NOTE_T = {}, FULL_T = null, TOP_ORDER = null, TOP_KEY = null;
   function noteLater(id, prev, focusSel){
     keepLocal();
     if (!NOTE_T[id]) NOTE_T[id] = { prev:prev };
@@ -3969,7 +3987,6 @@ html.sky-on #rsheet{z-index:50;}
     NOTE_T[id].t = setTimeout(function(){ var p = NOTE_T[id].prev; delete NOTE_T[id]; save(id, p); }, 700);
     clearTimeout(FULL_T);
     FULL_T = setTimeout(function(){
-      TOP_ORDER = null;
       var ae = document.activeElement, sel = focusSel;
       if (ae && ae.dataset && ae.dataset.tstep) sel = '[data-tstep="' + ae.dataset.tstep + '"][data-tid="' + CSS.escape(ae.dataset.tid) + '"]';
       var anc = anchors(null); quickRender(id); restore(anc);
@@ -4826,6 +4843,14 @@ html.sky-on #rsheet{z-index:50;}
   function aaMenu(open){ $("aamenu").hidden = !open; $("aab").setAttribute("aria-expanded", open ? "true" : "false"); }
   $("aab").addEventListener("click", function(ev){ ev.stopPropagation(); aaMenu($("aamenu").hidden); });
   $("aamenu").addEventListener("click", function(ev){
+    if (ev.target.closest("#ccRanger")) {
+      if (!CCA() || GUEST || ROLE !== "proprio") return;
+      ev.stopPropagation(); aaMenu(false);
+      var f = FAM_OF.carnet || tocFams()[0]; if (!f) return;
+      TAB = f.id; RANGER = true; renderToc(); jumpTo($("toc"), 10);
+      var first = $("toc").querySelector(".rg-b:not(:disabled)"); if (first) first.focus({preventScroll:true});
+      return;
+    }
     if (ev.target.closest("[data-intro]")) { aaMenu(false); startIntro(); return; }
     var t = ev.target.closest("[data-taille]"); if (t) { AFF.taille = t.dataset.taille; applyAff(); return; }
     var o = ev.target.closest("[data-opt]"); if (o) setOpt(o.dataset.opt);
@@ -4951,7 +4976,7 @@ html.sky-on #rsheet{z-index:50;}
   }
   function rsMeta(){
     var f = films[RND] || {}, a = answers[RND] || {}, mine = isMine();
-    var etat = !mine && a.note10 ? "noté " + fmtN(a.note10) + "/10 par Licia" : "";
+    var etat = !mine && a.note10 ? "noté " + fmtN(a.note10) + "/10 par " + VN() : "";
     $("rsM").textContent = [f.y, f.d, f.c, dureeTexte(f), etat].filter(function(x){ return x; }).join(" · ");
     var ev = mine && RND ? estOf(f) : 0;
     $("rsE").hidden = !ev; $("rsE").innerHTML = ev ? "Estimé <b>" + ev + "</b>/10" : "";
@@ -5138,7 +5163,7 @@ html.sky-on #rsheet{z-index:50;}
     Object.keys(window.CC&&CC.uid?CC.profils:{}).sort().forEach(function(uid){var p=CC.profils[uid];if(uid===me||!p||!p.pseudo||(CC.hidden&&CC.hidden("x","",uid)))return;html+='<option value="'+esc(uid)+'">Avec '+esc(p.pseudo)+'</option>';});
     $("skyMember").innerHTML=html;$("skyMember").value=selected;if($("skyMember").value!==selected)SKY.member="";
   }
-  function skyOpen(){skyEl.hidden=false;document.documentElement.classList.add("sky-on");document.querySelector(".wrap").inert=true;skyResize();skyMembers();skyModel();if(SKY.ready)skyFit();skyCanvas.focus({preventScroll:true});}
+  function skyOpen(){if(!$("rsheet").hidden)$("rsClose").click();skyEl.hidden=false;document.documentElement.classList.add("sky-on");document.querySelector(".wrap").inert=true;skyResize();skyMembers();skyModel();if(SKY.ready)skyFit();skyCanvas.focus({preventScroll:true});}
   function skyClose(){skyEl.hidden=true;skyEl.inert=false;document.querySelector(".wrap").inert=false;document.documentElement.classList.remove("sky-on");$("rsheet").hidden=true;$("skyToggle").focus({preventScroll:true});}
   function skyFilm(id){if(!films[id])return;pickRandom({ids:[id],label:"Ciel de films"});$("rsK").textContent="Une étoile, un film";$("rsAgain").hidden=true;skyEl.inert=true;$("rsClose").focus({preventScroll:true});}
   function skyHit(x,y){
@@ -5147,7 +5172,7 @@ html.sky-on #rsheet{z-index:50;}
   $("skyToggle").addEventListener("click",skyOpen);$("skyClose").addEventListener("click",skyClose);
   $("skyIn").addEventListener("click",function(){skyZoom(1.45,SKY.w/2,SKY.h/2);});$("skyOut").addEventListener("click",function(){skyZoom(1/1.45,SKY.w/2,SKY.h/2);});$("skyReset").addEventListener("click",skyFit);
   $("skyMember").addEventListener("change",function(){SKY.member=this.value;skySchedule();});
-  $("skySearch").addEventListener("input",function(){var q=norm(this.value.trim()),out=$("skyResults");if(!q){out.hidden=true;return;}var matches=SKY.points.filter(function(p){return norm(films[p.id].t).indexOf(q)>=0;}).slice(0,6);out.innerHTML=matches.map(function(p){return '<button type="button" data-skyfilm="'+esc(p.id)+'">'+esc(films[p.id].t)+'</button>';}).join("");out.hidden=!matches.length;});
+  $("skySearch").addEventListener("input",function(){var q=norm(this.value.trim()),out=$("skyResults");if(!q){out.hidden=true;return;}var matches=Object.keys(films).sort().filter(function(id){return norm(films[id].t).indexOf(q)>=0;}).slice(0,6);out.innerHTML=matches.map(function(id){return '<button type="button" data-skyfilm="'+esc(id)+'">'+esc(films[id].t)+'</button>';}).join("");out.hidden=!matches.length;});
   $("skyResults").addEventListener("click",function(e){var b=e.target.closest("[data-skyfilm]");if(!b)return;this.hidden=true;skyFilm(b.dataset.skyfilm);});
   $("skySearch").addEventListener("keydown",function(e){if(e.key==="Enter"){var b=$("skyResults").querySelector("button");if(b){e.preventDefault();b.click();}}});
   var skyPointers={},skyStart=null,skyMoved=false,skyMulti=false;
@@ -5206,11 +5231,11 @@ html.sky-on #rsheet{z-index:50;}
     return L.join("\n").replace(/^\n+/, "");
   }
   var SHTOP = false;
-  var TOPI = [{ l:"Mon top 10", t:"Mon top 10 de films :" }, { l:"Mes préférés…", t:"Mes films préférés, que je te conseille :" }, { l:"Sans phrase", t:"" }];
+  var TOPI = [{ l:"Mon top 20", t:"Mon top 20 de films :" }, { l:"Mes préférés…", t:"Mes films préférés, que je te conseille :" }, { l:"Sans phrase", t:"" }];
   function topOpts(){ return [{ k:"topAnnee", l:"Année" }, { k:"topReal", l:"Réalisateur·rice" }, { k:"topNote", l:"Mes notes" }, { k:"lien", l:"Lien du carnet" }]; }
   function topMsg(){
     var intro = (TOPI[+SHP.topIntro] || TOPI[0]).t, L = intro ? [intro] : [];
-    topRated().slice(0, 10).forEach(function(f, i){
+    topRated().slice(0, 20).forEach(function(f, i){
       var meta = [SHP.topAnnee ? f.y : "", SHP.topReal ? f.d : ""].filter(function(x){ return x; }).join(", ");
       L.push((i + 1) + ". " + f.t + (meta ? " (" + meta + ")" : "") + (SHP.topNote ? " · " + fmtN((answers[f.id] || {}).note10) + "/10" : ""));
     });
@@ -5228,7 +5253,7 @@ html.sky-on #rsheet{z-index:50;}
   function openTopShare(){
     closeSheet(true); closeV();
     SHF = null; SHTOP = true;
-    $("ssheet-h").textContent = "Partager ton top 10";
+    $("ssheet-h").textContent = "Partager ton top 20";
     $("shOpts").hidden = false;
     renderTopShare(); shNote(appsNote());
     $("shNative").hidden = typeof navigator.share !== "function";
@@ -5719,7 +5744,7 @@ html.sky-on #rsheet{z-index:50;}
   // Chaque ampoule a son propre éclat ; une est grillée, une autre fatiguée.
   var B = [].slice.call(document.querySelectorAll(".nbulbs i"));
   B.forEach(function(b){ b.style.setProperty("--br", R(.82, 1.06).toFixed(2)); b.style.setProperty("--hu", R(-8, 4).toFixed(1) + "deg"); });
-  if (B.length > 12) { B[11].classList.add("dead"); B[4].classList.add("weak"); B[4].style.removeProperty("--br"); B[4].style.removeProperty("--hu"); }
+  if (B.length > 4) { B[B.length - 2].classList.add("dead"); B[4].classList.add("weak"); B[4].style.removeProperty("--br"); B[4].style.removeProperty("--hu"); }
   // Faux contact : quelques coupures brèves et irrégulières ; parfois l'ampoule reste éteinte un moment.
   function flick(el, cls){
     var n = 1 + Math.floor(Math.random() * 4), t = 0;
@@ -5820,4 +5845,24 @@ html.sky-on #rsheet{z-index:50;}
   setTimeout(bulbs, R(400, 2500)); setTimeout(letters, R(800, 4000)); setTimeout(halos, R(1500, 6000));
 })();
 </script>
+<script>
+(function(){
+  var de=document.documentElement,active=null,off=null,visited=Object.create(null),motion=matchMedia("(prefers-reduced-motion: reduce)");
+  function stop(){if(active)active.classList.remove("cc-wink");active=null;clearTimeout(off);}
+  function key(b){return b.id||b.getAttribute("data-tile")||b.getAttribute("data-s")||b.textContent.trim();}
+  function cue(){
+    stop();
+    if(!document.hidden&&!motion.matches&&!de.classList.contains("aff-calme")&&!de.classList.contains("aff-grand")&&!de.classList.contains("intro-on")&&!document.querySelector('.sheet:not([hidden]),.nt-panel:not([hidden]),.sky:not([hidden]),.drift:not([hidden]),.ccguide:not([hidden])')){
+      var candidates=Array.prototype.filter.call(document.querySelectorAll('#ccMbr,#ccQuiz,#skyToggle,#drToggle,#dice,#toc button'),function(b){return !b.disabled&&!b.closest("[inert]")&&b.getClientRects().length&&b.getAttribute("aria-pressed")!=="true"&&!visited[key(b)]&&document.activeElement!==b;});
+      if(candidates.length){active=candidates[Math.floor(Math.random()*candidates.length)];active.classList.add("cc-wink");off=setTimeout(stop,5500);}
+    }
+    setTimeout(cue,22000+Math.random()*14000);
+  }
+  document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("button");if(b)visited[key(b)]=1;stop();},true);
+  document.addEventListener("focusin",stop);document.addEventListener("visibilitychange",stop);
+  new MutationObserver(function(){if(de.classList.contains("aff-calme")||de.classList.contains("aff-grand"))stop();}).observe(de,{attributes:true,attributeFilter:["class"]});
+  setTimeout(cue,12000);
+})();
+</script>
+
 </body></html>
