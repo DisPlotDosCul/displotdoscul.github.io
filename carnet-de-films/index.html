@@ -927,6 +927,13 @@ html.aff-calme .nt-btn{box-shadow:none;}
 .grp.part{font-size:13.5px;}
 .grp.part b{font-size:15.5px;}
 .more{margin-left:auto;flex:none;font:600 12.5px/1 var(--font);color:var(--muted);background:transparent;border:1.5px dashed var(--line);border-radius:99px;padding:6px 10px;cursor:pointer;}
+.fiche-themes{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;}
+.fiche-av{margin-top:5px;color:var(--muted);font-size:12px;max-width:58ch;}
+.fiche-av summary{cursor:pointer;width:fit-content;padding:4px 0;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;}
+.fiche-av p{margin:4px 0 7px;line-height:1.5;color:var(--ink);}
+.fiche-fiab{font-size:11.5px;color:var(--muted);margin:7px 0 0;}
+.xtra{margin-top:5px;}
+html.aff-grand .fiche-av,html.aff-grand .fiche-themes{font-size:14px;}
 section[data-auto="classement"] .film{padding-block:8px;}
 section[data-auto="classement"] .seg button{font-size:12px;padding:7px 8px;}
 section[data-auto="classement"] .acts > button{font-size:12px;padding:6px 8px;min-height:0;}
@@ -1204,7 +1211,7 @@ html.sky-on #rsheet{z-index:50;}
 </header>
 
   <div class="bar">
-    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" hidden>🎬 Mes goûts</button></div>
+    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" hidden>🧭 Boussole cinéma</button></div>
     <div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
     <p class="hint hint-q">Cherchez un film, un cinéaste ou un thème <span class="fl" aria-hidden="true">↓</span></p>
@@ -1277,7 +1284,8 @@ html.sky-on #rsheet{z-index:50;}
   <div class="rs-k" id="rsK"></div>
   <div class="rs-t"><h3 id="rs-h"></h3><span class="estp" id="rsE" hidden></span></div>
   <div class="m" id="rsM"></div>
-  <p class="why rs-p" id="rsP"></p>
+  <div id="rsAv"></div>
+  <details id="rsDetails"><summary class="fiche-av">plus…</summary><p class="why rs-p" id="rsP"></p><div class="fiche-themes" id="rsThemes"></div><p class="fiche-fiab" id="rsFiab"></p></details>
   <div class="seg rs-seg" id="rsSeg" role="group" aria-label="As-tu vu ce film ?" hidden></div>
   <div class="rs-n" id="rsN" role="group" aria-label="Ma note" hidden></div>
   <div class="plf-b">
@@ -2444,7 +2452,7 @@ html.sky-on #rsheet{z-index:50;}
     if (query) {
       // On cherche dans le titre, le cinéaste, l'année, la description, la note de section, le nom de la catégorie et les envies.
       if (f._h == null) f._h = norm([f.t, f.d, f.y, f.c || "", f.p || DESC[f.id] || "", f.r || "", SECT[f.sid] || "",
-        (f.k || []).map(function(t){ return LABEL_OF[t] || ""; }).join(" "), (MV_INFO[f.mv] || {}).label || "", tkey(f.t)].join(" "));
+        (f.k || []).map(function(t){ return LABEL_OF[t] || ""; }).join(" "), (f.th || []).join(" "), (MV_INFO[f.mv] || {}).label || "", tkey(f.t)].join(" "));
       var hay = f._h;
       // « douze » trouve aussi « 12 », et l'inverse.
       var words = query.split(/\s+/).map(function(w){ return NUMW[w] || w; });
@@ -2514,13 +2522,20 @@ html.sky-on #rsheet{z-index:50;}
         : '<button type="button" class="chip autre-p" data-newp="1">＋ Nouvelle personne</button>') : "") +
       motFields(f) + ccSendBtn(f) + '</div>' : "";
     var ro = n10 ? "Noté <b>" + fmtN(n10) + "</b>/10 par " + esc(VN()) : "";
-    var meta = [f.y, f.c, f.d].filter(function(x){ return x; }).map(esc);
-    if (MV_INFO[f.mv]) meta.push('<button type="button" class="mvb" data-mv="' + esc(f.mv) + '" title="Voir les films de ce mouvement">' + esc(MV_INFO[f.mv].label) + '</button>');
+    var meta = [f.y, f.d, f.c, dureeTexte(f)].filter(function(x){ return x; }).map(esc);
+    var courant = MV_INFO[f.mv] ? '<button type="button" class="mvb" data-mv="' + esc(f.mv) + '" title="Voir les films de ce mouvement">' + esc(MV_INFO[f.mv].label) + '</button>' : "";
     var cmp = f.sid && (SEC_AUTO[f.sid] === "classement"), mk = f.sid + "|" + f.id, mo = !!MORE[mk];
+    var detailId = "fiche-" + encodeURIComponent(mk), themes = Array.isArray(f.th) ? f.th.filter(Boolean) : [];
+    var avertissements = Array.isArray(f.av) ? f.av.filter(Boolean).join(" · ") : String(f.av || "").trim();
+    var av = avertissements ? '<details class="fiche-av"><summary>Contenus sensibles</summary><p>' + esc(avertissements) + '</p></details>' : "";
     return '<div class="info"><div class="th"><div class="t">' + esc(f.t) + '</div>' + est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
-      (cmp ? '<button type="button" class="more" data-more="' + esc(mk) + '" aria-expanded="' + mo + '">' + (mo ? "moins" : "plus…") + '</button>' : "") + '</div>' +
-      (cmp ? '<div class="xtra"' + (mo ? "" : " hidden") + '>' : "") + '<div class="m">' + meta.join(" · ") + '</div>' +
-      text + plw + (cmp ? '</div>' : "") + '</div>' +
+      '<button type="button" class="more" data-more="' + esc(mk) + '" aria-expanded="' + mo + '" aria-controls="' + esc(detailId) + '" aria-label="Détails de ' + esc(f.t) + '">' + (mo ? "moins" : "plus…") + '</button></div>' +
+      (!cmp && meta.length ? '<div class="m">' + meta.join(" · ") + '</div>' : "") + (!cmp ? av : "") +
+      '<div class="xtra" id="' + esc(detailId) + '"' + (mo ? "" : " hidden") + '>' +
+      (cmp && meta.length ? '<div class="m">' + meta.join(" · ") + '</div>' + av : "") +
+      text + (courant ? '<div class="ctx">' + courant + '</div>' : "") +
+      (themes.length ? '<div class="fiche-themes" aria-label="Thèmes">' + themes.map(esc).join(" · ") + '</div>' : "") +
+      (f.fiab ? '<p class="fiche-fiab">Données ' + esc(f.fiab) + '</p>' : "") + plw + '</div></div>' +
       '<div class="ctrl"><div class="seg" role="group" aria-label="As-tu vu ce film ?">' + seg + '</div>' +
       '<div class="rate"' + (seenish(a) ? "" : " hidden") + '><div class="stars" role="group" aria-label="Ta note sur 10">' + stars + '</div>' +
       '<div class="nv">' + nv + '</div></div>' +
@@ -2528,6 +2543,12 @@ html.sky-on #rsheet{z-index:50;}
       '<button type="button" class="fsh ico" data-fshare="1" aria-label="Partager ' + esc(f.t) + '" title="Partager">↗</button>' +
       '<button type="button" class="fsh ico" data-img="' + esc(f.id) + '" aria-label="Images du film ' + esc(f.t) + '" title="Images du film">🎞</button>' +
       '<button type="button" class="cmb" data-com="1" aria-expanded="' + (OPEN_COM === f.sid + "|" + f.id) + '" aria-label="Commenter ' + esc(f.t) + '" title="Commenter">💬</button></div></div>' + plc + comForm(f);
+  }
+
+  function dureeTexte(f){
+    var n = +f.duree;
+    if (!isFinite(n) || n <= 0) return "";
+    return (f.duree_episode ? "environ " : "") + n + " minutes" + (f.duree_episode ? " par épisode" : "");
   }
 
   // Les autres membres qui ont répondu pour ce film (leur note, ou vu / pas vu).
@@ -3161,7 +3182,7 @@ html.sky-on #rsheet{z-index:50;}
     var q = QZ, seeds = QZ_SEED.filter(function(id){ return films[id] && !((answers[id] || {}).note10); });
     var opt = function(k, v, l){ return '<button type="button" class="chip" data-qz="' + k + '" data-v="' + v + '" aria-pressed="' + (String(q[k]) === String(v)) + '">' + l + '</button>'; };
     var n = Object.keys(answers).filter(function(id){ return answers[id] && answers[id].note10; }).length;
-    return '<div class="nt-h"><b>Mes goûts</b><button type="button" class="nt-x" data-qzclose="1" aria-label="Fermer">✕</button></div>' +
+    return '<div class="nt-h"><b>Boussole cinéma</b><button type="button" class="nt-x" data-qzclose="1" aria-label="Fermer">✕</button></div>' +
       QZ_Q.map(function(x){ return '<div class="qz-q"><span>' + esc(x[1]) + '</span><div class="qz-o">' + opt(x[0], 1, "J'adore") + opt(x[0], 0, "Ça dépend") + opt(x[0], -1, "Pas pour moi") + '</div></div>'; }).join("") +
       '<div class="qz-q"><span>Au cinéma, je cherche surtout…</span><div class="qz-o">' + opt("sens", -1, "À passer un bon moment") + opt("sens", 0, "Les deux") + opt("sens", 1, "À être bouleversé·e, à réfléchir") + '</div></div>' +
       (seeds.length ? '<div class="qz-h">Et ces films, si vous les avez vus ?</div>' + seeds.map(function(id){
@@ -3172,7 +3193,7 @@ html.sky-on #rsheet{z-index:50;}
       '<div class="nt-b"><button type="button" class="plf-ok" data-qzsave="1">Enregistrer</button></div>';
   }
   function qzSync(){ var b = $("ccQuiz"); if (b) b.hidden = !(window.CC && CC.me && !GUEST && !(CC.view && CC.view !== CC.uid)); }
-  document.body.insertAdjacentHTML("beforeend", '<div class="nt-panel qz-panel" id="qzPanel" role="dialog" aria-label="Mes goûts" hidden></div>');
+  document.body.insertAdjacentHTML("beforeend", '<div class="nt-panel qz-panel" id="qzPanel" role="dialog" aria-label="Boussole cinéma" hidden></div>');
   setInterval(qzSync, 1500); setTimeout(qzSync, 300);
   document.addEventListener("click", function(ev){
     var t = ev.target; if (!t.closest) return;
@@ -4740,6 +4761,13 @@ html.sky-on #rsheet{z-index:50;}
     $("rs-h").textContent = f.t;
     rsMeta();
     $("rsP").textContent = f.p || DESC[id] || f.r || "";
+    $("rsDetails").open = false;
+    var av = Array.isArray(f.av) ? f.av.filter(Boolean).join(" · ") : String(f.av || "").trim();
+    $("rsAv").innerHTML = av ? '<details class="fiche-av"><summary>Contenus sensibles</summary><p>' + esc(av) + '</p></details>' : "";
+    $("rsThemes").textContent = Array.isArray(f.th) ? f.th.filter(Boolean).join(" · ") : "";
+    $("rsThemes").hidden = !$("rsThemes").textContent;
+    $("rsFiab").textContent = f.fiab ? "Données " + f.fiab : "";
+    $("rsFiab").hidden = !f.fiab;
     $("rsE").hidden = !ev; $("rsE").innerHTML = ev ? "Estimé <b>" + ev + "</b>/10" : "";
     rsNoteHtml();
     $("rsheet").hidden = false;
@@ -4747,7 +4775,7 @@ html.sky-on #rsheet{z-index:50;}
   function rsMeta(){
     var f = films[RND] || {}, a = answers[RND] || {}, mine = isMine();
     var etat = !mine && a.note10 ? "noté " + fmtN(a.note10) + "/10 par Licia" : "";
-    $("rsM").textContent = [f.y, f.c, f.d, etat].filter(function(x){ return x; }).join(" · ");
+    $("rsM").textContent = [f.y, f.d, f.c, dureeTexte(f), etat].filter(function(x){ return x; }).join(" · ");
     var ev = mine && RND ? estOf(f) : 0;
     $("rsE").hidden = !ev; $("rsE").innerHTML = ev ? "Estimé <b>" + ev + "</b>/10" : "";
   }
@@ -5224,7 +5252,10 @@ html.sky-on #rsheet{z-index:50;}
       var x = d.data() || {};
       if (d.id === "rangement") { RANG = x; return; }
       if (x.fiches) {
-        Object.keys(x.fiches).forEach(function(id){ if (d.id !== "fiches-complements" || !FICHE[id]) FICHE[id] = x.fiches[id]; });
+        Object.keys(x.fiches).forEach(function(id){
+          // Les compléments apportent les champs absents ; Firebase garde la priorité, même pour une valeur vide.
+          FICHE[id] = d.id === "fiches-complements" ? Object.assign({}, x.fiches[id], FICHE[id] || {}) : Object.assign({}, FICHE[id] || {}, x.fiches[id]);
+        });
         if (x.envies) envs = x.envies;
         if (x.familles) fams = x.familles;
         if (x.mouvements) mouvs = x.mouvements;
@@ -5262,7 +5293,7 @@ html.sky-on #rsheet{z-index:50;}
         var x = Object.assign({}, d.x); x.id = d.id;
         x.films = (x.films || []).map(function(f, i){
           var fi = FICHE[f.id] || {};
-          return Object.assign({}, f, { sid:d.id, _i:i, p:f.p || fi.p || "", e:fi.e || 0, k:fi.k || [], w:fi.w || "", m:fi.m || 0, c:fi.c || "", mv:fi.mv || "" });
+          return Object.assign({}, f, { sid:d.id, _i:i, p:f.p || fi.p || "", e:fi.e || 0, k:fi.k || [], w:fi.w || "", m:fi.m || 0, c:fi.c || "", mv:fi.mv || "", duree:fi.duree || 0, duree_episode:!!fi.duree_episode, av:fi.av || [], th:fi.th || [], fiab:fi.fiab || "" });
         });
         return x;
       })

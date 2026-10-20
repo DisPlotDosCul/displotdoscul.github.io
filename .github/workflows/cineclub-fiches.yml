@@ -1,0 +1,38 @@
+name: Ciné-club — fiches et captures
+
+on:
+  pull_request:
+    paths:
+      - carnet-de-films/**
+      - donnees/catalogue-films.csv
+      - tests/cineclub_*.py
+      - .github/workflows/cineclub-fiches.yml
+
+permissions:
+  contents: read
+
+jobs:
+  fiches:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Préparer le navigateur de test
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Vérifier les fiches avec les membres fictifs
+        run: python tests/cineclub_fiches.py
+      - name: Conserver les captures téléphone et ordinateur, jour et néon
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cineclub-fiches-captures
+          path: docs/captures/fiches/*.png
+          if-no-files-found: ignore
