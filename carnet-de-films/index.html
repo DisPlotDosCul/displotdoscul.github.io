@@ -1022,6 +1022,28 @@ body:not(.vide) .toc{margin-top:8px;}
   .minis.cats .mini .ml{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .minis.cats .mini .md{display:none;}
 }
+
+/* Un ciel commun au catalogue ; les notes ne changent que ses lumières. */
+.sky{position:fixed;inset:0;z-index:40;background:radial-gradient(ellipse at 28% 36%,#1a2440 0,transparent 48%),radial-gradient(ellipse at 75% 75%,#24223b 0,transparent 46%),#080e1c;color:#eee9e0;overscroll-behavior:none;}
+html.th-neon .sky{background:radial-gradient(ellipse at 26% 40%,#16112a 0,transparent 48%),radial-gradient(ellipse at 78% 65%,#1b1028 0,transparent 44%),#02040b;}
+.sky canvas{display:block;width:100%;height:100%;touch-action:none;outline-offset:-4px;}
+.sky canvas:focus-visible{outline:2px solid #d6b78b;}
+.sky-tools{position:absolute;top:max(14px,env(safe-area-inset-top));left:18px;right:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;pointer-events:none;}
+.sky-tools h2{font:400 clamp(22px,5vw,34px)/1.1 "Limelight",serif;margin:0 auto 0 0;color:#eee0ce;letter-spacing:.03em;}
+.sky button,.sky input,.sky select{font:400 14px/1.3 var(--font);border:1px solid #77708d;border-radius:99px;background:#0c1024e8;color:#eee9f5;min-height:42px;padding:8px 13px;box-sizing:border-box;pointer-events:auto;}
+.sky button{cursor:pointer;}
+.sky button:focus-visible,.sky input:focus-visible,.sky select:focus-visible{outline:2px solid #f2cc90;outline-offset:3px;}
+.sky-search{position:relative;pointer-events:auto;width:200px;}
+.sky-search input{width:100%;}
+.sky-results{position:absolute;top:48px;left:0;right:0;max-height:50vh;overflow:auto;background:#101527f5;border:1px solid #77708d;border-radius:14px;padding:5px;z-index:2;display:grid;gap:3px;}
+.sky-results button{border:0;border-radius:8px;text-align:left;width:100%;padding:10px;}
+.sky-zoom{position:absolute;bottom:max(20px,env(safe-area-inset-bottom));right:18px;display:flex;gap:6px;}
+.sky-zoom button{min-width:42px;padding:8px;}
+.sky-caption{position:absolute;left:20px;bottom:max(23px,env(safe-area-inset-bottom));right:180px;font-size:12px;color:#c5bfd1;pointer-events:none;}
+.sky-label{position:absolute;max-width:240px;padding:7px 10px;background:#101527e8;border:1px solid #74677b;border-radius:9px;font-size:13px;pointer-events:none;transform:translate(-50%,14px);}
+html.sky-on #rsheet{z-index:50;}
+@media(max-width:600px){.sky-tools{left:12px;right:12px;gap:8px;}.sky-tools h2{font-size:25px;}.sky-tools #skyClose{margin-left:auto;}.sky-search{order:3;width:100%;}.sky-tools select{order:4;max-width:100%;}.sky-caption{left:12px;right:150px;}.sky-zoom{right:12px;gap:4px;}.sky-zoom button{min-width:40px;}}
+@media(prefers-reduced-motion:reduce){.sky *{scroll-behavior:auto!important;}}
 </style>
 <script>
 // Ambiances : jour, crépuscule ou néon selon la hauteur du soleil (ou au choix), appliquées avant le premier affichage.
@@ -1206,6 +1228,12 @@ body:not(.vide) .toc{margin-top:8px;}
   <nav class="mvnav" id="mvnav" aria-label="Choisir un mouvement cinématographique" hidden></nav>
   <main id="main"><p class="notice">Chargement de la liste de films…</p></main>
 </div>
+<section class="sky" id="sky" role="dialog" aria-modal="true" aria-labelledby="skyTitle" hidden>
+  <canvas id="skyCanvas" tabindex="0" role="img" aria-label="Ciel de films. La recherche permet de choisir une étoile ; les flèches déplacent le ciel et les boutons changent le zoom."></canvas>
+  <div class="sky-tools"><h2 id="skyTitle">Ciel de films</h2><div class="sky-search"><input type="search" id="skySearch" placeholder="Une étoile…" aria-label="Chercher un film dans le ciel" autocomplete="off" aria-controls="skyResults"><div class="sky-results" id="skyResults" hidden></div></div><select id="skyMember" aria-label="Superposer le ciel d'un membre"><option value="">Mon ciel seul</option></select><button type="button" id="skyClose" aria-label="Fermer le ciel">Fermer</button></div>
+  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><div class="sky-label" id="skyLabel" hidden></div>
+  <div class="sky-zoom"><button type="button" id="skyOut" aria-label="Éloigner le ciel">−</button><button type="button" id="skyReset" aria-label="Retrouver tout le ciel">⌾</button><button type="button" id="skyIn" aria-label="Rapprocher le ciel">+</button></div>
+</section>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Bienvenue au Ciné-club" hidden>
   <div class="scene" id="scene"><p class="sc-t">Vous allez bientôt entrer<br>dans le cinéma…</p></div>
@@ -3654,6 +3682,7 @@ body:not(.vide) .toc{margin-top:8px;}
     if (el && s) el.outerHTML = statsHtml(s, sections.indexOf(s));
   }
   function refreshFilm(id){
+    skySchedule();
     refreshStats();
     document.querySelectorAll('.film[data-id="' + CSS.escape(id) + '"]').forEach(function(el){
       var sid = el.closest("section.s").id.slice(4);
@@ -4700,6 +4729,7 @@ body:not(.vide) .toc{margin-top:8px;}
   // Tirage au sort : dans tout le carnet (le dé du haut), ou dans la liste affichée (le dé de la liste) ; « Encore » reste dans la même liste.
   var RND_SRC = null;
   function pickRandom(src){
+    $("rsAgain").hidden = false;
     if (src && src.ids) RND_SRC = src; else if (src !== "again") RND_SRC = null;
     var ids = RND_SRC ? RND_SRC.ids : rndPool();
     if (!ids.length) { setStatus("Aucun film à tirer au sort avec ce filtre."); return; }
@@ -4785,6 +4815,159 @@ body:not(.vide) .toc{margin-top:8px;}
   function appsNote(){
     return "Pour un SMS : touche « Copier », puis colle le message dans Messages.";
   }
+
+  // ---------- Ciel de films : projection sparse, voisins et canevas ----------
+  document.querySelector(".ccbar").insertAdjacentHTML("beforeend", '<button type="button" class="chip ccb" id="skyToggle" aria-haspopup="dialog">✦ Ciel</button>');
+  var SKY = { sig:"", gen:0, points:[], byId:{}, grid:{}, cam:{x:0,y:0,z:1}, w:0,h:0,raf:0,member:"",hover:"",ready:false };
+  var skyEl = $("sky"), skyCanvas = $("skyCanvas"), skyCtx = skyCanvas.getContext("2d"), skySprites = {};
+  function skyHash(s){ var h=2166136261; for(var i=0;i<s.length;i++) h=Math.imul(h^s.charCodeAt(i),16777619); return h>>>0; }
+  function skyNorm(v){ var q=Math.sqrt(v.reduce(function(s,x){return s+x*x;},0))||1; return v.map(function(x){return x/q;}); }
+  function skyModel(){
+    var ids=Object.keys(films).sort(), signature=ids.map(function(id){var f=films[id];return [id,f.k,f.mv,f.c,f.y,f.d,FAM5[id]||""].join("|");}).join(";");
+    if(SKY.sig===signature) return;
+    SKY.sig=signature; SKY.ready=false; var gen=++SKY.gen, index={}, keys=[], frequency=[], raw=[], n=ids.length;
+    if(!n){ SKY.points=[]; skySchedule(); return; }
+    $("skyCaption").textContent="Le ciel se dessine…";
+    function feature(row,key,value){ var j=index[key]; if(j==null){j=keys.length;index[key]=j;keys.push(key);frequency[j]=0;} row.push([j,value]); frequency[j]++; }
+    ids.forEach(function(id){
+      var f=films[id], row=[];
+      (f.k||[]).forEach(function(k){feature(row,"k|"+k,1.5);});
+      if(f.mv) feature(row,"mv|"+f.mv,1.4);
+      String(f.c||"").split(",").forEach(function(c){if(c.trim())feature(row,"c|"+c.trim(),.8);});
+      String(f.d||"").replace(/ et /g,",").split(",").forEach(function(d){if(d.trim())feature(row,"d|"+d.trim(),1.7);});
+      if(f.y) feature(row,"epoque|"+Math.floor(+f.y/10),.7);
+      famW(f).forEach(function(w,i){if(w)feature(row,"famille|"+i,w*2);});
+      raw.push(row);
+    });
+    var d=keys.length, mean=new Array(d).fill(0), rows=raw.map(function(row){
+      var r=row.map(function(x){return [x[0],x[1]*Math.sqrt(1+Math.log((n+1)/(frequency[x[0]]+1)))];});
+      var size=Math.sqrt(r.reduce(function(s,x){return s+x[1]*x[1];},0))||1;
+      r.forEach(function(x){x[1]/=size;mean[x[0]]+=x[1]/n;});return r;
+    });
+    function dot(row,v){return row.reduce(function(s,x){return s+x[1]*v[x[0]];},0);}
+    var axes=[], axis=0, iteration=0, v=skyNorm(keys.map(function(k){return Math.sin(skyHash(k)%10000+1);}));
+    function power(){
+      if(gen!==SKY.gen)return;
+      var m=mean.reduce(function(s,x,j){return s+x*v[j];},0), next=mean.map(function(x){return -n*x*m;});
+      rows.forEach(function(row){var p=dot(row,v);row.forEach(function(x){next[x[0]]+=x[1]*p;});});
+      if(axis){var projection=next.reduce(function(s,x,j){return s+x*axes[0][j];},0);next=next.map(function(x,j){return x-projection*axes[0][j];});}
+      v=skyNorm(next);
+      if(++iteration<18){requestAnimationFrame(power);return;}
+      axes.push(v); if(++axis<2){iteration=0;v=skyNorm(keys.map(function(k){return Math.cos(skyHash(k)%10000+7);}));requestAnimationFrame(power);return;}
+      layout();
+    }
+    function layout(){
+      var values=rows.map(function(row){return axes.map(function(a){return dot(row,a)-mean.reduce(function(s,x,j){return s+x*a[j];},0);});});
+      var spread=[0,1].map(function(j){return Math.sqrt(values.reduce(function(s,p){return s+p[j]*p[j];},0)/n)||1;});
+      var points=ids.map(function(id,i){var h=skyHash(id), x=Math.tanh(values[i][0]/spread[0]/2)*440, y=Math.tanh(values[i][1]/spread[1]/2)*440;
+        return {id:id,x:x+(h%19-9)*.4,y:y+((h>>>8)%19-9)*.4,ox:x,oy:y,links:[]};});
+      var inverted=new Array(d).fill(null).map(function(){return [];});
+      rows.forEach(function(row,i){row.forEach(function(x){inverted[x[0]].push([i,x[1]]);});});
+      var cursor=0;
+      function neighbours(){
+        if(gen!==SKY.gen)return;
+        for(var end=Math.min(n,cursor+28);cursor<end;cursor++){
+          var scores={};rows[cursor].forEach(function(x){inverted[x[0]].forEach(function(y){if(y[0]!==cursor)scores[y[0]]=(scores[y[0]]||0)+x[1]*y[1];});});
+          points[cursor].links=Object.keys(scores).sort(function(a,b){return scores[b]-scores[a]||+a-+b;}).slice(0,4).map(function(j){return {j:+j,s:scores[j]};});
+        }
+        if(cursor<n){requestAnimationFrame(neighbours);return;}
+        relax(0);
+      }
+      function relax(turn){
+        if(gen!==SKY.gen)return;
+        var grid={}, delta=points.map(function(p){var key=Math.floor(p.x/45)+","+Math.floor(p.y/45);(grid[key]=grid[key]||[]).push(p);return {x:(p.ox-p.x)*.004,y:(p.oy-p.y)*.004};});
+        points.forEach(function(p,i){
+          p.links.forEach(function(link){var q=points[link.j],dx=q.x-p.x,dy=q.y-p.y,len=Math.hypot(dx,dy)||1,f=(len-(18+(1-link.s)*65))*.023;delta[i].x+=dx/len*f;delta[i].y+=dy/len*f;});
+          var gx=Math.floor(p.x/45),gy=Math.floor(p.y/45);
+          for(var a=-1;a<=1;a++)for(var b=-1;b<=1;b++)(grid[(gx+a)+","+(gy+b)]||[]).forEach(function(q){
+            if(q===p)return;var dx=p.x-q.x,dy=p.y-q.y,len=Math.hypot(dx,dy)||.1;if(len<35){var f=(35-len)*.06;delta[i].x+=dx/len*f;delta[i].y+=dy/len*f;}
+          });
+        });
+        points.forEach(function(p,i){p.x+=Math.max(-5,Math.min(5,delta[i].x));p.y+=Math.max(-5,Math.min(5,delta[i].y));});
+        if(turn<40){requestAnimationFrame(function(){relax(turn+1);});return;}
+        SKY.points=points;SKY.byId={};SKY.grid={};points.forEach(function(p){SKY.byId[p.id]=p;var key=Math.floor(p.x/64)+","+Math.floor(p.y/64);(SKY.grid[key]=SKY.grid[key]||[]).push(p);});
+        SKY.ready=true;skyCanvas.dataset.count=String(n);skyCanvas.dataset.layout=String(skyHash(points.map(function(p){return p.id+":"+p.x.toFixed(3)+","+p.y.toFixed(3);}).join(";")));SKY.threads={};skyFit();skySchedule();
+      }
+      requestAnimationFrame(neighbours);
+    }
+    requestAnimationFrame(power);
+  }
+  function skySchedule(){ if(SKY.raf||skyEl.hidden)return; SKY.raf=requestAnimationFrame(function(){SKY.raf=0;skyDraw();}); }
+  function skyResize(){
+    var r=skyCanvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);if(!r.width||!r.height)return;
+    SKY.w=r.width;SKY.h=r.height;SKY.dpr=dpr;skyCanvas.width=Math.round(r.width*dpr);skyCanvas.height=Math.round(r.height*dpr);skySchedule();
+  }
+  function skyFit(){SKY.cam={x:0,y:0,z:Math.max(.18,Math.min(SKY.w,SKY.h-130)/1040)};skyCanvas.dataset.zoom=String(SKY.cam.z);skySchedule();}
+  function skyScreen(p){return {x:SKY.w/2+(p.x-SKY.cam.x)*SKY.cam.z,y:SKY.h/2+35+(p.y-SKY.cam.y)*SKY.cam.z};}
+  function skyWorld(x,y){return {x:SKY.cam.x+(x-SKY.w/2)/SKY.cam.z,y:SKY.cam.y+(y-SKY.h/2-35)/SKY.cam.z};}
+  function skyZoom(f,x,y){var before=skyWorld(x,y);SKY.cam.z=Math.max(.15,Math.min(9,SKY.cam.z*f));var after=skyWorld(x,y);SKY.cam.x+=before.x-after.x;SKY.cam.y+=before.y-after.y;skyCanvas.dataset.zoom=String(SKY.cam.z);skySchedule();}
+  function skySprite(color){
+    if(skySprites[color])return skySprites[color];var el=document.createElement("canvas");el.width=48;el.height=48;var c=el.getContext("2d"),g=c.createRadialGradient(24,24,0,24,24,24);
+    g.addColorStop(0,"#fff");g.addColorStop(.08,color);g.addColorStop(.22,color+"66");g.addColorStop(1,color+"00");c.fillStyle=g;c.fillRect(0,0,48,48);return skySprites[color]=el;
+  }
+  function skyDraw(){
+    var started=performance.now(),c=skyCtx;c.setTransform(SKY.dpr||1,0,0,SKY.dpr||1,0,0);c.clearRect(0,0,SKY.w,SKY.h);
+    if(!SKY.ready)return;
+    var other=SKY.member&&window.CC&&CC.profils[SKY.member],peer=other&&other.rep||{},positions=SKY.points.map(skyScreen),seen=0;
+    function threads(rep,color){
+      var ids=SKY.points.map(function(p,i){return isSeen((rep[p.id]||{}).etat)?i:-1;}).filter(function(i){return i>=0;}),sig=ids.join(","),cache=SKY.threads[color];
+      if(!cache||cache.sig!==sig){
+        var lines=[],used={};ids.forEach(function(i){var p=SKY.points[i],nearest=[];ids.forEach(function(j){if(i===j)return;var q=SKY.points[j],dist=Math.hypot(q.x-p.x,q.y-p.y);if(dist>300)return;var candidate={j:j,d:dist};if(!nearest[0]||dist<nearest[0].d){nearest.unshift(candidate);nearest.length=Math.min(nearest.length,2);}else if(!nearest[1]||dist<nearest[1].d)nearest[1]=candidate;});
+          nearest.forEach(function(q){var key=Math.min(i,q.j)+","+Math.max(i,q.j);if(q.d<=300&&!used[key]){used[key]=1;lines.push([i,q.j]);}});
+        });cache=SKY.threads[color]={sig:sig,lines:lines};
+      }
+      c.strokeStyle=color;c.lineWidth=.5;c.beginPath();cache.lines.forEach(function(pair){c.moveTo(positions[pair[0]].x,positions[pair[0]].y);c.lineTo(positions[pair[1]].x,positions[pair[1]].y);});c.stroke();
+    }
+    threads(answers,"#f3d4a449");if(other)threads(peer,"#c7a4ff65");
+    SKY.points.forEach(function(p,i){
+      var a=answers[p.id]||{},lit=isSeen(a.etat),brilliant=lit&&+a.note10>=9,s=positions[i];if(s.x<-30||s.x>SKY.w+30||s.y<-30||s.y>SKY.h+30)return;
+      if(lit)seen++;
+      var size=brilliant?25:lit?14:7,color=brilliant?"#ffe1a7":lit?"#f7d5aa":"#abc1e3";c.globalAlpha=lit?1:.56;c.drawImage(skySprite(color),s.x-size/2,s.y-size/2,size,size);
+      if(other&&isSeen((peer[p.id]||{}).etat)){c.globalAlpha=.85;c.strokeStyle="#c7a4ff";c.lineWidth=.7;c.beginPath();c.arc(s.x,s.y,brilliant?4:2.5,0,Math.PI*2);c.stroke();}
+    });
+    c.globalAlpha=1;$("skyCaption").textContent=SKY.points.length+" étoiles · "+Object.keys(answers).filter(function(id){return SKY.byId[id]&&isSeen((answers[id]||{}).etat);}).length+" lumières"+(other?" · avec "+other.pseudo:"");
+    skyCanvas.dataset.renderMs=(performance.now()-started).toFixed(2);
+  }
+  function skyMembers(){
+    var selected=SKY.member,me=window.CC&&(CC.view||CC.uid),html='<option value="">'+(CC&&CC.view?"Ce ciel seul":"Mon ciel seul")+'</option>';
+    Object.keys(window.CC&&CC.uid?CC.profils:{}).sort().forEach(function(uid){var p=CC.profils[uid];if(uid===me||!p||!p.pseudo||(CC.hidden&&CC.hidden("x","",uid)))return;html+='<option value="'+esc(uid)+'">Avec '+esc(p.pseudo)+'</option>';});
+    $("skyMember").innerHTML=html;$("skyMember").value=selected;if($("skyMember").value!==selected)SKY.member="";
+  }
+  function skyOpen(){skyEl.hidden=false;document.documentElement.classList.add("sky-on");document.querySelector(".wrap").inert=true;skyResize();skyMembers();skyModel();if(SKY.ready)skyFit();skyCanvas.focus({preventScroll:true});}
+  function skyClose(){skyEl.hidden=true;skyEl.inert=false;document.querySelector(".wrap").inert=false;document.documentElement.classList.remove("sky-on");$("rsheet").hidden=true;$("skyToggle").focus({preventScroll:true});}
+  function skyFilm(id){if(!films[id])return;pickRandom({ids:[id],label:"Ciel de films"});$("rsK").textContent="Une étoile, un film";$("rsAgain").hidden=true;skyEl.inert=true;$("rsClose").focus({preventScroll:true});}
+  function skyHit(x,y){
+    var p=skyWorld(x,y),r=15/SKY.cam.z,best=null,dist=15;for(var a=Math.floor((p.x-r)/64);a<=Math.floor((p.x+r)/64);a++)for(var b=Math.floor((p.y-r)/64);b<=Math.floor((p.y+r)/64);b++)(SKY.grid[a+","+b]||[]).forEach(function(q){var s=skyScreen(q),d=Math.hypot(s.x-x,s.y-y);if(d<dist){dist=d;best=q;}});return best;
+  }
+  $("skyToggle").addEventListener("click",skyOpen);$("skyClose").addEventListener("click",skyClose);
+  $("skyIn").addEventListener("click",function(){skyZoom(1.45,SKY.w/2,SKY.h/2);});$("skyOut").addEventListener("click",function(){skyZoom(1/1.45,SKY.w/2,SKY.h/2);});$("skyReset").addEventListener("click",skyFit);
+  $("skyMember").addEventListener("change",function(){SKY.member=this.value;skySchedule();});
+  $("skySearch").addEventListener("input",function(){var q=norm(this.value.trim()),out=$("skyResults");if(!q){out.hidden=true;return;}var matches=SKY.points.filter(function(p){return norm(films[p.id].t).indexOf(q)>=0;}).slice(0,6);out.innerHTML=matches.map(function(p){return '<button type="button" data-skyfilm="'+esc(p.id)+'">'+esc(films[p.id].t)+'</button>';}).join("");out.hidden=!matches.length;});
+  $("skyResults").addEventListener("click",function(e){var b=e.target.closest("[data-skyfilm]");if(!b)return;this.hidden=true;skyFilm(b.dataset.skyfilm);});
+  $("skySearch").addEventListener("keydown",function(e){if(e.key==="Enter"){var b=$("skyResults").querySelector("button");if(b){e.preventDefault();b.click();}}});
+  var skyPointers={},skyStart=null,skyMoved=false,skyMulti=false;
+  skyCanvas.addEventListener("pointerdown",function(e){if(e.button&&e.pointerType==="mouse")return;e.preventDefault();skyCanvas.setPointerCapture(e.pointerId);skyPointers[e.pointerId]={x:e.clientX,y:e.clientY};skyStart={x:e.clientX,y:e.clientY};skyMoved=false;if(Object.keys(skyPointers).length>1)skyMulti=true;$("skyLabel").hidden=true;});
+  skyCanvas.addEventListener("pointermove",function(e){
+    var old=skyPointers[e.pointerId];if(!old){if(e.pointerType!=="mouse")return;var h=skyHit(e.clientX,e.clientY),label=$("skyLabel");label.hidden=!h;if(h){label.textContent=films[h.id].t;label.style.left=Math.max(110,Math.min(SKY.w-110,e.clientX))+"px";label.style.top=Math.min(SKY.h-70,e.clientY)+"px";}return;}
+    e.preventDefault();var ids=Object.keys(skyPointers);if(Math.hypot(e.clientX-skyStart.x,e.clientY-skyStart.y)>6)skyMoved=true;
+    if(ids.length===1){SKY.cam.x-=(e.clientX-old.x)/SKY.cam.z;SKY.cam.y-=(e.clientY-old.y)/SKY.cam.z;}
+    else{var second=skyPointers[ids.filter(function(id){return +id!==e.pointerId;})[0]],before=Math.hypot(old.x-second.x,old.y-second.y),after=Math.hypot(e.clientX-second.x,e.clientY-second.y);if(before>1)skyZoom(after/before,(old.x+second.x)/2,(old.y+second.y)/2);SKY.cam.x-=(e.clientX-old.x)/2/SKY.cam.z;SKY.cam.y-=(e.clientY-old.y)/2/SKY.cam.z;}
+    skyPointers[e.pointerId]={x:e.clientX,y:e.clientY};skySchedule();
+  });
+  function skyPointerEnd(e){var had=!!skyPointers[e.pointerId];delete skyPointers[e.pointerId];if(had&&!skyMoved&&!skyMulti&&e.type!=="pointercancel"){var h=skyHit(e.clientX,e.clientY);if(h)skyFilm(h.id);}if(!Object.keys(skyPointers).length){skyMulti=false;skyStart=null;}}
+  skyCanvas.addEventListener("pointerup",skyPointerEnd);skyCanvas.addEventListener("pointercancel",skyPointerEnd);
+  skyCanvas.addEventListener("wheel",function(e){e.preventDefault();skyZoom(Math.exp(-e.deltaY*.0015),e.clientX,e.clientY);},{passive:false});
+  skyCanvas.addEventListener("keydown",function(e){var d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(d){e.preventDefault();SKY.cam.x+=d[0]*60/SKY.cam.z;SKY.cam.y+=d[1]*60/SKY.cam.z;skySchedule();}else if(e.key==="+"||e.key==="-"){e.preventDefault();skyZoom(e.key==="+"?1.3:1/1.3,SKY.w/2,SKY.h/2);}});
+  document.addEventListener("keydown",function(e){
+    if(skyEl.hidden)return;
+    if(e.key==="Tab"){var root=$("rsheet").hidden?skyEl:$("rsheet"),items=Array.prototype.filter.call(root.querySelectorAll("button,input,select,canvas[tabindex]"),function(el){return !el.disabled&&el.getClientRects().length;}),first=items[0],last=items[items.length-1];if(first&&((e.shiftKey&&document.activeElement===first)||(!e.shiftKey&&document.activeElement===last))){e.preventDefault();(e.shiftKey?last:first).focus();}}
+    if(e.key!=="Escape")return;if(!$("rsheet").hidden){$("rsheet").hidden=true;skyEl.inert=false;skyCanvas.focus({preventScroll:true});}else skyClose();
+  });
+  $("rsGo").addEventListener("click",function(){if(!skyEl.hidden)skyClose();},true);
+  $("rsClose").addEventListener("click",function(){if(!skyEl.hidden){skyEl.inert=false;skyCanvas.focus({preventScroll:true});}});
+  window.addEventListener("resize",function(){if(!skyEl.hidden){skyResize();skyFit();}});
+  if(window.CC)CC.hooks.push(function(){if(!skyEl.hidden){skyMembers();skySchedule();}});
+  if(window.AMBI)AMBI.on(function(){skySchedule();});
 
   // Partager un film : on coche ce que le message contient (choix gardé pour la prochaine fois sur cet appareil).
   var SHF = null, SHP_KEY = "carnetPartageV1";
@@ -5116,6 +5299,7 @@ body:not(.vide) .toc{margin-top:8px;}
       s.films.forEach(function(f){ var r = f.r || ""; if (!DESC[f.id] && r.length >= 45 && r.indexOf("Dans ton historique MUBI") !== 0) DESC[f.id] = r; });
     });
     renderAll();
+    if (!skyEl.hidden) { skyMembers(); skyModel(); skySchedule(); }
     if (typeof PEND !== "undefined" && Object.keys(PEND).length && col) resendPend();
   }
 
