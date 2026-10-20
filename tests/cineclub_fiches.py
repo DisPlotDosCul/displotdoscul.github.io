@@ -50,6 +50,7 @@ def ready(page):
 
 def search(page, title):
     page.locator("#q").fill(title)
+    page.wait_for_function("title => document.querySelector('#main .s-head h2')?.textContent === 'Recherche : « ' + title + ' »'", arg=title)
     row = page.locator("#main .film:not(.lz)").first
     row.wait_for()
     return row
@@ -82,13 +83,16 @@ def browser_checks():
                 assert row.get_attribute("data-id") == "a-history-of-violence-2005"
                 assert "96 minutes" in row.locator(".m").inner_text()
                 assert row.locator(".xtra").is_hidden()
+                page.locator("#q").blur()
+                page.screenshot(path=CAPTURES / f"{device}-{theme}.png", full_page=True, animations="disabled")
                 row.locator(".more").click()
                 assert row.locator(".xtra").is_visible()
                 assert "identité" in row.locator(".fiche-themes").inner_text()
                 row.locator(".fiche-av summary").click()
                 assert "violence sexuelle" in row.locator(".fiche-av p").inner_text()
                 assert_no_overflow(page)
-                page.screenshot(path=CAPTURES / f"{device}-{theme}.png", full_page=True, animations="disabled")
+                page.screenshot(path=CAPTURES / f"{device}-{theme}-details.png", full_page=True, animations="disabled")
+                row.locator(".more").click()
 
             # Une valeur vide dans Firebase doit aussi prendre la priorité.
             row = search(page, "1917")
@@ -117,8 +121,8 @@ def browser_checks():
             page.locator("#aab").click()
             page.locator('[data-taille="grand"]').click()
             assert_no_overflow(page)
-            page.locator("#aab").click()
             page.locator('[data-taille=""]').click()
+            page.locator("#aab").click()
             assert not unexpected, unexpected
             assert not errors, errors
             print(f"{device} : jour, néon, note, priorité Firebase, Grand confort, console : OK", flush=True)

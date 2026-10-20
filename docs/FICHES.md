@@ -64,13 +64,20 @@ documents `s…`, les deux membres fictifs utilisent `profils/{uid}.rep`. Aucun 
 vers un service réel n'est laissé passer. Toute requête inattendue ou erreur de console
 fait échouer le test. Le fichier HTML déployé ne gagne aucune dépendance.
 
-Les captures attendues sont `telephone-jour.png`, `telephone-neon.png`,
-`ordinateur-jour.png` et `ordinateur-neon.png`. Le workflow GitHub Actions les dépose
+Les captures sont `telephone-jour.png`, `telephone-neon.png`,
+`ordinateur-jour.png` et `ordinateur-neon.png`, avec une variante `-details` pour les
+fiches ouvertes. Le workflow GitHub Actions les dépose
 dans l'artefact `cineclub-fiches-captures`, même si un contrôle ultérieur échoue.
 
-Dans l'environnement local de cette session, les essais du navigateur sont bloqués
-par les restrictions système. Les contrôles sans navigateur sont passés ; le résultat
-Playwright et les captures doivent être confirmés par le workflow.
+Essais exécutés le 20 octobre 2026 avec Chromium et Playwright : téléphone à 360 pixels
+et ordinateur à 1 440 pixels, jour et néon, ouverture des détails et avertissements,
+priorité des valeurs Firebase (y compris vides), enregistrement d'une note fictive,
+nom du questionnaire et Grand confort. Aucun débordement horizontal ni erreur de console.
+
+| | Jour | Néon |
+|---|---|---|
+| Téléphone | [Fiche](captures/fiches/telephone-jour.png) · [Détails](captures/fiches/telephone-jour-details.png) | [Fiche](captures/fiches/telephone-neon.png) · [Détails](captures/fiches/telephone-neon-details.png) |
+| Ordinateur | [Fiche](captures/fiches/ordinateur-jour.png) · [Détails](captures/fiches/ordinateur-jour-details.png) | [Fiche](captures/fiches/ordinateur-neon.png) · [Détails](captures/fiches/ordinateur-neon-details.png) |
 
 ## Questions à valider
 
@@ -78,4 +85,4 @@ Playwright et les captures doivent être confirmés par le workflow.
 - [ ] Les durées indicatives par épisode conviennent-elles pour les séries ?
 - [ ] Les propositions signalées « à vérifier » peuvent-elles être relues par lots avant fusion ?
 
-La pull request reste en brouillon jusqu'aux essais visuels et à cette relecture.
+La pull request reste en brouillon jusqu'à la relecture des données et à validation.

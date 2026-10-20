@@ -110,7 +110,7 @@ def install_routes(context, fixture=None, complements=None):
     """Remplacer tous les accès réseau avant de charger la page."""
     fixture = fixture or catalogue_fixture()
     context.add_init_script("window.__fixture = " + json.dumps(fixture) + ";")
-    context.add_init_script("localStorage.setItem('ccUid','test-membre');localStorage.setItem('carnetIntroV1','1');")
+    context.add_init_script("localStorage.setItem('ccUid','test-membre');localStorage.setItem('carnetIntroV1','1');localStorage.setItem('ccGuideV1-test-membre','1');")
     unexpected = []
 
     def route(request_route):
