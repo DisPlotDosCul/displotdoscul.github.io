@@ -857,6 +857,25 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
 .ccbar{display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap;}
 .ccbar .ccb{font-weight:600;}
 .ccbar #ccMe{background:var(--k-s-F9E3A8);color:var(--k-s-4A3300);border-color:var(--k-b-C8963A);}
+.rime-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:16px;}
+.rime-card{min-width:0;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--paper);display:flex;flex-direction:column;align-items:flex-start;}
+.rime-before{font-size:12.5px;color:var(--muted);margin:0 0 20px;line-height:1.5;}
+.rime-before button{font:inherit;color:inherit;border:0;border-bottom:1px dotted var(--muted);background:transparent;padding:2px 0;cursor:pointer;text-align:left;}
+.rime-card h3{font:400 23px/1.2 Georgia,serif;margin:0 0 8px;overflow-wrap:anywhere;}
+.rime-card .rime-meta{font-size:12.5px;color:var(--muted);line-height:1.5;}
+.rime-phrase{font:italic 17px/1.6 Georgia,serif;margin:18px 0 24px;flex:1;}
+.rime-card>.rime-open,.rime-tools button{font:500 14px/1.3 var(--font);border:1px solid var(--line);border-radius:99px;background:var(--paper);color:var(--ink);padding:10px 14px;cursor:pointer;min-height:42px;}
+.rime-tools{padding:0 16px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start;}
+.rime-tools details{flex:1;min-width:180px;font-size:13px;color:var(--muted);}
+.rime-tools summary{cursor:pointer;padding:10px 0;}
+.rime-tools form{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;}
+.rime-tools input{flex:1;min-width:150px;max-width:100%;font:400 16px/1.3 var(--font);padding:10px 12px;border:1px solid var(--line);border-radius:99px;background:var(--paper);color:var(--ink);box-sizing:border-box;}
+.rime-empty{font:italic 16px/1.5 Georgia,serif;color:var(--muted);margin:0;padding:18px;}
+.rime-tools [role=status]{flex-basis:100%;font-size:13px;margin:0;color:var(--muted);}
+html.th-neon .rime-card{box-shadow:inset 0 0 35px -28px #e4b1ff;}
+html.aff-grand .rime-grid{grid-template-columns:1fr;}
+@media(max-width:700px){.rime-grid{grid-template-columns:1fr;padding:12px;gap:10px;}.rime-card{padding:18px;}.rime-before{margin-bottom:12px;}.rime-phrase{margin:13px 0 18px;}.rime-tools{padding:0 12px 16px;}}
+
 .mbrs{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:6px;}
 .mbr-h{font-size:15px;}
 .mbr{font:500 13.5px/1 var(--font);color:var(--k-s-2C6660);background:var(--k-s-D5ECEA);border:1.5px solid var(--k-b-8FC3BE);border-radius:99px;padding:6px 10px;cursor:pointer;}
@@ -2122,10 +2141,10 @@ html.sky-on #rsheet{z-index:50;}
     "s24-nouveau-malaise":["", "Des films dérangeants mais soignés, dans la lignée de ses 10/10 : Crash, Canine, Shining, Irréversible."]
   };
   function sTitre(s){
-    if (s._sugg) return isMine() ? "Suggestions pour toi" : "Ses suggestions de films";
+    if (s._sugg) return isMine() ? "Rimes lointaines" : "Ses rimes lointaines";
     var o = (!isMine() || (CCM() && LICIA_S[s.id])) && AUTRE_S[s.id]; return (o && o[0]) || s.titre || ""; }
   function sSous(s){
-    if (s._sugg) return isMine() ? "Des films que les autres membres ont adorés, choisis d'après tes notes : plus vos goûts se ressemblent, plus leur avis compte." : "Des films que les autres membres ont adorés, choisis d'après ses notes.";
+    if (s._sugg) return "Un souvenir de cinéma, un autre horizon.";
     var o = (!isMine() || (CCM() && LICIA_S[s.id])) && AUTRE_S[s.id]; if (o && o[1]) return PERSO_S[s.id] ? o[1].replace(/Licia/g, VN()) : o[1];
     var t = s.sous_titre || "";
     return !isMine() && s.auto === "conseils" ? t.replace(/ et te conseille\.$/, " et conseille à Licia.") : t;
@@ -2338,6 +2357,7 @@ html.sky-on #rsheet{z-index:50;}
 
   // Section automatique : les films qui ont en ce moment cette réponse (oubliés), ou une note sur 10 (classement).
   function autoFilms(s){
+    if (s._sugg) return s.films || [];
     var pool = {}; (s.pool || []).forEach(function(f){ pool[f.id] = f; });
     var rank = s.auto === "classement", out = [];
     if (s.auto === "conseils") {
@@ -3661,6 +3681,7 @@ html.sky-on #rsheet{z-index:50;}
     var main = $("main");
     LZF = {}; if (LZIO) LZIO.disconnect();
     if (!sections.length) { main.innerHTML = '<p class="notice">' + (dbReady ? "La liste de films est vide pour l'instant." : "Chargement de la liste de films…") + '</p>'; stats(); return; }
+    suggestFor();
     sections.forEach(function(s){ if (s.auto) s.films = autoFilms(s); });
     $("envies").innerHTML = ""; $("envies").hidden = true;
     // Les mouvements sont maintenant un onglet du sommaire.
@@ -3812,6 +3833,7 @@ html.sky-on #rsheet{z-index:50;}
     return out;
   }
   function secPiece(s, i, countOnly){
+    if (s._sugg) return rimePiece(s, i, countOnly);
     var bare = filter === "all";
     // Mes statistiques : pour toi seulement, quand aucun filtre n'est choisi.
     if (s.auto === "stats") return isMine() && bare ? { html:countOnly ? "" : statsHtml(s, i), n:0, show:true, stats:true } : { html:"", n:0, show:false };
@@ -5393,35 +5415,65 @@ html.sky-on #rsheet{z-index:50;}
     var fm = b.closest("form[data-plform]"); if (fm) pickSugg(fm, b.dataset.sugpick);
   });
 
-  // Suggestions de chaque membre (sauf Licia, qui garde les siennes) : les films notés 7/10 ou plus par les autres membres,
-  // pas encore vus, avec plus de poids pour les membres aux goûts proches (notes communes peu éloignées).
+  // Le profil visité fournit le contexte de la programmation personnelle.
   function ctxProfile(){ return window.CC && CC.uid ? (CC.view ? CC.profils[CC.view] : CC.me) : null; }
-  function suggestFor(){
-    var me = ctxProfile();
-    if (!me || CC.pidOf(me) === "licia") return;
-    sections.forEach(function(s){ if (s.id === "s26-ta-vie") s.cache = true; });
-    var s0 = sections.filter(function(s){ return s.id === "s00-pour-toi"; })[0]; if (!s0) return;
-    var mine = me.rep || {}, P = CC.profils, self = CC.view || CC.uid, sc = {};
-    Object.keys(P).forEach(function(u){
-      if (u === self) return;
-      var r = (P[u] && P[u].rep) || {}, n = 0, d = 0;
-      Object.keys(mine).forEach(function(id){ var a = mine[id], b = r[id]; if (a && b && a.note10 && b.note10) { n++; d += Math.abs(a.note10 - b.note10); } });
-      var w = n >= 3 ? Math.max(0.15, 1 - d / n / 5) : 0.4;
-      Object.keys(r).forEach(function(id){
-        var x = r[id], m = mine[id]; if (!x || !x.note10 || !films[id]) return;
-        if (m && (m.etat === "vu" || m.etat === "pas_fini")) return;
-        var e = sc[id] = sc[id] || { s:0, w:0, who:[] }; e.s += w * x.note10; e.w += w; e.who.push([P[u].pseudo || "?", x.note10, w]);
-      });
-    });
-    var list = Object.keys(sc).map(function(id){ var e = sc[id]; return { id:id, v:e.s / e.w, c:e.w, who:e.who }; })
-      .filter(function(x){ return x.v >= 7; })
-      .sort(function(a, b){ return (b.v + Math.min(b.c, 3) * 0.3) - (a.v + Math.min(a.c, 3) * 0.3); }).slice(0, 40);
-    s0.films = list.map(function(x, i){
-      x.who.sort(function(a, b){ return (b[2] - a[2]) || (b[1] - a[1]); });
-      return Object.assign({}, films[x.id], { sid:s0.id, _i:i, _h:null, r:"Aimé par " + x.who.slice(0, 3).map(function(w){ return w[0] + " (" + fmtN(w[1]) + "/10)"; }).join(", ") });
-    });
-    s0._sugg = true;
+  // Rimes lointaines : rapprocher un motif et changer d'horizon.
+  var RIME={key:"",manual:"",round:0,serial:0,pairs:[],open:false};
+  function rimeTheme(a,b){var th=(Array.isArray(a.th)?a.th:[]).filter(function(t){return (b.th||[]).indexOf(t)>=0;}),keys=(a.k||[]).filter(function(k){return (b.k||[]).indexOf(k)>=0;});return {th:th,k:keys,mv:!!(a.mv&&a.mv===b.mv)};}
+  function rimeFar(a,b){var ca=String(a.c||"").split(/\s*,\s*/).filter(Boolean),cb=String(b.c||"").split(/\s*,\s*/).filter(Boolean);return !!(a.d&&b.d&&a.d!==b.d&&((a.y&&b.y&&Math.abs(+a.y-+b.y)>=20)||(ca.length&&cb.length&&!ca.some(function(c){return cb.indexOf(c)>=0;}))||(a.mv&&b.mv&&a.mv!==b.mv)));}
+  function rimePhrase(a,b,shared){
+    var subjects={"mémoire":"La mémoire change de forme, le souvenir continue.","deuil":"Une absence traverse un autre paysage.","filiation":"Les liens de famille se racontent autrement.","identité":"Un autre visage pour la même question : qui sommes-nous ?","solitude":"La solitude trouve un autre décor, une autre voix.","émancipation":"Un autre geste pour desserrer les liens.","amour":"Le désir demeure, le monde autour a changé."};
+    for(var i=0;i<shared.th.length;i++)if(subjects[shared.th[i]])return subjects[shared.th[i]];
+    var lines={ocean:"La même eau, une autre façon d'habiter le monde.",plongee:"Sous une autre surface, le même appel du large.",temps:"Le temps change de forme, la mémoire reste en mouvement.",couleurs:"Une couleur revient, venue d'un autre monde.",musique:"Un même frisson passe d'une musique à l'autre.",danse:"Les corps changent, un élan leur répond.",enfance:"Les secrets de l'enfance se racontent autrement.",famille:"Les liens de famille se racontent autrement.",amour:"Le désir demeure, le monde autour a changé.",reve:"Le rêve traverse une autre frontière.",doubles:"Un autre visage vient troubler le miroir.",transformations:"Le corps devient à nouveau un territoire inconnu.",contemplatif:"Le regard ralentit, un autre monde apparaît.",injustice:"La même blessure, un autre regard pour la nommer.",societe:"Une autre société, des questions qui se répondent.",malaise:"L'inquiétude survit au changement de décor.",folie:"Une autre frontière entre le monde et l'esprit.",horreur:"La peur change de visage et de paysage.",obsession:"Un même vertige attire des regards différents.",noir_et_blanc:"Une ombre trouve une autre lumière."};
+    lines["humour-absurde"]="Un même sourire devant l'absurde, dans un autre décor.";
+    var order=["temps","ocean","plongee","enfance","doubles","transformations","musique","danse","couleurs","reve","famille","amour","injustice","societe","contemplatif","malaise","folie","horreur","obsession","humour-absurde"];
+    for(var j=0;j<order.length;j++)if(shared.k.indexOf(order[j])>=0)return lines[order[j]];
+    return shared.mv?"Un même élan de cinéma, loin de son premier décor.":"Un motif demeure ; une autre voix le fait résonner.";
   }
+  function rimeBuild(){
+    var profile=ctxProfile(),rep=Object.assign({},profile&&profile.rep||{},answers),ids=Object.keys(films).sort(),anchors=RIME.manual&&films[RIME.manual]?[films[RIME.manual]]:ids.filter(function(id){return +((rep[id]||{}).note10)>=8;}).sort(function(a,b){return rep[b].note10-rep[a].note10||String(films[a].t).localeCompare(String(films[b].t),"fr");}).slice(0,15).map(function(id){return films[id];});
+    if(!anchors.length)return [];
+    var frequency={},predictions={};ids.forEach(function(id){(films[id].k||[]).forEach(function(k){frequency[k]=(frequency[k]||0)+1;});predictions[id]=estOf(films[id]);});
+    var used={},pairs=[],chosen=[];
+    if(RIME.manual)chosen=anchors;else for(var i=0;i<Math.min(3,anchors.length);i++)chosen.push(anchors[(RIME.round*3+i)%anchors.length]);
+    chosen.forEach(function(anchor){
+      var ranked=[];ids.forEach(function(id){var f=films[id],history=window.CC&&CC.admin&&!(CC.view&&CC.view!==CC.uid)&&!(rep[id]||{}).etat&&f.m;if(id===anchor.id||used[id]||history||isSeen((rep[id]||{}).etat)||!rimeFar(anchor,f))return;var shared=rimeTheme(anchor,f);if(!shared.th.length&&!shared.k.length&&!shared.mv)return;
+        var wa=famW(anchor),wb=famW(f),family=wa.reduce(function(s,x,j){return s+x*wb[j];},0),score=shared.th.length*.65+shared.k.reduce(function(s,k){return s+1/Math.sqrt(frequency[k]||1);},0)*2+(shared.mv?.12:0)+family*.5;
+        if(predictions[id])score+=Math.max(-.15,Math.min(.2,(predictions[id]-6)*.045));
+        var delta=Math.abs((+anchor.y||0)-(+f.y||0));score+=Math.min(delta,60)/500;ranked.push({f:f,score:score,shared:shared});
+      });
+      ranked.sort(function(a,b){return b.score-a.score||String(a.f.t).localeCompare(String(b.f.t),"fr");});
+      var start=RIME.manual?(RIME.round*3)%Math.max(ranked.length,1):0;
+      for(var j=start;j<ranked.length&&pairs.length<3;j++){
+        var candidate=ranked[j];if(used[candidate.f.id])continue;used[candidate.f.id]=1;pairs.push({from:anchor.id,to:candidate.f.id,phrase:rimePhrase(anchor,candidate.f,candidate.shared)});if(!RIME.manual)break;
+      }
+    });return pairs;
+  }
+  function suggestFor(){
+    var s0=sections.filter(function(s){return s.id==="s00-pour-toi";})[0];
+    if(!s0){s0={id:"s00-pour-toi",titre:"Rimes lointaines",famille:"carnet",ordre:.05,films:[]};sections.push(s0);}
+    if(!s0._sugg&&!sections.some(function(s){return s.id==="source-rimes";}))sections.push({id:"source-rimes",famille:s0.famille,cache:true,titre:"Catalogue des suggestions",films:(s0.films||[]).slice()});
+    s0._sugg=true;s0.auto="rimes";s0.titre="Rimes lointaines";
+    var metadata=Object.keys(films).sort().map(function(id){var f=films[id];return [id,f.k,f.th,f.c,f.d,f.mv,f.y,FAM5[id]||""].join("/");}).join(";");
+    var key=[frzKey(),RIME.manual,RIME.round,metadata].join("|");
+    if(RIME.key!==key||!RIME.pairs.length){RIME.key=key;RIME.pairs=rimeBuild();RIME.serial++;}
+    s0.pairs=RIME.pairs;s0.films=RIME.pairs.map(function(pair,i){return Object.assign({},films[pair.to],{sid:s0.id,_i:i,_h:null});});
+  }
+  function rimePiece(s,i,countOnly){
+    var candidates=s.films||[],list=frz(s.id+"-rime-"+RIME.serial,candidates.filter(matchSt),candidates),have={};list.forEach(function(f){have[f.id]=1;});var pairs=(s.pairs||[]).filter(function(p){return have[p.to];});
+    if(countOnly)return {html:"",n:pairs.length,show:filter==="all"||pairs.length>0};
+    var options=Object.keys(films).sort(function(a,b){return String(films[a].t).localeCompare(String(films[b].t),"fr");}).map(function(id){return '<option value="'+esc(films[id].t+(films[id].y?" ("+films[id].y+")":""))+'"></option>';}).join("");
+    var cards=pairs.map(function(pair){var a=films[pair.from],b=films[pair.to];return '<article class="rime-card" data-rime-anchor="'+esc(a.id)+'" data-rime-candidate="'+esc(b.id)+'"><p class="rime-before">Après <button type="button" data-rimefilm="'+esc(a.id)+'">'+esc(a.t)+'</button></p><h3>'+esc(b.t)+'</h3><div class="rime-meta">'+[b.y,b.d,b.c].filter(Boolean).map(esc).join(" · ")+'</div><p class="rime-phrase">'+esc(pair.phrase)+'</p><button type="button" class="rime-open" data-rimefilm="'+esc(b.id)+'">Voir le film</button></article>';}).join("");
+    var html='<section class="s" id="sec-'+esc(s.id)+'" data-auto="rimes"><div class="s-head"><h2>'+esc(sTitre(s))+'</h2></div>'+(cards?'<div class="rime-grid">'+cards+'</div>':'<p class="rime-empty">Le prochain écho peut partir d’un film que tu choisis.</p>')+'<div class="rime-tools"><details'+(!cards?' open':'')+'><summary>Choisir le premier film</summary><form data-rimeform="1"><input name="film" list="rimeTitles" maxlength="240" aria-label="Premier film de la rime" placeholder="Un film que j’aime…" value="'+esc(RIME.manual&&films[RIME.manual]?films[RIME.manual].t+(films[RIME.manual].y?" ("+films[RIME.manual].y+")":""):"")+'"><datalist id="rimeTitles">'+options+'</datalist><button type="submit">Relier</button></form></details><button type="button" data-rimeagain="1">D’autres rimes</button>'+(RIME.manual?'<button type="button" data-rimeauto="1">Mes films aimés</button>':"")+'<p role="status" id="rimeStatus"></p></div></section>';
+    return {html:html,n:pairs.length,show:filter==="all"||pairs.length>0};
+  }
+  $("main").addEventListener("submit",function(e){if(!e.target.matches("[data-rimeform]"))return;e.preventDefault();var name=norm(e.target.elements.film.value.trim()),ids=Object.keys(films).filter(function(id){return norm(films[id].t+(films[id].y?" ("+films[id].y+")":""))===name;});if(!ids.length)ids=Object.keys(films).filter(function(id){return norm(films[id].t)===name;});if(ids.length!==1){$("rimeStatus").textContent=ids.length?"Plusieurs films portent ce titre : choisis aussi l'année.":"Ce titre n'est pas encore dans le catalogue.";return;}RIME.manual=ids[0];RIME.round=0;RIME.key="";renderAll();});
+  $("main").addEventListener("click",function(e){var b=e.target.closest("[data-rimefilm],[data-rimeagain],[data-rimeauto]");if(!b)return;if(b.dataset.rimefilm){RIME.open=true;RIME.focus=b.dataset.rimefilm;pickRandom({ids:[b.dataset.rimefilm],label:"Rimes lointaines"});$("rsK").textContent="Une rime à poursuivre";$("rsAgain").hidden=true;$("rsClose").focus({preventScroll:true});return;}if(b.dataset.rimeauto){RIME.manual="";RIME.round=0;}else RIME.round++;RIME.key="";renderAll();});
+  function rimeClose(focus){if(!RIME.open)return;RIME.open=false;$("rsAgain").hidden=false;var b=focus&&$("main").querySelector('[data-rimefilm="'+CSS.escape(RIME.focus)+'"]');if(b)b.focus({preventScroll:true});}
+  $("rsClose").addEventListener("click",function(){rimeClose(true);});
+  $("rsGo").addEventListener("click",function(){rimeClose(false);});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&RIME.open&&!$("rsheet").hidden){$("rsheet").hidden=true;rimeClose(true);}});
+
   function setSections(docs){
     FICHE = {}; var envs = null, fams = null, mouvs = null, secDocs = [];
     RANG = null;
