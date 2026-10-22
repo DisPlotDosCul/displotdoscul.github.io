@@ -443,6 +443,11 @@ a.shl{text-decoration:none;display:inline-block;}
 .totop{position:fixed;right:10px;bottom:calc(32vh + env(safe-area-inset-bottom,0px));z-index:6;height:44px;border-radius:99px;padding:0 16px;
   border:2px solid var(--k-b-C8963A);background:var(--paper);color:var(--ink);font:600 14.5px/1 var(--font);cursor:pointer;box-shadow:0 3px 14px rgba(44,34,48,.3);}
 .totop[hidden]{display:none;}
+/* Boutons et panneaux flottants sur leur propre calque : ils restent collés à l'écran pendant le défilement. */
+.totop,.navb,.nt-btn,.nt-panel,.envbar,.sheet{transform:translateZ(0);backface-visibility:hidden;will-change:transform;}
+.navb .totop{transform:none;will-change:auto;}
+html.scrolling *,html.scrolling *::before,html.scrolling *::after{animation-play-state:paused!important;}
+html.scrolling .nbulbs i,html.scrolling .nl{transition:none!important;}
 html.qon #main{min-height:calc(100vh - 60px);align-content:start;}
 html.navon .wrap{padding-bottom:64px;}
 .navb{position:fixed;left:10px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;gap:8px;}
@@ -955,13 +960,24 @@ html.aff-calme .ccg-on{transition:none;}
 .nt-panel{position:fixed;right:10px;left:10px;bottom:12px;max-width:440px;margin-left:auto;max-height:70vh;overflow:auto;z-index:41;display:grid;gap:8px;
   background:var(--paper);color:var(--ink);border:2px solid var(--k-b-C8963A);border-radius:16px;padding:12px 14px;box-shadow:0 8px 30px rgba(44,34,48,.3);}
 .nt-h{display:flex;justify-content:space-between;align-items:center;font-size:16px;}
+#ntPanel{max-height:46vh;}
+#ntPanel.mini{max-height:none;gap:6px;padding:8px 12px;}
+#ntPanel{justify-items:stretch;}
+#ntPanel textarea{width:100%;box-sizing:border-box;}
+.nt-l li .nt-b{margin-top:6px;}
+.nt-ed{display:block!important;}
+.nt-ed textarea{width:100%;box-sizing:border-box;}
+.nt-mic[aria-pressed="true"]{border-color:var(--vu);color:var(--vu);}
 .nt-x{border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer;padding:4px 8px;}
 .nt-panel textarea{font:400 16px/1.35 var(--font);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:9px 11px;resize:vertical;}
 .nt-b{display:flex;gap:8px;flex-wrap:wrap;}
 .nt-l{margin:0;padding-left:22px;display:grid;gap:6px;font-size:14.5px;}
 .nt-l li span{display:inline;}
 .nt-l small{display:block;color:var(--muted);font-size:12px;}
-.nt-l li{position:relative;padding-right:28px;}
+.nt-l li{position:relative;padding-right:62px;}
+.nt-l li button[data-ntedit]{right:30px;}
+.nt-l li.nt-ed{padding-right:0;}
+.nt-l li.nt-ed button{position:static;font-size:14px;}
 .nt-l li button{position:absolute;right:0;top:0;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px;}
 .nt-clear{justify-self:start;border:1.5px dashed var(--line);background:transparent;color:var(--muted);border-radius:99px;padding:7px 12px;font:600 13px/1 var(--font);cursor:pointer;}
 html.aff-calme .nt-btn{box-shadow:none;}
@@ -1001,6 +1017,8 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 .ed-cols button{font-size:13px;padding:0 10px;}
 html.ed-on .wrap{padding-bottom:65vh;}
 .fimg{margin-top:10px;}
+.timg{flex:none;min-width:36px;height:32px;padding:0 8px;border:1.5px solid var(--line);border-radius:99px;background:var(--paper);color:var(--ink);font-size:15px;line-height:1;cursor:pointer;}
+.timg[aria-expanded="true"]{border-color:var(--gold);}
 .fimg-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
 .fimg-g a{display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--line);}
 .fimg-g img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -1371,7 +1389,7 @@ html.sky-on #rsheet{z-index:50;}
 <section class="sky" id="sky" role="dialog" aria-modal="true" aria-labelledby="skyTitle" hidden>
   <canvas id="skyCanvas" tabindex="0" role="img" aria-label="Ciel de films. La recherche permet de choisir une étoile ; les flèches déplacent le ciel et les boutons changent le zoom."></canvas>
   <div class="sky-tools"><h2 id="skyTitle">Ciel de films</h2><div class="sky-search"><input type="search" id="skySearch" placeholder="Une étoile…" aria-label="Chercher un film dans le ciel" autocomplete="off" aria-controls="skyResults"><div class="sky-results" id="skyResults" hidden></div></div><select id="skyMember" aria-label="Superposer le ciel d'un membre"><option value="">Mon ciel seul</option></select><button type="button" id="skyClose" aria-label="Fermer le ciel">Fermer</button></div>
-  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><p class="sky-legend"><span class="sl-b">✦</span> noté 9 ou plus · <span class="sl-v">●</span> vu · <span class="sl-p">·</span> pas encore vu · chaque groupe est une catégorie</p><div class="sky-label" id="skyLabel" hidden></div>
+  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><p class="sky-legend"><span class="sl-b">✦</span> noté 9 ou plus · <span class="sl-v">●</span> vu · <span class="sl-p">·</span> pas encore vu · chaque groupe est une liste, un courant ou une décennie, de la couleur de sa catégorie</p><div class="sky-label" id="skyLabel" hidden></div>
   <div class="sky-zoom"><button type="button" id="skyOut" aria-label="Éloigner le ciel">−</button><button type="button" id="skyReset" aria-label="Retrouver tout le ciel">⌾</button><button type="button" id="skyIn" aria-label="Rapprocher le ciel">+</button></div>
 </section>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
@@ -2716,7 +2734,8 @@ html.sky-on #rsheet{z-index:50;}
     var detailId = "fiche-" + encodeURIComponent(mk), themes = Array.isArray(f.th) ? f.th.filter(Boolean) : [];
     var avertissements = Array.isArray(f.av) ? f.av.filter(Boolean).join(" · ") : String(f.av || "").trim();
     var av = avertissements ? '<details class="fiche-av"><summary>Contenus sensibles</summary><p>' + esc(avertissements) + '</p></details>' : "";
-    return '<div class="info"><div class="th"><div class="t">' + esc(f.t) + '</div>' + est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
+    return '<div class="info"><div class="th"><div class="t">' + esc(f.t) + '</div>' +
+      '<button type="button" class="timg" data-img="' + esc(f.id) + '" aria-expanded="' + !!IMG_OPEN[f.id] + '" aria-label="Images du film ' + esc(f.t) + '" title="Images du film">🎞</button>' + est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<button type="button" class="more" data-more="' + esc(mk) + '" aria-expanded="' + mo + '" aria-controls="' + esc(detailId) + '" aria-label="Détails de ' + esc(f.t) + '">' + (mo ? "moins" : "plus…") + '</button></div>' +
       (!cmp && meta.length ? '<div class="m">' + meta.join(" · ") + '</div>' : "") + (!cmp ? av : "") +
       // Le résumé reste visible sur toutes les fiches ; seule « Mes films notés » le replie derrière « plus… ».
@@ -2731,7 +2750,6 @@ html.sky-on #rsheet{z-index:50;}
       '<div class="nv">' + nv + '</div></div>' +
       '<div class="acts"><button type="button" class="lst" data-l="1" aria-pressed="' + !!LISTE[f.id] + '">' + (LISTE[f.id] ? "✓ Ma liste" : "+ Ma liste") + '</button>' + plb +
       '<button type="button" class="fsh ico" data-fshare="1" aria-label="Partager ' + esc(f.t) + '" title="Partager">↗</button>' +
-      '<button type="button" class="fsh ico" data-img="' + esc(f.id) + '" aria-expanded="' + !!IMG_OPEN[f.id] + '" aria-label="Images du film ' + esc(f.t) + '" title="Images du film">🎞</button>' +
       '<button type="button" class="cmb" data-com="1" aria-expanded="' + (OPEN_COM === f.sid + "|" + f.id) + '" aria-label="Commenter ' + esc(f.t) + '" title="Commenter">💬</button></div></div>' + plc + comForm(f) + (IMG_OPEN[f.id] ? imgBoxHtml(f.id) : "");
   }
 
@@ -3177,6 +3195,24 @@ html.sky-on #rsheet{z-index:50;}
   }
   // Flèches ← → : chaque changement d'affichage (catégorie, liste, recherche, filtre) devient une étape de l'historique.
   var NAV = { i:0, max:0, busy:false, t:0, q:false };
+  try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
+  // La position dans la page est notée en continu dans l'étape courante : les flèches y ramènent exactement.
+  var NAV_Y = 0;
+  // La position juste avant un toucher ou une frappe : c'est elle qu'on retrouvera, même si l'affichage change ensuite.
+  ["pointerdown", "keydown"].forEach(function(t){ document.addEventListener(t, function(ev){
+    if (NAV.busy || (t === "keydown" && ev.target && /^(INPUT|TEXTAREA|SELECT)$/.test(ev.target.tagName))) return;
+    if (t === "pointerdown" && ev.target && ev.target.closest && ev.target.closest("#navb")) return;
+    NAV.preY = window.pageYOffset; }, true); });
+  window.addEventListener("scroll", function(){ if (NAV.busy) return; clearTimeout(NAV_Y); NAV_Y = setTimeout(function(){
+    var st = history.state; if (!st || !st.cc || NAV.busy) return; try { history.replaceState(Object.assign({}, st, { y:window.pageYOffset }), ""); } catch (e) {} }, 150); }, { passive:true });
+  function navScroll(y){
+    var tries = 0;
+    (function step(){
+      window.scrollTo(0, y); lzFillNow(); window.scrollTo(0, y);
+      if ((Math.abs(window.pageYOffset - y) > 2 || tries < 3) && tries++ < 20) { requestAnimationFrame(step); return; }
+      NAV.busy = false;
+    })();
+  }
   function navNow(){ return { cc:1, show:SHOW ? JSON.parse(JSON.stringify(SHOW)) : null, q:$("q").value, f:filter, tab:TAB }; }
   function navSig(x){ return JSON.stringify([x.show, x.q, x.f, x.tab]); }
   function navPaint(){
@@ -3194,7 +3230,7 @@ html.sky-on #rsheet{z-index:50;}
       // Pendant qu'on tape une recherche, on remplace l'étape au lieu d'en empiler une par lettre.
       if (typing && NAV.q && now - NAV.t < 1500) { st.i = NAV.i; st.max = NAV.max = NAV.i; st.y = cur.y; history.replaceState(st, ""); }
       else {
-        history.replaceState(Object.assign({}, cur, { y:window.pageYOffset }), "");
+        history.replaceState(Object.assign({}, cur, { y:NAV.preY != null ? NAV.preY : (cur.y || 0) }), "");
         st.i = NAV.i = NAV.i + 1; st.max = NAV.max = NAV.i; st.y = 0; history.pushState(st, "");
       }
     } catch (e) {}
@@ -3211,7 +3247,7 @@ html.sky-on #rsheet{z-index:50;}
     document.documentElement.classList.toggle("qon", !!query);
     document.querySelectorAll("#filters .chip").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.f === filter ? "true" : "false"); });
     renderAll();
-    var y = +st.y || 0; requestAnimationFrame(function(){ window.scrollTo({ top:y }); if (lzFillNow()) window.scrollTo({ top:y }); NAV.busy = false; });
+    clearTimeout(NAV_Y); navScroll(+st.y || 0);
     navPaint();
   });
   $("navBack").addEventListener("click", function(){ if (NAV.i > 0) history.back(); });
@@ -3357,14 +3393,30 @@ html.sky-on #rsheet{z-index:50;}
     var q = $("q") && $("q").value ? " · recherche « " + $("q").value.slice(0, 40) + " »" : "";
     return (TAB ? "onglet " + TAB : "accueil") + q + " · " + amb + " · " + window.innerWidth + " px";
   }
+  // Le panneau reste petit (ou se réduit à une ligne) pour garder le site visible pendant qu'on écrit ; la dictée vocale s'ajoute si le navigateur la connaît.
+  var NT_DRAFT = "", NT_EDIT = -1, NT_MINI = false, NT_REC = null, SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   function notesHtml(){
-    return '<div class="nt-h"><b>Mes idées pour le site</b><button type="button" class="nt-x" data-ntclose="1" aria-label="Fermer">✕</button></div>' +
-      '<textarea id="ntTxt" rows="3" maxlength="1000" placeholder="Une idée, un défaut, une envie…"></textarea>' +
-      '<div class="nt-b"><button type="button" class="plf-ok" data-ntadd="1">Noter</button>' +
-      '<button type="button" class="plf-no" data-ntcopy="1">📋 Tout copier</button></div>' +
-      (NOTES.length ? '<ol class="nt-l">' + NOTES.map(function(n, i){
-        return '<li><span>' + esc(n.t) + '<small>' + esc(fdate(n.d) || "") + ' · ' + esc(n.w || "") + '</small></span><button type="button" data-ntdel="' + i + '" aria-label="Effacer cette note">✕</button></li>';
+    var mic = SR ? '<button type="button" class="plf-no nt-mic" data-ntmic="1" aria-pressed="' + !!NT_REC + '">' + (NT_REC ? "⏹ Arrêter la dictée" : "🎤 Dicter") + '</button>' : "";
+    return '<div class="nt-h"><b>Mes idées pour le site</b><span><button type="button" class="nt-x" data-ntmini="1" aria-label="' + (NT_MINI ? "Agrandir" : "Réduire") + '" title="' + (NT_MINI ? "Agrandir" : "Réduire") + '">' + (NT_MINI ? "▴" : "▾") + '</button><button type="button" class="nt-x" data-ntclose="1" aria-label="Fermer">✕</button></span></div>' +
+      '<textarea id="ntTxt" rows="' + (NT_MINI ? 2 : 3) + '" maxlength="1000" placeholder="Une idée, un défaut, une envie…">' + esc(NT_DRAFT) + '</textarea>' +
+      '<div class="nt-b"><button type="button" class="plf-ok" data-ntadd="1">Noter</button>' + mic +
+      (NT_MINI ? "" : '<button type="button" class="plf-no" data-ntcopy="1">📋 Tout copier</button>') + '</div>' +
+      (NT_MINI ? "" : NOTES.length ? '<ol class="nt-l">' + NOTES.map(function(n, i){
+        if (i === NT_EDIT) return '<li class="nt-ed"><textarea id="ntEd" rows="3" maxlength="1000" aria-label="Modifier cette note">' + esc(n.t) + '</textarea><span class="nt-b"><button type="button" class="plf-ok" data-ntsave="' + i + '">Enregistrer</button><button type="button" class="plf-no" data-ntcancel="1">Annuler</button></span></li>';
+        return '<li><span>' + esc(n.t) + '<small>' + esc(fdate(n.d) || "") + ' · ' + esc(n.w || "") + '</small></span><button type="button" data-ntedit="' + i + '" aria-label="Modifier cette note">✎</button><button type="button" data-ntdel="' + i + '" aria-label="Effacer cette note">✕</button></li>';
       }).join("") + '</ol><button type="button" class="nt-clear" data-ntclear="1">Tout effacer (après l\'envoi à Claude)</button>' : '<p class="id-n">Rien de noté pour l\'instant.</p>');
+  }
+  function ntPaint(focus){ var p = $("ntPanel"); if (!p) return; p.classList.toggle("mini", NT_MINI); p.innerHTML = notesHtml(); var ta = $(focus || "ntTxt"); if (ta && focus !== false) { ta.focus({ preventScroll:true }); try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) {} } }
+  function ntMicStop(){ if (NT_REC) { try { NT_REC.stop(); } catch (e) {} NT_REC = null; } }
+  function ntMic(){
+    if (NT_REC) { ntMicStop(); ntPaint(); return; }
+    var r = new SR(), base = NT_DRAFT ? NT_DRAFT.replace(/\s*$/, " ") : "";
+    r.lang = "fr-FR"; r.continuous = true; r.interimResults = true;
+    r.onresult = function(e){ var txt = ""; for (var i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript; NT_DRAFT = (base + txt).slice(0, 1000); var ta = $("ntTxt"); if (ta) ta.value = NT_DRAFT; };
+    r.onend = function(){ if (NT_REC === r) { NT_REC = null; ntPaint(false); } };
+    r.onerror = function(){ if (NT_REC === r) { NT_REC = null; ntPaint(false); setStatus("La dictée n'a pas pu démarrer : utilise le micro du clavier.", true); } };
+    try { r.start(); NT_REC = r; } catch (e) { NT_REC = null; }
+    ntPaint(false);
   }
   function notesSync(){
     var b = $("ntBtn"), on = !!(window.CC && CC.admin);
@@ -3379,25 +3431,32 @@ html.sky-on #rsheet{z-index:50;}
   document.addEventListener("click", function(ev){
     var t = ev.target; if (!t.closest) return;
     var p = $("ntPanel");
-    if (t.closest("#ntBtn")) { if (p.hidden) { NT_CLEAR = false; p.innerHTML = notesHtml(); p.hidden = false; var ta = $("ntTxt"); if (ta) ta.focus(); } else p.hidden = true; return; }
+    if (t.closest("#ntBtn")) { if (p.hidden) { NT_CLEAR = false; NT_EDIT = -1; p.hidden = false; ntPaint(); } else { ntMicStop(); p.hidden = true; } return; }
     if (!t.closest("#ntPanel")) return;
-    if (t.closest("[data-ntclose]")) { p.hidden = true; return; }
+    if (t.closest("[data-ntclose]")) { ntMicStop(); p.hidden = true; return; }
+    if (t.closest("[data-ntmini]")) { NT_MINI = !NT_MINI; ntPaint(false); return; }
+    if (t.closest("[data-ntmic]")) { ntMic(); return; }
     if (t.closest("[data-ntadd]")) {
+      ntMicStop();
       var v = ($("ntTxt").value || "").trim(); if (!v) { $("ntTxt").focus(); return; }
-      NOTES.push({ t:v.slice(0, 1000), d:new Date().toISOString(), w:notesWhere() }); keepNotes(); p.innerHTML = notesHtml(); $("ntTxt").focus(); return;
+      NOTES.push({ t:v.slice(0, 1000), d:new Date().toISOString(), w:notesWhere() }); keepNotes(); NT_DRAFT = ""; ntPaint(); return;
     }
-    var dl = t.closest("[data-ntdel]"); if (dl) { NOTES.splice(+dl.dataset.ntdel, 1); keepNotes(); p.innerHTML = notesHtml(); return; }
+    var ne = t.closest("[data-ntedit]"); if (ne) { NT_EDIT = +ne.dataset.ntedit; ntPaint("ntEd"); return; }
+    if (t.closest("[data-ntcancel]")) { NT_EDIT = -1; ntPaint(false); return; }
+    var ns = t.closest("[data-ntsave]"); if (ns) { var i0 = +ns.dataset.ntsave, v0 = (($("ntEd") || {}).value || "").trim(); if (NOTES[i0] && v0) { NOTES[i0].t = v0.slice(0, 1000); keepNotes(); } NT_EDIT = -1; ntPaint(false); return; }
+    var dl = t.closest("[data-ntdel]"); if (dl) { NOTES.splice(+dl.dataset.ntdel, 1); keepNotes(); NT_EDIT = -1; ntPaint(false); return; }
     if (t.closest("[data-ntclear]")) {
       if (!NT_CLEAR) { NT_CLEAR = true; t.closest("[data-ntclear]").textContent = "Vraiment tout effacer ?"; return; }
-      NOTES = []; keepNotes(); NT_CLEAR = false; p.innerHTML = notesHtml(); return;
+      NOTES = []; keepNotes(); NT_CLEAR = false; ntPaint(false); return;
     }
     if (t.closest("[data-ntcopy]")) {
       var mine = NOTES.length ? "Mes idées pour le Ciné-club (" + NOTES.length + ")\n" + NOTES.map(function(n, i){ return (i + 1) + ". " + n.t + " (" + (fdate(n.d) || "") + " · " + n.w + ")"; }).join("\n") : "";
       copyText([mine, idTodo()].filter(Boolean).join("\n\n"), "vos notes et les suggestions des membres", t.closest("[data-ntcopy]"));
     }
   });
+  document.addEventListener("input", function(ev){ if (ev.target && ev.target.id === "ntTxt") NT_DRAFT = ev.target.value; });
   document.addEventListener("keydown", function(ev){
-    if (ev.key === "Escape") { var p = $("ntPanel"); if (p && !p.hidden) p.hidden = true; }
+    if (ev.key === "Escape") { var p = $("ntPanel"); if (p && !p.hidden) { ntMicStop(); p.hidden = true; } }
     if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey) && ev.target.id === "ntTxt") { var a = document.querySelector("[data-ntadd]"); if (a) a.click(); }
   });
   var QZ_Q = [
@@ -5180,7 +5239,9 @@ html.sky-on #rsheet{z-index:50;}
     renderAll(); $("q").blur(); toList();
   });
   $("q").addEventListener("input", function(){ clearTimeout(qTimer); qTimer = setTimeout(function(){ query = norm($("q").value.trim()); document.documentElement.classList.toggle("qon", !!query || document.activeElement === $("q")); renderAll(); if (query) qTop(); else toList(); }, 150); });
-  var ticking = false;
+  var ticking = false, SCR_T = 0;
+  // Pendant le défilement, les effets décoratifs se mettent en pause : le navigateur garde toute sa force pour suivre le doigt.
+  window.addEventListener("scroll", function(){ var de = document.documentElement; if (!de.classList.contains("scrolling")) de.classList.add("scrolling"); clearTimeout(SCR_T); SCR_T = setTimeout(function(){ de.classList.remove("scrolling"); }, 220); }, { passive:true });
   window.addEventListener("scroll", function(){
     if (ticking) return; ticking = true;
     requestAnimationFrame(function(){ $("totop").hidden = window.pageYOffset < 400; ticking = false; });
@@ -5464,10 +5525,26 @@ html.sky-on #rsheet{z-index:50;}
   function skyHash(s){ var h=2166136261; for(var i=0;i<s.length;i++) h=Math.imul(h^s.charCodeAt(i),16777619); return h>>>0; }
   function skyNorm(v){ var q=Math.sqrt(v.reduce(function(s,x){return s+x*x;},0))||1; return v.map(function(x){return x/q;}); }
   // Constellations : chaque liste de thèmes devient un groupe d'étoiles qui porte son nom ; un film va dans la liste la plus précise qui le contient.
+  // Constellations : d'abord les listes de thèmes, puis les autres listes (école, cours, envies…), puis le courant, et enfin la décennie : aucun film ne reste à part.
   function skyGroups(){
-    var lists=sections.filter(function(s){return s.famille==="themes"&&!s.cache&&!s.auto&&(s.films||[]).length;}).map(function(s){return {id:s.id,name:sTitre(s)||s.titre||"",ids:(s.films||[]).map(function(f){return f.id;})};});
-    var of={};lists.slice().sort(function(a,b){return a.ids.length-b.ids.length||(a.id<b.id?-1:1);}).forEach(function(g){g.ids.forEach(function(id){if(!of[id]&&films[id])of[id]=g.id;});});
-    return {lists:lists,of:of};
+    var skip={carnet:1,playlists:1,epoques:1,idees:1};
+    var lists=sections.filter(function(s){return !s.cache&&!s.auto&&!s._sugg&&!skip[s.famille]&&(s.films||[]).length;}).map(function(s){return {id:s.id,name:sTitre(s)||s.titre||"",fam:s.famille||"",pri:s.famille==="themes"?0:1,ids:(s.films||[]).map(function(f){return f.id;})};});
+    var of={};lists.slice().sort(function(a,b){return a.pri-b.pri||a.ids.length-b.ids.length||(a.id<b.id?-1:1);}).forEach(function(g){g.ids.forEach(function(id){if(!of[id]&&films[id])of[id]=g.id;});});
+    var extra={};
+    Object.keys(films).forEach(function(id){
+      if(of[id])return;var f=films[id],k;
+      if(f.mv&&MV_INFO[f.mv]){k="mv:"+f.mv;if(!extra[k])extra[k]={id:k,name:MV_INFO[f.mv].label,fam:"mouvements",ids:[]};}
+      else{var d=f.y?Math.floor(+f.y/10)*10:0;k="dec:"+(d||"x");if(!extra[k])extra[k]={id:k,name:d?(d>=2000?"Années "+d:"Années "+String(d).slice(2)):"Sans date",fam:"epoques",ids:[]};}
+      extra[k].ids.push(id);of[id]=k;
+    });
+    // Un courant trop petit rejoint sa décennie : pas de poussière isolée.
+    Object.keys(extra).forEach(function(k){var g=extra[k];if(k.indexOf("mv:")!==0||g.ids.length>=4)return;g.ids.forEach(function(id){var f=films[id],d=f.y?Math.floor(+f.y/10)*10:0,k2="dec:"+(d||"x");if(!extra[k2])extra[k2]={id:k2,name:d?(d>=2000?"Années "+d:"Années "+String(d).slice(2)):"Sans date",fam:"epoques",ids:[]};extra[k2].ids.push(id);of[id]=k2;});delete extra[k];});
+    return {lists:lists.concat(Object.keys(extra).map(function(k){return extra[k];})),of:of};
+  }
+  function skyColor(fam){
+    var f=FAM_OF[fam]||{id:fam},p=(typeof famPal==="function"&&famPal(f))||null,c=(p&&(p.ic||p.bord))||f.bord||"";
+    var dflt={themes:"#f3dcb4",mouvements:"#9fe0d2",epoques:"#a9c4ff",ecole:"#f5b8d0",cours:"#c7b3ff",envies:"#ffc28a",sante:"#b8e3a1"};
+    return /^#[0-9a-f]{6}$/i.test(c)?c:dflt[fam]||"#d9cbe6";
   }
   function skyModel(){
     var ids=Object.keys(films).sort(),G=skyGroups(),signature=ids.map(function(id){return id+"|"+(G.of[id]||"");}).join(";")+"#"+G.lists.map(function(g){return g.id+":"+g.name;}).join(",");
@@ -5475,7 +5552,7 @@ html.sky-on #rsheet{z-index:50;}
     SKY.sig=signature; ++SKY.gen; var n=ids.length;
     if(!n){ SKY.points=[]; SKY.groups=[]; skySchedule(); return; }
     var byG={},order=[];ids.forEach(function(id){var g=G.of[id]||"_";if(!byG[g]){byG[g]=[];order.push(g);}byG[g].push(id);});
-    var names={};G.lists.forEach(function(g){names[g.id]=g.name;});names._="Autres films";
+    var names={},fams={};G.lists.forEach(function(g){names[g.id]=g.name;fams[g.id]=g.fam;});names._="Autres films";
     // Les plus grandes constellations au centre, les autres en spirale autour ; les films d'un groupe en tournesol.
     order.sort(function(a,b){return (a==="_")-(b==="_")||byG[b].length-byG[a].length||(a<b?-1:1);});
     var points=[],groups=[],GA=Math.PI*(3-Math.sqrt(5)),placed=[];
@@ -5485,9 +5562,9 @@ html.sky-on #rsheet{z-index:50;}
       for(var t=0;k&&t<4000;t++){var ang=t*.37,R=t*6;cx=Math.cos(ang)*R;cy=Math.sin(ang)*R*.8;if(placed.every(function(q){return Math.hypot(q.x-cx,q.y-cy)>=q.r+r+55;}))break;}
       placed.push({x:cx,y:cy,r:r});
       list.forEach(function(id,i){var d=Math.sqrt(i+.5)*15,a=i*GA;points.push({id:id,g:g,x:cx+Math.cos(a)*d,y:cy+Math.sin(a)*d,links:[]});});
-      groups.push({id:g,name:names[g]||"",x:cx,y:cy-r-8,n:list.length});
+      groups.push({id:g,name:names[g]||"",fam:fams[g]||"",color:skyColor(fams[g]||""),x:cx,y:cy-r-8,n:list.length});
     });
-    SKY.points=points;SKY.groups=groups;SKY.byId={};SKY.grid={};points.forEach(function(p){SKY.byId[p.id]=p;var key=Math.floor(p.x/64)+","+Math.floor(p.y/64);(SKY.grid[key]=SKY.grid[key]||[]).push(p);});
+    SKY.points=points;SKY.groups=groups;SKY.gcol={};groups.forEach(function(g){SKY.gcol[g.id]=g.color;});SKY.byId={};SKY.grid={};points.forEach(function(p){SKY.byId[p.id]=p;var key=Math.floor(p.x/64)+","+Math.floor(p.y/64);(SKY.grid[key]=SKY.grid[key]||[]).push(p);});
     var minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;points.forEach(function(p){minX=Math.min(minX,p.x);maxX=Math.max(maxX,p.x);minY=Math.min(minY,p.y);maxY=Math.max(maxY,p.y);});
     SKY.box={x:(minX+maxX)/2,y:(minY+maxY)/2,w:maxX-minX+260,h:maxY-minY+180};
     SKY.ready=true;skyCanvas.dataset.count=String(n);skyCanvas.dataset.layout=String(skyHash(points.map(function(p){return p.id+":"+p.x.toFixed(3)+","+p.y.toFixed(3);}).join(";")));SKY.threads={};skyFit();skySchedule();
@@ -5522,12 +5599,15 @@ html.sky-on #rsheet{z-index:50;}
     SKY.points.forEach(function(p,i){
       var a=answers[p.id]||{},lit=isSeen(a.etat),brilliant=lit&&+a.note10>=9,s=positions[i];if(s.x<-30||s.x>SKY.w+30||s.y<-30||s.y>SKY.h+30)return;
       if(lit)seen++;
-      var size=brilliant?25:lit?14:7,color=brilliant?"#ffe1a7":lit?"#f7d5aa":"#abc1e3";c.globalAlpha=lit?1:.56;c.drawImage(skySprite(color),s.x-size/2,s.y-size/2,size,size);
+      var size=brilliant?25:lit?14:7,color=brilliant?"#ffe1a7":lit?"#f7d5aa":((SKY.gcol||{})[p.g]||"#abc1e3");c.globalAlpha=lit?1:.56;c.drawImage(skySprite(color),s.x-size/2,s.y-size/2,size,size);
       if(other&&isSeen((peer[p.id]||{}).etat)){c.globalAlpha=.85;c.strokeStyle="#c7a4ff";c.lineWidth=.7;c.beginPath();c.arc(s.x,s.y,brilliant?4:2.5,0,Math.PI*2);c.stroke();}
     });
     c.globalAlpha=1;c.textAlign="center";c.textBaseline="bottom";
-    (SKY.groups||[]).forEach(function(g){if(!g.name)return;var s=skyScreen(g),lit=SKY.points.some(function(p){return p.g===g.id&&isSeen((answers[p.id]||{}).etat);});if(s.x<-160||s.x>SKY.w+160||s.y<-40||s.y>SKY.h+60)return;
-      var fs=Math.max(11,Math.min(16,11+SKY.cam.z*5));c.font="600 "+fs+"px system-ui,sans-serif";c.fillStyle=lit?"#f3dcb4":"#9fb0cf";c.globalAlpha=lit?.95:.6;c.fillText(g.name,s.x,s.y);});
+    // Les noms ne se chevauchent jamais : les plus grandes constellations d'abord ; les autres apparaissent en rapprochant le ciel.
+    var boxes=[],fs=Math.max(11,Math.min(16,11+SKY.cam.z*5));c.font="600 "+fs+"px system-ui,sans-serif";
+    (SKY.groups||[]).slice().sort(function(a,b){return b.n-a.n;}).forEach(function(g){if(!g.name)return;var s=skyScreen(g);if(s.x<-160||s.x>SKY.w+160||s.y<-40||s.y>SKY.h+60)return;
+      var w=c.measureText(g.name).width,bx={l:s.x-w/2-4,r:s.x+w/2+4,t:s.y-fs-3,b:s.y+3};if(boxes.some(function(o){return bx.l<o.r&&bx.r>o.l&&bx.t<o.b&&bx.b>o.t;}))return;boxes.push(bx);
+      var lit=SKY.points.some(function(p){return p.g===g.id&&isSeen((answers[p.id]||{}).etat);});c.fillStyle=g.color||"#f3dcb4";c.globalAlpha=lit?.95:.62;c.fillText(g.name,s.x,s.y);});
     c.globalAlpha=1;$("skyCaption").textContent=SKY.points.length+" films · "+Object.keys(answers).filter(function(id){return SKY.byId[id]&&isSeen((answers[id]||{}).etat);}).length+" vus"+(other?" · avec "+other.pseudo:"");
     skyCanvas.dataset.renderMs=(performance.now()-started).toFixed(2);
   }
@@ -6141,7 +6221,7 @@ html.sky-on #rsheet{z-index:50;}
 // Néon : pannes d'ampoules et de lettres, halos qui s'allument au hasard sur quelques boutons. Rien de régulier.
 (function(){
   var de = document.documentElement;
-  function on(){ return de.classList.contains("th-neon") && !de.classList.contains("aff-calme") && !document.hidden; }
+  function on(){ return de.classList.contains("th-neon") && !de.classList.contains("aff-calme") && !de.classList.contains("scrolling") && !document.hidden; }
   function R(a, b){ return a + Math.random() * (b - a); }
   function pick(a){ return a[Math.floor(Math.random() * a.length)]; }
   function later(f, a, b, c, d, e, g){ var x = Math.random(); setTimeout(f, x < .15 ? R(a, b) : x < .75 ? R(c, d) : R(e, g)); }

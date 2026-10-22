@@ -134,6 +134,7 @@ def run():
             page.locator("#q").fill("Shining")
             card = '#main .film[data-id="shining-1980"]'
             page.locator(card).first.wait_for()
+            assert page.locator(card + " .th [data-img]").count() >= 1, "le bouton des images est à côté du titre"
             page.locator(card + " [data-img]").first.click()
             page.wait_for_function("s => document.querySelectorAll(s + ' .fimg img').length === 4", arg=card)
             assert page.locator(card + " .fimg-s").first.inner_text() == "Images : TMDB"
@@ -141,6 +142,36 @@ def run():
             page.wait_for_timeout(300)
             assert page.locator(card + " .fimg img").count() == 4
             page.locator("#qx").click()
+
+            # Flèche ← : retour exact à l'endroit de la page où l'on était.
+            page.locator('#toc [data-tile="themes"]').click()
+            page.locator("#toc .sub").first.click()
+            page.wait_for_timeout(300)
+            page.mouse.wheel(0, 2500)
+            page.wait_for_timeout(400)
+            more = page.evaluate("Array.from(document.querySelectorAll('#main .more')).findIndex(b => { const r = b.getBoundingClientRect(); return r.top > 80 && r.bottom < innerHeight - 260; })")
+            page.locator("#main .more").nth(more).click()
+            idx = page.evaluate("Array.from(document.querySelectorAll('#main .mvb')).findIndex(b => { const r = b.getBoundingClientRect(); return r.top > 40 && r.bottom < innerHeight - 40; })")
+            before = page.evaluate("pageYOffset")
+            page.locator("#main .mvb").nth(idx).click()
+            page.wait_for_timeout(400)
+            page.locator("#navBack").click()
+            page.wait_for_function("y => Math.abs(pageYOffset - y) <= 2", arg=before)
+
+            # Mes idées pour le site (administratrice) : une note se modifie, le brouillon reste.
+            if admin:
+                page.locator("#ntBtn").click()
+                page.locator("#ntTxt").fill("Première idée")
+                page.locator("[data-ntadd]").click()
+                page.locator("#ntTxt").fill("Brouillon en cours")
+                page.locator("[data-ntedit]").first.click()
+                page.locator("#ntEd").fill("Idée corrigée")
+                page.locator("[data-ntsave]").click()
+                assert "Idée corrigée" in page.locator(".nt-l").inner_text()
+                assert page.locator("#ntTxt").input_value() == "Brouillon en cours"
+                page.locator("[data-ntmini]").click()
+                assert page.locator("#ntPanel.mini").is_visible() and page.locator(".nt-l").count() == 0
+                page.locator("[data-ntclose]").click()
 
             # Mode édition : réservé à l'administratrice ; disposition, texte et couleur enregistrés ensemble.
             page.locator("#aab").click()
@@ -162,7 +193,7 @@ def run():
                 assert page.locator("#skyToggle").inner_text() == "✦ Mes étoiles"
 
             assert not errors and not unexpected, (errors, unexpected)
-            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées, images, mode édition et console : OK", flush=True)
+            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées, images, retour exact, notes, mode édition et console : OK", flush=True)
             context.close()
         browser.close()
 
