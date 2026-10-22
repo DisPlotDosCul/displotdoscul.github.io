@@ -366,6 +366,145 @@
      "r": "Le maître-chanteur au bout du fil, et un policier qui s'enfonce : le rire nerveux du thriller coréen."
     }
    ]
+  },
+  "s05-etrange": {
+   "films": [
+    {
+     "id": "mad-god-2021",
+     "t": "Mad God",
+     "y": 2021,
+     "d": "Phil Tippett",
+     "r": "Trente ans d'animation image par image : une descente sans retour dans un monde de monstres et de machines."
+    },
+    {
+     "id": "house-1977",
+     "t": "House",
+     "y": 1977,
+     "d": "Nobuhiko Ōbayashi",
+     "r": "Sept lycéennes, une tante, une maison qui les dévore : un film d'horreur pop, kitsch et sans aucune logique."
+    },
+    {
+     "id": "la-casa-lobo-2018",
+     "t": "La Casa Lobo",
+     "y": 2018,
+     "d": "Cristóbal León et Joaquín Cociña",
+     "r": "Peint, modelé et repeint à même les murs : une maison qui se transforme sous nos yeux, image après image."
+    },
+    {
+     "id": "strawberry-mansion-2021",
+     "t": "Strawberry Mansion",
+     "y": 2021,
+     "d": "Kentucker Audley et Albert Birney",
+     "r": "Un contrôleur fiscal des rêves tombe amoureux dans le rêve d'une vieille dame : bricolé, doux et vertigineux."
+    },
+    {
+     "id": "sorry-to-bother-you-2018",
+     "t": "Sorry to Bother You",
+     "y": 2018,
+     "d": "Boots Riley",
+     "r": "Un télévendeur trouve sa « voix de Blanc » et grimpe : satire sociale qui déraille dans l'absurde total."
+    },
+    {
+     "id": "dave-made-a-maze-2017",
+     "t": "Dave Made a Maze",
+     "y": 2017,
+     "d": "Bill Watterson",
+     "r": "Un fort en carton dans le salon, plus grand dedans que dehors : origami, pièges et sang en papier."
+    },
+    {
+     "id": "swiss-army-man-2016",
+     "t": "Swiss Army Man",
+     "y": 2016,
+     "d": "Daniel Kwan et Daniel Scheinert",
+     "r": "Un naufragé et un cadavre qui sert à tout : couteau suisse, boussole, ami. Grotesque et tendre."
+    },
+    {
+     "id": "inland-empire-2006",
+     "t": "Inland Empire",
+     "y": 2006,
+     "d": "David Lynch",
+     "r": "Une actrice se perd entre un film, un rôle, un souvenir et un cauchemar : Lynch filmé en vidéo numérique."
+    },
+    {
+     "id": "lobster-2015",
+     "t": "The Lobster",
+     "y": 2015,
+     "d": "Yorgos Lanthimos",
+     "r": "Être seul est interdit : 45 jours pour trouver l'âme sœur, sinon on devient un animal."
+    }
+   ]
+  },
+  "s24-nouveau-malaise": {
+   "films": [
+    {
+     "id": "mad-god-2021",
+     "t": "Mad God",
+     "y": 2021,
+     "d": "Phil Tippett",
+     "r": "Trente ans d'animation image par image : une descente sans retour dans un monde de monstres et de machines."
+    },
+    {
+     "id": "la-casa-lobo-2018",
+     "t": "La Casa Lobo",
+     "y": 2018,
+     "d": "Cristóbal León et Joaquín Cociña",
+     "r": "Peint, modelé et repeint à même les murs : une maison qui se transforme sous nos yeux, image après image."
+    },
+    {
+     "id": "the-bothersome-man-2006",
+     "t": "The Bothersome Man",
+     "y": 2006,
+     "d": "Jens Lien",
+     "r": "Une ville parfaite où rien n'a de goût, où l'on ne peut même pas mourir : la dystopie norvégienne la plus polie."
+    },
+    {
+     "id": "canine-2009",
+     "t": "Canine",
+     "y": 2009,
+     "d": "Yorgos Lanthimos",
+     "r": "Trois enfants jamais sortis de chez eux, à qui les parents ont inventé un autre monde."
+    }
+   ]
+  },
+  "s03-couleurs": {
+   "films": [
+    {
+     "id": "house-1977",
+     "t": "House",
+     "y": 1977,
+     "d": "Nobuhiko Ōbayashi",
+     "r": "Sept lycéennes, une tante, une maison qui les dévore : un film d'horreur pop, kitsch et sans aucune logique."
+    },
+    {
+     "id": "strawberry-mansion-2021",
+     "t": "Strawberry Mansion",
+     "y": 2021,
+     "d": "Kentucker Audley et Albert Birney",
+     "r": "Un contrôleur fiscal des rêves tombe amoureux dans le rêve d'une vieille dame : bricolé, doux et vertigineux."
+    }
+   ]
+  },
+  "s41-identites-multiples": {
+   "films": [
+    {
+     "id": "the-double-2013",
+     "t": "The Double",
+     "y": 2013,
+     "d": "Richard Ayoade",
+     "r": "Un employé effacé voit arriver son sosie parfait, qui lui vole tout : Dostoïevski dans un bureau sans fenêtres."
+    }
+   ]
+  },
+  "s52-paranoia": {
+   "films": [
+    {
+     "id": "the-double-2013",
+     "t": "The Double",
+     "y": 2013,
+     "d": "Richard Ayoade",
+     "r": "Un employé effacé voit arriver son sosie parfait, qui lui vole tout : Dostoïevski dans un bureau sans fenêtres."
+    }
+   ]
   }
  },
  "fiches": {
@@ -1231,7 +1370,17 @@
   "zodiac-2007": {"duree": 157, "av": ["violence explicite", "images choquantes"], "th": ["obsession", "mémoire", "impunité"], "fiab": "à vérifier"},
   "a-bout-de-souffle-1960": {"duree": 90, "av": [], "th": ["liberté", "trahison", "amour"], "fiab": "à vérifier"},
   "etat-second-1993": {"duree": 122, "av": ["suicide", "drogue"], "th": ["traumatisme", "deuil", "renaissance"], "fiab": "à vérifier"},
-  "oedipe-roi-1967": {"duree": 104, "av": [], "th": ["destin", "filiation", "inceste"], "fiab": "à vérifier"}
+  "oedipe-roi-1967": {"duree": 104, "av": [], "th": ["destin", "filiation", "inceste"], "fiab": "à vérifier"},
+  "mad-god-2021": {"p": "Un soldat masqué descend en scaphandre dans un monde souterrain en ruine, peuplé de créatures difformes, de machines et d'ouvriers sacrifiés, pour y poser une bombe. Le maître des effets spéciaux de Star Wars et RoboCop l'a fabriqué à la main pendant trente ans.", "c": "États-Unis", "k": ["animation", "malaise", "horreur"], "mv": "independant-americain", "e": 8, "duree": 83, "av": ["violence explicite", "images choquantes"], "th": ["apocalypse", "cycle", "création"], "fiab": "à vérifier"},
+  "house-1977": {"p": "Gorgeous emmène six amies passer l'été chez sa tante, dans une maison isolée. Le piano, le chat, les meubles et la maison elle-même se mettent à dévorer les filles une à une, dans un déluge d'effets bricolés, d'incrustations et de couleurs criardes.", "c": "Japon", "k": ["horreur", "humour-absurde", "conte"], "mv": "japon", "e": 7, "duree": 88, "av": ["images choquantes"], "th": ["deuil", "jeunesse", "maison hantée"], "fiab": "à vérifier"},
+  "la-casa-lobo-2018": {"p": "María s'enfuit d'une colonie allemande du sud du Chili et se réfugie dans une maison où elle élève deux cochons qui deviennent des enfants. Les murs, les meubles et les corps se peignent, se modèlent et se défont en continu, en un seul plan apparent, comme un conte de propagande raconté par la secte elle-même.", "c": "Chili", "k": ["animation", "conte", "malaise"], "mv": "auteur-monde", "e": 8, "duree": 75, "av": ["maltraitance", "images choquantes"], "th": ["secte", "emprise", "métamorphose"], "fiab": "à vérifier"},
+  "strawberry-mansion-2021": {"p": "En 2035, les rêves sont taxés. Le contrôleur James Preble vient auditer les cassettes de rêves d'Arabella, une vieille artiste excentrique, et découvre que des publicités s'infiltrent dans le sommeil des gens. Il se perd dans le rêve, où il rencontre Arabella jeune.", "c": "États-Unis", "k": ["humour-absurde", "societe", "conte"], "mv": "independant-americain", "e": 7, "duree": 91, "av": [], "th": ["rêves", "publicité", "amour"], "fiab": "à vérifier"},
+  "sorry-to-bother-you-2018": {"p": "À Oakland, Cassius Green devient la star de son centre d'appels en prenant une voix de Blanc et monte jusqu'aux ventes d'esclavage moderne, pendant que ses collègues font grève. Il découvre que le patron d'une multinationale transforme ses ouvriers en hommes-chevaux.", "c": "États-Unis", "k": ["societe", "humour-absurde", "malaise"], "mv": "independant-americain", "e": 6, "duree": 112, "av": ["violence explicite"], "th": ["capitalisme", "race", "travail"], "fiab": "à vérifier"},
+  "dave-made-a-maze-2017": {"p": "Dave, artiste velléitaire, s'est perdu dans le labyrinthe en carton qu'il a construit dans son salon. Sa compagne et ses amis entrent le chercher : l'intérieur est immense, plein de pièges, d'illusions d'optique et d'un minotaure, et le sang y coule en serpentins de papier.", "c": "États-Unis", "k": ["humour-absurde", "huis-clos", "conte"], "mv": "independant-americain", "e": 7, "duree": 80, "av": [], "th": ["création", "échec", "couple"], "fiab": "à vérifier"},
+  "the-bothersome-man-2006": {"p": "Andreas arrive dans une ville sans savoir comment. On lui donne un emploi, un appartement, une compagne ; tout fonctionne, mais la nourriture n'a aucun goût, l'alcool ne fait pas d'effet et personne ne ressent rien. Même son suicide échoue. Il cherche une fissure vers un autre monde.", "c": "Norvège", "k": ["humour-absurde", "malaise", "societe"], "mv": "auteur-europeen", "e": 8, "duree": 95, "av": ["suicide", "images choquantes"], "th": ["conformisme", "au-delà", "désir"], "fiab": "à vérifier"},
+  "swiss-army-man-2016": {"p": "Hank, naufragé prêt à se pendre, voit s'échouer le cadavre flatulent de Manny. Le corps devient jet-ski, réserve d'eau, boussole et peu à peu ami à qui Hank réapprend la vie. À la fin, on découvre que la forêt était derrière la maison de la femme qu'il observait en secret.", "c": "États-Unis", "k": ["humour-absurde", "marginaux", "obsession"], "mv": "independant-americain", "e": 6, "duree": 97, "av": ["suicide"], "th": ["solitude", "honte", "amitié"], "fiab": "à vérifier"},
+  "the-double-2013": {"p": "Simon James travaille depuis sept ans dans une administration rétrofuturiste sombre, où personne ne le remarque. Arrive James Simon, son double exact, charmeur et sûr de lui, qui lui prend son travail et la femme qu'il aime. D'après Le Double de Dostoïevski.", "c": "Royaume-Uni", "k": ["paranoia", "malaise", "humour-absurde"], "mv": "auteur-europeen", "e": 8, "duree": 93, "av": ["suicide"], "th": ["double", "invisibilité", "identité"], "fiab": "à vérifier"},
+  "lobster-2015": {"duree": 118, "av": ["violence explicite", "automutilation", "suicide"], "th": ["couple", "conformisme", "solitude"], "fiab": "à vérifier"}
  },
  "familles": {
   "1917-2019": "30520",
@@ -2096,7 +2245,17 @@
   "yannick-2023": "61003",
   "yi-yi-2000": "50005",
   "zardoz-1974": "61210",
-  "zodiac-2007": "24310"
+  "zodiac-2007": "24310",
+  "mad-god-2021": "55000",
+  "house-1977": "71200",
+  "la-casa-lobo-2018": "45100",
+  "strawberry-mansion-2021": "60022",
+  "sorry-to-bother-you-2018": "30061",
+  "dave-made-a-maze-2017": "60103",
+  "the-bothersome-man-2006": "23050",
+  "swiss-army-man-2016": "30025",
+  "the-double-2013": "33031",
+  "lobster-2015": "22051"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }

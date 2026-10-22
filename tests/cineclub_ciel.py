@@ -1,4 +1,4 @@
-"""Ciel : vrais gestes sur un catalogue public puis 1 233 films de test."""
+"""Ciel : vrais gestes sur un catalogue public puis 370 films de test en plus."""
 import copy
 import json
 from pathlib import Path
@@ -6,7 +6,20 @@ from playwright.sync_api import sync_playwright
 from cineclub_fixture import ROOT, catalogue_fixture, install_routes
 
 
-def ready(page, count=863):
+def public_count():
+    """Catalogue public + films des compléments, sans doublon (le nombre grandit avec les ajouts)."""
+    comp = json.loads((ROOT / "carnet-de-films/complements.json").read_text())
+    docs = catalogue_fixture()["films"]
+    ids = {film["id"] for doc in docs.values() for film in doc.get("films", [])}
+    for sid, section in comp["sections"].items():
+        # Les ajouts à une liste absente du jeu d'essai ne s'affichent pas, sauf nouvelle liste titrée.
+        if sid in docs or section.get("titre"):
+            ids.update(film["id"] for film in section.get("films", []))
+    return len(ids)
+
+
+def ready(page, count=None):
+    count = public_count() if count is None else count
     page.goto("https://cineclub.test/carnet-de-films/", wait_until="networkidle")
     page.wait_for_function("window.CC && CC.me && CC.filmInfo && CC.filmInfo('matrix-1999')")
     if page.locator("#introX").is_visible():
@@ -120,7 +133,8 @@ def run():
         errors = []
         page.on("pageerror", lambda e: errors.append(str(e)))
         page.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
-        ready(page, 1233)
+        total = public_count() + len(originals)
+        ready(page, total)
         durations = []
         for _ in range(12):
             page.locator("#skyIn").click()
@@ -128,7 +142,7 @@ def run():
             durations.append(float(page.locator("#skyCanvas").get_attribute("data-render-ms")))
         assert max(durations) < 80, durations
         assert not errors and not unexpected, (errors, unexpected)
-        report = {"films": 1233, "rendu_ms_max": max(durations), "rendu_ms_moyen": sum(durations) / len(durations)}
+        report = {"films": total, "rendu_ms_max": max(durations), "rendu_ms_moyen": sum(durations) / len(durations)}
         (captures / "mesures.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
         print(json.dumps(report, ensure_ascii=False), flush=True)
         context.close()
