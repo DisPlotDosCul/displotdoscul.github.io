@@ -54,3 +54,11 @@ le contient, les autres films forment « Autres films ». Les constellations se 
 une spirale sans se chevaucher. Une légende d'une ligne explique les trois tailles d'étoile.
 Les fils relient seulement les films vus d'une même constellation. Les positions ne
 dépendent toujours ni des notes ni du membre superposé.
+
+## Toutes les étoiles rangées (22 octobre 2026, soir)
+
+Il n'y a plus de groupe « Autres films » : après les listes de thèmes viennent les autres
+listes (école, cours, envies…), puis le courant du film, puis sa décennie ; un courant de
+moins de quatre films rejoint sa décennie. Chaque constellation prend la couleur de sa
+catégorie, ses étoiles pas encore vues aussi. Les noms ne se chevauchent jamais : les plus
+grandes constellations sont nommées d'abord, les autres en rapprochant le ciel.
