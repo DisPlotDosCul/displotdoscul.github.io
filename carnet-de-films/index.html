@@ -444,17 +444,16 @@ a.shl{text-decoration:none;display:inline-block;}
   border:2px solid var(--k-b-C8963A);background:var(--paper);color:var(--ink);font:600 14.5px/1 var(--font);cursor:pointer;box-shadow:0 3px 14px rgba(44,34,48,.3);}
 .totop[hidden]{display:none;}
 /* Boutons et panneaux flottants sur leur propre calque : ils restent collés à l'écran pendant le défilement. */
-.totop,.navb,.nt-btn,.nt-panel,.envbar,.sheet{transform:translateZ(0);backface-visibility:hidden;will-change:transform;}
+.totop,.navb,.nt-btn,.envbar{backface-visibility:hidden;}
 .navb .totop{transform:none;will-change:auto;}
 /* Positions fixées par rapport au haut de l'écran, en unités qui ne bougent pas quand la barre du navigateur mobile apparaît ou disparaît. */
-.totop{bottom:auto;top:calc(68vh - 44px);top:calc(68svh - 44px);}
-.envbar{bottom:auto;top:calc(68vh - 98px);top:calc(68svh - 98px);}
-.nt-btn{top:42vh;top:42svh;}
-html.scrolling *,html.scrolling *::before,html.scrolling *::after{animation-play-state:paused!important;}
-html.scrolling .nbulbs i,html.scrolling .nl{transition:none!important;}
+/* Boutons flottants accrochés au bas de l'écran par des distances fixes en pixels : aucune mesure ne change quand la barre du navigateur se replie. */
+.totop{top:auto;bottom:calc(190px + env(safe-area-inset-bottom,0px));}
+.envbar{top:auto;bottom:calc(244px + env(safe-area-inset-bottom,0px));}
+.nt-btn{top:auto;bottom:calc(300px + env(safe-area-inset-bottom,0px));}
 html.qon #main{min-height:calc(100vh - 60px);align-content:start;}
 html.navon .wrap{padding-bottom:64px;}
-.navb{position:fixed;left:10px;top:calc(100vh - 58px - env(safe-area-inset-bottom,0px));top:calc(100svh - 58px - env(safe-area-inset-bottom,0px));z-index:6;display:flex;gap:8px;}
+.navb{position:fixed;left:10px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;gap:8px;}
 .navb[hidden]{display:none;}
 .navb .totop{position:static;width:48px;padding:0;font-size:20px;}
 .navb .totop:disabled{opacity:.35;cursor:default;}
