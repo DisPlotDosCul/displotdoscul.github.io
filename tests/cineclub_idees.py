@@ -1,4 +1,4 @@
-"""Idées du 22 octobre : dé et recherche, recherche en haut, avis à son nom, apostrophe, flèches ← →."""
+"""Idées du 22 octobre : dé, recherche, avis à son nom, apostrophe, flèches, résumé, Boussole, boîte à idées."""
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import cineclub_fixture as cf
@@ -93,8 +93,40 @@ def run():
             page.locator("#navFwd").click()
             page.wait_for_function("document.querySelector('#q').value === 'Swallow'")
 
+            # Le résumé reste visible sur une fiche ordinaire.
+            assert page.locator('#main .film[data-id="swallow-2019"] .why').first.is_visible()
+            page.locator("#qx").click()
+
+            # Boussole : questionnaire déjà rempli → questions repliées ; « Pas vu » s'enregistre tout de suite.
+            page.locator("#ccQuiz").click()
+            assert page.locator("#qzPanel .qz-ok").is_visible() and page.locator('#qzPanel [data-qz="sombre"]').count() == 0
+            fid = page.locator("#qzPanel [data-qzf]").first.get_attribute("data-qzf")
+            assert page.locator("#qzPanel [data-qzf]").count() == 40
+            page.locator(f'#qzPanel [data-qzf="{fid}"][data-v="pv"]').click()
+            page.wait_for_function("id => (__fixture.profils['test-membre'].rep[id] || {}).etat === 'pas_vu'", arg=fid)
+            page.locator('#qzPanel [data-qzmode="q2"]').click()
+            page.locator('#qzPanel [data-qz="k_reve"][data-v="1"]').click()
+            page.locator("#qzPanel [data-qzsave]").click()
+            page.wait_for_function("__fixture.profils['test-membre'].quiz.k_reve === 1 && __fixture.profils['test-membre'].quiz.sombre === 1")
+            page.locator("#qzPanel [data-qzclose]").click()
+
+            # Boîte à idées : modifier une suggestion, ajouter un film.
+            page.locator("#toc .idb").first.click()
+            page.locator('#toc [data-idkind="amelio"]').click()
+            page.locator("#toc form[data-idform] textarea").fill("Une idée à corriger")
+            page.locator("#toc form[data-idform] button[type=submit]").click()
+            page.locator("#toc button[data-idedit]").first.click()
+            page.locator("#toc form[data-idedit] textarea").fill("Une idée corrigée, avec l'apostrophe")
+            page.locator("#toc form[data-idedit] button[type=submit]").click()
+            page.wait_for_function("Object.values(__fixture.idees || {}).some(x => x.texte === \"Une idée corrigée, avec l'apostrophe\")")
+            page.locator('#toc [data-idkind="film"]').click()
+            page.locator("#toc form[data-idfilm] [name=titre]").fill("Un film imaginaire de test")
+            page.locator("#toc form[data-idfilm] [name=annee]").fill("2020")
+            page.locator("#toc form[data-idfilm] button[type=submit]").click()
+            page.wait_for_function("__fixtureWrites.some(w => (w.collection === 'propositions' && w.value.titre === 'Un film imaginaire de test') || (w.collection === 'films' && JSON.stringify(w.value).includes('Un film imaginaire de test')))")
+
             assert not errors and not unexpected, (errors, unexpected)
-            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches et console : OK", flush=True)
+            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées et console : OK", flush=True)
             context.close()
         browser.close()
 

@@ -983,6 +983,8 @@ section[data-auto="classement"] .acts > button{font-size:12px;padding:6px 8px;mi
 section[data-auto="classement"] .stars button{transform:scale(.88);}
 
 .qz-panel{gap:10px;}
+.qz-ok{margin:0;font:600 15px/1.3 var(--font);color:var(--k-s-2C6660);}
+.qz-acts{display:flex;flex-wrap:wrap;gap:8px;}
 .qz-q{display:grid;gap:6px;font-size:14.5px;}
 .qz-q small{color:var(--muted);}
 .qz-o{display:flex;flex-wrap:wrap;gap:6px;}
@@ -2342,6 +2344,7 @@ html.sky-on #rsheet{z-index:50;}
       Object.keys(RFAC).forEach(function(fa){ prior("fa|" + fa, +q[fa] || 0); });
       prior("an|1", +q.anciens || 0); prior("mo|1", +q.monde || 0); prior("k|contemplatif", +q.lent || 0);
       if (+q.sens) { prior("fa|reflexion", +q.sens); prior("k|larmes", +q.sens); prior("fa|frisson", -q.sens * .5); }
+      (typeof QZ_Q2 !== "undefined" && QZ_Q2 || []).forEach(function(x){ prior("k|" + x[2], +q[x[0]] || 0); });
     }
     // Les autres membres : un film qu'ils notent au-dessus de leur propre moyenne gagne un peu.
     var C = {}, CN = {}, P = (window.CC && CC.profils) || {}, self = window.CC && (CC.view || CC.uid);
@@ -2633,9 +2636,11 @@ html.sky-on #rsheet{z-index:50;}
     return '<div class="info"><div class="th"><div class="t">' + esc(f.t) + '</div>' + est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<button type="button" class="more" data-more="' + esc(mk) + '" aria-expanded="' + mo + '" aria-controls="' + esc(detailId) + '" aria-label="Détails de ' + esc(f.t) + '">' + (mo ? "moins" : "plus…") + '</button></div>' +
       (!cmp && meta.length ? '<div class="m">' + meta.join(" · ") + '</div>' : "") + (!cmp ? av : "") +
+      // Le résumé reste visible sur toutes les fiches ; seule « Mes films notés » le replie derrière « plus… ».
+      (!cmp ? text : "") +
       '<div class="xtra" id="' + esc(detailId) + '"' + (mo ? "" : " hidden") + '>' +
       (cmp && meta.length ? '<div class="m">' + meta.join(" · ") + '</div>' + av : "") +
-      text + (courant ? '<div class="ctx">' + courant + '</div>' : "") +
+      (cmp ? text : "") + (courant ? '<div class="ctx">' + courant + '</div>' : "") +
       (themes.length ? '<div class="fiche-themes" aria-label="Thèmes">' + themes.map(esc).join(" · ") + '</div>' : "") +
       (f.fiab ? '<p class="fiche-fiab">Données ' + esc(f.fiab) + '</p>' : "") + plw + '</div></div>' +
       '<div class="ctrl"><div class="seg" role="group" aria-label="As-tu vu ce film ?">' + seg + '</div>' +
@@ -3222,11 +3227,11 @@ html.sky-on #rsheet{z-index:50;}
   var IDEES_FAM = { id:"idees", idees:true, label:"Boîte à idées" };
   var ID_TYPES = [{ id:"theme", l:"Thème", fam:"themes" }, { id:"courant", l:"Courant", fam:"mouvements" }, { id:"genre", l:"Type de film", fam:"ecole" },
     { id:"envie", l:"Envie", fam:"envies" }, { id:"autre", l:"Autre", fam:"playlists" }];
-  var ID_KINDS = [{ id:"amelio", l:"✨ Une amélioration", tag:"Amélioration" }, { id:"categorie", l:"🏷️ Une nouvelle catégorie", tag:"" }, { id:"bug", l:"🐞 Un bug", tag:"Bug" }];
+  var ID_KINDS = [{ id:"amelio", l:"✨ Une amélioration", tag:"Amélioration" }, { id:"categorie", l:"🏷️ Une nouvelle catégorie", tag:"" }, { id:"bug", l:"🐞 Un bug", tag:"Bug" }, { id:"film", l:"🎬 Un film", tag:"Film" }];
   function idKind(k){ return ID_KINDS.filter(function(x){ return x.id === k; })[0] || ID_KINDS[1]; }
   function idTech(){ var de = document.documentElement, amb = ["jour", "crep", "neon"].filter(function(x){ return de.classList.contains("th-" + x); })[0] || "";
     return ("Écran " + window.innerWidth + "×" + window.innerHeight + " · ambiance " + amb + " · onglet " + (TAB || "accueil") + " · " + navigator.userAgent).slice(0, 300); }
-  var IDEES = {}, ideeCol = null, IDRAFT = { kind:"", type:"theme", nom:"", films:"", texte:"", prenom:"" }, ID_DEL = "", ID_DEL_T = null;
+  var IDEES = {}, ideeCol = null, IDRAFT = { kind:"", type:"theme", nom:"", films:"", texte:"", prenom:"" }, ID_DEL = "", ID_DEL_T = null, ID_EDIT = "", ID_LATER = false;
   var IDS_KEY = "carnetIdeesV1" + CCK, IDSENT = [];
   try { IDSENT = JSON.parse(localStorage.getItem(IDS_KEY) || "[]"); if (!Array.isArray(IDSENT)) IDSENT = []; } catch (e) { IDSENT = []; }
   function keepIdsent(){ try { localStorage.setItem(IDS_KEY, JSON.stringify(IDSENT)); } catch (e) {} }
@@ -3321,47 +3326,91 @@ html.sky-on #rsheet{z-index:50;}
     ["monde", "Le cinéma du monde entier, en version sous-titrée"],
     ["lent", "Les films lents, où l'on prend son temps"]
   ];
-  var QZ_SEED = ["shining-1980", "titanic-1997", "pulp-fiction-1994", "in-the-mood-for-love-2000", "matrix-1999", "la-la-land-2016", "mulholland-drive-2001", "le-parrain-1972", "2001-l-odyssee-de-l-espace-1968", "parasite-2019"];
-  var QZ = null;
+  // Deuxième questionnaire, pour affiner : chaque réponse pèse sur un mot-clé du catalogue.
+  var QZ_Q2 = [
+    ["k_reve", "Les rêves, l'étrange, le surréalisme", "reve"],
+    ["k_animation", "Le cinéma d'animation", "animation"],
+    ["k_documentaire", "Les documentaires", "documentaire"],
+    ["k_musique", "Les films où la musique compte beaucoup", "musique"],
+    ["k_absurde", "L'humour absurde, décalé", "humour-absurde"],
+    ["k_huis", "Les huis clos, un seul lieu", "huis-clos"],
+    ["k_doubles", "Les doubles, les identités troubles", "doubles"],
+    ["k_cirque", "Le cirque, la danse, les corps en mouvement", "cirque"]
+  ];
+  var QZ = null, QZ_MODE = "", QZ_PICK_KEY = "carnetBoussoleV2" + CCK;
+  function qzDone(q){ return !!q && QZ_Q.some(function(x){ return q[x[0]] !== undefined; }); }
+  function qz2Done(q){ return !!q && QZ_Q2.some(function(x){ return q[x[0]] !== undefined; }); }
+  // Une dizaine de films sans réponse, tirés au hasard ; le tirage change à chaque connexion (il reste le même pendant la visite).
+  function qzPick(again){
+    var ids = null;
+    if (!again) try { ids = JSON.parse(sessionStorage.getItem(QZ_PICK_KEY) || "null"); } catch (e) {}
+    if (!Array.isArray(ids) || !ids.filter(function(id){ return films[id]; }).length) {
+      var pool = Object.keys(films).filter(function(id){ return !answers[id] && films[id].t; });
+      for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp; }
+      ids = pool.slice(0, 10);
+      try { sessionStorage.setItem(QZ_PICK_KEY, JSON.stringify(ids)); } catch (e) {}
+    }
+    return ids.filter(function(id){ return films[id]; });
+  }
+  function qzFilmsHtml(){
+    var ids = qzPick(false); if (!ids.length) return "";
+    return '<div class="qz-h">Des films à noter</div>' + ids.map(function(id){
+      var f = films[id], a = answers[id] || {}, cur = a.etat === "pas_vu" ? "pv" : a.note10 ? String(a.note10) : "";
+      var b = function(v, l){ return '<button type="button" class="chip" data-qzf="' + esc(id) + '" data-v="' + v + '" aria-pressed="' + (cur === v) + '">' + l + '</button>'; };
+      return '<div class="qz-q"><span>' + esc(f.t) + ' <small>' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</small></span><div class="qz-o">' + b("9", "Adoré") + b("7", "Bien") + b("4", "Bof") + b("pv", "Pas vu") + '</div></div>';
+    }).join("") + '<div class="nt-b"><button type="button" class="plf-no" data-qzmore="1">🎲 D\'autres films</button></div>';
+  }
   function qzHtml(){
-    var q = QZ, seeds = QZ_SEED.filter(function(id){ return films[id] && !((answers[id] || {}).note10); });
+    var q = QZ, saved = (window.CC && CC.me && CC.me.quiz) || null;
     var opt = function(k, v, l){ return '<button type="button" class="chip" data-qz="' + k + '" data-v="' + v + '" aria-pressed="' + (String(q[k]) === String(v)) + '">' + l + '</button>'; };
     var n = Object.keys(answers).filter(function(id){ return answers[id] && answers[id].note10; }).length;
-    return '<div class="nt-h"><b>Boussole cinéma</b><button type="button" class="nt-x" data-qzclose="1" aria-label="Fermer">✕</button></div>' +
+    var head = '<div class="nt-h"><b>Boussole cinéma</b><button type="button" class="nt-x" data-qzclose="1" aria-label="Fermer">✕</button></div>';
+    var foot = '<p class="id-n">' + n + ' film' + (n > 1 ? "s" : "") + ' noté' + (n > 1 ? "s" : "") + '. Les estimations apparaissent à partir de ' + RECO_MIN_QUIZ + ' films notés avec ce questionnaire, ou ' + RECO_MIN + ' sans.</p>';
+    var mode = QZ_MODE || (qzDone(saved) ? "fait" : "q1");
+    if (mode === "fait") return head +
+      '<p class="qz-ok">✓ Tes goûts sont enregistrés.</p>' +
+      '<div class="qz-acts"><button type="button" class="chip" data-qzmode="q2">' + (qz2Done(saved) ? "↻ Affiner encore" : "＋ Affiner mes goûts") + '</button><button type="button" class="chip" data-qzmode="q1">↻ Refaire le premier questionnaire</button></div>' +
+      qzFilmsHtml() + foot;
+    if (mode === "q2") return head + '<div class="qz-h">Pour affiner</div>' +
+      QZ_Q2.map(function(x){ return '<div class="qz-q"><span>' + esc(x[1]) + '</span><div class="qz-o">' + opt(x[0], 1, "J'adore") + opt(x[0], 0, "Ça dépend") + opt(x[0], -1, "Pas pour moi") + '</div></div>'; }).join("") +
+      '<div class="nt-b"><button type="button" class="plf-ok" data-qzsave="1">Enregistrer</button>' + (qzDone(saved) ? '<button type="button" class="plf-no" data-qzmode="fait">Retour</button>' : "") + '</div>';
+    return head +
       QZ_Q.map(function(x){ return '<div class="qz-q"><span>' + esc(x[1]) + '</span><div class="qz-o">' + opt(x[0], 1, "J'adore") + opt(x[0], 0, "Ça dépend") + opt(x[0], -1, "Pas pour moi") + '</div></div>'; }).join("") +
       '<div class="qz-q"><span>Au cinéma, je cherche surtout…</span><div class="qz-o">' + opt("sens", -1, "À passer un bon moment") + opt("sens", 0, "Les deux") + opt("sens", 1, "À être bouleversé·e, à réfléchir") + '</div></div>' +
-      (seeds.length ? '<div class="qz-h">Et ces films, si vous les avez vus ?</div>' + seeds.map(function(id){
-        var f = films[id];
-        return '<div class="qz-q"><span>' + esc(f.t) + ' <small>' + esc(f.y || "") + '</small></span><div class="qz-o">' + opt("f:" + id, 9, "Adoré") + opt("f:" + id, 7, "Bien") + opt("f:" + id, 4, "Bof") + opt("f:" + id, "", "Pas vu") + '</div></div>';
-      }).join("") : "") +
-      '<p class="id-n">' + n + ' film' + (n > 1 ? "s" : "") + ' noté' + (n > 1 ? "s" : "") + '. Les estimations apparaissent à partir de ' + RECO_MIN_QUIZ + ' films notés avec ce questionnaire, ou ' + RECO_MIN + ' sans.</p>' +
-      '<div class="nt-b"><button type="button" class="plf-ok" data-qzsave="1">Enregistrer</button></div>';
+      '<div class="nt-b"><button type="button" class="plf-ok" data-qzsave="1">Enregistrer</button>' + (qzDone(saved) ? '<button type="button" class="plf-no" data-qzmode="fait">Retour</button>' : "") + '</div>' +
+      qzFilmsHtml() + foot;
   }
   function qzSync(){ var b = $("ccQuiz"); if (b) b.hidden = !(window.CC && CC.me && !GUEST && !(CC.view && CC.view !== CC.uid)); }
   document.body.insertAdjacentHTML("beforeend", '<div class="nt-panel qz-panel" id="qzPanel" role="dialog" aria-label="Boussole cinéma" hidden></div>');
   setInterval(qzSync, 1500); setTimeout(qzSync, 300);
+  function qzPaint(){ var p = $("qzPanel"), top = p.scrollTop; p.innerHTML = qzHtml(); p.scrollTop = top; }
   document.addEventListener("click", function(ev){
     var t = ev.target; if (!t.closest) return;
     var p = $("qzPanel");
-    if (t.closest("#ccQuiz")) { QZ = Object.assign({}, (CC.me && CC.me.quiz) || {}); p.innerHTML = qzHtml(); p.hidden = false; return; }
+    if (t.closest("#ccQuiz")) { QZ = Object.assign({}, (CC.me && CC.me.quiz) || {}); QZ_MODE = ""; p.innerHTML = qzHtml(); p.hidden = false; p.scrollTop = 0; return; }
     if (!t.closest("#qzPanel")) return;
     if (t.closest("[data-qzclose]")) { p.hidden = true; return; }
+    var md = t.closest("[data-qzmode]"); if (md) { QZ_MODE = md.dataset.qzmode; QZ = Object.assign({}, (CC.me && CC.me.quiz) || {}); p.innerHTML = qzHtml(); p.scrollTop = 0; return; }
+    if (t.closest("[data-qzmore]")) { qzPick(true); qzPaint(); return; }
+    // Un film du tirage : la réponse s'enregistre tout de suite, « Pas vu » compris.
+    var fb = t.closest("[data-qzf]");
+    if (fb) {
+      var id = fb.dataset.qzf; if (!films[id]) return;
+      var prev = answers[id] ? Object.assign({}, answers[id]) : null;
+      answers[id] = pack(fb.dataset.v === "pv" ? { etat:"pas_vu", note10:0 } : { etat:"vu", note10:+fb.dataset.v });
+      save(id, prev); RECO.sig = ""; refreshFilm(id); qzPaint();
+      setStatus(films[id].t + (fb.dataset.v === "pv" ? " : pas vu" : " : " + fb.dataset.v + "/10"));
+      return;
+    }
     var o = t.closest("[data-qz]");
     if (o) { QZ[o.dataset.qz] = o.dataset.v === "" ? "" : +o.dataset.v; o.parentNode.querySelectorAll("[data-qz]").forEach(function(b){ b.setAttribute("aria-pressed", b === o ? "true" : "false"); }); return; }
     if (t.closest("[data-qzsave]")) {
-      var quiz = { v:1, ajout:new Date().toISOString() };
-      QZ_Q.concat([["sens"]]).forEach(function(x){ if (QZ[x[0]] !== undefined && QZ[x[0]] !== "") quiz[x[0]] = +QZ[x[0]]; });
-      Object.keys(QZ).forEach(function(k){
-        if (k.indexOf("f:") !== 0 || QZ[k] === "" || QZ[k] == null) return;
-        var id = k.slice(2); if (!films[id]) return;
-        var prev = answers[id] ? Object.assign({}, answers[id]) : null;
-        answers[id] = pack({ etat:"vu", note10:+QZ[k] }); save(id, prev);
-      });
+      var quiz = Object.assign({}, (CC.me && CC.me.quiz) || {}, { v:1, ajout:new Date().toISOString() });
+      QZ_Q.concat([["sens"]], QZ_Q2).forEach(function(x){ if (QZ[x[0]] !== undefined && QZ[x[0]] !== "") quiz[x[0]] = +QZ[x[0]]; });
       if (CC.me) CC.me.quiz = quiz;
       RECO.sig = "";
-      firebase.firestore().collection("profils").doc(CC.uid).update({ quiz:quiz }).catch(function(){});
-      p.hidden = true; renderAll();
-      setStatus("Vos goûts sont enregistrés.");
+      firebase.firestore().collection("profils").doc(CC.uid).update({ quiz:quiz }).then(function(){ setStatus("Vos goûts sont enregistrés."); }, function(){ setStatus("Pas enregistré, réessayez dans un instant.", true); });
+      QZ_MODE = "fait"; qzPaint(); p.scrollTop = 0; renderAll();
     }
   });
   // ---------- Dérive onirique : associations locales et carnet de rêves ----------
@@ -3513,7 +3562,18 @@ html.sky-on #rsheet{z-index:50;}
     return '<button type="button" class="idb" data-tile="idees" style="' + famStyle(IDEES_FAM) + '"><span class="ic">' + famIcon("idees") + '</span>' +
       '<span><b>Boîte à idées</b>Proposer · Signaler</span>' + (n ? '<span class="idn">' + n + ' idée' + (n > 1 ? "s" : "") + '</span>' : "") + '</button>';
   }
+  // Modifier une suggestion : l'administratrice, ou la personne qui l'a écrite.
+  function idCanEdit(x){ return !!x && (idMe() || !!(window.CC && CC.uid && x.uid && x.uid === CC.uid)); }
+  function ideeEditHtml(x){
+    var cat = x.kind !== "amelio" && x.kind !== "bug";
+    return '<form class="idf ide" data-idedit="' + esc(x.id) + '" autocomplete="off">' +
+      (cat ? '<label><span>Son nom</span><input name="nom" maxlength="80" value="' + esc(x.nom) + '"></label>' +
+        '<label><span>Des films qui iraient dedans</span><input name="films" maxlength="200" value="' + esc(x.films) + '"></label>'
+      : '<label><span>Texte</span><textarea name="texte" maxlength="500" rows="5">' + esc(x.texte || x.nom) + '</textarea></label>') +
+      '<div class="idc-b"><button type="submit" class="plf-ok">Enregistrer</button><button type="button" data-idcancel="1">Annuler</button></div></form>';
+  }
   function ideeCard(x, wait){
+    if (!wait && ID_EDIT === x.id && idCanEdit(x)) return '<div class="idc edit">' + ideeEditHtml(x) + '</div>';
     var t = idType(x.type), ok = x.statut === "retenue", del = ID_DEL === x.id, k = x.kind === "amelio" || x.kind === "bug" ? idKind(x.kind) : null;
     return '<div class="idc' + (ok ? " ok" : "") + (wait ? " wait" : "") + (k ? " " + x.kind : "") + '"><div class="idc-t">' +
       (k ? '<span class="idk">' + esc(k.tag) + '</span><span class="idc-x">' + esc(x.texte || x.nom) + '</span>' : '<span class="idk" style="' + famStyle({ id:t.fam }) + '">' + esc(t.l) + '</span>' + esc(x.nom)) + '</div>' +
@@ -3521,8 +3581,9 @@ html.sky-on #rsheet{z-index:50;}
       '<div class="idc-m">' + (wait ? "Envoyée depuis ce téléphone · elle arrivera vers 2 h du matin" : (x.kind === "bug" ? "Signalé par " : x.kind === "amelio" ? "Proposée par " : "Proposée par ") + esc(x.prenom || "quelqu'un") + (fdate(x.ajout) ? " · le " + esc(fdate(x.ajout)) : "")) + '</div>' +
       (ok ? '<div class="idc-s">' + (x.kind === "bug" ? "✓ Corrigé par Licia" : "✓ Retenue par Licia") + '</div>' : "") +
       (idMe() && !wait && x.kind === "bug" && x.tech ? '<div class="idc-m">' + esc(x.tech) + '</div>' : "") +
-      (idMe() && !wait ? '<div class="idc-b"><button type="button" data-idok="' + esc(x.id) + '" aria-pressed="' + ok + '">' + (x.kind === "bug" ? (ok ? "✓ Corrigé" : "✓ Marquer corrigé") : ok ? "✓ Retenue" : "✓ Retenir") + '</button>' +
-        '<button type="button" data-iddel="' + esc(x.id) + '"' + (del ? ' class="sur"' : "") + '>' + (del ? "Retirer pour de bon ?" : "✕ Retirer") + '</button></div>' : "") + '</div>';
+      (idMe() && !wait ? '<div class="idc-b"><button type="button" data-idedit="' + esc(x.id) + '">✎ Modifier</button><button type="button" data-idok="' + esc(x.id) + '" aria-pressed="' + ok + '">' + (x.kind === "bug" ? (ok ? "✓ Corrigé" : "✓ Marquer corrigé") : ok ? "✓ Retenue" : "✓ Retenir") + '</button>' +
+        '<button type="button" data-iddel="' + esc(x.id) + '"' + (del ? ' class="sur"' : "") + '>' + (del ? "Retirer pour de bon ?" : "✕ Retirer") + '</button></div>'
+        : !wait && idCanEdit(x) ? '<div class="idc-b"><button type="button" data-idedit="' + esc(x.id) + '">✎ Modifier</button></div>' : "") + '</div>';
   }
   function ideesList(){
     var list = Object.keys(IDEES).map(function(k){ return Object.assign({ id:k }, IDEES[k]); })
@@ -3548,6 +3609,13 @@ html.sky-on #rsheet{z-index:50;}
         (k === "bug" ? "Ex. : dans « Époques », le bouton « Vu » ne répond pas sur mon téléphone" : "Ex. : pouvoir trier ma liste par durée") + '">' + esc(d.texte) + '</textarea></label>' +
       prenom + (k === "bug" ? '<p class="id-n">La taille de l\'écran, l\'ambiance et le navigateur sont joints pour aider à corriger.</p>' : "") +
       envoi(k === "bug" ? "🐞 Signaler le bug" : "✨ Envoyer l'idée") + '</form><div class="idsw">' + ideesList() + '</div>';
+    // Un film manquant : le même ajout que depuis la recherche (proposé à Licia pour les membres).
+    if (k === "film") return hintP("Que voulez-vous proposer ?") + choix +
+      '<form class="idf" data-idfilm="1" autocomplete="off">' +
+      '<label><span>Titre du film</span><input name="titre" maxlength="120" required></label>' +
+      '<label><span>Année <i>(si vous la connaissez)</i></span><input name="annee" inputmode="numeric" maxlength="4"></label>' +
+      (ROLE === "lecteur" || GUEST ? '<label><span>Votre prénom</span><input name="nom" maxlength="30" value="' + esc(monNom()) + '"></label>' : "") +
+      '<button type="submit" class="plf-ok">' + (CCM() || ROLE === "lecteur" || GUEST ? "🎬 Proposer ce film" : "🎬 Ajouter le film") + '</button></form><div class="idsw">' + ideesList() + '</div>';
     if (k !== "categorie") return hintP("Que voulez-vous proposer ?") + choix + '<div class="idsw">' + ideesList() + '</div>';
     return hintP("Que voulez-vous proposer ?") + choix +
       '<form class="idf" data-idform="1" autocomplete="off">' +
@@ -3564,6 +3632,8 @@ html.sky-on #rsheet{z-index:50;}
   }
   // Une idée arrive ou change : seulement la liste (le formulaire en cours de saisie ne bouge pas).
   function idRefresh(){
+    if (ID_EDIT && TAB === "idees" && document.querySelector('#toc [data-idedit="' + CSS.escape(ID_EDIT) + '"] textarea, #toc form[data-idedit] input')) { ID_LATER = true; return; }
+    ID_LATER = false;
     if (TAB === "idees") { var w = document.querySelector("#toc .idsw"); if (w) { w.innerHTML = ideesList(); return; } }
     if (!TAB) { var b = document.querySelector("#toc .idb"); if (b) b.outerHTML = ideeBtn(); }
   }
@@ -3581,7 +3651,7 @@ html.sky-on #rsheet{z-index:50;}
     pr = pr.charAt(0).toUpperCase() + pr.slice(1);
     if (!ideeCol) { setStatus("Pas enregistré : connectez-vous d'abord (bouton en haut).", true); return; }
     var ref = ideeCol.doc(), data = { kind:d.kind, type:d.kind === "categorie" ? d.type : d.kind, nom:nom, films:d.kind === "categorie" ? idClean(d.films, 200) : "", texte:d.kind === "categorie" ? "" : tx,
-      tech:d.kind === "bug" ? idTech() : "", prenom:pr, ajout:new Date().toISOString(), statut:"", source:"carnet" };
+      tech:d.kind === "bug" ? idTech() : "", prenom:pr, ajout:new Date().toISOString(), statut:"", source:"carnet", uid:(window.CC && CC.uid) || "" };
     var before = Object.assign({}, IDRAFT);
     if (!idMe()) try { localStorage.setItem(MONNOM_KEY, pr); } catch (e) {}
     IDEES[ref.id] = data; IDRAFT = { kind:d.kind, type:d.type, nom:"", films:"", texte:"", prenom:d.prenom };
@@ -3599,6 +3669,15 @@ html.sky-on #rsheet{z-index:50;}
     ideeCol.doc(id).set(IDEES[id]).then(function(){ setStatus(now ? "Idée retenue : « " + x.nom + " »." : "Idée remise en attente."); }, function(){
       IDEES[id] = Object.assign({}, x, { statut:was }); idRefresh(); setStatus("Pas enregistré, réessayez dans un instant.", true);
     });
+  }
+  function saveIdeeEdit(fm){
+    var id = fm.dataset.idedit, x = IDEES[id]; if (!idCanEdit(x) || !ideeCol) return;
+    var el = fm.elements, cat = x.kind !== "amelio" && x.kind !== "bug", upd = Object.assign({}, x);
+    if (cat) { upd.nom = idClean(el.namedItem("nom").value, 80); upd.films = idClean(el.namedItem("films").value, 200); if (!upd.nom) { setStatus("Écrivez le nom de l'idée.", true); return; } }
+    else { upd.texte = idClean(el.namedItem("texte").value, 500); upd.nom = upd.texte.slice(0, 80); if (!upd.texte) { setStatus("Le texte ne peut pas être vide.", true); return; } }
+    delete upd.uid;
+    IDEES[id] = Object.assign({}, upd, { uid:x.uid }); ID_EDIT = ""; idRefresh(); setStatus("Enregistrement…");
+    ideeCol.doc(id).set(upd).then(function(){ setStatus("Suggestion modifiée."); }, function(){ IDEES[id] = x; idRefresh(); setStatus("Pas modifiée, réessayez dans un instant.", true); });
   }
   // Retirer une idée : un premier toucher demande confirmation, un second la retire.
   function delIdee(id){
@@ -3635,6 +3714,9 @@ html.sky-on #rsheet{z-index:50;}
       return;
     }
     if (ev.target.closest("[data-idcopy]")) { copyText(idTodo(), "suggestions copiées", ev.target.closest("[data-idcopy]")); return; }
+    var ed = ev.target.closest("button[data-idedit]");
+    if (ed) { ID_EDIT = ed.dataset.idedit; idRefresh(); var f1 = document.querySelector('#toc form[data-idedit] textarea, #toc form[data-idedit] input'); if (f1) f1.focus({ preventScroll:true }); return; }
+    if (ev.target.closest("[data-idcancel]")) { ID_EDIT = ""; idRefresh(); return; }
     var okb = ev.target.closest("[data-idok]"); if (okb) { setIdeeStatut(okb.dataset.idok); return; }
     var del = ev.target.closest("[data-iddel]"); if (del) delIdee(del.dataset.iddel);
   });
@@ -3643,6 +3725,17 @@ html.sky-on #rsheet{z-index:50;}
     IDRAFT[ev.target.name] = ev.target.value; idLink();
   });
   $("toc").addEventListener("submit", function(ev){
+    var fe = ev.target.closest("form[data-idedit]"); if (fe) { ev.preventDefault(); saveIdeeEdit(fe); return; }
+    var ff = ev.target.closest("form[data-idfilm]");
+    if (ff) {
+      ev.preventDefault();
+      var el = ff.elements, t = el.namedItem("titre").value.trim(), y = el.namedItem("annee").value.trim();
+      if (!t) { setStatus("Écrivez le titre du film.", true); el.namedItem("titre").focus(); return; }
+      if (y && !/^[0-9]{4}$/.test(y)) { setStatus("L'année doit avoir quatre chiffres, ou rester vide.", true); el.namedItem("annee").focus(); return; }
+      addMissing(t, y, el.namedItem("nom") ? el.namedItem("nom").value : "");
+      ff.reset();
+      return;
+    }
     var fm = ev.target.closest("form[data-idform]"); if (!fm) return;
     ev.preventDefault(); addIdee();
   });
@@ -5768,7 +5861,7 @@ html.sky-on #rsheet{z-index:50;}
         var x = d.data() || {}; if (!x.nom) return;
         next[d.id] = { kind:x.kind === "amelio" || x.kind === "bug" ? x.kind : "categorie", texte:String(x.texte || "").slice(0, 500), tech:String(x.tech || "").slice(0, 300),
           type:String(x.type || "autre"), nom:String(x.nom).slice(0, 80), films:String(x.films || "").slice(0, 200), prenom:String(x.prenom || "").slice(0, 30),
-          ajout:String(x.ajout || ""), statut:x.statut === "retenue" ? "retenue" : "", source:String(x.source || "") };
+          ajout:String(x.ajout || ""), statut:x.statut === "retenue" ? "retenue" : "", source:String(x.source || ""), uid:String(x.uid || "") };
       });
       var sig = function(m){ return Object.keys(m).sort().map(function(k){ var x = m[k]; return k + "|" + x.nom + "|" + x.statut + "|" + x.films + "|" + x.type + "|" + x.kind + "|" + x.texte; }).join(","); };
       if (sig(next) === sig(IDEES)) return;
