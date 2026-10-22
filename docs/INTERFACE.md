@@ -55,3 +55,18 @@ remplacés par une base fictive ; aucune erreur de console ni requête imprévue
 - [ ] La fréquence et la douceur du clin d'œil conviennent-elles ?
 - [ ] Le néon sans cadre et les onze ampoules retrouvent-ils l'esprit souhaité ?
 - [ ] Le menu d'affichage permet-il bien de retrouver le rangement sur le compte administratrice ?
+
+## Mode édition (22 octobre 2026)
+
+« ✏️ Modifier le site », dans le menu Aa, est réservé à l'administratrice. Trois onglets :
+**Disposition** (ordre des blocs du haut de page et de la barre), **Textes** (boutons,
+aide et champ de recherche, filtres, noms des catégories, titres et sous-titres des listes ;
+vide = texte d'origine) et **Couleurs** (sept couleurs, réglées pour l'ambiance affichée).
+Tout s'applique en direct ; « Enregistrer pour tout le monde » écrit le document
+`apparence` du catalogue, « Annuler les changements » revient à la dernière version.
+
+## Images du film
+
+Le bouton 🎞 affiche dans la fiche quatre images tirées du film, venues de TMDB
+(The Movie Database), avec la mention « Images : TMDB ». Les résultats sont gardés sur
+l'appareil. Ce site utilise l'API de TMDB sans être approuvé ni certifié par TMDB.
