@@ -125,6 +125,9 @@ def install_routes(context, fixture=None, complements=None):
             request_route.fulfill(content_type="application/javascript", body=FIREBASE_JS)
         elif "firebase-" in url and ".js" in url:
             request_route.fulfill(content_type="application/javascript", body="")
+        elif "api.themoviedb.org" in url:
+            # Images et affiches : TMDB fictif, sans résultat.
+            request_route.fulfill(content_type="application/json", body='{"results":[]}')
         elif "fonts.googleapis.com" in url:
             request_route.fulfill(content_type="text/css", body="")
         else:

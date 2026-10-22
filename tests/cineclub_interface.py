@@ -47,17 +47,19 @@ def run():
             errors = errors_on(page)
             ready(page)
             assert page.evaluate("CC.auth.languageCode") == "fr"
-            assert page.locator('label[for="q"] > .fl:first-child').inner_text() == "↓"
-            assert page.locator(".nbulbs i").count() == 11
+            assert page.locator('label[for="q"]').is_hidden(), "l'aide au-dessus de la recherche est retirée"
+            assert page.locator(".nbulbs i").count() == 7
             assert page.locator(".nbulbs .dead").count() == 1
             assert page.locator("#ccRanger").is_hidden(), "Le rangement reste réservé à l'administratrice"
             if device == "telephone":
-                account = [page.locator(f"#{bid}").bounding_box() for bid in ("ccMbr", "ccMe", "ccQuiz")]
+                # Deux rangées compactes : Communauté et Mon compte, puis Boussole, Dérive et Ciel ; chaque libellé tient sur une ligne.
+                account = [page.locator(f"#{bid}").bounding_box() for bid in ("ccMbr", "ccMe")]
                 assert len({round(box["y"]) for box in account}) == 1, account
-                assert all(box["height"] >= 44 and box["width"] >= 44 for box in account)
-                exploration = [page.locator(f"#{bid}").bounding_box() for bid in ("skyToggle", "drToggle")]
-                assert round(exploration[0]["y"]) == round(exploration[1]["y"])
+                exploration = [page.locator(f"#{bid}").bounding_box() for bid in ("ccQuiz", "skyToggle", "drToggle")]
+                assert len({round(box["y"]) for box in exploration}) == 1, exploration
                 assert exploration[0]["y"] > account[0]["y"]
+                assert all(box["height"] >= 40 and box["width"] >= 44 for box in account + exploration)
+                assert page.evaluate("['ccMbr','ccMe','ccQuiz','skyToggle','drToggle'].every(id => { const b = document.getElementById(id); return b.scrollWidth <= b.clientWidth + 1; })"), "un libellé est coupé"
             for theme in ("jour", "neon"):
                 page.evaluate("theme => AMBI.set(theme)", theme)
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
@@ -126,7 +128,7 @@ def run():
         errors = errors_on(page)
         page.clock.install()
         ready(page)
-        page.clock.fast_forward(13000)
+        page.clock.fast_forward(9000)
         assert page.locator("button.cc-wink").count() == 1
         assert page.locator("h1.cc-wink").count() == 0
         page.locator("#aab").click()

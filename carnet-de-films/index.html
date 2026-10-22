@@ -433,7 +433,10 @@ a.shl{text-decoration:none;display:inline-block;}
 .nstep{font:600 15px/1 var(--font);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:99px;width:30px;height:30px;padding:0;cursor:pointer;flex:none;}
 .st-top{list-style:none;padding:0 !important;}
 .st-top li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid var(--line);}
-.st-top .num{color:var(--muted);font-variant-numeric:tabular-nums;}
+.st-top .num{color:var(--muted);font-variant-numeric:tabular-nums;text-align:center;}
+.st-top li{grid-template-columns:26px 30px minmax(0,1fr) auto!important;}
+.st-top .tp{width:30px;height:44px;border-radius:4px;background:var(--line) center/cover no-repeat;}
+.st-why summary{cursor:pointer;color:var(--muted);font-size:13px;margin-top:6px;}
 .st-top .tt{color:var(--ink);}
 .st-top .tt span{color:var(--muted);}
 .st-top .tn b{color:var(--ink);}
@@ -677,8 +680,8 @@ html.intro-on,html.intro-on body{overflow:hidden;}
 .ch-a.ch-ra{font-size:20px;letter-spacing:-.04em;}
 .ch-a.ch-ca{font-weight:400;color:var(--k-s-6A7A5A);}
 .ch-n{margin:0;font-size:16px;color:var(--muted);text-align:center;}
-.intro-x{position:absolute;z-index:5;right:14px;bottom:calc(44px + env(safe-area-inset-bottom,0px));font:600 16px/1 var(--font);
-  color:#F5D58A;background:rgba(20,11,7,.55);border:1.5px solid rgba(245,213,138,.6);border-radius:99px;padding:12px 18px;cursor:pointer;}
+.intro-x{position:absolute;z-index:5;right:16px;bottom:calc(132px + env(safe-area-inset-bottom,0px));font:600 17px/1 var(--font);
+  color:#F5D58A;background:rgba(20,11,7,.65);border:1.5px solid rgba(245,213,138,.7);border-radius:99px;padding:15px 24px;min-height:50px;cursor:pointer;}
 .intro-x[hidden]{display:none;}
 .intro.fin{opacity:0;transition:opacity .45s ease;}
 .intro.sans-anim .rideau,.intro.sans-anim .sc-t,.intro.sans-anim .scene{transition:none;}
@@ -873,16 +876,22 @@ html.th-neon.aff-calme h1{color:#F3E6FF;}
 /* Des commandes regroupées, avec la même respiration lumineuse. */
 .hint-q{text-align:left;font-size:12.5px;cursor:text;}
 .hint-q .fl{display:inline-block;margin-right:5px;}
+.bar .hint-q{display:none!important;}
 .pn-r{width:auto!important;padding-inline:10px!important;font-size:12.5px!important;}
-.cc-wink{--cc-cue:var(--muted);animation:ccButtonWink 5.2s ease-in-out 1;}
-html.th-neon .cc-wink{--cc-cue:#ff9bd6;}
-@keyframes ccButtonWink{0%,100%{box-shadow:0 0 0 0 transparent;}45%,60%{box-shadow:0 0 17px -5px var(--cc-cue),inset 0 0 12px -8px var(--cc-cue);}}
+/* Clin d'œil : un bouton pas encore essayé s'allume progressivement, reste un instant, puis s'éteint. En néon, il grésille en s'allumant comme un vrai tube. */
+.cc-wink{--cc-cue:var(--k-b-C8963A);animation:ccButtonWink 4.2s ease-in-out 1;}
+html.th-neon .cc-wink{--cc-cue:#ff9bd6;animation-name:ccNeonWink;}
+@keyframes ccButtonWink{0%,100%{box-shadow:0 0 0 0 transparent;}35%,62%{box-shadow:0 0 0 2px var(--cc-cue),0 0 18px 2px color-mix(in srgb,var(--cc-cue) 60%,transparent);}}
+@keyframes ccNeonWink{0%{box-shadow:0 0 0 0 transparent;}8%{box-shadow:0 0 0 1.5px var(--cc-cue),0 0 10px 1px var(--cc-cue);}10%{box-shadow:0 0 0 0 transparent;}13%{box-shadow:0 0 0 1.5px var(--cc-cue),0 0 14px 2px var(--cc-cue);}15%{box-shadow:0 0 0 .5px var(--cc-cue);}
+  35%,62%{box-shadow:0 0 0 2px var(--cc-cue),0 0 22px 4px color-mix(in srgb,var(--cc-cue) 70%,transparent),inset 0 0 10px -2px var(--cc-cue);}100%{box-shadow:0 0 0 0 transparent;}}
 html.aff-calme .cc-wink,html.aff-grand .cc-wink{animation:none!important;}
 @media(prefers-reduced-motion:reduce){.cc-wink{animation:none!important;}}
 @media(max-width:480px){
   .bar .ccbar{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;}
-  .bar .ccbar .ccb{grid-column:span 2;min-width:0;min-height:44px;padding:5px 4px;font-size:12.5px;line-height:1.15;white-space:normal;justify-content:center;text-align:center;}
-  .bar .ccbar #skyToggle,.bar .ccbar #drToggle{grid-column:span 3;font-size:13px;}
+  .bar .ccbar .ccb{grid-column:span 2;min-width:0;min-height:40px;padding:5px 3px;font-size:12.5px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;justify-content:center;text-align:center;}
+  .bar .ccbar #ccMbr,.bar .ccbar #ccMe{grid-column:span 3;font-size:13px;}
+  .bar .ccbar #ccQuiz,.bar .ccbar #skyToggle,.bar .ccbar #drToggle{grid-column:span 2;font-size:13px;}
+  .bar .ccbar #ccMbr[hidden]~#ccMe{grid-column:span 6;}
   html.aff-grand .bar .ccbar .ccb{font-size:14px;}
 }
 
@@ -1120,15 +1129,18 @@ html.th-neon:not(.aff-calme) h1{position:relative;justify-self:center;padding:8p
 html.th-neon:not(.aff-calme) h1::after{content:none;}
 html.th-neon:not(.aff-calme) .nl.off,html.th-neon:not(.aff-calme) h1.sign-off .nl{color:#4A2440;text-shadow:none;}
 html.th-neon:not(.aff-calme) .nl.dim{color:#C98AB6;text-shadow:0 0 3px #FF3FB0;}
+html.th-neon:not(.aff-calme) .nl.half{color:#E7A8D2;text-shadow:0 0 2px #FF8ED8,0 0 6px #FF3FB0;}
 /* Ampoules : une rampe plus courte ; verre ambré, filament chaud, éclat inégal d'une ampoule à l'autre.
    Une ampoule qui s'éteint refroidit en un dixième de seconde ; elle se rallume plus vite. */
-html.th-neon:not(.aff-calme) .nbulbs{display:flex;justify-content:space-between;align-items:center;justify-self:center;width:min(176px,55%);height:8px;margin-top:2px;
+html.th-neon:not(.aff-calme) .nbulbs{display:flex;justify-content:space-between;align-items:center;justify-self:center;width:min(150px,46%);height:10px;margin-top:3px;
   animation:nSway 29s ease-in-out infinite alternate-reverse!important;transform-origin:50% -60px;}
-.nbulbs i{width:5px;height:5px;border-radius:50%;background:radial-gradient(circle at 50% 42%,#FFF8E0 0 18%,#FFD27A 42%,#E2922C 78%,#8C4E12 100%);
-  box-shadow:0 0 2px .5px rgba(255,214,140,.95),0 0 7px 1.5px rgba(255,160,60,.5);filter:brightness(var(--br,1)) hue-rotate(var(--hu,0deg));
-  transition:filter .1s ease-out,box-shadow .1s ease-out;}
-.nbulbs i.off,.nbulbs i.dead{filter:brightness(.28) saturate(.45);box-shadow:none;}
-.nbulbs i:not(.off){transition-duration:.045s;}
+.nbulbs i{position:relative;width:7px;height:7px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95) 0 9%,transparent 16%),radial-gradient(circle at 50% 56%,#FFFBEA 0 14%,#FFE3A0 30%,#F4B04E 58%,#B8661C 84%,#6E3A10 100%);
+  box-shadow:0 0 2px 1px rgba(255,226,160,.9),0 0 8px 2px rgba(255,170,70,.55),0 0 18px 4px rgba(255,140,40,.18);filter:brightness(var(--br,1)) hue-rotate(var(--hu,0deg));
+  transition:filter .22s ease-out,box-shadow .22s ease-out;}
+.nbulbs i.off,.nbulbs i.dead{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.35) 0 9%,transparent 16%),radial-gradient(circle at 50% 56%,#8A6A4A 0 10%,#4A3A30 34%,#2C2228 72%,#1C1418 100%);
+  filter:none;box-shadow:inset 0 0 1px rgba(255,255,255,.25);}
+.nbulbs i:not(.off){transition-duration:.08s;}
 .nbulbs i.weak{--br:.62;--hu:-12deg;}
 /* Micro-mouvement : l'écriteau et la rampe se balancent de quelques dixièmes de degré, chacun à son rythme. */
 @keyframes nSway{from{transform:rotate(-.32deg);}to{transform:rotate(.32deg);}}
@@ -1339,7 +1351,7 @@ html.sky-on #rsheet{z-index:50;}
 <div class="wrap">
   <header class="top">
     <h1><span class="nvh">Ciné-club</span><span class="nlet" aria-hidden="true"><span class="nl">C</span><span class="nl">i</span><span class="nl">n</span><span class="nl">é</span><span class="nl">-</span><span class="nl">c</span><span class="nl">l</span><span class="nl">u</span><span class="nl">b</span></span></h1>
-    <div class="nbulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="nbulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <button type="button" class="nuitb aab" id="aab" aria-haspopup="true" aria-expanded="false" aria-controls="aamenu" aria-label="Affichage" title="Affichage">Aa</button>
     <div class="aamenu" id="aamenu" role="group" aria-label="Affichage" hidden>
       <p class="aa-h">Taille</p>
@@ -1366,7 +1378,7 @@ html.sky-on #rsheet{z-index:50;}
 </header>
 
   <div class="bar">
-    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" data-tx="btn.boussole" hidden>🧭 Boussole cinéma</button></div>
+    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" data-tx="btn.boussole" aria-label="Boussole cinéma" hidden>🧭 Boussole</button></div>
     <div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
     <label class="hint hint-q" for="q"><span class="fl" aria-hidden="true">↓</span> <span data-tx="recherche.aide">Chercher un film, un cinéaste ou un thème</span></label>
@@ -1660,9 +1672,12 @@ html.sky-on #rsheet{z-index:50;}
     var h = "";
     if (!CC.uid) {
       h = '<h3>Entrer au Ciné-club</h3>' +
-        '<p class="sh-note">Pour noter tes films et voir les notes des autres membres. Aucun mot de passe : tu reçois un lien de connexion par e-mail.</p>' +
+        '<div class="plf-b"><button type="button" class="plf-ok cc-g" id="ccGoogle">Continuer avec Google</button></div>' +
+        '<p class="sh-note">Le plus simple : un toucher, sans e-mail ni mot de passe.</p>' +
+        '<details class="cc-mail"><summary>Sans compte Google : recevoir un lien par e-mail</summary>' +
         '<label class="ccl"><span>Ton adresse e-mail</span><input type="email" id="ccEmail" class="ccin" autocomplete="email" inputmode="email" placeholder="prenom@exemple.fr"></label>' +
-        '<div class="plf-b"><button type="button" class="plf-ok" id="ccSend">Recevoir le lien</button><button type="button" class="plf-no" id="ccGoogle">Continuer avec Google</button></div>';
+        '<div class="plf-b"><button type="button" class="plf-no" id="ccSend">Recevoir le lien</button></div>' +
+        '<p class="sh-note">Le premier e-mail arrive souvent dans les indésirables : marque-le « Non indésirable », les suivants arriveront normalement.</p></details>';
     } else if (!CC.me) {
       h = '<h3>Ton prénom ou pseudo</h3><p class="sh-note">C\'est le nom que les autres membres verront à côté de tes notes.</p>' +
         '<input type="text" id="ccPseudo" class="ccin" maxlength="30" autocomplete="nickname" placeholder="Prénom" value="' + esc(CC.admin ? "Licia" : (CC.user && CC.user.displayName || "").split(" ")[0]) + '">' +
@@ -1705,7 +1720,7 @@ html.sky-on #rsheet{z-index:50;}
     note("Envoi du lien…");
     auth.sendSignInLinkToEmail(em, { url:location.origin + location.pathname, handleCodeInApp:true }).then(function(){
       ls("ccEmail", em);
-      note("C'est envoyé à " + em + ". Ouvre l'e-mail sur ce téléphone ou cet ordinateur et touche le lien (regarde aussi dans les indésirables).");
+      note("C'est envoyé à " + em + ". Ouvre l'e-mail sur cet appareil et touche le lien. S'il n'est pas là, regarde dans les indésirables et marque-le « Non indésirable ».");
     }, function(e){ note(e && e.code === "auth/quota-exceeded" ? "Trop de liens envoyés aujourd'hui : réessaie demain ou utilise Google." : "Le lien n'a pas pu partir. Vérifie l'adresse et réessaie.", true); });
   }
   function google(){
@@ -2656,7 +2671,7 @@ html.sky-on #rsheet{z-index:50;}
         var paths = bd.map(function(x){ return x.file_path; }).filter(Boolean);
         if (!paths.length && hit.backdrop_path) paths = [hit.backdrop_path];
         if (!paths.length && hit.poster_path) paths = [hit.poster_path];
-        return { t:tv ? "tv" : "movie", id:hit.id, p:paths.slice(0, 24) };
+        return { t:tv ? "tv" : "movie", id:hit.id, p:paths.slice(0, 24), poster:hit.poster_path || "" };
       });
     });
   }
@@ -3016,7 +3031,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       return '<div class="pf-row"><div class="pf-l"><b>' + esc(r.p[1]) + '</b><span>' + (r.W >= .5 ? fr1(r.m) + '/10 · ≈ ' + n + ' film' + (n > 1 ? "s" : "") + (r.W < 5 ? " · à confirmer" : "") : "pas encore de film") + '</span></div>' +
         (r.W >= .5 ? '<div class="pf-bar" role="img" aria-label="' + r.b + ' % bien notés, ' + moy + ' % moyens, ' + r.x + ' % pas aimés"><i class="b" style="width:' + r.b + '%"></i><i class="m" style="width:' + moy + '%"></i><i class="x" style="width:' + r.x + '%"></i></div>' +
           '<div class="pf-k">' + r.b + ' % bien notés · ' + r.x + ' % pas aimés</div>' : "") + '</div>';
-    }).join("") + '</div><p class="st-note">Chaque film est réparti entre les familles (par exemple 60 % esthétique, 40 % sombre) et compte une seule fois au total : « ≈ 20 films » additionne ces parts. Bien notés : 7 et plus ; pas aimés : moins de 5. Familles de goûts d\'après Rentfrow, Goldberg et Zilca (2011).</p>';
+    }).join("") + '</div><details class="st-why"><summary>Comment c\'est calculé ?</summary><p class="st-note">Chaque film est réparti entre les familles (par exemple 60 % esthétique, 40 % sombre) et compte une seule fois au total : « ≈ 20 films » additionne ces parts. Bien notés : 7 et plus ; pas aimés : moins de 5. Familles de goûts d\'après Rentfrow, Goldberg et Zilca (2011).</p></details>';
   }
   function statsHtml(s, i){
     var ids = Object.keys(films), vus = 0, oub = 0, rated = [], sum = 0, byC = {}, byM = {}, seenMv = {};
@@ -3042,13 +3057,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       return '<div class="st-rows">' + r.map(function(k){
         var nm = label === "pays" ? k : MV_INFO[k].label;
         return '<div class="st-row"><span><b>' + esc(nm) + '</b></span><span>' + fr1(avg(map[k])) + '/10 · ' + map[k].length + ' film' + (map[k].length > 1 ? "s" : "") + '</span></div>';
-      }).join("") + '</div>' + (label === "pays" ? '<p class="st-note">Un film coproduit par plusieurs pays compte pour une part dans chacun. Ordre : un pays ou un mouvement vu peu de fois est ramené vers ta moyenne, pour ne pas passer devant avec deux films seulement.</p>' : "");
+      }).join("") + '</div>' + (label === "pays" ? '<details class="st-why"><summary>Comment c\'est classé ?</summary><p class="st-note">Un film coproduit par plusieurs pays compte pour une part dans chacun. Un pays ou un mouvement vu peu de fois est ramené vers ta moyenne, pour ne pas passer devant avec deux films seulement.</p></details>' : "");
     }
     rated = topRated();
     var topList = TOP_ORDER ? TOP_ORDER.map(function(id){ return films[id]; }).filter(function(f){ return f; }) : rated.slice(0, 20);
     var top = topList.map(function(f, i){
       var tid = esc(f.id);
-      return '<li><span class="num">' + (i + 1) + '.</span><span class="tt">' + esc(f.t) + (f.y ? ' <span>(' + esc(f.y) + ')</span>' : "") + '</span>' +
+      return '<li><span class="num">' + (["🥇", "🥈", "🥉"][i] || (i + 1) + ".") + '</span><span class="tp" data-tposter="' + tid + '" aria-hidden="true"></span><span class="tt">' + esc(f.t) + (f.y ? ' <span>(' + esc(f.y) + ')</span>' : "") + '</span>' +
         '<span class="tn"><button type="button" class="nstep" data-tstep="-1" data-tid="' + tid + '" aria-label="Baisser la note de ' + esc(f.t) + ' de 0,1">−</button>' +
         '<b>' + fmtN((answers[f.id] || {}).note10) + '</b><button type="button" class="nstep" data-tstep="1" data-tid="' + tid + '" aria-label="Monter la note de ' + esc(f.t) + ' de 0,1">+</button></span></li>';
     }).join("");
@@ -3065,8 +3080,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         '<div class="st-tile"><b>' + (rated.length ? fr1(sum / rated.length) : "–") + '</b><span>note moyenne sur 10</span></div>' +
         '<div class="st-tile"><b>' + oub + '</b><span>films oubliés</span></div>' +
       '</div>' +
-      '<div class="st-b"><h3>Ton profil de cinéphile</h3>' + profilHtml() + '</div>' +
       '<div class="st-b"><div class="st-hd"><h3>Ton top 20</h3>' + (top ? '<button type="button" class="shb" data-sharetop="1" aria-label="Partager ton top 20">↗ Partager</button>' : "") + '</div>' + (top ? '<ol class="st-top">' + top + '</ol>' : '<p class="st-note">Note des films sur 10 pour voir ton top ici.</p>') + '</div>' +
+      '<div class="st-b"><h3>Ton profil de cinéphile</h3>' + profilHtml() + '</div>' +
       '<div class="st-b"><h3>Tes notes par pays</h3>' + rows(byC, "pays", 2) + '</div>' +
       '<div class="st-b"><h3>Tes notes par mouvement</h3>' + rows(byM, "mv", 2) + '</div>' +
       '<div class="st-b"><h3>Mouvements pas encore explorés</h3>' + (todo.length ? '<div class="st-mv">' + todo.map(function(m){
@@ -4120,11 +4135,21 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     return h + '</div>';
   }
 
+  function topPosters(){
+    document.querySelectorAll(".tp[data-tposter]:not(.ok)").forEach(function(el){
+      var id = el.dataset.tposter, f = films[id]; if (!f) return; el.classList.add("ok");
+      var put = function(r){ if (r && r.poster) el.style.backgroundImage = 'url("https://image.tmdb.org/t/p/w92' + r.poster + '")'; };
+      if (IMG_C[id] && IMG_C[id].poster !== undefined) { put(IMG_C[id]); return; }
+      if (!IMG_P[id] || (IMG_C[id] && IMG_C[id].poster === undefined)) IMG_P[id] = tmdbFind(f).then(function(r){ IMG_C[id] = r || { p:[], poster:"" }; try { localStorage.setItem(IMG_KEY, JSON.stringify(IMG_C)); } catch (e) {} return IMG_C[id]; }, function(){ delete IMG_P[id]; return null; });
+      IMG_P[id].then(put);
+    });
+  }
   function renderAll(){
     var tk = frzKey(); if (TOP_KEY !== tk) { TOP_KEY = tk; TOP_ORDER = null; }
     var ae = document.activeElement, afm = ae && ae.closest && ae.closest("form[data-plform]");
     var fst = afm ? { sel:'form[data-plform="' + CSS.escape(afm.dataset.plform) + '"]', name:ae.name, pos:ae.selectionStart } : null;
     renderAll0();
+    topPosters();
     renderEnv();
     document.querySelectorAll("form[data-plform]").forEach(function(f){ if (typeof renderSugg === "function") renderSugg(f); });
     goHash();
@@ -6259,12 +6284,26 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     }
     later(bulbs, 150, 800, 1800, 7000, 7000, 18000);
   }
+  // Grésillement de tube : une rafale de micro-coupures (20 à 70 ms), souvent à mi-lumière plutôt qu'au noir complet.
+  function buzz(el, n){
+    var t = 0;
+    for (var i = 0; i < n; i++) {
+      var cls = Math.random() < .65 ? "half" : "off", a = (t += R(18, 70)), b = (t += R(20, 65));
+      (function(c, a1, b1){ setTimeout(function(){ el.classList.add(c); }, a1); setTimeout(function(){ el.classList.remove(c); }, b1); })(cls, a, b);
+    }
+    return t;
+  }
   function letters(){
     if (on()) {
-      var h = document.querySelector("h1"), x = Math.random();
-      if (x < .06) flick(h, "sign-off");
-      else if (x < .2) { var d = pick(document.querySelectorAll(".nl")); d.classList.add("dim"); setTimeout(function(){ d.classList.remove("dim"); }, R(1500, 9000)); }
-      else flick(pick(document.querySelectorAll(".nl")), "off");
+      var h = document.querySelector("h1"), x = Math.random(), L = document.querySelectorAll(".nl");
+      if (x < .05) flick(h, "sign-off");
+      else if (x < .22) {
+        // Une lettre fatiguée : elle grésille, faiblit, puis reprend en crachotant.
+        var d = pick(L), t0 = buzz(d, 3 + Math.floor(R(0, 5)));
+        setTimeout(function(){ d.classList.add("dim"); }, t0 + 20);
+        setTimeout(function(){ d.classList.remove("dim"); buzz(d, 2 + Math.floor(R(0, 4))); }, t0 + R(1200, 6000));
+      }
+      else buzz(pick(L), 2 + Math.floor(R(0, 8)));
     }
     later(letters, 200, 1000, 3000, 11000, 11000, 30000);
   }
@@ -6349,15 +6388,16 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function cue(){
     stop();
     if(!document.hidden&&!motion.matches&&!de.classList.contains("aff-calme")&&!de.classList.contains("aff-grand")&&!de.classList.contains("intro-on")&&!document.querySelector('.sheet:not([hidden]),.nt-panel:not([hidden]),.sky:not([hidden]),.drift:not([hidden]),.ccguide:not([hidden])')){
-      var candidates=Array.prototype.filter.call(document.querySelectorAll('#ccMbr,#ccQuiz,#skyToggle,#drToggle,#dice,#toc button'),function(b){return !b.disabled&&!b.closest("[inert]")&&b.getClientRects().length&&b.getAttribute("aria-pressed")!=="true"&&!visited[key(b)]&&document.activeElement!==b;});
-      if(candidates.length){active=candidates[Math.floor(Math.random()*candidates.length)];active.classList.add("cc-wink");off=setTimeout(stop,5500);}
+      var vh=window.innerHeight;
+      var candidates=Array.prototype.filter.call(document.querySelectorAll('#ccMbr,#ccQuiz,#skyToggle,#drToggle,#dice,#toc button,#toc .sub,.fimg-b'),function(b){var r=b.getBoundingClientRect();return !b.disabled&&!b.closest("[inert]")&&r.width&&r.top>60&&r.bottom<vh-70&&b.getAttribute("aria-pressed")!=="true"&&!visited[key(b)]&&document.activeElement!==b;});
+      if(candidates.length){active=candidates[Math.floor(Math.random()*candidates.length)];active.classList.add("cc-wink");off=setTimeout(stop,4400);}
     }
-    setTimeout(cue,22000+Math.random()*14000);
+    setTimeout(cue,15000+Math.random()*10000);
   }
   document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("button");if(b)visited[key(b)]=1;stop();},true);
   document.addEventListener("focusin",stop);document.addEventListener("visibilitychange",stop);
   new MutationObserver(function(){if(de.classList.contains("aff-calme")||de.classList.contains("aff-grand"))stop();}).observe(de,{attributes:true,attributeFilter:["class"]});
-  setTimeout(cue,12000);
+  setTimeout(cue,8000);
 })();
 </script>
 
