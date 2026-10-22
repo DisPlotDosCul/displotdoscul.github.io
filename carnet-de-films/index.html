@@ -443,6 +443,13 @@ a.shl{text-decoration:none;display:inline-block;}
 .totop{position:fixed;right:10px;bottom:calc(32vh + env(safe-area-inset-bottom,0px));z-index:6;height:44px;border-radius:99px;padding:0 16px;
   border:2px solid var(--k-b-C8963A);background:var(--paper);color:var(--ink);font:600 14.5px/1 var(--font);cursor:pointer;box-shadow:0 3px 14px rgba(44,34,48,.3);}
 .totop[hidden]{display:none;}
+html.qon #main{min-height:calc(100vh - 60px);align-content:start;}
+html.navon .wrap{padding-bottom:64px;}
+.navb{position:fixed;left:10px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;gap:8px;}
+.navb[hidden]{display:none;}
+.navb .totop{position:static;width:48px;padding:0;font-size:20px;}
+.navb .totop:disabled{opacity:.35;cursor:default;}
+html.sky-on .navb,html.drift-on .navb{display:none;}
 .gpill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top,0px));z-index:9;white-space:nowrap;height:44px;border-radius:99px;padding:0 16px;
   border:2px solid var(--k-b-FFFFFF);background:var(--k-s-475569);color:var(--k-s-FFFFFF);font:600 14px/1 var(--font);cursor:pointer;box-shadow:0 3px 14px rgba(44,34,48,.3);}
 .gpill[hidden]{display:none;}
@@ -1069,6 +1076,7 @@ html.th-neon:not(.aff-calme) body::before{content:"";position:fixed;inset:-15%;z
   background:radial-gradient(40% 30% at 30% 18%,rgba(150,70,255,.4),transparent 70%),radial-gradient(35% 28% at 82% 55%,rgba(255,45,170,.28),transparent 70%),radial-gradient(38% 30% at 15% 85%,rgba(60,200,255,.22),transparent 70%);
   animation:nSky 9s ease-in-out infinite alternate,nDrift 31s ease-in-out infinite alternate!important;}
 @keyframes nSky{from{opacity:.35;}to{opacity:1;}}
+html.ff.th-neon:not(.aff-calme) body::before{animation:none!important;opacity:.7;transform:none;}
 @keyframes nDrift{from{transform:translate3d(-4%,-2%,0) scale(1);}to{transform:translate3d(4%,2%,0) scale(1.08);}}
 /* Barre de progression : des dents de scie à peine plus claires que la couleur, qui glissent d'un tiers de pixel par seconde. */
 html.th-neon:not(.aff-calme) .progress i{background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--vu) 86%,#000) 0,var(--vu) 11px,color-mix(in srgb,var(--vu) 88%,#FFF) 13px,color-mix(in srgb,var(--vu) 86%,#000) 13px) 0 0/13px 100%;
@@ -1346,6 +1354,7 @@ html.sky-on #rsheet{z-index:50;}
   <button type="button" class="intro-x" id="introX">Passer ›</button>
 </div>
 <button type="button" class="totop" id="totop" aria-label="Revenir en haut de la page" hidden>↑ Haut</button>
+<div class="navb" id="navb" role="group" aria-label="Actions précédentes" hidden><button type="button" class="totop" id="navBack" aria-label="Revenir à l'affichage précédent" title="Revenir à l'affichage précédent">←</button><button type="button" class="totop" id="navFwd" aria-label="Aller à l'affichage suivant" title="Aller à l'affichage suivant">→</button></div>
 <button type="button" class="gpill" id="gpill" hidden>👁 Vue de mes amis · Quitter</button>
 <button type="button" class="envbar" id="envbar" aria-haspopup="dialog" hidden></button>
 <div class="sheet" id="sheet" role="dialog" aria-modal="false" aria-labelledby="sheet-h" hidden>
@@ -1430,7 +1439,7 @@ html.sky-on #rsheet{z-index:50;}
   window.claude = window.claude || {};
   var $ = function(id){ return document.getElementById(id); };
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]; }); }
-  function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[’‘ʼ`´]/g, "'"); }
   CC.slug = function(p){ return norm(p).split(/\s+/)[0].replace(/[^a-z0-9]/g, "") || "ami"; };
   // Identifiant stable d'un membre : « pid » (ancien prénom pour les comptes d'avant, « m_ » + compte pour les nouveaux).
   CC.pidOf = function(p){ return p ? String(p.pid || p.slug || "") : ""; };
@@ -2264,6 +2273,9 @@ html.sky-on #rsheet{z-index:50;}
   function isMine(){ return ROLE === "proprio" || ROLE === "inconnu"; }
   function CCA(){ return !!(window.CC && CC.admin); }
   function CCM(){ return !!(window.CC && CC.uid && !CC.admin); }
+  // Connecté avec un profil (administratrice comprise) : on ne donne son avis et on ne commente qu'en son propre nom.
+  function SELF(){ return !!(window.CC && CC.uid && CC.me && CC.pid()); }
+  function selfOnly(pid){ return !SELF() || pid === CC.pid(); }
   // Listes faites pour Licia : un membre les voit décrites comme celles de Licia.
   var LICIA_S = { "s08-liste-cauchemar":1, "s24-nouveau-malaise":1 };
   // Nom de la personne dont on regarde le carnet (Licia par défaut).
@@ -2493,7 +2505,8 @@ html.sky-on #rsheet{z-index:50;}
   document.addEventListener("keydown", function(){ PTR = false; document.documentElement.classList.remove("ptr"); }, true);
   function refocus(el){ if (el && !PTR) el.focus({ preventScroll:true }); }
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
-  function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/œ/g, "oe").replace(/æ/g, "ae"); }
+  // L'apostrophe courbe des claviers de téléphone (’) vaut l'apostrophe droite (') des titres.
+  function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/œ/g, "oe").replace(/æ/g, "ae").replace(/[’‘ʼ`´]/g, "'"); }
 
   var TOAST_T = null;
   // Erreur de chargement : un message clair avec « Réessayer » (recharge la page).
@@ -2594,8 +2607,9 @@ html.sky-on #rsheet{z-index:50;}
     plw += comsHtml(f) + mbrHtml(f);
     var open = OPEN_PL === f.sid + "|" + f.id;
     var plb = PEOPLE.length || useForm() || ROLE !== "lecteur" ? '<button type="button" class="plb" data-pl="1" aria-expanded="' + open + '">♡ Conseiller</button>' : "";
-    var plc = (PEOPLE.length || useForm() || ROLE !== "lecteur") && open ? '<div class="plc" role="group" aria-label="Qui conseille ce film ?"><span class="plq">Qui donne son avis ?</span>' +
-      (CCM() ? PEOPLE.filter(function(p){ return CC.me && p.id === CC.pid(); }) : PEOPLE).map(function(p){
+    var mineP = SELF() ? PEOPLE.filter(function(p){ return p.id === CC.pid(); }) : PEOPLE;
+    var plc = (PEOPLE.length || useForm() || ROLE !== "lecteur") && open ? '<div class="plc" role="group" aria-label="Qui conseille ce film ?">' + (mineP.length || !SELF() ? '<span class="plq">Qui donne son avis ?</span>' : "") +
+      mineP.map(function(p){
         var on = !!(CONSEILS[p.id] && CONSEILS[p.id][f.id]) || (ROLE === "lecteur" && envIdx(p.id, f.id) >= 0);
         var no = on && (ROLE === "lecteur" ? (ENVOI[envIdx(p.id, f.id)] || {}).avis === "non" : isNon(p.id, f.id));
         return '<button type="button" class="chip" data-pn="' + esc(p.id) + '" aria-pressed="' + on + '">' + (on ? (no ? "👎 " : "♥ ") : "") + esc(p.label) + '</button>';
@@ -2604,7 +2618,7 @@ html.sky-on #rsheet{z-index:50;}
       (useForm() ? (function(){ var on = envIdx("_", f.id) >= 0;
         var nm = on ? (ENVOI[envIdx("_", f.id)] || {}).nom || "" : "";
         return '<button type="button" class="chip autre-p" data-pn="_" aria-pressed="' + on + '">' + (on ? "♥ " : "") + (nm ? esc(nm) : 'Quelqu\'un d\'autre') + '</button>'; })() : "") +
-      (ROLE !== "lecteur" && CCA() ? (NEWP === f.sid + "|" + f.id
+      (ROLE !== "lecteur" && CCA() && !SELF() ? (NEWP === f.sid + "|" + f.id
         ? '<span class="np"><input type="text" class="np-in" maxlength="30" placeholder="Prénom" aria-label="Prénom de la personne qui conseille ce film" autocomplete="off">' +
           '<button type="button" class="chip np-ok" data-newok="1">OK</button></span>'
         : '<button type="button" class="chip autre-p" data-newp="1">＋ Nouvelle personne</button>') : "") +
@@ -2744,7 +2758,10 @@ html.sky-on #rsheet{z-index:50;}
   // Cartes paresseuses : chaque film n'est dessiné qu'à l'approche de l'écran, pour que les boutons répondent tout de suite.
   var LZF = {}, LZIO = null, LZH_DONE = false;
   var NATIVE_ANCHOR = !!(window.CSS && CSS.supports && CSS.supports("overflow-anchor", "auto"));
-  if (NATIVE_ANCHOR && CSS.supports("content-visibility", "auto")) document.documentElement.classList.add("cv");
+  // Firefox saute pendant le défilement avec content-visibility et le ciel néon animé : on garde les cartes paresseuses sans ces deux effets.
+  var FFX = !!(window.CSS && CSS.supports && CSS.supports("-moz-appearance", "none"));
+  if (FFX) document.documentElement.classList.add("ff");
+  if (NATIVE_ANCHOR && !FFX && CSS.supports("content-visibility", "auto")) document.documentElement.classList.add("cv");
   function lzFill(el){
     if (!el || !el.classList.contains("lz")) return;
     var sec = el.closest("section.s"), f = sec && LZF[sec.id.slice(4) + "|" + el.dataset.id]; if (!f) return;
@@ -3070,9 +3087,50 @@ html.sky-on #rsheet{z-index:50;}
     }
     return fams;
   }
+  // Flèches ← → : chaque changement d'affichage (catégorie, liste, recherche, filtre) devient une étape de l'historique.
+  var NAV = { i:0, max:0, busy:false, t:0, q:false };
+  function navNow(){ return { cc:1, show:SHOW ? JSON.parse(JSON.stringify(SHOW)) : null, q:$("q").value, f:filter, tab:TAB }; }
+  function navSig(x){ return JSON.stringify([x.show, x.q, x.f, x.tab]); }
+  function navPaint(){
+    var b = $("navb"); if (!b) return;
+    b.hidden = NAV.i <= 0 && NAV.max <= NAV.i; document.documentElement.classList.toggle("navon", !b.hidden);
+    $("navBack").disabled = NAV.i <= 0; $("navFwd").disabled = NAV.i >= NAV.max;
+  }
+  function navRecord(){
+    if (NAV.busy || !sections.length) return;
+    var st = navNow(), cur = history.state && history.state.cc ? history.state : null;
+    if (!cur) { st.i = NAV.i = 0; NAV.max = 0; st.max = 0; st.y = window.pageYOffset; try { history.replaceState(st, ""); } catch (e) {} navPaint(); return; }
+    if (navSig(cur) === navSig(st)) return;
+    var now = Date.now(), typing = cur.q !== st.q && navSig(Object.assign({}, cur, { q:"" })) === navSig(Object.assign({}, st, { q:"" }));
+    try {
+      // Pendant qu'on tape une recherche, on remplace l'étape au lieu d'en empiler une par lettre.
+      if (typing && NAV.q && now - NAV.t < 1500) { st.i = NAV.i; st.max = NAV.max = NAV.i; st.y = cur.y; history.replaceState(st, ""); }
+      else {
+        history.replaceState(Object.assign({}, cur, { y:window.pageYOffset }), "");
+        st.i = NAV.i = NAV.i + 1; st.max = NAV.max = NAV.i; st.y = 0; history.pushState(st, "");
+      }
+    } catch (e) {}
+    NAV.t = now; NAV.q = typing || (cur.q !== st.q);
+    navPaint();
+  }
+  var NAV_T = 0;
+  function navLater(){ clearTimeout(NAV_T); NAV_T = setTimeout(navRecord, 0); }
+  window.addEventListener("popstate", function(ev){
+    var st = ev.state; if (!st || !st.cc) return;
+    NAV.busy = true; NAV.i = st.i || 0; NAV.max = Math.max(NAV.max, st.max || 0, NAV.i); NAV.q = false;
+    SHOW = st.show || null; filter = st.f || "all"; TAB = st.tab || "";
+    $("q").value = st.q || ""; $("qx").hidden = !st.q; query = norm(String(st.q || "").trim()); ADDQ = null;
+    document.documentElement.classList.toggle("qon", !!query);
+    document.querySelectorAll("#filters .chip").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.f === filter ? "true" : "false"); });
+    renderAll();
+    var y = +st.y || 0; requestAnimationFrame(function(){ window.scrollTo({ top:y }); if (lzFillNow()) window.scrollTo({ top:y }); NAV.busy = false; });
+    navPaint();
+  });
+  $("navBack").addEventListener("click", function(){ if (NAV.i > 0) history.back(); });
+  $("navFwd").addEventListener("click", function(){ if (NAV.i < NAV.max) history.forward(); });
   function renderToc(){
     var fa = document.activeElement, fin = fa && fa.closest && fa.closest("#toc form[data-idform]") && fa.name ? { n:fa.name, p:fa.selectionStart } : null;
-    renderToc0();
+    renderToc0(); navLater();
     if (fin) {
       var ni = document.querySelector('#toc form[data-idform] [name="' + fin.n + '"]');
       if (ni) { ni.focus({ preventScroll:true }); try { ni.setSelectionRange(fin.p, fin.p); } catch (e) {} }
@@ -3751,7 +3809,7 @@ html.sky-on #rsheet{z-index:50;}
         .map(function(x){ return x.f; });
       res = frz("tout", res, globalFilms());
       GLOBAL = { id:"tout", search:true, titre:"Recherche : « " + raw + " »", films:res };
-      html = addBoxHtml(raw) + (res.length ? sectionHtml(GLOBAL, 3, res) : '<p class="notice">Aucun film du carnet ne correspond à « ' + esc(raw) + ' ».</p>');
+      html = res.length ? sectionHtml(GLOBAL, 3, res) + addBoxHtml(raw) : '<p class="notice">Aucun film du carnet ne correspond à « ' + esc(raw) + ' ».</p>' + addBoxHtml(raw);
       shown = 1;
     }
     // Pour toi : coller le message d'un·e ami·e et valider ses conseils, depuis le sommaire.
@@ -4141,7 +4199,7 @@ html.sky-on #rsheet{z-index:50;}
   function motFields(f){
     var chosen = ROLE === "lecteur"
       ? PEOPLE.filter(function(p){ return envIdx(p.id, f.id) >= 0; }).concat(envIdx("_", f.id) >= 0 ? [{ id:"_", label:"" }] : [])
-      : PEOPLE.filter(function(p){ return CONSEILS[p.id] && CONSEILS[p.id][f.id]; });
+      : PEOPLE.filter(function(p){ return CONSEILS[p.id] && CONSEILS[p.id][f.id] && selfOnly(p.id); });
     return chosen.map(function(p){
       var cur = ROLE === "lecteur" ? (ENVOI[envIdx(p.id, f.id)] || {}).mot || "" : (MOTS[p.id] || {})[f.id] || "";
       var no = ROLE === "lecteur" ? (ENVOI[envIdx(p.id, f.id)] || {}).avis === "non" : isNon(p.id, f.id), me = ROLE === "lecteur";
@@ -4157,6 +4215,7 @@ html.sky-on #rsheet{z-index:50;}
     }).join("");
   }
   function setAvis(pid, id, v){
+    if (!selfOnly(pid)) return;
     var non = v === "non";
     if (ROLE === "lecteur") {
       var i = envIdx(pid, id); if (i < 0) return;
@@ -4189,6 +4248,7 @@ html.sky-on #rsheet{z-index:50;}
     keepEnvoi();
   }
   function saveMot(pid, id, txt){
+    if (!selfOnly(pid)) return;
     txt = String(txt || "").trim().replace(/\s+/g, " ").slice(0, 160);
     if (ROLE === "lecteur") {
       var i = envIdx(pid, id); if (i < 0) return;
@@ -4226,12 +4286,12 @@ html.sky-on #rsheet{z-index:50;}
   function comForm(f){
     if (OPEN_COM !== f.sid + "|" + f.id) return "";
     var last = ""; try { last = localStorage.getItem(NOM_KEY) || ""; } catch (e) {}
-    var opts = CCM() && CC.me ? [{ v:CC.pid(), l:CC.me.pseudo }] : (ROLE !== "lecteur" ? [{ v:"licia", l:"Licia" }] : []).concat(PEOPLE.map(function(p){ return { v:p.id, l:p.label }; }));
-    if ((!last || CCM()) && opts.length) last = opts[0].v;
+    var opts = SELF() ? [{ v:CC.pid(), l:CC.me.pseudo }] : (ROLE !== "lecteur" ? [{ v:"licia", l:"Licia" }] : []).concat(PEOPLE.map(function(p){ return { v:p.id, l:p.label }; }));
+    if ((!last || SELF()) && opts.length) last = opts[0].v;
     var other = last && !opts.some(function(o){ return o.v === last; });
     return '<div class="cform" role="group" aria-label="Commenter ' + esc(f.t) + '">' +
       '<select class="c-who" aria-label="Ton nom">' + opts.map(function(o){ return '<option value="' + esc(o.v) + '"' + (o.v === last ? " selected" : "") + '>' + esc(o.l) + '</option>'; }).join("") +
-      (CCM() ? "" : '<option value="__autre"' + (other || !opts.length ? " selected" : "") + '>＋ Autre nom…</option>') + '</select>' +
+      (SELF() ? "" : '<option value="__autre"' + (other || !opts.length ? " selected" : "") + '>＋ Autre nom…</option>') + '</select>' +
       '<input type="text" class="c-nom" maxlength="30" placeholder="Ton prénom" aria-label="Ton prénom" value="' + esc(other ? last : "") + '"' + (other || !opts.length ? "" : " hidden") + ' autocomplete="off">' +
       '<input type="text" class="c-in" maxlength="140" placeholder="Ton commentaire" aria-label="Ton commentaire" autocomplete="off">' +
       '<button type="button" class="chip np-ok c-ok" data-cok="1">OK</button></div>';
@@ -4245,7 +4305,7 @@ html.sky-on #rsheet{z-index:50;}
     if (!nom) { setStatus("Écris ton prénom."); nin.hidden = false; nin.focus(); return; }
     nom = nom.charAt(0).toUpperCase() + nom.slice(1);
     var pid = norm(nom).split(" ")[0].replace(/[^a-z0-9]/g, "") || "anonyme";
-    if (CCM() && CC.me) { pid = CC.pid(); nom = CC.me.pseudo; }
+    if (SELF()) { pid = CC.pid(); nom = CC.me.pseudo; }
     try { localStorage.setItem(NOM_KEY, sel.value === "__autre" ? nom : sel.value); } catch (e) {}
     function viaForm(){
       ENVOI.push({ kind:"com", pid:PEOPLE.some(function(p){ return p.id === pid; }) ? pid : pid, nom:nom, id:id, t:f.t || "", y:f.y || "", com:txt });
@@ -4262,6 +4322,7 @@ html.sky-on #rsheet{z-index:50;}
   // Une nouvelle personne conseille un film : on crée sa playlist (si elle n'existe pas), puis on y ajoute le film.
   var NEWP = "";
   function newPerson(name, id){
+    if (SELF()) return;
     var nm = String(name || "").trim().replace(/\s+/g, " ");
     var pid = norm(nm).split(" ")[0].replace(/[^a-z0-9]/g, "");
     if (!pid) { setStatus("Écris le prénom de la personne."); return; }
@@ -4284,6 +4345,7 @@ html.sky-on #rsheet{z-index:50;}
     }, function(){ refreshFilm(id); setStatus("Pas enregistré, réessaie dans un instant.", true); });
   }
   function togglePl(pid, id, row){
+    if (!selfOnly(pid)) return;
     if (ROLE === "lecteur") { toggleEnvoi(pid, id, row); return; }
     var m = CONSEILS[pid] = CONSEILS[pid] || {}, was = m[id] || "";
     if (was) delete m[id]; else m[id] = new Date().toISOString();
@@ -4785,12 +4847,28 @@ html.sky-on #rsheet{z-index:50;}
     addMissing(el.namedItem("titre").value, y, el.namedItem("nom") ? el.namedItem("nom").value : "");
   });
   $("q").addEventListener("input", function(){ $("qx").hidden = !$("q").value; ADDQ = null; });
+  // Chercher remplace le film tiré au hasard : il ne doit pas cacher les résultats.
+  function diceAway(){
+    if ($("rsheet").hidden || !$("sky").hidden || !$("drift").hidden) return;
+    $("rsheet").hidden = true;
+    if (typeof RIME !== "undefined" && RIME.open && typeof rimeClose === "function") rimeClose(true);
+  }
+  // La recherche monte en haut de l'écran : les résultats prennent toute la page en dessous.
+  function qTop(){
+    var r = document.querySelector(".row-tools"); if (!r) return;
+    var y = r.getBoundingClientRect().top + window.pageYOffset - 6;
+    if (Math.abs(window.pageYOffset - y) > 2) window.scrollTo({ top:Math.max(0, y) });
+  }
+  $("q").addEventListener("focus", function(){ diceAway(); document.documentElement.classList.add("qon"); qTop(); });
+  $("q").addEventListener("blur", function(){ if (!query) document.documentElement.classList.remove("qon"); });
+  $("q").addEventListener("input", diceAway);
   // La croix efface la recherche et ramène toutes les listes.
   $("qx").addEventListener("click", function(){
     clearTimeout(qTimer); $("q").value = ""; $("qx").hidden = true; query = "";
+    document.documentElement.classList.remove("qon");
     renderAll(); $("q").blur(); toList();
   });
-  $("q").addEventListener("input", function(){ clearTimeout(qTimer); qTimer = setTimeout(function(){ query = norm($("q").value.trim()); renderAll(); toList(); }, 150); });
+  $("q").addEventListener("input", function(){ clearTimeout(qTimer); qTimer = setTimeout(function(){ query = norm($("q").value.trim()); document.documentElement.classList.toggle("qon", !!query || document.activeElement === $("q")); renderAll(); if (query) qTop(); else toList(); }, 150); });
   var ticking = false;
   window.addEventListener("scroll", function(){
     if (ticking) return; ticking = true;
