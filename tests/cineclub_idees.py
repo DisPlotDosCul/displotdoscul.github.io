@@ -134,9 +134,10 @@ def run():
             page.locator("#q").fill("Shining")
             card = '#main .film[data-id="shining-1980"]'
             page.locator(card).first.wait_for()
-            assert page.locator(card + " .th [data-img]").count() >= 1, "le bouton des images est à côté du titre"
+            assert page.locator(card + " .fimg-b").count() >= 1, "le bouton des images est en bas, à part"
             page.locator(card + " [data-img]").first.click()
             page.wait_for_function("s => document.querySelectorAll(s + ' .fimg img').length === 4", arg=card)
+            assert page.evaluate("s => document.querySelector(s + ' .fimg-b').nextElementSibling.classList.contains('fimg')", card)
             assert page.locator(card + " .fimg-s").first.inner_text() == "Images : TMDB"
             page.locator(card + ' [data-a="pas_vu"]').first.click()
             page.wait_for_timeout(300)
@@ -164,6 +165,7 @@ def run():
                 page.locator("#ntTxt").fill("Première idée")
                 page.locator("[data-ntadd]").click()
                 page.locator("#ntTxt").fill("Brouillon en cours")
+                page.locator("[data-ntlist]").click()
                 page.locator("[data-ntedit]").first.click()
                 page.locator("#ntEd").fill("Idée corrigée")
                 page.locator("[data-ntsave]").click()
