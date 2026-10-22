@@ -983,6 +983,29 @@ section[data-auto="classement"] .acts > button{font-size:12px;padding:6px 8px;mi
 section[data-auto="classement"] .stars button{transform:scale(.88);}
 
 .qz-panel{gap:10px;}
+.ed-panel{max-height:62vh;z-index:45;}
+.ed-tabs{display:flex;gap:6px;flex-wrap:wrap;}
+.ed-h{margin:4px 0 0;font:700 12.5px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+.ed-ord{list-style:none;margin:0;padding:0;display:grid;gap:6px;}
+.ed-ord li{display:flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:6px 8px;}
+.ed-ord li span{flex:1;font-size:14.5px;}
+.ed-ord button,.ed-cols button{min-width:40px;min-height:40px;border:1.5px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink);font:600 16px/1 var(--font);cursor:pointer;}
+.ed-ord button:disabled{opacity:.3;cursor:default;}
+.ed-tx{display:grid;gap:9px;}
+.ed-tx label{display:grid;gap:4px;font-size:12.5px;color:var(--muted);}
+.ed-tx input,.ed-tx textarea,.ed-q{font:400 15px/1.3 var(--font);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;}
+.ed-cols{display:grid;gap:8px;}
+.ed-cols label{display:flex;align-items:center;gap:10px;font-size:14.5px;}
+.ed-cols input[type=color]{width:46px;height:40px;border:1.5px solid var(--line);border-radius:9px;background:none;padding:2px;}
+.ed-cols label span{flex:1;}
+.ed-cols button{font-size:13px;padding:0 10px;}
+html.ed-on .wrap{padding-bottom:65vh;}
+.fimg{margin-top:10px;}
+.fimg-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+.fimg-g a{display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--line);}
+.fimg-g img{width:100%;height:100%;object-fit:cover;display:block;}
+.fimg-s{display:inline-block;margin-top:5px;font-size:11.5px;color:var(--muted);}
+.fimg-n{margin:0;font-size:13.5px;color:var(--muted);}
 .qz-ok{margin:0;font:600 15px/1.3 var(--font);color:var(--k-s-2C6660);}
 .qz-acts{display:flex;flex-wrap:wrap;gap:8px;}
 .qz-q{display:grid;gap:6px;font-size:14.5px;}
@@ -1015,10 +1038,24 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 .dr-film summary{cursor:pointer;color:var(--muted);}
 .dr-film details p{max-width:65ch;line-height:1.65;}
 .dr-film button{padding:8px 13px;}
-.dr-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0 24px;}
+.dr-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0 24px;}
+.dr-q{font:400 22px/1.3 Georgia,serif;margin:6px 0 14px;}
+h4.dr-q{font-size:19px;margin:26px 0 4px;}
+.dr-starts,.dr-found{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;}
+.dr-starts small,.dr-found small{color:var(--muted);font-size:12px;}
+.dr-find{display:grid;gap:8px;margin:8px 0 12px;font-size:14.5px;color:var(--muted);}
+.dr-chain{list-style:none;display:flex;flex-wrap:wrap;gap:4px 0;margin:0 0 16px;padding:0;font-size:13.5px;color:var(--muted);}
+.dr-chain li:not(:last-child)::after{content:"→";margin:0 7px;opacity:.6;}
+.dr-chain li[aria-current]{color:var(--ink);font-weight:600;}
+.dr-why{display:block;font:italic 14px/1.4 Georgia,serif;color:var(--muted);margin:0 0 6px;}
+.dr-syn{font-size:14.5px;line-height:1.6;max-width:65ch;margin:14px 0;}
+.dr-paths button{display:block;width:100%;}
+.dr-paths button .dr-why,.dr-paths button b,.dr-paths button small{display:block;text-align:left;}
+.dr-paths button .dr-why{font-size:12.5px;margin:0 0 6px;}
+.dr-paths button b{font:400 19px/1.25 Georgia,serif;}
+.dr-paths button small{display:block;color:var(--muted);font-size:12px;margin-top:3px;}
 .dr-paths button{border-radius:15px;text-align:left;padding:15px 14px;min-height:74px;background:transparent;}
-.dr-paths button b{display:block;font-size:15px;font-weight:500;}
-.dr-paths button span{display:block;font:italic 12.5px/1.5 Georgia,serif;margin-top:4px;color:var(--muted);}
+.dr-paths button span{font-family:Georgia,serif;font-style:italic;}
 .dr-paths button:disabled{opacity:.5;cursor:default;}
 .dr-save{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;}
 .dr-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
@@ -1036,7 +1073,7 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 html.th-neon .dr-film{box-shadow:0 0 70px -40px #d693e2;}
 html.drift-on #rsheet{z-index:52;}
 html.aff-grand .drift button{min-height:44px;}
-@media(max-width:600px){.drift{padding-inline:12px;}.dr-head{margin-bottom:22px;}.dr-seed{margin-top:6vh;}.dr-film{padding:19px;}.dr-paths{grid-template-columns:1fr;gap:7px;margin:13px 0 19px;}.dr-paths button{min-height:56px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}.dr-paths button span{margin:0;text-align:right;}.dr-save{grid-template-columns:minmax(0,1fr) auto;}.dr-save #drShare{grid-column:2;}.dr-actions button{font-size:13px;padding:9px 12px;}}
+@media(max-width:600px){.drift{padding-inline:12px;}.dr-head{margin-bottom:22px;}.dr-seed{margin-top:6vh;}.dr-film{padding:19px;}.dr-paths{grid-template-columns:1fr;gap:7px;margin:13px 0 19px;}.dr-paths button{min-height:56px;padding:11px 14px;}.dr-save{grid-template-columns:minmax(0,1fr) auto;}.dr-save #drShare{grid-column:2;}.dr-actions button{font-size:13px;padding:9px 12px;}}
 
 .pf-type{margin:0 0 6px;font-size:15.5px;}
 .pf-type small{font-size:13px;color:var(--muted);}
@@ -1137,6 +1174,9 @@ html.th-neon .sky{background:radial-gradient(ellipse at 26% 40%,#16112a 0,transp
 .sky-results button{border:0;border-radius:8px;text-align:left;width:100%;padding:10px;}
 .sky-zoom{position:absolute;bottom:max(20px,env(safe-area-inset-bottom));right:18px;display:flex;gap:6px;}
 .sky-zoom button{min-width:42px;padding:8px;}
+.sky-legend{position:absolute;left:20px;right:180px;bottom:calc(max(23px,env(safe-area-inset-bottom)) + 22px);margin:0;font-size:12.5px;line-height:1.4;color:#c5bfd1;pointer-events:none;}
+.sky-legend .sl-b{color:#ffe1a7;}.sky-legend .sl-v{color:#f7d5aa;font-size:10px;}.sky-legend .sl-p{color:#abc1e3;font-weight:700;}
+@media(max-width:600px){.sky-legend{left:12px;right:150px;font-size:11.5px;}}
 .sky-caption{position:absolute;left:20px;bottom:max(23px,env(safe-area-inset-bottom));right:180px;font-size:12px;color:#c5bfd1;pointer-events:none;}
 .sky-label{position:absolute;max-width:240px;padding:7px 10px;background:#101527e8;border:1px solid #74677b;border-radius:9px;font-size:13px;pointer-events:none;transform:translate(-50%,14px);}
 html.sky-on #rsheet{z-index:50;}
@@ -1296,6 +1336,7 @@ html.sky-on #rsheet{z-index:50;}
       <button type="button" class="aa-sw" data-opt="lecture" role="switch" aria-checked="false"><b>Lecture facilitée</b><span>Lettres plus lisibles et espacées (dyslexie)</span></button>
       <button type="button" class="aa-intro" data-intro="1">🎭 Revoir le lever de rideau</button>
       <button type="button" class="aa-intro" id="ccRanger" hidden>⇅ Ranger les catégories</button>
+      <button type="button" class="aa-intro" id="ccEdit" hidden>✏️ Modifier le site</button>
       <button type="button" class="aa-intro" data-guide="1">🧭 Revoir la visite guidée</button>
       <button type="button" class="aa-intro" data-bugbtn="1">🐞 Signaler un bug</button>
     </div>
@@ -1303,21 +1344,21 @@ html.sky-on #rsheet{z-index:50;}
 </header>
 
   <div class="bar">
-    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" hidden>🧭 Boussole cinéma</button></div>
+    <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" data-tx="btn.boussole" hidden>🧭 Boussole cinéma</button></div>
     <div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
-    <label class="hint hint-q" for="q"><span class="fl" aria-hidden="true">↓</span> Chercher un film, un cinéaste ou un thème</label>
+    <label class="hint hint-q" for="q"><span class="fl" aria-hidden="true">↓</span> <span data-tx="recherche.aide">Chercher un film, un cinéaste ou un thème</span></label>
     <div class="row-tools">
-      <div class="qwrap"><input type="search" id="q" placeholder="Film, cinéaste, thème…" aria-label="Chercher un film, un·e cinéaste ou un thème"><button type="button" class="qx" id="qx" aria-label="Effacer la recherche" hidden>✕</button></div>
+      <div class="qwrap"><input type="search" id="q" data-txph="recherche.champ" placeholder="Film, cinéaste, thème…" aria-label="Chercher un film, un·e cinéaste ou un thème"><button type="button" class="qx" id="qx" aria-label="Effacer la recherche" hidden>✕</button></div>
       <button type="button" class="view" id="view" aria-pressed="false" title="Tous les films à la suite, du plus au moins susceptible de te plaire" hidden>Tout classé</button>
       <button type="button" class="dice" id="dice" aria-label="Un film au hasard" title="Un film au hasard" aria-haspopup="dialog"><span class="dico">🎲</span></button>
     </div>
     <div class="chips" id="filters" role="group" aria-label="Filtrer">
-      <button class="chip" data-f="all" aria-pressed="true" title="Tous les films">Tous</button>
-      <button class="chip" data-f="todo" aria-pressed="false" title="Films sans réponse" aria-label="Films sans réponse">❓ Sans réponse</button>
-      <button class="chip" data-f="rate" aria-pressed="false" title="Films vus, pas encore notés sur 10" aria-label="Films vus, pas encore notés sur 10">☆ Vus, pas notés</button>
-      <button class="chip" data-f="seen" aria-pressed="false" title="Films déjà vus">Vus</button>
-      <button class="chip" data-f="no" aria-pressed="false">À voir</button>
+      <button class="chip" data-f="all" data-tx="filtre.all" aria-pressed="true" title="Tous les films">Tous</button>
+      <button class="chip" data-f="todo" data-tx="filtre.todo" aria-pressed="false" title="Films sans réponse" aria-label="Films sans réponse">❓ Sans réponse</button>
+      <button class="chip" data-f="rate" data-tx="filtre.rate" aria-pressed="false" title="Films vus, pas encore notés sur 10" aria-label="Films vus, pas encore notés sur 10">☆ Vus, pas notés</button>
+      <button class="chip" data-f="seen" data-tx="filtre.seen" aria-pressed="false" title="Films déjà vus">Vus</button>
+      <button class="chip" data-f="no" data-tx="filtre.no" aria-pressed="false">À voir</button>
     </div>
     <div class="chips" id="envies" role="group" aria-label="Rechercher par envies" hidden></div>
     <p class="mvinfo" id="mvinfo" hidden></p>
@@ -1330,7 +1371,7 @@ html.sky-on #rsheet{z-index:50;}
 <section class="sky" id="sky" role="dialog" aria-modal="true" aria-labelledby="skyTitle" hidden>
   <canvas id="skyCanvas" tabindex="0" role="img" aria-label="Ciel de films. La recherche permet de choisir une étoile ; les flèches déplacent le ciel et les boutons changent le zoom."></canvas>
   <div class="sky-tools"><h2 id="skyTitle">Ciel de films</h2><div class="sky-search"><input type="search" id="skySearch" placeholder="Une étoile…" aria-label="Chercher un film dans le ciel" autocomplete="off" aria-controls="skyResults"><div class="sky-results" id="skyResults" hidden></div></div><select id="skyMember" aria-label="Superposer le ciel d'un membre"><option value="">Mon ciel seul</option></select><button type="button" id="skyClose" aria-label="Fermer le ciel">Fermer</button></div>
-  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><div class="sky-label" id="skyLabel" hidden></div>
+  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><p class="sky-legend"><span class="sl-b">✦</span> noté 9 ou plus · <span class="sl-v">●</span> vu · <span class="sl-p">·</span> pas encore vu · chaque groupe est une catégorie</p><div class="sky-label" id="skyLabel" hidden></div>
   <div class="sky-zoom"><button type="button" id="skyOut" aria-label="Éloigner le ciel">−</button><button type="button" id="skyReset" aria-label="Retrouver tout le ciel">⌾</button><button type="button" id="skyIn" aria-label="Rapprocher le ciel">+</button></div>
 </section>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
@@ -1403,7 +1444,7 @@ html.sky-on #rsheet{z-index:50;}
   <p class="sh-note" id="shNote"></p>
 </div>
 <section class="drift" id="drift" role="dialog" aria-modal="true" aria-labelledby="drTitle" hidden><div class="dr-wrap">
-  <header class="dr-head"><h2 id="drTitle">Dérive onirique</h2><button type="button" id="drClose">Fermer</button></header>
+  <header class="dr-head"><h2 id="drTitle">Dérive, de film en film</h2><button type="button" id="drClose">Fermer</button></header>
   <div id="drBody"></div><p class="dr-status" id="drStatus" role="status" aria-live="polite"></p>
 </div></section>
 <div class="ccguide" id="ccGuide" role="dialog" aria-label="Visite guidée" hidden></div>
@@ -1583,9 +1624,10 @@ html.sky-on #rsheet{z-index:50;}
   function paintBar(){
     var b = $("ccMe"), m = $("ccMbr"); if (!b) return;
     var g = $("gpill"); if (g && CC.view) g.textContent = "📖 Carnet de " + CC.viewName + " · Revenir au mien";
-    b.textContent = !CC.uid ? "👤 Se connecter" : CC.me ? "👤 Mon compte" : "👤 Choisir mon pseudo";
+    var tx = function(k, d){ return window.CCTX ? CCTX(k, d) : d; };
+    b.textContent = !CC.uid ? "👤 Se connecter" : CC.me ? tx("btn.compte", "👤 Mon compte") : "👤 Choisir mon pseudo";
     var n = typeof unread === "function" && CC.me && !CC.me.bulle ? unread() : 0;
-    m.textContent = "👥 Communauté" + (n ? " · " + n : "");
+    m.textContent = tx("btn.communaute", "👥 Communauté") + (n ? " · " + n : "");
     m.setAttribute("aria-label", "Communauté" + (n ? ", " + n + " conseil" + (n > 1 ? "s" : "") + " non lu" + (n > 1 ? "s" : "") : ""));
     m.hidden = !CC.uid || !CC.me;
   }
@@ -2169,16 +2211,19 @@ html.sky-on #rsheet{z-index:50;}
     "s08-liste-cauchemar":["", "Les films et séries liés au cauchemar de Licia."],
     "s24-nouveau-malaise":["", "Des films dérangeants mais soignés, dans la lignée de ses 10/10 : Crash, Canine, Shining, Irréversible."]
   };
-  function sTitre(s){
+  function sTitre(s){ var o = s && !s._sugg && window.CCTX ? CCTX("sec:" + s.id, "") : ""; return o || sTitre0(s); }
+  function sSous(s){ var o = s && !s._sugg && window.CCTX ? CCTX("sous:" + s.id, "") : ""; return o || sSous0(s); }
+  function sTitre0(s){
     if (s._sugg) return isMine() ? "Rimes lointaines" : "Ses rimes lointaines";
     var o = (!isMine() || (CCM() && LICIA_S[s.id])) && AUTRE_S[s.id]; return (o && o[0]) || s.titre || ""; }
-  function sSous(s){
+  function sSous0(s){
     if (s._sugg) return "Un souvenir de cinéma, un autre horizon.";
     var o = (!isMine() || (CCM() && LICIA_S[s.id])) && AUTRE_S[s.id]; if (o && o[1]) return PERSO_S[s.id] ? o[1].replace(/Licia/g, VN()) : o[1];
     var t = s.sous_titre || "";
     return !isMine() && s.auto === "conseils" ? t.replace(/ et te conseille\.$/, " et conseille à Licia.") : t;
   }
-  function fLabel(f){ return f && f.id === "carnet" && !isMine() ? "Carnet " + (/^[aeiouyéèêh]/i.test(VN()) ? "d'" : "de ") + VN() : (f && f.label) || ""; }
+  function fLabel(f){ var o = f && window.CCTX ? CCTX("fam:" + f.id, "") : ""; return o && !(f.id === "carnet" && !isMine()) ? o : fLabel0(f); }
+  function fLabel0(f){ return f && f.id === "carnet" && !isMine() ? "Carnet " + (/^[aeiouyéèêh]/i.test(VN()) ? "d'" : "de ") + VN() : (f && f.label) || ""; }
   var STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>';
   var LABELS = { vu:"Vu", pas_fini:"Pas fini", oublie:"Oublié", pas_vu:"Pas vu" };
   var TITLES = { vu:"Vu en entier", pas_fini:"Commencé puis abandonné", oublie:"Vu, mais je ne m'en souviens plus", pas_vu:"Pas vu" };
@@ -2566,11 +2611,49 @@ html.sky-on #rsheet{z-index:50;}
   }
 
   var MORE = {}, SEC_AUTO = {};
+  // Images du film : quatre images tirées du film, venues de TMDB (The Movie Database), affichées dans la fiche.
+  var TMDB_KEY = "a35a6c94deab582e9348b58192ac4279", IMG_OPEN = {}, IMG_P = {}, IMG_C = {}, IMG_KEY = "carnetImagesV1";
+  try { IMG_C = JSON.parse(localStorage.getItem(IMG_KEY) || "{}") || {}; } catch (e) { IMG_C = {}; }
+  var IMG_SEL = {};
+  function imgInner(id, r){
+    var f = films[id] || {};
+    if (!r || !r.p || !r.p.length) return '<p class="fimg-n">Pas d\'image trouvée pour ce film.</p>';
+    if (!IMG_SEL[id]) { var ps = r.p.slice(); for (var i = ps.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), tmp = ps[i]; ps[i] = ps[j]; ps[j] = tmp; } IMG_SEL[id] = ps.slice(0, 4); }
+    return '<div class="fimg-g">' + IMG_SEL[id].map(function(pth){ return '<a href="https://image.tmdb.org/t/p/original' + esc(pth) + '" target="_blank" rel="noopener"><img src="https://image.tmdb.org/t/p/w500' + esc(pth) + '" alt="Image du film ' + esc(f.t) + '" loading="lazy" decoding="async"></a>'; }).join("") + '</div>' +
+      '<a class="fimg-s" href="https://www.themoviedb.org/' + r.t + '/' + r.id + '" target="_blank" rel="noopener" title="Ce site utilise l\'API de TMDB sans être approuvé ni certifié par TMDB.">Images : TMDB</a>';
+  }
+  function imgBoxHtml(id){ return '<div class="fimg" data-imgbox="' + esc(id) + '" aria-live="polite">' + (IMG_C[id] ? imgInner(id, IMG_C[id]) : '<p class="fimg-n">Images du film…</p>') + '</div>'; }
+  function tmdbFind(f){
+    var tv = /\(série\)$/.test(f.t || ""), title = String(f.t || "").replace(/\s*\(série\)$/, ""), base = "https://api.themoviedb.org/3/", key = "api_key=" + TMDB_KEY;
+    var url = function(withYear){ return base + "search/" + (tv ? "tv" : "movie") + "?" + key + "&language=fr-FR&query=" + encodeURIComponent(title) + (withYear && f.y ? (tv ? "&first_air_date_year=" : "&year=") + f.y : ""); };
+    var get = function(u){ return fetch(u).then(function(r){ if (!r.ok) throw Error("tmdb " + r.status); return r.json(); }); };
+    return get(url(true)).then(function(j){ return (j.results || []).length ? j : get(url(false)); }).then(function(j){
+      var hit = (j.results || [])[0]; if (!hit) return null;
+      return get(base + (tv ? "tv/" : "movie/") + hit.id + "/images?" + key).then(function(im){
+        var bd = (im.backdrops || []).filter(function(x){ return !x.iso_639_1; }); if (bd.length < 4) bd = bd.concat((im.backdrops || []).filter(function(x){ return x.iso_639_1; }));
+        var paths = bd.map(function(x){ return x.file_path; }).filter(Boolean);
+        if (!paths.length && hit.backdrop_path) paths = [hit.backdrop_path];
+        if (!paths.length && hit.poster_path) paths = [hit.poster_path];
+        return { t:tv ? "tv" : "movie", id:hit.id, p:paths.slice(0, 24) };
+      });
+    });
+  }
+  function fillImgs(id){
+    var f = films[id]; if (!f) return;
+    var paint = function(r){ document.querySelectorAll('.fimg[data-imgbox="' + CSS.escape(id) + '"]').forEach(function(box){ box.innerHTML = imgInner(id, r); }); };
+    if (IMG_C[id]) { paint(IMG_C[id]); return; }
+    if (!IMG_P[id]) IMG_P[id] = tmdbFind(f).then(function(r){ IMG_C[id] = r || { p:[] }; try { localStorage.setItem(IMG_KEY, JSON.stringify(IMG_C)); } catch (e) {} return IMG_C[id]; }, function(){ delete IMG_P[id]; return null; });
+    IMG_P[id].then(function(r){ if (r) paint(r); else document.querySelectorAll('.fimg[data-imgbox="' + CSS.escape(id) + '"]').forEach(function(box){ box.innerHTML = '<p class="fimg-n">Les images ne répondent pas, réessaie dans un instant.</p>'; }); });
+  }
   $("main").addEventListener("click", function(ev){
     var t = ev.target.closest && ev.target.closest("[data-more],[data-img]"); if (!t) return;
     if (t.dataset.img) {
-      var f = films[t.dataset.img] || {}, q = [String(f.t || "").replace(/\s*\(série\)$/, ""), f.y || "", f.d || "", /\(série\)$/.test(f.t || "") ? "série" : "film", "images"].join(" ");
-      window.open("https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(q), "_blank", "noopener");
+      var id0 = t.dataset.img, row0 = t.closest(".film");
+      IMG_OPEN[id0] = !IMG_OPEN[id0]; t.setAttribute("aria-expanded", IMG_OPEN[id0] ? "true" : "false");
+      var box0 = row0 && row0.querySelector(".fimg");
+      if (!IMG_OPEN[id0]) { if (box0) box0.remove(); return; }
+      if (!box0 && row0) { row0.insertAdjacentHTML("beforeend", imgBoxHtml(id0)); box0 = row0.querySelector(".fimg"); }
+      fillImgs(id0);
       return;
     }
     var k = t.dataset.more; MORE[k] = !MORE[k];
@@ -2648,8 +2731,8 @@ html.sky-on #rsheet{z-index:50;}
       '<div class="nv">' + nv + '</div></div>' +
       '<div class="acts"><button type="button" class="lst" data-l="1" aria-pressed="' + !!LISTE[f.id] + '">' + (LISTE[f.id] ? "✓ Ma liste" : "+ Ma liste") + '</button>' + plb +
       '<button type="button" class="fsh ico" data-fshare="1" aria-label="Partager ' + esc(f.t) + '" title="Partager">↗</button>' +
-      '<button type="button" class="fsh ico" data-img="' + esc(f.id) + '" aria-label="Images du film ' + esc(f.t) + '" title="Images du film">🎞</button>' +
-      '<button type="button" class="cmb" data-com="1" aria-expanded="' + (OPEN_COM === f.sid + "|" + f.id) + '" aria-label="Commenter ' + esc(f.t) + '" title="Commenter">💬</button></div></div>' + plc + comForm(f);
+      '<button type="button" class="fsh ico" data-img="' + esc(f.id) + '" aria-expanded="' + !!IMG_OPEN[f.id] + '" aria-label="Images du film ' + esc(f.t) + '" title="Images du film">🎞</button>' +
+      '<button type="button" class="cmb" data-com="1" aria-expanded="' + (OPEN_COM === f.sid + "|" + f.id) + '" aria-label="Commenter ' + esc(f.t) + '" title="Commenter">💬</button></div></div>' + plc + comForm(f) + (IMG_OPEN[f.id] ? imgBoxHtml(f.id) : "");
   }
 
   function dureeTexte(f){
@@ -3287,6 +3370,7 @@ html.sky-on #rsheet{z-index:50;}
     var b = $("ntBtn"), on = !!(window.CC && CC.admin);
     if (b) b.hidden = !on;
     var rg = $("ccRanger"); if (rg) rg.hidden = !on || GUEST || ROLE !== "proprio" || !sections.length;
+    var ed = $("ccEdit"); if (ed) ed.hidden = !on || GUEST || ROLE !== "proprio" || !sections.length;
     if (!on) { var p = $("ntPanel"); if (p) p.hidden = true; }
   }
   document.body.insertAdjacentHTML("beforeend", '<button type="button" class="nt-btn" id="ntBtn" hidden aria-label="Mes idées pour le site" title="Mes idées pour le site">✎</button><div class="nt-panel" id="ntPanel" role="dialog" aria-label="Mes idées pour le site" hidden></div>');
@@ -3413,11 +3497,121 @@ html.sky-on #rsheet{z-index:50;}
       QZ_MODE = "fait"; qzPaint(); p.scrollTop = 0; renderAll();
     }
   });
+  // ---------- Mode édition (administratrice) : disposition, textes et couleurs, enregistrés pour tout le monde ----------
+  var APP = { t:{}, c:{}, o:{} }, APP_SAVED = { t:{}, c:{}, o:{} }, ED = { on:false, tab:"dispo", q:"" }, ED_T = 0;
+  window.CCTX = function(k, d){ var v = APP.t && APP.t[k]; return typeof v === "string" && v.trim() ? v : d; };
+  function appCopy(x){ x = x || {}; return { t:Object.assign({}, x.t || {}), c:JSON.parse(JSON.stringify(x.c || {})), o:JSON.parse(JSON.stringify(x.o || {})) }; }
+  var ED_TOP = [["header", "Titre du site", function(){ return [document.querySelector("header.top")]; }], ["bar", "Boutons, recherche et filtres", function(){ return [document.querySelector(".bar")]; }], ["toc", "Catégories", function(){ return [$("toc"), $("mvnav")]; }]];
+  var ED_BAR = [["comptes", "Boutons (communauté, compte…)", function(){ return [document.querySelector(".ccbar")]; }], ["compteurs", "Compteurs", function(){ return [document.querySelector(".stats"), document.querySelector(".progress")]; }],
+    ["recherche", "Recherche", function(){ return [document.querySelector(".hint-q"), document.querySelector(".row-tools")]; }], ["filtres", "Filtres", function(){ return [$("filters"), $("envies"), $("mvinfo")]; }]];
+  var ED_COL = [["--bg", "Fond de la page"], ["--paper", "Fond des cartes"], ["--ink", "Texte"], ["--muted", "Texte secondaire"], ["--line", "Bordures"], ["--vu", "Couleur « Vu »"], ["--gold", "Étoiles et doré"]];
+  function edOrder(list, saved){ var keys = list.map(function(x){ return x[0]; }), o = (saved || []).filter(function(k){ return keys.indexOf(k) >= 0; }); keys.forEach(function(k){ if (o.indexOf(k) < 0) o.push(k); }); return o; }
+  function appApply(){
+    // Textes fixes
+    document.querySelectorAll("[data-tx]").forEach(function(el){ if (el.dataset.txd == null) el.dataset.txd = el.textContent; el.textContent = CCTX(el.dataset.tx, el.dataset.txd); });
+    document.querySelectorAll("[data-txph]").forEach(function(el){ if (el.dataset.txd == null) el.dataset.txd = el.placeholder; el.placeholder = CCTX(el.dataset.txph, el.dataset.txd); });
+    // Disposition
+    var main = $("main"), wrap = main && main.parentNode;
+    if (wrap) edOrder(ED_TOP, APP.o.top).forEach(function(k){ var it = ED_TOP.filter(function(x){ return x[0] === k; })[0]; it[2]().forEach(function(el){ if (el) wrap.insertBefore(el, main); }); });
+    var bar = document.querySelector(".bar");
+    if (bar) edOrder(ED_BAR, APP.o.bar).forEach(function(k){ var it = ED_BAR.filter(function(x){ return x[0] === k; })[0]; it[2]().forEach(function(el){ if (el) bar.appendChild(el); }); });
+    // Couleurs, propres à chaque ambiance
+    var st = $("appCss"); if (!st) { st = document.createElement("style"); st.id = "appCss"; document.head.appendChild(st); }
+    st.textContent = Object.keys(APP.c || {}).map(function(th){ var v = APP.c[th] || {}, decl = Object.keys(v).filter(function(k){ return /^--[a-z-]+$/.test(k) && /^#[0-9a-fA-F]{6}$/.test(v[k]); }).map(function(k){ return k + ":" + v[k]; }).join(";");
+      return decl && /^(jour|crep|neon)$/.test(th) ? "html.th-" + th + "{" + decl + "}" : ""; }).join("\n");
+    if (typeof paintBar === "function") try { paintBar(); } catch (e) {}
+  }
+  function appLoaded(x){
+    APP_SAVED = appCopy(x);
+    if (!ED.on) { APP = appCopy(x); appApply(); }
+  }
+  function edTh(){ return window.AMBI ? AMBI.th() : "jour"; }
+  function edHex(v){ v = String(v || "").trim(); if (/^#[0-9a-f]{6}$/i.test(v)) return v; var m = v.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/); return m ? "#" + [m[1], m[2], m[3]].map(function(n){ return (+n).toString(16).padStart(2, "0"); }).join("") : "#888888"; }
+  function edHtml(){
+    var tabs = [["dispo", "Disposition"], ["textes", "Textes"], ["couleurs", "Couleurs"]];
+    var h = '<div class="nt-h"><b>✏️ Modifier le site</b><button type="button" class="nt-x" data-edclose="1" aria-label="Fermer">✕</button></div>' +
+      '<div class="ed-tabs" role="tablist">' + tabs.map(function(t){ return '<button type="button" class="chip" role="tab" data-edtab="' + t[0] + '" aria-selected="' + (ED.tab === t[0]) + '" aria-pressed="' + (ED.tab === t[0]) + '">' + t[1] + '</button>'; }).join("") + '</div>';
+    var mv = function(list, saved, grp){ var o = edOrder(list, saved); return '<ol class="ed-ord">' + o.map(function(k, i){ var it = list.filter(function(x){ return x[0] === k; })[0];
+      return '<li><span>' + esc(it[1]) + '</span><button type="button" data-edmv="' + grp + '|' + k + '|-1" aria-label="Monter ' + esc(it[1]) + '"' + (i ? "" : " disabled") + '>↑</button><button type="button" data-edmv="' + grp + '|' + k + '|1" aria-label="Descendre ' + esc(it[1]) + '"' + (i < o.length - 1 ? "" : " disabled") + '>↓</button></li>'; }).join("") + '</ol>'; };
+    if (ED.tab === "dispo") h += '<p class="ed-h">Haut de page</p>' + mv(ED_TOP, APP.o.top, "top") + '<p class="ed-h">Dans la barre</p>' + mv(ED_BAR, APP.o.bar, "bar") +
+      '<p class="id-n">L\'ordre des catégories et des listes se change avec « ⇅ Ranger les catégories ».</p>';
+    if (ED.tab === "textes") {
+      var rows = [["btn.communaute", "👥 Communauté"], ["btn.compte", "👤 Mon compte"]];
+      document.querySelectorAll("[data-tx]").forEach(function(el){ rows.push([el.dataset.tx, el.dataset.txd != null ? el.dataset.txd : el.textContent]); });
+      document.querySelectorAll("[data-txph]").forEach(function(el){ rows.push([el.dataset.txph, el.dataset.txd != null ? el.dataset.txd : el.placeholder]); });
+      tocFams().forEach(function(f){ rows.push(["fam:" + f.id, fLabel0(f), "Catégorie"]); });
+      sections.filter(function(x){ return !x.cache && !x._sugg && x.titre; }).forEach(function(x){ rows.push(["sec:" + x.id, sTitre0(x), "Liste"]); if (sSous0(x)) rows.push(["sous:" + x.id, sSous0(x), "Sous-titre"]); });
+      var q = norm(ED.q || "");
+      h += '<input type="search" class="ed-q" data-edq="1" placeholder="Chercher un texte…" value="' + esc(ED.q) + '" aria-label="Chercher un texte à modifier">' +
+        '<div class="ed-tx">' + rows.filter(function(r){ return !q || norm(r[1] + " " + (APP.t[r[0]] || "")).indexOf(q) >= 0; }).slice(0, 60).map(function(r){
+          var long = r[0].indexOf("sous:") === 0;
+          return '<label><span>' + esc(r[2] ? r[2] + " · " + r[1] : r[1]) + '</span>' + (long ? '<textarea rows="2" data-edtx="' + esc(r[0]) + '" placeholder="' + esc(r[1]) + '">' + esc(APP.t[r[0]] || "") + '</textarea>' : '<input data-edtx="' + esc(r[0]) + '" placeholder="' + esc(r[1]) + '" value="' + esc(APP.t[r[0]] || "") + '">') + '</label>';
+        }).join("") + '</div><p class="id-n">Laisser vide garde le texte d\'origine.</p>';
+    }
+    if (ED.tab === "couleurs") {
+      var th = edTh(), cs = getComputedStyle(document.documentElement), cur = (APP.c[th] || {});
+      h += '<p class="id-n">Pour l\'ambiance affichée : <b>' + ({ jour:"jour", crep:"crépuscule", neon:"néon" }[th] || th) + '</b>. Change d\'ambiance avec le bouton en haut à droite pour régler les autres.</p><div class="ed-cols">' +
+        ED_COL.map(function(c){ var v = cur[c[0]] || edHex(cs.getPropertyValue(c[0]));
+          return '<label><input type="color" data-edcol="' + c[0] + '" value="' + esc(v) + '"><span>' + esc(c[1]) + '</span>' + (cur[c[0]] ? '<button type="button" data-edcolx="' + c[0] + '">Rétablir</button>' : "") + '</label>'; }).join("") + '</div>';
+    }
+    var dirty = JSON.stringify(APP) !== JSON.stringify(APP_SAVED);
+    return h + '<div class="nt-b ed-b"><button type="button" class="plf-ok" data-edsave="1"' + (dirty ? "" : " disabled") + '>Enregistrer pour tout le monde</button><button type="button" class="plf-no" data-edundo="1"' + (dirty ? "" : " disabled") + '>Annuler les changements</button></div>';
+  }
+  function edPaint(keepFocus){
+    var p = $("edPanel"); if (!p) return;
+    var a = document.activeElement, key = a && a.closest && a.closest("#edPanel") ? (a.dataset.edtx ? '[data-edtx="' + a.dataset.edtx + '"]' : a.dataset.edq ? "[data-edq]" : "") : "", pos = a && a.selectionStart, top = p.scrollTop;
+    p.innerHTML = edHtml(); p.scrollTop = top;
+    if (keepFocus && key) { var n = p.querySelector(key); if (n) { n.focus({ preventScroll:true }); try { n.setSelectionRange(pos, pos); } catch (e) {} } }
+  }
+  function edOpen(){
+    if (!CCA() || GUEST || ROLE !== "proprio") return;
+    ED.on = true; APP = appCopy(APP_SAVED); document.documentElement.classList.add("ed-on");
+    var p = $("edPanel"); if (!p) { document.body.insertAdjacentHTML("beforeend", '<div class="nt-panel ed-panel" id="edPanel" role="dialog" aria-label="Modifier le site"></div>'); p = $("edPanel"); }
+    p.hidden = false; edPaint(); appApply();
+  }
+  function edClose(){
+    var p = $("edPanel"); if (p) p.hidden = true; ED.on = false; document.documentElement.classList.remove("ed-on");
+    APP = appCopy(APP_SAVED); appApply(); renderAll();
+  }
+  function edLive(full){ appApply(); clearTimeout(ED_T); if (full) ED_T = setTimeout(function(){ renderAll(); }, 250); edPaintButtons(); }
+  function edPaintButtons(){ var dirty = JSON.stringify(APP) !== JSON.stringify(APP_SAVED); document.querySelectorAll("#edPanel [data-edsave],#edPanel [data-edundo]").forEach(function(b){ b.disabled = !dirty; }); }
+  document.addEventListener("click", function(ev){
+    var t = ev.target; if (!t.closest) return;
+    if (t.closest("#ccEdit")) { ev.stopPropagation(); aaMenu(false); edOpen(); return; }
+    if (!t.closest("#edPanel")) return;
+    if (t.closest("[data-edclose]")) { edClose(); return; }
+    var tb = t.closest("[data-edtab]"); if (tb) { ED.tab = tb.dataset.edtab; edPaint(); return; }
+    var m = t.closest("[data-edmv]");
+    if (m) { var a = m.dataset.edmv.split("|"), list = a[0] === "top" ? ED_TOP : ED_BAR, o = edOrder(list, APP.o[a[0]]), i = o.indexOf(a[1]), j = i + +a[2];
+      if (i >= 0 && j >= 0 && j < o.length) { o.splice(i, 1); o.splice(j, 0, a[1]); APP.o[a[0]] = o; edLive(false); edPaint(); } return; }
+    var cx = t.closest("[data-edcolx]"); if (cx) { var th = edTh(); if (APP.c[th]) { delete APP.c[th][cx.dataset.edcolx]; if (!Object.keys(APP.c[th]).length) delete APP.c[th]; } edLive(false); edPaint(); return; }
+    if (t.closest("[data-edundo]")) { APP = appCopy(APP_SAVED); appApply(); renderAll(); edPaint(); setStatus("Changements annulés."); return; }
+    if (t.closest("[data-edsave]")) {
+      if (!catCol) { setStatus("Pas enregistré : connecte-toi d'abord.", true); return; }
+      var data = appCopy(APP); Object.keys(data.t).forEach(function(k){ data.t[k] = String(data.t[k] || "").trim().slice(0, 300); if (!data.t[k]) delete data.t[k]; });
+      setStatus("Enregistrement…");
+      catCol.doc("apparence").set(data).then(function(){ APP_SAVED = appCopy(data); APP = appCopy(data); edPaint(); setStatus("Modifications enregistrées pour tout le monde."); }, function(){ setStatus("Pas enregistré, réessaie dans un instant.", true); });
+    }
+  });
+  document.addEventListener("input", function(ev){
+    var t = ev.target; if (!t.closest || !t.closest("#edPanel")) return;
+    if (t.dataset.edq) { ED.q = t.value; edPaint(true); return; }
+    if (t.dataset.edtx) { var k = t.dataset.edtx; if (t.value.trim()) APP.t[k] = t.value; else delete APP.t[k]; edLive(/^(sec|sous|fam):/.test(k)); return; }
+    if (t.dataset.edcol) { var th = edTh(); (APP.c[th] = APP.c[th] || {})[t.dataset.edcol] = t.value; edLive(false); }
+  });
+  document.addEventListener("keydown", function(ev){ if (ev.key === "Escape" && ED.on) edClose(); });
+  if (window.AMBI) AMBI.on(function(){ if (ED.on && ED.tab === "couleurs") edPaint(); });
+
   // ---------- Dérive onirique : associations locales et carnet de rêves ----------
-  document.querySelector(".ccbar").insertAdjacentHTML("beforeend",'<button type="button" class="chip ccb" id="drToggle" aria-haspopup="dialog">☾ Dérive</button>');
+  document.querySelector(".ccbar").insertAdjacentHTML("beforeend",'<button type="button" class="chip ccb" id="drToggle" data-tx="btn.derive" aria-haspopup="dialog">☾ Dérive</button>');
   var DR={current:null,records:[],choices:{},catalog:null,source:null,fam:null,hash:"",mode:"",prior:"",key:"ccDerivesV1"+CCK};
   var DR_IMAGES=[['humeur','Une joie fragile'],['couleur','Un bleu profond'],['peur','Une peur sans visage'],['souvenir',"Un souvenir d'enfance"],['corps','La peau qui frissonne']];
-  var DR_PATHS=[['etrange','Plus étrange','la porte entrouverte'],['doux','Plus doux','le rêve baisse la voix'],['profond','Plus profond','sous la surface']];
+  // Trois directions lisibles : un regard (même cinéaste ou même courant), un thème partagé, la même atmosphère ailleurs.
+  var DR_PATHS=[['auteur','Même regard'],['theme','Même thème'],['ailleurs','Ailleurs']];
+  var DR_BY=/^(etrange|doux|profond|auteur|theme|ailleurs)$/;
+  function drLab(k){return String(k||"").replace(/-/g," ");}
+  function drPays(f){return String(f.c||"").split(",")[0].trim();}
+  function drShared(a,b){var ka=(a.k||[]).concat(a.th||[]),kb=(b.k||[]).concat(b.th||[]);return ka.filter(function(x,i){return x&&kb.indexOf(x)>=0&&ka.indexOf(x)===i;});}
   var DR_STOP=Object.create(null);norm("alors apres ainsi autre aux avec avoir bien dans de des du elle elles entre est et etre eux fait il ils leur les lui mais meme mes moi mon nous on ont ou par pas pour que quel qui sa sans se ses son sont sous sur ta tes toi ton tous tout tres tu un une vers vous cette ces ce ses comme plus peut faire puis quand dont apres avant").split(/\s+/).forEach(function(w){DR_STOP[w]=1;});
   function drWords(s){return norm(s).replace(/[^a-z0-9]+/g," ").split(/\s+/).filter(function(w){return w.length>2&&!DR_STOP[w];}).map(function(w){return w.length>4?w.replace(/s$/,""):w;});}
   function drHash(s){var h=17;for(var i=0;i<s.length;i++)h=Math.imul(h,31)+s.charCodeAt(i)|0;return (h>>>0)/4294967296;}
@@ -3444,12 +3638,17 @@ html.sky-on #rsheet{z-index:50;}
   function drOptions(){
     var current=DR.current;if(!current||!current.steps.length)return {};
     var from=films[current.steps[current.steps.length-1].id],visited={},reserved={},out={};if(!from)return out;current.steps.forEach(function(x){visited[x.id]=1;});
-    DR_PATHS.forEach(function(path){var best=null;drCatalogue().ids.forEach(function(id){if(visited[id]||reserved[id])return;var f=films[id],k=f.k||[],w=famW(f);if(path[0]==="doux"&&!drGentle(f))return;var score=drSim(from,f)*1.3;
-      if(path[0]==="etrange")score+=w[0]*.3+k.filter(function(x){return /^(reve|doubles|transformations|absurde|humour-absurde|sf)$/.test(x);}).length*.16;
-      if(path[0]==="doux")score+=w[4]*.45+w[0]*.1+(k.indexOf("doux")>=0?.22:0)-w[1]*.3;
-      if(path[0]==="profond")score+=w[3]*.4+w[4]*.12+k.filter(function(x){return /^(temps|contemplatif|societe|histoire|documentaire|larmes)$/.test(x);}).length*.12;
-      score+=drHash(current.seed+current.steps.length+path[0]+id)*.025;if(!best||score>best.score)best={id:id,score:score};
-    });if(best){out[path[0]]=best.id;reserved[best.id]=1;}});return out;
+    var dir=String(from.d||""),y0=+from.y||0,c0=drPays(from);
+    var cand=drCatalogue().ids.filter(function(id){return !visited[id]&&films[id]&&films[id].t;}).map(function(id){var f=films[id];return {id:id,f:f,sim:drSim(from,f),sh:drShared(from,f)};});
+    function pick(key,keep,score,why){if(out[key])return;var best=null;cand.forEach(function(x){if(reserved[x.id]||!keep(x))return;var v=score(x)+drHash(current.seed+current.steps.length+key+x.id)*.01;if(!best||v>best.v)best={x:x,v:v};});if(best){reserved[best.x.id]=1;out[key]={id:best.x.id,why:why(best.x)};}}
+    pick("auteur",function(x){return dir&&x.f.d===dir;},function(x){return x.sim;},function(){return "Même cinéaste : "+dir;});
+    if(from.mv)pick("auteur",function(x){return x.f.mv===from.mv&&x.f.d!==dir;},function(x){return x.sim;},function(){return "Même courant : "+((MV_INFO[from.mv]||{}).label||drLab(from.mv));});
+    pick("theme",function(x){return x.sh.length&&x.f.d!==dir;},function(x){return x.sh.length*.15+x.sim;},function(x){return "En commun : "+x.sh.slice(0,2).map(drLab).join(", ");});
+    pick("ailleurs",function(x){var cc=drPays(x.f);return x.f.d!==dir&&cc&&cc!==c0&&(!y0||!x.f.y||Math.abs(+x.f.y-y0)>=15);},function(x){return x.sim;},function(x){return "Même atmosphère, ailleurs : "+[drPays(x.f),x.f.y].filter(Boolean).join(", ");});
+    pick("auteur",function(x){return x.f.d!==dir;},function(x){return x.sim;},function(){return "Une atmosphère très proche";});
+    pick("theme",function(x){return x.f.d!==dir;},function(x){return x.sim;},function(){return "Une atmosphère proche";});
+    pick("ailleurs",function(x){return x.f.d!==dir;},function(x){return x.sim;},function(){return "Un autre horizon";});
+    return out;
   }
   function drPhrase(from,to,path){
     if(!from)return "L'image a trouvé son premier écho.";
@@ -3465,30 +3664,48 @@ html.sky-on #rsheet{z-index:50;}
   function drNote(s){$("drStatus").textContent=s||"";}
   function drClean(raw){
     if(!raw||raw.v!==1||typeof raw.n!=="string"||typeof raw.seed!=="string"||!Array.isArray(raw.ids)||raw.ids.length<1||raw.ids.length>40||!Array.isArray(raw.by))return null;
-    var used={},steps=[];raw.ids.forEach(function(id,i){if(typeof id!=="string"||id.length>160||!films[id]||used[id])return;used[id]=1;steps.push({id:id,by:i&&/^(etrange|doux|profond)$/.test(raw.by[i])?raw.by[i]:"image"});});
+    var used={},steps=[];raw.ids.forEach(function(id,i){if(typeof id!=="string"||id.length>160||!films[id]||used[id])return;used[id]=1;steps.push({id:id,why:Array.isArray(raw.w)&&typeof raw.w[i]==="string"?raw.w[i].slice(0,120):"",by:i&&DR_BY.test(raw.by[i])?raw.by[i]:"image"});});
     return steps.length?{n:raw.n.slice(0,80),seed:raw.seed.slice(0,160),steps:steps}:null;
   }
-  function drPack(dream){return {v:1,n:dream.n||"",seed:dream.seed,ids:dream.steps.map(function(x){return x.id;}),by:dream.steps.map(function(x){return x.by;})};}
+  function drPack(dream){return {v:1,n:dream.n||"",seed:dream.seed,ids:dream.steps.map(function(x){return x.id;}),by:dream.steps.map(function(x){return x.by;}),w:dream.steps.map(function(x){return x.why||"";})};}
   function drRead(){
     DR.records=[];try{var raw=JSON.parse(localStorage.getItem(DR.key)||"[]");if(Array.isArray(raw))raw.slice(0,20).forEach(function(item){var d=drClean(item);if(d){d.savedId=String(item.savedId||"").slice(0,80);d.date=String(item.date||"").slice(0,40);DR.records.push(d);}});}catch(e){}
   }
   function drPersist(){try{localStorage.setItem(DR.key,JSON.stringify(DR.records.map(function(d){return Object.assign(drPack(d),{savedId:d.savedId,date:d.date});})));return true;}catch(e){drNote("Ce rêve n'a pas pu être gardé sur cet appareil.");return false;}}
-  function drTrace(d){return '<ol class="dr-steps">'+d.steps.map(function(x,i){var f=films[x.id],prev=i?films[d.steps[i-1].id]:null;return '<li><button type="button" data-drfilm="'+esc(x.id)+'">'+esc(f.t)+'</button><small>'+esc(drPhrase(prev,f,x.by))+'</small></li>';}).join("")+'</ol>';}
+  function drTrace(d){return '<ol class="dr-steps">'+d.steps.map(function(x,i){var f=films[x.id],prev=i?films[d.steps[i-1].id]:null;return '<li><button type="button" data-drfilm="'+esc(x.id)+'">'+esc(f.t)+'</button><small>'+esc(x.why||(i?drPhrase(prev,f,x.by):"Point de départ"))+'</small></li>';}).join("")+'</ol>';}
+  function drStartHtml(){
+    var mine=Object.keys(answers).filter(function(id){return films[id]&&answers[id]&&answers[id].note10>=7;}).sort(function(a,b){return answers[b].note10-answers[a].note10;}).slice(0,12);
+    return '<h3 class="dr-q">Pars d\'un film que tu as aimé</h3>'+
+      (mine.length?'<div class="dr-starts">'+mine.map(function(id){return '<button type="button" data-drstart="'+esc(id)+'">'+esc(films[id].t)+' <small>'+esc(films[id].y||"")+'</small></button>';}).join("")+'</div>':"")+
+      '<label class="dr-find"><span>'+(mine.length?"Ou cherche un autre film":"Cherche un film")+'</span><input id="drFind" type="search" maxlength="80" autocomplete="off" placeholder="Un titre…"></label><div class="dr-found" id="drFound"></div>'+
+      '<div class="dr-actions"><button type="button" data-drarchive="1">Mes chemins</button></div>';
+  }
   function drRender(){
     var body=$("drBody"),d=DR.current,h="";drNote("");
     if(d){d.steps=d.steps.filter(function(x){return !!films[x.id];});if(!d.steps.length){DR.current=null;d=null;}}
     if(DR.mode==="archive"){
-      h='<div class="dr-actions"><button type="button" data-drback="1">Retour au rêve</button><button type="button" data-drnew="1">Une autre image</button></div><div class="dr-archive">'+(DR.records.length?DR.records.map(function(r,i){return '<article><h3>'+esc(r.n||r.seed)+'</h3><p>'+esc(r.seed)+' · '+r.steps.length+' film'+(r.steps.length>1?'s':'')+'</p><button type="button" data-drread="'+i+'">Relire</button><button type="button" data-drresume="'+i+'">Reprendre</button></article>';}).join(""):'<p class="dr-origin">Aucun rêve gardé ici pour le moment.</p>')+'</div>';
+      h='<div class="dr-actions"><button type="button" data-drback="1">Retour</button><button type="button" data-drnew="1">Nouveau départ</button></div><div class="dr-archive">'+(DR.records.length?DR.records.map(function(r,i){return '<article><h3>'+esc(r.n||r.seed)+'</h3><p>'+esc(films[r.steps[0].id]?films[r.steps[0].id].t:r.seed)+' → … · '+r.steps.length+' film'+(r.steps.length>1?'s':'')+'</p><button type="button" data-drread="'+i+'">Relire</button><button type="button" data-drresume="'+i+'">Reprendre</button></article>';}).join(""):'<p class="dr-origin">Aucun chemin gardé ici pour le moment.</p>')+'</div>';
     }else if(DR.mode==="read"&&d){
-      h='<p class="dr-origin">'+esc(d.seed)+'</p><h3>'+esc(d.n||"Un rêve sans nom")+'</h3>'+drTrace(d)+'<div class="dr-actions"><button type="button" data-drback="1">Reprendre</button><button type="button" data-drarchive="1">Mes rêves</button><button type="button" data-drshare="1">Partager</button></div>';
+      h='<h3>'+esc(d.n||"Un chemin sans nom")+'</h3>'+drTrace(d)+'<div class="dr-actions"><button type="button" data-drback="1">Reprendre</button><button type="button" data-drarchive="1">Mes chemins</button><button type="button" data-drshare="1">Partager</button></div>';
     }else if(!d){
-      h='<form class="dr-seed" id="drSeedForm" novalidate><label for="drSeed">Une image</label><input id="drSeed" maxlength="160" placeholder="Une forêt humide, un rouge qui tremble…" autocomplete="off"><button type="submit">Entrer dans le rêve</button></form><div class="dr-images">'+DR_IMAGES.map(function(x){return '<button type="button" data-drimage="'+esc(x[1])+'">'+esc(x[1])+'</button>';}).join("")+'</div><div class="dr-actions"><button type="button" data-drarchive="1">Mes rêves</button></div>';
+      h=drStartHtml();
     }else{
-      var step=d.steps[d.steps.length-1],f=films[step.id],prev=d.steps.length>1?films[d.steps[d.steps.length-2].id]:null;DR.choices=d.steps.length<40?drOptions():{};
-      h='<p class="dr-origin">'+esc(d.seed)+'</p><article class="dr-film" data-film="'+esc(f.id)+'"><h3>'+esc(f.t)+'</h3><div class="dr-meta">'+[f.y,f.d].filter(Boolean).map(esc).join(" · ")+'</div><p class="dr-phrase">'+esc(drPhrase(prev,f,step.by))+'</p>'+(f.p||DESC[f.id]?'<details><summary>Le film</summary><p>'+esc(f.p||DESC[f.id])+'</p></details>':"")+'<button type="button" data-drfilm="'+esc(f.id)+'">Ouvrir la fiche</button></article><div class="dr-paths">'+DR_PATHS.map(function(p){return '<button type="button" data-drpath="'+p[0]+'" data-next="'+esc(DR.choices[p[0]]||"")+'"'+(DR.choices[p[0]]?'':' disabled')+'><b>'+p[1]+'</b><span>'+p[2]+'</span></button>';}).join("")+'</div><div class="dr-save"><input id="drName" maxlength="80" aria-label="Nom du rêve" placeholder="Un nom pour ce rêve…" value="'+esc(d.n)+'"><button type="button" data-drsave="1">Garder</button><button type="button" id="drShare" data-drshare="1">Partager</button></div><div class="dr-actions">'+(d.steps.length>1?'<button type="button" data-drundo="1">Sur mes pas</button>':"")+'<button type="button" data-drarchive="1">Mes rêves</button><button type="button" data-drnew="1">Une autre image</button></div><details class="dr-trace"><summary>La trace · '+d.steps.length+' film'+(d.steps.length>1?'s':'')+'</summary>'+drTrace(d)+'</details>';
-      if(d.steps.length>=40)setTimeout(function(){drNote("Le rêve est complet. Tu peux le garder ou en commencer un autre.");},0);
+      var step=d.steps[d.steps.length-1],f=films[step.id],syn=f.p||DESC[f.id]||"";DR.choices=d.steps.length<40?drOptions():{};
+      h='<ol class="dr-chain" aria-label="Ton chemin">'+d.steps.map(function(x,i){return '<li'+(i===d.steps.length-1?' aria-current="step"':'')+'>'+esc(films[x.id].t)+'</li>';}).join("")+'</ol>'+
+        '<article class="dr-film" data-film="'+esc(f.id)+'">'+(step.why?'<p class="dr-why">'+esc(step.why)+'</p>':"")+'<h3>'+esc(f.t)+'</h3><div class="dr-meta">'+[f.y,f.d,drPays(f)].filter(Boolean).map(esc).join(" · ")+'</div>'+
+        (syn?'<p class="dr-syn">'+esc(syn)+'</p>':"")+'<button type="button" data-drfilm="'+esc(f.id)+'">Ouvrir la fiche</button></article>'+
+        '<h4 class="dr-q">Et ensuite ?</h4><div class="dr-paths">'+DR_PATHS.map(function(pa){var o=DR.choices[pa[0]];if(!o)return "";var g=films[o.id];return '<button type="button" data-drpath="'+pa[0]+'" data-next="'+esc(o.id)+'"><span class="dr-why">'+esc(o.why)+'</span><b>'+esc(g.t)+'</b><small>'+esc([g.y,g.d].filter(Boolean).join(" · "))+'</small></button>';}).join("")+'</div>'+
+        '<div class="dr-save"><input id="drName" maxlength="80" aria-label="Nom du chemin" placeholder="Un nom pour ce chemin…" value="'+esc(d.n)+'"><button type="button" data-drsave="1">Garder</button><button type="button" id="drShare" data-drshare="1">Partager</button></div>'+
+        '<div class="dr-actions">'+(d.steps.length>1?'<button type="button" data-drundo="1">← Revenir d\'un pas</button>':"")+'<button type="button" data-drnew="1">Nouveau départ</button><button type="button" data-drarchive="1">Mes chemins</button></div>';
+      if(d.steps.length>=40)setTimeout(function(){drNote("Le chemin est complet. Tu peux le garder ou repartir d'un autre film.");},0);
     }
     body.innerHTML=h;
+  }
+  function drStartFilm(id){var f=films[id];if(!f)return;DR.mode="";DR.current={n:"",seed:"Depuis « "+f.t+" »",steps:[{id:id,by:"depart",why:""}]};drRender();$("drift").scrollTop=0;}
+  function drFindList(q){
+    var box=$("drFound");if(!box)return;q=norm(String(q||"").trim());if(q.length<2){box.innerHTML="";return;}
+    var ids=Object.keys(films).filter(function(id){return films[id].t&&norm(films[id].t).indexOf(q)>=0;}).sort(function(a,b){return norm(films[a].t).indexOf(q)-norm(films[b].t).indexOf(q)||String(films[a].t).length-String(films[b].t).length;}).slice(0,6);
+    box.innerHTML=ids.length?ids.map(function(id){return '<button type="button" data-drstart="'+esc(id)+'">'+esc(films[id].t)+' <small>'+esc([films[id].y,films[id].d].filter(Boolean).join(" · "))+'</small></button>';}).join(""):'<p class="dr-origin">Aucun film du carnet ne porte ce titre.</p>';
   }
   function drOpen(){if(!$("rsheet").hidden)$("rsClose").click();drRead();$("drift").hidden=false;document.querySelector(".wrap").inert=true;document.documentElement.classList.add("drift-on");drRender();$("drClose").focus({preventScroll:true});}
   function drClose(){var host=$("drift");host.hidden=true;host.inert=false;$("rsheet").hidden=true;$("rsAgain").hidden=false;document.querySelector(".wrap").inert=false;document.documentElement.classList.remove("drift-on");$("drToggle").focus({preventScroll:true});}
@@ -3512,11 +3729,12 @@ html.sky-on #rsheet{z-index:50;}
   }
   $("drToggle").addEventListener("click",drOpen);$("drClose").addEventListener("click",drClose);
   $("drBody").addEventListener("submit",function(e){if(e.target.id!=="drSeedForm")return;e.preventDefault();drStart($("drSeed").value);});
-  $("drBody").addEventListener("input",function(e){if(e.target.id==="drName"&&DR.current)DR.current.n=e.target.value.slice(0,80);});
+  $("drBody").addEventListener("input",function(e){if(e.target.id==="drName"&&DR.current)DR.current.n=e.target.value.slice(0,80);if(e.target.id==="drFind")drFindList(e.target.value);});
   $("drBody").addEventListener("click",function(e){
     var b=e.target.closest("button");if(!b)return;
     if(b.dataset.drimage){drStart(b.dataset.drimage);return;}
-    if(b.dataset.drpath){var id=DR.choices[b.dataset.drpath];if(id&&films[id]&&DR.current.steps.length<40){DR.current.steps.push({id:id,by:b.dataset.drpath});drRender();$("drift").scrollTop=0;}return;}
+    if(b.dataset.drstart){drStartFilm(b.dataset.drstart);return;}
+    if(b.dataset.drpath){var o=DR.choices[b.dataset.drpath];if(o&&films[o.id]&&DR.current.steps.length<40){DR.current.steps.push({id:o.id,by:b.dataset.drpath,why:o.why});drRender();$("drift").scrollTop=0;}return;}
     if(b.dataset.drfilm){drFilm(b.dataset.drfilm);return;}
     if(b.dataset.drundo){if(DR.current&&DR.current.steps.length>1){DR.current.steps.pop();drRender();}return;}
     if(b.dataset.drnew){DR.current=null;DR.mode="";drRender();return;}
@@ -3524,9 +3742,9 @@ html.sky-on #rsheet{z-index:50;}
     if(b.dataset.drback){DR.mode="";drRender();return;}
     if(b.dataset.drread!=null||b.dataset.drresume!=null){var r=DR.records[+(b.dataset.drread!=null?b.dataset.drread:b.dataset.drresume)];if(r){DR.current=JSON.parse(JSON.stringify(r));DR.mode=b.dataset.drread!=null?"read":"";drRender();}return;}
     if(b.dataset.drsave&&DR.current){
-      if(!DR.current.savedId&&DR.records.length>=20){drNote("Vingt rêves sont déjà gardés ici. Tu peux poursuivre l'un d'eux ou partager ce nouveau rêve.");return;}
+      if(!DR.current.savedId&&DR.records.length>=20){drNote("Vingt chemins sont déjà gardés ici. Tu peux poursuivre l'un d'eux ou partager ce nouveau chemin.");return;}
       var saved=JSON.parse(JSON.stringify(DR.current));saved.n=saved.n.trim()||saved.seed;saved.savedId=saved.savedId||"reve-"+Date.now()+"-"+Math.random().toString(36).slice(2,7);saved.date=new Date().toISOString();DR.current.savedId=saved.savedId;DR.current.n=saved.n;
-      var old=DR.records.slice();DR.records=[saved].concat(DR.records.filter(function(r){return r.savedId!==saved.savedId;})).slice(0,20);if(drPersist()){drRender();drNote("Rêve gardé sur cet appareil.");}else DR.records=old;return;
+      var old=DR.records.slice();DR.records=[saved].concat(DR.records.filter(function(r){return r.savedId!==saved.savedId;})).slice(0,20);if(drPersist()){drRender();drNote("Chemin gardé sur cet appareil.");}else DR.records=old;return;
     }
     if(b.dataset.drshare){drShare();return;}
   });
@@ -5239,88 +5457,47 @@ html.sky-on #rsheet{z-index:50;}
     return "Pour un SMS : touche « Copier », puis colle le message dans Messages.";
   }
 
-  // ---------- Ciel de films : projection sparse, voisins et canevas ----------
-  document.querySelector(".ccbar").insertAdjacentHTML("beforeend", '<button type="button" class="chip ccb" id="skyToggle" aria-haspopup="dialog">✦ Ciel</button>');
+  // ---------- Ciel de films : constellations nommées d'après les catégories, et canevas ----------
+  document.querySelector(".ccbar").insertAdjacentHTML("beforeend", '<button type="button" class="chip ccb" id="skyToggle" data-tx="btn.ciel" aria-haspopup="dialog">✦ Ciel</button>');
   var SKY = { sig:"", gen:0, points:[], byId:{}, grid:{}, cam:{x:0,y:0,z:1}, w:0,h:0,raf:0,member:"",hover:"",ready:false };
   var skyEl = $("sky"), skyCanvas = $("skyCanvas"), skyCtx = skyCanvas.getContext("2d"), skySprites = {};
   function skyHash(s){ var h=2166136261; for(var i=0;i<s.length;i++) h=Math.imul(h^s.charCodeAt(i),16777619); return h>>>0; }
   function skyNorm(v){ var q=Math.sqrt(v.reduce(function(s,x){return s+x*x;},0))||1; return v.map(function(x){return x/q;}); }
+  // Constellations : chaque liste de thèmes devient un groupe d'étoiles qui porte son nom ; un film va dans la liste la plus précise qui le contient.
+  function skyGroups(){
+    var lists=sections.filter(function(s){return s.famille==="themes"&&!s.cache&&!s.auto&&(s.films||[]).length;}).map(function(s){return {id:s.id,name:sTitre(s)||s.titre||"",ids:(s.films||[]).map(function(f){return f.id;})};});
+    var of={};lists.slice().sort(function(a,b){return a.ids.length-b.ids.length||(a.id<b.id?-1:1);}).forEach(function(g){g.ids.forEach(function(id){if(!of[id]&&films[id])of[id]=g.id;});});
+    return {lists:lists,of:of};
+  }
   function skyModel(){
-    var ids=Object.keys(films).sort(), signature=ids.map(function(id){var f=films[id];return [id,f.k,f.mv,f.c,f.y,f.d,FAM5[id]||""].join("|");}).join(";");
+    var ids=Object.keys(films).sort(),G=skyGroups(),signature=ids.map(function(id){return id+"|"+(G.of[id]||"");}).join(";")+"#"+G.lists.map(function(g){return g.id+":"+g.name;}).join(",");
     if(SKY.sig===signature) return;
-    SKY.sig=signature; SKY.ready=false; var gen=++SKY.gen, index={}, keys=[], frequency=[], raw=[], n=ids.length;
-    if(!n){ SKY.points=[]; skySchedule(); return; }
-    $("skyCaption").textContent="Le ciel se dessine…";
-    function feature(row,key,value){ var j=index[key]; if(j==null){j=keys.length;index[key]=j;keys.push(key);frequency[j]=0;} row.push([j,value]); frequency[j]++; }
-    ids.forEach(function(id){
-      var f=films[id], row=[];
-      (f.k||[]).forEach(function(k){feature(row,"k|"+k,1.5);});
-      if(f.mv) feature(row,"mv|"+f.mv,1.4);
-      String(f.c||"").split(",").forEach(function(c){if(c.trim())feature(row,"c|"+c.trim(),.8);});
-      String(f.d||"").replace(/ et /g,",").split(",").forEach(function(d){if(d.trim())feature(row,"d|"+d.trim(),1.7);});
-      if(f.y) feature(row,"epoque|"+Math.floor(+f.y/10),.7);
-      famW(f).forEach(function(w,i){if(w)feature(row,"famille|"+i,w*2);});
-      raw.push(row);
+    SKY.sig=signature; ++SKY.gen; var n=ids.length;
+    if(!n){ SKY.points=[]; SKY.groups=[]; skySchedule(); return; }
+    var byG={},order=[];ids.forEach(function(id){var g=G.of[id]||"_";if(!byG[g]){byG[g]=[];order.push(g);}byG[g].push(id);});
+    var names={};G.lists.forEach(function(g){names[g.id]=g.name;});names._="Autres films";
+    // Les plus grandes constellations au centre, les autres en spirale autour ; les films d'un groupe en tournesol.
+    order.sort(function(a,b){return (a==="_")-(b==="_")||byG[b].length-byG[a].length||(a<b?-1:1);});
+    var points=[],groups=[],GA=Math.PI*(3-Math.sqrt(5)),placed=[];
+    order.forEach(function(g,k){
+      var list=byG[g].slice().sort(function(a,b){return skyHash(a)-skyHash(b);}),r=Math.sqrt(list.length)*15+10,cx=0,cy=0;
+      // Chaque constellation se pose sur une spirale, à la première place libre, avec de l'air pour son nom.
+      for(var t=0;k&&t<4000;t++){var ang=t*.37,R=t*6;cx=Math.cos(ang)*R;cy=Math.sin(ang)*R*.8;if(placed.every(function(q){return Math.hypot(q.x-cx,q.y-cy)>=q.r+r+55;}))break;}
+      placed.push({x:cx,y:cy,r:r});
+      list.forEach(function(id,i){var d=Math.sqrt(i+.5)*15,a=i*GA;points.push({id:id,g:g,x:cx+Math.cos(a)*d,y:cy+Math.sin(a)*d,links:[]});});
+      groups.push({id:g,name:names[g]||"",x:cx,y:cy-r-8,n:list.length});
     });
-    var d=keys.length, mean=new Array(d).fill(0), rows=raw.map(function(row){
-      var r=row.map(function(x){return [x[0],x[1]*Math.sqrt(1+Math.log((n+1)/(frequency[x[0]]+1)))];});
-      var size=Math.sqrt(r.reduce(function(s,x){return s+x[1]*x[1];},0))||1;
-      r.forEach(function(x){x[1]/=size;mean[x[0]]+=x[1]/n;});return r;
-    });
-    function dot(row,v){return row.reduce(function(s,x){return s+x[1]*v[x[0]];},0);}
-    var axes=[], axis=0, iteration=0, v=skyNorm(keys.map(function(k){return Math.sin(skyHash(k)%10000+1);}));
-    function power(){
-      if(gen!==SKY.gen)return;
-      var m=mean.reduce(function(s,x,j){return s+x*v[j];},0), next=mean.map(function(x){return -n*x*m;});
-      rows.forEach(function(row){var p=dot(row,v);row.forEach(function(x){next[x[0]]+=x[1]*p;});});
-      if(axis){var projection=next.reduce(function(s,x,j){return s+x*axes[0][j];},0);next=next.map(function(x,j){return x-projection*axes[0][j];});}
-      v=skyNorm(next);
-      if(++iteration<18){requestAnimationFrame(power);return;}
-      axes.push(v); if(++axis<2){iteration=0;v=skyNorm(keys.map(function(k){return Math.cos(skyHash(k)%10000+7);}));requestAnimationFrame(power);return;}
-      layout();
-    }
-    function layout(){
-      var values=rows.map(function(row){return axes.map(function(a){return dot(row,a)-mean.reduce(function(s,x,j){return s+x*a[j];},0);});});
-      var spread=[0,1].map(function(j){return Math.sqrt(values.reduce(function(s,p){return s+p[j]*p[j];},0)/n)||1;});
-      var points=ids.map(function(id,i){var h=skyHash(id), x=Math.tanh(values[i][0]/spread[0]/2)*440, y=Math.tanh(values[i][1]/spread[1]/2)*440;
-        return {id:id,x:x+(h%19-9)*.4,y:y+((h>>>8)%19-9)*.4,ox:x,oy:y,links:[]};});
-      var inverted=new Array(d).fill(null).map(function(){return [];});
-      rows.forEach(function(row,i){row.forEach(function(x){inverted[x[0]].push([i,x[1]]);});});
-      var cursor=0;
-      function neighbours(){
-        if(gen!==SKY.gen)return;
-        for(var end=Math.min(n,cursor+28);cursor<end;cursor++){
-          var scores={};rows[cursor].forEach(function(x){inverted[x[0]].forEach(function(y){if(y[0]!==cursor)scores[y[0]]=(scores[y[0]]||0)+x[1]*y[1];});});
-          points[cursor].links=Object.keys(scores).sort(function(a,b){return scores[b]-scores[a]||+a-+b;}).slice(0,4).map(function(j){return {j:+j,s:scores[j]};});
-        }
-        if(cursor<n){requestAnimationFrame(neighbours);return;}
-        relax(0);
-      }
-      function relax(turn){
-        if(gen!==SKY.gen)return;
-        var grid={}, delta=points.map(function(p){var key=Math.floor(p.x/45)+","+Math.floor(p.y/45);(grid[key]=grid[key]||[]).push(p);return {x:(p.ox-p.x)*.004,y:(p.oy-p.y)*.004};});
-        points.forEach(function(p,i){
-          p.links.forEach(function(link){var q=points[link.j],dx=q.x-p.x,dy=q.y-p.y,len=Math.hypot(dx,dy)||1,f=(len-(18+(1-link.s)*65))*.023;delta[i].x+=dx/len*f;delta[i].y+=dy/len*f;});
-          var gx=Math.floor(p.x/45),gy=Math.floor(p.y/45);
-          for(var a=-1;a<=1;a++)for(var b=-1;b<=1;b++)(grid[(gx+a)+","+(gy+b)]||[]).forEach(function(q){
-            if(q===p)return;var dx=p.x-q.x,dy=p.y-q.y,len=Math.hypot(dx,dy)||.1;if(len<35){var f=(35-len)*.06;delta[i].x+=dx/len*f;delta[i].y+=dy/len*f;}
-          });
-        });
-        points.forEach(function(p,i){p.x+=Math.max(-5,Math.min(5,delta[i].x));p.y+=Math.max(-5,Math.min(5,delta[i].y));});
-        if(turn<40){requestAnimationFrame(function(){relax(turn+1);});return;}
-        SKY.points=points;SKY.byId={};SKY.grid={};points.forEach(function(p){SKY.byId[p.id]=p;var key=Math.floor(p.x/64)+","+Math.floor(p.y/64);(SKY.grid[key]=SKY.grid[key]||[]).push(p);});
-        SKY.ready=true;skyCanvas.dataset.count=String(n);skyCanvas.dataset.layout=String(skyHash(points.map(function(p){return p.id+":"+p.x.toFixed(3)+","+p.y.toFixed(3);}).join(";")));SKY.threads={};skyFit();skySchedule();
-      }
-      requestAnimationFrame(neighbours);
-    }
-    requestAnimationFrame(power);
+    SKY.points=points;SKY.groups=groups;SKY.byId={};SKY.grid={};points.forEach(function(p){SKY.byId[p.id]=p;var key=Math.floor(p.x/64)+","+Math.floor(p.y/64);(SKY.grid[key]=SKY.grid[key]||[]).push(p);});
+    var minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;points.forEach(function(p){minX=Math.min(minX,p.x);maxX=Math.max(maxX,p.x);minY=Math.min(minY,p.y);maxY=Math.max(maxY,p.y);});
+    SKY.box={x:(minX+maxX)/2,y:(minY+maxY)/2,w:maxX-minX+260,h:maxY-minY+180};
+    SKY.ready=true;skyCanvas.dataset.count=String(n);skyCanvas.dataset.layout=String(skyHash(points.map(function(p){return p.id+":"+p.x.toFixed(3)+","+p.y.toFixed(3);}).join(";")));SKY.threads={};skyFit();skySchedule();
   }
   function skySchedule(){ if(SKY.raf||skyEl.hidden)return; SKY.raf=requestAnimationFrame(function(){SKY.raf=0;skyDraw();}); }
   function skyResize(){
     var r=skyCanvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);if(!r.width||!r.height)return;
     SKY.w=r.width;SKY.h=r.height;SKY.dpr=dpr;skyCanvas.width=Math.round(r.width*dpr);skyCanvas.height=Math.round(r.height*dpr);skySchedule();
   }
-  function skyFit(){SKY.cam={x:0,y:0,z:Math.max(.18,Math.min(SKY.w,SKY.h-130)/1040)};skyCanvas.dataset.zoom=String(SKY.cam.z);skySchedule();}
+  function skyFit(){var b=SKY.box||{x:0,y:0,w:1040,h:1040};SKY.cam={x:b.x,y:b.y,z:Math.max(.15,Math.min(SKY.w/b.w,(SKY.h-130)/b.h))};skyCanvas.dataset.zoom=String(SKY.cam.z);skySchedule();}
   function skyScreen(p){return {x:SKY.w/2+(p.x-SKY.cam.x)*SKY.cam.z,y:SKY.h/2+35+(p.y-SKY.cam.y)*SKY.cam.z};}
   function skyWorld(x,y){return {x:SKY.cam.x+(x-SKY.w/2)/SKY.cam.z,y:SKY.cam.y+(y-SKY.h/2-35)/SKY.cam.z};}
   function skyZoom(f,x,y){var before=skyWorld(x,y);SKY.cam.z=Math.max(.15,Math.min(9,SKY.cam.z*f));var after=skyWorld(x,y);SKY.cam.x+=before.x-after.x;SKY.cam.y+=before.y-after.y;skyCanvas.dataset.zoom=String(SKY.cam.z);skySchedule();}
@@ -5335,7 +5512,7 @@ html.sky-on #rsheet{z-index:50;}
     function threads(rep,color){
       var ids=SKY.points.map(function(p,i){return isSeen((rep[p.id]||{}).etat)?i:-1;}).filter(function(i){return i>=0;}),sig=ids.join(","),cache=SKY.threads[color];
       if(!cache||cache.sig!==sig){
-        var lines=[],used={};ids.forEach(function(i){var p=SKY.points[i],nearest=[];ids.forEach(function(j){if(i===j)return;var q=SKY.points[j],dist=Math.hypot(q.x-p.x,q.y-p.y);if(dist>300)return;var candidate={j:j,d:dist};if(!nearest[0]||dist<nearest[0].d){nearest.unshift(candidate);nearest.length=Math.min(nearest.length,2);}else if(!nearest[1]||dist<nearest[1].d)nearest[1]=candidate;});
+        var lines=[],used={};ids.forEach(function(i){var p=SKY.points[i],nearest=[];ids.forEach(function(j){if(i===j)return;var q=SKY.points[j];if(q.g!==p.g)return;var dist=Math.hypot(q.x-p.x,q.y-p.y);if(dist>300)return;var candidate={j:j,d:dist};if(!nearest[0]||dist<nearest[0].d){nearest.unshift(candidate);nearest.length=Math.min(nearest.length,2);}else if(!nearest[1]||dist<nearest[1].d)nearest[1]=candidate;});
           nearest.forEach(function(q){var key=Math.min(i,q.j)+","+Math.max(i,q.j);if(q.d<=300&&!used[key]){used[key]=1;lines.push([i,q.j]);}});
         });cache=SKY.threads[color]={sig:sig,lines:lines};
       }
@@ -5348,7 +5525,10 @@ html.sky-on #rsheet{z-index:50;}
       var size=brilliant?25:lit?14:7,color=brilliant?"#ffe1a7":lit?"#f7d5aa":"#abc1e3";c.globalAlpha=lit?1:.56;c.drawImage(skySprite(color),s.x-size/2,s.y-size/2,size,size);
       if(other&&isSeen((peer[p.id]||{}).etat)){c.globalAlpha=.85;c.strokeStyle="#c7a4ff";c.lineWidth=.7;c.beginPath();c.arc(s.x,s.y,brilliant?4:2.5,0,Math.PI*2);c.stroke();}
     });
-    c.globalAlpha=1;$("skyCaption").textContent=SKY.points.length+" étoiles · "+Object.keys(answers).filter(function(id){return SKY.byId[id]&&isSeen((answers[id]||{}).etat);}).length+" lumières"+(other?" · avec "+other.pseudo:"");
+    c.globalAlpha=1;c.textAlign="center";c.textBaseline="bottom";
+    (SKY.groups||[]).forEach(function(g){if(!g.name)return;var s=skyScreen(g),lit=SKY.points.some(function(p){return p.g===g.id&&isSeen((answers[p.id]||{}).etat);});if(s.x<-160||s.x>SKY.w+160||s.y<-40||s.y>SKY.h+60)return;
+      var fs=Math.max(11,Math.min(16,11+SKY.cam.z*5));c.font="600 "+fs+"px system-ui,sans-serif";c.fillStyle=lit?"#f3dcb4":"#9fb0cf";c.globalAlpha=lit?.95:.6;c.fillText(g.name,s.x,s.y);});
+    c.globalAlpha=1;$("skyCaption").textContent=SKY.points.length+" films · "+Object.keys(answers).filter(function(id){return SKY.byId[id]&&isSeen((answers[id]||{}).etat);}).length+" vus"+(other?" · avec "+other.pseudo:"");
     skyCanvas.dataset.renderMs=(performance.now()-started).toFixed(2);
   }
   function skyMembers(){
@@ -5676,6 +5856,7 @@ html.sky-on #rsheet{z-index:50;}
     docs.forEach(function(d){
       var x = d.data() || {};
       if (d.id === "rangement") { RANG = x; return; }
+      if (d.id === "apparence") { if (typeof appLoaded === "function") appLoaded(x); return; }
       if (x.fiches) {
         Object.keys(x.fiches).forEach(function(id){
           // Les compléments apportent les champs absents ; Firebase garde la priorité, même pour une valeur vide.

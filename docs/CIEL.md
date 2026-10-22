@@ -45,3 +45,12 @@ essai local. Le fichier `captures/ciel/mesures.json` contient la mesure la plus 
 - [ ] Le ciel assez sombre et la luminosité des films vus conviennent-ils ?
 - [ ] Les liens fins entre voisins vus et la superposition violette se lisent-ils bien ?
 - [ ] L'exploration poétique peut-elle conserver des voisinages parfois inattendus ?
+
+## Refonte du 22 octobre 2026
+
+Les positions calculées étaient difficiles à lire. Chaque liste de la famille « Thèmes »
+devient une constellation qui porte son nom ; un film va dans la liste la plus précise qui
+le contient, les autres films forment « Autres films ». Les constellations se posent sur
+une spirale sans se chevaucher. Une légende d'une ligne explique les trois tailles d'étoile.
+Les fils relient seulement les films vus d'une même constellation. Les positions ne
+dépendent toujours ni des notes ni du membre superposé.

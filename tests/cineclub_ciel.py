@@ -81,9 +81,13 @@ def run():
                 page.locator("#skyReset").click()
             # Viser un point lumineux effectivement dessiné, sans accéder au modèle privé.
             settled(page)
-            point = canvas.evaluate("""c => {const a=c.getContext('2d').getImageData(0,0,c.width,c.height);for(let y=205;y<c.height-100;y++)for(let x=20;x<c.width-20;x++){if(a.data[(y*c.width+x)*4+3]>180)return {x:x,y:y};}return null;}""")
-            assert point, "Le ciel doit contenir des étoiles visibles"
-            page.mouse.click(point["x"], point["y"])
+            # Les noms des constellations sont aussi dessinés : on essaie les points lumineux jusqu'à toucher une étoile.
+            points = canvas.evaluate("""c => {const a=c.getContext('2d').getImageData(0,0,c.width,c.height),out=[];for(let y=205;y<c.height-100&&out.length<400;y+=3)for(let x=20;x<c.width-20;x+=3){if(a.data[(y*c.width+x)*4+3]>180)out.push({x:x,y:y});}return out;}""")
+            assert points, "Le ciel doit contenir des étoiles visibles"
+            for point in points[::7]:
+                page.mouse.click(point["x"], point["y"])
+                if page.locator("#rsheet").is_visible():
+                    break
             page.locator("#rsheet").wait_for(state="visible")
             assert page.locator("#rs-h").inner_text()
             page.locator("#rsClose").click()

@@ -34,15 +34,17 @@ def run():
             context, page, errors, unexpected = context_for(browser, width, height)
             ready(page)
             page.locator("#drToggle").click()
-            page.locator('[data-drimage="Un bleu profond"]').click()
+            page.locator("[data-drstart]").first.click()
             first = page.locator(".dr-film").get_attribute("data-film")
             choices = page.locator("[data-drpath]").evaluate_all("buttons=>buttons.map(b=>b.dataset.next)")
             assert len(choices) == len(set(choices)) == 3 and first not in choices
-            for path in ["doux", "profond", "etrange"]:
+            reasons = page.locator(".dr-paths .dr-why").all_inner_texts()
+            assert len(reasons) == 3 and all(r.strip() for r in reasons), reasons
+            for path in ["auteur", "theme", "ailleurs"]:
                 page.locator(f'[data-drpath="{path}"]').click()
-            assert "4 films" in page.locator(".dr-trace summary").inner_text()
+            assert page.locator(".dr-chain li").count() == 4
             page.locator("[data-drundo]").click()
-            assert "3 films" in page.locator(".dr-trace summary").inner_text()
+            assert page.locator(".dr-chain li").count() == 3
             name_value = "Rêve d’été — à l’envers 🌙"
             page.locator("#drName").fill(name_value)
             page.locator("[data-drsave]").click()
@@ -61,7 +63,7 @@ def run():
             payload = json.loads(base64.urlsafe_b64decode(encoded + "=" * (-len(encoded) % 4)))
             assert payload["n"] == name_value and len(payload["ids"]) == 3
             assert len(set(payload["ids"])) == 3
-            assert set(payload) == {"v", "n", "seed", "ids", "by"}
+            assert set(payload) == {"v", "n", "seed", "ids", "by", "w"}
             assert "test-membre" not in url and "note10" not in json.dumps(payload)
 
             page.reload(wait_until="networkidle")
@@ -75,8 +77,8 @@ def run():
             assert page.locator(".dr-steps li").count() == 3
             page.locator("[data-drback]").click()
             page.locator("[data-drnew]").click()
-            page.locator("#drSeed").fill("Une forêt humide, un rouge qui tremble")
-            page.locator("#drSeedForm button").click()
+            page.locator("#drFind").fill("Shin")
+            page.locator("#drFound [data-drstart]").first.click()
             page.locator(".dr-film").wait_for()
             assert not page.locator(".dr-film").get_attribute("data-film") is None
             page.locator("#drClose").click()
@@ -94,7 +96,7 @@ def run():
             ready(received, url)
             received.locator(".dr-film").wait_for()
             assert received.locator("#drName").input_value() == name_value
-            assert received.locator(".dr-steps li").count() == 3
+            assert received.locator(".dr-chain li").count() == 3
             assert received.evaluate("localStorage.getItem('ccDerivesV1-test-membre')") is None
             received.locator("#drName").fill('<img src=x onerror="window.__xss=true">')
             received.locator("[data-drsave]").click()
@@ -106,7 +108,7 @@ def run():
             received.wait_for_function("document.querySelector('#drStatus').textContent.includes('incomplet')")
             assert received.evaluate("__fixtureWrites.length === 0")
             assert not received_errors and not received_requests, (received_errors, received_requests)
-            print(f"{name} : trois chemins, retour, carnet, reprise, partage privé, lien invalide, Grand confort et console : OK", flush=True)
+            print(f"{name} : départ d'un film, trois liens expliqués, retour, carnet, reprise, partage privé, lien invalide, Grand confort et console : OK", flush=True)
             context.close()
             received_context.close()
         browser.close()

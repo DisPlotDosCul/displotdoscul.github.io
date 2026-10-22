@@ -78,3 +78,16 @@ Grand confort ne provoque pas de débordement horizontal.
 |---|---|---|
 | Téléphone | [Capture](captures/derive/telephone-jour.png) | [Capture](captures/derive/telephone-neon.png) |
 | Ordinateur | [Capture](captures/derive/ordinateur-jour.png) | [Capture](captures/derive/ordinateur-neon.png) |
+
+## Refonte du 22 octobre 2026
+
+L'entrée par une image était trop abstraite. La Dérive part maintenant d'un film :
+les films aimés (7/10 et plus) sont proposés, ou n'importe quel titre par la recherche.
+À chaque étape, trois films sont proposés, chacun avec la raison du lien écrite en clair :
+
+- **Même regard** : même cinéaste, sinon même courant ;
+- **Même thème** : les mots-clés et thèmes partagés sont nommés (« En commun : horreur, huis clos ») ;
+- **Ailleurs** : une atmosphère proche, mais un autre pays et une autre époque.
+
+Le chemin s'affiche en haut (« Shining → Répulsion → … »). Garder, partager, revenir
+d'un pas et relire fonctionnent comme avant ; le lien partagé transporte aussi les raisons.

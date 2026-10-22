@@ -1,4 +1,5 @@
-"""Idées du 22 octobre : dé, recherche, avis à son nom, apostrophe, flèches, résumé, Boussole, boîte à idées."""
+"""Idées du 22 octobre : dé, recherche, avis à son nom, apostrophe, flèches, résumé, Boussole, boîte à idées, images, mode édition."""
+import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import cineclub_fixture as cf
@@ -22,6 +23,10 @@ def open_page(browser, admin):
             "CC.admin = !!(u && uh[1] === ADMIN_SHA);", "CC.admin = true;")
         context.route("https://cineclub.test/carnet-de-films/", lambda r: r.fulfill(content_type="text/html", body=html))
     context.add_init_script("localStorage.setItem('carnetAmbianceV1','neon');")
+    # TMDB simulé : aucune requête ne part vers le vrai service.
+    context.route("https://api.themoviedb.org/**", lambda r: r.fulfill(content_type="application/json", body=json.dumps(
+        {"results": [{"id": 694}]} if "/search/" in r.request.url else {"backdrops": [{"file_path": "/image-%d.jpg" % i, "iso_639_1": None} for i in range(6)]})))
+    context.route("https://image.tmdb.org/**", lambda r: r.fulfill(content_type="image/svg+xml", body='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="9"/>'))
     page = context.new_page()
     errors = []
     page.on("pageerror", lambda e: errors.append(str(e)))
@@ -125,8 +130,39 @@ def run():
             page.locator("#toc form[data-idfilm] button[type=submit]").click()
             page.wait_for_function("__fixtureWrites.some(w => (w.collection === 'propositions' && w.value.titre === 'Un film imaginaire de test') || (w.collection === 'films' && JSON.stringify(w.value).includes('Un film imaginaire de test')))")
 
+            # Images du film : quatre images dans la fiche, qui restent après un redessin.
+            page.locator("#q").fill("Shining")
+            card = '#main .film[data-id="shining-1980"]'
+            page.locator(card).first.wait_for()
+            page.locator(card + " [data-img]").first.click()
+            page.wait_for_function("s => document.querySelectorAll(s + ' .fimg img').length === 4", arg=card)
+            assert page.locator(card + " .fimg-s").first.inner_text() == "Images : TMDB"
+            page.locator(card + ' [data-a="pas_vu"]').first.click()
+            page.wait_for_timeout(300)
+            assert page.locator(card + " .fimg img").count() == 4
+            page.locator("#qx").click()
+
+            # Mode édition : réservé à l'administratrice ; disposition, texte et couleur enregistrés ensemble.
+            page.locator("#aab").click()
+            if not admin:
+                assert page.locator("#ccEdit").is_hidden()
+                page.locator("#aab").click()
+            else:
+                page.locator("#ccEdit").click()
+                page.locator('#edPanel [data-edmv="top|toc|-1"]').click()
+                assert page.evaluate("document.querySelector('#toc').compareDocumentPosition(document.querySelector('.bar')) & Node.DOCUMENT_POSITION_FOLLOWING")
+                page.locator('#edPanel [data-edtab="textes"]').click()
+                page.locator('#edPanel [data-edtx="btn.ciel"]').fill("✦ Mes étoiles")
+                assert page.locator("#skyToggle").inner_text() == "✦ Mes étoiles"
+                page.locator('#edPanel [data-edtab="couleurs"]').click()
+                page.locator('#edPanel [data-edcol="--vu"]').evaluate("e => { e.value = '#00aaff'; e.dispatchEvent(new Event('input', { bubbles:true })); }")
+                page.locator("#edPanel [data-edsave]").click()
+                page.wait_for_function("__fixture.films.apparence && __fixture.films.apparence.t['btn.ciel'] === '✦ Mes étoiles' && __fixture.films.apparence.c.neon['--vu'] === '#00aaff' && __fixture.films.apparence.o.top[1] === 'toc'")
+                page.locator("#edPanel [data-edclose]").click()
+                assert page.locator("#skyToggle").inner_text() == "✦ Mes étoiles"
+
             assert not errors and not unexpected, (errors, unexpected)
-            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées et console : OK", flush=True)
+            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées, images, mode édition et console : OK", flush=True)
             context.close()
         browser.close()
 
