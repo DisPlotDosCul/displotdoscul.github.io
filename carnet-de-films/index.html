@@ -446,11 +446,15 @@ a.shl{text-decoration:none;display:inline-block;}
 /* Boutons et panneaux flottants sur leur propre calque : ils restent collés à l'écran pendant le défilement. */
 .totop,.navb,.nt-btn,.nt-panel,.envbar,.sheet{transform:translateZ(0);backface-visibility:hidden;will-change:transform;}
 .navb .totop{transform:none;will-change:auto;}
+/* Positions fixées par rapport au haut de l'écran, en unités qui ne bougent pas quand la barre du navigateur mobile apparaît ou disparaît. */
+.totop{bottom:auto;top:calc(68vh - 44px);top:calc(68svh - 44px);}
+.envbar{bottom:auto;top:calc(68vh - 98px);top:calc(68svh - 98px);}
+.nt-btn{top:42vh;top:42svh;}
 html.scrolling *,html.scrolling *::before,html.scrolling *::after{animation-play-state:paused!important;}
 html.scrolling .nbulbs i,html.scrolling .nl{transition:none!important;}
 html.qon #main{min-height:calc(100vh - 60px);align-content:start;}
 html.navon .wrap{padding-bottom:64px;}
-.navb{position:fixed;left:10px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;gap:8px;}
+.navb{position:fixed;left:10px;top:calc(100vh - 58px - env(safe-area-inset-bottom,0px));top:calc(100svh - 58px - env(safe-area-inset-bottom,0px));z-index:6;display:flex;gap:8px;}
 .navb[hidden]{display:none;}
 .navb .totop{position:static;width:48px;padding:0;font-size:20px;}
 .navb .totop:disabled{opacity:.35;cursor:default;}
@@ -960,7 +964,8 @@ html.aff-calme .ccg-on{transition:none;}
 .nt-panel{position:fixed;right:10px;left:10px;bottom:12px;max-width:440px;margin-left:auto;max-height:70vh;overflow:auto;z-index:41;display:grid;gap:8px;
   background:var(--paper);color:var(--ink);border:2px solid var(--k-b-C8963A);border-radius:16px;padding:12px 14px;box-shadow:0 8px 30px rgba(44,34,48,.3);}
 .nt-h{display:flex;justify-content:space-between;align-items:center;font-size:16px;}
-#ntPanel{max-height:46vh;}
+#ntPanel{max-height:34vh;max-height:34svh;gap:6px;padding:10px 12px;}
+.nt-tog{justify-self:start;border:0;background:transparent;color:var(--muted);font:600 13.5px/1.2 var(--font);padding:4px 0;cursor:pointer;}
 #ntPanel.mini{max-height:none;gap:6px;padding:8px 12px;}
 #ntPanel{justify-items:stretch;}
 #ntPanel textarea{width:100%;box-sizing:border-box;}
@@ -1017,8 +1022,8 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 .ed-cols button{font-size:13px;padding:0 10px;}
 html.ed-on .wrap{padding-bottom:65vh;}
 .fimg{margin-top:10px;}
-.timg{flex:none;min-width:36px;height:32px;padding:0 8px;border:1.5px solid var(--line);border-radius:99px;background:var(--paper);color:var(--ink);font-size:15px;line-height:1;cursor:pointer;}
-.timg[aria-expanded="true"]{border-color:var(--gold);}
+.fimg-b{display:block;text-align:left;margin:10px 0 0;padding:6px 2px;border:0;background:transparent;color:var(--muted);font:600 14px/1.2 var(--font);cursor:pointer;}
+.fimg-b[aria-expanded="true"]{color:var(--ink);}
 .fimg-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
 .fimg-g a{display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--line);}
 .fimg-g img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -1389,7 +1394,7 @@ html.sky-on #rsheet{z-index:50;}
 <section class="sky" id="sky" role="dialog" aria-modal="true" aria-labelledby="skyTitle" hidden>
   <canvas id="skyCanvas" tabindex="0" role="img" aria-label="Ciel de films. La recherche permet de choisir une étoile ; les flèches déplacent le ciel et les boutons changent le zoom."></canvas>
   <div class="sky-tools"><h2 id="skyTitle">Ciel de films</h2><div class="sky-search"><input type="search" id="skySearch" placeholder="Une étoile…" aria-label="Chercher un film dans le ciel" autocomplete="off" aria-controls="skyResults"><div class="sky-results" id="skyResults" hidden></div></div><select id="skyMember" aria-label="Superposer le ciel d'un membre"><option value="">Mon ciel seul</option></select><button type="button" id="skyClose" aria-label="Fermer le ciel">Fermer</button></div>
-  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><p class="sky-legend"><span class="sl-b">✦</span> noté 9 ou plus · <span class="sl-v">●</span> vu · <span class="sl-p">·</span> pas encore vu · chaque groupe est une liste, un courant ou une décennie, de la couleur de sa catégorie</p><div class="sky-label" id="skyLabel" hidden></div>
+  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><p class="sky-legend"><span class="sl-b">✦</span> 9 et plus · <span class="sl-b" style="font-size:.8em">✦</span> 8 et plus · <span class="sl-v">●</span> vu · <span class="sl-p">·</span> pas encore vu · chaque groupe est une liste, un courant ou une décennie, de la couleur de sa catégorie</p><div class="sky-label" id="skyLabel" hidden></div>
   <div class="sky-zoom"><button type="button" id="skyOut" aria-label="Éloigner le ciel">−</button><button type="button" id="skyReset" aria-label="Retrouver tout le ciel">⌾</button><button type="button" id="skyIn" aria-label="Rapprocher le ciel">+</button></div>
 </section>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
@@ -2656,9 +2661,11 @@ html.sky-on #rsheet{z-index:50;}
       });
     });
   }
-  function fillImgs(id){
+  function fillImgs(id, show){
     var f = films[id]; if (!f) return;
-    var paint = function(r){ document.querySelectorAll('.fimg[data-imgbox="' + CSS.escape(id) + '"]').forEach(function(box){ box.innerHTML = imgInner(id, r); }); };
+    var paint = function(r){ document.querySelectorAll('.fimg[data-imgbox="' + CSS.escape(id) + '"]').forEach(function(box){ box.innerHTML = imgInner(id, r);
+      // Les images apparaissent sous le bouton : on les amène à l'écran si elles dépassent en bas.
+      if (show) { var bt = box.getBoundingClientRect(); if (bt.bottom > window.innerHeight - 10) window.scrollBy({ top:Math.min(bt.bottom - window.innerHeight + 16, bt.top - 70), behavior:"smooth" }); } }); };
     if (IMG_C[id]) { paint(IMG_C[id]); return; }
     if (!IMG_P[id]) IMG_P[id] = tmdbFind(f).then(function(r){ IMG_C[id] = r || { p:[] }; try { localStorage.setItem(IMG_KEY, JSON.stringify(IMG_C)); } catch (e) {} return IMG_C[id]; }, function(){ delete IMG_P[id]; return null; });
     IMG_P[id].then(function(r){ if (r) paint(r); else document.querySelectorAll('.fimg[data-imgbox="' + CSS.escape(id) + '"]').forEach(function(box){ box.innerHTML = '<p class="fimg-n">Les images ne répondent pas, réessaie dans un instant.</p>'; }); });
@@ -2668,10 +2675,11 @@ html.sky-on #rsheet{z-index:50;}
     if (t.dataset.img) {
       var id0 = t.dataset.img, row0 = t.closest(".film");
       IMG_OPEN[id0] = !IMG_OPEN[id0]; t.setAttribute("aria-expanded", IMG_OPEN[id0] ? "true" : "false");
+      t.textContent = "🎞 " + (IMG_OPEN[id0] ? "Masquer les images" : "Images du film");
       var box0 = row0 && row0.querySelector(".fimg");
       if (!IMG_OPEN[id0]) { if (box0) box0.remove(); return; }
-      if (!box0 && row0) { row0.insertAdjacentHTML("beforeend", imgBoxHtml(id0)); box0 = row0.querySelector(".fimg"); }
-      fillImgs(id0);
+      if (!box0) { t.insertAdjacentHTML("afterend", imgBoxHtml(id0)); box0 = t.nextElementSibling; }
+      fillImgs(id0, true);
       return;
     }
     var k = t.dataset.more; MORE[k] = !MORE[k];
@@ -2735,7 +2743,7 @@ html.sky-on #rsheet{z-index:50;}
     var avertissements = Array.isArray(f.av) ? f.av.filter(Boolean).join(" · ") : String(f.av || "").trim();
     var av = avertissements ? '<details class="fiche-av"><summary>Contenus sensibles</summary><p>' + esc(avertissements) + '</p></details>' : "";
     return '<div class="info"><div class="th"><div class="t">' + esc(f.t) + '</div>' +
-      '<button type="button" class="timg" data-img="' + esc(f.id) + '" aria-expanded="' + !!IMG_OPEN[f.id] + '" aria-label="Images du film ' + esc(f.t) + '" title="Images du film">🎞</button>' + est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
+est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<button type="button" class="more" data-more="' + esc(mk) + '" aria-expanded="' + mo + '" aria-controls="' + esc(detailId) + '" aria-label="Détails de ' + esc(f.t) + '">' + (mo ? "moins" : "plus…") + '</button></div>' +
       (!cmp && meta.length ? '<div class="m">' + meta.join(" · ") + '</div>' : "") + (!cmp ? av : "") +
       // Le résumé reste visible sur toutes les fiches ; seule « Mes films notés » le replie derrière « plus… ».
@@ -2750,7 +2758,8 @@ html.sky-on #rsheet{z-index:50;}
       '<div class="nv">' + nv + '</div></div>' +
       '<div class="acts"><button type="button" class="lst" data-l="1" aria-pressed="' + !!LISTE[f.id] + '">' + (LISTE[f.id] ? "✓ Ma liste" : "+ Ma liste") + '</button>' + plb +
       '<button type="button" class="fsh ico" data-fshare="1" aria-label="Partager ' + esc(f.t) + '" title="Partager">↗</button>' +
-      '<button type="button" class="cmb" data-com="1" aria-expanded="' + (OPEN_COM === f.sid + "|" + f.id) + '" aria-label="Commenter ' + esc(f.t) + '" title="Commenter">💬</button></div></div>' + plc + comForm(f) + (IMG_OPEN[f.id] ? imgBoxHtml(f.id) : "");
+      '<button type="button" class="cmb" data-com="1" aria-expanded="' + (OPEN_COM === f.sid + "|" + f.id) + '" aria-label="Commenter ' + esc(f.t) + '" title="Commenter">💬</button></div></div>' + plc + comForm(f) +
+      '<button type="button" class="fimg-b" data-img="' + esc(f.id) + '" aria-expanded="' + !!IMG_OPEN[f.id] + '" aria-label="Images du film ' + esc(f.t) + '">🎞 ' + (IMG_OPEN[f.id] ? "Masquer les images" : "Images du film") + '</button>' + (IMG_OPEN[f.id] ? imgBoxHtml(f.id) : "");
   }
 
   function dureeTexte(f){
@@ -2917,6 +2926,8 @@ html.sky-on #rsheet{z-index:50;}
   document.addEventListener("touchstart", function(){}, { passive:true });
   function jumpTo(el, off){
     if (!el) return;
+    // Les premières cartes de la destination sont dessinées avant de défiler : un seul mouvement, sans recalage visible.
+    Array.prototype.slice.call(el.querySelectorAll(".film.lz"), 0, 10).forEach(lzFill);
     window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - off) });
     if (lzFillNow()) window.scrollBy(0, el.getBoundingClientRect().top - off);
     if (lzFillNow()) window.scrollBy(0, el.getBoundingClientRect().top - off);
@@ -3394,14 +3405,15 @@ html.sky-on #rsheet{z-index:50;}
     return (TAB ? "onglet " + TAB : "accueil") + q + " · " + amb + " · " + window.innerWidth + " px";
   }
   // Le panneau reste petit (ou se réduit à une ligne) pour garder le site visible pendant qu'on écrit ; la dictée vocale s'ajoute si le navigateur la connaît.
-  var NT_DRAFT = "", NT_EDIT = -1, NT_MINI = false, NT_REC = null, SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var NT_DRAFT = "", NT_EDIT = -1, NT_MINI = false, NT_LIST = false, NT_REC = null, SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   function notesHtml(){
     var mic = SR ? '<button type="button" class="plf-no nt-mic" data-ntmic="1" aria-pressed="' + !!NT_REC + '">' + (NT_REC ? "⏹ Arrêter la dictée" : "🎤 Dicter") + '</button>' : "";
     return '<div class="nt-h"><b>Mes idées pour le site</b><span><button type="button" class="nt-x" data-ntmini="1" aria-label="' + (NT_MINI ? "Agrandir" : "Réduire") + '" title="' + (NT_MINI ? "Agrandir" : "Réduire") + '">' + (NT_MINI ? "▴" : "▾") + '</button><button type="button" class="nt-x" data-ntclose="1" aria-label="Fermer">✕</button></span></div>' +
-      '<textarea id="ntTxt" rows="' + (NT_MINI ? 2 : 3) + '" maxlength="1000" placeholder="Une idée, un défaut, une envie…">' + esc(NT_DRAFT) + '</textarea>' +
+      '<textarea id="ntTxt" rows="2" maxlength="1000" placeholder="Une idée, un défaut, une envie…">' + esc(NT_DRAFT) + '</textarea>' +
       '<div class="nt-b"><button type="button" class="plf-ok" data-ntadd="1">Noter</button>' + mic +
       (NT_MINI ? "" : '<button type="button" class="plf-no" data-ntcopy="1">📋 Tout copier</button>') + '</div>' +
-      (NT_MINI ? "" : NOTES.length ? '<ol class="nt-l">' + NOTES.map(function(n, i){
+      (NT_MINI ? "" : NOTES.length && !NT_LIST && NT_EDIT < 0 ? '<button type="button" class="nt-tog" data-ntlist="1" aria-expanded="false">Mes notes (' + NOTES.length + ') ▸</button>' :
+       NOTES.length ? '<button type="button" class="nt-tog" data-ntlist="1" aria-expanded="true">Mes notes (' + NOTES.length + ') ▾</button><ol class="nt-l">' + NOTES.map(function(n, i){
         if (i === NT_EDIT) return '<li class="nt-ed"><textarea id="ntEd" rows="3" maxlength="1000" aria-label="Modifier cette note">' + esc(n.t) + '</textarea><span class="nt-b"><button type="button" class="plf-ok" data-ntsave="' + i + '">Enregistrer</button><button type="button" class="plf-no" data-ntcancel="1">Annuler</button></span></li>';
         return '<li><span>' + esc(n.t) + '<small>' + esc(fdate(n.d) || "") + ' · ' + esc(n.w || "") + '</small></span><button type="button" data-ntedit="' + i + '" aria-label="Modifier cette note">✎</button><button type="button" data-ntdel="' + i + '" aria-label="Effacer cette note">✕</button></li>';
       }).join("") + '</ol><button type="button" class="nt-clear" data-ntclear="1">Tout effacer (après l\'envoi à Claude)</button>' : '<p class="id-n">Rien de noté pour l\'instant.</p>');
@@ -3435,6 +3447,7 @@ html.sky-on #rsheet{z-index:50;}
     if (!t.closest("#ntPanel")) return;
     if (t.closest("[data-ntclose]")) { ntMicStop(); p.hidden = true; return; }
     if (t.closest("[data-ntmini]")) { NT_MINI = !NT_MINI; ntPaint(false); return; }
+    if (t.closest("[data-ntlist]")) { NT_LIST = !NT_LIST; ntPaint(false); return; }
     if (t.closest("[data-ntmic]")) { ntMic(); return; }
     if (t.closest("[data-ntadd]")) {
       ntMicStop();
@@ -5597,9 +5610,9 @@ html.sky-on #rsheet{z-index:50;}
     }
     threads(answers,"#f3d4a449");if(other)threads(peer,"#c7a4ff65");
     SKY.points.forEach(function(p,i){
-      var a=answers[p.id]||{},lit=isSeen(a.etat),brilliant=lit&&+a.note10>=9,s=positions[i];if(s.x<-30||s.x>SKY.w+30||s.y<-30||s.y>SKY.h+30)return;
+      var a=answers[p.id]||{},lit=isSeen(a.etat),brilliant=lit&&+a.note10>=9,bright=lit&&+a.note10>=8,s=positions[i];if(s.x<-30||s.x>SKY.w+30||s.y<-30||s.y>SKY.h+30)return;
       if(lit)seen++;
-      var size=brilliant?25:lit?14:7,color=brilliant?"#ffe1a7":lit?"#f7d5aa":((SKY.gcol||{})[p.g]||"#abc1e3");c.globalAlpha=lit?1:.56;c.drawImage(skySprite(color),s.x-size/2,s.y-size/2,size,size);
+      var size=brilliant?26:bright?20:lit?13:7,color=brilliant?"#ffe1a7":bright?"#ffdcb0":lit?"#f7d5aa":((SKY.gcol||{})[p.g]||"#abc1e3");c.globalAlpha=lit?1:.56;c.drawImage(skySprite(color),s.x-size/2,s.y-size/2,size,size);
       if(other&&isSeen((peer[p.id]||{}).etat)){c.globalAlpha=.85;c.strokeStyle="#c7a4ff";c.lineWidth=.7;c.beginPath();c.arc(s.x,s.y,brilliant?4:2.5,0,Math.PI*2);c.stroke();}
     });
     c.globalAlpha=1;c.textAlign="center";c.textBaseline="bottom";
