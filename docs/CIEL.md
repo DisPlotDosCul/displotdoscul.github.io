@@ -77,3 +77,13 @@ grandes constellations sont nommées d'abord, les autres en rapprochant le ciel.
   (traumatismes, phobies, cauchemars…). Animation lente, coupée en Calme et avec la
   réduction des animations.
 - **Recherche** : le ciel glisse jusqu'à l'étoile, qui pulse ; son étiquette ouvre la fiche.
+
+## Ciel plein écran (23 octobre 2026, après-midi)
+
+- **Fond** : les étoiles lointaines couvrent tout l'écran (tuiles répétées), un peu plus
+  discrètes ; elles glissent et s'écartent toujours moins vite que les constellations au zoom.
+- **Espace** : écart minimal plus grand entre constellations, plus un écart irrégulier propre
+  à chaque paire ; le ciel n'est plus tassé au centre.
+- **Forme de l'écran** : les constellations s'écartent dans le sens le plus long de l'écran
+  (paysage sur ordinateur ou appareil tourné, portrait sur téléphone). Le ciel se recalcule
+  quand on tourne l'appareil, et se cadre entre la barre du haut et la légende.
