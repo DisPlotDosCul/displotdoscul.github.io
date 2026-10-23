@@ -891,11 +891,10 @@ html.th-neon .cc-wink{--cc-cue:#ff9bd6;animation-name:ccNeonWink;}
 html.aff-calme .cc-wink,html.aff-grand .cc-wink{animation:none!important;}
 @media(prefers-reduced-motion:reduce){.cc-wink{animation:none!important;}}
 @media(max-width:480px){
-  .bar .ccbar{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;}
+  .bar .ccbar{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px 4px;}
   .bar .ccbar .ccb{grid-column:span 2;min-width:0;min-height:40px;padding:5px 3px;font-size:12.5px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;justify-content:center;text-align:center;}
-  .bar .ccbar #ccMbr,.bar .ccbar #ccMe{grid-column:span 3;font-size:13px;}
-  .bar .ccbar #ccQuiz,.bar .ccbar #skyToggle,.bar .ccbar #drToggle{grid-column:span 2;font-size:13px;}
-  .bar .ccbar #ccMbr[hidden]~#ccMe{grid-column:span 6;}
+  .bar .ccbar .ccb{grid-column:span 2;font-size:11.5px;padding-inline:2px;letter-spacing:-.01em;gap:3px;}
+  .bar .ccbar #ccMbr[hidden]~#ccMe,.bar .ccbar #ccMbr[hidden]~#ccXp{grid-column:span 3;}
   html.aff-grand .bar .ccbar .ccb{font-size:14px;}
 }
 
@@ -1016,6 +1015,56 @@ section[data-auto="classement"] .acts > button{font-size:12px;padding:6px 8px;mi
 section[data-auto="classement"] .stars button{transform:scale(.88);}
 
 .qz-panel{gap:10px;}
+/* Mode express : une carte, quatre gros boutons, la suivante arrive aussitôt. */
+.xp{position:fixed;inset:0;z-index:44;overflow:auto;overscroll-behavior:contain;background:var(--bg);color:var(--ink);padding:max(14px,env(safe-area-inset-top)) 16px max(18px,env(safe-area-inset-bottom));}
+.xp[hidden]{display:none;}
+.xp-wrap{max-width:460px;margin:0 auto;display:grid;gap:12px;}
+.xp-head{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.xp-head h2{margin:0;font:400 26px/1.15 "Limelight",Georgia,serif;}
+.xp-x{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:99px;padding:9px 14px;font:600 14px/1 var(--font);cursor:pointer;}
+.xp-prog{height:6px;border-radius:99px;background:var(--line);overflow:hidden;}
+.xp-prog i{display:block;height:100%;background:var(--gold);border-radius:99px;transition:width .4s ease;}
+.xp-pct{margin:-4px 0 0;font-size:13px;color:var(--muted);}
+.xp-card{display:grid;justify-items:center;text-align:center;gap:6px;}
+.xp-poster{width:min(56vw,210px);aspect-ratio:2/3;border-radius:14px;background:linear-gradient(160deg,var(--paper),var(--line)) center/cover no-repeat;display:grid;place-items:center;padding:12px;box-sizing:border-box;box-shadow:0 14px 34px -14px rgba(20,10,30,.55);}
+.xp-poster span{font:400 20px/1.2 Georgia,serif;color:var(--muted);}
+.xp-poster.on span{display:none;}
+.xp-card h3{margin:6px 0 0;font:600 21px/1.2 var(--font);}
+.xp-meta{margin:0;font-size:13.5px;color:var(--muted);}
+.xp-btns{display:grid;gap:8px;}
+.xp-seen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+.xp-b{min-height:54px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font:600 16px/1.1 var(--font);cursor:pointer;}
+.xp-b.no{min-height:50px;}
+.xp-seen .xp-b:nth-child(1){border-color:var(--gold);}
+.xp-small{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;}
+.xp-small button{border:0;background:transparent;color:var(--muted);font:600 13.5px/1.2 var(--font);padding:8px 4px;cursor:pointer;}
+.xp-small button:disabled{opacity:.35;}
+.xp-imp{justify-self:center;border:0;background:transparent;color:var(--muted);text-decoration:underline;font:500 13px/1.3 var(--font);cursor:pointer;padding:6px;}
+.xp-reward{display:grid;gap:10px;}
+.xp-big{margin:4px 0;font:600 20px/1.25 var(--font);text-align:center;}
+.xp-note{margin:0;font-size:14px;color:var(--muted);text-align:center;}
+.xp-peer{display:grid;gap:3px;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;}
+.xp-peer span{font-size:14.5px;}
+.xp-peer small{color:var(--muted);font-size:12.5px;}
+.xp-link{justify-self:start;border:0;background:transparent;color:var(--ink);font:600 13.5px/1.2 var(--font);padding:4px 0;cursor:pointer;text-decoration:underline;}
+.xp-main{min-height:50px;border:0;border-radius:14px;background:var(--gold);color:#241500;font:700 16px/1.1 var(--font);cursor:pointer;}
+.xp-main.alt{background:var(--paper);color:var(--ink);border:1.5px solid var(--line);}
+html.xp-on body{overflow:hidden;}
+/* Affinité dans les profils, soirée ciné, import */
+.aff{display:flex;align-items:baseline;gap:8px;margin:10px 0 4px;}
+.aff-p{font:700 30px/1 var(--font);color:var(--gold);}
+.aff span{font-size:14px;color:var(--muted);}
+.mrow-a{font-style:normal;font-weight:700;color:var(--ink);}
+.soi-who{display:flex;flex-wrap:wrap;gap:6px;}
+.soi-f span{display:grid;gap:2px;}
+.soi-est{color:var(--muted);font-size:12px;}
+.imp-panel{max-height:60vh;}
+.imp-file{display:inline-grid;place-items:center;min-height:46px;border:1.5px dashed var(--line);border-radius:12px;padding:0 16px;cursor:pointer;font:600 15px/1 var(--font);}
+.imp-file input{position:absolute;opacity:0;width:1px;height:1px;}
+.imp-sum{margin:0;font-size:15px;}
+.imp-miss summary{cursor:pointer;color:var(--muted);font-size:13.5px;}
+.st-tile.wide{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+
 .ed-panel{max-height:62vh;z-index:45;}
 .ed-tabs{display:flex;gap:6px;flex-wrap:wrap;}
 .ed-h{margin:4px 0 0;font:700 12.5px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
@@ -1699,6 +1748,7 @@ html.sky-on #rsheet{z-index:50;}
         '<label class="ccl"><span>Mes goûts en une phrase</span><textarea id="ccGouts" class="ccin" maxlength="140" rows="2" placeholder="Par exemple : le cinéma qui dérange et les films d\'animation">' + esc(CC.me.gouts || "") + '</textarea></label>' +
         '<label class="ccsw"><input type="checkbox" id="ccBulle"' + (CC.me.bulle ? " checked" : "") + '><span><b>Rester dans ma bulle</b><small>Tu n\'apparais pas dans le fil, personne ne peut te conseiller de film, et le fil disparaît pour toi. Tes notes restent visibles.</small></span></label>' +
         '<div class="plf-b"><button type="button" class="plf-ok" id="ccSave">Enregistrer</button><button type="button" class="plf-no" id="ccOut">Se déconnecter</button></div>' +
+        '<div class="plf-b"><button type="button" class="plf-no" data-ccimport="1">📥 Importer mes films (Letterboxd, IMDb)</button></div>' +
         (CC.admin ? modHtml() : "") +
         (CC.admin ? '<div class="ccadm"><b>Importer des données</b><span class="sh-note">Un fichier préparé par Claude (films, réponses, liste, playlists). Tu verras ce qui sera ajouté ou remplacé avant toute écriture.</span><input type="file" id="ccFile" accept=".json,application/json"><div id="ccImp"></div></div>' : "");
     }
@@ -1853,8 +1903,9 @@ html.sky-on #rsheet{z-index:50;}
       h = '<h3>Membres du Ciné-club</h3><div class="mlist">' + ids.map(function(u){
         var r = P[u].rep || {}, k = Object.keys(r), vus = k.filter(function(id){ return r[id].etat === "vu" || r[id].etat === "pas_fini"; }).length,
             nt = k.filter(function(id){ return r[id].note10; }).length;
-        return '<button type="button" class="mrow" data-msel="' + esc(u) + '"><b>' + esc(P[u].pseudo) + (u === CC.uid ? " (toi)" : "") + '</b><span>' + vus + ' vu' + (vus > 1 ? "s" : "") + ' · ' + nt + ' noté' + (nt > 1 ? "s" : "") + '</span></button>';
-      }).join("") + '</div><p class="sh-note">Pour inviter quelqu\'un, envoie-lui simplement le lien de cette page.</p>';
+        var af = u !== CC.uid && CC.me && CC.taste && !P[u].bulle && !me().bulle ? CC.taste.compare(me().rep || {}, r).pct : null;
+        return '<button type="button" class="mrow" data-msel="' + esc(u) + '"><b>' + esc(P[u].pseudo) + (u === CC.uid ? " (toi)" : "") + '</b><span>' + (af != null ? '<i class="mrow-a">' + af + ' %</i> · ' : "") + vus + ' vu' + (vus > 1 ? "s" : "") + ' · ' + nt + ' noté' + (nt > 1 ? "s" : "") + '</span></button>';
+      }).join("") + '</div>' + (CC.invite && CC.me ? '<div class="plf-b"><button type="button" class="plf-ok" data-invite="1">✉️ Inviter quelqu\'un à se comparer à moi</button></div><p class="sh-note">Ton ami répond à quelques films en deux minutes, sans inscription, et découvre votre affinité.</p>' : "");
     } else {
       var p = P[MSEL], rep = p.rep || {}, ids2 = Object.keys(rep).filter(function(id){ return rep[id] && rep[id].etat; });
       ids2.sort(function(a, b){ return ((rep[b].note10 || 0) - (rep[a].note10 || 0)) || String(rep[a].titre || a).localeCompare(String(rep[b].titre || b), "fr"); });
@@ -1982,6 +2033,7 @@ html.sky-on #rsheet{z-index:50;}
     var n = unread(), bulle = me().bulle;
     var t = [["membres", "Membres"], ["pourmoi", "Pour moi" + (n && !bulle ? " · " + n : "")]];
     if (!bulle) t.push(["fil", "Fil"]);
+    if (CC.soiree) t.push(["soiree", "Soirée ciné"]);
     return '<div class="ctabs" role="tablist">' + t.map(function(x){ return '<button type="button" class="chip" role="tab" data-ctab="' + x[0] + '" aria-selected="' + (TAB === x[0]) + '" aria-pressed="' + (TAB === x[0]) + '">' + esc(x[1]) + '</button>'; }).join("") + '</div>';
   }
   function filmBtn(fid, titre){ return '<button type="button" class="plf-no ccsm" data-mfilm="' + esc(titre || fid) + '">Voir le film</button>'; }
@@ -2041,13 +2093,29 @@ html.sky-on #rsheet{z-index:50;}
     var p = CC.profils[u] || {}, rep = p.rep || {}, h = "";
     if (p.gouts && !CC.hidden("gouts", u, u === CC.uid ? "" : u)) h += '<p class="cgouts">« ' + esc(p.gouts) + ' »' + flagBtn("gouts", u, u === CC.uid ? "" : u, p.gouts) + '</p>';
     var top = Object.keys(rep).filter(function(id){ return rep[id] && rep[id].note10; }).sort(function(a, b){ return rep[b].note10 - rep[a].note10; }).slice(0, 5);
-    if (top.length) h += '<div class="mh">Ses 5 films préférés</div><div class="mlist">' + top.map(function(id){ var x = rep[id]; return '<button type="button" class="mfilm" data-mfilm="' + esc(x.titre || id) + '"><span>' + esc(x.titre || id) + (x.annee ? ' <small>' + esc(x.annee) + '</small>' : "") + '</span><b>★ ' + fmtN(x.note10) + '/10</b></button>'; }).join("") + '</div>';
-    if (u !== CC.uid && CC.me) {
-      var c = common(u);
-      h += '<div class="mh">Vos points communs</div><p class="sh-note">' + c.seen + ' film' + (c.seen > 1 ? "s" : "") + ' vu' + (c.seen > 1 ? "s" : "") + ' tous les deux' +
-        (c.pct != null ? ' · goûts proches à ' + c.pct + ' %<br><small>Calcul : 100 % moins 10 % par point d\'écart moyen entre vos notes, sur vos ' + c.n + ' films notés tous les deux.</small>' : ' · pas encore assez de notes communes (3 au moins) pour comparer vos goûts.') + '</p>';
+    if (top.length) h += '<div class="mh">Ses 5 films préférés</div><div class="mlist">' + top.map(function(id){ var x = rep[id], nm = x.titre || ((CC.filmInfo && CC.filmInfo(id)) || {}).t || id; return '<button type="button" class="mfilm" data-mfilm="' + esc(nm) + '"><span>' + esc(nm) + (x.annee ? ' <small>' + esc(x.annee) + '</small>' : "") + '</span><b>★ ' + fmtN(x.note10) + '/10</b></button>'; }).join("") + '</div>';
+    if (u !== CC.uid && CC.me && CC.taste && !inBulle(u) && !me().bulle) {
+      var c = CC.taste.compare(me().rep || {}, rep), fl = function(list, fmt){ return '<div class="mlist">' + list.map(function(z){ var x = rep[z.id] || {}, nm = x.titre || ((CC.filmInfo && CC.filmInfo(z.id)) || {}).t || z.id; return '<button type="button" class="mfilm" data-mfilm="' + esc(nm) + '"><span>' + esc(nm) + (x.annee ? ' <small>' + esc(x.annee) + '</small>' : "") + '</span><b>' + fmt(z) + '</b></button>'; }).join("") + '</div>'; };
+      h += '<div class="aff"><b class="aff-p">' + (c.pct != null ? c.pct + ' %' : "–") + '</b><span>' + (c.pct != null ? "d'affinité" : "pas encore assez de notes communes") + ' · ' + c.seen + ' film' + (c.seen > 1 ? "s" : "") + ' en commun</span></div>' +
+        (c.both.length ? '<div class="mh">Adorés tous les deux</div>' + fl(c.both.slice(0, 8), function(z){ return "toi " + fmtN(z.a) + " · " + fmtN(z.b); }) : "") +
+        (c.dis.length ? '<div class="mh">Vos désaccords</div>' + fl(c.dis.slice(0, 6), function(z){ return "toi " + fmtN(z.a) + " · " + fmtN(z.b); }) : "") +
+        (c.theirs.length ? '<div class="mh">Ses coups de cœur que tu n\'as pas vus</div>' + fl(c.theirs.slice(0, 8), function(z){ return "★ " + fmtN(z.b); }) : "");
     }
     return h;
+  }
+  // Soirée ciné : on choisit qui vient ; le site propose des films que personne n'a vus.
+  var SOI = [];
+  function renderSoiree(){
+    var P = CC.profils, ids = Object.keys(P).filter(function(u){ return u !== CC.uid && P[u] && P[u].pseudo && !P[u].bulle && !isBlocked(u); })
+      .sort(function(a, b){ return String(P[a].pseudo).localeCompare(String(P[b].pseudo), "fr"); });
+    SOI = SOI.filter(function(u){ return ids.indexOf(u) >= 0; });
+    var h = '<h3>Qui vient ?</h3>' + (ids.length ? '<div class="soi-who">' + ids.map(function(u){ var on = SOI.indexOf(u) >= 0;
+      return '<button type="button" class="chip" data-soi="' + esc(u) + '" aria-pressed="' + on + '"' + (!on && SOI.length >= 4 ? " disabled" : "") + '>' + (on ? "✓ " : "") + esc(P[u].pseudo) + '</button>'; }).join("") + '</div>' : '<p class="sh-note">Pas encore d\'autre membre.</p>');
+    if (!SOI.length) return h + '<p class="sh-note">Choisis une à quatre personnes.</p>';
+    var r = CC.soiree(SOI);
+    return h + '<div class="mh">À voir ensemble</div><div class="mlist">' + r.films.map(function(f){
+      return '<button type="button" class="mfilm soi-f" data-mfilm="' + esc(f.t) + '"><span>' + esc(f.t) + (f.y ? ' <small>' + esc(f.y) + '</small>' : "") + '<small class="soi-est">' + f.est.map(function(x, i){ return esc(r.names[i]) + " " + Math.round(x); }).join(" · ") + '</small></span></button>';
+    }).join("") + '</div><p class="sh-note">Des films qu\'aucun de vous n\'a vus. Le chiffre est l\'estimation du site pour chacun, sur 10.</p>';
   }
   function renderCom(){
     var h;
@@ -2058,6 +2126,7 @@ html.sky-on #rsheet{z-index:50;}
       h = tabsHtml();
       if (TAB === "pourmoi") { h += renderPourMoi(); markRead(); }
       else if (TAB === "fil") h += renderFil();
+      else if (TAB === "soiree") h += renderSoiree();
       else h += membersHtml();
     }
     $("msheetBody").innerHTML = h + '<div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
@@ -2124,6 +2193,9 @@ html.sky-on #rsheet{z-index:50;}
     if (t.closest("[data-mback]")) { CC.exitView(); return; }
     var mb = t.closest("[data-mbr]"); if (mb) { CC.openMembers(mb.dataset.mbr); return; }
     var ct = t.closest("[data-ctab]"); if (ct) { TAB = ct.dataset.ctab; MSEL = ""; renderCom(); return; }
+    var so = t.closest("[data-soi]"); if (so && !so.disabled) { var u1 = so.dataset.soi, k1 = SOI.indexOf(u1); if (k1 >= 0) SOI.splice(k1, 1); else SOI.push(u1); renderCom(); return; }
+    var iv = t.closest("[data-invite]"); if (iv && CC.invite) { CC.invite(iv); return; }
+    if (t.closest("[data-ccimport]")) { sheetOpen(""); if (CC.openImport) CC.openImport(); return; }
     var cs = t.closest("[data-cconseil]"); if (cs) { CC.sendFilm(cs.dataset.cconseil); return; }
     var au = t.closest("[data-aud]"); if (au && SEND) { SEND.mot = ($("ccSendTxt") || {}).value || SEND.mot; SEND.pub = au.dataset.aud === "pub"; renderCom(); return; }
     var st = t.closest("[data-sendto]"); if (st && !st.disabled) { SEND.mot = ($("ccSendTxt") || {}).value || SEND.mot; var u0 = st.dataset.sendto, ix = SEND.tos.indexOf(u0); if (ix >= 0) SEND.tos.splice(ix, 1); else SEND.tos.push(u0); renderCom(); return; }
@@ -3108,6 +3180,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         '<div class="st-tile"><b>' + rated.length + '</b><span>films notés</span></div>' +
         '<div class="st-tile"><b>' + (rated.length ? fr1(sum / rated.length) : "–") + '</b><span>note moyenne sur 10</span></div>' +
         '<div class="st-tile"><b>' + oub + '</b><span>films oubliés</span></div>' +
+        '<div class="st-tile wide"><b>' + boussolePct(rated.length) + ' %</b><span>précision de ta boussole</span>' + (isMine() ? '<button type="button" class="chip" data-stxp="1">⚡ L\'affiner en mode express</button>' : "") + '</div>' +
       '</div>' +
       '<div class="st-b"><div class="st-hd"><h3>Ton top 20</h3>' + (top ? '<button type="button" class="shb" data-sharetop="1" aria-label="Partager ton top 20">↗ Partager</button>' : "") + '</div>' + (top ? '<ol class="st-top">' + top + '</ol>' : '<p class="st-note">Note des films sur 10 pour voir ton top ici.</p>') + '</div>' +
       '<div class="st-b"><h3>Ton profil de cinéphile</h3>' + profilHtml() + '</div>' +
@@ -3566,7 +3639,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var opt = function(k, v, l){ return '<button type="button" class="chip" data-qz="' + k + '" data-v="' + v + '" aria-pressed="' + (String(q[k]) === String(v)) + '">' + l + '</button>'; };
     var n = Object.keys(answers).filter(function(id){ return answers[id] && answers[id].note10; }).length;
     var head = '<div class="nt-h"><b>Boussole cinéma</b><button type="button" class="nt-x" data-qzclose="1" aria-label="Fermer">✕</button></div>';
-    var foot = '<p class="id-n">' + n + ' film' + (n > 1 ? "s" : "") + ' noté' + (n > 1 ? "s" : "") + '. Les estimations apparaissent à partir de ' + RECO_MIN_QUIZ + ' films notés avec ce questionnaire, ou ' + RECO_MIN + ' sans.</p>';
+    var foot = '<div class="qz-acts"><button type="button" class="chip" data-qzxp="1">⚡ Mode express</button><button type="button" class="chip" data-qzimp="1">📥 Importer Letterboxd ou IMDb</button></div>' +
+      '<p class="id-n">Boussole précise à <b>' + boussolePct(n) + ' %</b> · ' + n + ' film' + (n > 1 ? "s" : "") + ' noté' + (n > 1 ? "s" : "") + '. Les estimations apparaissent à partir de ' + RECO_MIN_QUIZ + ' films notés avec ce questionnaire, ou ' + RECO_MIN + ' sans.</p>';
     var mode = QZ_MODE || (qzDone(saved) ? "fait" : "q1");
     if (mode === "fait") return head +
       '<p class="qz-ok">✓ Tes goûts sont enregistrés.</p>' +
@@ -3591,6 +3665,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (t.closest("#ccQuiz")) { QZ = Object.assign({}, (CC.me && CC.me.quiz) || {}); QZ_MODE = ""; p.innerHTML = qzHtml(); p.hidden = false; p.scrollTop = 0; return; }
     if (!t.closest("#qzPanel")) return;
     if (t.closest("[data-qzclose]")) { p.hidden = true; return; }
+    if (t.closest("[data-qzxp]")) { p.hidden = true; xpOpen(); return; }
+    if (t.closest("[data-qzimp]")) { p.hidden = true; impOpen(); return; }
     var md = t.closest("[data-qzmode]"); if (md) { QZ_MODE = md.dataset.qzmode; QZ = Object.assign({}, (CC.me && CC.me.quiz) || {}); p.innerHTML = qzHtml(); p.scrollTop = 0; return; }
     if (t.closest("[data-qzmore]")) { qzPick(true); qzPaint(); return; }
     // Un film du tirage : la réponse s'enregistre tout de suite, « Pas vu » compris.
@@ -3718,6 +3794,324 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   });
   document.addEventListener("keydown", function(ev){ if (ev.key === "Escape" && ED.on) edClose(); });
   if (window.AMBI) AMBI.on(function(){ if (ED.on && ED.tab === "couleurs") edPaint(); });
+
+  // ---------- Réseau : mode express, affinités, films en commun, soirée ciné, import, invitation ----------
+  // Une réponse « vue » : vu ou pas fini (« oublié » compte aussi comme vu pour la soirée ciné).
+  function repSeen(x){ return !!x && (x.etat === "vu" || x.etat === "pas_fini"); }
+  function myRep(){ return window.CC && CC.view ? ((CC.me || {}).rep || {}) : answers; }
+  // Précision de la boussole : elle grandit vite au début, puis plus lentement (25 notes ≈ 57 %, 50 ≈ 81 %, 100 ≈ 96 %).
+  function boussolePct(n){ return Math.round(100 * (1 - Math.exp(-(n || 0) / 30))); }
+  function ratedCount(rep){ rep = rep || myRep(); return Object.keys(rep).filter(function(id){ return rep[id] && rep[id].note10; }).length; }
+  // Affinité : la même règle que dans les profils (100 % moins 10 % par point d'écart moyen), avec ce qui la nourrit.
+  function compareReps(a, b){
+    var out = { seen:0, n:0, pct:null, both:[], dis:[], theirs:[] }, d = 0;
+    Object.keys(b).forEach(function(id){
+      var x = a[id], y = b[id]; if (!y) return;
+      if (repSeen(x) && repSeen(y)) out.seen++;
+      if (x && y && x.note10 && y.note10) {
+        out.n++; d += Math.abs(x.note10 - y.note10);
+        if (x.note10 >= 8 && y.note10 >= 8) out.both.push({ id:id, a:x.note10, b:y.note10 });
+        if (Math.abs(x.note10 - y.note10) >= 4) out.dis.push({ id:id, a:x.note10, b:y.note10 });
+      }
+      if (y.note10 >= 8 && !repSeen(x) && !(x && x.etat === "oublie")) out.theirs.push({ id:id, b:y.note10 });
+    });
+    if (out.n >= 3) out.pct = Math.max(0, Math.round(100 - d / out.n * 10));
+    out.both.sort(function(p, q){ return (q.a + q.b) - (p.a + p.b); });
+    out.dis.sort(function(p, q){ return Math.abs(q.a - q.b) - Math.abs(p.a - p.b); });
+    out.theirs.sort(function(p, q){ return q.b - p.b; });
+    return out;
+  }
+  function titleOf(id, rep){ var f = films[id]; return f ? f.t : ((rep || {})[id] || {}).titre || id; }
+  // Ce que le site sait du goût de quelqu'un : une moyenne et le poids de chaque trait (mots-clés, courant, pays, cinéaste, famille…).
+  function tasteModel(rep){
+    var ids = Object.keys(rep || {}).filter(function(id){ return rep[id] && rep[id].note10 && films[id]; });
+    if (ids.length < 3) return null;
+    var mu = ids.reduce(function(s, id){ return s + rep[id].note10; }, 0) / ids.length, W = {}, N = {};
+    ids.forEach(function(id){ var r = rep[id].note10 - mu; rFeats(films[id]).forEach(function(x){ W[x] = (W[x] || 0) + r; N[x] = (N[x] || 0) + 1; }); });
+    return { mu:mu, W:W, N:N };
+  }
+  function tastePredict(m, f){
+    if (!m) return f.e || 6.5;
+    var s = 0, k = 0; rFeats(f).forEach(function(x){ if (N_(m, x)) { s += m.W[x] / (m.N[x] + 2); k++; } });
+    return Math.max(1, Math.min(10, m.mu + (k ? 1.6 * s / Math.sqrt(k) : 0)));
+  }
+  function N_(m, x){ return m.N[x] || 0; }
+
+  // ---- Ordre des films à proposer : d'abord les plus connus du club, puis ceux qui départagent les goûts ----
+  function xpOrder(extraFirst){
+    var P = (window.CC && CC.profils) || {}, seenBy = {}, notes = {}, mine = myRep();
+    Object.keys(P).forEach(function(u){ var r = (P[u] || {}).rep || {}; Object.keys(r).forEach(function(id){ if (repSeen(r[id])) seenBy[id] = (seenBy[id] || 0) + 1; if (r[id].note10) (notes[id] = notes[id] || []).push(r[id].note10); }); });
+    var seed = ""; try { seed = sessionStorage.getItem("ccXpSeed") || ""; } catch (e) {}
+    if (!seed) { seed = String(Math.random()).slice(2, 8); try { sessionStorage.setItem("ccXpSeed", seed); } catch (e) {} }
+    var free = Object.keys(films).filter(function(id){ var a = mine[id]; return films[id].t && !(a && (a.etat || a.note10)); });
+    var tie = function(id){ return skyHash(seed + id) / 4294967296; };
+    var known = free.slice().sort(function(a, b){ return (seenBy[b] || 0) - (seenBy[a] || 0) || tie(a) - tie(b); });
+    var vari = function(id){ var a = notes[id] || []; if (a.length < 2) return 0; var m = a.reduce(function(s, x){ return s + x; }, 0) / a.length; return a.reduce(function(s, x){ return s + (x - m) * (x - m); }, 0) / a.length; };
+    var split = free.filter(function(id){ return (notes[id] || []).length >= 2; }).sort(function(a, b){ return vari(b) - vari(a) || tie(a) - tie(b); });
+    var out = [], used = {};
+    function add(id){ if (id && !used[id] && films[id]) { used[id] = 1; out.push(id); } }
+    (extraFirst || []).forEach(function(id){ if (free.indexOf(id) >= 0) add(id); });
+    known.slice(0, 15).forEach(add);
+    var i = 0, j = 0;
+    while (out.length < free.length && (i < split.length || j < known.length)) { if (i < split.length) add(split[i++]); if (j < known.length) add(known[j++]); if (j < known.length) add(known[j++]); }
+    return out;
+  }
+
+  // ---- Mode express ----
+  var XP = { q:[], i:0, hist:[], n:0, invite:null, reward:false }, XP_GUEST = "ccXpInviteV1";
+  document.body.insertAdjacentHTML("beforeend", '<section class="xp" id="xp" role="dialog" aria-modal="true" aria-labelledby="xpTitle" hidden><div class="xp-wrap">' +
+    '<header class="xp-head"><h2 id="xpTitle">Express</h2><button type="button" class="xp-x" data-xpclose="1">Fermer</button></header><div id="xpBody"></div></div></section>');
+  function xpPosterInto(id){
+    var el = document.querySelector('#xpBody .xp-poster[data-id="' + CSS.escape(id) + '"]'); if (!el) return;
+    var put = function(r){ if (r && r.poster && el.isConnected) { el.style.backgroundImage = 'url("https://image.tmdb.org/t/p/w342' + r.poster + '")'; el.classList.add("on"); } };
+    if (IMG_C[id] && IMG_C[id].poster !== undefined) { put(IMG_C[id]); return; }
+    if (!IMG_P[id] || (IMG_C[id] && IMG_C[id].poster === undefined)) IMG_P[id] = tmdbFind(films[id]).then(function(r){ IMG_C[id] = r || { p:[], poster:"" }; try { localStorage.setItem(IMG_KEY, JSON.stringify(IMG_C)); } catch (e) {} return IMG_C[id]; }, function(){ delete IMG_P[id]; return null; });
+    IMG_P[id].then(put);
+  }
+  function xpPeers(){
+    var P = (window.CC && CC.profils) || {}, me = window.CC && CC.uid, mine = myRep(), out = [];
+    Object.keys(P).forEach(function(u){ var p = P[u]; if (u === me || !p || !p.pseudo || p.bulle) return; var c = compareReps(mine, p.rep || {}); out.push({ u:u, name:p.pseudo, c:c }); });
+    if (XP.invite) out.unshift({ u:"", name:XP.invite.name, c:compareReps(mine, XP.invite.rep), invite:true });
+    return out.filter(function(x){ return x.c.seen || x.c.n; }).sort(function(a, b){ return (b.invite ? 1 : 0) - (a.invite ? 1 : 0) || (b.c.pct || 0) - (a.c.pct || 0) || b.c.seen - a.c.seen; }).slice(0, 3);
+  }
+  function xpRewardHtml(){
+    var peers = xpPeers(), n = ratedCount();
+    return '<div class="xp-reward"><p class="xp-big">Ta boussole est précise à ' + boussolePct(n) + ' %</p>' +
+      (peers.length ? peers.map(function(x){
+        var c = x.c;
+        return '<div class="xp-peer"><b>Toi et ' + esc(x.name) + '</b><span>' + (c.pct != null ? c.pct + ' % d\'affinité · ' : "") + c.seen + ' film' + (c.seen > 1 ? "s" : "") + ' en commun</span>' +
+          (c.both.length ? '<small>Adorés tous les deux : ' + c.both.slice(0, 3).map(function(z){ return esc(titleOf(z.id)); }).join(", ") + '</small>' : "") +
+          (x.u ? '<button type="button" class="xp-link" data-xppeer="' + esc(x.u) + '">Voir nos films en commun ›</button>' : "") + '</div>';
+      }).join("") : '<p class="xp-note">Encore quelques films, et tu verras tes affinités avec les autres membres.</p>') +
+      (!(window.CC && CC.uid) ? '<button type="button" class="xp-main" data-xplogin="1">Créer mon compte pour garder mes réponses</button>' : "") +
+      '<button type="button" class="xp-main alt" data-xpgo="1">Continuer</button></div>';
+  }
+  function xpCardHtml(){
+    var id = XP.q[XP.i], f = id && films[id];
+    if (!f) return '<div class="xp-reward"><p class="xp-big">C\'est tout pour l\'instant !</p><p class="xp-note">Tu as répondu à tous les films proposés. Ta boussole est précise à ' + boussolePct(ratedCount()) + ' %.</p>' + xpRewardHtml().replace(/<button type="button" class="xp-main alt" data-xpgo="1">Continuer<\/button>/, "") + '</div>';
+    return '<div class="xp-card" data-film="' + esc(id) + '"><div class="xp-poster" data-id="' + esc(id) + '"><span>' + esc(f.t) + '</span></div>' +
+      '<h3>' + esc(f.t) + '</h3><p class="xp-meta">' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</p></div>' +
+      '<div class="xp-btns"><button type="button" class="xp-b no" data-xp="pv">Pas vu</button>' +
+      '<div class="xp-seen"><button type="button" class="xp-b" data-xp="9">Adoré</button><button type="button" class="xp-b" data-xp="7">Bien</button><button type="button" class="xp-b" data-xp="4">Pas aimé</button></div></div>' +
+      '<div class="xp-small"><button type="button" data-xpundo="1"' + (XP.hist.length ? "" : " disabled") + '>← Annuler</button><button type="button" data-xp="vu">Vu, sans avis</button><button type="button" data-xp="skip">Passer</button></div>';
+  }
+  function xpRender(){
+    var body = $("xpBody"), n = ratedCount(), pct = boussolePct(n);
+    $("xpTitle").textContent = XP.invite ? "Compare-toi à " + XP.invite.name : "Express";
+    body.innerHTML = '<div class="xp-prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '" aria-label="Précision de ta boussole"><i style="width:' + pct + '%"></i></div>' +
+      '<p class="xp-pct">Boussole précise à <b>' + pct + ' %</b> · ' + XP.n + ' réponse' + (XP.n > 1 ? "s" : "") + ' maintenant</p>' +
+      (XP.reward ? xpRewardHtml() : xpCardHtml()) +
+      (XP.reward || XP.i ? "" : '<button type="button" class="xp-imp" data-ximp="1">Tu notes déjà sur Letterboxd ou IMDb ? Importer mes films</button>');
+    var id = XP.q[XP.i]; if (id && !XP.reward) xpPosterInto(id);
+    // Les deux affiches suivantes se préparent en avance.
+    [XP.i + 1, XP.i + 2].forEach(function(k){ var nid = XP.q[k]; if (nid && !IMG_C[nid] && !IMG_P[nid]) IMG_P[nid] = tmdbFind(films[nid]).then(function(r){ IMG_C[nid] = r || { p:[], poster:"" }; return IMG_C[nid]; }, function(){ delete IMG_P[nid]; return null; }); });
+  }
+  function xpOpen(){
+    if (!$("rsheet").hidden) $("rsClose").click();
+    XP.q = xpOrder(XP.invite ? XP.invite.order : null); XP.i = 0; XP.hist = []; XP.reward = false;
+    $("xp").hidden = false; document.documentElement.classList.add("xp-on"); document.querySelector(".wrap").inert = true; xpRender();
+    var b = $("xpBody").querySelector(".xp-b"); if (b) b.focus({ preventScroll:true });
+  }
+  function xpClose(){ $("xp").hidden = true; document.documentElement.classList.remove("xp-on"); document.querySelector(".wrap").inert = false; renderAll(); }
+  function xpGuestKeep(id){
+    if (window.CC && CC.uid) return;
+    var g = {}; try { g = JSON.parse(localStorage.getItem(XP_GUEST) || "{}") || {}; } catch (e) {}
+    if (answers[id]) g[id] = answers[id]; else delete g[id];
+    try { localStorage.setItem(XP_GUEST, JSON.stringify(g)); } catch (e) {}
+  }
+  function xpAnswer(v){
+    var id = XP.q[XP.i]; if (!id) return;
+    if (v !== "skip") {
+      var prev = answers[id] ? Object.assign({}, answers[id]) : null;
+      answers[id] = pack(v === "pv" ? { etat:"pas_vu", note10:0 } : v === "vu" ? { etat:"vu", note10:0 } : { etat:"vu", note10:+v });
+      save(id, prev); xpGuestKeep(id); RECO.sig = ""; XP.n++;
+      XP.hist.push({ id:id, prev:prev, i:XP.i });
+    } else XP.hist.push({ id:id, skip:true, i:XP.i });
+    XP.i++;
+    if (XP.n && XP.n % 10 === 0 && v !== "skip") XP.reward = true;
+    xpRender();
+  }
+  function xpUndo(){
+    var h = XP.hist.pop(); if (!h) return;
+    if (!h.skip) { if (h.prev) answers[h.id] = h.prev; else delete answers[h.id]; save(h.id, null); xpGuestKeep(h.id); XP.n = Math.max(0, XP.n - 1); RECO.sig = ""; }
+    XP.i = h.i; XP.reward = false; xpRender();
+  }
+  $("xp").addEventListener("click", function(ev){
+    var t = ev.target.closest("button"); if (!t) return;
+    if (t.dataset.xpclose) { xpClose(); return; }
+    if (t.dataset.xp) { xpAnswer(t.dataset.xp); return; }
+    if (t.dataset.xpundo) { xpUndo(); return; }
+    if (t.dataset.xpgo) { XP.reward = false; xpRender(); return; }
+    if (t.dataset.xppeer) { xpClose(); if (CC.openMembers) CC.openMembers(t.dataset.xppeer); return; }
+    if (t.dataset.xplogin) { xpClose(); var l = $("ccMe"); if (l) l.click(); return; }
+    if (t.dataset.ximp) { impOpen(); return; }
+  });
+  document.addEventListener("keydown", function(ev){
+    if ($("xp").hidden) return;
+    if (ev.key === "Escape") xpClose();
+    else if (!XP.reward && /^[1-4]$/.test(ev.key) && !/^(INPUT|TEXTAREA)$/.test(ev.target.tagName)) xpAnswer({ "1":"pv", "2":"9", "3":"7", "4":"4" }[ev.key]);
+  });
+  document.querySelector(".ccbar #ccMe").insertAdjacentHTML("afterend", '<button type="button" class="chip ccb" id="ccXp" data-tx="btn.express" aria-label="Mode express : vu ou pas vu, en un toucher">⚡ Express</button>');
+  $("ccXp").addEventListener("click", xpOpen);
+
+  // ---- Invitation « Compare-toi à moi » : le lien emporte une partie de mes notes, sans compte ni identifiant ----
+  function b64u(s){ var bytes = new TextEncoder().encode(s), bin = Array.prototype.map.call(bytes, function(b){ return String.fromCharCode(b); }).join(""); return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); }
+  function unb64u(s){ var bin = atob(s.replace(/-/g, "+").replace(/_/g, "/")), bytes = Uint8Array.from(bin, function(c){ return c.charCodeAt(0); }); return new TextDecoder("utf-8", { fatal:true }).decode(bytes); }
+  function inviteLink(){
+    var rep = (window.CC && CC.me && CC.me.rep) || answers, order = xpOrderAll();
+    var rated = order.filter(function(id){ return rep[id] && rep[id].note10; }).slice(0, 120);
+    var name = (window.CC && CC.me && CC.me.pseudo) || "moi";
+    return location.origin + location.pathname + "#compare=" + b64u(JSON.stringify({ v:1, n:String(name).slice(0, 30), r:rated.map(function(id){ return [id, Math.round(rep[id].note10 * 10) / 10]; }) }));
+  }
+  // Pour l'invitation : tous les films, les plus connus du club d'abord (sans exclure ceux que j'ai vus).
+  function xpOrderAll(){
+    var P = (window.CC && CC.profils) || {}, seenBy = {};
+    Object.keys(P).forEach(function(u){ var r = (P[u] || {}).rep || {}; Object.keys(r).forEach(function(id){ if (repSeen(r[id])) seenBy[id] = (seenBy[id] || 0) + 1; }); });
+    return Object.keys(films).sort(function(a, b){ return (seenBy[b] || 0) - (seenBy[a] || 0) || (a < b ? -1 : 1); });
+  }
+  if (window.CC) CC.invite = function(btn){
+    var url = inviteLink(), name = (CC.me && CC.me.pseudo) || "moi", txt = "Compare tes goûts de cinéma aux miens sur le Ciné-club : deux minutes, sans inscription.";
+    if (navigator.share) { navigator.share({ title:"Compare-toi à " + name, text:txt, url:url }).catch(function(){}); return; }
+    var all = txt + "\n" + url, lab = btn ? btn.textContent : "";
+    var shown = function(m){ if (btn) { btn.textContent = m; setTimeout(function(){ btn.textContent = lab; }, 3000); } else setStatus(m); };
+    var box = function(){ if (!btn || btn.parentNode.nextElementSibling && btn.parentNode.nextElementSibling.classList.contains("nt-out")) return; btn.parentNode.insertAdjacentHTML("afterend", '<textarea class="nt-out" readonly rows="3" aria-label="Lien d\'invitation"></textarea>'); var ta = btn.parentNode.nextElementSibling; ta.value = all; ta.focus(); ta.select(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(all).then(function(){ shown("✓ Lien copié : colle-le dans un message"); }, function(){ box(); shown("Copie le lien ci-dessous"); });
+    else { box(); shown("Copie le lien ci-dessous"); }
+  };
+  function inviteFromHash(){
+    if (!/^#compare=/.test(location.hash)) return;
+    if (!Object.keys(films).length) { setTimeout(inviteFromHash, 150); return; }
+    var raw = null; try { raw = JSON.parse(unb64u(location.hash.slice(9))); } catch (e) {}
+    try { history.replaceState(history.state, "", location.pathname); } catch (e) {}
+    if (!raw || raw.v !== 1 || !Array.isArray(raw.r)) { setStatus("Ce lien d'invitation semble incomplet.", true); return; }
+    var rep = {}, order = [];
+    raw.r.slice(0, 200).forEach(function(x){ if (Array.isArray(x) && typeof x[0] === "string" && films[x[0]] && +x[1] > 0 && +x[1] <= 10) { rep[x[0]] = { etat:"vu", note10:+x[1] }; order.push(x[0]); } });
+    XP.invite = { name:String(raw.n || "un ami").slice(0, 30), rep:rep, order:order };
+    var tries = 0; (function reveal(){ if (!$("intro").hidden && tries++ < 150) { setTimeout(reveal, 100); return; } xpOpen(); })();
+  }
+  window.addEventListener("hashchange", inviteFromHash);
+  setTimeout(inviteFromHash, 0);
+  // Réponses données sans compte : elles rejoignent le carnet dès la connexion.
+  function guestMerge(){
+    if (!(window.CC && CC.uid && CC.me && !CC.view)) return;
+    var g = null; try { g = JSON.parse(localStorage.getItem(XP_GUEST) || "null"); } catch (e) {}
+    if (!g || !Object.keys(g).length) return;
+    try { localStorage.removeItem(XP_GUEST); } catch (e) {}
+    var put = {}; Object.keys(g).forEach(function(id){ var cur = (CC.me.rep || {})[id]; if (films[id] && !(cur && cur.etat) && g[id] && g[id].etat) put[id] = g[id]; });
+    if (Object.keys(put).length) bulkAnswers(put).then(function(n){ toast(n + " réponse" + (n > 1 ? "s" : "") + " de ton essai rejoignent ton carnet."); });
+  }
+  if (window.CC) CC.hooks.push(guestMerge);
+
+  // ---- Écriture groupée : beaucoup de réponses d'un coup (import, réponses sans compte), en quelques envois seulement ----
+  function bulkAnswers(map){
+    var ids = Object.keys(map), now = new Date().toISOString();
+    ids.forEach(function(id){ answers[id] = pack(map[id]); }); keepLocal(); RECO.sig = "";
+    if (!(window.CC && CC.uid && CC.fs)) { renderAll(); return Promise.resolve(ids.length); }
+    var ref = CC.fs.collection("profils").doc(CC.uid), FP = firebase.firestore.FieldPath, chunks = [];
+    for (var i = 0; i < ids.length; i += 150) chunks.push(ids.slice(i, i + 150));
+    return chunks.reduce(function(p, ch){
+      return p.then(function(){
+        var args = [];
+        ch.forEach(function(id){ var a = answers[id], f = films[id] || {}; args.push(new FP("rep", id), { etat:a.etat || "", note:a.note || 0, note10:a.note10 || 0, titre:f.t || "", annee:f.y || "", cineaste:f.d || "", section:f.sid || "", maj:now }); });
+        return ref.update.apply(ref, args);
+      });
+    }, Promise.resolve()).then(function(){ renderAll(); return ids.length; });
+  }
+
+  // ---- Import Letterboxd ou IMDb ----
+  document.body.insertAdjacentHTML("beforeend", '<div class="nt-panel imp-panel" id="impPanel" role="dialog" aria-label="Importer mes films" hidden></div>');
+  var IMP2 = null;
+  function impHtml(){
+    var h = '<div class="nt-h"><b>Importer mes films</b><button type="button" class="nt-x" data-impclose="1" aria-label="Fermer">✕</button></div>';
+    if (!IMP2) return h + '<p class="id-n">Letterboxd : Réglages › Données › Exporter tes données (fichier .zip). IMDb : Tes notes › ⋯ › Exporter (fichier .csv).</p>' +
+      '<label class="imp-file"><input type="file" id="impFile" accept=".zip,.csv,text/csv,application/zip"><span>Choisir le fichier</span></label>';
+    if (IMP2.busy) return h + '<p class="id-n">' + esc(IMP2.busy) + '</p>';
+    var n = Object.keys(IMP2.put).length, rated = Object.keys(IMP2.put).filter(function(id){ return IMP2.put[id].note10; }).length;
+    return h + '<p class="imp-sum"><b>' + n + ' film' + (n > 1 ? "s" : "") + '</b> reconnu' + (n > 1 ? "s" : "") + ' dans le carnet, dont ' + rated + ' noté' + (rated > 1 ? "s" : "") + '.</p>' +
+      (IMP2.kept ? '<p class="id-n">' + IMP2.kept + ' déjà dans ton carnet : tes réponses actuelles sont gardées.</p>' : "") +
+      (IMP2.missing.length ? '<details class="imp-miss"><summary>' + IMP2.missing.length + ' pas dans le carnet</summary><p class="id-n">' + IMP2.missing.slice(0, 60).map(esc).join(" · ") + (IMP2.missing.length > 60 ? " …" : "") + '</p></details>' : "") +
+      '<div class="nt-b">' + (n ? '<button type="button" class="plf-ok" data-impgo="1">Importer ' + n + ' réponse' + (n > 1 ? "s" : "") + '</button>' : "") + '<button type="button" class="plf-no" data-impredo="1">Autre fichier</button></div>';
+  }
+  function impPaint(){ $("impPanel").innerHTML = impHtml(); }
+  function impOpen(){ IMP2 = null; $("impPanel").hidden = false; impPaint(); }
+  if (window.CC) CC.openImport = impOpen;
+  function parseCsv(txt){
+    var rows = [], row = [], cell = "", q = false;
+    for (var i = 0; i < txt.length; i++) {
+      var ch = txt[i];
+      if (q) { if (ch === '"') { if (txt[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += ch; }
+      else if (ch === '"') q = true; else if (ch === ",") { row.push(cell); cell = ""; }
+      else if (ch === "\n" || ch === "\r") { if (ch === "\r" && txt[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+      else cell += ch;
+    }
+    if (cell || row.length) { row.push(cell); rows.push(row); }
+    var head = (rows.shift() || []).map(function(h){ return h.replace(/^﻿/, "").trim(); });
+    return rows.filter(function(r){ return r.length > 1; }).map(function(r){ var o = {}; head.forEach(function(h, k){ o[h] = r[k] || ""; }); return o; });
+  }
+  // Une ligne d'export devient { titre, autre titre, année, note sur 10 }.
+  function impRows(rows){
+    return rows.map(function(o){
+      if ("Your Rating" in o) return { t:o.Title, t2:o["Original Title"], y:o.Year, n:+o["Your Rating"] || 0 };
+      if ("Name" in o) return { t:o.Name, y:o.Year, n:o.Rating ? Math.min(10, (+o.Rating || 0) * 2) : 0 };
+      return null;
+    }).filter(function(x){ return x && x.t; });
+  }
+  function impMatch(list){
+    var mine = myRep(), put = {}, missing = [], kept = 0;
+    list.forEach(function(x){
+      var id = findFilm(x.t, x.y) || (x.t2 ? findFilm(x.t2, x.y) : "") || findFilm(x.t, 0) || (x.t2 ? findFilm(x.t2, 0) : "");
+      if (!id) { if (missing.indexOf(x.t) < 0) missing.push(x.t); return; }
+      var cur = mine[id];
+      if (cur && cur.etat && !(put[id])) { kept++; return; }
+      var prev = put[id]; put[id] = { etat:"vu", note10:Math.max(x.n || 0, prev ? prev.note10 : 0) };
+    });
+    return { put:put, missing:missing, kept:kept };
+  }
+  function loadZipLib(){
+    if (window.JSZip) return Promise.resolve(window.JSZip);
+    return new Promise(function(res, rej){ var s = document.createElement("script"); s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"; s.onload = function(){ res(window.JSZip); }; s.onerror = rej; document.head.appendChild(s); });
+  }
+  function impFile(file){
+    IMP2 = { busy:"Lecture du fichier…", put:{}, missing:[], kept:0 }; impPaint();
+    var done = function(texts){ var rows = []; texts.forEach(function(t){ rows = rows.concat(impRows(parseCsv(t))); }); var m = impMatch(rows); IMP2 = { put:m.put, missing:m.missing, kept:m.kept }; impPaint(); };
+    var fail = function(){ IMP2 = null; impPaint(); setStatus("Ce fichier n'a pas pu être lu. Choisis l'export Letterboxd (.zip) ou IMDb (.csv).", true); };
+    if (/\.zip$/i.test(file.name)) {
+      loadZipLib().then(function(Z){ return Z.loadAsync(file); }).then(function(z){
+        var names = Object.keys(z.files).filter(function(n){ return /(^|\/)(ratings|watched|diary)\.csv$/i.test(n); });
+        // Les notes d'abord, puis les films vus : une note n'est jamais effacée par un simple « vu ».
+        names.sort(function(a, b){ return (/ratings/i.test(b) ? 1 : 0) - (/ratings/i.test(a) ? 1 : 0); });
+        return Promise.all(names.map(function(n){ return z.files[n].async("string"); }));
+      }).then(done, fail);
+    } else file.text().then(function(t){ done([t]); }, fail);
+  }
+  $("impPanel").addEventListener("change", function(ev){ if (ev.target.id === "impFile" && ev.target.files[0]) impFile(ev.target.files[0]); });
+  $("impPanel").addEventListener("click", function(ev){
+    var t = ev.target.closest("button"); if (!t) return;
+    if (t.dataset.impclose) { $("impPanel").hidden = true; return; }
+    if (t.dataset.impredo) { IMP2 = null; impPaint(); return; }
+    if (t.dataset.impgo && IMP2) {
+      var put = IMP2.put; IMP2 = { busy:"Import en cours…", put:{}, missing:[], kept:0 }; impPaint();
+      bulkAnswers(put).then(function(n){ IMP2 = null; $("impPanel").hidden = true; toast(n + " film" + (n > 1 ? "s" : "") + " importé" + (n > 1 ? "s" : "") + " dans ton carnet."); if (!$("xp").hidden) xpOpen(); },
+        function(){ IMP2 = null; impPaint(); setStatus("L'import n'a pas abouti, réessaie dans un instant.", true); });
+    }
+  });
+
+  // ---- Soirée ciné : des films qu'aucun de vous n'a vus, et que tout le monde devrait aimer ----
+  if (window.CC) CC.soiree = function(uids){
+    var P = CC.profils || {}, people = [{ u:CC.uid, name:"Toi", rep:myRep() }].concat(uids.filter(function(u){ return P[u]; }).map(function(u){ return { u:u, name:P[u].pseudo || "?", rep:P[u].rep || {} }; }));
+    people.forEach(function(p){ p.m = tasteModel(p.rep); });
+    var out = [];
+    Object.keys(films).forEach(function(id){
+      var f = films[id]; if (!f.t) return;
+      if (people.some(function(p){ var x = p.rep[id]; return x && (repSeen(x) || x.etat === "oublie"); })) return;
+      var est = people.map(function(p){ return tastePredict(p.m, f); }), m = est.reduce(function(s, x){ return s + x; }, 0) / est.length;
+      var sd = Math.sqrt(est.reduce(function(s, x){ return s + (x - m) * (x - m); }, 0) / est.length);
+      out.push({ id:id, t:f.t, y:f.y, d:f.d, s:m - .6 * sd, est:est });
+    });
+    out.sort(function(a, b){ return b.s - a.s || (a.id < b.id ? -1 : 1); });
+    return { names:people.map(function(p){ return p.name; }), films:out.slice(0, 12) };
+  };
+  if (window.CC) CC.taste = { compare:compareReps, pct:boussolePct, rated:ratedCount };
 
   // ---------- Dérive onirique : associations locales et carnet de rêves ----------
   document.querySelector(".ccbar").insertAdjacentHTML("beforeend",'<button type="button" class="chip ccb" id="drToggle" data-tx="btn.derive" aria-haspopup="dialog">☾ Dérive</button>');
@@ -5344,6 +5738,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
 
   // Mes statistiques : un mouvement pas encore exploré affiche ses films.
   $("main").addEventListener("click", function(ev){
+    if (ev.target.closest && ev.target.closest("[data-stxp]")) { xpOpen(); return; }
     var c = ev.target.closest && ev.target.closest("[data-stmv]"); if (c) chooseMv(c.dataset.stmv);
   });
 
