@@ -34,6 +34,10 @@ header.top::after{content:"";justify-self:center;width:min(176px,55%);height:8px
 .row-tools{display:flex;gap:8px;align-items:center;}
 .qwrap{position:relative;flex:1;min-width:0;}
 .qwrap input{width:100%;box-sizing:border-box;padding-right:40px !important;}
+.qsug{position:absolute;top:calc(100% + 6px);left:0;right:-52px;z-index:12;display:grid;gap:2px;padding:5px;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(20,10,30,.35);}
+.qsug button{display:flex;justify-content:space-between;gap:10px;align-items:baseline;width:100%;text-align:left;border:0;border-radius:9px;background:transparent;color:var(--ink);font:500 15px/1.25 var(--font);padding:10px 10px;cursor:pointer;}
+.qsug button small{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45%;}
+.qsug button:hover,.qsug button:focus-visible{background:var(--bg);}
 .row-tools input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;display:none;}
 .qx{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:var(--line);color:var(--ink);font:600 14px/1 var(--font);cursor:pointer;padding:0;}
 .qx[hidden]{display:none;}
@@ -1206,6 +1210,13 @@ html.th-neon .sky{background:radial-gradient(ellipse at 26% 40%,#16112a 0,transp
 .sky-search input{width:100%;}
 .sky-results{position:absolute;top:48px;left:0;right:0;max-height:50vh;overflow:auto;background:#101527f5;border:1px solid #77708d;border-radius:14px;padding:5px;z-index:2;display:grid;gap:3px;}
 .sky-results button{border:0;border-radius:8px;text-align:left;width:100%;padding:10px;}
+.sky .sky-pick:active:not(:disabled){transform:translate(-50%,-150%) scale(.96);}
+.sky .sky-pick{position:absolute;transform:translate(-50%,-150%);max-width:min(80vw,300px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:600 14px/1.2 var(--font);color:#1b1206;background:#ffe6b0;border:0;border-radius:99px;padding:10px 14px;box-shadow:0 0 18px rgba(255,220,160,.6);cursor:pointer;z-index:10;}
+.sky-pick[hidden]{display:none;}
+@media(max-width:600px){.sky-tools select{flex:1 1 0;min-width:0;}}
+.sky-legend .sl-lv{display:inline-flex;align-items:center;gap:3px;vertical-align:middle;margin-right:2px;}
+.sky-legend .sl-lv i{display:block;border-radius:50%;background:#ffe2b8;box-shadow:0 0 4px #ffcf8a;}
+.sky-legend .sl-lv i:nth-child(1){width:3px;height:3px;opacity:.5;}.sky-legend .sl-lv i:nth-child(2){width:4px;height:4px;opacity:.65;}.sky-legend .sl-lv i:nth-child(3){width:5px;height:5px;opacity:.8;}.sky-legend .sl-lv i:nth-child(4){width:7px;height:7px;opacity:.92;}.sky-legend .sl-lv i:nth-child(5){width:9px;height:9px;}
 .sky-zoom{position:absolute;bottom:max(20px,env(safe-area-inset-bottom));right:18px;display:flex;gap:6px;}
 .sky-zoom button{min-width:42px;padding:8px;}
 .sky-legend{position:absolute;left:20px;right:180px;bottom:calc(max(23px,env(safe-area-inset-bottom)) + 22px);margin:0;font-size:12.5px;line-height:1.4;color:#c5bfd1;pointer-events:none;}
@@ -1383,7 +1394,7 @@ html.sky-on #rsheet{z-index:50;}
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
     <label class="hint hint-q" for="q"><span class="fl" aria-hidden="true">↓</span> <span data-tx="recherche.aide">Chercher un film, un cinéaste ou un thème</span></label>
     <div class="row-tools">
-      <div class="qwrap"><input type="search" id="q" data-txph="recherche.champ" placeholder="Film, cinéaste, thème…" aria-label="Chercher un film, un·e cinéaste ou un thème"><button type="button" class="qx" id="qx" aria-label="Effacer la recherche" hidden>✕</button></div>
+      <div class="qwrap"><div class="qsug" id="qSug" role="listbox" aria-label="Suggestions de films" hidden></div><input type="search" id="q" data-txph="recherche.champ" placeholder="Film, cinéaste, thème…" aria-label="Chercher un film, un·e cinéaste ou un thème"><button type="button" class="qx" id="qx" aria-label="Effacer la recherche" hidden>✕</button></div>
       <button type="button" class="view" id="view" aria-pressed="false" title="Tous les films à la suite, du plus au moins susceptible de te plaire" hidden>Tout classé</button>
       <button type="button" class="dice" id="dice" aria-label="Un film au hasard" title="Un film au hasard" aria-haspopup="dialog"><span class="dico">🎲</span></button>
     </div>
@@ -1404,8 +1415,8 @@ html.sky-on #rsheet{z-index:50;}
 </div>
 <section class="sky" id="sky" role="dialog" aria-modal="true" aria-labelledby="skyTitle" hidden>
   <canvas id="skyCanvas" tabindex="0" role="img" aria-label="Ciel de films. La recherche permet de choisir une étoile ; les flèches déplacent le ciel et les boutons changent le zoom."></canvas>
-  <div class="sky-tools"><h2 id="skyTitle">Ciel de films</h2><div class="sky-search"><input type="search" id="skySearch" placeholder="Une étoile…" aria-label="Chercher un film dans le ciel" autocomplete="off" aria-controls="skyResults"><div class="sky-results" id="skyResults" hidden></div></div><select id="skyMember" aria-label="Superposer le ciel d'un membre"><option value="">Mon ciel seul</option></select><button type="button" id="skyClose" aria-label="Fermer le ciel">Fermer</button></div>
-  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><p class="sky-legend"><span class="sl-b">✦</span> 9 et plus · <span class="sl-b" style="font-size:.8em">✦</span> 8 et plus · <span class="sl-v">●</span> vu · <span class="sl-p">·</span> pas encore vu · chaque groupe est une liste, un courant ou une décennie, de la couleur de sa catégorie</p><div class="sky-label" id="skyLabel" hidden></div>
+  <div class="sky-tools"><h2 id="skyTitle">Ciel de films</h2><div class="sky-search"><input type="search" id="skySearch" placeholder="Une étoile…" aria-label="Chercher un film dans le ciel" autocomplete="off" aria-controls="skyResults"><div class="sky-results" id="skyResults" hidden></div></div><select id="skyMode" aria-label="Ranger le ciel par"><option value="cat">Par catégories</option><option value="mv">Par courants</option><option value="dec">Par décennies</option></select><select id="skyMember" aria-label="Superposer le ciel d'un membre"><option value="">Mon ciel seul</option></select><button type="button" id="skyClose" aria-label="Fermer le ciel">Fermer</button></div>
+  <div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div><p class="sky-legend"><span class="sl-lv" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> notes de 0 à 10, en cinq lumières · <span class="sl-p">·</span> pas encore vu</p><button type="button" class="sky-pick" id="skyPick" hidden></button><div class="sky-label" id="skyLabel" hidden></div>
   <div class="sky-zoom"><button type="button" id="skyOut" aria-label="Éloigner le ciel">−</button><button type="button" id="skyReset" aria-label="Retrouver tout le ciel">⌾</button><button type="button" id="skyIn" aria-label="Rapprocher le ciel">+</button></div>
 </section>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
@@ -2592,6 +2603,24 @@ html.sky-on #rsheet{z-index:50;}
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   // L'apostrophe courbe des claviers de téléphone (’) vaut l'apostrophe droite (') des titres.
   function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/œ/g, "oe").replace(/æ/g, "ae").replace(/[’‘ʼ`´]/g, "'"); }
+  // Suggestions de titres, dans l'ordre où on les attend : le titre commence par ce qu'on tape, puis un mot du titre
+  // (« c » trouve « La Cité… » après « Cube »), puis le nom d'un cinéaste, et seulement ensuite le reste.
+  var RANK_ART = /^(le |la |les |l'|un |une |des |the |a |an |el |los |las |il |lo |der |die |das )/;
+  function rankFilms(raw, limit){
+    var q = norm(String(raw || "").trim()); if (!q) return [];
+    var out = [];
+    Object.keys(films).forEach(function(id){
+      var f = films[id]; if (!f || !f.t) return;
+      var t = norm(f.t), sc = -1;
+      if (t.indexOf(q) === 0 || t.replace(RANK_ART, "").indexOf(q) === 0) sc = 0;
+      else if ((" " + t.replace(/[^a-z0-9']+/g, " ")).indexOf(" " + q) >= 0 || t.indexOf("'" + q) >= 0) sc = 1;
+      else if (f.d && (" " + norm(f.d).replace(/[^a-z0-9']+/g, " ")).indexOf(" " + q) >= 0) sc = 2;
+      else if (q.length >= 3 && t.indexOf(q) >= 0) sc = 3;
+      if (sc >= 0) out.push({ id:id, s:sc, t:t });
+    });
+    out.sort(function(a, b){ return a.s - b.s || a.t.length - b.t.length || (a.t < b.t ? -1 : a.t > b.t ? 1 : 0); });
+    return out.slice(0, limit || 6).map(function(x){ return x.id; });
+  }
 
   var TOAST_T = null;
   // Erreur de chargement : un message clair avec « Réessayer » (recharge la page).
@@ -3228,8 +3257,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (NAV.busy || (t === "keydown" && ev.target && /^(INPUT|TEXTAREA|SELECT)$/.test(ev.target.tagName))) return;
     if (t === "pointerdown" && ev.target && ev.target.closest && ev.target.closest("#navb")) return;
     NAV.preY = window.pageYOffset; }, true); });
-  window.addEventListener("scroll", function(){ if (NAV.busy) return; clearTimeout(NAV_Y); NAV_Y = setTimeout(function(){
-    var st = history.state; if (!st || !st.cc || NAV.busy) return; try { history.replaceState(Object.assign({}, st, { y:window.pageYOffset }), ""); } catch (e) {} }, 150); }, { passive:true });
+  // Position de chaque étape gardée en mémoire (une simple variable : rien n'est écrit pendant le défilement).
+  var NAVY = {};
+  window.addEventListener("scroll", function(){ if (!NAV.busy) NAVY[NAV.i] = window.pageYOffset; }, { passive:true });
   function navScroll(y){
     var tries = 0;
     (function step(){
@@ -3255,7 +3285,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       // Pendant qu'on tape une recherche, on remplace l'étape au lieu d'en empiler une par lettre.
       if (typing && NAV.q && now - NAV.t < 1500) { st.i = NAV.i; st.max = NAV.max = NAV.i; st.y = cur.y; history.replaceState(st, ""); }
       else {
-        history.replaceState(Object.assign({}, cur, { y:NAV.preY != null ? NAV.preY : (cur.y || 0) }), "");
+        var y0 = NAV.preY != null ? NAV.preY : (cur.y || 0); NAVY[NAV.i] = y0;
+        history.replaceState(Object.assign({}, cur, { y:y0 }), "");
         st.i = NAV.i = NAV.i + 1; st.max = NAV.max = NAV.i; st.y = 0; history.pushState(st, "");
       }
     } catch (e) {}
@@ -3272,7 +3303,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     document.documentElement.classList.toggle("qon", !!query);
     document.querySelectorAll("#filters .chip").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.f === filter ? "true" : "false"); });
     renderAll();
-    clearTimeout(NAV_Y); navScroll(+st.y || 0);
+    clearTimeout(NAV_Y); navScroll(NAVY[NAV.i] != null ? NAVY[NAV.i] : (+st.y || 0));
     navPaint();
   });
   $("navBack").addEventListener("click", function(){ if (NAV.i > 0) history.back(); });
@@ -3790,7 +3821,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function drStartFilm(id){var f=films[id];if(!f)return;DR.mode="";DR.current={n:"",seed:"Depuis « "+f.t+" »",steps:[{id:id,by:"depart",why:""}]};drRender();$("drift").scrollTop=0;}
   function drFindList(q){
     var box=$("drFound");if(!box)return;q=norm(String(q||"").trim());if(q.length<2){box.innerHTML="";return;}
-    var ids=Object.keys(films).filter(function(id){return films[id].t&&norm(films[id].t).indexOf(q)>=0;}).sort(function(a,b){return norm(films[a].t).indexOf(q)-norm(films[b].t).indexOf(q)||String(films[a].t).length-String(films[b].t).length;}).slice(0,6);
+    var ids=rankFilms(q,6);
     box.innerHTML=ids.length?ids.map(function(id){return '<button type="button" data-drstart="'+esc(id)+'">'+esc(films[id].t)+' <small>'+esc([films[id].y,films[id].d].filter(Boolean).join(" · "))+'</small></button>';}).join(""):'<p class="dr-origin">Aucun film du carnet ne porte ce titre.</p>';
   }
   function drOpen(){if(!$("rsheet").hidden)$("rsClose").click();drRead();$("drift").hidden=false;document.querySelector(".wrap").inert=true;document.documentElement.classList.add("drift-on");drRender();$("drClose").focus({preventScroll:true});}
@@ -5269,6 +5300,31 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   $("q").addEventListener("focus", function(){ diceAway(); document.documentElement.classList.add("qon"); qTop(); });
   $("q").addEventListener("blur", function(){ if (!query) document.documentElement.classList.remove("qon"); });
   $("q").addEventListener("input", diceAway);
+  // Suggestions sous la recherche : un toucher amène directement au film.
+  var QSUG_T = 0;
+  function qSugPaint(){
+    clearTimeout(QSUG_T);
+    var box = $("qSug"), v = $("q").value, ids = v.trim() && document.activeElement === $("q") ? rankFilms(v, 6) : [];
+    box.innerHTML = ids.map(function(id){ var f = films[id]; return '<button type="button" role="option" data-qsug="' + esc(id) + '"><span>' + esc(f.t) + '</span><small>' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</small></button>'; }).join("");
+    box.hidden = !ids.length;
+  }
+  $("q").addEventListener("input", qSugPaint);
+  $("q").addEventListener("focus", qSugPaint);
+  $("q").addEventListener("blur", function(){ clearTimeout(QSUG_T); QSUG_T = setTimeout(function(){ $("qSug").hidden = true; }, 180); });
+  $("q").addEventListener("keydown", function(ev){
+    if (ev.key === "Escape") $("qSug").hidden = true;
+    if (ev.key === "ArrowDown" && !$("qSug").hidden) { ev.preventDefault(); var b = $("qSug").querySelector("button"); if (b) b.focus(); }
+  });
+  $("qSug").addEventListener("pointerdown", function(ev){ ev.preventDefault(); });
+  $("qSug").addEventListener("click", function(ev){
+    var b = ev.target.closest("[data-qsug]"); if (!b) return;
+    var id = b.dataset.qsug, f = films[id]; if (!f) return;
+    clearTimeout(qTimer); $("qSug").hidden = true;
+    $("q").value = f.t; $("qx").hidden = false; query = norm(f.t); ADDQ = null;
+    document.documentElement.classList.add("qon"); renderAll(); $("q").blur();
+    var row = document.querySelector('#main .film[data-id="' + CSS.escape(id) + '"]');
+    if (row) jumpTo(row, 70); else qTop();
+  });
   // La croix efface la recherche et ramène toutes les listes.
   $("qx").addEventListener("click", function(){
     clearTimeout(qTimer); $("q").value = ""; $("qx").hidden = true; query = "";
@@ -5276,12 +5332,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     renderAll(); $("q").blur(); toList();
   });
   $("q").addEventListener("input", function(){ clearTimeout(qTimer); qTimer = setTimeout(function(){ query = norm($("q").value.trim()); document.documentElement.classList.toggle("qon", !!query || document.activeElement === $("q")); renderAll(); if (query) qTop(); else toList(); }, 150); });
-  var ticking = false, SCR_T = 0;
-  // Pendant le défilement, les effets décoratifs se mettent en pause : le navigateur garde toute sa force pour suivre le doigt.
-  window.addEventListener("scroll", function(){ var de = document.documentElement; if (!de.classList.contains("scrolling")) de.classList.add("scrolling"); clearTimeout(SCR_T); SCR_T = setTimeout(function(){ de.classList.remove("scrolling"); }, 220); }, { passive:true });
+  var ticking = false, SCR_T = 0, TOTOP_H = true;
+  // Pendant le défilement, les effets décoratifs se mettent en pause (un simple drapeau, aucune modification de la page).
+  window.CC_SCROLL = false;
+  window.addEventListener("scroll", function(){ window.CC_SCROLL = true; clearTimeout(SCR_T); SCR_T = setTimeout(function(){ window.CC_SCROLL = false; }, 250); }, { passive:true });
   window.addEventListener("scroll", function(){
     if (ticking) return; ticking = true;
-    requestAnimationFrame(function(){ $("totop").hidden = window.pageYOffset < 400; ticking = false; });
+    requestAnimationFrame(function(){ var h = window.pageYOffset < 400; if (h !== TOTOP_H) { TOTOP_H = h; $("totop").hidden = h; } ticking = false; });
   }, { passive:true });
   $("totop").addEventListener("click", function(){ window.scrollTo({ top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); });
 
@@ -5562,99 +5619,256 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function skyHash(s){ var h=2166136261; for(var i=0;i<s.length;i++) h=Math.imul(h^s.charCodeAt(i),16777619); return h>>>0; }
   function skyNorm(v){ var q=Math.sqrt(v.reduce(function(s,x){return s+x*x;},0))||1; return v.map(function(x){return x/q;}); }
   // Constellations : chaque liste de thèmes devient un groupe d'étoiles qui porte son nom ; un film va dans la liste la plus précise qui le contient.
-  // Constellations : d'abord les listes de thèmes, puis les autres listes (école, cours, envies…), puis le courant, et enfin la décennie : aucun film ne reste à part.
+  // Trois façons de ranger le ciel : par catégories (listes), par courants et mouvements, ou par décennies. Aucun film ne reste à part.
+  var SKY_MODE_KEY = "carnetCielModeV1";
+  try { SKY.mode = localStorage.getItem(SKY_MODE_KEY) || "cat"; } catch (e) { SKY.mode = "cat"; }
+  if (!/^(cat|mv|dec)$/.test(SKY.mode)) SKY.mode = "cat";
+  function skyDecName(d){ return d ? (d >= 2000 ? "Années " + d : "Années " + String(d).slice(2)) : "Sans date"; }
+  function skyDecOf(f){ var d = f.y ? Math.floor(+f.y / 10) * 10 : 0; return { k:"dec:" + (d || "x"), name:skyDecName(d) }; }
   function skyGroups(){
-    var skip={carnet:1,playlists:1,epoques:1,idees:1};
-    var lists=sections.filter(function(s){return !s.cache&&!s.auto&&!s._sugg&&!skip[s.famille]&&(s.films||[]).length;}).map(function(s){return {id:s.id,name:sTitre(s)||s.titre||"",fam:s.famille||"",pri:s.famille==="themes"?0:1,ids:(s.films||[]).map(function(f){return f.id;})};});
-    var of={};lists.slice().sort(function(a,b){return a.pri-b.pri||a.ids.length-b.ids.length||(a.id<b.id?-1:1);}).forEach(function(g){g.ids.forEach(function(id){if(!of[id]&&films[id])of[id]=g.id;});});
-    var extra={};
+    var of = {}, all = {}, mode = SKY.mode;
+    function put(k, name, fam, id){ if (!all[k]) all[k] = { id:k, name:name, fam:fam, ids:[] }; all[k].ids.push(id); of[id] = k; }
+    if (mode === "cat") {
+      var skip = { carnet:1, playlists:1, epoques:1, idees:1 };
+      var lists = sections.filter(function(s){ return !s.cache && !s.auto && !s._sugg && !skip[s.famille] && (s.films || []).length; })
+        .map(function(s){ return { id:s.id, name:sTitre(s) || s.titre || "", fam:s.famille || "", pri:s.famille === "themes" ? 0 : 1, ids:(s.films || []).map(function(f){ return f.id; }) }; });
+      lists.sort(function(a, b){ return a.pri - b.pri || a.ids.length - b.ids.length || (a.id < b.id ? -1 : 1); }).forEach(function(g){
+        g.ids.forEach(function(id){ if (!of[id] && films[id]) put(g.id, g.name, g.fam, id); });
+      });
+    }
     Object.keys(films).forEach(function(id){
-      if(of[id])return;var f=films[id],k;
-      if(f.mv&&MV_INFO[f.mv]){k="mv:"+f.mv;if(!extra[k])extra[k]={id:k,name:MV_INFO[f.mv].label,fam:"mouvements",ids:[]};}
-      else{var d=f.y?Math.floor(+f.y/10)*10:0;k="dec:"+(d||"x");if(!extra[k])extra[k]={id:k,name:d?(d>=2000?"Années "+d:"Années "+String(d).slice(2)):"Sans date",fam:"epoques",ids:[]};}
-      extra[k].ids.push(id);of[id]=k;
+      if (of[id]) return; var f = films[id];
+      if (mode !== "dec" && f.mv && MV_INFO[f.mv]) put("mv:" + f.mv, MV_INFO[f.mv].label, mode === "mv" ? "mvf:" + (MV_OF[f.mv] || "") : "mouvements", id);
+      else { var d = skyDecOf(f); put(d.k, d.name, "epoques", id); }
     });
-    // Un courant trop petit rejoint sa décennie : pas de poussière isolée.
-    Object.keys(extra).forEach(function(k){var g=extra[k];if(k.indexOf("mv:")!==0||g.ids.length>=4)return;g.ids.forEach(function(id){var f=films[id],d=f.y?Math.floor(+f.y/10)*10:0,k2="dec:"+(d||"x");if(!extra[k2])extra[k2]={id:k2,name:d?(d>=2000?"Années "+d:"Années "+String(d).slice(2)):"Sans date",fam:"epoques",ids:[]};extra[k2].ids.push(id);of[id]=k2;});delete extra[k];});
-    return {lists:lists.concat(Object.keys(extra).map(function(k){return extra[k];})),of:of};
+    // En catégories seulement, un courant de moins de quatre films rejoint sa décennie.
+    if (mode === "cat") Object.keys(all).forEach(function(k){
+      var g = all[k]; if (k.indexOf("mv:") !== 0 || g.ids.length >= 4) return;
+      delete all[k]; g.ids.forEach(function(id){ var d = skyDecOf(films[id]); put(d.k, d.name, "epoques", id); });
+    });
+    return { lists:Object.keys(all).map(function(k){ return all[k]; }), of:of };
   }
+  var SKY_PAL = ["#f3dcb4", "#9fe0d2", "#a9c4ff", "#f5b8d0", "#c7b3ff", "#ffc28a", "#b8e3a1", "#ffd6f0", "#8fd3ff", "#e8c3ff"];
   function skyColor(fam){
-    var f=FAM_OF[fam]||{id:fam},p=(typeof famPal==="function"&&famPal(f))||null,c=(p&&(p.ic||p.bord))||f.bord||"";
-    var dflt={themes:"#f3dcb4",mouvements:"#9fe0d2",epoques:"#a9c4ff",ecole:"#f5b8d0",cours:"#c7b3ff",envies:"#ffc28a",sante:"#b8e3a1"};
-    return /^#[0-9a-f]{6}$/i.test(c)?c:dflt[fam]||"#d9cbe6";
+    if (fam.indexOf("mvf:") === 0) return SKY_PAL[skyHash(fam) % SKY_PAL.length];
+    var f = FAM_OF[fam] || { id:fam }, p = (typeof famPal === "function" && famPal(f)) || null, c = (p && (p.ic || p.bord)) || f.bord || "";
+    var dflt = { themes:"#f3dcb4", mouvements:"#9fe0d2", epoques:"#a9c4ff", ecole:"#f5b8d0", cours:"#c7b3ff", envies:"#ffc28a", sante:"#b8e3a1" };
+    return /^#[0-9a-f]{6}$/i.test(c) ? c : dflt[fam] || "#d9cbe6";
   }
-  function skyModel(){
-    var ids=Object.keys(films).sort(),G=skyGroups(),signature=ids.map(function(id){return id+"|"+(G.of[id]||"");}).join(";")+"#"+G.lists.map(function(g){return g.id+":"+g.name;}).join(",");
-    if(SKY.sig===signature) return;
-    SKY.sig=signature; ++SKY.gen; var n=ids.length;
-    if(!n){ SKY.points=[]; SKY.groups=[]; skySchedule(); return; }
-    var byG={},order=[];ids.forEach(function(id){var g=G.of[id]||"_";if(!byG[g]){byG[g]=[];order.push(g);}byG[g].push(id);});
-    var names={},fams={};G.lists.forEach(function(g){names[g.id]=g.name;fams[g.id]=g.fam;});names._="Autres films";
-    // Les plus grandes constellations au centre, les autres en spirale autour ; les films d'un groupe en tournesol.
-    order.sort(function(a,b){return (a==="_")-(b==="_")||byG[b].length-byG[a].length||(a<b?-1:1);});
-    var points=[],groups=[],GA=Math.PI*(3-Math.sqrt(5)),placed=[];
-    order.forEach(function(g,k){
-      var list=byG[g].slice().sort(function(a,b){return skyHash(a)-skyHash(b);}),r=Math.sqrt(list.length)*15+10,cx=0,cy=0;
-      // Chaque constellation se pose sur une spirale, à la première place libre, avec de l'air pour son nom.
-      for(var t=0;k&&t<4000;t++){var ang=t*.37,R=t*6;cx=Math.cos(ang)*R;cy=Math.sin(ang)*R*.8;if(placed.every(function(q){return Math.hypot(q.x-cx,q.y-cy)>=q.r+r+55;}))break;}
-      placed.push({x:cx,y:cy,r:r});
-      list.forEach(function(id,i){var d=Math.sqrt(i+.5)*15,a=i*GA;points.push({id:id,g:g,x:cx+Math.cos(a)*d,y:cy+Math.sin(a)*d,links:[]});});
-      groups.push({id:g,name:names[g]||"",fam:fams[g]||"",color:skyColor(fams[g]||""),x:cx,y:cy-r-8,n:list.length});
+  // Ce qu'une constellation « contient » : ses mots-clés, ses familles de goût, ses courants, ses époques.
+  function skyVec(ids){
+    var v = {}, n = ids.length || 1;
+    ids.forEach(function(id){
+      var f = films[id]; (f.k || []).forEach(function(k){ v["k|" + k] = (v["k|" + k] || 0) + 1; });
+      famW(f).forEach(function(w, i){ if (w) v["fa|" + i] = (v["fa|" + i] || 0) + w * 2; });
+      if (f.mv) { v["mf|" + (MV_OF[f.mv] || "")] = (v["mf|" + (MV_OF[f.mv] || "")] || 0) + 1; }
+      if (f.y) v["dec|" + Math.floor(+f.y / 10)] = (v["dec|" + Math.floor(+f.y / 10)] || 0) + .6;
     });
-    SKY.points=points;SKY.groups=groups;SKY.gcol={};groups.forEach(function(g){SKY.gcol[g.id]=g.color;});SKY.byId={};SKY.grid={};points.forEach(function(p){SKY.byId[p.id]=p;var key=Math.floor(p.x/64)+","+Math.floor(p.y/64);(SKY.grid[key]=SKY.grid[key]||[]).push(p);});
-    var minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;points.forEach(function(p){minX=Math.min(minX,p.x);maxX=Math.max(maxX,p.x);minY=Math.min(minY,p.y);maxY=Math.max(maxY,p.y);});
-    SKY.box={x:(minX+maxX)/2,y:(minY+maxY)/2,w:maxX-minX+260,h:maxY-minY+180};
-    SKY.ready=true;skyCanvas.dataset.count=String(n);skyCanvas.dataset.layout=String(skyHash(points.map(function(p){return p.id+":"+p.x.toFixed(3)+","+p.y.toFixed(3);}).join(";")));SKY.threads={};skyFit();skySchedule();
+    var q = 0; Object.keys(v).forEach(function(k){ v[k] /= n; q += v[k] * v[k]; }); q = Math.sqrt(q) || 1;
+    Object.keys(v).forEach(function(k){ v[k] /= q; }); return v;
   }
-  function skySchedule(){ if(SKY.raf||skyEl.hidden)return; SKY.raf=requestAnimationFrame(function(){SKY.raf=0;skyDraw();}); }
+  function skyCos(a, b){ var s = 0; Object.keys(a).forEach(function(k){ if (b[k]) s += a[k] * b[k]; }); return s; }
+  function skyShare(ids, re){ var n = 0; ids.forEach(function(id){ if ((films[id].k || []).some(function(k){ return re.test(k); })) n++; }); return n / (ids.length || 1); }
+  function skyModel(){
+    var ids = Object.keys(films).sort(), G = skyGroups(), signature = SKY.mode + "#" + ids.map(function(id){ return id + "|" + (G.of[id] || ""); }).join(";") + "#" + G.lists.map(function(g){ return g.id + ":" + g.name; }).join(",");
+    if (SKY.sig === signature) return;
+    SKY.sig = signature; ++SKY.gen; var n = ids.length;
+    if (!n) { SKY.points = []; SKY.groups = []; skySchedule(); return; }
+    var GA = Math.PI * (3 - Math.sqrt(5)), GAP = 26, groups = G.lists.map(function(g){
+      var list = g.ids.slice().sort(function(a, b){ return skyHash(a) - skyHash(b); });
+      return { id:g.id, name:g.name, fam:g.fam, color:skyColor(g.fam), ids:list, n:list.length, r:Math.sqrt(list.length) * 13 + 10, v:skyVec(list) };
+    });
+    // Les plus grandes d'abord ; chacune vient se poser contre celles qui lui ressemblent le plus, sans chevaucher les autres.
+    groups.sort(function(a, b){ return b.n - a.n || (a.id < b.id ? -1 : 1); });
+    var placed = [];
+    groups.forEach(function(g, k){
+      if (!k) { g.x = 0; g.y = 0; placed.push(g); return; }
+      var near = placed.map(function(q){ return { q:q, s:skyCos(g.v, q.v) }; }).sort(function(a, b){ return b.s - a.s || (a.q.id < b.q.id ? -1 : 1); }).slice(0, 3);
+      var tw = near.reduce(function(t, x){ return t + Math.max(.05, x.s); }, 0), tx = 0, ty = 0;
+      near.forEach(function(x){ var w = Math.max(.05, x.s) / tw; tx += x.q.x * w; ty += x.q.y * w; });
+      var best = null;
+      for (var extra = 0; !best && extra < 3000; extra += 18) near.forEach(function(x){
+        for (var a = 0; a < 24; a++) {
+          var ang = a / 24 * Math.PI * 2 + (skyHash(g.id) % 100) / 100, d = x.q.r + g.r + GAP + extra, cx = x.q.x + Math.cos(ang) * d, cy = x.q.y + Math.sin(ang) * d * .86;
+          if (!placed.every(function(o){ return Math.hypot(o.x - cx, o.y - cy) >= o.r + g.r + GAP; })) continue;
+          var cost = Math.hypot(cx - tx, cy - ty) + Math.hypot(cx, cy) * .15;
+          if (!best || cost < best.c) best = { x:cx, y:cy, c:cost };
+        }
+      });
+      g.x = best ? best.x : 0; g.y = best ? best.y : 0; placed.push(g);
+    });
+    var points = [];
+    groups.forEach(function(g){
+      g.ids.forEach(function(id, i){ var d = Math.sqrt(i + .5) * 13, a = i * GA; points.push({ id:id, g:g.id, x:g.x + Math.cos(a) * d, y:g.y + Math.sin(a) * d }); });
+      g.lx = g.x; g.ly = g.y - g.r - 6;
+    });
+    // Décor : une voie lactée qui relie les constellations douces et musicales, des trous noirs près des plus sombres.
+    var milky = groups.filter(function(g){ return /disney|pixar|ghibli|anima|danse|musique|music|chant|conte|couleur|enfance|cirque/i.test(g.name) || skyShare(g.ids, /^(animation|musique|danse|conte|couleurs|doux|enfance)$/) >= .35; });
+    milky = milky.sort(function(a, b){ return b.n - a.n; }).slice(0, 6);
+    if (milky.length >= 2) {
+      var mx = 0, my = 0; milky.forEach(function(g){ mx += g.x; my += g.y; }); mx /= milky.length; my /= milky.length;
+      var sxx = 0, sxy = 0, syy = 0; milky.forEach(function(g){ var dx = g.x - mx, dy = g.y - my; sxx += dx * dx; sxy += dx * dy; syy += dy * dy; });
+      var th = .5 * Math.atan2(2 * sxy, sxx - syy), ux = Math.cos(th), uy = Math.sin(th);
+      milky.sort(function(a, b){ return ((a.x - mx) * ux + (a.y - my) * uy) - ((b.x - mx) * ux + (b.y - my) * uy); });
+      var path = milky.map(function(g){ return { x:g.x, y:g.y }; }), f0 = path[0], f1 = path[path.length - 1], L = 160;
+      path.unshift({ x:f0.x - ux * L, y:f0.y - uy * L }); path.push({ x:f1.x + ux * L, y:f1.y + uy * L });
+      var dust = [], clouds = [];
+      // Nuages : des voiles doux posés le long du chemin, de tailles et teintes un peu différentes.
+      for (var ci = 0; ci < 70; ci++) {
+        var hc = skyHash("nu" + ci), tc = ci / 69, sc = Math.min(path.length - 2, Math.floor(tc * (path.length - 1))), uc = tc * (path.length - 1) - sc;
+        var A0 = path[sc], B0 = path[sc + 1], ddx = B0.x - A0.x, ddy = B0.y - A0.y, ll = Math.hypot(ddx, ddy) || 1, sp = (((hc >>> 5) % 200) - 100) * .45;
+        clouds.push({ x:A0.x + ddx * uc - ddy / ll * sp, y:A0.y + ddy * uc + ddx / ll * sp, r:70 + (hc % 90), a:.05 + ((hc >>> 11) % 60) / 1000, c:["#cfc6ff", "#ffe9d6", "#f3c6ff", "#c9e6ff"][(hc >>> 17) % 4] });
+      }
+      for (var i = 0; i < 520; i++) {
+        var h = skyHash("vl" + i), t = (h % 10000) / 10000, seg = Math.min(path.length - 2, Math.floor(t * (path.length - 1))), u = t * (path.length - 1) - seg;
+        var A = path[seg], B = path[seg + 1], off = (((h >>> 14) % 2000) / 1000 - 1), spread = 70 * off * Math.abs(off) + (((h >>> 4) % 100) - 50) * .3;
+        var dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx, dy) || 1;
+        dust.push({ x:A.x + dx * u - dy / len * spread, y:A.y + dy * u + dx / len * spread, a:.15 + ((h >>> 20) % 50) / 100, s:((h >>> 9) % 3) + 1 });
+      }
+      SKY.milky = { path:path, dust:dust, clouds:clouds };
+    } else SKY.milky = null;
+    var dark = groups.map(function(g){ return { g:g, s:(/trauma|phobi|rituel|cauchemar|malaise|folie|psychos|parano|horreur|dépression|depression|menace|vengeance/i.test(g.name) ? 1 : 0) + skyShare(g.ids, /^(horreur|malaise|folie|paranoia|violence|vengeance)$/) }; })
+      .filter(function(x){ return x.s >= .55; }).sort(function(a, b){ return b.s - a.s; }).slice(0, 4);
+    SKY.holes = dark.map(function(x){
+      var g = x.g, R = 26, best = null;
+      for (var a = 0; a < 36; a++) {
+        var ang = a / 36 * Math.PI * 2, d = g.r + R + 22, hx = g.x + Math.cos(ang) * d, hy = g.y + Math.sin(ang) * d;
+        var clear = groups.every(function(o){ return o === g || Math.hypot(o.x - hx, o.y - hy) >= o.r + R + 10; });
+        var cost = (clear ? 0 : 1e6) - Math.hypot(hx, hy);
+        if (!best || cost < best.c) best = { x:hx, y:hy, c:cost };
+      }
+      return { x:best.x, y:best.y, r:R, spin:(skyHash(g.id) % 628) / 100 };
+    });
+    // Un fond d'étoiles lointaines, qui glisse plus lentement que les constellations (impression de profondeur).
+    var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    groups.forEach(function(g){ minX = Math.min(minX, g.x - g.r); maxX = Math.max(maxX, g.x + g.r); minY = Math.min(minY, g.y - g.r - 20); maxY = Math.max(maxY, g.y + g.r); });
+    SKY.far = []; for (var j = 0; j < 420; j++) { var hh = skyHash("far" + j); SKY.far.push({ x:((hh % 10000) / 10000 - .5) * 2.4, y:(((hh >>> 13) % 10000) / 10000 - .5) * 2.4, a:.2 + ((hh >>> 7) % 60) / 100, tw:(hh >>> 3) % 7 === 0 }); }
+    SKY.points = points; SKY.groups = groups; SKY.gcol = {}; groups.forEach(function(g){ SKY.gcol[g.id] = g.color; });
+    SKY.byId = {}; SKY.grid = {}; points.forEach(function(p){ SKY.byId[p.id] = p; var key = Math.floor(p.x / 64) + "," + Math.floor(p.y / 64); (SKY.grid[key] = SKY.grid[key] || []).push(p); });
+    SKY.box = { x:(minX + maxX) / 2, y:(minY + maxY) / 2, w:maxX - minX + 120, h:maxY - minY + 120 };
+    SKY.ready = true; skyCanvas.dataset.count = String(n); skyCanvas.dataset.layout = String(skyHash(SKY.mode + points.map(function(p){ return p.id + ":" + p.x.toFixed(3) + "," + p.y.toFixed(3); }).join(";")));
+    SKY.threads = {}; skyFit(); skySchedule();
+  }
+  function skySchedule(){ if (SKY.raf || skyEl.hidden) return; SKY.raf = requestAnimationFrame(function(){ SKY.raf = 0; skyDraw(); }); }
   function skyResize(){
-    var r=skyCanvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);if(!r.width||!r.height)return;
-    SKY.w=r.width;SKY.h=r.height;SKY.dpr=dpr;skyCanvas.width=Math.round(r.width*dpr);skyCanvas.height=Math.round(r.height*dpr);skySchedule();
+    var r = skyCanvas.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2); if (!r.width || !r.height) return;
+    SKY.w = r.width; SKY.h = r.height; SKY.dpr = dpr; skyCanvas.width = Math.round(r.width * dpr); skyCanvas.height = Math.round(r.height * dpr); skySchedule();
   }
-  function skyFit(){var b=SKY.box||{x:0,y:0,w:1040,h:1040};SKY.cam={x:b.x,y:b.y,z:Math.max(.15,Math.min(SKY.w/b.w,(SKY.h-130)/b.h))};skyCanvas.dataset.zoom=String(SKY.cam.z);skySchedule();}
-  function skyScreen(p){return {x:SKY.w/2+(p.x-SKY.cam.x)*SKY.cam.z,y:SKY.h/2+35+(p.y-SKY.cam.y)*SKY.cam.z};}
-  function skyWorld(x,y){return {x:SKY.cam.x+(x-SKY.w/2)/SKY.cam.z,y:SKY.cam.y+(y-SKY.h/2-35)/SKY.cam.z};}
-  function skyZoom(f,x,y){var before=skyWorld(x,y);SKY.cam.z=Math.max(.15,Math.min(9,SKY.cam.z*f));var after=skyWorld(x,y);SKY.cam.x+=before.x-after.x;SKY.cam.y+=before.y-after.y;skyCanvas.dataset.zoom=String(SKY.cam.z);skySchedule();}
+  function skyFit(){ var b = SKY.box || { x:0, y:0, w:1040, h:1040 }; SKY.cam = { x:b.x, y:b.y, z:Math.max(.15, Math.min(SKY.w / b.w, (SKY.h - 150) / b.h)) }; skyCanvas.dataset.zoom = String(SKY.cam.z); skySchedule(); }
+  function skyScreen(p){ return { x:SKY.w / 2 + (p.x - SKY.cam.x) * SKY.cam.z, y:SKY.h / 2 + 35 + (p.y - SKY.cam.y) * SKY.cam.z }; }
+  function skyWorld(x, y){ return { x:SKY.cam.x + (x - SKY.w / 2) / SKY.cam.z, y:SKY.cam.y + (y - SKY.h / 2 - 35) / SKY.cam.z }; }
+  function skyZoom(f, x, y){ var before = skyWorld(x, y); SKY.cam.z = Math.max(.15, Math.min(9, SKY.cam.z * f)); var after = skyWorld(x, y); SKY.cam.x += before.x - after.x; SKY.cam.y += before.y - after.y; skyCanvas.dataset.zoom = String(SKY.cam.z); skySchedule(); }
   function skySprite(color){
-    if(skySprites[color])return skySprites[color];var el=document.createElement("canvas");el.width=48;el.height=48;var c=el.getContext("2d"),g=c.createRadialGradient(24,24,0,24,24,24);
-    g.addColorStop(0,"#fff");g.addColorStop(.08,color);g.addColorStop(.22,color+"66");g.addColorStop(1,color+"00");c.fillStyle=g;c.fillRect(0,0,48,48);return skySprites[color]=el;
+    if (skySprites[color]) return skySprites[color]; var el = document.createElement("canvas"); el.width = 48; el.height = 48; var c = el.getContext("2d"), g = c.createRadialGradient(24, 24, 0, 24, 24, 24);
+    g.addColorStop(0, "#fff"); g.addColorStop(.08, color); g.addColorStop(.22, color + "66"); g.addColorStop(1, color + "00"); c.fillStyle = g; c.fillRect(0, 0, 48, 48); return skySprites[color] = el;
+  }
+  var skySofts = {};
+  function skySoft(color){
+    if (skySofts[color]) return skySofts[color]; var el = document.createElement("canvas"); el.width = 128; el.height = 128; var c = el.getContext("2d"), g = c.createRadialGradient(64, 64, 0, 64, 64, 64);
+    g.addColorStop(0, color); g.addColorStop(.35, color + "99"); g.addColorStop(.7, color + "22"); g.addColorStop(1, color + "00"); c.fillStyle = g; c.fillRect(0, 0, 128, 128); return skySofts[color] = el;
+  }
+  // Cinq puissances de lumière selon la note : 0–2, 2–4, 4–6, 6–8, 8–10.
+  var SKY_LV = [{ s:8, a:.55, c:"#c99a86" }, { s:11, a:.68, c:"#e3b48f" }, { s:14, a:.8, c:"#f3cfa3" }, { s:18, a:.92, c:"#ffe2b8" }, { s:25, a:1, c:"#fff3d6" }];
+  function skyLevel(n){ n = +n || 0; return n <= 0 ? -1 : n <= 2 ? 0 : n <= 4 ? 1 : n <= 6 ? 2 : n <= 8 ? 3 : 4; }
+  // Animation douce (disques des trous noirs, scintillement, étoile trouvée) : une image toutes les 70 ms, seulement quand le ciel est ouvert.
+  var SKY_MOTION = matchMedia("(prefers-reduced-motion: reduce)");
+  function skyAnimOn(){ return !skyEl.hidden && !SKY_MOTION.matches && !document.documentElement.classList.contains("aff-calme") && !document.hidden; }
+  function skyTick(){ clearTimeout(SKY.tick); if (!skyAnimOn()) return; skySchedule(); SKY.tick = setTimeout(skyTick, 70); }
+  function skyFly(id){
+    var p = SKY.byId[id]; if (!p) return;
+    var from = { x:SKY.cam.x, y:SKY.cam.y, z:SKY.cam.z }, to = { x:p.x, y:p.y - 20 / Math.max(1.6, from.z), z:Math.max(1.6, Math.min(2.6, from.z * 2.2)) }, t0 = performance.now(), D = SKY_MOTION.matches ? 1 : 750;
+    SKY.focus = { id:id, t:t0 + D };
+    (function step(now){
+      var k = Math.min(1, (now - t0) / D), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      SKY.cam = { x:from.x + (to.x - from.x) * e, y:from.y + (to.y - from.y) * e, z:from.z * Math.pow(to.z / from.z, e) };
+      skyCanvas.dataset.zoom = String(SKY.cam.z); skyDraw();
+      if (k < 1) requestAnimationFrame(step); else skyCanvas.dataset.focus = id;
+    })(t0);
   }
   function skyDraw(){
-    var started=performance.now(),c=skyCtx;c.setTransform(SKY.dpr||1,0,0,SKY.dpr||1,0,0);c.clearRect(0,0,SKY.w,SKY.h);
-    if(!SKY.ready)return;
-    var other=SKY.member&&window.CC&&CC.profils[SKY.member],peer=other&&other.rep||{},positions=SKY.points.map(skyScreen),seen=0;
-    function threads(rep,color){
-      var ids=SKY.points.map(function(p,i){return isSeen((rep[p.id]||{}).etat)?i:-1;}).filter(function(i){return i>=0;}),sig=ids.join(","),cache=SKY.threads[color];
-      if(!cache||cache.sig!==sig){
-        var lines=[],used={};ids.forEach(function(i){var p=SKY.points[i],nearest=[];ids.forEach(function(j){if(i===j)return;var q=SKY.points[j];if(q.g!==p.g)return;var dist=Math.hypot(q.x-p.x,q.y-p.y);if(dist>300)return;var candidate={j:j,d:dist};if(!nearest[0]||dist<nearest[0].d){nearest.unshift(candidate);nearest.length=Math.min(nearest.length,2);}else if(!nearest[1]||dist<nearest[1].d)nearest[1]=candidate;});
-          nearest.forEach(function(q){var key=Math.min(i,q.j)+","+Math.max(i,q.j);if(q.d<=300&&!used[key]){used[key]=1;lines.push([i,q.j]);}});
-        });cache=SKY.threads[color]={sig:sig,lines:lines};
-      }
-      c.strokeStyle=color;c.lineWidth=.5;c.beginPath();cache.lines.forEach(function(pair){c.moveTo(positions[pair[0]].x,positions[pair[0]].y);c.lineTo(positions[pair[1]].x,positions[pair[1]].y);});c.stroke();
-    }
-    threads(answers,"#f3d4a449");if(other)threads(peer,"#c7a4ff65");
-    SKY.points.forEach(function(p,i){
-      var a=answers[p.id]||{},lit=isSeen(a.etat),brilliant=lit&&+a.note10>=9,bright=lit&&+a.note10>=8,s=positions[i];if(s.x<-30||s.x>SKY.w+30||s.y<-30||s.y>SKY.h+30)return;
-      if(lit)seen++;
-      var size=brilliant?26:bright?20:lit?13:7,color=brilliant?"#ffe1a7":bright?"#ffdcb0":lit?"#f7d5aa":((SKY.gcol||{})[p.g]||"#abc1e3");c.globalAlpha=lit?1:.56;c.drawImage(skySprite(color),s.x-size/2,s.y-size/2,size,size);
-      if(other&&isSeen((peer[p.id]||{}).etat)){c.globalAlpha=.85;c.strokeStyle="#c7a4ff";c.lineWidth=.7;c.beginPath();c.arc(s.x,s.y,brilliant?4:2.5,0,Math.PI*2);c.stroke();}
+    var started = performance.now(), c = skyCtx, now = Date.now(); c.setTransform(SKY.dpr || 1, 0, 0, SKY.dpr || 1, 0, 0); c.clearRect(0, 0, SKY.w, SKY.h);
+    if (!SKY.ready) return;
+    var z = SKY.cam.z, other = SKY.member && window.CC && CC.profils[SKY.member], peer = other && other.rep || {}, positions = SKY.points.map(skyScreen), anim = skyAnimOn();
+    // Étoiles lointaines (parallaxe)
+    var fz = .35, b = SKY.box || { w:1000, h:1000, x:0, y:0 };
+    (SKY.far || []).forEach(function(s, i){
+      var x = SKY.w / 2 + (b.x + s.x * b.w - SKY.cam.x) * z * fz, y = SKY.h / 2 + (b.y + s.y * b.h - SKY.cam.y) * z * fz;
+      x = ((x % SKY.w) + SKY.w) % SKY.w; y = ((y % SKY.h) + SKY.h) % SKY.h;
+      c.globalAlpha = s.a * (s.tw && anim ? .55 + .45 * Math.sin(now / 700 + i) : 1); c.fillStyle = "#dfe6ff"; c.fillRect(x, y, s.a > .6 ? 1.5 : 1, s.a > .6 ? 1.5 : 1);
     });
-    c.globalAlpha=1;c.textAlign="center";c.textBaseline="bottom";
+    // Nébuleuses : un halo de la couleur de chaque constellation
+    c.globalCompositeOperation = "lighter";
+    (SKY.groups || []).forEach(function(g){
+      var s = skyScreen(g), r = g.r * 2 * z; if (s.x < -r || s.x > SKY.w + r || s.y < -r || s.y > SKY.h + r) return;
+      var gr = c.createRadialGradient(s.x, s.y, 0, s.x, s.y, r); gr.addColorStop(0, g.color + "2a"); gr.addColorStop(.55, g.color + "10"); gr.addColorStop(1, g.color + "00");
+      c.globalAlpha = 1; c.fillStyle = gr; c.beginPath(); c.arc(s.x, s.y, r, 0, Math.PI * 2); c.fill();
+    });
+    // Voie lactée
+    if (SKY.milky) {
+      SKY.milky.clouds.forEach(function(cl){
+        var s = skyScreen(cl), r = cl.r * z; if (s.x < -r || s.x > SKY.w + r || s.y < -r || s.y > SKY.h + r) return;
+        c.globalAlpha = cl.a * 2 * Math.min(1, .7 / Math.max(.45, z)); c.drawImage(skySoft(cl.c), s.x - r, s.y - r, r * 2, r * 2);
+      });
+      c.fillStyle = "#fff6ea";
+      SKY.milky.dust.forEach(function(d){ var s = skyScreen(d); if (s.x < -4 || s.x > SKY.w + 4 || s.y < -4 || s.y > SKY.h + 4) return; c.globalAlpha = d.a * .8; var k = Math.max(.6, Math.min(2.2, d.s * z * .7)); c.fillRect(s.x, s.y, k, k); });
+    }
+    c.globalCompositeOperation = "source-over"; c.globalAlpha = 1;
+    // Trous noirs : disque d'accrétion qui tourne lentement, anneau de lumière, cœur noir
+    (SKY.holes || []).forEach(function(h){
+      var s = skyScreen(h), R = h.r * z; if (s.x < -R * 4 || s.x > SKY.w + R * 4 || s.y < -R * 4 || s.y > SKY.h + R * 4) return;
+      var spin = h.spin + (anim ? now / 9000 : 0);
+      c.save(); c.translate(s.x, s.y); c.rotate(spin); c.scale(1, .38);
+      var disk = c.createRadialGradient(0, 0, R * .9, 0, 0, R * 3.2); disk.addColorStop(0, "rgba(255,214,150,.85)"); disk.addColorStop(.25, "rgba(255,140,60,.55)"); disk.addColorStop(.6, "rgba(170,60,140,.25)"); disk.addColorStop(1, "rgba(80,30,120,0)");
+      c.fillStyle = disk; c.beginPath(); c.arc(0, 0, R * 3.2, 0, Math.PI * 2); c.fill(); c.restore();
+      var glow = c.createRadialGradient(s.x, s.y, R * .85, s.x, s.y, R * 1.5); glow.addColorStop(0, "rgba(255,226,180,.9)"); glow.addColorStop(.3, "rgba(255,170,90,.35)"); glow.addColorStop(1, "rgba(255,120,60,0)");
+      c.fillStyle = glow; c.beginPath(); c.arc(s.x, s.y, R * 1.5, 0, Math.PI * 2); c.fill();
+      c.fillStyle = "#020104"; c.beginPath(); c.arc(s.x, s.y, R, 0, Math.PI * 2); c.fill();
+      c.save(); c.translate(s.x, s.y); c.rotate(spin); c.scale(1, .38); c.strokeStyle = "rgba(255,230,190,.55)"; c.lineWidth = Math.max(.6, 1.4 / .38 * z * .5);
+      c.beginPath(); c.arc(0, 0, R * 1.9, Math.PI * 1.05, Math.PI * 1.95); c.stroke(); c.restore();
+    });
+    // Fils entre les films vus d'une même constellation
+    function threads(rep, color){
+      var ids = SKY.points.map(function(p, i){ return isSeen((rep[p.id] || {}).etat) ? i : -1; }).filter(function(i){ return i >= 0; }), sig = ids.join(","), cache = SKY.threads[color];
+      if (!cache || cache.sig !== sig) {
+        var lines = [], used = {}; ids.forEach(function(i){ var p = SKY.points[i], nearest = []; ids.forEach(function(j){ if (i === j) return; var q = SKY.points[j]; if (q.g !== p.g) return; var dist = Math.hypot(q.x - p.x, q.y - p.y); if (dist > 300) return; var cand = { j:j, d:dist }; if (!nearest[0] || dist < nearest[0].d) { nearest.unshift(cand); nearest.length = Math.min(nearest.length, 2); } else if (!nearest[1] || dist < nearest[1].d) nearest[1] = cand; });
+          nearest.forEach(function(q){ var key = Math.min(i, q.j) + "," + Math.max(i, q.j); if (!used[key]) { used[key] = 1; lines.push([i, q.j]); } });
+        }); cache = SKY.threads[color] = { sig:sig, lines:lines };
+      }
+      c.strokeStyle = color; c.lineWidth = .5; c.beginPath(); cache.lines.forEach(function(pair){ c.moveTo(positions[pair[0]].x, positions[pair[0]].y); c.lineTo(positions[pair[1]].x, positions[pair[1]].y); }); c.stroke();
+    }
+    threads(answers, "#f3d4a449"); if (other) threads(peer, "#c7a4ff65");
+    SKY.points.forEach(function(p, i){
+      var a = answers[p.id] || {}, lit = isSeen(a.etat), lv = lit ? skyLevel(a.note10) : -1, s = positions[i]; if (s.x < -30 || s.x > SKY.w + 30 || s.y < -30 || s.y > SKY.h + 30) return;
+      var L = lv >= 0 ? SKY_LV[lv] : null, size = L ? L.s : lit ? 10 : 6, color = L ? L.c : lit ? "#e8cfb0" : ((SKY.gcol || {})[p.g] || "#abc1e3");
+      c.globalAlpha = L ? L.a : lit ? .7 : .5; c.drawImage(skySprite(color), s.x - size / 2, s.y - size / 2, size, size);
+      if (other && isSeen((peer[p.id] || {}).etat)) { c.globalAlpha = .85; c.strokeStyle = "#c7a4ff"; c.lineWidth = .7; c.beginPath(); c.arc(s.x, s.y, lv >= 3 ? 4 : 2.5, 0, Math.PI * 2); c.stroke(); }
+    });
+    // L'étoile trouvée par la recherche : deux anneaux qui pulsent
+    var pick = $("skyPick");
+    if (SKY.focus && SKY.byId[SKY.focus.id]) {
+      var fp = skyScreen(SKY.byId[SKY.focus.id]), ph = anim ? (now % 1600) / 1600 : .5;
+      c.globalAlpha = 1 - ph; c.strokeStyle = "#ffe6b0"; c.lineWidth = 1.5; c.beginPath(); c.arc(fp.x, fp.y, 8 + ph * 22, 0, Math.PI * 2); c.stroke();
+      c.globalAlpha = .9; c.beginPath(); c.arc(fp.x, fp.y, 9, 0, Math.PI * 2); c.stroke();
+      pick.hidden = false; pick.style.left = Math.max(110, Math.min(SKY.w - 110, fp.x)) + "px"; pick.style.top = Math.max(150, Math.min(SKY.h - 90, fp.y)) + "px";
+    } else if (pick) pick.hidden = true;
+    c.globalAlpha = 1; c.textAlign = "center"; c.textBaseline = "bottom";
     // Les noms ne se chevauchent jamais : les plus grandes constellations d'abord ; les autres apparaissent en rapprochant le ciel.
-    var boxes=[],fs=Math.max(11,Math.min(16,11+SKY.cam.z*5));c.font="600 "+fs+"px system-ui,sans-serif";
-    (SKY.groups||[]).slice().sort(function(a,b){return b.n-a.n;}).forEach(function(g){if(!g.name)return;var s=skyScreen(g);if(s.x<-160||s.x>SKY.w+160||s.y<-40||s.y>SKY.h+60)return;
-      var w=c.measureText(g.name).width,bx={l:s.x-w/2-4,r:s.x+w/2+4,t:s.y-fs-3,b:s.y+3};if(boxes.some(function(o){return bx.l<o.r&&bx.r>o.l&&bx.t<o.b&&bx.b>o.t;}))return;boxes.push(bx);
-      var lit=SKY.points.some(function(p){return p.g===g.id&&isSeen((answers[p.id]||{}).etat);});c.fillStyle=g.color||"#f3dcb4";c.globalAlpha=lit?.95:.62;c.fillText(g.name,s.x,s.y);});
-    c.globalAlpha=1;$("skyCaption").textContent=SKY.points.length+" films · "+Object.keys(answers).filter(function(id){return SKY.byId[id]&&isSeen((answers[id]||{}).etat);}).length+" vus"+(other?" · avec "+other.pseudo:"");
-    skyCanvas.dataset.renderMs=(performance.now()-started).toFixed(2);
+    var boxes = [], fs = Math.max(11, Math.min(16, 11 + z * 5)); c.font = "600 " + fs + "px system-ui,sans-serif";
+    (SKY.groups || []).slice().sort(function(a, b){ return b.n - a.n; }).forEach(function(g){
+      if (!g.name) return; var s = skyScreen({ x:g.lx, y:g.ly }); if (s.x < -160 || s.x > SKY.w + 160 || s.y < -40 || s.y > SKY.h + 60) return;
+      var w = c.measureText(g.name).width, bx = { l:s.x - w / 2 - 4, r:s.x + w / 2 + 4, t:s.y - fs - 3, b:s.y + 3 }; if (boxes.some(function(o){ return bx.l < o.r && bx.r > o.l && bx.t < o.b && bx.b > o.t; })) return; boxes.push(bx);
+      var lit = SKY.points.some(function(p){ return p.g === g.id && isSeen((answers[p.id] || {}).etat); }); c.fillStyle = g.color || "#f3dcb4"; c.globalAlpha = lit ? .95 : .62; c.fillText(g.name, s.x, s.y);
+    });
+    c.globalAlpha = 1; $("skyCaption").textContent = SKY.points.length + " films · " + Object.keys(answers).filter(function(id){ return SKY.byId[id] && isSeen((answers[id] || {}).etat); }).length + " vus" + (other ? " · avec " + other.pseudo : "");
+    skyCanvas.dataset.renderMs = (performance.now() - started).toFixed(2);
   }
   function skyMembers(){
     var selected=SKY.member,me=window.CC&&(CC.view||CC.uid),html='<option value="">'+(CC&&CC.view?"Ce ciel seul":"Mon ciel seul")+'</option>';
     Object.keys(window.CC&&CC.uid?CC.profils:{}).sort().forEach(function(uid){var p=CC.profils[uid];if(uid===me||!p||!p.pseudo||(CC.hidden&&CC.hidden("x","",uid)))return;html+='<option value="'+esc(uid)+'">Avec '+esc(p.pseudo)+'</option>';});
     $("skyMember").innerHTML=html;$("skyMember").value=selected;if($("skyMember").value!==selected)SKY.member="";
   }
-  function skyOpen(){if(!$("rsheet").hidden)$("rsClose").click();skyEl.hidden=false;document.documentElement.classList.add("sky-on");document.querySelector(".wrap").inert=true;skyResize();skyMembers();skyModel();if(SKY.ready)skyFit();skyCanvas.focus({preventScroll:true});}
-  function skyClose(){skyEl.hidden=true;skyEl.inert=false;document.querySelector(".wrap").inert=false;document.documentElement.classList.remove("sky-on");$("rsheet").hidden=true;$("skyToggle").focus({preventScroll:true});}
+  function skyOpen(){if(!$("rsheet").hidden)$("rsClose").click();skyEl.hidden=false;document.documentElement.classList.add("sky-on");document.querySelector(".wrap").inert=true;$("skyMode").value=SKY.mode;skyResize();skyMembers();skyModel();if(SKY.ready)skyFit();skyCanvas.focus({preventScroll:true});skyTick();}
+  function skyClose(){clearTimeout(SKY.tick);SKY.focus=null;skyEl.hidden=true;skyEl.inert=false;document.querySelector(".wrap").inert=false;document.documentElement.classList.remove("sky-on");$("rsheet").hidden=true;$("skyToggle").focus({preventScroll:true});}
   function skyFilm(id){if(!films[id])return;pickRandom({ids:[id],label:"Ciel de films"});$("rsK").textContent="Une étoile, un film";$("rsAgain").hidden=true;skyEl.inert=true;$("rsClose").focus({preventScroll:true});}
   function skyHit(x,y){
     var p=skyWorld(x,y),r=15/SKY.cam.z,best=null,dist=15;for(var a=Math.floor((p.x-r)/64);a<=Math.floor((p.x+r)/64);a++)for(var b=Math.floor((p.y-r)/64);b<=Math.floor((p.y+r)/64);b++)(SKY.grid[a+","+b]||[]).forEach(function(q){var s=skyScreen(q),d=Math.hypot(s.x-x,s.y-y);if(d<dist){dist=d;best=q;}});return best;
@@ -5662,8 +5876,10 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   $("skyToggle").addEventListener("click",skyOpen);$("skyClose").addEventListener("click",skyClose);
   $("skyIn").addEventListener("click",function(){skyZoom(1.45,SKY.w/2,SKY.h/2);});$("skyOut").addEventListener("click",function(){skyZoom(1/1.45,SKY.w/2,SKY.h/2);});$("skyReset").addEventListener("click",skyFit);
   $("skyMember").addEventListener("change",function(){SKY.member=this.value;skySchedule();});
-  $("skySearch").addEventListener("input",function(){var q=norm(this.value.trim()),out=$("skyResults");if(!q){out.hidden=true;return;}var matches=Object.keys(films).sort().filter(function(id){return norm(films[id].t).indexOf(q)>=0;}).slice(0,6);out.innerHTML=matches.map(function(id){return '<button type="button" data-skyfilm="'+esc(id)+'">'+esc(films[id].t)+'</button>';}).join("");out.hidden=!matches.length;});
-  $("skyResults").addEventListener("click",function(e){var b=e.target.closest("[data-skyfilm]");if(!b)return;this.hidden=true;skyFilm(b.dataset.skyfilm);});
+  $("skyMode").addEventListener("change",function(){SKY.mode=this.value;try{localStorage.setItem(SKY_MODE_KEY,SKY.mode);}catch(e){}SKY.focus=null;skyModel();});
+  $("skyPick").addEventListener("click",function(){if(SKY.focus)skyFilm(SKY.focus.id);});
+  $("skySearch").addEventListener("input",function(){var out=$("skyResults"),matches=rankFilms(this.value,6);if(!this.value.trim()){out.hidden=true;return;}out.innerHTML=matches.map(function(id){return '<button type="button" data-skyfilm="'+esc(id)+'">'+esc(films[id].t)+' <small>'+esc([films[id].y,films[id].d].filter(Boolean).join(" · "))+'</small></button>';}).join("");out.hidden=!matches.length;});
+  $("skyResults").addEventListener("click",function(e){var b=e.target.closest("[data-skyfilm]");if(!b)return;this.hidden=true;var id=b.dataset.skyfilm;$("skySearch").blur();$("skyPick").textContent=films[id].t+" · ouvrir la fiche ›";skyFly(id);});
   $("skySearch").addEventListener("keydown",function(e){if(e.key==="Enter"){var b=$("skyResults").querySelector("button");if(b){e.preventDefault();b.click();}}});
   var skyPointers={},skyStart=null,skyMoved=false,skyMulti=false;
   skyCanvas.addEventListener("pointerdown",function(e){if(e.button&&e.pointerType==="mouse")return;e.preventDefault();skyCanvas.setPointerCapture(e.pointerId);skyPointers[e.pointerId]={x:e.clientX,y:e.clientY};skyStart={x:e.clientX,y:e.clientY};skyMoved=false;if(Object.keys(skyPointers).length>1)skyMulti=true;$("skyLabel").hidden=true;});
@@ -6258,7 +6474,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
 // Néon : pannes d'ampoules et de lettres, halos qui s'allument au hasard sur quelques boutons. Rien de régulier.
 (function(){
   var de = document.documentElement;
-  function on(){ return de.classList.contains("th-neon") && !de.classList.contains("aff-calme") && !de.classList.contains("scrolling") && !document.hidden; }
+  function on(){ return de.classList.contains("th-neon") && !de.classList.contains("aff-calme") && !window.CC_SCROLL && !document.hidden; }
   function R(a, b){ return a + Math.random() * (b - a); }
   function pick(a){ return a[Math.floor(Math.random() * a.length)]; }
   function later(f, a, b, c, d, e, g){ var x = Math.random(); setTimeout(f, x < .15 ? R(a, b) : x < .75 ? R(c, d) : R(e, g)); }

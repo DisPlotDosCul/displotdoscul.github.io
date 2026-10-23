@@ -161,6 +161,8 @@ def run():
         page.locator("#skyToggle").click()
         page.locator("#skySearch").fill("Shining")
         page.locator("#skyResults button").first.click()
+        page.wait_for_function("document.querySelector('#skyCanvas').dataset.focus === 'shining-1980'")
+        page.locator("#skyPick").click()
         assert "par Camille (test)" in page.locator("#rsM").inner_text()
         page.locator("#rsClose").click()
         page.keyboard.press("Escape")
