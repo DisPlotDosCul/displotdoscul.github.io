@@ -91,13 +91,22 @@ def run():
             page.locator("#rsheet").wait_for(state="visible")
             assert page.locator("#rs-h").inner_text()
             page.locator("#rsClose").click()
+            # La recherche amène le ciel jusqu'à l'étoile, puis l'étiquette ouvre la fiche.
             page.locator("#skySearch").fill("Matrix")
+            assert page.locator("#skyResults button").first.inner_text().startswith("Matrix")
             page.locator("#skyResults button").first.click()
+            page.wait_for_function("document.querySelector('#skyCanvas').dataset.focus === 'matrix-1999'")
+            assert float(canvas.get_attribute("data-zoom")) >= 1.5
+            page.locator("#skyPick").click()
             assert page.locator("#rs-h").inner_text() == "Matrix"
             page.locator('#rsN [data-rstep="1"]').click()
             page.wait_for_function("__fixture.profils['test-membre'].rep['matrix-1999'].note10 === 7.6")
             assert canvas.get_attribute("data-layout") == layout, "Noter ne déplace aucune étoile"
             page.locator("#rsClose").click()
+            # Trois rangements : catégories, courants, décennies ; tous les films restent dans le ciel.
+            for mode in ("mv", "dec", "cat"):
+                page.locator("#skyMode").select_option(mode)
+                page.wait_for_function("n => document.querySelector('#skyCanvas').dataset.count === String(n)", arg=public_count())
             page.keyboard.press("Escape")
             assert page.locator("#sky").is_hidden()
             page.locator("#aab").click()

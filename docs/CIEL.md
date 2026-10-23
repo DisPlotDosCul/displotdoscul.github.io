@@ -62,3 +62,18 @@ listes (école, cours, envies…), puis le courant du film, puis sa décennie ; 
 moins de quatre films rejoint sa décennie. Chaque constellation prend la couleur de sa
 catégorie, ses étoiles pas encore vues aussi. Les noms ne se chevauchent jamais : les plus
 grandes constellations sont nommées d'abord, les autres en rapprochant le ciel.
+
+## Galaxie (23 octobre 2026)
+
+- **Trois rangements** : par catégories, par courants (chaque courant et mouvement a sa
+  constellation, colorée selon sa famille), par décennies. Le choix est gardé sur l'appareil.
+- **Placement** : chaque constellation se pose contre celles qui lui ressemblent le plus
+  (mots-clés, familles de goût, courants, époques), sans chevauchement, avec un écart réduit.
+- **Cinq lumières** selon la note : 0–2, 2–4, 4–6, 6–8, 8–10. Un film vu sans note reste une
+  petite étoile pâle ; un film pas vu, une poussière de la couleur de sa constellation.
+- **Décor** : étoiles lointaines qui glissent plus lentement (profondeur), nébuleuse de la
+  couleur de chaque constellation, voie lactée en nuages qui relie les constellations
+  musicales, dansées et animées, trous noirs à disque lumineux près des plus sombres
+  (traumatismes, phobies, cauchemars…). Animation lente, coupée en Calme et avec la
+  réduction des animations.
+- **Recherche** : le ciel glisse jusqu'à l'étoile, qui pulse ; son étiquette ouvre la fiche.

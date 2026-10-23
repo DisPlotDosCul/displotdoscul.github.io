@@ -58,6 +58,19 @@ def run():
             assert page.locator(".row-tools").bounding_box()["y"] < 20
             assert page.locator('#main .film[data-id="swallow-2019"]').bounding_box()["y"] < 300
 
+            # Suggestions sous la recherche : « c » propose d'abord des titres qui commencent par C ; un toucher amène au film.
+            page.locator("#qx").click()
+            page.locator("#q").click()
+            page.locator("#q").type("c")
+            page.locator("#qSug button").first.wait_for()
+            firsts = page.locator("#qSug button span").all_inner_texts()
+            assert firsts and all(t.lower().lstrip("l'").lstrip().startswith("c") or t.lower().split(" ", 1)[-1].startswith("c") for t in firsts[:3]), firsts
+            page.locator("#q").fill("")
+            page.locator("#q").type("Matr")
+            page.locator('#qSug [data-qsug="matrix-1999"]').click()
+            page.wait_for_function("document.querySelector('#q').value === 'Matrix'")
+            assert page.locator('#main .film[data-id="matrix-1999"]').first.is_visible()
+
             # L'apostrophe courbe d'un clavier de téléphone trouve le titre écrit avec l'apostrophe droite.
             page.locator("#q").fill("L’Odyssée")
             page.wait_for_function("document.querySelector('#main .film[data-id=\"2001-l-odyssee-de-l-espace-1968\"]')")
@@ -195,7 +208,7 @@ def run():
                 assert page.locator("#skyToggle").inner_text() == "✦ Mes étoiles"
 
             assert not errors and not unexpected, (errors, unexpected)
-            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées, images, retour exact, notes, mode édition et console : OK", flush=True)
+            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées, images, retour exact, notes, mode édition, suggestions et console : OK", flush=True)
             context.close()
         browser.close()
 
