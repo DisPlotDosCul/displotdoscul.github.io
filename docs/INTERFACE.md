@@ -22,7 +22,7 @@
   44 pixels de haut.
 - Les consignes des panneaux de catégories et la description de la boîte à idées
   sont raccourcies ; les boutons conservent leurs noms.
-- L'écriteau néon perd son cadre et ses clous, avec onze ampoules. Les lettres,
+- L'écriteau néon perd son cadre et ses clous, avec huit ampoules (23 octobre). Les lettres,
   ampoules aléatoires, halos et contours en tirets gardent leurs effets existants.
 - La recherche d'un film dans le ciel fonctionne aussi pendant le calcul des
   positions. Les fiches d'un autre carnet affichent le nom du membre consulté.
@@ -53,7 +53,7 @@ remplacés par une base fictive ; aucune erreur de console ni requête imprévue
 
 - [ ] Le regroupement des commandes à 360 pixels reste-t-il assez lisible ?
 - [ ] La fréquence et la douceur du clin d'œil conviennent-elles ?
-- [ ] Le néon sans cadre et les onze ampoules retrouvent-ils l'esprit souhaité ?
+- [ ] Le néon sans cadre et les huit ampoules (23 octobre) retrouvent-ils l'esprit souhaité ?
 - [ ] Le menu d'affichage permet-il bien de retrouver le rangement sur le compte administratrice ?
 
 ## Mode édition (22 octobre 2026)
