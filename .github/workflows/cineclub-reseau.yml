@@ -1,0 +1,23 @@
+name: Ciné-club — réseau social
+on:
+  pull_request:
+    paths:
+      - carnet-de-films/**
+      - tests/cineclub_reseau.py
+      - tests/cineclub_fixture.py
+      - .github/workflows/cineclub-reseau.yml
+permissions:
+  contents: read
+jobs:
+  reseau:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - run: python tests/cineclub_reseau.py

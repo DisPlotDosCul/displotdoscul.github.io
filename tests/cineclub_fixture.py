@@ -86,10 +86,16 @@ FIREBASE_JS = r"""
         var api = { id:id, get:function(){ return Promise.resolve(doc(name,id)); },
           set:function(value){ window.__fixtureWrites.push({collection:name,id:id,value:copy(value)}); data[name][id]=copy(value); emit(name); return Promise.resolve(); },
           update:function(field,value){
-            window.__fixtureWrites.push({collection:name,id:id,field:field,value:value});
-            var target=data[name][id] = data[name][id] || {};
-            if(field && field.parts){ var a=field.parts; for(var i=0;i<a.length-1;i++) target=target[a[i]] = target[a[i]] || {}; if(value && value.deleted) delete target[a[a.length-1]]; else target[a[a.length-1]]=copy(value); }
-            else Object.assign(target,copy(field)); emit(name); return Promise.resolve();
+            // Comme Firestore : un objet, ou des paires « chemin, valeur » (plusieurs champs d'un coup).
+            var root=data[name][id] = data[name][id] || {}, args=arguments;
+            if(!(field && field.parts)){ window.__fixtureWrites.push({collection:name,id:id,field:field,value:value}); Object.assign(root,copy(field)); emit(name); return Promise.resolve(); }
+            for(var k=0;k<args.length;k+=2){
+              var f=args[k], v=args[k+1], target=root, a=f.parts;
+              window.__fixtureWrites.push({collection:name,id:id,field:f,value:v});
+              for(var i=0;i<a.length-1;i++) target=target[a[i]] = target[a[i]] || {};
+              if(v && v.deleted) delete target[a[a.length-1]]; else target[a[a.length-1]]=copy(v);
+            }
+            emit(name); return Promise.resolve();
           },
           delete:function(){ window.__fixtureWrites.push({collection:name,id:id,deleted:true}); delete data[name][id]; emit(name); return Promise.resolve(); }
         }; return api;
