@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><title>Ciné-club</title><meta name="description" content="Le carnet de films partagé : notes, listes et conseils entre amis."><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="fr"><head><title>Ciné-club</title><meta name="description" content="Le carnet de films partagé : notes, listes et conseils entre amis."><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icones/favicon-48.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="icones/apple-touch-icon.png"><meta name="theme-color" content="#04050e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Ciné-club"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Limelight&display=swap">
@@ -972,6 +972,7 @@ html.aff-calme .ccg-on{transition:none;}
 
 .nt-btn{position:fixed;right:0;top:42%;z-index:40;width:34px;height:46px;border:1.5px solid var(--line);border-right:0;border-radius:12px 0 0 12px;
   background:var(--paper);color:var(--ink);font-size:18px;cursor:pointer;box-shadow:-2px 2px 8px rgba(0,0,0,.12);padding:0;}
+.app-st{margin:0;padding-left:22px;display:grid;gap:8px;line-height:1.45;}
 .nt-panel{position:fixed;right:10px;left:10px;bottom:12px;max-width:440px;margin-left:auto;max-height:70vh;overflow:auto;z-index:41;display:grid;gap:8px;
   background:var(--paper);color:var(--ink);border:2px solid var(--k-b-C8963A);border-radius:16px;padding:12px 14px;box-shadow:0 8px 30px rgba(44,34,48,.3);}
 .nt-h{display:flex;justify-content:space-between;align-items:center;font-size:16px;}
@@ -1433,6 +1434,7 @@ html.sky-on #rsheet{z-index:50;}
       <button type="button" class="aa-intro" id="ccEdit" hidden>✏️ Modifier le site</button>
       <button type="button" class="aa-intro" data-guide="1">🧭 Revoir la visite guidée</button>
       <button type="button" class="aa-intro" data-bugbtn="1">🐞 Signaler un bug</button>
+      <button type="button" class="aa-intro" id="appInstall" hidden>📲 Installer l'appli</button>
     </div>
     <button type="button" class="nuitb ambb" id="nuitb" aria-label="Ambiance" title="Ambiance"><span id="ambIc" class="amb-ic"></span><i class="amb-a" aria-hidden="true">A</i></button>
 </header>
@@ -1781,7 +1783,7 @@ html.sky-on #rsheet{z-index:50;}
     note("Envoi du lien…");
     auth.sendSignInLinkToEmail(em, { url:location.origin + location.pathname, handleCodeInApp:true }).then(function(){
       ls("ccEmail", em);
-      note("C'est envoyé à " + em + ". Ouvre l'e-mail sur cet appareil et touche le lien. S'il n'est pas là, regarde dans les indésirables et marque-le « Non indésirable ».");
+      note("C'est envoyé à " + em + ". Ouvre l'e-mail sur cet appareil et touche le lien. S'il n'est pas là, regarde dans les indésirables et marque-le « Non indésirable »." + (window.CC_APPLI && /iPhone|iPad|iPod/.test(navigator.userAgent) ? " Dans l'appli sur iPhone ou iPad, le lien s'ouvre dans Safari : pour te connecter dans l'appli, prends plutôt Google." : ""));
     }, function(e){ note(e && e.code === "auth/quota-exceeded" ? "Trop de liens envoyés aujourd'hui : réessaie demain ou utilise Google." : "Le lien n'a pas pu partir. Vérifie l'adresse et réessaie.", true); });
   }
   function google(){
@@ -7031,4 +7033,43 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
 })();
 </script>
 
+<script>
+// Appli installable : téléphone, tablette et ordinateur (Android, iPhone, iPad, Windows, Mac).
+(function(){
+  var btn = document.getElementById("appInstall"), ask = null, ua = navigator.userAgent;
+  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var mac = !ios && /Macintosh/.test(ua), safari = /Safari/.test(ua) && !/Chrome|Chromium|CriOS|FxiOS|EdgiOS|Edg\//.test(ua), firefox = /Firefox|FxiOS/.test(ua);
+  function installed(){ return matchMedia("(display-mode: standalone)").matches || matchMedia("(display-mode: window-controls-overlay)").matches || navigator.standalone === true; }
+  window.CC_APPLI = installed();
+  if (window.CC_APPLI) document.documentElement.classList.add("appli");
+  if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+  function show(){ if (btn) btn.hidden = installed(); }
+  show();
+  window.addEventListener("beforeinstallprompt", function(e){ e.preventDefault(); ask = e; show(); });
+  window.addEventListener("appinstalled", function(){ ask = null; window.CC_APPLI = true; if (btn) btn.hidden = true; panel(false); });
+  function steps(){
+    if (ios && !safari) return ["Ouvre ce site dans <b>Safari</b> (l'installation passe par Safari sur iPhone et iPad).", "Puis touche <b>Partager</b> <span aria-hidden=\"true\">⬆︎</span> et <b>Sur l'écran d'accueil</b>."];
+    if (ios) return ["Touche <b>Partager</b> <span aria-hidden=\"true\">⬆︎</span> en bas (ou en haut sur iPad).", "Choisis <b>Sur l'écran d'accueil</b>, puis <b>Ajouter</b>."];
+    if (mac && safari) return ["Menu <b>Fichier</b> › <b>Ajouter au Dock</b>."];
+    if (firefox) return ["Firefox n'installe pas les applis web sur ordinateur : ouvre ce site dans <b>Chrome</b> ou <b>Edge</b>, puis touche à nouveau « Installer l'appli »."];
+    return ["Dans le menu du navigateur (⋮ ou …), choisis <b>Installer Ciné-club</b> ou <b>Ajouter à l'écran d'accueil</b>."];
+  }
+  function panel(on){
+    var p = document.getElementById("appPanel");
+    if (!on) { if (p) p.hidden = true; return; }
+    if (!p) { document.body.insertAdjacentHTML("beforeend", '<div class="nt-panel" id="appPanel" role="dialog" aria-label="Installer l\'appli"></div>'); p = document.getElementById("appPanel"); }
+    p.innerHTML = '<div class="nt-h"><b>📲 Installer l\'appli</b><button type="button" class="nt-x" data-appx="1" aria-label="Fermer">✕</button></div><ol class="app-st">' + steps().map(function(t){ return "<li>" + t + "</li>"; }).join("") + "</ol>";
+    p.hidden = false;
+  }
+  document.addEventListener("click", function(ev){
+    var t = ev.target; if (!t.closest) return;
+    if (t.closest("[data-appx]")) { panel(false); return; }
+    if (!t.closest("#appInstall")) return;
+    var m = document.getElementById("aamenu"); if (m) m.hidden = true;
+    if (ask) { var a = ask; ask = null; a.prompt(); a.userChoice.then(function(r){ if (r && r.outcome !== "accepted") show(); }, function(){}); return; }
+    panel(true);
+  });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") panel(false); });
+})();
+</script>
 </body></html>

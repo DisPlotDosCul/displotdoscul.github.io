@@ -122,7 +122,12 @@ def install_routes(context, fixture=None, complements=None):
     def route(request_route):
         url = request_route.request.url
         if url.startswith("https://cineclub.test/"):
-            if url.endswith("complements.json"):
+            local = ROOT / url.split("?")[0].replace("https://cineclub.test/", "")
+            if local.suffix in (".js", ".webmanifest", ".png") and local.is_file():
+                # Appli installable : service worker, manifeste et icônes.
+                types = {".js": "application/javascript", ".webmanifest": "application/manifest+json", ".png": "image/png"}
+                request_route.fulfill(content_type=types[local.suffix], path=local)
+            elif url.endswith("complements.json"):
                 body = json.dumps(complements) if complements is not None else (ROOT / "carnet-de-films/complements.json").read_text()
                 request_route.fulfill(content_type="application/json", body=body)
             else:

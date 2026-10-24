@@ -1,0 +1,20 @@
+{
+  "name": "Ciné-club",
+  "short_name": "Ciné-club",
+  "description": "Le carnet de films partagé : notes, listes et conseils entre amis.",
+  "lang": "fr",
+  "id": "/carnet-de-films/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#04050e",
+  "theme_color": "#04050e",
+  "categories": ["entertainment", "social"],
+  "icons": [
+    { "src": "icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-masquable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
