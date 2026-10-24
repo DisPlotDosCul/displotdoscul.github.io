@@ -87,3 +87,17 @@ grandes constellations sont nommées d'abord, les autres en rapprochant le ciel.
 - **Forme de l'écran** : les constellations s'écartent dans le sens le plus long de l'écran
   (paysage sur ordinateur ou appareil tourné, portrait sur téléphone). Le ciel se recalcule
   quand on tourne l'appareil, et se cadre entre la barre du haut et la légende.
+
+## Idées du 24 octobre 2026
+
+- **Recherche** : le ciel glisse jusqu'au premier film trouvé pendant qu'on tape.
+- **Fiche dans le ciel** : toucher une étoile ouvre une fiche compacte et translucide (en bas
+  sur téléphone, à droite sur ordinateur). Le ciel reste visible et explorable ; toucher le
+  ciel vide la referme. Courant, avis des membres, « Ma liste ».
+- **Dé** : un film pas encore vu dans la constellation choisie (bouton 🎲 de la fiche, ou à
+  côté du zoom pour la constellation la plus proche du centre).
+- **Décor** : plus de trous noirs ni de voie lactée. Deux couches d'étoiles lointaines qui
+  s'écartent au zoom (profondeur), sur tout l'écran.
+- **Couleurs « Par catégories »** : les mêmes teintes douces que « Par courants ».
+- **Bas de l'écran** : légende au-dessus des boutons de zoom ; à gauche, flèches ← → pour
+  revenir aux endroits du ciel déjà visités.

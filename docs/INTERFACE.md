@@ -82,3 +82,8 @@ fenêtre d'installation du navigateur quand elle existe (Chrome, Edge, Android),
 Firebase et TMDB ne passent pas par lui) et `icones/`.
 Sur iPhone et iPad, l'appli installée ne partage pas la connexion de Safari : le lien de
 connexion par e-mail s'ouvre dans Safari, la connexion Google marche dans l'appli.
+
+Express (24 octobre 2026) : synopsis très court (première phrase, environ 150 signes) et bouton
+« Vu mais oublié ». Le bouton « 📲 Installer l'appli » est en tête du menu Aa et sur l'écran
+d'accueil (« Choisissez votre affichage »). L'appli installée n'ouvre que le Ciné-club ; la
+Boussole des IA et Cap Logement restent sur le site général.
