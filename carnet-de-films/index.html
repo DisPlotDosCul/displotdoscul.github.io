@@ -58,6 +58,14 @@ header.top::after{content:"";justify-self:center;width:min(176px,55%);height:8px
 .chip.env[aria-pressed="true"]{background:var(--k-s-F9E3A8);color:var(--k-s-4A3300);border-color:var(--k-b-C8963A);border-style:solid;}
 .lbl{flex:none;align-self:center;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-right:2px;}
 #filters{flex-wrap:nowrap;gap:5px;}
+.fwrap{position:relative;display:flex;}
+.fbtn{white-space:nowrap;}
+.fbtn.on{border-color:var(--gold);}
+#filters.fmenu{position:absolute;z-index:12;top:calc(100% + 6px);right:0;display:grid;gap:6px;min-width:180px;padding:8px;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 10px 30px -8px rgba(0,0,0,.35);}
+#filters.fmenu[hidden]{display:none!important;}
+html body #filters.fmenu:not([hidden]){display:grid;}
+#filters.fmenu .chip{justify-content:flex-start;text-align:left;font-size:14px;padding:9px 12px;}
+body.autre .fwrap{display:none;}
 #filters .chip{padding:7px 9px;font-size:12.5px;}
 @media (max-width:345px){#filters{flex-wrap:wrap;}}
 #envies .chip{padding:7px 11px;font-size:13px;}
@@ -1040,11 +1048,16 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 .xp-seen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
 .xp-b{min-height:54px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font:600 16px/1.1 var(--font);cursor:pointer;}
 .xp-b.no{min-height:50px;}
-.xp-two{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.xp-syn{margin:2px 0 0;max-width:36em;font-size:14.5px;line-height:1.4;color:var(--ink);opacity:.86;}
+.xp-syn{margin:0;max-width:34em;font-size:13px;line-height:1.35;color:var(--muted);}
+.xp-pw{position:relative;}
+.xp-list{position:absolute;top:8px;right:-46px;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--paper);color:var(--muted);font:600 18px/1 var(--font);cursor:pointer;opacity:.85;}
+.xp-list[aria-pressed="true"]{color:var(--ink);border-color:var(--gold);opacity:1;}
+.xp-n10{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;}
+.xp-n10 button{min-height:34px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--muted);font:600 13px/1 var(--font);cursor:pointer;padding:0;}
+.xp-small button[aria-expanded="true"]{color:var(--ink);}
 .xp-seen .xp-b:nth-child(1){border-color:var(--gold);}
-.xp-small{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;}
-.xp-small button{border:0;background:transparent;color:var(--muted);font:600 13.5px/1.2 var(--font);padding:8px 4px;cursor:pointer;}
+.xp-small{display:flex;justify-content:center;gap:0 10px;flex-wrap:wrap;}
+.xp-small button{border:0;background:transparent;color:var(--muted);font:600 13px/1.2 var(--font);padding:7px 3px;cursor:pointer;}
 .xp-small button:disabled{opacity:.35;}
 .xp-imp{justify-self:center;border:0;background:transparent;color:var(--muted);text-decoration:underline;font:500 13px/1.3 var(--font);cursor:pointer;padding:6px;}
 .xp-reward{display:grid;gap:10px;}
@@ -1275,19 +1288,34 @@ html.th-neon .sky{background:radial-gradient(ellipse at 26% 40%,#16112a 0,transp
 .sky-legend .sl-lv i:nth-child(1){width:3px;height:3px;opacity:.5;}.sky-legend .sl-lv i:nth-child(2){width:4px;height:4px;opacity:.65;}.sky-legend .sl-lv i:nth-child(3){width:5px;height:5px;opacity:.8;}.sky-legend .sl-lv i:nth-child(4){width:7px;height:7px;opacity:.92;}.sky-legend .sl-lv i:nth-child(5){width:9px;height:9px;}
 .sky-zoom{position:absolute;bottom:max(20px,env(safe-area-inset-bottom));right:18px;display:flex;gap:6px;}
 .sky-zoom button{min-width:42px;padding:8px;}
-.sky-info{position:absolute;right:18px;bottom:calc(max(20px,env(safe-area-inset-bottom)) + 52px);max-width:min(330px,calc(100% - 36px));display:grid;gap:3px;justify-items:end;text-align:right;pointer-events:none;}
-.sky-legend{margin:0;font-size:12.5px;line-height:1.4;color:#c5bfd1;}
+.sky-info{position:absolute;right:18px;bottom:calc(max(20px,env(safe-area-inset-bottom)) + 54px);display:grid;gap:2px;justify-items:end;text-align:right;pointer-events:none;padding:6px 10px;border-radius:12px;background:rgba(4,5,14,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+.sky-legend{margin:0;font-size:12px;line-height:1.45;color:#c5bfd1;display:grid;justify-items:end;}
+.sky-legend > span{white-space:nowrap;}
 .sky-legend .sl-b{color:#ffe1a7;}.sky-legend .sl-v{color:#f7d5aa;font-size:10px;}.sky-legend .sl-p{color:#abc1e3;font-weight:700;}
 .sky-caption{font-size:12px;color:#c5bfd1;}
 .sky-nav{position:absolute;left:18px;bottom:max(20px,env(safe-area-inset-bottom));display:flex;gap:6px;}
-.sky-nav button{min-width:46px;padding:8px;font-size:18px;}
-.sky-nav button:disabled{opacity:.35;cursor:default;}
-@media(max-width:600px){.sky-info{right:12px;font-size:11.5px;}.sky-legend{font-size:11.5px;}.sky-nav{left:12px;}.sky-zoom{right:12px;gap:5px;}.sky-zoom button,.sky-nav button{min-width:40px;}}
+.sky .sky-nav button{min-width:52px;min-height:48px;padding:8px;font:700 21px/1 var(--font);background:#ffe6b0;color:#241500;border:0;box-shadow:0 0 16px rgba(255,220,160,.45);}
+.sky .sky-nav button:disabled{background:#0c1024e8;color:#77708d;border:1px solid #3c3650;box-shadow:none;opacity:.7;cursor:default;}
+html.sky-on.skycard .sky-nav{bottom:calc(var(--rsh,0px) + 10px);}
+@media(max-width:600px){.sky-info{right:12px;}.sky-legend{font-size:11.5px;}.sky-nav{left:12px;}.sky-zoom{right:12px;gap:5px;}.sky-zoom button{min-width:40px;}}
 /* Fiche ouverte depuis le ciel : compacte et translucide, le ciel reste visible et explorable au-dessus (ou à gauche). */
 html.sky-on #rsheet{max-height:min(52vh,460px);overflow:auto;gap:7px;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--paper) 84%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 -10px 40px rgba(0,0,0,.45);}
 html.sky-on #rsheet .rs-t h3{font-size:19px;}
-html.sky-on #rsheet .rs-p{font-size:14.5px;}
-html.sky-on #rsheet .rs-seg button{font-size:13.5px;padding:9px 10px;}
+html.sky-on #rsheet .rs-k{padding-right:46px;}
+html.sky-on #rsheet #rsM{font-size:12px;opacity:.85;}
+html.sky-on #rsheet .rs-p{font-size:16px;line-height:1.45;margin:0;}
+html.sky-on #rsDetails > summary{display:none;}
+html.sky-on #rsheet #rsE{display:none;}
+html.sky-on #rsheet .rs-n{padding:5px 8px;gap:5px;border-width:1px;}
+html.sky-on #rsheet .rs-n .rs-l{font-size:12.5px;}
+html.sky-on #rsheet .rs-n b{font-size:17px;}
+html.sky-on #rsheet .rs-n .nstep{width:32px;height:32px;font-size:16px;}
+html.sky-on #rsheet .rs-c{width:28px;height:28px;font-size:12.5px;}
+html.sky-on #rsheet .rs-seg button{font-size:12.5px;padding:7px 9px;}
+.rs-dice{position:absolute;top:10px;right:12px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--paper);font-size:19px;line-height:1;cursor:pointer;padding:0;}
+.rs-dice[hidden]{display:none;}
+.rs-sky .rs-est{margin:2px 0 0;font-size:11.5px;color:var(--muted);}
+.rs-sky .fimg{margin:0;}
 html.sky-on #rsheet .plf-b button{min-height:42px;}
 @media(min-width:900px){html.sky-on #rsheet{left:auto;right:16px;bottom:16px;width:380px;max-height:calc(100vh - 120px);border-radius:18px;margin:0;}}
 .rs-sky{display:grid;gap:6px;}
@@ -1470,14 +1498,15 @@ html.sky-on #rsheet{z-index:50;}
     <div class="row-tools">
       <div class="qwrap"><div class="qsug" id="qSug" role="listbox" aria-label="Suggestions de films" hidden></div><input type="search" id="q" data-txph="recherche.champ" placeholder="Film, cinéaste, thème…" aria-label="Chercher un film, un·e cinéaste ou un thème"><button type="button" class="qx" id="qx" aria-label="Effacer la recherche" hidden>✕</button></div>
       <button type="button" class="view" id="view" aria-pressed="false" title="Tous les films à la suite, du plus au moins susceptible de te plaire" hidden>Tout classé</button>
-      <button type="button" class="dice" id="dice" aria-label="Un film au hasard" title="Un film au hasard" aria-haspopup="dialog"><span class="dico">🎲</span></button>
-    </div>
-    <div class="chips" id="filters" role="group" aria-label="Filtrer">
+      <div class="fwrap"><button type="button" class="chip fbtn" id="fBtn" aria-expanded="false" aria-controls="filters" aria-haspopup="true">Filtres ▾</button>
+    <div class="chips fmenu" id="filters" role="group" aria-label="Filtrer" hidden>
       <button class="chip" data-f="all" data-tx="filtre.all" aria-pressed="true" title="Tous les films">Tous</button>
-      <button class="chip" data-f="todo" data-tx="filtre.todo" aria-pressed="false" title="Films sans réponse" aria-label="Films sans réponse">❓ Sans réponse</button>
-      <button class="chip" data-f="rate" data-tx="filtre.rate" aria-pressed="false" title="Films vus, pas encore notés sur 10" aria-label="Films vus, pas encore notés sur 10">☆ Vus, pas notés</button>
+      <button class="chip" data-f="todo" data-tx="filtre.todo" aria-pressed="false" title="Films sans réponse" aria-label="Films sans réponse">Sans réponse</button>
+      <button class="chip" data-f="rate" data-tx="filtre.rate" aria-pressed="false" title="Films vus, pas encore notés sur 10" aria-label="Films vus, pas encore notés sur 10">Vus, pas notés</button>
       <button class="chip" data-f="seen" data-tx="filtre.seen" aria-pressed="false" title="Films déjà vus">Vus</button>
       <button class="chip" data-f="no" data-tx="filtre.no" aria-pressed="false">À voir</button>
+    </div></div>
+      <button type="button" class="dice" id="dice" aria-label="Un film au hasard" title="Un film au hasard" aria-haspopup="dialog"><span class="dico">🎲</span></button>
     </div>
     <div class="chips" id="envies" role="group" aria-label="Rechercher par envies" hidden></div>
     <p class="mvinfo" id="mvinfo" hidden></p>
@@ -1490,7 +1519,7 @@ html.sky-on #rsheet{z-index:50;}
 <section class="sky" id="sky" role="dialog" aria-modal="true" aria-labelledby="skyTitle" hidden>
   <canvas id="skyCanvas" tabindex="0" role="img" aria-label="Ciel de films. La recherche permet de choisir une étoile ; les flèches déplacent le ciel et les boutons changent le zoom."></canvas>
   <div class="sky-tools"><h2 id="skyTitle">Ciel de films</h2><div class="sky-search"><input type="search" id="skySearch" placeholder="Une étoile…" aria-label="Chercher un film dans le ciel" autocomplete="off" aria-controls="skyResults"><div class="sky-results" id="skyResults" hidden></div></div><select id="skyMode" aria-label="Ranger le ciel par"><option value="cat">Par catégories</option><option value="mv">Par courants</option><option value="dec">Par décennies</option></select><select id="skyMember" aria-label="Superposer le ciel d'un membre"><option value="">Mon ciel seul</option></select><button type="button" id="skyClose" aria-label="Fermer le ciel">Fermer</button></div>
-  <div class="sky-info"><p class="sky-legend"><span class="sl-lv" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> notes de 0 à 10, en cinq lumières · <span class="sl-p">·</span> pas encore vu</p><div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div></div><button type="button" class="sky-pick" id="skyPick" hidden></button><div class="sky-label" id="skyLabel" hidden></div>
+  <div class="sky-info"><p class="sky-legend"><span><span class="sl-lv" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> notes de 0 à 10</span><span><span class="sl-p">·</span> pas encore vu</span></p><div class="sky-caption" id="skyCaption" role="status">Le ciel se dessine…</div></div><button type="button" class="sky-pick" id="skyPick" hidden></button><div class="sky-label" id="skyLabel" hidden></div>
   <div class="sky-nav" role="group" aria-label="Endroits du ciel déjà visités"><button type="button" id="skyBack" aria-label="Revenir à l'endroit précédent" disabled>←</button><button type="button" id="skyFwd" aria-label="Aller à l'endroit suivant" disabled>→</button></div>
   <div class="sky-zoom"><button type="button" id="skyDice" aria-label="Un film pas encore vu dans cette constellation" title="Un film pas vu dans cette constellation">🎲</button><button type="button" id="skyOut" aria-label="Éloigner le ciel">−</button><button type="button" id="skyReset" aria-label="Retrouver tout le ciel">⌾</button><button type="button" id="skyIn" aria-label="Rapprocher le ciel">+</button></div>
 </section>
@@ -1536,7 +1565,7 @@ html.sky-on #rsheet{z-index:50;}
   <div class="plf-b" id="envDone" hidden><button type="button" class="plf-no" id="envClear">C'est envoyé : vider la liste</button></div>
 </div>
 <div class="sheet" id="rsheet" role="dialog" aria-modal="false" aria-labelledby="rs-h" hidden>
-  <div class="rs-k" id="rsK"></div>
+  <div class="rs-k" id="rsK"></div><button type="button" class="rs-dice" id="rsDice" hidden aria-label="Un autre film pas vu dans cette constellation" title="Un autre film pas vu ici">🎲</button>
   <div class="rs-t"><h3 id="rs-h"></h3><span class="estp" id="rsE" hidden></span></div>
   <div class="m" id="rsM"></div>
   <div id="rsAv"></div>
@@ -3730,7 +3759,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function appCopy(x){ x = x || {}; return { t:Object.assign({}, x.t || {}), c:JSON.parse(JSON.stringify(x.c || {})), o:JSON.parse(JSON.stringify(x.o || {})) }; }
   var ED_TOP = [["header", "Titre du site", function(){ return [document.querySelector("header.top")]; }], ["bar", "Boutons, recherche et filtres", function(){ return [document.querySelector(".bar")]; }], ["toc", "Catégories", function(){ return [$("toc"), $("mvnav")]; }]];
   var ED_BAR = [["comptes", "Boutons (communauté, compte…)", function(){ return [document.querySelector(".ccbar")]; }], ["compteurs", "Compteurs", function(){ return [document.querySelector(".stats"), document.querySelector(".progress")]; }],
-    ["recherche", "Recherche", function(){ return [document.querySelector(".hint-q"), document.querySelector(".row-tools")]; }], ["filtres", "Filtres", function(){ return [$("filters"), $("envies"), $("mvinfo")]; }]];
+    ["recherche", "Recherche", function(){ return [document.querySelector(".hint-q"), document.querySelector(".row-tools")]; }], ["filtres", "Filtres", function(){ return [$("envies"), $("mvinfo")]; }]];
   var ED_COL = [["--bg", "Fond de la page"], ["--paper", "Fond des cartes"], ["--ink", "Texte"], ["--muted", "Texte secondaire"], ["--line", "Bordures"], ["--vu", "Couleur « Vu »"], ["--gold", "Étoiles et doré"]];
   function edOrder(list, saved){ var keys = list.map(function(x){ return x[0]; }), o = (saved || []).filter(function(k){ return keys.indexOf(k) >= 0; }); keys.forEach(function(k){ if (o.indexOf(k) < 0) o.push(k); }); return o; }
   function appApply(){
@@ -3930,11 +3959,15 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function xpCardHtml(){
     var id = XP.q[XP.i], f = id && films[id];
     if (!f) return '<div class="xp-reward"><p class="xp-big">C\'est tout pour l\'instant !</p><p class="xp-note">Tu as répondu à tous les films proposés. Ta boussole est précise à ' + boussolePct(ratedCount()) + ' %.</p>' + xpRewardHtml().replace(/<button type="button" class="xp-main alt" data-xpgo="1">Continuer<\/button>/, "") + '</div>';
-    return '<div class="xp-card" data-film="' + esc(id) + '"><div class="xp-poster" data-id="' + esc(id) + '"><span>' + esc(f.t) + '</span></div>' +
+    // L'essentiel en grand : l'affiche, le titre et quatre boutons. Le reste (liste, note sur 10, oublié) reste discret, pour qui veut être plus précis.
+    var notes = ""; for (var n = 1; n <= 10; n++) notes += '<button type="button" data-xp="' + n + '" aria-label="Vu, noté ' + n + ' sur 10">' + n + '</button>';
+    return '<div class="xp-card" data-film="' + esc(id) + '"><div class="xp-pw"><div class="xp-poster" data-id="' + esc(id) + '"><span>' + esc(f.t) + '</span></div>' +
+      '<button type="button" class="xp-list" data-xplist="1" aria-pressed="' + !!LISTE[id] + '" aria-label="' + (LISTE[id] ? "Retirer de ma liste" : "Ajouter à ma liste") + '" title="' + (LISTE[id] ? "Dans ma liste" : "Ajouter à ma liste") + '">' + (LISTE[id] ? "✓" : "+") + '</button></div>' +
       '<h3>' + esc(f.t) + '</h3><p class="xp-meta">' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</p>' + (xpSyn(f) ? '<p class="xp-syn">' + esc(xpSyn(f)) + '</p>' : "") + '</div>' +
-      '<div class="xp-btns"><div class="xp-two"><button type="button" class="xp-b no" data-xp="pv">Pas vu</button><button type="button" class="xp-b no" data-xp="ou">Vu mais oublié</button></div>' +
+      '<div class="xp-btns"><button type="button" class="xp-b no" data-xp="pv">Pas vu</button>' +
       '<div class="xp-seen"><button type="button" class="xp-b" data-xp="9">Adoré</button><button type="button" class="xp-b" data-xp="7">Bien</button><button type="button" class="xp-b" data-xp="4">Pas aimé</button></div></div>' +
-      '<div class="xp-small"><button type="button" data-xpundo="1"' + (XP.hist.length ? "" : " disabled") + '>← Annuler</button><button type="button" data-xp="vu">Vu, sans avis</button><button type="button" data-xp="skip">Passer</button></div>';
+      '<div class="xp-small"><button type="button" data-xpundo="1"' + (XP.hist.length ? "" : " disabled") + '>← Annuler</button><button type="button" data-xp="vu">Vu, sans avis</button><button type="button" data-xp="ou">Vu mais oublié</button><button type="button" data-xpn="1" aria-expanded="' + !!XP.notes + '">Noter /10</button><button type="button" data-xp="skip">Passer</button></div>' +
+      (XP.notes ? '<div class="xp-n10" role="group" aria-label="Vu, avec une note sur 10">' + notes + '</div>' : "");
   }
   function xpRender(){
     var body = $("xpBody"), n = ratedCount(), pct = boussolePct(n);
@@ -3981,6 +4014,15 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var t = ev.target.closest("button"); if (!t) return;
     if (t.dataset.xpclose) { xpClose(); return; }
     if (t.dataset.xp) { xpAnswer(t.dataset.xp); return; }
+    if (t.dataset.xpn) { XP.notes = !XP.notes; xpRender(); return; }
+    if (t.dataset.xplist) {
+      var lid = XP.q[XP.i]; if (!lid) return;
+      if (LISTE[lid]) delete LISTE[lid]; else LISTE[lid] = new Date().toISOString();
+      if (HASLIST) { var ancX = anchors(null); quickRender(lid); restore(ancX); } else refreshFilm(lid);
+      saveList(lid); t.setAttribute("aria-pressed", LISTE[lid] ? "true" : "false"); t.textContent = LISTE[lid] ? "✓" : "+";
+      t.setAttribute("aria-label", LISTE[lid] ? "Retirer de ma liste" : "Ajouter à ma liste"); t.title = LISTE[lid] ? "Dans ma liste" : "Ajouter à ma liste";
+      setStatus((films[lid] || {}).t + (LISTE[lid] ? " : ajouté à ma liste" : " : retiré de ma liste")); return;
+    }
     if (t.dataset.xpundo) { xpUndo(); return; }
     if (t.dataset.xpgo) { XP.reward = false; xpRender(); return; }
     if (t.dataset.xppeer) { xpClose(); if (CC.openMembers) CC.openMembers(t.dataset.xppeer); return; }
@@ -5611,8 +5653,14 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (filter !== "all" && !SHOW && !query) { SHOW = { k:"all" }; AUTO_ALL = true; }
     else if (filter === "all" && AUTO_ALL && SHOW && SHOW.k === "all") { SHOW = null; AUTO_ALL = false; }
     document.querySelectorAll("#filters .chip").forEach(function(x){ x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
-    renderAll(); toList();
+    fMenu(false); renderAll(); toList();
   });
+  // Un seul bouton « Filtres » : les cinq filtres s'ouvrent dessous ; le bouton dit lequel est actif.
+  function fBtnLabel(){ var on = document.querySelector('#filters .chip[aria-pressed="true"]'), b = $("fBtn"); if (!b) return; var f = on ? on.dataset.f : "all"; b.textContent = f === "all" ? "Filtres ▾" : "Filtre : " + on.textContent.trim() + " ▾"; b.classList.toggle("on", f !== "all"); }
+  function fMenu(open){ $("filters").hidden = !open; $("fBtn").setAttribute("aria-expanded", open ? "true" : "false"); fBtnLabel(); }
+  $("fBtn").addEventListener("click", function(ev){ ev.stopPropagation(); fMenu($("filters").hidden); });
+  document.addEventListener("click", function(ev){ if (!$("filters").hidden && !(ev.target.closest && ev.target.closest(".fwrap"))) fMenu(false); });
+  new MutationObserver(fBtnLabel).observe($("filters"), { subtree:true, attributes:true, attributeFilter:["aria-pressed"] });
   function showPicked(){
     // Les envies passent à la ligne : il n'y a plus rien à faire défiler.
   }
@@ -5954,7 +6002,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   // Tirage au sort : dans tout le carnet (le dé du haut), ou dans la liste affichée (le dé de la liste) ; « Encore » reste dans la même liste.
   var RND_SRC = null;
   function pickRandom(src){
-    $("rsAgain").hidden = false; $("rsSky").hidden = true;
+    $("rsAgain").hidden = false; $("rsSky").hidden = true; $("rsDice").hidden = true;
     if (src && src.ids) RND_SRC = src; else if (src !== "again") RND_SRC = null;
     var ids = RND_SRC ? RND_SRC.ids : rndPool();
     if (!ids.length) { setStatus("Aucun film à tirer au sort avec ce filtre."); return; }
@@ -6084,11 +6132,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     });
     return { lists:Object.keys(all).map(function(k){ return all[k]; }), of:of };
   }
+  // Teintes de planètes : Uranus (vert d'eau), Saturne (or pâle), Neptune (bleu), Mars (rouille), Jupiter (ocre), Vénus (crème), un violet doux, Mercure (gris chaud).
+  var SKY_CAT = ["#9fd9d2", "#e6cf9c", "#7fa6e0", "#d48c6c", "#c9a27a", "#f0e1bd", "#a99bd6", "#b9b0a6"];
   var SKY_PAL = ["#f3dcb4", "#9fe0d2", "#a9c4ff", "#f5b8d0", "#c7b3ff", "#ffc28a", "#b8e3a1", "#ffd6f0", "#8fd3ff", "#e8c3ff"];
   function skyColor(fam){
     if (fam.indexOf("mvf:") === 0) return SKY_PAL[skyHash(fam) % SKY_PAL.length];
-    // Par catégories : les mêmes teintes douces que pour les courants, une par famille de listes.
-    if (SKY.mode === "cat") return SKY_PAL[skyHash("cat:" + fam) % SKY_PAL.length];
+    // Par catégories : une teinte de planète par famille de listes, sans rose ni lilas (un seul violet).
+    if (SKY.mode === "cat") return SKY_CAT[(SKY.famIdx && SKY.famIdx[fam] != null ? SKY.famIdx[fam] : skyHash(fam)) % SKY_CAT.length];
     var f = FAM_OF[fam] || { id:fam }, p = (typeof famPal === "function" && famPal(f)) || null, c = (p && (p.ic || p.bord)) || f.bord || "";
     var dflt = { themes:"#f3dcb4", mouvements:"#9fe0d2", epoques:"#a9c4ff", ecole:"#f5b8d0", cours:"#c7b3ff", envies:"#ffc28a", sante:"#b8e3a1" };
     return /^#[0-9a-f]{6}$/i.test(c) ? c : dflt[fam] || "#d9cbe6";
@@ -6111,6 +6161,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (SKY.sig === signature) return;
     SKY.sig = signature; ++SKY.gen; var n = ids.length;
     if (!n) { SKY.points = []; SKY.groups = []; skySchedule(); return; }
+    // Familles de listes, de la plus grande à la plus petite : chacune reçoit sa teinte, sans doublon tant qu'il en reste.
+    var famN = {}; G.lists.forEach(function(g){ famN[g.fam] = (famN[g.fam] || 0) + g.ids.length; });
+    SKY.famIdx = {}; Object.keys(famN).sort(function(a, b){ return famN[b] - famN[a] || (a < b ? -1 : 1); }).forEach(function(f, i){ SKY.famIdx[f] = i; });
     var GA = Math.PI * (3 - Math.sqrt(5)), GAP = 90, groups = G.lists.map(function(g){
       var list = g.ids.slice().sort(function(a, b){ return skyHash(a) - skyHash(b); });
       return { id:g.id, name:g.name, fam:g.fam, color:skyColor(g.fam), ids:list, n:list.length, r:Math.sqrt(list.length) * 13 + 10, v:skyVec(list) };
@@ -6286,11 +6339,20 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     } else if (pick) pick.hidden = true;
     c.globalAlpha = 1; c.textAlign = "center"; c.textBaseline = "bottom";
     // Les noms ne se chevauchent jamais : les plus grandes constellations d'abord ; les autres apparaissent en rapprochant le ciel.
-    var boxes = [], fs = Math.max(11, Math.min(16, 11 + z * 5)); c.font = "600 " + fs + "px system-ui,sans-serif";
+    // Noms petits et discrets ; un nom long est raccourci tant qu'on n'a pas rapproché le ciel. Chaque nom essaie au-dessus, puis en dessous de sa constellation.
+    var boxes = [], zr = z / (SKY.zfit || z), fs = Math.max(9.5, Math.min(13, 9 + zr * 1.6)); c.font = "500 " + fs + "px system-ui,sans-serif";
     (SKY.groups || []).slice().sort(function(a, b){ return b.n - a.n; }).forEach(function(g){
-      if (!g.name) return; var s = skyScreen({ x:g.lx, y:g.ly }); if (s.x < -160 || s.x > SKY.w + 160 || s.y < -40 || s.y > SKY.h + 60) return;
-      var w = c.measureText(g.name).width, bx = { l:s.x - w / 2 - 4, r:s.x + w / 2 + 4, t:s.y - fs - 3, b:s.y + 3 }; if (boxes.some(function(o){ return bx.l < o.r && bx.r > o.l && bx.t < o.b && bx.b > o.t; })) return; boxes.push(bx);
-      var lit = SKY.points.some(function(p){ return p.g === g.id && isSeen((answers[p.id] || {}).etat); }); c.fillStyle = g.color || "#f3dcb4"; c.globalAlpha = lit ? .95 : .62; c.fillText(g.name, s.x, s.y);
+      if (!g.name) return; var name = g.name, max = zr < 1.8 ? 18 : zr < 3 ? 28 : 99;
+      if (name.length > max) name = name.slice(0, max - 1).replace(/[\s,;:–-]+$/, "") + "…";
+      var w = c.measureText(name).width, spots = [{ x:g.lx, y:g.ly }, { x:g.x, y:g.y + g.r + 14 / z + fs / z }], put = null;
+      spots.some(function(sp){
+        var s = skyScreen(sp); if (s.x < -160 || s.x > SKY.w + 160 || s.y < -40 || s.y > SKY.h + 60) return false;
+        var bx = { l:s.x - w / 2 - 3, r:s.x + w / 2 + 3, t:s.y - fs - 2, b:s.y + 2 };
+        if (boxes.some(function(o){ return bx.l < o.r && bx.r > o.l && bx.t < o.b && bx.b > o.t; })) return false;
+        put = { s:s, bx:bx }; return true;
+      });
+      if (!put) return; boxes.push(put.bx);
+      var lit = SKY.points.some(function(p){ return p.g === g.id && isSeen((answers[p.id] || {}).etat); }); c.fillStyle = g.color || "#f3dcb4"; c.globalAlpha = lit ? .78 : .5; c.fillText(name, put.s.x, put.s.y);
     });
     c.globalAlpha = 1; $("skyCaption").textContent = SKY.points.length + " films · " + Object.keys(answers).filter(function(id){ return SKY.byId[id] && isSeen((answers[id] || {}).etat); }).length + " vus" + (other ? " · avec " + other.pseudo : "");
     skyCanvas.dataset.renderMs = (performance.now() - started).toFixed(2);
@@ -6301,7 +6363,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     $("skyMember").innerHTML=html;$("skyMember").value=selected;if($("skyMember").value!==selected)SKY.member="";
   }
   function skyOpen(){if(!$("rsheet").hidden)$("rsClose").click();skyEl.hidden=false;document.documentElement.classList.add("sky-on");document.querySelector(".wrap").inert=true;$("skyMode").value=SKY.mode;SKY.hist=[];SKY.hi=-1;skyNavPaint();skyResize();skyMembers();skyModel();if(SKY.ready)skyFit();skyCanvas.focus({preventScroll:true});skyTick();}
-  function skyClose(){clearTimeout(SKY.tick);SKY.focus=null;SKY.sel="";$("rsSky").hidden=true;$("rsGo").textContent="Voir la fiche ↓";skyEl.hidden=true;skyEl.inert=false;document.querySelector(".wrap").inert=false;document.documentElement.classList.remove("sky-on");$("rsheet").hidden=true;$("skyToggle").focus({preventScroll:true});}
+  function skyClose(){clearTimeout(SKY.tick);SKY.focus=null;SKY.sel="";$("rsSky").hidden=true;$("rsDice").hidden=true;$("rsGo").textContent="Voir la fiche ↓";skyEl.hidden=true;skyEl.inert=false;document.querySelector(".wrap").inert=false;document.documentElement.classList.remove("sky-on");$("rsheet").hidden=true;$("skyToggle").focus({preventScroll:true});}
   function skyGroupOf(id){var p=SKY.byId[id];return p?(SKY.groups||[]).filter(function(g){return g.id===p.g;})[0]:null;}
   // Une étoile touchée : la fiche du film, compacte, sans quitter le ciel (on peut continuer à l'explorer derrière).
   function skyFilm(id,keepCam){
@@ -6314,11 +6376,19 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function skyCard(id){
     var f=films[id]||{},g=skyGroupOf(id),el=$("rsSky"),mv=MV_INFO[f.mv]?MV_INFO[f.mv].label:"";
     var left=g?g.ids.filter(function(x){return x!==id&&skyUnseen(x);}).length:0;
-    el.innerHTML=(mv?'<p class="rs-mv">Courant : '+esc(mv)+'</p>':"")+mbrHtml({id:id}).replace(/<button type="button" class="mbr" data-mbr="[^"]*">([^<]*)<\/button>/g,'<span class="mbr">$1</span>')+
+    var ev=isMine()?estOf(f):0;SKY.img=SKY.img||{};
+    el.innerHTML=mbrHtml({id:id}).replace(/<button type="button" class="mbr" data-mbr="[^"]*">([^<]*)<\/button>/g,'<span class="mbr">$1</span>')+
       '<div class="rs-row"><button type="button" data-skyl="1" aria-pressed="'+!!LISTE[id]+'">'+(LISTE[id]?"✓ Ma liste":"+ Ma liste")+'</button>'+
-      (left?'<button type="button" data-skydice="1">🎲 Un autre pas vu ici ('+left+')</button>':"")+'</div>';
-    el.hidden=false;
+      '<button type="button" data-skyimg="1" aria-expanded="'+!!SKY.img[id]+'">🎞 '+(SKY.img[id]?"Masquer les images":"Images du film")+'</button></div>'+
+      (SKY.img[id]?imgBoxHtml(id):"")+
+      (ev?'<p class="rs-est">Estimé '+ev+'/10 d\'après tes goûts</p>':"");
+    el.hidden=false;$("rsDice").hidden=!left;$("rsDice").title=left?"Un autre film pas vu ici ("+left+")":"";
+    if(SKY.img[id])fillImgs(id,true);
   }
+  // Sur téléphone, la fiche occupe le bas : les flèches remontent juste au-dessus d'elle.
+  if(window.ResizeObserver)new ResizeObserver(function(){skyCardSpace();}).observe($("rsheet"));
+  function skyCardSpace(){var c=$("rsheet"),on=!skyEl.hidden&&!c.hidden&&innerWidth<900;document.documentElement.classList.toggle("skycard",on);document.documentElement.style.setProperty("--rsh",on?c.getBoundingClientRect().height+"px":"0px");}
+  new MutationObserver(skyCardSpace).observe($("rsheet"),{attributes:true,attributeFilter:["hidden"]});
   function skyUnseen(id){var e=(answers[id]||{}).etat;return !(e==="vu"||e==="pas_fini"||e==="oublie");}
   // Le dé : un film pas encore vu dans la constellation choisie (ou la plus proche du centre de l'écran).
   function skyDice(){
@@ -6338,14 +6408,12 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   $("skyMember").addEventListener("change",function(){SKY.member=this.value;skySchedule();});
   $("skyMode").addEventListener("change",function(){SKY.mode=this.value;try{localStorage.setItem(SKY_MODE_KEY,SKY.mode);}catch(e){}SKY.focus=null;skyModel();});
   $("skyPick").addEventListener("click",function(){if(SKY.focus)skyFilm(SKY.focus.id);});
-  $("skySearch").addEventListener("input",function(){var out=$("skyResults"),q=this.value.trim(),matches=rankFilms(this.value,6);clearTimeout(SKY.qT);if(!q){out.hidden=true;return;}
-    // Le ciel glisse déjà vers le premier film trouvé pendant qu'on tape.
-    if(q.length>=2&&matches[0])SKY.qT=setTimeout(function(){var id=matches[0];if(SKY.focus&&SKY.focus.id===id)return;if(!$("rsheet").hidden){$("rsheet").hidden=true;$("rsSky").hidden=true;}$("skyPick").textContent=films[id].t+" · ouvrir la fiche ›";skyFly(id);},380);out.innerHTML=matches.map(function(id){return '<button type="button" data-skyfilm="'+esc(id)+'">'+esc(films[id].t)+' <small>'+esc([films[id].y,films[id].d].filter(Boolean).join(" · "))+'</small></button>';}).join("");out.hidden=!matches.length;});
+  $("skySearch").addEventListener("input",function(){var out=$("skyResults"),q=this.value.trim(),matches=rankFilms(this.value,6);clearTimeout(SKY.qT);if(!q){out.hidden=true;return;}out.innerHTML=matches.map(function(id){return '<button type="button" data-skyfilm="'+esc(id)+'">'+esc(films[id].t)+' <small>'+esc([films[id].y,films[id].d].filter(Boolean).join(" · "))+'</small></button>';}).join("");out.hidden=!matches.length;});
   $("skyResults").addEventListener("click",function(e){var b=e.target.closest("[data-skyfilm]");if(!b)return;this.hidden=true;clearTimeout(SKY.qT);var id=b.dataset.skyfilm;$("skySearch").blur();if(!$("rsheet").hidden){$("rsheet").hidden=true;$("rsSky").hidden=true;}$("skyPick").textContent=films[id].t+" · ouvrir la fiche ›";skyFly(id);});
-  $("skyBack").addEventListener("click",function(){skyNav(-1);});$("skyFwd").addEventListener("click",function(){skyNav(1);});$("skyDice").addEventListener("click",skyDice);
+  $("rsDice").addEventListener("click",skyDice);$("skyBack").addEventListener("click",function(){skyNav(-1);});$("skyFwd").addEventListener("click",function(){skyNav(1);});$("skyDice").addEventListener("click",skyDice);
   $("rsSky").addEventListener("click",function(e){
     var b=e.target.closest("button");if(!b||!RND)return;var id=RND;
-    if(b.dataset.skydice){skyDice();return;}
+    if(b.dataset.skyimg){SKY.img[id]=!SKY.img[id];skyCard(id);return;}
     if(b.dataset.skyl){if(LISTE[id])delete LISTE[id];else LISTE[id]=new Date().toISOString();if(HASLIST){var anc=anchors(null);quickRender(id);restore(anc);}else refreshFilm(id);saveList(id);skyCard(id);var again=$("rsSky").querySelector("[data-skyl]");if(again)again.focus({preventScroll:true});}
   });
   $("skySearch").addEventListener("keydown",function(e){if(e.key==="Enter"){var b=$("skyResults").querySelector("button");if(b){e.preventDefault();b.click();}}});
@@ -7094,7 +7162,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function installed(){ return matchMedia("(display-mode: standalone)").matches || matchMedia("(display-mode: window-controls-overlay)").matches || navigator.standalone === true; }
   window.CC_APPLI = installed();
   if (window.CC_APPLI) document.documentElement.classList.add("appli");
-  if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js", { updateViaCache:"none" }).then(function(reg){ reg.update(); }).catch(function(){}); });
+  if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js", { updateViaCache:"none" }).catch(function(){}); });
   function show(){ var h = installed(); document.querySelectorAll("[data-appinst]").forEach(function(b){ b.hidden = h; }); }
   show();
   window.addEventListener("beforeinstallprompt", function(e){ e.preventDefault(); ask = e; show(); });
