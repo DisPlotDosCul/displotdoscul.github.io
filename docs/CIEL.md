@@ -101,3 +101,15 @@ grandes constellations sont nommées d'abord, les autres en rapprochant le ciel.
 - **Couleurs « Par catégories »** : les mêmes teintes douces que « Par courants ».
 - **Bas de l'écran** : légende au-dessus des boutons de zoom ; à gauche, flèches ← → pour
   revenir aux endroits du ciel déjà visités.
+
+## Idées du 24 octobre 2026 (soir)
+
+- Recherche : le ciel ne bouge qu'au choix d'un film dans la liste.
+- Couleurs « Par catégories » : teintes de planètes (Uranus, Saturne, Neptune, Mars, Jupiter,
+  Vénus, un violet doux, Mercure), une par famille de listes, sans rose ni lilas.
+- Noms des constellations plus petits et plus pâles, raccourcis tant qu'on n'a pas rapproché le
+  ciel ; un nom qui ne tient pas au-dessus essaie en dessous.
+- Fiche : dé en haut à droite, synopsis plus grand, infos plus petites, plus de « plus… » ni de
+  courant en bas, note plus compacte, estimation discrète en bas, bouton « Images du film ».
+- Légende sur deux lignes, sur un fond sombre, à droite ; flèches ← → dorées, au-dessus de la
+  fiche sur téléphone.

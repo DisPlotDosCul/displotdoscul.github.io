@@ -87,3 +87,8 @@ Express (24 octobre 2026) : synopsis très court (première phrase, environ 150 
 « Vu mais oublié ». Le bouton « 📲 Installer l'appli » est en tête du menu Aa et sur l'écran
 d'accueil (« Choisissez votre affichage »). L'appli installée n'ouvre que le Ciné-club ; la
 Boussole des IA et Cap Logement restent sur le site général.
+
+Filtres (24 octobre 2026) : un seul bouton « Filtres ▾ » à côté de la recherche ; les cinq filtres
+s'ouvrent dessous, sans icône ; le bouton affiche le filtre actif. Express : en grand l'affiche, le
+titre, « Pas vu », « Adoré », « Bien », « Pas aimé » ; en discret « + » (ma liste) à côté de
+l'affiche, « Vu mais oublié », « Noter /10 » (1 à 10) près de « Vu, sans avis ».
