@@ -70,3 +70,15 @@ Tout s'applique en direct ; « Enregistrer pour tout le monde » écrit le docum
 Le bouton 🎞 affiche dans la fiche quatre images tirées du film, venues de TMDB
 (The Movie Database), avec la mention « Images : TMDB ». Les résultats sont gardés sur
 l'appareil. Ce site utilise l'API de TMDB sans être approuvé ni certifié par TMDB.
+
+## Appli installable (24 octobre 2026)
+
+Le Ciné-club s'installe comme une appli (PWA, Progressive Web App) sur Android, iPhone, iPad,
+Windows et Mac : icône sur l'écran d'accueil, ouverture en plein écran, page gardée pour
+s'ouvrir sans réseau. Bouton « 📲 Installer l'appli » dans le menu Aa (caché une fois installée) :
+fenêtre d'installation du navigateur quand elle existe (Chrome, Edge, Android), sinon les
+étapes propres à l'appareil (Safari sur iPhone et iPad, Safari sur Mac). Fichiers :
+`manifest.webmanifest`, `sw.js` (réseau d'abord, copie gardée seulement hors connexion ;
+Firebase et TMDB ne passent pas par lui) et `icones/`.
+Sur iPhone et iPad, l'appli installée ne partage pas la connexion de Safari : le lien de
+connexion par e-mail s'ouvre dans Safari, la connexion Google marche dans l'appli.
