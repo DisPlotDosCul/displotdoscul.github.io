@@ -48,7 +48,7 @@ def run():
             ready(page)
             assert page.evaluate("CC.auth.languageCode") == "fr"
             assert page.locator('label[for="q"]').is_hidden(), "l'aide au-dessus de la recherche est retirée"
-            assert page.locator(".nbulbs i").count() == 7
+            assert page.locator(".nbulbs i").count() == 8
             assert page.locator(".nbulbs .dead").count() == 1
             assert page.locator("#ccRanger").is_hidden(), "Le rangement reste réservé à l'administratrice"
             if device == "telephone":
