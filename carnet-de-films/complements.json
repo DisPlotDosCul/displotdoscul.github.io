@@ -1,6 +1,17 @@
 {
  "note": "Compléments du catalogue ajoutés par Claude ; fusionnés au chargement, la base Firebase passe avant.",
  "sections": {
+  "s02-annees-2000": {
+   "films": [
+    {
+     "id": "penelope-2006",
+     "t": "Penelope",
+     "y": 2006,
+     "d": "Mark Palansky",
+     "r": "Une héritière maudite naît avec un groin de cochon ; Christina Ricci et James McAvoy."
+    }
+   ]
+  },
   "s28-un-seul-plan": {
    "films": [
     {
@@ -508,6 +519,7 @@
   }
  },
  "fiches": {
+  "penelope-2006": {"p": "Une sorcière a maudit la riche famille Wilhern : Penelope (Christina Ricci) naît avec un groin de cochon, que seul l'amour de « quelqu'un de son espèce » peut effacer. Cachée par ses parents, elle voit fuir tous ses prétendants, jusqu'à Max (James McAvoy). À la fin, c'est elle qui brise le sort en s'acceptant telle qu'elle est.", "c": "Royaume-Uni, États-Unis", "k": ["conte", "transformations", "visages", "amour", "heroines", "couleurs", "comedie"], "mv": "hollywood-contemporain", "e": 6, "duree": 104, "av": [], "th": ["différence", "acceptation", "conte moderne"], "fiab": "à vérifier"},
   "timecode-2000": {"p": "L'écran est coupé en quatre : quatre caméras tournent chacune un seul plan de 93 minutes, en même temps, autour d'une société de production de Los Angeles.", "c": "États-Unis", "k": ["huis-clos", "temps", "obsession"], "mv": "independant-americain", "e": 7, "duree": 97, "av": ["drogue"], "th": ["jalousie", "simultanéité", "milieu artistique"], "fiab": "à vérifier"},
   "pvc-1-2007": {"p": "Une femme se réveille avec un collier piégé fixé autour du cou ; on suit, sans aucune coupe, la course pour le désamorcer dans la campagne colombienne. D'après un fait réel.", "c": "Colombie", "k": ["suspense", "histoire-vraie", "malaise"], "mv": "auteur-monde", "e": 8, "duree": 85, "av": ["maltraitance"], "th": ["chantage", "survie", "solidarité"], "fiab": "à vérifier"},
   "la-casa-muda-2010": {"p": "Une jeune femme et son père passent la nuit dans une maison de campagne isolée qu'ils doivent remettre en état ; des bruits viennent de l'étage.", "c": "Uruguay", "k": ["horreur", "huis-clos", "malaise"], "mv": "nouvelle-horreur", "e": 7, "duree": 78, "av": ["violence sexuelle", "maltraitance", "images choquantes"], "th": ["traumatisme", "secret familial", "perception"], "fiab": "à vérifier"},
@@ -2171,6 +2183,7 @@
   "thumbsucker-2005": "20008",
   "tigre-et-dragon-2000": "60202",
   "time-2006": "54001",
+  "penelope-2006": "30025",
   "timecode-2000": "60310",
   "titane-2021": "55000",
   "titanic-1997": "20206",
