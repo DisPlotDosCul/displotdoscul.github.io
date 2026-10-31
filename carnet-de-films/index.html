@@ -844,6 +844,15 @@ html.aff-grand .idc-b button,html.aff-grand .idty .chip{min-height:40px;}
 .amb-a{display:none;position:absolute;right:-3px;bottom:-3px;width:16px;height:16px;border-radius:50%;font:700 10px/16px var(--font);font-style:normal;text-align:center;background:var(--ink);color:var(--paper);}
 .ambb.auto .amb-a{display:block;}
 .aamenu .aa-auto{display:grid;}
+.aamenu .aa-lang{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;}
+.aamenu .aa-lang b,.aamenu .aa-lang span{grid-column:1;}
+.aamenu .aa-lang::after{content:"▾";grid-column:2;grid-row:1 / span 2;font-size:15px;color:var(--muted);}
+.aamenu .aa-lang[aria-expanded="true"]::after{content:"▴";}
+.aa-langs{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:5px;}
+.aa-langs[hidden]{display:none;}
+.aamenu .aa-langs button{display:block;padding:8px 9px;font:500 14px/1.2 var(--font);text-align:center;}
+.aamenu .aa-langs button:disabled{opacity:.5;cursor:default;}
+.aamenu .aa-langs button small{display:block;font-size:11px;color:var(--muted);}
 .aa-ambs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
 .aamenu .aa-ambs button{justify-items:center;text-align:center;gap:4px;padding:9px 4px;}
 .aa-ambs .aa-ic svg{width:22px;height:22px;display:block;}
@@ -1478,6 +1487,9 @@ html.sky-on #rsheet{z-index:50;}
         <button type="button" data-amb="crep"><span class="aa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 16a5.4 5.4 0 0 1 10.8 0"/><path d="M2.6 16h18.8M6 19.8h12M12 6.2v2.2M5.3 9.3l1.5 1.5M18.7 9.3l-1.5 1.5"/></svg></span><b>Crépuscule</b></button>
         <button type="button" data-amb="neon"><span class="aa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.6 14.6A7.8 7.8 0 1 1 9.4 4.4a6.1 6.1 0 0 0 10.2 10.2z"/><path d="M17.4 3.2l.55 1.45 1.45.55-1.45.55-.55 1.45-.55-1.45-1.45-.55 1.45-.55z" fill="currentColor" stroke="none"/></svg></span><b>Néon</b></button>
       </div>
+      <p class="aa-h">Langue</p>
+      <button type="button" class="aa-lang" id="langBtn" aria-expanded="false" aria-controls="langList"><b id="langCur" data-noi18n>Français</b><span>Changer de langue</span></button>
+      <div class="aa-langs" id="langList" role="group" aria-label="Choisir la langue du site" data-noi18n hidden></div>
       <p class="aa-h">En plus, si besoin</p>
       <button type="button" class="aa-sw" data-opt="calme" role="switch" aria-checked="false"><b>Calme</b><span>Sans animation, couleurs douces (TDAH, autisme)</span></button>
       <button type="button" class="aa-sw" data-opt="lecture" role="switch" aria-checked="false"><b>Lecture facilitée</b><span>Lettres plus lisibles et espacées (dyslexie)</span></button>
@@ -7192,6 +7204,93 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     panel(true);
   });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape") panel(false); });
+})();
+</script>
+<script>
+// Langue du site : le français est la langue d'origine. Une autre langue charge i18n/<code>.json,
+// une table « texte français exact → traduction » (plus des modèles avec {0}, {1}) appliquée aux textes
+// et aux attributs placeholder, title et aria-label, puis à tout ce que la page redessine.
+// Les champs en cours de saisie ne sont jamais touchés : seuls leurs libellés changent.
+(function(){
+  var KEY = "ccLangueV1";
+  var LANGS = [["fr","Français"],["en","English"],["es","Español"],["de","Deutsch"],["pt","Português"],["ko","한국어"],["ja","日本語"],["mn","Монгол"],["zh","中文"],["hi","हिन्दी"],["ar","العربية"],["bn","বাংলা"],["ru","Русский"]];
+  // Langues dont le fichier de traduction existe déjà (les autres apparaissent « bientôt »).
+  var PRETES = { fr:1, en:1 };
+  var cur = "fr"; try { cur = localStorage.getItem(KEY) || "fr"; } catch (e) {}
+  if (!PRETES[cur]) cur = "fr";
+  var MAP = null, PATS = [], SKIP = "script,style,textarea,code,pre,[data-noi18n],[contenteditable]";
+  var lastT = new WeakMap(), lastA = new WeakMap(), ATTRS = ["placeholder","title","aria-label"];
+  function norm(s){ return String(s).replace(/\s+/g, " ").trim(); }
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  function tr(raw){
+    var k = norm(raw); if (!k) return null;
+    if (Object.prototype.hasOwnProperty.call(MAP, k)) return MAP[k];
+    for (var i = 0; i < PATS.length; i++) {
+      var m = k.match(PATS[i].re); if (!m) continue;
+      return PATS[i].to.replace(/\{(\d)\}/g, function(_, n){ var v = m[+n + 1]; return v == null ? "" : (tr(v) || v); });
+    }
+    return null;
+  }
+  function textNode(n){
+    var p = n.parentElement; if (!p || p.closest(SKIP)) return;
+    var v = n.nodeValue; if (lastT.get(n) === v || !/[A-Za-zÀ-ÿ]/.test(v)) return;
+    var t = tr(v); if (t == null) return;
+    var lead = v.match(/^\s*/)[0], trail = v.match(/\s*$/)[0], out = lead + t + trail;
+    lastT.set(n, out); if (out !== v) n.nodeValue = out;
+  }
+  function attrs(el){
+    if (el.closest(SKIP) && !el.matches("textarea,input")) return;
+    var done = lastA.get(el) || {};
+    for (var i = 0; i < ATTRS.length; i++) {
+      var a = ATTRS[i], v = el.getAttribute(a); if (!v || done[a] === v) continue;
+      var t = tr(v); if (t != null && t !== v) { done[a] = t; el.setAttribute(a, t); }
+    }
+    lastA.set(el, done);
+  }
+  function walk(root){
+    if (root.nodeType === 3) { textNode(root); return; }
+    if (root.nodeType !== 1) return;
+    if (root.hasAttribute && (root.hasAttribute("placeholder") || root.hasAttribute("title") || root.hasAttribute("aria-label"))) attrs(root);
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n;
+    while ((n = w.nextNode())) textNode(n);
+    root.querySelectorAll && root.querySelectorAll("[placeholder],[title],[aria-label]").forEach(attrs);
+  }
+  function start(j){
+    MAP = {};
+    Object.keys(j.ui || {}).forEach(function(k){ MAP[norm(k)] = j.ui[k]; });
+    PATS = Object.keys(j.modeles || {}).map(function(k){
+      var re = "^" + esc(norm(k)).replace(/\\\{(\d)\\\}/g, "(.+?)") + "$";
+      return { re:new RegExp(re), to:j.modeles[k] };
+    });
+    walk(document.body);
+    if (document.title) { var tt = tr(document.title); if (tt) document.title = tt; }
+    new MutationObserver(function(ms){
+      ms.forEach(function(m){
+        if (m.type === "characterData") textNode(m.target);
+        else if (m.type === "attributes") attrs(m.target);
+        else m.addedNodes.forEach(walk);
+      });
+    }).observe(document.body, { subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:ATTRS });
+  }
+  var de = document.documentElement;
+  de.lang = cur; de.dir = cur === "ar" ? "rtl" : "ltr";
+  if (cur !== "fr") fetch("i18n/" + cur + ".json", { cache:"no-cache" }).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if (j) start(j); }).catch(function(){});
+  // Le réglage dans le panneau « Aa » : un bouton qui ouvre la liste des langues.
+  var btn = document.getElementById("langBtn"), list = document.getElementById("langList"), lab = document.getElementById("langCur");
+  if (!btn || !list) return;
+  LANGS.forEach(function(l){ if (l[0] === cur) lab.textContent = l[1]; });
+  list.innerHTML = LANGS.map(function(l){
+    var ok = !!PRETES[l[0]];
+    return '<button type="button" lang="' + l[0] + '" data-lang="' + l[0] + '"' + (l[0] === "ar" ? ' dir="rtl"' : "") + ' aria-pressed="' + (l[0] === cur) + '"' + (ok ? "" : " disabled") + '>' + l[1] + (ok ? "" : "<small>" + (cur === "en" ? "soon" : "bientôt") + "</small>") + "</button>";
+  }).join("");
+  btn.addEventListener("click", function(ev){ ev.stopPropagation(); var open = list.hidden; list.hidden = !open; btn.setAttribute("aria-expanded", open ? "true" : "false"); });
+  list.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    var b = ev.target.closest("[data-lang]"); if (!b || b.disabled) return;
+    var l = b.dataset.lang; if (l === cur) { list.hidden = true; btn.setAttribute("aria-expanded", "false"); return; }
+    try { localStorage.setItem(KEY, l); } catch (e) {}
+    location.reload();
+  });
 })();
 </script>
 </body></html>

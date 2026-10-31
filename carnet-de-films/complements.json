@@ -937,6 +937,92 @@
      "r": "Peter Sellers sème le chaos dans une soirée hollywoodienne : la comédie de fête culte."
     }
    ]
+  },
+  "s06-classiques": {
+   "famille": "epoques",
+   "ordre": 2,
+   "titre": "Avant 1990",
+   "sous_titre": "Des classiques d'avant 1990, souvent cités par les cinéastes.",
+   "films": [
+    {
+     "id": "ordet-1955",
+     "t": "Ordet",
+     "y": 1955,
+     "d": "Carl Theodor Dreyer",
+     "r": "Le dernier grand Dreyer : une ferme, la foi, et une fin qui a bouleversé des générations de cinéastes."
+    },
+    {
+     "id": "pather-panchali-1955",
+     "t": "Pather Panchali",
+     "y": 1955,
+     "d": "Satyajit Ray",
+     "r": "Le film qui a révélé le cinéma indien au monde : l'enfance d'Apu au Bengale."
+    },
+    {
+     "id": "les-petites-marguerites-1966",
+     "t": "Les Petites Marguerites",
+     "y": 1966,
+     "d": "Věra Chytilová",
+     "r": "Atypique : deux filles saccagent tout dans un collage de couleurs, interdit à sa sortie en Tchécoslovaquie."
+    },
+    {
+     "id": "andrei-roublev-1966",
+     "t": "Andreï Roublev",
+     "y": 1966,
+     "d": "Andreï Tarkovski",
+     "r": "La grande fresque de Tarkovski : la Russie médiévale et la fonte d'une cloche géante."
+    },
+    {
+     "id": "le-samourai-1967",
+     "t": "Le Samouraï",
+     "y": 1967,
+     "d": "Jean-Pierre Melville",
+     "r": "Alain Delon en tueur silencieux, chapeau et imperméable : un polar presque sans paroles, aux couleurs froides."
+    },
+    {
+     "id": "la-couleur-de-la-grenade-1969",
+     "t": "La Couleur de la grenade",
+     "y": 1969,
+     "d": "Sergueï Paradjanov",
+     "r": "Atypique : un film fait de tableaux vivants aux couleurs somptueuses, sans histoire à suivre."
+    },
+    {
+     "id": "wanda-1970",
+     "t": "Wanda",
+     "y": 1970,
+     "d": "Barbara Loden",
+     "r": "L'unique film de Barbara Loden, longtemps oublié : une femme qui dérive, filmée sans jugement."
+    },
+    {
+     "id": "touki-bouki-1973",
+     "t": "Touki Bouki",
+     "y": 1973,
+     "d": "Djibril Diop Mambéty",
+     "r": "Le grand film sénégalais : deux jeunes rêvent de Paris, entre road-movie, collage et rêve éveillé."
+    },
+    {
+     "id": "tous-les-autres-s-appellent-ali-1974",
+     "t": "Tous les autres s'appellent Ali",
+     "y": 1974,
+     "d": "Rainer Werner Fassbinder",
+     "r": "Un mélodrame de Fassbinder sur le racisme ordinaire, simple et déchirant."
+    }
+   ]
+  },
+  "s01-annees-90": {
+   "famille": "epoques",
+   "ordre": 2.1,
+   "titre": "Années 90",
+   "sous_titre": "Des grands succès, du cinéma d'auteur et du cinéma du monde, de 1990 à 1999.",
+   "films": [
+    {
+     "id": "a-brighter-summer-day-1991",
+     "t": "A Brighter Summer Day",
+     "y": 1991,
+     "d": "Edward Yang",
+     "r": "L'un des plus grands films des années 90, par le réalisateur de Yi Yi : quatre heures, une jeunesse taïwanaise et un fait divers."
+    }
+   ]
   }
  },
  "fiches": {
@@ -1846,7 +1932,17 @@
   "kiki-2016": {"p": "Documentaire sur la scène ballroom new-yorkaise d'aujourd'hui : de jeunes Noirs et Latinos LGBT, souvent mis à la rue, s'entraînent au voguing et font vivre leurs « maisons ».", "c": "Suède, États-Unis", "k": ["documentaire", "danse", "societe"], "mv": "doc-observation", "e": 7, "duree": 94, "av": [], "th": ["voguing", "ballroom", "jeunesse queer"], "fiab": "à vérifier"},
   "mektoub-my-love-canto-uno-2017": {"p": "L'été 1994 à Sète : Amin, apprenti scénariste revenu de Paris, observe ses cousins et les vacancières entre la plage, la ferme et la boîte de nuit, où le film s'attarde longuement.", "c": "France", "k": ["contemplatif", "amour", "danse"], "mv": "auteur-francais", "e": 6, "duree": 181, "av": [], "th": ["été", "désir", "plage"], "fiab": "à vérifier"},
   "bande-de-filles-2014": {"p": "Marieme, seize ans, en banlieue parisienne, rejoint une bande de trois filles et devient Vic ; une nuit dans une chambre d'hôtel, elles dansent sur « Diamonds » de Rihanna.", "c": "France", "k": ["enfance", "societe", "danse"], "mv": "auteur-francais", "e": 7, "duree": 113, "av": ["violence explicite"], "th": ["banlieue", "bande", "émancipation"], "fiab": "à vérifier"},
-  "the-party-1968": {"p": "Un acteur indien maladroit (Peter Sellers), invité par erreur à une soirée chic d'Hollywood, provoque une catastrophe après l'autre, jusqu'à inonder la maison de mousse.", "c": "États-Unis", "k": ["comedie", "humour-absurde", "retro"], "mv": "hollywood-classique", "e": 7, "duree": 99, "av": [], "th": ["soirée", "gaffes", "Hollywood"], "fiab": "à vérifier"}
+  "the-party-1968": {"p": "Un acteur indien maladroit (Peter Sellers), invité par erreur à une soirée chic d'Hollywood, provoque une catastrophe après l'autre, jusqu'à inonder la maison de mousse.", "c": "États-Unis", "k": ["comedie", "humour-absurde", "retro"], "mv": "hollywood-classique", "e": 7, "duree": 99, "av": [], "th": ["soirée", "gaffes", "Hollywood"], "fiab": "à vérifier"},
+  "la-couleur-de-la-grenade-1969": {"p": "La vie du poète arménien Sayat-Nova racontée sans récit, en tableaux vivants presque immobiles : tapis, grenades, livres mouillés, chevaux et visages fardés, comme des enluminures qui bougent à peine.", "c": "Union soviétique (Arménie)", "k": ["couleurs", "contemplatif", "reve", "musique"], "mv": "cinema-lent", "e": 8, "duree": 78, "av": [], "th": ["poésie", "tableaux vivants", "Arménie"], "fiab": "à vérifier"},
+  "les-petites-marguerites-1966": {"p": "Deux jeunes filles, toutes deux nommées Marie, décident que le monde est pourri et qu'elles le seront aussi : elles dupent des vieux messieurs, dévorent tout et saccagent un banquet, dans un collage de couleurs et de ciseaux.", "c": "Tchécoslovaquie", "k": ["absurde", "couleurs", "humour-absurde", "heroines"], "mv": "nouvelle-vague-tcheque", "e": 9, "duree": 76, "av": [], "th": ["anarchie", "collage", "féminisme"], "fiab": "à vérifier"},
+  "a-brighter-summer-day-1991": {"p": "À Taipei, au début des années 1960, Xiao Si'r, collégien, est pris entre les bandes rivales de son quartier et son amour pour Ming ; d'après un vrai fait divers de 1961.", "c": "Taïwan", "k": ["enfance", "violence", "societe", "amour"], "mv": "taiwan", "e": 7, "duree": 237, "av": ["violence explicite"], "th": ["adolescence", "bandes", "Taipei"], "fiab": "à vérifier"},
+  "touki-bouki-1973": {"p": "À Dakar, Mory, berger à moto au guidon orné de cornes de zébu, et Anta, étudiante, rêvent de partir pour Paris et multiplient les combines pour se payer la traversée.", "c": "Sénégal", "k": ["amour", "reve", "marginaux", "couleurs"], "mv": "auteur-monde", "e": 7, "duree": 91, "av": ["images choquantes"], "th": ["exil", "rêve", "Dakar"], "fiab": "à vérifier"},
+  "wanda-1970": {"p": "En Pennsylvanie, Wanda (Barbara Loden), qui a laissé ses enfants à son mari, dérive sans argent ni but et finit par suivre un petit braqueur nerveux ; le seul film de sa réalisatrice.", "c": "États-Unis", "k": ["heroines", "marginaux", "societe", "contemplatif"], "mv": "independant-americain", "e": 7, "duree": 103, "av": [], "th": ["errance", "dérive", "solitude"], "fiab": "à vérifier"},
+  "ordet-1955": {"p": "Dans une ferme du Jutland, une famille de paysans luthériens se déchire entre la foi, le doute et un fils qui se prend pour le Christ, autour d'une belle-fille qui va accoucher.", "c": "Danemark", "k": ["noir-et-blanc", "contemplatif", "famille"], "mv": "classiques-europeens", "e": 6, "duree": 126, "av": [], "th": ["foi", "miracle", "famille"], "fiab": "à vérifier"},
+  "andrei-roublev-1966": {"p": "La vie du peintre d'icônes Andreï Roublev dans la Russie du quinzième siècle, en huit tableaux : invasions tatares, famines, fêtes païennes, et la fonte d'une immense cloche par un jeune garçon. En noir et blanc, puis en couleurs.", "c": "Union soviétique", "k": ["noir-et-blanc", "histoire", "contemplatif", "violence"], "mv": "cinema-lent", "e": 6, "duree": 183, "av": ["violence explicite", "images choquantes"], "th": ["foi", "art", "Moyen Âge"], "fiab": "à vérifier"},
+  "tous-les-autres-s-appellent-ali-1974": {"p": "À Munich, Emmi, veuve et femme de ménage d'une soixantaine d'années, épouse Ali, travailleur marocain bien plus jeune ; voisins, collègues et enfants se liguent contre eux.", "c": "Allemagne de l'Ouest", "k": ["amour", "societe", "injustice"], "mv": "nouveau-cinema-allemand", "e": 7, "duree": 93, "av": [], "th": ["racisme", "amour", "solitude"], "fiab": "à vérifier"},
+  "pather-panchali-1955": {"p": "Dans un village du Bengale, le petit Apu grandit avec sa grande sœur Durga, une mère épuisée, un père poète souvent absent et une vieille tante ; le premier volet de la trilogie d'Apu.", "c": "Inde", "k": ["enfance", "famille", "noir-et-blanc", "larmes"], "mv": "auteur-monde", "e": 6, "duree": 125, "av": [], "th": ["pauvreté", "enfance", "Bengale"], "fiab": "à vérifier"},
+  "le-samourai-1967": {"p": "Jef Costello (Alain Delon), tueur à gages solitaire qui vit avec un bouvreuil dans une chambre grise, prépare son alibi avec un soin maniaque ; après un contrat, police et commanditaires le traquent.", "c": "France", "k": ["suspense", "contemplatif", "couleurs"], "mv": "modernite-europeenne", "e": 8, "duree": 105, "av": ["violence explicite"], "th": ["tueur", "solitude", "rituel"], "fiab": "à vérifier"}
  },
  "familles": {
   "1917-2019": "30520",
@@ -2755,7 +2851,17 @@
   "kiki-2016": "30052",
   "mektoub-my-love-canto-uno-2017": "40015",
   "bande-de-filles-2014": "21034",
-  "the-party-1968": "30016"
+  "the-party-1968": "30016",
+  "la-couleur-de-la-grenade-1969": "60130",
+  "les-petites-marguerites-1966": "50122",
+  "a-brighter-summer-day-1991": "13033",
+  "touki-bouki-1973": "41023",
+  "wanda-1970": "13033",
+  "ordet-1955": "30061",
+  "andrei-roublev-1966": "32041",
+  "tous-les-autres-s-appellent-ali-1974": "21025",
+  "pather-panchali-1955": "20044",
+  "le-samourai-1967": "33310"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
