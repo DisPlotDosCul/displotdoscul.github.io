@@ -3518,8 +3518,10 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     });
   }
   new MutationObserver(function(){ if (TOC_FIT) { TOC_FIT = false; fitSubs(); } }).observe(document.getElementById("toc"), { childList:true });
-  var FIT_T = null;
-  window.addEventListener("resize", function(){ clearTimeout(FIT_T); FIT_T = setTimeout(function(){ document.querySelectorAll("#toc .sub.wide.auto-w").forEach(function(s){ s.classList.remove("wide"); }); renderToc(); }, 200); });
+  var FIT_T = null, FIT_W = window.innerWidth;
+  // Sur téléphone, le clavier qui s'ouvre change seulement la hauteur de l'écran : on ne redessine pas,
+  // sinon le champ touché est remplacé et le clavier se referme aussitôt.
+  window.addEventListener("resize", function(){ if (window.innerWidth === FIT_W) return; FIT_W = window.innerWidth; clearTimeout(FIT_T); FIT_T = setTimeout(function(){ document.querySelectorAll("#toc .sub.wide.auto-w").forEach(function(s){ s.classList.remove("wide"); }); renderToc(); }, 200); });
   // Petites indications, avec une flèche qui montre où toucher.
   function hintP(t){ return '<p class="hint">' + esc(t) + ' <span class="fl" aria-hidden="true">↓</span></p>'; }
   function allLabel(f){
