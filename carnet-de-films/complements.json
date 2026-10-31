@@ -765,6 +765,178 @@
      "r": "Pour sa danse finale, seul en boîte de nuit, sur « The Rhythm of the Night »."
     }
    ]
+  },
+  "s39-monde-de-la-fete": {
+   "famille": "themes",
+   "ordre": 1.0506,
+   "titre": "Le monde de la fête",
+   "sous_titre": "Soirées, clubs, disco et nuits sans fin : l'euphorie de la fête et ce qu'elle cache.",
+   "parties": [
+    {
+     "titre": "Nuits d'excès",
+     "aide": "Euphorie, dérive et malaise",
+     "ids": [
+      "how-to-have-sex-2023",
+      "spring-breakers-2012",
+      "after-hours-1985",
+      "les-nuits-fauves-1992",
+      "babylon-2022",
+      "eyes-wide-shut-1999",
+      "la-dolce-vita-1960",
+      "la-grande-bellezza-2013"
+     ]
+    },
+    {
+     "titre": "Disco, clubs et bals",
+     "aide": "Les pistes de danse qui ont fait l'histoire",
+     "ids": [
+      "la-fievre-du-samedi-soir-1977",
+      "boogie-nights-1997",
+      "les-derniers-jours-du-disco-1998",
+      "studio-54-2018",
+      "120-battements-par-minute-2017",
+      "paris-is-burning-1990",
+      "kiki-2016"
+     ]
+    },
+    {
+     "titre": "Atypiques",
+     "aide": "Des fêtes filmées autrement",
+     "ids": [
+      "mektoub-my-love-canto-uno-2017",
+      "bande-de-filles-2014",
+      "the-party-1968"
+     ]
+    }
+   ],
+   "films": [
+    {
+     "id": "how-to-have-sex-2023",
+     "t": "How to Have Sex",
+     "y": 2023,
+     "d": "Molly Manning Walker",
+     "r": "Des vacances de fête en Crète, et ce que la fête collective cache. Prix Un Certain Regard à Cannes."
+    },
+    {
+     "id": "spring-breakers-2012",
+     "t": "Spring Breakers",
+     "y": 2012,
+     "d": "Harmony Korine",
+     "r": "Le spring break en Floride, entre néons, braquage et un rappeur dealer : pop et toxique."
+    },
+    {
+     "id": "after-hours-1985",
+     "t": "After Hours",
+     "y": 1985,
+     "d": "Martin Scorsese",
+     "r": "Une nuit cauchemardesque à SoHo, des lofts aux clubs punk, où tout tourne mal."
+    },
+    {
+     "id": "les-nuits-fauves-1992",
+     "t": "Les Nuits fauves",
+     "y": 1992,
+     "d": "Cyril Collard",
+     "r": "Les nuits parisiennes, le désir et le sida, filmés à vif."
+    },
+    {
+     "id": "babylon-2022",
+     "t": "Babylon",
+     "y": 2022,
+     "d": "Damien Chazelle",
+     "r": "Le Hollywood des années 1920 et une orgie d'ouverture démesurée."
+    },
+    {
+     "id": "eyes-wide-shut-1999",
+     "t": "Eyes Wide Shut",
+     "y": 1999,
+     "d": "Stanley Kubrick",
+     "r": "La fête de Noël chez Ziegler, puis l'orgie masquée du manoir."
+    },
+    {
+     "id": "la-dolce-vita-1960",
+     "t": "La Dolce Vita",
+     "y": 1960,
+     "d": "Federico Fellini",
+     "r": "Rome la nuit, les fêtes mondaines jusqu'à l'aube, et le vide au petit matin."
+    },
+    {
+     "id": "la-grande-bellezza-2013",
+     "t": "La Grande Bellezza",
+     "y": 2013,
+     "d": "Paolo Sorrentino",
+     "r": "La fête sur les toits de Rome qui ouvre le film, l'une des plus belles scènes de fête du cinéma."
+    },
+    {
+     "id": "la-fievre-du-samedi-soir-1977",
+     "t": "La Fièvre du samedi soir",
+     "y": 1977,
+     "d": "John Badham",
+     "r": "Le disco à Brooklyn, plus sombre que sa réputation."
+    },
+    {
+     "id": "boogie-nights-1997",
+     "t": "Boogie Nights",
+     "y": 1997,
+     "d": "Paul Thomas Anderson",
+     "r": "Les fêtes du porno californien, de l'euphorie disco à la chute des années 80."
+    },
+    {
+     "id": "les-derniers-jours-du-disco-1998",
+     "t": "Les Derniers Jours du disco",
+     "y": 1998,
+     "d": "Whit Stillman",
+     "r": "Un club de Manhattan à la fin du disco, et des conversations sans fin."
+    },
+    {
+     "id": "studio-54-2018",
+     "t": "Studio 54",
+     "y": 2018,
+     "d": "Matt Tyrnauer",
+     "r": "Documentaire sur le club le plus célèbre du monde, de la porte sélective à la prison."
+    },
+    {
+     "id": "120-battements-par-minute-2017",
+     "t": "120 battements par minute",
+     "y": 2017,
+     "d": "Robin Campillo",
+     "r": "Act Up-Paris, et des scènes de club qui font respirer le film."
+    },
+    {
+     "id": "paris-is-burning-1990",
+     "t": "Paris Is Burning",
+     "y": 1990,
+     "d": "Jennie Livingston",
+     "r": "Les bals de Harlem de la fin des années 80 et la naissance du voguing."
+    },
+    {
+     "id": "kiki-2016",
+     "t": "Kiki",
+     "y": 2016,
+     "d": "Sara Jordenö",
+     "r": "Les bals voguing d'aujourd'hui à New York : la suite de Paris Is Burning."
+    },
+    {
+     "id": "mektoub-my-love-canto-uno-2017",
+     "t": "Mektoub, My Love : Canto Uno",
+     "y": 2017,
+     "d": "Abdellatif Kechiche",
+     "r": "Un été à Sète entre la plage et la boîte de nuit, presque sans intrigue : hypnotique ou agaçant selon les gens. 3 heures."
+    },
+    {
+     "id": "bande-de-filles-2014",
+     "t": "Bande de filles",
+     "y": 2014,
+     "d": "Céline Sciamma",
+     "r": "Pour la scène où quatre filles dansent sur « Diamonds » de Rihanna dans une chambre d'hôtel."
+    },
+    {
+     "id": "the-party-1968",
+     "t": "The Party",
+     "y": 1968,
+     "d": "Blake Edwards",
+     "r": "Peter Sellers sème le chaos dans une soirée hollywoodienne : la comédie de fête culte."
+    }
+   ]
   }
  },
  "fiches": {
@@ -1660,7 +1832,21 @@
   "cruising-1980": {"p": "À New York, un jeune policier (Al Pacino) s'infiltre dans les clubs cuir gays pour piéger un tueur, et perd peu à peu ses repères ; un film controversé à sa sortie.", "c": "États-Unis", "k": ["suspense", "malaise", "neons", "doubles"], "mv": "nouvel-hollywood", "e": 7, "duree": 102, "av": ["violence explicite"], "th": ["infiltration", "clubs cuir", "identité"], "fiab": "à vérifier"},
   "strange-days-1995": {"p": "À Los Angeles, les deux derniers jours de 1999 : un ancien policier (Ralph Fiennes) vend des souvenirs enregistrés qu'on revit par un casque, et tombe sur l'enregistrement d'un meurtre ; clubs, émeutes et réveillon.", "c": "États-Unis", "k": ["sf", "suspense", "paranoia", "neons"], "mv": "neo-noir", "e": 7, "duree": 145, "av": ["violence explicite", "violence sexuelle"], "th": ["an 2000", "souvenirs", "police"], "fiab": "à vérifier"},
   "blade-1998": {"p": "Blade (Wesley Snipes), mi-homme mi-vampire, chasse les vampires ; le film s'ouvre sur une rave techno dans un abattoir où les arroseurs se mettent à cracher du sang.", "c": "États-Unis", "k": ["horreur", "violence", "musique", "neons"], "mv": "hollywood-contemporain", "e": 6, "duree": 120, "av": ["violence explicite"], "th": ["vampires", "techno", "chasseur"], "fiab": "à vérifier"},
-  "only-lovers-left-alive-2013": {"p": "Adam (Tom Hiddleston), vampire musicien reclus dans un Detroit désert, et Eve (Tilda Swinton), restée à Tanger, se retrouvent après des siècles d'amour ; guitares, nuits et un club de Tanger.", "c": "Royaume-Uni, Allemagne", "k": ["amour", "musique", "contemplatif", "neons"], "mv": "independant-americain", "e": 8, "duree": 123, "av": [], "th": ["vampires", "musique underground", "éternité"], "fiab": "à vérifier"}
+  "only-lovers-left-alive-2013": {"p": "Adam (Tom Hiddleston), vampire musicien reclus dans un Detroit désert, et Eve (Tilda Swinton), restée à Tanger, se retrouvent après des siècles d'amour ; guitares, nuits et un club de Tanger.", "c": "Royaume-Uni, Allemagne", "k": ["amour", "musique", "contemplatif", "neons"], "mv": "independant-americain", "e": 8, "duree": 123, "av": [], "th": ["vampires", "musique underground", "éternité"], "fiab": "à vérifier"},
+  "how-to-have-sex-2023": {"p": "Trois amies anglaises de seize ans partent fêter la fin du lycée à Malia, en Crète : bars, piscines, soirées sans fin, et une nuit que Tara n'arrive pas à raconter.", "c": "Royaume-Uni, Grèce", "k": ["societe", "malaise", "enfance"], "mv": "auteur-europeen", "e": 8, "duree": 91, "av": ["violence sexuelle"], "th": ["vacances", "consentement", "amitié"], "fiab": "à vérifier"},
+  "spring-breakers-2012": {"p": "Quatre étudiantes braquent un restaurant pour partir en spring break en Floride ; entre fêtes, néons et prison, elles tombent sous l'influence d'Alien (James Franco), rappeur et dealer.", "c": "États-Unis", "k": ["neons", "couleurs", "malaise", "violence"], "mv": "independant-americain", "e": 7, "duree": 94, "av": ["violence explicite", "drogue"], "th": ["spring break", "braquage", "dérive"], "fiab": "à vérifier"},
+  "after-hours-1985": {"p": "Un informaticien new-yorkais (Griffin Dunne) part rejoindre une inconnue à SoHo et passe une nuit où tout tourne mal, des lofts d'artistes à un club punk.", "c": "États-Unis", "k": ["humour-absurde", "absurde", "paranoia"], "mv": "hollywood-contemporain", "e": 8, "duree": 97, "av": ["suicide"], "th": ["nuit", "SoHo", "malchance"], "fiab": "à vérifier"},
+  "les-nuits-fauves-1992": {"p": "Jean (Cyril Collard), caméraman bisexuel et séropositif, vit à toute vitesse entre une jeune fille de dix-sept ans (Romane Bohringer), un rugbyman et les nuits parisiennes.", "c": "France", "k": ["amour", "malaise", "societe"], "mv": "auteur-francais", "e": 7, "duree": 126, "av": ["violence sexuelle"], "th": ["sida", "désir", "nuit parisienne"], "fiab": "à vérifier"},
+  "babylon-2022": {"p": "Dans le Hollywood des années 1920, une starlette (Margot Robbie), une star du muet (Brad Pitt) et un jeune homme à tout faire traversent fêtes démesurées et passage au parlant.", "c": "États-Unis", "k": ["couleurs", "musique", "obsession", "humour-absurde"], "mv": "hollywood-contemporain", "e": 7, "duree": 189, "av": ["drogue", "violence explicite", "images choquantes"], "th": ["Hollywood", "excès", "cinéma muet"], "fiab": "à vérifier"},
+  "la-fievre-du-samedi-soir-1977": {"p": "À Brooklyn, Tony (John Travolta), vendeur dans une quincaillerie, ne vit que pour le samedi soir et la piste de danse du 2001 Odyssey ; une histoire plus sombre que sa réputation.", "c": "États-Unis", "k": ["danse", "musique", "retro", "societe"], "mv": "nouvel-hollywood", "e": 6, "duree": 118, "av": ["violence sexuelle", "suicide"], "th": ["disco", "Brooklyn", "jeunesse"], "fiab": "à vérifier"},
+  "boogie-nights-1997": {"p": "Dans la vallée de San Fernando, de 1977 à 1983, un jeune plongeur de boîte de nuit devient star du porno sous l'aile d'un réalisateur (Burt Reynolds) : fêtes au bord de la piscine, disco, puis cocaïne et chute.", "c": "États-Unis", "k": ["musique", "retro", "famille"], "mv": "independant-americain", "e": 8, "duree": 155, "av": ["drogue", "violence explicite"], "th": ["porno", "disco", "chute"], "fiab": "à vérifier"},
+  "les-derniers-jours-du-disco-1998": {"p": "Au début des années 1980, deux jeunes diplômées new-yorkaises (Chloë Sevigny, Kate Beckinsale) passent leurs nuits dans un club huppé de Manhattan, au moment où le disco s'éteint.", "c": "États-Unis", "k": ["comedie", "musique", "retro", "amour"], "mv": "independant-americain", "e": 6, "duree": 113, "av": [], "th": ["disco", "conversation", "jeunesse"], "fiab": "à vérifier"},
+  "studio-54-2018": {"p": "Documentaire sur le club new-yorkais ouvert en 1977 par Steve Rubell et Ian Schrager : les célébrités, la porte sélective, la fête permanente, puis la fraude fiscale et la prison.", "c": "États-Unis", "k": ["documentaire", "musique", "retro"], "mv": "doc-essai", "e": 7, "duree": 98, "av": ["drogue"], "th": ["club", "disco", "scandale"], "fiab": "à vérifier"},
+  "120-battements-par-minute-2017": {"p": "Au début des années 1990, les militants d'Act Up-Paris multiplient les actions contre l'indifférence face au sida ; Sean et Nathan s'aiment, entre réunions, manifestations et nuits en club.", "c": "France", "k": ["societe", "amour", "larmes", "injustice"], "mv": "auteur-francais", "e": 8, "duree": 143, "av": [], "th": ["sida", "militantisme", "club"], "fiab": "à vérifier"},
+  "kiki-2016": {"p": "Documentaire sur la scène ballroom new-yorkaise d'aujourd'hui : de jeunes Noirs et Latinos LGBT, souvent mis à la rue, s'entraînent au voguing et font vivre leurs « maisons ».", "c": "Suède, États-Unis", "k": ["documentaire", "danse", "societe"], "mv": "doc-observation", "e": 7, "duree": 94, "av": [], "th": ["voguing", "ballroom", "jeunesse queer"], "fiab": "à vérifier"},
+  "mektoub-my-love-canto-uno-2017": {"p": "L'été 1994 à Sète : Amin, apprenti scénariste revenu de Paris, observe ses cousins et les vacancières entre la plage, la ferme et la boîte de nuit, où le film s'attarde longuement.", "c": "France", "k": ["contemplatif", "amour", "danse"], "mv": "auteur-francais", "e": 6, "duree": 181, "av": [], "th": ["été", "désir", "plage"], "fiab": "à vérifier"},
+  "bande-de-filles-2014": {"p": "Marieme, seize ans, en banlieue parisienne, rejoint une bande de trois filles et devient Vic ; une nuit dans une chambre d'hôtel, elles dansent sur « Diamonds » de Rihanna.", "c": "France", "k": ["enfance", "societe", "danse"], "mv": "auteur-francais", "e": 7, "duree": 113, "av": ["violence explicite"], "th": ["banlieue", "bande", "émancipation"], "fiab": "à vérifier"},
+  "the-party-1968": {"p": "Un acteur indien maladroit (Peter Sellers), invité par erreur à une soirée chic d'Hollywood, provoque une catastrophe après l'autre, jusqu'à inonder la maison de mousse.", "c": "États-Unis", "k": ["comedie", "humour-absurde", "retro"], "mv": "hollywood-classique", "e": 7, "duree": 99, "av": [], "th": ["soirée", "gaffes", "Hollywood"], "fiab": "à vérifier"}
  },
  "familles": {
   "1917-2019": "30520",
@@ -2555,7 +2741,21 @@
   "cruising-1980": "14410",
   "strange-days-1995": "33310",
   "blade-1998": "32500",
-  "only-lovers-left-alive-2013": "52012"
+  "only-lovers-left-alive-2013": "52012",
+  "how-to-have-sex-2023": "13024",
+  "spring-breakers-2012": "52111",
+  "after-hours-1985": "23311",
+  "les-nuits-fauves-1992": "13024",
+  "babylon-2022": "42112",
+  "la-fievre-du-samedi-soir-1977": "31024",
+  "boogie-nights-1997": "31024",
+  "les-derniers-jours-du-disco-1998": "30025",
+  "studio-54-2018": "30052",
+  "120-battements-par-minute-2017": "12034",
+  "kiki-2016": "30052",
+  "mektoub-my-love-canto-uno-2017": "40015",
+  "bande-de-filles-2014": "21034",
+  "the-party-1968": "30016"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
