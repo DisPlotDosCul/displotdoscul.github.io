@@ -505,6 +505,266 @@
      "r": "Un employé effacé voit arriver son sosie parfait, qui lui vole tout : Dostoïevski dans un bureau sans fenêtres."
     }
    ]
+  },
+  "s37-politique": {
+   "famille": "themes",
+   "ordre": 1.369,
+   "titre": "Politique",
+   "sous_titre": "Des films sur le pouvoir, la haine et la résistance : dictatures, surveillance, racisme, extrême droite et lutte des classes.",
+   "films": [
+    {
+     "id": "mississippi-burning-1988",
+     "t": "Mississippi Burning",
+     "y": 1988,
+     "d": "Alan Parker",
+     "r": "Deux agents du FBI face au Ku Klux Klan et au silence d'une ville du Mississippi en 1964, d'après un vrai triple meurtre."
+    },
+    {
+     "id": "american-history-x-1998",
+     "t": "American History X",
+     "y": 1998,
+     "d": "Tony Kaye",
+     "r": "Un ancien néonazi sorti de prison veut empêcher son petit frère de suivre le même chemin."
+    },
+    {
+     "id": "la-ligne-verte-1999",
+     "t": "La Ligne verte",
+     "y": 1999,
+     "d": "Frank Darabont",
+     "r": "Dans le Sud des années 1930, un homme noir condamné à mort pour un crime qu'il n'a pas commis."
+    },
+    {
+     "id": "v-pour-vendetta-2005",
+     "t": "V pour Vendetta",
+     "y": 2005,
+     "d": "James McTeigue",
+     "r": "Une Angleterre devenue dictature et un homme masqué qui pousse le peuple à se soulever ; le masque est devenu un symbole de contestation."
+    },
+    {
+     "id": "la-vie-des-autres-2006",
+     "t": "La Vie des autres",
+     "y": 2006,
+     "d": "Florian Henckel von Donnersmarck",
+     "r": "La surveillance de la Stasi à Berlin-Est : un espion finit par protéger ceux qu'il écoute."
+    },
+    {
+     "id": "this-is-england-2006",
+     "t": "This Is England",
+     "y": 2006,
+     "d": "Shane Meadows",
+     "r": "L'Angleterre de Thatcher en 1983 : un garçon trouve une famille chez des skinheads, avant que le racisme ne s'invite."
+    },
+    {
+     "id": "la-vague-2008",
+     "t": "La Vague",
+     "y": 2008,
+     "d": "Dennis Gansel",
+     "r": "Un professeur montre à ses élèves comment naît une dictature, et l'expérience lui échappe."
+    },
+    {
+     "id": "parasite-2019",
+     "t": "Parasite",
+     "y": 2019,
+     "d": "Bong Joon-ho",
+     "r": "La lutte des classes dans une seule maison : les riches en haut, les pauvres au sous-sol."
+    },
+    {
+     "id": "la-zone-d-interet-2023",
+     "t": "La Zone d'intérêt",
+     "y": 2023,
+     "d": "Jonathan Glazer",
+     "r": "La vie de famille tranquille du commandant d'Auschwitz, juste derrière le mur du camp."
+    },
+    {
+     "id": "l-histoire-de-souleymane-2024",
+     "t": "L'Histoire de Souleymane",
+     "y": 2024,
+     "d": "Boris Lojkine",
+     "r": "Deux jours dans la vie d'un livreur sans papiers à Paris, avant son entretien de demande d'asile."
+    }
+   ]
+  },
+  "s38-rave": {
+   "famille": "themes",
+   "ordre": 1.0505,
+   "titre": "Rave",
+   "sous_titre": "La culture de la musique électronique, des free parties aux clubs techno, et les ambiances sombres des boîtes de nuit.",
+   "parties": [
+    {
+     "titre": "Culture électronique",
+     "aide": "Free parties, raves, DJ et pionniers",
+     "ids": [
+      "sirat-2025",
+      "beats-2019",
+      "everybody-in-the-place-2019",
+      "human-traffic-1999",
+      "24-hour-party-people-2002",
+      "eden-2014",
+      "berlin-calling-2008",
+      "victoria-2015",
+      "climax-2018",
+      "high-tech-soul-2006",
+      "sisters-with-transistors-2020"
+     ]
+    },
+    {
+     "titre": "Ambiances sombres en club",
+     "aide": "Néons, nuit et malaise",
+     "ids": [
+      "liquid-sky-1982",
+      "les-predateurs-1983",
+      "cruising-1980",
+      "strange-days-1995",
+      "blade-1998",
+      "only-lovers-left-alive-2013",
+      "enter-the-void-2009",
+      "irreversible-2002",
+      "beau-travail-1999"
+     ]
+    }
+   ],
+   "films": [
+    {
+     "id": "sirat-2025",
+     "t": "Sirāt",
+     "y": 2025,
+     "d": "Oliver Laxe",
+     "r": "Les free parties du désert marocain, les sound systems et les teufeurs, dans une quête qui vire au vertige."
+    },
+    {
+     "id": "beats-2019",
+     "t": "Beats",
+     "y": 2019,
+     "d": "Brian Welsh",
+     "r": "La dernière rave avant la loi qui interdit la « musique répétitive », en noir et blanc."
+    },
+    {
+     "id": "everybody-in-the-place-2019",
+     "t": "Everybody in the Place",
+     "y": 2019,
+     "d": "Jeremy Deller",
+     "r": "L'acid house et les free parties anglaises racontées comme une histoire politique."
+    },
+    {
+     "id": "human-traffic-1999",
+     "t": "Human Traffic",
+     "y": 1999,
+     "d": "Justin Kerrigan",
+     "r": "Le film culte de la génération rave : un week-end à Cardiff, de la montée à la descente."
+    },
+    {
+     "id": "24-hour-party-people-2002",
+     "t": "24 Hour Party People",
+     "y": 2002,
+     "d": "Michael Winterbottom",
+     "r": "Manchester, l'Haçienda et l'arrivée de l'acid house."
+    },
+    {
+     "id": "eden-2014",
+     "t": "Eden",
+     "y": 2014,
+     "d": "Mia Hansen-Løve",
+     "r": "Vingt ans de French Touch vus de l'intérieur, par un DJ de house garage."
+    },
+    {
+     "id": "berlin-calling-2008",
+     "t": "Berlin Calling",
+     "y": 2008,
+     "d": "Hannes Stöhr",
+     "r": "Le Berlin techno, avec un vrai DJ, Paul Kalkbrenner, dans le rôle principal."
+    },
+    {
+     "id": "victoria-2015",
+     "t": "Victoria",
+     "y": 2015,
+     "d": "Sebastian Schipper",
+     "r": "Tout commence à la sortie d'un club techno de Berlin, à quatre heures du matin."
+    },
+    {
+     "id": "climax-2018",
+     "t": "Climax",
+     "y": 2018,
+     "d": "Gaspar Noé",
+     "r": "Une fête de danseurs sur de la house des années 90, qui tourne au cauchemar."
+    },
+    {
+     "id": "high-tech-soul-2006",
+     "t": "High Tech Soul",
+     "y": 2006,
+     "d": "Gary Bredow",
+     "r": "Documentaire sur la naissance de la techno à Detroit."
+    },
+    {
+     "id": "sisters-with-transistors-2020",
+     "t": "Sisters with Transistors",
+     "y": 2020,
+     "d": "Lisa Rovner",
+     "r": "Documentaire sur les femmes pionnières de la musique électronique."
+    },
+    {
+     "id": "liquid-sky-1982",
+     "t": "Liquid Sky",
+     "y": 1982,
+     "d": "Slava Tsukerman",
+     "r": "Film culte et très bizarre : les clubs new wave de New York et des extraterrestres attirés par l'héroïne."
+    },
+    {
+     "id": "les-predateurs-1983",
+     "t": "Les Prédateurs",
+     "y": 1983,
+     "d": "Tony Scott",
+     "r": "Deneuve et Bowie en vampires, avec une ouverture dans un club gothique où joue Bauhaus."
+    },
+    {
+     "id": "cruising-1980",
+     "t": "Cruising",
+     "y": 1980,
+     "d": "William Friedkin",
+     "r": "Al Pacino infiltré dans les clubs cuir new-yorkais : moite, inquiétant, controversé."
+    },
+    {
+     "id": "strange-days-1995",
+     "t": "Strange Days",
+     "y": 1995,
+     "d": "Kathryn Bigelow",
+     "r": "Los Angeles à la veille de l'an 2000 : clubs, souvenirs volés et paranoïa."
+    },
+    {
+     "id": "blade-1998",
+     "t": "Blade",
+     "y": 1998,
+     "d": "Stephen Norrington",
+     "r": "Pour sa scène d'ouverture mythique : une rave de vampires où il pleut du sang."
+    },
+    {
+     "id": "only-lovers-left-alive-2013",
+     "t": "Only Lovers Left Alive",
+     "y": 2013,
+     "d": "Jim Jarmusch",
+     "r": "Des vampires musiciens dans un Detroit désert et un club de Tanger."
+    },
+    {
+     "id": "enter-the-void-2009",
+     "t": "Enter the Void",
+     "y": 2009,
+     "d": "Gaspar Noé",
+     "r": "Le club The Void, les néons et la drogue à Tokyo."
+    },
+    {
+     "id": "irreversible-2002",
+     "t": "Irréversible",
+     "y": 2002,
+     "d": "Gaspar Noé",
+     "r": "La descente dans le club Le Rectum : la scène de club la plus noire du cinéma. Très dur."
+    },
+    {
+     "id": "beau-travail-1999",
+     "t": "Beau Travail",
+     "y": 1999,
+     "d": "Claire Denis",
+     "r": "Pour sa danse finale, seul en boîte de nuit, sur « The Rhythm of the Night »."
+    }
+   ]
   }
  },
  "fiches": {
@@ -1380,7 +1640,27 @@
   "the-bothersome-man-2006": {"p": "Andreas arrive dans une ville sans savoir comment. On lui donne un emploi, un appartement, une compagne ; tout fonctionne, mais la nourriture n'a aucun goût, l'alcool ne fait pas d'effet et personne ne ressent rien. Même son suicide échoue. Il cherche une fissure vers un autre monde.", "c": "Norvège", "k": ["humour-absurde", "malaise", "societe"], "mv": "auteur-europeen", "e": 8, "duree": 95, "av": ["suicide", "images choquantes"], "th": ["conformisme", "au-delà", "désir"], "fiab": "à vérifier"},
   "swiss-army-man-2016": {"p": "Hank, naufragé prêt à se pendre, voit s'échouer le cadavre flatulent de Manny. Le corps devient jet-ski, réserve d'eau, boussole et peu à peu ami à qui Hank réapprend la vie. À la fin, on découvre que la forêt était derrière la maison de la femme qu'il observait en secret.", "c": "États-Unis", "k": ["humour-absurde", "marginaux", "obsession"], "mv": "independant-americain", "e": 6, "duree": 97, "av": ["suicide"], "th": ["solitude", "honte", "amitié"], "fiab": "à vérifier"},
   "the-double-2013": {"p": "Simon James travaille depuis sept ans dans une administration rétrofuturiste sombre, où personne ne le remarque. Arrive James Simon, son double exact, charmeur et sûr de lui, qui lui prend son travail et la femme qu'il aime. D'après Le Double de Dostoïevski.", "c": "Royaume-Uni", "k": ["paranoia", "malaise", "humour-absurde"], "mv": "auteur-europeen", "e": 8, "duree": 93, "av": ["suicide"], "th": ["double", "invisibilité", "identité"], "fiab": "à vérifier"},
-  "lobster-2015": {"duree": 118, "av": ["violence explicite", "automutilation", "suicide"], "th": ["couple", "conformisme", "solitude"], "fiab": "à vérifier"}
+  "lobster-2015": {"duree": 118, "av": ["violence explicite", "automutilation", "suicide"], "th": ["couple", "conformisme", "solitude"], "fiab": "à vérifier"},
+  "mississippi-burning-1988": {"p": "En 1964, trois militants des droits civiques disparaissent dans le Mississippi ; deux agents du FBI (Gene Hackman, Willem Dafoe) enquêtent face au Ku Klux Klan et au silence de toute une ville. D'après un vrai triple meurtre.", "c": "États-Unis", "k": ["suspense", "injustice", "histoire-vraie", "societe"], "mv": "hollywood-contemporain", "e": 7, "duree": 128, "av": ["violence explicite"], "th": ["racisme", "droits civiques", "enquête"], "fiab": "à vérifier"},
+  "american-history-x-1998": {"p": "À Venice Beach, Derek (Edward Norton), ancien néonazi, sort de prison et veut empêcher son petit frère Danny (Edward Furlong) de suivre le même chemin ; le passé revient en noir et blanc.", "c": "États-Unis", "k": ["violence", "societe", "famille", "noir-et-blanc"], "mv": "hollywood-contemporain", "e": 7, "duree": 119, "av": ["violence explicite", "violence sexuelle", "images choquantes"], "th": ["extrême droite", "fraternité", "rédemption"], "fiab": "à vérifier"},
+  "this-is-england-2006": {"p": "En 1983, Shaun, douze ans, dont le père est mort aux Malouines, est adopté par une bande de skinheads joyeux, jusqu'au retour de Combo, sorti de prison avec des idées nationalistes et racistes.", "c": "Royaume-Uni", "k": ["enfance", "societe", "violence", "retro"], "mv": "realisme-social-britannique", "e": 7, "duree": 101, "av": ["violence explicite", "drogue"], "th": ["skinheads", "nationalisme", "années Thatcher"], "fiab": "à vérifier"},
+  "la-vague-2008": {"p": "Pendant une semaine de cours sur l'autocratie, un professeur de lycée (Jürgen Vogel) crée avec ses élèves un mouvement, « La Vague », avec chemise blanche et salut ; l'expérience lui échappe. Inspiré d'une expérience réelle menée en Californie en 1967.", "c": "Allemagne", "k": ["societe", "malaise", "enfance"], "mv": "auteur-europeen", "e": 7, "duree": 107, "av": ["violence explicite", "suicide"], "th": ["autocratie", "lycée", "embrigadement"], "fiab": "à vérifier"},
+  "l-histoire-de-souleymane-2024": {"p": "À Paris, Souleymane (Abou Sangaré), jeune Guinéen livreur à vélo, pédale entre les commandes pendant les deux jours qui précèdent son entretien de demande d'asile, en répétant l'histoire qu'il doit raconter.", "c": "France", "k": ["societe", "injustice", "suspense"], "mv": "auteur-francais", "e": 7, "duree": 93, "av": [], "th": ["exil", "demande d'asile", "livreurs"], "fiab": "à vérifier"},
+  "sirat-2025": {"p": "Dans le sud du Maroc, un père (Sergi López) et son jeune fils cherchent sa fille aînée, disparue depuis des mois, dans les free parties du désert ; ils suivent une bande de teufeurs et leur sound system vers une autre fête.", "c": "Espagne, France", "k": ["musique", "contemplatif", "malaise", "marginaux"], "mv": "auteur-europeen", "e": 8, "duree": 115, "av": ["images choquantes", "drogue"], "th": ["free party", "désert", "quête"], "fiab": "à vérifier"},
+  "beats-2019": {"p": "En Écosse en 1994, alors qu'une loi vient d'interdire les fêtes sur une « succession de rythmes répétitifs », deux amis d'enfance que tout va séparer filent à une dernière rave illégale. En noir et blanc, la couleur arrive avec la fête.", "c": "Royaume-Uni", "k": ["musique", "noir-et-blanc", "societe", "retro"], "mv": "realisme-social-britannique", "e": 8, "duree": 101, "av": ["drogue"], "th": ["rave", "amitié", "loi"], "fiab": "à vérifier"},
+  "human-traffic-1999": {"p": "À Cardiff, cinq amis attendent toute la semaine le week-end : boulots détestés, club, pilules, after jusqu'au matin, et la descente du lundi.", "c": "Royaume-Uni", "k": ["musique", "comedie", "danse"], "mv": "auteur-europeen", "e": 7, "duree": 99, "av": ["drogue"], "th": ["clubbing", "jeunesse", "week-end"], "fiab": "à vérifier"},
+  "24-hour-party-people-2002": {"p": "Tony Wilson (Steve Coogan), présentateur télé de Manchester, fonde le label Factory et le club l'Haçienda, de Joy Division aux Happy Mondays et à l'arrivée de l'acid house ; il commente lui-même face caméra.", "c": "Royaume-Uni", "k": ["musique", "histoire-vraie", "humour-absurde"], "mv": "auteur-europeen", "e": 7, "duree": 117, "av": ["drogue"], "th": ["Haçienda", "label", "acid house"], "fiab": "à vérifier"},
+  "eden-2014": {"p": "De 1992 à 2013, Paul, DJ de house garage, traverse la naissance de la French Touch à Paris, les soirées, les dettes et les amours, pendant que ses amis Daft Punk deviennent des stars.", "c": "France", "k": ["musique", "danse", "contemplatif"], "mv": "auteur-francais", "e": 7, "duree": 131, "av": ["drogue", "suicide"], "th": ["French Touch", "DJ", "temps"], "fiab": "à vérifier"},
+  "berlin-calling-2008": {"p": "Ickarus, DJ et producteur de techno berlinois joué par le musicien Paul Kalkbrenner, finit en hôpital psychiatrique après une soirée de trop, à la veille de la sortie de son album.", "c": "Allemagne", "k": ["musique", "folie", "neons"], "mv": "auteur-europeen", "e": 6, "duree": 105, "av": ["drogue"], "th": ["techno", "Berlin", "addiction"], "fiab": "à vérifier"},
+  "everybody-in-the-place-2019": {"p": "L'artiste Jeremy Deller raconte l'acid house et les raves anglaises de 1984 à 1992 à une classe de lycéens londoniens, avec des archives : grèves des mineurs, entrepôts, champs et police.", "c": "Royaume-Uni", "k": ["documentaire", "musique", "societe"], "mv": "doc-essai", "e": 8, "duree": 61, "av": [], "th": ["acid house", "free party", "histoire sociale"], "fiab": "à vérifier"},
+  "high-tech-soul-2006": {"p": "Documentaire sur la naissance de la techno à Detroit, avec Juan Atkins, Derrick May et Kevin Saunderson, dans une ville industrielle en ruine.", "c": "États-Unis", "k": ["documentaire", "musique", "societe"], "mv": "doc-observation", "e": 7, "duree": 64, "av": [], "th": ["techno", "Detroit", "pionniers"], "fiab": "à vérifier"},
+  "sisters-with-transistors-2020": {"p": "Documentaire sur les femmes pionnières de la musique électronique, de Clara Rockmore et son thérémine à Delia Derbyshire, Daphne Oram, Suzanne Ciani et Laurie Spiegel, raconté par Laurie Anderson.", "c": "Royaume-Uni", "k": ["documentaire", "musique", "heroines"], "mv": "doc-essai", "e": 8, "duree": 86, "av": [], "th": ["synthétiseurs", "pionnières", "machines"], "fiab": "à vérifier"},
+  "liquid-sky-1982": {"p": "À New York, de minuscules extraterrestres se posent sur le toit d'une mannequin androgyne de la scène new wave, pour se nourrir de l'héroïne et du plaisir de ses amants. Musique électronique faite pour le film.", "c": "États-Unis", "k": ["neons", "sf", "malaise", "musique"], "mv": "midnight-movies", "e": 7, "duree": 112, "av": ["drogue", "violence sexuelle"], "th": ["new wave", "club", "androgynie"], "fiab": "à vérifier"},
+  "les-predateurs-1983": {"p": "À New York, une vampire (Catherine Deneuve) et son amant (David Bowie), qui vieillit d'un coup, chassent dans un club gothique où joue Bauhaus, puis elle séduit une chercheuse (Susan Sarandon).", "c": "Royaume-Uni, États-Unis", "k": ["horreur", "neons", "amour", "musique"], "mv": "hollywood-contemporain", "e": 7, "duree": 97, "av": ["violence explicite"], "th": ["vampires", "club gothique", "vieillissement"], "fiab": "à vérifier"},
+  "cruising-1980": {"p": "À New York, un jeune policier (Al Pacino) s'infiltre dans les clubs cuir gays pour piéger un tueur, et perd peu à peu ses repères ; un film controversé à sa sortie.", "c": "États-Unis", "k": ["suspense", "malaise", "neons", "doubles"], "mv": "nouvel-hollywood", "e": 7, "duree": 102, "av": ["violence explicite"], "th": ["infiltration", "clubs cuir", "identité"], "fiab": "à vérifier"},
+  "strange-days-1995": {"p": "À Los Angeles, les deux derniers jours de 1999 : un ancien policier (Ralph Fiennes) vend des souvenirs enregistrés qu'on revit par un casque, et tombe sur l'enregistrement d'un meurtre ; clubs, émeutes et réveillon.", "c": "États-Unis", "k": ["sf", "suspense", "paranoia", "neons"], "mv": "neo-noir", "e": 7, "duree": 145, "av": ["violence explicite", "violence sexuelle"], "th": ["an 2000", "souvenirs", "police"], "fiab": "à vérifier"},
+  "blade-1998": {"p": "Blade (Wesley Snipes), mi-homme mi-vampire, chasse les vampires ; le film s'ouvre sur une rave techno dans un abattoir où les arroseurs se mettent à cracher du sang.", "c": "États-Unis", "k": ["horreur", "violence", "musique", "neons"], "mv": "hollywood-contemporain", "e": 6, "duree": 120, "av": ["violence explicite"], "th": ["vampires", "techno", "chasseur"], "fiab": "à vérifier"},
+  "only-lovers-left-alive-2013": {"p": "Adam (Tom Hiddleston), vampire musicien reclus dans un Detroit désert, et Eve (Tilda Swinton), restée à Tanger, se retrouvent après des siècles d'amour ; guitares, nuits et un club de Tanger.", "c": "Royaume-Uni, Allemagne", "k": ["amour", "musique", "contemplatif", "neons"], "mv": "independant-americain", "e": 8, "duree": 123, "av": [], "th": ["vampires", "musique underground", "éternité"], "fiab": "à vérifier"}
  },
  "familles": {
   "1917-2019": "30520",
@@ -2255,7 +2535,27 @@
   "the-bothersome-man-2006": "23050",
   "swiss-army-man-2016": "30025",
   "the-double-2013": "33031",
-  "lobster-2015": "22051"
+  "lobster-2015": "22051",
+  "mississippi-burning-1988": "03331",
+  "american-history-x-1998": "04231",
+  "this-is-england-2006": "12133",
+  "la-vague-2008": "02341",
+  "l-histoire-de-souleymane-2024": "11341",
+  "sirat-2025": "43210",
+  "beats-2019": "30124",
+  "human-traffic-1999": "20116",
+  "24-hour-party-people-2002": "31033",
+  "eden-2014": "32023",
+  "berlin-calling-2008": "23113",
+  "everybody-in-the-place-2019": "30061",
+  "high-tech-soul-2006": "30061",
+  "sisters-with-transistors-2020": "30061",
+  "liquid-sky-1982": "53110",
+  "les-predateurs-1983": "53101",
+  "cruising-1980": "14410",
+  "strange-days-1995": "33310",
+  "blade-1998": "32500",
+  "only-lovers-left-alive-2013": "52012"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
