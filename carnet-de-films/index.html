@@ -4803,8 +4803,19 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     setStatus("Enregistrement…");
     cqueue = cqueue.then(function(){ return catCol.doc(HOST).set(raw); }).then(function(){
       setStatus("« " + t + " » est dans la base.");
-    }, function(){ setStatus("Pas enregistré, réessaie dans un instant.", true); });
+    }, function(e){
+      // Écriture refusée dans le catalogue : le film est gardé dans les propositions pour ne pas le perdre,
+      // et le code d'erreur s'affiche pour savoir d'où vient le refus (souvent des règles Firebase pas à jour).
+      var code = errCode(e);
+      if (propCol && CC.me) {
+        return propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:"", ajout:new Date().toISOString() }).then(function(){
+          setStatus("« " + t + " » n'a pas pu entrer dans la base (" + code + ") : il est gardé dans les propositions de la boîte à idées.", true);
+        }, function(e2){ setStatus("Pas enregistré (" + errCode(e2) + "), réessaie dans un instant.", true); });
+      }
+      setStatus("Pas enregistré (" + code + "), réessaie dans un instant.", true);
+    });
   }
+  function errCode(e){ return String((e && (e.code || e.message)) || "erreur inconnue").slice(0, 60); }
   // Une liste de la page : son HTML, son nombre de films, et si elle s'affiche avec les filtres du moment.
   var FRZ = { key:"", l:{}, n:{} };
   function frzKey(){ return [query || "", JSON.stringify(SHOW || null), filter, CC && CC.view || ""].join("|"); }
