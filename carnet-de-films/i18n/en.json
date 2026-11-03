@@ -991,7 +991,10 @@
   "Le carnet de films partagé : notes, listes et conseils entre amis.": "The shared film notebook: ratings, lists and recommendations among friends.",
   "vus": "seen",
   "vu": "seen",
-  "Changer de langue": "Change language"
+  "Changer de langue": "Change language",
+  "Retour": "Back",
+  "Mes meilleures suggestions": "My best suggestions",
+  "Tous les films que tu n'as pas encore vus, du 10/10 estimé au plus bas.": "All the films you haven't seen yet, from the highest estimated score down."
  },
  "modeles": {
   "{0} / {1} répondus": "{0} / {1} answered",
