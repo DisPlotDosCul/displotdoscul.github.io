@@ -1034,6 +1034,14 @@
      "r": "L'un des plus grands films des années 90, par le réalisateur de Yi Yi : quatre heures, une jeunesse taïwanaise et un fait divers."
     }
    ]
+  },
+  "s19-meilleures": {
+   "auto": "meilleures",
+   "famille": "carnet",
+   "ordre": -2.75,
+   "titre": "Mes meilleures suggestions",
+   "sous_titre": "Tous les films que tu n'as pas encore vus, du 10/10 estimé au plus bas.",
+   "films": []
   }
  },
  "fiches": {

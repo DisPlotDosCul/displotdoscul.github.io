@@ -467,11 +467,16 @@ a.shl{text-decoration:none;display:inline-block;}
 .envbar{top:auto;bottom:calc(244px + env(safe-area-inset-bottom,0px));}
 .nt-btn{top:auto;bottom:calc(300px + env(safe-area-inset-bottom,0px));}
 html.qon #main{min-height:calc(100vh - 60px);align-content:start;}
-html.navon .wrap{padding-bottom:64px;}
+html.navon .wrap{padding-bottom:78px;}
 .navb{position:fixed;left:10px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;gap:8px;}
 .navb[hidden]{display:none;}
-.navb .totop{position:static;width:48px;padding:0;font-size:20px;}
-.navb .totop:disabled{opacity:.35;cursor:default;}
+/* Flèches « Retour » et « Suivant » : bien visibles (couleurs inversées, contour doré et halo), pour revenir en arrière dès qu'on se sent perdu. */
+.navb .totop{position:static;height:50px;min-width:50px;padding:0 14px;font:700 16px/1 var(--font);display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--ink);color:var(--paper);border:2.5px solid var(--k-b-C8963A);box-shadow:0 0 0 4px rgba(227,161,47,.22),0 4px 16px rgba(20,12,24,.42);}
+.navb .totop span{font-size:21px;line-height:1;}
+.navb #navFwd{width:50px;padding:0;font-size:21px;}
+.navb .totop:disabled{display:none;}
+.navb .totop:active{transform:scale(.96);}
 html.sky-on .navb,html.drift-on .navb{display:none;}
 .gpill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top,0px));z-index:9;white-space:nowrap;height:44px;border-radius:99px;padding:0 16px;
   border:2px solid var(--k-b-FFFFFF);background:var(--k-s-475569);color:var(--k-s-FFFFFF);font:600 14px/1 var(--font);cursor:pointer;box-shadow:0 3px 14px rgba(44,34,48,.3);}
@@ -864,12 +869,12 @@ html.th-neon .aa-sw::after,html.th-crep .aa-sw::after{background:radial-gradient
 html.th-neon .aa-sw[aria-checked="true"]::after,html.th-crep .aa-sw[aria-checked="true"]::after{background:radial-gradient(circle at 31px 50%,#FFFFFF 0 9px,transparent 10px),#5E9E57;}
 html.th-neon .amb-a,html.th-crep .amb-a{background:#FFD27A;color:#2A1A00;}
 /* Crépuscule : un ciel de soleil couchant derrière le titre, des ampoules dorées. */
-html.th-crep:not(.aff-calme) body{background:radial-gradient(150% 72% at 50% -10%,rgba(255,154,86,.58) 0%,rgba(236,104,118,.36) 34%,rgba(150,70,140,.16) 60%,rgba(150,70,140,0) 80%) 50% 0/100% 820px no-repeat,linear-gradient(180deg,#5E2C52 0,var(--bg) 620px) 50% 0/100% 620px no-repeat,var(--bg);}
+html.th-crep:not(.aff-calme) body{background:radial-gradient(150% 72% at 50% -10%,rgba(250,170,92,.44) 0%,rgba(196,128,104,.22) 34%,rgba(96,88,140,.12) 60%,rgba(96,88,140,0) 80%) 50% 0/100% 820px no-repeat,linear-gradient(180deg,#3C3550 0,var(--bg) 620px) 50% 0/100% 620px no-repeat,var(--bg);}
 html.th-crep:not(.aff-calme) h1{color:#FFE1B4;text-shadow:0 1px 0 rgba(70,18,40,.45),0 0 22px rgba(255,170,100,.55);}
 html.th-crep:not(.aff-calme) header.top::after{background:radial-gradient(circle,#FFC67E 0 2.3px,transparent 2.8px) 0 50%/15px 8px space no-repeat;filter:drop-shadow(0 0 3px rgba(255,186,110,.95));}
 html.th-crep:not(.aff-calme) .hint{color:#FFD7AE;}
-html.th-crep:not(.aff-calme) .mini{box-shadow:0 2px 10px rgba(40,6,30,.35);}
-html.th-crep:not(.aff-calme) .panel{box-shadow:0 4px 22px rgba(40,6,30,.35);}
+html.th-crep:not(.aff-calme) .mini{box-shadow:0 2px 10px rgba(18,14,32,.38);}
+html.th-crep:not(.aff-calme) .panel{box-shadow:0 4px 22px rgba(18,14,32,.38);}
 html.th-crep.aff-calme h1{color:#FFE1B4;}
 /* Néon : nuit noire, enseignes lumineuses (rien ne clignote). */
 html.th-neon:not(.aff-calme) body{background:radial-gradient(130% 70% at 50% -12%,rgba(150,70,255,.32),rgba(150,70,255,0) 62%) 50% 0/100% 760px no-repeat,radial-gradient(90% 55% at 105% 55%,rgba(255,45,170,.10),rgba(255,45,170,0) 70%) 50% 0/100% 1100px no-repeat,var(--bg);}
@@ -889,7 +894,7 @@ html.th-neon:not(.aff-calme) .nuitb,html.th-neon:not(.aff-calme) .dice{box-shado
 html.th-neon:not(.aff-calme) .seg button[aria-pressed="true"]{text-shadow:0 0 8px currentColor;}
 html.th-neon:not(.aff-calme) .minis.cats .mini,html.th-crep:not(.aff-calme) .minis.cats .mini{box-shadow:none;}
 html.th-neon:not(.aff-calme) .minis.cats .mini .sq{box-shadow:0 0 14px -5px var(--fc),inset 0 0 14px -9px var(--fc);}
-html.th-crep:not(.aff-calme) .minis.cats .mini .sq{box-shadow:0 2px 10px rgba(40,6,30,.35);}
+html.th-crep:not(.aff-calme) .minis.cats .mini .sq{box-shadow:0 2px 10px rgba(18,14,32,.38);}
 html.th-neon:not(.aff-calme) .idb{box-shadow:0 0 16px -6px var(--fc);}
 html.th-neon.aff-calme h1{color:#F3E6FF;}
 
@@ -1346,7 +1351,8 @@ html.sky-on #rsheet{z-index:50;}
     // nouvelle clarté = a − b × clarté (entre lo et hi) ; gris et beiges du papier : teinte hn (fonds, textes), saturation cn ;
     // couleurs vives : saturation × cs ; bordures colorées : au moins bl de clarté, saturation × bs.
     neon:{ a:1.282, b:1.16, lo:0.07, hi:0.97, hn:[286, 286], cn:[0.014, 0.7, 0.045], cs:1.18, bl:0.7, bs:1.45 },
-    crep:{ a:1.238, b:0.945, lo:0.2, hi:0.96, hn:[345, 62], cn:[0.02, 0.8, 0.06], cs:1.08, bl:0.66, bs:1.25 }
+    // Crépuscule : gris prune et ardoise pour les fonds (teinte 292, peu saturée), crème ambrée pour les textes clairs.
+    crep:{ a:1.238, b:0.945, lo:0.2, hi:0.96, hn:[292, 70], cn:[0.014, 0.6, 0.04], cs:1.0, bl:0.66, bs:1.15 }
   };
   function hexRgb(c){
     c = String(c).trim();
@@ -1401,7 +1407,7 @@ html.sky-on #rsheet{z-index:50;}
   // Couleurs de la feuille de style (remplies à la construction de la page) : [variable, couleur du jour, contexte : s fond/texte, b bordure].
   var TH_COLS = /*TH*/[["k-b-0E7490","#0E7490","b"],["k-b-2C2230","#2C2230","b"],["k-b-2C6660","#2C6660","b"],["k-b-5FA36B","#5FA36B","b"],["k-b-5FA7B6","#5FA7B6","b"],["k-b-714CA6","#714CA6","b"],["k-b-7DBBC9","#7DBBC9","b"],["k-b-8C7AA0","#8C7AA0","b"],["k-b-8FA07E","#8FA07E","b"],["k-b-8FC3BE","#8FC3BE","b"],["k-b-9CCAD3","#9CCAD3","b"],["k-b-B9A3D9","#B9A3D9","b"],["k-b-C77A2E","#C77A2E","b"],["k-b-C8963A","#C8963A","b"],["k-b-E2B98A","#E2B98A","b"],["k-b-E2C27A","#E2C27A","b"],["k-b-E7A867","#E7A867","b"],["k-b-E8C96A","#E8C96A","b"],["k-b-FFFFFF","#FFFFFF","b"],["k-s-000000","#000000","s"],["k-s-0B4F5E","#0B4F5E","s"],["k-s-0E7490","#0E7490","s"],["k-s-1F5C2E","#1F5C2E","s"],["k-s-1F5C45","#1F5C45","s"],["k-s-2C2230","#2C2230","s"],["k-s-2C6660","#2C6660","s"],["k-s-2E2219","#2E2219","s"],["k-s-2E7A5E","#2E7A5E","s"],["k-s-2F3B25","#2F3B25","s"],["k-s-2F4F7A","#2F4F7A","s"],["k-s-3A2A00","#3A2A00","s"],["k-s-44679A","#44679A","s"],["k-s-462E69","#462E69","s"],["k-s-475569","#475569","s"],["k-s-4A3300","#4A3300","s"],["k-s-4A3B2B","#4A3B2B","s"],["k-s-4A3C00","#4A3C00","s"],["k-s-4F4459","#4F4459","s"],["k-s-5B3C86","#5B3C86","s"],["k-s-5E4D3A","#5E4D3A","s"],["k-s-5E7F4E","#5E7F4E","s"],["k-s-5F5260","#5F5260","s"],["k-s-6A7A5A","#6A7A5A","s"],["k-s-6B3A0E","#6B3A0E","s"],["k-s-6B5A46","#6B5A46","s"],["k-s-6B5E76","#6B5E76","s"],["k-s-714CA6","#714CA6","s"],["k-s-7A1F2B","#7A1F2B","s"],["k-s-7A4A1E","#7A4A1E","s"],["k-s-8A1F33","#8A1F33","s"],["k-s-8A4A12","#8A4A12","s"],["k-s-9A3B27","#9A3B27","s"],["k-s-A3283F","#A3283F","s"],["k-s-C2344E","#C2344E","s"],["k-s-CBE7EC","#CBE7EC","s"],["k-s-CDB48A","#CDB48A","s"],["k-s-CDBFA6","#CDBFA6","s"],["k-s-CFE8DC","#CFE8DC","s"],["k-s-CFEBDD","#CFEBDD","s"],["k-s-D5ECEA","#D5ECEA","s"],["k-s-D6E2F4","#D6E2F4","s"],["k-s-D7EFD9","#D7EFD9","s"],["k-s-D8E4F3","#D8E4F3","s"],["k-s-D9EEF2","#D9EEF2","s"],["k-s-E0CDA9","#E0CDA9","s"],["k-s-E2A93B","#E2A93B","s"],["k-s-E2E8DA","#E2E8DA","s"],["k-s-E3A12F","#E3A12F","s"],["k-s-E3F1F3","#E3F1F3","s"],["k-s-E4D6F2","#E4D6F2","s"],["k-s-E59A86","#E59A86","s"],["k-s-E7E0EC","#E7E0EC","s"],["k-s-E8D8D2","#E8D8D2","s"],["k-s-E8E1EE","#E8E1EE","s"],["k-s-EAF5F6","#EAF5F6","s"],["k-s-EDE5FF","#EDE5FF","s"],["k-s-EEF2E8","#EEF2E8","s"],["k-s-F1E4C9","#F1E4C9","s"],["k-s-F3ECE8","#F3ECE8","s"],["k-s-F5E2A8","#F5E2A8","s"],["k-s-F5F0E2","#F5F0E2","s"],["k-s-F6D27A","#F6D27A","s"],["k-s-F8D2C6","#F8D2C6","s"],["k-s-F8D6DC","#F8D6DC","s"],["k-s-F9E3A8","#F9E3A8","s"],["k-s-F9EAB1","#F9EAB1","s"],["k-s-FBDDB8","#FBDDB8","s"],["k-s-FBEFD2","#FBEFD2","s"],["k-s-FBF3E3","#FBF3E3","s"],["k-s-FFD58A","#FFD58A","s"],["k-s-FFF1CF","#FFF1CF","s"],["k-s-FFF4E8","#FFF4E8","s"],["k-s-FFF6DA","#FFF6DA","s"],["k-s-FFF6E6","#FFF6E6","s"],["k-s-FFFFFF","#FFFFFF","s"],["k-s-FFFFFF8C","rgba(255,255,255,.55)","s"],["k-s-FFFFFF99","rgba(255,255,255,.6)","s"],["k-s-FFFFFFA6","rgba(255,255,255,.65)","s"],["k-s-FFFFFFB2","rgba(255,255,255,.7)","s"],["k-s-FFFFFFE0","rgba(255,255,255,.88)","s"]]/*TH*/;
   // Quelques réglages faits à la main : le fond de page plus sombre que les cartes, les étoiles éteintes encore visibles.
-  var EXTRA = { neon:{ "--bg":[0.125, 0.034, 286], "--gold-off":[0.38, 0.03, 286] }, crep:{ "--bg":[0.285, 0.055, 345], "--gold-off":[0.5, 0.035, 345] } };
+  var EXTRA = { neon:{ "--bg":[0.125, 0.034, 286], "--gold-off":[0.38, 0.03, 286] }, crep:{ "--bg":[0.27, 0.038, 290], "--gold-off":[0.5, 0.03, 290] } };
   var KEY = "carnetAmbianceV1", MODE = "auto", TH = "", FNS = [], LOC = null;
   // Où se trouve l'écran, à peu près, d'après son fuseau horaire (sans demander la position).
   function loc(){
@@ -1449,7 +1455,7 @@ html.sky-on #rsheet{z-index:50;}
       st.textContent = th === "jour" ? "" : css(th);
       var m = document.querySelector('meta[name="theme-color"]');
       if (!m) { m = document.createElement("meta"); m.name = "theme-color"; document.head.appendChild(m); }
-      m.content = th === "neon" ? lchHex(0.125, 0.034, 286) : th === "crep" ? lchHex(0.285, 0.055, 345) : "#F1E4C9";
+      m.content = th === "neon" ? lchHex(0.125, 0.034, 286) : th === "crep" ? lchHex(0.27, 0.038, 290) : "#F1E4C9";
     }
     FNS.forEach(function(fn){ try { fn(th, changed); } catch (e) {} });
   }
@@ -1559,7 +1565,7 @@ html.sky-on #rsheet{z-index:50;}
   <button type="button" class="intro-x" id="introX">Passer ›</button>
 </div>
 <button type="button" class="totop" id="totop" aria-label="Revenir en haut de la page" hidden>↑ Haut</button>
-<div class="navb" id="navb" role="group" aria-label="Actions précédentes" hidden><button type="button" class="totop" id="navBack" aria-label="Revenir à l'affichage précédent" title="Revenir à l'affichage précédent">←</button><button type="button" class="totop" id="navFwd" aria-label="Aller à l'affichage suivant" title="Aller à l'affichage suivant">→</button></div>
+<div class="navb" id="navb" role="group" aria-label="Actions précédentes" hidden><button type="button" class="totop" id="navBack" aria-label="Revenir à l'affichage précédent" title="Revenir à l'affichage précédent"><span aria-hidden="true">←</span> Retour</button><button type="button" class="totop" id="navFwd" aria-label="Aller à l'affichage suivant" title="Aller à l'affichage suivant">→</button></div>
 <button type="button" class="gpill" id="gpill" hidden>👁 Vue de mes amis · Quitter</button>
 <button type="button" class="envbar" id="envbar" aria-haspopup="dialog" hidden></button>
 <div class="sheet" id="sheet" role="dialog" aria-modal="false" aria-labelledby="sheet-h" hidden>
@@ -2646,6 +2652,16 @@ html.sky-on #rsheet{z-index:50;}
       out.forEach(function(f, i){ f._i = i; });
       return out;
     }
+    // Mes meilleures suggestions : tous les films pas encore vus, de la plus haute estimation à la plus basse.
+    if (s.auto === "meilleures") {
+      globalFilms().forEach(function(f){
+        if (isSeen((answers[f.id] || {}).etat) || !(estOf(f) > 0)) return;
+        out.push(Object.assign({}, f, { r:"", sid:s.id, _h:null }));
+      });
+      out.sort(function(x, y){ return (estOf(y) - estOf(x)) || String(x.t).localeCompare(String(y.t), "fr"); });
+      out.forEach(function(f, i){ f._i = i; });
+      return out;
+    }
     if (s.auto === "liste") {
       Object.keys(LISTE).forEach(function(id){
         if (!films[id]) return;
@@ -2666,7 +2682,7 @@ html.sky-on #rsheet{z-index:50;}
     out.forEach(function(f, i){ f._i = i; });
     return out;
   }
-  function touchesAuto(before, after){ return before !== after && (AUTO[before] || AUTO[after]); }
+  function touchesAuto(before, after){ return before !== after && (AUTO[before] || AUTO[after] || (AUTO.meilleures && isSeen(before) !== isSeen(after))); }
 
   // Ordre « du mieux au moins bien » : les films pas vus d'abord, selon l'estimation ; puis les films vus, selon ta note.
   function tasteSort(list){
@@ -2699,7 +2715,7 @@ html.sky-on #rsheet{z-index:50;}
     var nf = n + " film" + (n > 1 ? "s" : "");
     if (k === "vu") return "Déjà vus, selon ta note · " + nf;
     if (k === "0") return "Sans estimation · " + nf;
-    return "Estimation <b>" + k + "</b>/10 · " + nf;
+    return "Estimation <b>" + fmtN(k) + "</b>/10 · " + nf;
   }
 
   // Quand une section automatique change, on redessine tout sans faire sauter la page.
@@ -2825,7 +2841,11 @@ html.sky-on #rsheet{z-index:50;}
 
   var MORE = {}, SEC_AUTO = {};
   // Images du film : quatre images tirées du film, venues de TMDB (The Movie Database), affichées dans la fiche.
-  var TMDB_KEY = "a35a6c94deab582e9348b58192ac4279", IMG_OPEN = {}, IMG_P = {}, IMG_C = {}, IMG_KEY = "carnetImagesV1";
+  // Mémoire des images : version 2 depuis le meilleur choix des films (les anciens choix, parfois faux, sont oubliés).
+  var TMDB_KEY = "a35a6c94deab582e9348b58192ac4279", IMG_OPEN = {}, IMG_P = {}, IMG_C = {}, IMG_KEY = "carnetImagesV2";
+  // Films dont TMDB ne trouve pas le bon titre tout seul : identifiant TMDB fixé à la main.
+  var TMDB_FIXE = { "run-2020":546121 };
+  try { localStorage.removeItem("carnetImagesV1"); } catch (e) {}
   try { IMG_C = JSON.parse(localStorage.getItem(IMG_KEY) || "{}") || {}; } catch (e) { IMG_C = {}; }
   var IMG_SEL = {};
   function imgInner(id, r){
@@ -2840,8 +2860,21 @@ html.sky-on #rsheet{z-index:50;}
     var tv = /\(série\)$/.test(f.t || ""), title = String(f.t || "").replace(/\s*\(série\)$/, ""), base = "https://api.themoviedb.org/3/", key = "api_key=" + TMDB_KEY;
     var url = function(withYear){ return base + "search/" + (tv ? "tv" : "movie") + "?" + key + "&language=fr-FR&query=" + encodeURIComponent(title) + (withYear && f.y ? (tv ? "&first_air_date_year=" : "&year=") + f.y : ""); };
     var get = function(u){ return fetch(u).then(function(r){ if (!r.ok) throw Error("tmdb " + r.status); return r.json(); }); };
-    return get(url(true)).then(function(j){ return (j.results || []).length ? j : get(url(false)); }).then(function(j){
-      var hit = (j.results || [])[0]; if (!hit) return null;
+    // Le bon film parmi les résultats : même titre et même année d'abord ; un dessin animé est écarté
+    // quand la fiche n'est pas un film d'animation (TMDB proposait Chicken Run pour Run, de 2020).
+    var anim = (f.k || []).indexOf("animation") >= 0, nt = norm(title);
+    var score = function(r){
+      var y = +String(r.release_date || r.first_air_date || "").slice(0, 4) || 0, sc = 0;
+      if (norm(r.title || r.name || "") === nt || norm(r.original_title || r.original_name || "") === nt) sc += 100;
+      if (f.y && y) sc += y === +f.y ? 60 : Math.abs(y - f.y) === 1 ? 25 : -40;
+      if (!anim && (r.genre_ids || []).indexOf(16) >= 0) sc -= 90;
+      return sc + Math.log(1 + (r.vote_count || 0));
+    };
+    var pick = function(j){ return (j.results || []).slice(0, 20).sort(function(x, y){ return score(y) - score(x); })[0]; };
+    var fixe = TMDB_FIXE[f.id];
+    var found = fixe ? Promise.resolve({ results:[{ id:fixe, poster_path:"", backdrop_path:"" }] }) : get(url(true)).then(function(j){ return (j.results || []).length ? j : get(url(false)); });
+    return found.then(function(j){
+      var hit = fixe ? j.results[0] : pick(j); if (!hit) return null;
       return get(base + (tv ? "tv/" : "movie/") + hit.id + "/images?" + key).then(function(im){
         var bd = (im.backdrops || []).filter(function(x){ return !x.iso_639_1; }); if (bd.length < 4) bd = bd.concat((im.backdrops || []).filter(function(x){ return x.iso_639_1; }));
         var paths = bd.map(function(x){ return x.file_path; }).filter(Boolean);
@@ -3127,12 +3160,16 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     }); });
   }
   function sectionHtml(s, i, list, empty){
-    var mode = s.auto === "classement" ? "note" : (s.id === "tout" && !s.search && !s.plain ? "est" : ""), counts = {}, cur = null, PI = null;
-    if (!mode && s.parties && s.parties.length) {
+    // Dans chaque liste (thèmes, époques, envies…), les films vont du 10/10 estimé au plus bas, avec un intertitre par note,
+    // puis les films déjà vus selon ta note. Les sous-parties d'un thème ne regroupent plus les films :
+    // leur nom passe dans la petite note de chaque film, pour ne pas casser l'ordre des notes.
+    var mode = s.auto === "classement" ? "note" : ((s.id === "tout" && !s.search && !s.plain) || s.auto === "meilleures" || (!s.auto && s.id !== "tout") ? "est" : ""), counts = {}, cur = null, PI = null;
+    if (mode === "est" && s.parties && s.parties.length) {
       PI = {}; s.parties.forEach(function(p, k){ (p.ids || []).forEach(function(id){ if (!(id in PI)) PI[id] = k; }); });
-      var pk = function(f){ return f.id in PI ? PI[f.id] : 99; };
-      list = list.map(function(f, j){ return { f:f, j:j }; }).sort(function(a, b){ return (pk(a.f) - pk(b.f)) || (a.j - b.j); }).map(function(x){ return x.f; });
-      mode = "part";
+      list = list.map(function(f){
+        var pt = f.id in PI ? s.parties[PI[f.id]] : null;
+        return pt && pt.titre ? Object.assign({}, f, { r:pt.titre + (f.r ? " · " + f.r : "") }) : f;
+      });
     }
     function key(f){
       if (mode === "part") return String(f.id in PI ? PI[f.id] : 99);
@@ -4594,7 +4631,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     "s30-ecole-1-debuts":["🎞️", "#8B5E34"], "s31-ecole-2-classiques":["🎬", "#334155"], "s32-ecole-3-moderne":["🎥", "#1D4ED8"],
     "s10-cours-1-mouvements":["🎞️", "#8B5E34"], "s11-cours-2-courants":["📼", "#7E22CE"], "s12-cours-3-a-decouvrir":["🎨", "#C026D3"], "s13-cours-4-musique":["🎧", "#1D4ED8"]
   };
-  var SUB_AUTO = { liste:["🔖", "#C2410C"], stats:["📊", "#1D4ED8"], classement:["⭐", "#A16207"], oublie:["🤔", "#475569"] };
+  var SUB_AUTO = { liste:["🔖", "#C2410C"], stats:["📊", "#1D4ED8"], classement:["⭐", "#A16207"], oublie:["🤔", "#475569"], meilleures:["🏆", "#B45309"] };
   var MV_IC = { debuts:["🎩", "#8B5E34"], classique:["🎬", "#334155"], modernites:["🌊", "#0369A1"], courants:["📽️", "#0F766E"],
     aujourdhui:["✨", "#A16207"], asie:["🏮", "#C53030"], animation:["✏️", "#C2410C"], documentaire:["🌍", "#15803D"] };
   var ENV_IC = { reconfort:["☕", "#92400E"], rire:["😂", "#A16207"], emotion:["😢", "#0E7490"], corps:["🤸", "#C2410C"], mer:["🌊", "#0369A1"],
@@ -4830,7 +4867,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function errCode(e){ return String((e && (e.code || e.message)) || "erreur inconnue").slice(0, 60); }
   // Une liste de la page : son HTML, son nombre de films, et si elle s'affiche avec les filtres du moment.
   var FRZ = { key:"", l:{}, n:{} };
-  function frzKey(){ return [query || "", JSON.stringify(SHOW || null), filter, CC && CC.view || ""].join("|"); }
+  var DATA_V = 0, DATA_SIG = "";
+  function frzKey(){ return [query || "", JSON.stringify(SHOW || null), filter, CC && CC.view || "", DATA_V].join("|"); }
   function frz(sid, list, all){
     var k = frzKey(); if (FRZ.key !== k) FRZ = { key:k, l:{}, n:{} };
     var by = {}; (all || list).forEach(function(f){ by[f.id] = f; });
@@ -4858,7 +4896,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (nn) return { html:"", n:nn, show:true };
       return { html:"", n:0, show:bare && ((s.auto === "liste" && isMine()) || s.auto === "conseils") };
     }
-    var full = s.auto === "classement" || s.auto === "liste" || s.auto === "conseils" ? (s.films || []) : tasteSort(s.films || []);
+    var full = s.auto === "classement" || s.auto === "liste" || s.auto === "conseils" || s.auto === "meilleures" ? (s.films || []) : tasteSort(s.films || []);
     var list = frz(s.id, full.filter(matchSt), full);
     if (list.length) return { html:sectionHtml(s, i, list), n:list.length, show:true };
     // « Ma liste » et les playlists vides restent visibles, avec le mode d'emploi.
@@ -6800,6 +6838,10 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       .sort(secCmp);
     films = {}; SECT = {}; MV_COUNT = {};
     sections.forEach(function(s){ var fam = famOf(s); SECT[s.id] = (fam ? fam.label + " " : "") + (s.titre || ""); s.films.forEach(function(f){ if (!films[f.id]) films[f.id] = f; }); });
+    // Nouveaux films ou nouvelles estimations reçus (base, compléments) : l'ordre gelé des listes est recalculé,
+    // sinon les films arrivés après le premier affichage restaient en bas, quelle que soit leur note estimée.
+    var dsig = 0, dn = 0; Object.keys(films).forEach(function(id){ dn++; dsig += (films[id].e || 0) * ((dn % 97) + 1); });
+    dsig = dn + ":" + dsig; if (dsig !== DATA_SIG) { DATA_SIG = dsig; DATA_V++; }
     suggestFor();
     Object.keys(films).forEach(function(id){ var m = films[id].mv; if (m) MV_COUNT[m] = (MV_COUNT[m] || 0) + 1; });
     // Époques : une liste par décennie, faite à partir de tous les films. Les anciennes listes d'époque restent en réserve, cachées.
@@ -6999,6 +7041,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     col.limit(1000).onSnapshot(function(snap){
       if (firstAnswers) {
         firstAnswers = false;
+        DATA_V++;
         answers = {};
         snap.docs.forEach(function(doc){ answers[doc.id] = pack(doc.data() || {}); });
         // Les changements faits sur cet appareil et pas encore confirmés passent devant la version reçue, puis repartent.
