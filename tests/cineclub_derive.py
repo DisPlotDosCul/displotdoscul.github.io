@@ -15,7 +15,7 @@ def ready(page, url="https://cineclub.test/carnet-de-films/"):
 
 
 def context_for(browser, width, height):
-    context = browser.new_context(viewport={"width": width, "height": height}, has_touch=width < 600)
+    context = browser.new_context(service_workers="block", viewport={"width": width, "height": height}, has_touch=width < 600)
     unexpected = install_routes(context)
     context.add_init_script("Object.defineProperty(navigator,'share',{value:undefined,configurable:true});Object.defineProperty(navigator,'clipboard',{value:{writeText:async text=>{window.__shared=text;}},configurable:true});")
     page = context.new_page()

@@ -78,7 +78,7 @@ def browser_checks():
             executable = "/usr/bin/chromium"
         browser = pw.chromium.launch(executable_path=executable, args=["--no-sandbox"])
         for device, width, height in [("telephone", 360, 800), ("ordinateur", 1440, 960)]:
-            context = browser.new_context(viewport={"width": width, "height": height}, has_touch=device == "telephone", device_scale_factor=1)
+            context = browser.new_context(service_workers="block", viewport={"width": width, "height": height}, has_touch=device == "telephone", device_scale_factor=1)
             unexpected = install_routes(context)
             page = context.new_page()
             errors = []

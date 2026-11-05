@@ -15,7 +15,7 @@ def open_page(browser, admin):
         fixture["profils"]["test-membre"].update(pid="licia", pseudo="Licia")
         fixture["films"]["pl-camille"] = {"auto": "conseils", "famille": "playlists", "films": [], "ordre": 0.8,
                                           "prenom": "m_test-autre", "titre": "Camille (test)"}
-    context = browser.new_context(viewport={"width": 360, "height": 780}, has_touch=True, is_mobile=True)
+    context = browser.new_context(service_workers="block", viewport={"width": 360, "height": 780}, has_touch=True, is_mobile=True)
     cf.FIREBASE_JS = FIREBASE_JS  # lu au moment des requêtes, pas à l'installation
     unexpected = cf.install_routes(context, fixture=fixture)
     if admin:

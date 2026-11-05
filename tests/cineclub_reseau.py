@@ -6,7 +6,7 @@ from cineclub_fixture import catalogue_fixture, install_routes
 
 
 def open_page(browser, fixture=None, url="https://cineclub.test/carnet-de-films/"):
-    context = browser.new_context(viewport={"width": 360, "height": 780}, has_touch=True, is_mobile=True)
+    context = browser.new_context(service_workers="block", viewport={"width": 360, "height": 780}, has_touch=True, is_mobile=True)
     unexpected = install_routes(context, fixture=fixture)
     context.add_init_script("Object.defineProperty(navigator,'share',{value:undefined,configurable:true});"
                             "Object.defineProperty(navigator,'clipboard',{value:{writeText:async t=>{window.__shared=t;}},configurable:true});"

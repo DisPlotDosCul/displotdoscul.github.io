@@ -23,7 +23,7 @@ def run():
     with sync_playwright() as pw:
         browser = pw.chromium.launch(executable_path="/usr/bin/chromium" if Path("/usr/bin/chromium").exists() else None, args=["--no-sandbox"])
         for name, width, height in [("telephone", 360, 800), ("ordinateur", 1440, 960)]:
-            context = browser.new_context(viewport={"width": width, "height": height}, has_touch=width < 600)
+            context = browser.new_context(service_workers="block", viewport={"width": width, "height": height}, has_touch=width < 600)
             unexpected = install_routes(context)
             page = context.new_page()
             errors = []
@@ -73,7 +73,7 @@ def run():
         orphan = "ancienne-suggestion-seule-test"
         fixture["films"]["s00-pour-toi"]["films"] = [{"id": orphan, "t": "Un film gardé au catalogue", "y": 1990, "d": "Cinéaste de test", "r": ""}]
         fixture["films"]["fiches-6"]["fiches"][orphan] = {"p": "Résumé public fictif.", "k": ["enfance"], "c": "Pays de test", "mv": "courant-test"}
-        context = browser.new_context(viewport={"width": 360, "height": 800})
+        context = browser.new_context(service_workers="block", viewport={"width": 360, "height": 800})
         unexpected = install_routes(context, fixture=fixture)
         page = context.new_page()
         errors = []

@@ -41,7 +41,7 @@ def run():
                 film["id"]: {"etat": "vu", "note10": 9 - i / 10}
                 for i, film in enumerate(entries)
             }
-            context = browser.new_context(viewport={"width": width, "height": height}, has_touch=device == "telephone")
+            context = browser.new_context(service_workers="block", viewport={"width": width, "height": height}, has_touch=device == "telephone")
             unexpected = install_routes(context, fixture=fixture)
             page = context.new_page()
             errors = errors_on(page)
@@ -122,7 +122,7 @@ def run():
             context.close()
 
         # Le clin d'œil est isolé et s'efface dès qu'on interagit ou choisit Calme.
-        context = browser.new_context(viewport={"width": 360, "height": 800})
+        context = browser.new_context(service_workers="block", viewport={"width": 360, "height": 800})
         unexpected = install_routes(context)
         page = context.new_page()
         errors = errors_on(page)
@@ -152,7 +152,7 @@ def run():
         assert not errors and not unexpected, (errors, unexpected)
         context.close()
         # La fiche d'un autre carnet nomme la bonne personne et reste en lecture.
-        context = browser.new_context(viewport={"width": 360, "height": 800})
+        context = browser.new_context(service_workers="block", viewport={"width": 360, "height": 800})
         unexpected = install_routes(context)
         context.add_init_script("sessionStorage.setItem('ccView','test-autre');sessionStorage.setItem('ccViewName','Camille (test)');")
         page = context.new_page()
