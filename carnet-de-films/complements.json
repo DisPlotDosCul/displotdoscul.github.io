@@ -196,41 +196,63 @@
    ],
    "parties": [
     {
-     "titre": "Océan",
-     "aide": "La mer, l'apnée, les marins et les sirènes",
+     "titre": "Apnée et plongée",
+     "aide": "Descendre, retenir son souffle",
      "ids": [
-      "abyss-1989",
-      "ondine-2009",
-      "le-chant-de-la-mer-2014",
-      "the-lure-2015",
-      "la-tortue-rouge-2016",
-      "aquarela-2018",
-      "the-lighthouse-2019",
-      "becoming-cousteau-2021",
-      "the-deepest-breath-2023",
-      "breath-2017",
-      "flow-2024",
       "le-grand-bleu-1988",
-      "all-is-lost-2013",
-      "kon-tiki-2012",
-      "ponyo-sur-la-falaise-2008",
-      "leviathan-2012"
+      "the-deepest-breath-2023",
+      "ama-san-2016",
+      "breath-2017",
+      "abyss-1989",
+      "le-monde-du-silence-1956",
+      "becoming-cousteau-2021",
+      "tabou-1931"
      ]
     },
     {
-     "titre": "Vie marine",
-     "aide": "Les animaux et les créatures des profondeurs",
+     "titre": "Documentaires de l'océan",
+     "aide": "La vie sous la surface, et ce qui la menace",
      "ids": [
-      "le-monde-du-silence-1956",
       "deep-blue-2003",
-      "the-cove-la-baie-de-la-honte-2009",
-      "la-sagesse-de-la-pieuvre-2020",
       "oceans-2009",
+      "atlantis-1991",
+      "aquarela-2018",
+      "la-sagesse-de-la-pieuvre-2020",
       "chasing-coral-2017",
-      "les-dents-de-la-mer-1975",
-      "la-forme-de-l-eau-2017",
+      "mission-blue-2014",
+      "the-cove-la-baie-de-la-honte-2009",
       "blackfish-2013",
-      "mission-blue-2014"
+      "leviathan-2012",
+      "green-porno-courts-metrages-2008"
+     ]
+    },
+    {
+     "titre": "Sirènes et contes",
+     "aide": "Créatures marines et légendes",
+     "ids": [
+      "ondine-2009",
+      "le-chant-de-la-mer-2014",
+      "the-lure-2015",
+      "la-forme-de-l-eau-2017",
+      "la-petite-sirene-1976",
+      "ponyo-sur-la-falaise-2008",
+      "la-tortue-rouge-2016",
+      "flow-2024"
+     ]
+    },
+    {
+     "titre": "Récits de mer",
+     "aide": "Navigateurs, pêcheurs, naufrages et rivages",
+     "ids": [
+      "all-is-lost-2013",
+      "kon-tiki-2012",
+      "les-dents-de-la-mer-1975",
+      "the-lighthouse-2019",
+      "triangle-2009",
+      "a-scene-at-the-sea-1991",
+      "la-vie-aquatique-2004",
+      "atlantique-2019",
+      "bait-2019"
      ]
     }
    ]
@@ -473,6 +495,69 @@
      "y": 2023,
      "d": "Celine Song",
      "r": "Film américain de la Coréenne Celine Song, à moitié en coréen, entre Séoul et New York."
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Vengeances",
+     "aide": "La trilogie de Park Chan-wook et ses héritiers",
+     "ids": [
+      "sympathy-for-mr-vengeance-2002",
+      "old-boy-2003",
+      "lady-vengeance-2005",
+      "j-ai-rencontre-le-diable-2010",
+      "blood-island-2010"
+     ]
+    },
+    {
+     "titre": "Thrillers et polars",
+     "aide": "Enquêtes, tueurs et policiers",
+     "ids": [
+      "memories-of-murder-2003",
+      "the-chaser-2008",
+      "mother-2009",
+      "decision-to-leave-2022",
+      "hard-day-2014",
+      "the-call-2020",
+      "mademoiselle-2016"
+     ]
+    },
+    {
+     "titre": "Horreur et fantastique",
+     "aide": "Fantômes, monstres et chamanes",
+     "ids": [
+      "deux-surs-2003",
+      "the-host-2006",
+      "thirst-ceci-est-mon-sang-2009",
+      "the-strangers-2016",
+      "sleep-2023",
+      "exhuma-2024",
+      "save-the-green-planet-2003"
+     ]
+    },
+    {
+     "titre": "Maisons et lutte des classes",
+     "aide": "Riches, domestiques et immeubles",
+     "ids": [
+      "la-servante-1960",
+      "the-housemaid-2010",
+      "parasite-2019",
+      "snowpiercer-le-transperceneige-2013",
+      "concrete-utopia-2023"
+     ]
+    },
+    {
+     "titre": "Amours et cinéma d'auteur",
+     "aide": "Kim Ki-duk, Hong Sang-soo et autres",
+     "ids": [
+      "l-ile-2000",
+      "locataires-2004",
+      "time-2006",
+      "haewon-et-les-hommes-2013",
+      "past-lives-2023",
+      "the-king-and-the-clown-2005",
+      "incoherence-1994"
+     ]
     }
    ]
   },
@@ -932,6 +1017,183 @@
      "y": 1964,
      "d": "Hiroshi Teshigahara",
      "r": ""
+    },
+    {
+     "id": "hellraiser-1987",
+     "t": "Hellraiser",
+     "y": 1987,
+     "d": "Clive Barker",
+     "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Rêves et cauchemars",
+     "aide": "Quand on ne sait plus si l'on dort",
+     "sous": [
+      {
+       "titre": "Rêves gigognes et rêves lucides",
+       "ids": [
+        "inception-2010",
+        "paprika-2006",
+        "waking-life-2001",
+        "realite-2014",
+        "daaaaaali-2023",
+        "le-charme-discret-de-la-bourgeoisie-1972",
+        "mind-game-2004",
+        "millennium-actress-2001",
+        "eternal-sunshine-of-the-spotless-mind-2004",
+        "je-t-aime-je-t-aime-1968",
+        "812-1963",
+        "l-annee-derniere-a-marienbad-1961",
+        "enter-the-void-2009"
+       ]
+      },
+      {
+       "titre": "Cauchemars",
+       "ids": [
+        "les-griffes-de-la-nuit-1984",
+        "the-nightmare-2015",
+        "au-cur-de-la-nuit-1945",
+        "channel-zero-the-dream-door-2018",
+        "the-cell-2000",
+        "l-echelle-de-jacob-1990",
+        "le-carnaval-des-ames-1962"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Les mystères de David Lynch",
+     "aide": "Rideaux rouges, doubles et nuits sans fin",
+     "ids": [
+      "eraserhead-1977",
+      "blue-velvet-1986",
+      "twin-peaks-serie-1990",
+      "twin-peaks-fire-walk-with-me-1992",
+      "twin-peaks-les-pieces-manquantes-2014",
+      "twin-peaks-the-return-serie-2017",
+      "lost-highway-1997",
+      "inland-empire-2006",
+      "mulholland-drive-2001",
+      "sailor-et-lula-1990"
+     ]
+    },
+    {
+     "titre": "Corps qui se transforment",
+     "aide": "Mutations, chair et machines",
+     "ids": [
+      "possession-1981",
+      "videodrome-1983",
+      "la-mouche-1986",
+      "faux-semblants-1988",
+      "tetsuo-1989",
+      "existenz-1999",
+      "le-festin-nu-1991",
+      "border-2018",
+      "upstream-color-2013",
+      "au-dela-du-reel-1980",
+      "le-regne-animal-2023",
+      "antichrist-2009",
+      "santa-sangre-1989",
+      "hellraiser-1987"
+     ]
+    },
+    {
+     "titre": "Absurde et humour bizarre",
+     "aide": "Des règles folles qu'on suit très sérieusement",
+     "ids": [
+      "being-john-malkovich-1999",
+      "the-lobster-2015",
+      "swiss-army-man-2016",
+      "dave-made-a-maze-2017",
+      "sorry-to-bother-you-2018",
+      "strawberry-mansion-2021",
+      "house-1977",
+      "holy-motors-2012",
+      "barton-fink-1991",
+      "synecdoche-new-york-2008",
+      "pauvres-creatures-2023",
+      "brazil-1985",
+      "la-femme-des-sables-1964"
+     ]
+    },
+    {
+     "titre": "Surréalisme et visions",
+     "aide": "Images de rêve, du muet à l'animation",
+     "sous": [
+      {
+       "titre": "Muet et premiers rêves",
+       "ids": [
+        "le-cabinet-du-docteur-caligari-1920",
+        "un-chien-andalou-1929",
+        "l-age-d-or-1930",
+        "la-chute-de-la-maison-usher-1928",
+        "sherlock-junior-1924"
+       ]
+      },
+      {
+       "titre": "Tableaux et visions",
+       "ids": [
+        "la-montagne-sacree-1973",
+        "valerie-au-pays-des-merveilles-1970",
+        "la-couleur-de-la-grenade-1969",
+        "orphee-1950",
+        "persona-1966",
+        "l-imaginarium-du-docteur-parnassus-2009",
+        "cirque-du-soleil-quidam-1999",
+        "annette-2021"
+       ]
+      },
+      {
+       "titre": "Animation étrange",
+       "ids": [
+        "asparagus-1979",
+        "stille-nacht-i-dramolet-1988",
+        "l-uf-de-l-ange-1985",
+        "la-planete-sauvage-1973",
+        "mad-god-2021",
+        "la-casa-lobo-2018"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "La réalité qui vacille",
+     "aide": "Esprits troublés et mondes parallèles",
+     "sous": [
+      {
+       "titre": "Esprits qui vacillent",
+       "ids": [
+        "cure-1997",
+        "pi-1998",
+        "donnie-darko-2001",
+        "the-machinist-2004",
+        "enemy-2013",
+        "under-the-silver-lake-2018",
+        "lux-terna-2019",
+        "thelma-2017",
+        "creatures-celestes-1994",
+        "eyes-wide-shut-1999",
+        "dark-city-1998"
+       ]
+      },
+      {
+       "titre": "Fantômes et autres mondes, en douceur",
+       "ids": [
+        "le-miroir-1975",
+        "memoria-2021",
+        "oncle-boonmee-celui-qui-se-souvient-de-ses-vies-anterieures-2010",
+        "la-double-vie-de-veronique-1991",
+        "locataires-2004",
+        "touki-bouki-1973",
+        "atlantique-2019",
+        "dead-man-1995",
+        "l-arche-russe-2002",
+        "les-harmonies-werckmeister-2000"
+       ]
+      }
+     ]
     }
    ]
   },
@@ -1076,6 +1338,96 @@
      "y": 1964,
      "d": "Hiroshi Teshigahara",
      "r": ""
+    },
+    {
+     "id": "funny-games-1997",
+     "t": "Funny Games",
+     "y": 1997,
+     "d": "Michael Haneke",
+     "r": ""
+    },
+    {
+     "id": "seul-contre-tous-1998",
+     "t": "Seul contre tous",
+     "y": 1998,
+     "d": "Gaspar Noé",
+     "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Esprits qui basculent",
+     "aide": "La folie vue de l'intérieur",
+     "ids": [
+      "clean-shaven-1993",
+      "spider-2002",
+      "the-machinist-2004",
+      "take-shelter-2011",
+      "safe-1995",
+      "le-locataire-1976",
+      "enemy-2013",
+      "requiem-for-a-dream-2000",
+      "la-pianiste-2001",
+      "the-master-2012",
+      "saint-maud-2019",
+      "possession-1981"
+     ]
+    },
+    {
+     "titre": "Corps et chair",
+     "aide": "Transformations, chirurgie et faim",
+     "ids": [
+      "la-piel-que-habito-2011",
+      "grave-2016",
+      "swallow-2019",
+      "possessor-2020",
+      "the-ugly-stepsister-2025",
+      "faux-semblants-1988",
+      "le-parfum-histoire-d-un-meurtrier-2006",
+      "mad-god-2021",
+      "la-casa-lobo-2018"
+     ]
+    },
+    {
+     "titre": "Familles et maisons closes",
+     "aide": "Le danger est à la maison",
+     "ids": [
+      "qu-est-il-arrive-a-baby-jane-1962",
+      "rosemary-s-baby-1968",
+      "carrie-au-bal-du-diable-1976",
+      "dolores-claiborne-1995",
+      "stoker-2013",
+      "heredite-2018",
+      "goodnight-mommy-2014",
+      "canine-2009",
+      "la-servante-1960",
+      "les-blessures-assassines-2000",
+      "antichrist-2009",
+      "la-femme-des-sables-1964"
+     ]
+    },
+    {
+     "titre": "Tueurs et regards froids",
+     "aide": "Assassins, voyeurs et manipulateurs",
+     "ids": [
+      "american-psycho-2000",
+      "audition-1999",
+      "maniac-2012",
+      "les-chambres-rouges-2023",
+      "les-frissons-de-l-angoisse-1975",
+      "funny-games-1997",
+      "seul-contre-tous-1998"
+     ]
+    },
+    {
+     "titre": "Malaise absurde",
+     "aide": "On rit jaune",
+     "ids": [
+      "mise-a-mort-du-cerf-sacre-2017",
+      "la-favorite-2018",
+      "the-bothersome-man-2006",
+      "midsommar-2019"
+     ]
     }
    ]
   },
@@ -1395,6 +1747,163 @@
      "y": 2002,
      "d": "Paul Thomas Anderson",
      "r": ""
+    },
+    {
+     "id": "delicatessen-1991",
+     "t": "Delicatessen",
+     "y": 1991,
+     "d": "Jean-Pierre Jeunet et Marc Caro",
+     "r": ""
+    },
+    {
+     "id": "happy-together-1997",
+     "t": "Happy Together",
+     "y": 1997,
+     "d": "Wong Kar-wai",
+     "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Comédies musicales et danse",
+     "aide": "On chante, on danse, en couleurs franches",
+     "ids": [
+      "les-parapluies-de-cherbourg-1964",
+      "les-demoiselles-de-rochefort-1967",
+      "moulin-rouge-2001",
+      "la-la-land-2016",
+      "west-side-story-1961",
+      "chantons-sous-la-pluie-1952",
+      "les-chaussons-rouges-1948"
+     ]
+    },
+    {
+     "titre": "Contes et fantaisie",
+     "aide": "Des mondes inventés et des décors de conte",
+     "sous": [
+      {
+       "titre": "Animation",
+       "ids": [
+        "l-etrange-noel-de-monsieur-jack-1993",
+        "les-noces-funebres-2005",
+        "coraline-2009",
+        "les-maitres-du-temps-1982",
+        "vice-versa-2015"
+       ]
+      },
+      {
+       "titre": "Burton, Jeunet, Wes Anderson",
+       "ids": [
+        "beetlejuice-1988",
+        "edward-aux-mains-d-argent-1990",
+        "big-fish-2003",
+        "charlie-et-la-chocolaterie-2005",
+        "la-cite-des-enfants-perdus-1995",
+        "le-fabuleux-destin-d-amelie-poulain-2001",
+        "micmacs-a-tire-larigot-2009",
+        "delicatessen-1991",
+        "la-vie-aquatique-2004",
+        "moonrise-kingdom-2012",
+        "the-grand-budapest-hotel-2014"
+       ]
+      },
+      {
+       "titre": "Contes en vrais décors",
+       "ids": [
+        "penelope-2006",
+        "the-fall-2006",
+        "l-imaginarium-du-docteur-parnassus-2009",
+        "valerie-au-pays-des-merveilles-1970",
+        "au-revoir-la-haut-2017",
+        "au-dela-de-nos-reves-1998",
+        "toto-le-heros-1991",
+        "mr-nobody-2009"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Horreur en couleurs",
+     "aide": "Rouge vif, néons et frissons",
+     "ids": [
+      "suspiria-1977",
+      "the-neon-demon-2016",
+      "house-1977",
+      "the-love-witch-2016",
+      "pearl-2022",
+      "kwaidan-1964",
+      "midsommar-2019",
+      "le-masque-de-la-mort-rouge-1964",
+      "les-frissons-de-l-angoisse-1975",
+      "the-substance-2024",
+      "the-cell-2000",
+      "enter-the-void-2009",
+      "the-voices-2014",
+      "il-faut-qu-on-parle-de-kevin-2011",
+      "beyond-the-black-rainbow-2010"
+     ]
+    },
+    {
+     "titre": "Science-fiction et mondes trop parfaits",
+     "aide": "Des futurs propres et des banlieues lisses",
+     "ids": [
+      "le-cinquieme-element-1997",
+      "gattaca-1997",
+      "the-truman-show-1998",
+      "pleasantville-1998",
+      "her-2013",
+      "ex-machina-2014",
+      "barbie-2023",
+      "strawberry-mansion-2021",
+      "planete-interdite-1956",
+      "pauvres-creatures-2023"
+     ]
+    },
+    {
+     "titre": "Couleurs d'auteur",
+     "aide": "Des cinéastes qui peignent avec la couleur",
+     "sous": [
+      {
+       "titre": "Cinéma européen",
+       "ids": [
+        "le-mepris-1963",
+        "femmes-au-bord-de-la-crise-de-nerfs-1988",
+        "kika-1993",
+        "les-petites-marguerites-1966",
+        "la-voix-humaine-2020",
+        "mon-oncle-1958",
+        "37-2-le-matin-1986",
+        "diva-1981",
+        "mauvais-sang-1986",
+        "medusa-deluxe-2022"
+       ]
+      },
+      {
+       "titre": "Technicolor et grands studios",
+       "ids": [
+        "lola-montes-1955",
+        "la-fleche-et-le-flambeau-1950",
+        "loin-du-paradis-2002",
+        "made-in-england-les-films-de-powell-et-pressburger-2024",
+        "marie-antoinette-2006",
+        "punch-drunk-love-2002",
+        "simple-simon-2010",
+        "barfi-2012"
+       ]
+      },
+      {
+       "titre": "Asie et tableaux vivants",
+       "ids": [
+        "in-the-mood-for-love-2000",
+        "happy-together-1997",
+        "hero-2002",
+        "le-secret-des-poignards-volants-2004",
+        "la-couleur-de-la-grenade-1969",
+        "la-montagne-sacree-1973",
+        "mishima-1985"
+       ]
+      }
+     ]
     }
    ]
   },
@@ -1564,6 +2073,61 @@
      "y": 2007,
      "d": "David Fincher",
      "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Se croire surveillé",
+     "aide": "Micros, caméras et complots",
+     "ids": [
+      "conversation-secrete-1974",
+      "blow-out-1981",
+      "the-truman-show-1998",
+      "1984-1984",
+      "under-the-silver-lake-2018",
+      "the-game-1997",
+      "fenetre-sur-cour-1954",
+      "zodiac-2007",
+      "le-nombre-23-2007"
+     ]
+    },
+    {
+     "titre": "Folie à deux",
+     "aide": "Un délire qui se partage",
+     "ids": [
+      "bug-2006",
+      "creatures-celestes-1994",
+      "les-blessures-assassines-2000",
+      "the-lighthouse-2019",
+      "bugonia-2025",
+      "save-the-green-planet-2003",
+      "sleep-2023",
+      "the-witch-2015"
+     ]
+    },
+    {
+     "titre": "Esprits assiégés",
+     "aide": "Seul contre un monde menaçant",
+     "ids": [
+      "le-locataire-1976",
+      "the-double-2013",
+      "anomalisa-2015",
+      "pi-1998",
+      "the-machinist-2004",
+      "take-shelter-2011",
+      "clean-shaven-1993",
+      "l-armee-des-12-singes-1995",
+      "rosemary-s-baby-1968",
+      "perfect-blue-1997"
+     ]
+    },
+    {
+     "titre": "Invasions",
+     "aide": "L'autre a peut-être déjà pris la place",
+     "ids": [
+      "the-thing-1982",
+      "l-invasion-des-profanateurs-de-sepultures-1956"
+     ]
     }
    ]
   },
@@ -1796,6 +2360,70 @@
      "y": 2024,
      "d": "Edward Berger",
      "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Dictatures et surveillance",
+     "aide": "Régimes qui écrasent et ceux qui résistent",
+     "ids": [
+      "1984-1984",
+      "la-vie-des-autres-2006",
+      "v-pour-vendetta-2005",
+      "la-antena-2007",
+      "4-mois-3-semaines-2-jours-2007",
+      "le-labyrinthe-de-pan-2006",
+      "conversation-secrete-1974",
+      "chernobyl-serie-2019",
+      "la-vague-2008"
+     ]
+    },
+    {
+     "titre": "Nazisme et Shoah",
+     "aide": "Comprendre et ne pas oublier",
+     "ids": [
+      "la-liste-de-schindler-1993",
+      "la-zone-d-interet-2023",
+      "nuit-et-brouillard-1956",
+      "le-dictateur-1940",
+      "inglourious-basterds-2009",
+      "cabaret-1972"
+     ]
+    },
+    {
+     "titre": "Racisme et colonialisme",
+     "aide": "Haine, préjugés et domination",
+     "ids": [
+      "mississippi-burning-1988",
+      "american-history-x-1998",
+      "this-is-england-2006",
+      "do-the-right-thing-1989",
+      "get-out-2017",
+      "tous-les-autres-s-appellent-ali-1974",
+      "loin-du-paradis-2002",
+      "mission-1986",
+      "chocolat-1988",
+      "cache-2005",
+      "la-ligne-verte-1999"
+     ]
+    },
+    {
+     "titre": "Classes sociales et luttes",
+     "aide": "Argent, travail et militantisme",
+     "ids": [
+      "parasite-2019",
+      "l-histoire-de-souleymane-2024",
+      "120-battements-par-minute-2017"
+     ]
+    },
+    {
+     "titre": "Pouvoir et coulisses",
+     "aide": "Élections, science et secrets",
+     "ids": [
+      "second-tour-2023",
+      "oppenheimer-2023",
+      "conclave-2024"
+     ]
     }
    ]
   },
@@ -2708,7 +3336,7 @@
      "t": "Phantom Thread",
      "y": 2017,
      "d": "Paul Thomas Anderson",
-     "r": ""
+     "r": "Duo Anderson et Greenwood"
     },
     {
      "id": "joker-2019",
@@ -2841,7 +3469,7 @@
      "t": "Mulholland Drive",
      "y": 2001,
      "d": "David Lynch",
-     "r": ""
+     "r": "La musique dans l'histoire : le Club Silencio"
     },
     {
      "id": "drive-2011",
@@ -2946,14 +3574,14 @@
      "t": "Big Fish",
      "y": 2003,
      "d": "Tim Burton",
-     "r": ""
+     "r": "Duo Burton et Elfman"
     },
     {
      "id": "beetlejuice-1988",
      "t": "Beetlejuice",
      "y": 1988,
      "d": "Tim Burton",
-     "r": ""
+     "r": "Duo Burton et Elfman"
     },
     {
      "id": "la-cite-des-enfants-perdus-1995",
@@ -2981,7 +3609,7 @@
      "t": "Mr. Nobody",
      "y": 2009,
      "d": "Jaco Van Dormael",
-     "r": ""
+     "r": "Duo des frères Van Dormael"
     },
     {
      "id": "coraline-2009",
@@ -3002,7 +3630,7 @@
      "t": "Toto le héros",
      "y": 1991,
      "d": "Jaco Van Dormael",
-     "r": ""
+     "r": "Duo des frères Van Dormael"
     },
     {
      "id": "mon-oncle-1958",
@@ -3016,77 +3644,77 @@
      "t": "Psychose",
      "y": 1960,
      "d": "Alfred Hitchcock",
-     "r": ""
+     "r": "Vote des compositeurs, 1er (Bernard Herrmann) · La musique qui crée l'angoisse"
     },
     {
      "id": "sueurs-froides-1958",
      "t": "Sueurs froides",
      "y": 1958,
      "d": "Alfred Hitchcock",
-     "r": ""
+     "r": "Vote des compositeurs, 6e ex æquo (Bernard Herrmann)"
     },
     {
      "id": "le-parrain-1972",
      "t": "Le Parrain",
      "y": 1972,
      "d": "Francis Ford Coppola",
-     "r": ""
+     "r": "Vote des compositeurs, 9e ex æquo (Nino Rota) · Le grand thème orchestral"
     },
     {
      "id": "chinatown-1974",
      "t": "Chinatown",
      "y": 1974,
      "d": "Roman Polanski",
-     "r": ""
+     "r": "Vote des compositeurs, 9e ex æquo (Jerry Goldsmith)"
     },
     {
      "id": "e-t-l-extra-terrestre-1982",
      "t": "E.T. l'extra-terrestre",
      "y": 1982,
      "d": "Steven Spielberg",
-     "r": ""
+     "r": "Vote des compositeurs, 2e (John Williams)"
     },
     {
      "id": "la-guerre-des-etoiles-1977",
      "t": "La Guerre des étoiles",
      "y": 1977,
      "d": "George Lucas",
-     "r": ""
+     "r": "Le grand thème orchestral (John Williams)"
     },
     {
      "id": "apocalypse-now-1979",
      "t": "Apocalypse Now",
      "y": 1979,
      "d": "Francis Ford Coppola",
-     "r": ""
+     "r": "Walter Murch, premier « sound designer »"
     },
     {
      "id": "le-bon-la-brute-et-le-truand-1966",
      "t": "Le Bon, la Brute et le Truand",
      "y": 1966,
      "d": "Sergio Leone",
-     "r": ""
+     "r": "Vote des compositeurs, 3e ex æquo (Ennio Morricone)"
     },
     {
      "id": "et-pour-quelques-dollars-de-plus-1965",
      "t": "Et pour quelques dollars de plus",
      "y": 1965,
      "d": "Sergio Leone",
-     "r": ""
+     "r": "Duo Leone et Morricone"
     },
     {
      "id": "mission-1986",
      "t": "Mission",
      "y": 1986,
      "d": "Roland Joffé",
-     "r": ""
+     "r": "Vote des compositeurs, 3e ex æquo (Ennio Morricone)"
     },
     {
      "id": "cinema-paradiso-1988",
      "t": "Cinema Paradiso",
      "y": 1988,
      "d": "Giuseppe Tornatore",
-     "r": ""
+     "r": "Vote des compositeurs, 6e ex æquo (Ennio Morricone)"
     },
     {
      "id": "no-country-for-old-men-2007",
@@ -3107,7 +3735,7 @@
      "t": "Océans",
      "y": 2009,
      "d": "Jacques Perrin et Jacques Cluzaud",
-     "r": ""
+     "r": "Documentaires de Jacques Perrin, musique de Bruno Coulais"
     },
     {
      "id": "la-pianiste-2001",
@@ -3170,7 +3798,294 @@
      "t": "Dragons",
      "y": 2010,
      "d": "Dean DeBlois et Chris Sanders",
-     "r": ""
+     "r": "Vote des compositeurs, 9e ex æquo (John Powell)"
+    },
+    {
+     "id": "american-beauty-1999",
+     "t": "American Beauty",
+     "y": 1999,
+     "d": "Sam Mendes",
+     "r": "Vote des compositeurs, 6e ex æquo (Thomas Newman)"
+    },
+    {
+     "id": "shining-1980",
+     "t": "Shining",
+     "y": 1980,
+     "d": "Stanley Kubrick",
+     "r": "La musique qui crée l'angoisse (Ligeti et Penderecki)"
+    },
+    {
+     "id": "2001-l-odyssee-de-l-espace-1968",
+     "t": "2001 : l'Odyssée de l'espace",
+     "y": 1968,
+     "d": "Stanley Kubrick",
+     "r": "La musique choisie, pas composée (Strauss, Ligeti)"
+    },
+    {
+     "id": "in-the-mood-for-love-2000",
+     "t": "In the Mood for Love",
+     "y": 2000,
+     "d": "Wong Kar-wai",
+     "r": "La musique choisie, pas composée"
+    }
+   ],
+   "notes": {
+    "il-etait-une-fois-dans-l-ouest-1968": "Duo Leone et Morricone · Musique et image ne font qu'un",
+    "blade-runner-1982": "Vote des compositeurs, 3e ex æquo (Vangelis) · L'électronique · Musique et image ne font qu'un",
+    "le-grand-bleu-1988": "Duo Besson et Serra",
+    "atlantis-1991": "Duo Besson et Serra",
+    "la-double-vie-de-veronique-1991": "Duo Kieślowski et Preisner",
+    "trois-couleurs-bleu-1993": "Duo Kieślowski et Preisner · Musique et image ne font qu'un",
+    "dead-man-1995": "Neil Young improvise la musique en regardant le film",
+    "microcosmos-1996": "Documentaires de Jacques Perrin, musique de Bruno Coulais · Musique et image ne font qu'un",
+    "dancer-in-the-dark-2000": "Musique et image ne font qu'un (Björk)",
+    "requiem-for-a-dream-2000": "Duo Aronofsky et Mansell",
+    "hero-2002": "Zhang Yimou et Tan Dun · Musique et image ne font qu'un",
+    "le-secret-des-poignards-volants-2004": "Zhang Yimou et Shigeru Umebayashi · Musique et image ne font qu'un",
+    "the-fountain-2006": "Duo Aronofsky et Mansell",
+    "there-will-be-blood-2007": "Vote des compositeurs, 12e ex æquo (Jonny Greenwood) · Duo Anderson et Greenwood · Musique et image ne font qu'un",
+    "annihilation-2018": "Duo Garland, Barrow et Salisbury"
+   },
+   "parties": [
+    {
+     "titre": "Grands thèmes et orchestre",
+     "aide": "Des mélodies qu'on garde en tête",
+     "sous": [
+      {
+       "titre": "Les grands classiques",
+       "ids": [
+        "il-etait-une-fois-dans-l-ouest-1968",
+        "le-bon-la-brute-et-le-truand-1966",
+        "et-pour-quelques-dollars-de-plus-1965",
+        "psychose-1960",
+        "sueurs-froides-1958",
+        "le-parrain-1972",
+        "chinatown-1974",
+        "e-t-l-extra-terrestre-1982",
+        "la-guerre-des-etoiles-1977",
+        "mission-1986",
+        "cinema-paradiso-1988",
+        "le-mepris-1963",
+        "alexandre-nevski-1938"
+       ]
+      },
+      {
+       "titre": "Contes et animation",
+       "ids": [
+        "edward-aux-mains-d-argent-1990",
+        "big-fish-2003",
+        "beetlejuice-1988",
+        "la-cite-des-enfants-perdus-1995",
+        "coraline-2009",
+        "the-grand-budapest-hotel-2014",
+        "princesse-mononoke-1997",
+        "le-voyage-de-chihiro-2001",
+        "dragons-2010",
+        "mr-nobody-2009",
+        "toto-le-heros-1991",
+        "le-regne-animal-2023",
+        "la-planete-sauvage-1973"
+       ]
+      },
+      {
+       "titre": "Les grands thèmes d'aujourd'hui",
+       "ids": [
+        "interstellar-2014",
+        "dune-2021",
+        "le-grand-bleu-1988",
+        "hana-bi-1997",
+        "gattaca-1997",
+        "la-double-vie-de-veronique-1991",
+        "trois-couleurs-bleu-1993",
+        "hero-2002",
+        "le-secret-des-poignards-volants-2004",
+        "the-fountain-2006",
+        "requiem-for-a-dream-2000",
+        "moon-2009",
+        "under-the-silver-lake-2018",
+        "oppenheimer-2023",
+        "babylon-2022",
+        "the-cell-2000",
+        "american-beauty-1999"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Sons sur mesure",
+     "aide": "Instruments détournés, voix et souffles inventés pour le film",
+     "sous": [
+      {
+       "titre": "Cordes et voix déformées",
+       "ids": [
+        "under-the-skin-2013",
+        "jackie-2016",
+        "tar-2022",
+        "joker-2019",
+        "pauvres-creatures-2023",
+        "kinds-of-kindness-2024",
+        "bugonia-2025",
+        "the-master-2012",
+        "le-pouvoir-du-chien-2021",
+        "phantom-thread-2017",
+        "there-will-be-blood-2007",
+        "spencer-2021",
+        "aftersun-2022",
+        "the-brutalist-2024",
+        "eternal-sunshine-of-the-spotless-mind-2004",
+        "punch-drunk-love-2002",
+        "conclave-2024",
+        "midsommar-2019"
+       ]
+      },
+      {
+       "titre": "Percussions, souffles et grondements",
+       "ids": [
+        "sicario-2015",
+        "monos-2019",
+        "the-witch-2015",
+        "the-lighthouse-2019",
+        "heredite-2018",
+        "a-l-ouest-rien-de-nouveau-2022",
+        "premier-contact-2016",
+        "annihilation-2018",
+        "chernobyl-serie-2019",
+        "irreversible-2002",
+        "the-revenant-2015",
+        "titane-2021",
+        "the-substance-2024",
+        "whiplash-2014",
+        "birdman-2014",
+        "tetsuo-1989"
+       ]
+      },
+      {
+       "titre": "Traditions et musiques du monde",
+       "ids": [
+        "kwaidan-1964",
+        "onibaba-1964",
+        "la-femme-des-sables-1964",
+        "akira-1988",
+        "ghost-in-the-shell-1995",
+        "la-couleur-de-la-grenade-1969",
+        "stalker-1979",
+        "only-lovers-left-alive-2013",
+        "dead-man-1995"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Électronique et synthétiseurs",
+     "aide": "Des machines qui font la musique",
+     "sous": [
+      {
+       "titre": "Les pionniers",
+       "ids": [
+        "planete-interdite-1956",
+        "blade-runner-1982",
+        "beyond-the-black-rainbow-2010",
+        "les-oiseaux-1963"
+       ]
+      },
+      {
+       "titre": "Les synthés d'aujourd'hui",
+       "ids": [
+        "drive-2011",
+        "the-neon-demon-2016",
+        "good-time-2017",
+        "uncut-gems-2019",
+        "it-follows-2014",
+        "challengers-2024",
+        "atlantique-2019",
+        "ex-machina-2014",
+        "paprika-2006",
+        "mandy-2018",
+        "sirat-2025",
+        "upstream-color-2013",
+        "cours-lola-cours-1998"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Chansons, jazz et films chantés",
+     "aide": "Chansons et airs écrits pour le film",
+     "sous": [
+      {
+       "titre": "Comédies musicales",
+       "ids": [
+        "les-parapluies-de-cherbourg-1964",
+        "les-demoiselles-de-rochefort-1967",
+        "west-side-story-1961",
+        "chantons-sous-la-pluie-1952",
+        "la-la-land-2016",
+        "annette-2021",
+        "dancer-in-the-dark-2000",
+        "sweeney-todd-le-diabolique-barbier-de-fleet-street-2007",
+        "the-lure-2015"
+       ]
+      },
+      {
+       "titre": "Jazz, rock et chansons",
+       "ids": [
+        "twin-peaks-serie-1990",
+        "twin-peaks-fire-walk-with-me-1992",
+        "mulholland-drive-2001",
+        "suspiria-1977",
+        "suspiria-remake-2018",
+        "her-2013",
+        "ghost-dog-la-voie-du-samourai-1999",
+        "les-triplettes-de-belleville-2003",
+        "cold-war-2018"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Le son raconte",
+     "aide": "Bruitages, silences et films sans paroles",
+     "sous": [
+      {
+       "titre": "Bruitages et sound design",
+       "ids": [
+        "sound-of-metal-2019",
+        "memoria-2021",
+        "bait-2019",
+        "berberian-sound-studio-2012",
+        "playtime-1967",
+        "mon-oncle-1958",
+        "eraserhead-1977",
+        "apocalypse-now-1979",
+        "no-country-for-old-men-2007",
+        "la-zone-d-interet-2023"
+       ]
+      },
+      {
+       "titre": "Musique et image sans un mot",
+       "ids": [
+        "koyaanisqatsi-1982",
+        "mishima-1985",
+        "microcosmos-1996",
+        "atlantis-1991",
+        "le-peuple-migrateur-2001",
+        "oceans-2009",
+        "mon-ami-robot-2023",
+        "flow-2024",
+        "portrait-de-la-jeune-fille-en-feu-2019"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Musique choisie, pas composée",
+     "aide": "Des œuvres existantes, placées au bon endroit",
+     "ids": [
+      "2001-l-odyssee-de-l-espace-1968",
+      "shining-1980",
+      "in-the-mood-for-love-2000",
+      "la-pianiste-2001"
+     ]
     }
    ]
   },
@@ -3610,7 +4525,8 @@
      "d": "Jim Jarmusch",
      "r": "Sons sur mesure (Jozef van Wissem et SQÜRL)"
     }
-   ]
+   ],
+   "cache": true
   },
   "s20-nouveau-cirque": {
    "films": [
@@ -3676,6 +4592,124 @@
      "y": 1987,
      "d": "Wim Wenders",
      "r": "Marion, trapéziste d'un petit cirque berlinois, et l'ange qui tombe amoureux d'elle."
+    }
+   ],
+   "parties": [
+    {
+     "titre": "La vie du cirque",
+     "aide": "Gens de piste, forains et numéros",
+     "sous": [
+      {
+       "titre": "Classiques en noir et blanc",
+       "ids": [
+        "les-feux-de-la-rampe-1952",
+        "la-nuit-des-forains-1953",
+        "elephant-man-1980",
+        "le-cirque-1928",
+        "freaks-la-monstrueuse-parade-1932",
+        "la-strada-1954",
+        "varietes-1925",
+        "les-enfants-du-paradis-1945",
+        "les-ailes-du-desir-1987",
+        "les-harmonies-werckmeister-2000",
+        "blancanieves-2012"
+       ]
+      },
+      {
+       "titre": "En couleurs",
+       "ids": [
+        "lola-montes-1955",
+        "trapeze-1956",
+        "the-big-circus-1959",
+        "la-fleche-et-le-flambeau-1950",
+        "chocolat-2016",
+        "nightmare-alley-2021",
+        "santa-sangre-1989",
+        "dumbo-2019",
+        "les-equilibristes-1991",
+        "the-king-and-the-clown-2005",
+        "eo-2022",
+        "big-fish-2003",
+        "la-cite-des-enfants-perdus-1995",
+        "save-the-green-planet-2003",
+        "le-prestige-2006",
+        "l-imaginarium-du-docteur-parnassus-2009",
+        "micmacs-a-tire-larigot-2009"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Funambules et vrais artistes",
+     "aide": "Documentaires, exploits et spectacles filmés",
+     "sous": [
+      {
+       "titre": "Funambules et exploits",
+       "ids": [
+        "the-walk-rever-plus-haut-2015",
+        "free-solo-2018",
+        "le-funambule-2008"
+       ]
+      },
+      {
+       "titre": "Spectacles filmés",
+       "ids": [
+        "cirque-du-soleil-quidam-1999",
+        "cirque-du-soleil-varekai-2003",
+        "cirque-du-soleil-journey-of-man-2000",
+        "cirque-du-soleil-fire-within-2002",
+        "satie-and-suzanne-1994",
+        "broadway-rhythm-1944"
+       ]
+      },
+      {
+       "titre": "Apprendre la contorsion",
+       "ids": [
+        "fantastique-2025",
+        "girl-against-gravity-2017"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Contorsion et horreur",
+     "aide": "Des corps qui se plient, joués par de vrais contorsionnistes",
+     "ids": [
+      "l-exorciste-1973",
+      "malignant-2021",
+      "le-cercle-2-2005",
+      "le-cercle-rings-2017",
+      "scary-stories-2019",
+      "hellboy-2019",
+      "anything-for-jackson-2020",
+      "separation-2021",
+      "l-exorcisme-d-emily-rose-2005",
+      "le-dernier-exorcisme-2010",
+      "le-dernier-exorcisme-part-ii-2013",
+      "nosferatu-2024",
+      "devil-inside-2012",
+      "conjuring-3-sous-l-emprise-du-diable-2021",
+      "l-exorcisme-de-hannah-grace-2018",
+      "suspiria-remake-2018",
+      "climax-2018",
+      "holy-motors-2012"
+     ]
+    },
+    {
+     "titre": "Dans les séries et le grand spectacle",
+     "aide": "Un épisode ou une scène à voir",
+     "ids": [
+      "x-files-compressions-et-le-retour-de-tooms-1993",
+      "flash-rag-doll-2018",
+      "channel-zero-the-dream-door-2018",
+      "les-experts-sqweegel-2010",
+      "les-experts-manhattan-blood-sweat-tears-2005",
+      "la-caravane-de-l-etrange-saison-2-2005",
+      "terminator-les-chroniques-de-sarah-connor-rosie-2008",
+      "orphelins-baudelaire-the-carnivorous-carnival-2018",
+      "game-of-thrones-kayla-2013",
+      "ocean-s-eleven-2001"
+     ]
     }
    ]
   },
@@ -3855,6 +4889,69 @@
      "y": 2004,
      "d": "Zhang Yimou",
      "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Comédies musicales",
+     "aide": "Chanter et danser dans la rue",
+     "ids": [
+      "west-side-story-1961",
+      "cabaret-1972",
+      "que-le-spectacle-commence-1979",
+      "les-demoiselles-de-rochefort-1967",
+      "moulin-rouge-2001",
+      "la-la-land-2016",
+      "chantons-sous-la-pluie-1952",
+      "broadway-rhythm-1944",
+      "dancer-in-the-dark-2000",
+      "the-lure-2015",
+      "le-bal-1983"
+     ]
+    },
+    {
+     "titre": "Ballet et danse classique",
+     "aide": "Discipline, scène et obsession",
+     "ids": [
+      "les-chaussons-rouges-1948",
+      "black-swan-2010",
+      "girl-2018",
+      "polina-danser-sa-vie-2016",
+      "en-corps-2022",
+      "billy-elliot-2000",
+      "suspiria-1977",
+      "suspiria-remake-2018",
+      "pearl-2022",
+      "les-feux-de-la-rampe-1952",
+      "naissance-des-pieuvres-2007"
+     ]
+    },
+    {
+     "titre": "Danses de la rue et des clubs",
+     "aide": "Voguing, krump, disco et fêtes",
+     "ids": [
+      "paris-is-burning-1990",
+      "kiki-2016",
+      "rize-2005",
+      "la-fievre-du-samedi-soir-1977",
+      "fish-tank-2009",
+      "climax-2018",
+      "happiness-therapy-2012",
+      "drunk-2020",
+      "titane-2021"
+     ]
+    },
+    {
+     "titre": "Danse d'auteur et spectacles",
+     "aide": "Le corps comme langage",
+     "ids": [
+      "pina-2011",
+      "beau-travail-1999",
+      "satie-and-suzanne-1994",
+      "cirque-du-soleil-quidam-1999",
+      "cirque-du-soleil-varekai-2003",
+      "le-secret-des-poignards-volants-2004"
+     ]
     }
    ]
   },
@@ -4063,6 +5160,87 @@
      "d": "Fred M. Wilcox",
      "r": ""
     }
+   ],
+   "parties": [
+    {
+     "titre": "Histoires étranges en noir et blanc",
+     "aide": "Dans l'esprit de La Quatrième Dimension",
+     "ids": [
+      "au-cur-de-la-nuit-1945",
+      "orphee-1950",
+      "les-contes-de-la-lune-vague-apres-la-pluie-1953",
+      "les-diaboliques-1955",
+      "l-invasion-des-profanateurs-de-sepultures-1956",
+      "l-homme-qui-retrecit-1957",
+      "les-innocents-1961",
+      "le-carnaval-des-ames-1962",
+      "l-operation-diabolique-1966",
+      "la-jetee-1962",
+      "psychose-1960",
+      "qu-est-il-arrive-a-baby-jane-1962",
+      "kwaidan-1964",
+      "planete-interdite-1956"
+     ]
+    },
+    {
+     "titre": "Pièges, boucles et mondes clos",
+     "aide": "Des règles absurdes dont on ne sort pas",
+     "ids": [
+      "cube-1997",
+      "dark-city-1998",
+      "triangle-2009",
+      "coherence-2013",
+      "vivarium-2019",
+      "brazil-1985",
+      "identity-2003"
+     ]
+    },
+    {
+     "titre": "Fantômes et horreur",
+     "aide": "La vérité est encore pire",
+     "ids": [
+      "les-autres-2001",
+      "sixieme-sens-1999",
+      "deux-surs-2003",
+      "goodnight-mommy-2014",
+      "malignant-2021",
+      "le-dernier-exorcisme-2010",
+      "santa-sangre-1989",
+      "l-echelle-de-jacob-1990"
+     ]
+    },
+    {
+     "titre": "Thrillers à retournement",
+     "aide": "On a été manipulé du début à la fin",
+     "sous": [
+      {
+       "titre": "Esprits trompés",
+       "ids": [
+        "fight-club-1999",
+        "shutter-island-2010",
+        "the-machinist-2004",
+        "memento-2000",
+        "le-nombre-23-2007",
+        "the-game-1997"
+       ]
+      },
+      {
+       "titre": "Enquêtes et manipulateurs",
+       "ids": [
+        "usual-suspects-1995",
+        "peur-primale-1996",
+        "le-prestige-2006",
+        "seven-1995",
+        "old-boy-2003",
+        "gone-girl-2014",
+        "insaisissables-2013",
+        "mother-2009",
+        "incendies-2010",
+        "le-pouvoir-du-chien-2021"
+       ]
+      }
+     ]
+    }
    ]
   },
   "s33-vengeance-aveugle": {
@@ -4087,6 +5265,62 @@
      "y": 1976,
      "d": "Brian De Palma",
      "r": "Humiliée, Carrie punit tout le bal, coupables et innocents."
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Tragédies et classiques",
+     "aide": "Les vengeances qui retombent sur les siens",
+     "ids": [
+      "oedipe-roi-1967",
+      "hamlet-1996",
+      "rigoletto-1982",
+      "la-reine-margot-1994",
+      "les-diaboliques-1955",
+      "sweeney-todd-le-diabolique-barbier-de-fleet-street-2007",
+      "incendies-2010",
+      "carrie-au-bal-du-diable-1976"
+     ]
+    },
+    {
+     "titre": "Vengeances coréennes",
+     "aide": "Park Chan-wook, Kim Jee-woon et les autres",
+     "ids": [
+      "old-boy-2003",
+      "sympathy-for-mr-vengeance-2002",
+      "lady-vengeance-2005",
+      "j-ai-rencontre-le-diable-2010",
+      "the-tortured-2010",
+      "mother-2009",
+      "confessions-2010"
+     ]
+    },
+    {
+     "titre": "Le mauvais coupable",
+     "aide": "Accuser et punir la mauvaise personne",
+     "ids": [
+      "mystic-river-2003",
+      "la-chasse-2012",
+      "prisoners-2013",
+      "big-bad-wolves-2013",
+      "les-7-jours-du-talion-2010",
+      "irreversible-2002",
+      "memento-2000",
+      "l-innocence-2023",
+      "reviens-moi-2007",
+      "les-experts-manhattan-sans-visage-2006"
+     ]
+    },
+    {
+     "titre": "Deuil et obsession",
+     "aide": "La vengeance qui consume",
+     "ids": [
+      "in-the-bedroom-2001",
+      "dans-ses-yeux-2009",
+      "l-homme-qui-voulait-savoir-1988",
+      "les-autres-2001",
+      "the-pretty-one-2013"
+     ]
     }
    ]
   },
@@ -4270,6 +5504,68 @@
      "y": 1963,
      "d": "Samuel Fuller",
      "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Imposteurs et identités volées",
+     "aide": "Prendre la place d'un autre",
+     "ids": [
+      "le-retour-de-martin-guerre-1982",
+      "the-imposter-2012",
+      "le-talentueux-mr-ripley-1999",
+      "detour-1945",
+      "close-up-1990",
+      "the-visit-2015",
+      "titane-2021",
+      "mademoiselle-2016",
+      "alps-2011",
+      "jf-partagerait-appartement-1992",
+      "l-echange-2008",
+      "shock-corridor-1963"
+     ]
+    },
+    {
+     "titre": "Sosies et doubles",
+     "aide": "Deux personnes, un seul visage",
+     "ids": [
+      "the-pretty-one-2013",
+      "la-double-vie-de-veronique-1991",
+      "the-double-2013",
+      "enemy-2013",
+      "us-2019",
+      "nimic-2019",
+      "kagemusha-1980",
+      "le-dictateur-1940",
+      "faux-semblants-1988",
+      "moon-2009"
+     ]
+    },
+    {
+     "titre": "Pris pour un autre",
+     "aide": "Le mauvais homme au mauvais endroit",
+     "ids": [
+      "monsieur-klein-1976",
+      "le-faux-coupable-1956",
+      "la-mort-aux-trousses-1959",
+      "the-big-lebowski-1998",
+      "a-history-of-violence-2005",
+      "sueurs-froides-1958",
+      "les-experts-manhattan-sans-visage-2006"
+     ]
+    },
+    {
+     "titre": "Nouveaux visages et corps volés",
+     "aide": "Chirurgie, greffes et esprits dans un autre corps",
+     "ids": [
+      "volte-face-1997",
+      "le-visage-d-un-autre-1966",
+      "les-passagers-de-la-nuit-1947",
+      "l-operation-diabolique-1966",
+      "possessor-2020",
+      "l-invasion-des-profanateurs-de-sepultures-1956",
+      "goodnight-mommy-2014"
+     ]
     }
    ]
   },
@@ -4582,6 +5878,102 @@
      "y": 2022,
      "d": "Edward Berger",
      "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Amours",
+     "aide": "Des amours qui bouleversent",
+     "ids": [
+      "breve-histoire-d-amour-1988",
+      "les-amants-du-pont-neuf-1991",
+      "trois-couleurs-blanc-1994",
+      "trois-couleurs-rouge-1994",
+      "un-long-dimanche-de-fiancailles-2004",
+      "breaking-the-waves-1996",
+      "le-secret-de-brokeback-mountain-2005",
+      "past-lives-2023",
+      "les-parapluies-de-cherbourg-1964",
+      "reviens-moi-2007",
+      "l-aurore-1927",
+      "annette-2021",
+      "120-battements-par-minute-2017"
+     ]
+    },
+    {
+     "titre": "Deuil, famille et filiation",
+     "aide": "Parents, enfants et ceux qui partent",
+     "ids": [
+      "incendies-2010",
+      "aftersun-2022",
+      "trois-couleurs-bleu-1993",
+      "paris-texas-1984",
+      "drive-my-car-2021",
+      "manchester-by-the-sea-2016",
+      "room-2015",
+      "amour-2012",
+      "the-father-2020",
+      "still-alice-2014",
+      "the-whale-2022",
+      "leave-no-trace-2018",
+      "magnolia-1999",
+      "une-affaire-de-famille-2018",
+      "jackie-2016",
+      "cinema-paradiso-1988",
+      "au-dela-de-nos-reves-1998"
+     ]
+    },
+    {
+     "titre": "Guerre et injustice",
+     "aide": "L'histoire qui écrase les gens",
+     "ids": [
+      "le-tombeau-des-lucioles-1988",
+      "le-pianiste-2002",
+      "la-liste-de-schindler-1993",
+      "la-vie-est-belle-1997",
+      "voyage-au-bout-de-l-enfer-1978",
+      "a-l-ouest-rien-de-nouveau-2022",
+      "la-ligne-verte-1999",
+      "les-evades-1994",
+      "la-passion-de-jeanne-d-arc-1928",
+      "dancer-in-the-dark-2000",
+      "le-voleur-de-bicyclette-1948"
+     ]
+    },
+    {
+     "titre": "Vies cabossées et dignité",
+     "aide": "Corps blessés, marginaux et artistes",
+     "ids": [
+      "le-huitieme-jour-1996",
+      "le-scaphandre-et-le-papillon-2007",
+      "elephant-man-1980",
+      "la-strada-1954",
+      "les-feux-de-la-rampe-1952",
+      "sound-of-metal-2019",
+      "hana-bi-1997",
+      "perfect-days-2023",
+      "the-deepest-breath-2023"
+     ]
+    },
+    {
+     "titre": "Animaux et contes",
+     "aide": "Bêtes, sirènes et récits merveilleux",
+     "ids": [
+      "the-plague-dogs-1982",
+      "eo-2022",
+      "au-hasard-balthazar-1966",
+      "la-petite-sirene-1976",
+      "the-fall-2006"
+     ]
+    },
+    {
+     "titre": "Science-fiction qui émeut",
+     "aide": "Le temps, l'espace et ceux qu'on aime",
+     "ids": [
+      "interstellar-2014",
+      "premier-contact-2016",
+      "cloud-atlas-2012"
+     ]
     }
    ]
   },
@@ -5108,6 +6500,819 @@
      "y": 2021,
      "d": "Pablo Larraín",
      "r": "Diana et la boulimie, pendant trois jours de Noël."
+    }
+   ]
+  },
+  "s10-cours-1-mouvements": {
+   "films": [],
+   "cache": true
+  },
+  "s11-cours-2-courants": {
+   "films": [],
+   "cache": true
+  },
+  "s12-cours-3-a-decouvrir": {
+   "films": [],
+   "cache": true
+  },
+  "s30-ecole-1-debuts": {
+   "films": [
+    {
+     "id": "l-age-d-or-1930",
+     "t": "L'Âge d'or",
+     "y": 1930,
+     "d": "Luis Buñuel",
+     "r": "Surréalisme (France et Espagne, 1924–1935)"
+    },
+    {
+     "id": "quai-des-brumes-1938",
+     "t": "Quai des brumes",
+     "y": 1938,
+     "d": "Marcel Carné",
+     "r": "Réalisme poétique (France, 1930–1945)"
+    },
+    {
+     "id": "les-enfants-du-paradis-1945",
+     "t": "Les Enfants du paradis",
+     "y": 1945,
+     "d": "Marcel Carné",
+     "r": "Réalisme poétique (France, 1930–1945)"
+    },
+    {
+     "id": "assurance-sur-la-mort-1944",
+     "t": "Assurance sur la mort",
+     "y": 1944,
+     "d": "Billy Wilder",
+     "r": "Film noir (États-Unis, 1940–1958)"
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Les premiers films",
+     "aide": "Lumière, Méliès et les débuts du récit",
+     "ids": [
+      "l-arrivee-d-un-train-en-gare-de-la-ciotat-1896",
+      "le-voyage-dans-la-lune-1902",
+      "le-vol-du-grand-rapide-1903",
+      "naissance-d-une-nation-1915",
+      "nanouk-l-esquimau-1922"
+     ]
+    },
+    {
+     "titre": "Burlesque",
+     "aide": "Keaton et Chaplin",
+     "ids": [
+      "sherlock-junior-1924",
+      "le-mecano-de-la-general-1926",
+      "les-temps-modernes-1936"
+     ]
+    },
+    {
+     "titre": "Expressionnisme allemand",
+     "aide": "Ombres, décors tordus et angoisse",
+     "ids": [
+      "le-cabinet-du-docteur-caligari-1920",
+      "nosferatu-le-vampire-1922",
+      "metropolis-1927",
+      "l-aurore-1927",
+      "m-le-maudit-1931"
+     ]
+    },
+    {
+     "titre": "Montage soviétique et avant-garde",
+     "aide": "Le montage, le gros plan et le rêve",
+     "ids": [
+      "le-cuirasse-potemkine-1925",
+      "l-homme-a-la-camera-1929",
+      "la-passion-de-jeanne-d-arc-1928",
+      "un-chien-andalou-1929",
+      "l-age-d-or-1930"
+     ]
+    },
+    {
+     "titre": "Le parlant : France et Hollywood",
+     "aide": "Réalisme poétique, Citizen Kane et le film noir",
+     "ids": [
+      "l-atalante-1934",
+      "la-regle-du-jeu-1939",
+      "quai-des-brumes-1938",
+      "les-enfants-du-paradis-1945",
+      "citizen-kane-1941",
+      "assurance-sur-la-mort-1944"
+     ]
+    }
+   ]
+  },
+  "s31-ecole-2-classiques": {
+   "films": [
+    {
+     "id": "la-strada-1954",
+     "t": "La Strada",
+     "y": 1954,
+     "d": "Federico Fellini",
+     "r": "Néoréalisme, et ce qui en sort"
+    },
+    {
+     "id": "cleo-de-5-a-7-1962",
+     "t": "Cléo de 5 à 7",
+     "y": 1962,
+     "d": "Agnès Varda",
+     "r": "Nouvelle Vague (France, 1959–1965)"
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Hollywood et Hitchcock",
+     "aide": "Suspense, studios et comédie musicale",
+     "ids": [
+      "la-corde-1948",
+      "chantons-sous-la-pluie-1952",
+      "fenetre-sur-cour-1954",
+      "la-nuit-du-chasseur-1955",
+      "sueurs-froides-1958",
+      "psychose-1960",
+      "les-oiseaux-1963",
+      "la-soif-du-mal-1958"
+     ]
+    },
+    {
+     "titre": "L'après-guerre en Italie et au Japon",
+     "aide": "Néoréalisme et âge d'or japonais",
+     "ids": [
+      "le-voleur-de-bicyclette-1948",
+      "la-strada-1954",
+      "rashomon-1950",
+      "voyage-a-tokyo-1953",
+      "les-sept-samourais-1954",
+      "nuit-et-brouillard-1956"
+     ]
+    },
+    {
+     "titre": "Nouvelle Vague",
+     "aide": "Caméra à l'épaule et jeunesse, en France",
+     "ids": [
+      "les-quatre-cents-coups-1959",
+      "a-bout-de-souffle-1960",
+      "la-jetee-1962",
+      "le-mepris-1963",
+      "les-parapluies-de-cherbourg-1964",
+      "cleo-de-5-a-7-1962"
+     ]
+    },
+    {
+     "titre": "Modernité européenne",
+     "aide": "Le temps, le doute et l'image",
+     "ids": [
+      "hiroshima-mon-amour-1959",
+      "l-avventura-1960",
+      "l-annee-derniere-a-marienbad-1961",
+      "812-1963",
+      "persona-1966",
+      "blow-up-1966",
+      "playtime-1967"
+     ]
+    },
+    {
+     "titre": "Nouvel Hollywood et western",
+     "aide": "Kubrick, Coppola, Polanski et Leone",
+     "ids": [
+      "2001-l-odyssee-de-l-espace-1968",
+      "le-parrain-1972",
+      "conversation-secrete-1974",
+      "chinatown-1974",
+      "il-etait-une-fois-dans-l-ouest-1968"
+     ]
+    }
+   ]
+  },
+  "s32-ecole-3-moderne": {
+   "films": [
+    {
+     "id": "the-thing-1982",
+     "t": "The Thing",
+     "y": 1982,
+     "d": "John Carpenter",
+     "r": "Horreur d'auteur et body horror"
+    },
+    {
+     "id": "hellraiser-1987",
+     "t": "Hellraiser",
+     "y": 1987,
+     "d": "Clive Barker",
+     "r": "Horreur d'auteur et body horror"
+    },
+    {
+     "id": "tetsuo-1989",
+     "t": "Tetsuo",
+     "y": 1989,
+     "d": "Shinya Tsukamoto",
+     "r": "Horreur d'auteur et body horror"
+    },
+    {
+     "id": "diva-1981",
+     "t": "Diva",
+     "y": 1981,
+     "d": "Jean-Jacques Beineix",
+     "r": "Cinéma du look (France, années 1980)"
+    },
+    {
+     "id": "mauvais-sang-1986",
+     "t": "Mauvais Sang",
+     "y": 1986,
+     "d": "Leos Carax",
+     "r": "Cinéma du look (France, années 1980)"
+    },
+    {
+     "id": "le-grand-bleu-1988",
+     "t": "Le Grand Bleu",
+     "y": 1988,
+     "d": "Luc Besson",
+     "r": "Cinéma du look (France, années 1980)"
+    },
+    {
+     "id": "delicatessen-1991",
+     "t": "Delicatessen",
+     "y": 1991,
+     "d": "Jean-Pierre Jeunet et Marc Caro",
+     "r": "Dans la veine du cinéma du look : Jeunet et Caro"
+    },
+    {
+     "id": "la-cite-des-enfants-perdus-1995",
+     "t": "La Cité des enfants perdus",
+     "y": 1995,
+     "d": "Jean-Pierre Jeunet et Marc Caro",
+     "r": "Dans la veine du cinéma du look : Jeunet et Caro"
+    },
+    {
+     "id": "stranger-than-paradise-1984",
+     "t": "Stranger Than Paradise",
+     "y": 1984,
+     "d": "Jim Jarmusch",
+     "r": "Cinéma indépendant américain"
+    },
+    {
+     "id": "sexe-mensonges-et-video-1989",
+     "t": "Sexe, mensonges et vidéo",
+     "y": 1989,
+     "d": "Steven Soderbergh",
+     "r": "Cinéma indépendant américain · Palme d'or 1989"
+    },
+    {
+     "id": "barton-fink-1991",
+     "t": "Barton Fink",
+     "y": 1991,
+     "d": "Joel et Ethan Coen",
+     "r": "Cinéma indépendant américain"
+    },
+    {
+     "id": "safe-1995",
+     "t": "Safe",
+     "y": 1995,
+     "d": "Todd Haynes",
+     "r": "Cinéma indépendant américain"
+    },
+    {
+     "id": "magnolia-1999",
+     "t": "Magnolia",
+     "y": 1999,
+     "d": "Paul Thomas Anderson",
+     "r": "Cinéma indépendant américain"
+    },
+    {
+     "id": "le-nombre-23-2007",
+     "t": "Le Nombre 23",
+     "y": 2007,
+     "d": "Joel Schumacher",
+     "r": "Films-puzzles"
+    },
+    {
+     "id": "lost-highway-1997",
+     "t": "Lost Highway",
+     "y": 1997,
+     "d": "David Lynch",
+     "r": "Films-puzzles"
+    },
+    {
+     "id": "being-john-malkovich-1999",
+     "t": "Being John Malkovich",
+     "y": 1999,
+     "d": "Spike Jonze",
+     "r": "Films-puzzles"
+    },
+    {
+     "id": "fight-club-1999",
+     "t": "Fight Club",
+     "y": 1999,
+     "d": "David Fincher",
+     "r": "Films-puzzles"
+    },
+    {
+     "id": "donnie-darko-2001",
+     "t": "Donnie Darko",
+     "y": 2001,
+     "d": "Richard Kelly",
+     "r": "Films-puzzles"
+    },
+    {
+     "id": "eternal-sunshine-of-the-spotless-mind-2004",
+     "t": "Eternal Sunshine of the Spotless Mind",
+     "y": 2004,
+     "d": "Michel Gondry",
+     "r": "Films-puzzles"
+    },
+    {
+     "id": "the-machinist-2004",
+     "t": "The Machinist",
+     "y": 2004,
+     "d": "Brad Anderson",
+     "r": "Films-puzzles"
+    },
+    {
+     "id": "les-idiots-1998",
+     "t": "Les Idiots",
+     "y": 1998,
+     "d": "Lars von Trier",
+     "r": "Dogme 95 (Danemark)"
+    },
+    {
+     "id": "dancer-in-the-dark-2000",
+     "t": "Dancer in the Dark",
+     "y": 2000,
+     "d": "Lars von Trier",
+     "r": "Lars von Trier après le Dogme 95"
+    },
+    {
+     "id": "dogville-2003",
+     "t": "Dogville",
+     "y": 2003,
+     "d": "Lars von Trier",
+     "r": "Lars von Trier après le Dogme 95"
+    },
+    {
+     "id": "melancholia-2011",
+     "t": "Melancholia",
+     "y": 2011,
+     "d": "Lars von Trier",
+     "r": "Lars von Trier après le Dogme 95"
+    },
+    {
+     "id": "happy-together-1997",
+     "t": "Happy Together",
+     "y": 1997,
+     "d": "Wong Kar-wai",
+     "r": "Asie de l'Est : Hong Kong"
+    },
+    {
+     "id": "yi-yi-2000",
+     "t": "Yi Yi",
+     "y": 2000,
+     "d": "Edward Yang",
+     "r": "Asie de l'Est : Taïwan"
+    },
+    {
+     "id": "vive-l-amour-1994",
+     "t": "Vive l'amour",
+     "y": 1994,
+     "d": "Tsai Ming-liang",
+     "r": "Asie de l'Est : Taïwan"
+    },
+    {
+     "id": "hana-bi-1997",
+     "t": "Hana-bi",
+     "y": 1997,
+     "d": "Takeshi Kitano",
+     "r": "Asie de l'Est : Japon"
+    },
+    {
+     "id": "cure-1997",
+     "t": "Cure",
+     "y": 1997,
+     "d": "Kiyoshi Kurosawa",
+     "r": "Asie de l'Est : Japon"
+    },
+    {
+     "id": "ring-1998",
+     "t": "Ring",
+     "y": 1998,
+     "d": "Hideo Nakata",
+     "r": "Asie de l'Est : Japon"
+    },
+    {
+     "id": "perfect-blue-1997",
+     "t": "Perfect Blue",
+     "y": 1997,
+     "d": "Satoshi Kon",
+     "r": "Asie de l'Est : Japon · animation de Satoshi Kon"
+    },
+    {
+     "id": "paprika-2006",
+     "t": "Paprika",
+     "y": 2006,
+     "d": "Satoshi Kon",
+     "r": "Asie de l'Est : Japon · animation de Satoshi Kon"
+    },
+    {
+     "id": "memories-of-murder-2003",
+     "t": "Memories of Murder",
+     "y": 2003,
+     "d": "Bong Joon-ho",
+     "r": "Asie de l'Est : Corée du Sud"
+    },
+    {
+     "id": "old-boy-2003",
+     "t": "Old Boy",
+     "y": 2003,
+     "d": "Park Chan-wook",
+     "r": "Asie de l'Est : Corée du Sud"
+    },
+    {
+     "id": "deux-surs-2003",
+     "t": "Deux sœurs",
+     "y": 2003,
+     "d": "Kim Jee-woon",
+     "r": "Asie de l'Est : Corée du Sud"
+    },
+    {
+     "id": "le-ballon-blanc-1995",
+     "t": "Le Ballon blanc",
+     "y": 1995,
+     "d": "Jafar Panahi",
+     "r": "Cinéma iranien"
+    },
+    {
+     "id": "le-gout-de-la-cerise-1997",
+     "t": "Le Goût de la cerise",
+     "y": 1997,
+     "d": "Abbas Kiarostami",
+     "r": "Cinéma iranien · Palme d'or 1997"
+    },
+    {
+     "id": "satantango-1994",
+     "t": "Sátántangó",
+     "y": 1994,
+     "d": "Béla Tarr",
+     "r": "Cinéma lent · sept heures"
+    },
+    {
+     "id": "les-harmonies-werckmeister-2000",
+     "t": "Les Harmonies Werckmeister",
+     "y": 2000,
+     "d": "Béla Tarr",
+     "r": "Cinéma lent"
+    },
+    {
+     "id": "tropical-malady-2004",
+     "t": "Tropical Malady",
+     "y": 2004,
+     "d": "Apichatpong Weerasethakul",
+     "r": "Cinéma lent"
+    },
+    {
+     "id": "oncle-boonmee-celui-qui-se-souvient-de-ses-vies-anterieures-2010",
+     "t": "Oncle Boonmee, celui qui se souvient de ses vies antérieures",
+     "y": 2010,
+     "d": "Apichatpong Weerasethakul",
+     "r": "Cinéma lent · Palme d'or 2010"
+    },
+    {
+     "id": "seul-contre-tous-1998",
+     "t": "Seul contre tous",
+     "y": 1998,
+     "d": "Gaspar Noé",
+     "r": "Cinéma du corps et de l'extrême (France) · très dur"
+    },
+    {
+     "id": "beau-travail-1999",
+     "t": "Beau Travail",
+     "y": 1999,
+     "d": "Claire Denis",
+     "r": "Cinéma du corps et de l'extrême (France)"
+    },
+    {
+     "id": "irreversible-2002",
+     "t": "Irréversible",
+     "y": 2002,
+     "d": "Gaspar Noé",
+     "r": "Cinéma du corps et de l'extrême (France) · très dur"
+    },
+    {
+     "id": "enter-the-void-2009",
+     "t": "Enter the Void",
+     "y": 2009,
+     "d": "Gaspar Noé",
+     "r": "Cinéma du corps et de l'extrême (France)"
+    },
+    {
+     "id": "climax-2018",
+     "t": "Climax",
+     "y": 2018,
+     "d": "Gaspar Noé",
+     "r": "Cinéma du corps et de l'extrême (France), plus tard"
+    },
+    {
+     "id": "funny-games-1997",
+     "t": "Funny Games",
+     "y": 1997,
+     "d": "Michael Haneke",
+     "r": "Cinéma du corps et de l'extrême (Autriche) · très dur"
+    },
+    {
+     "id": "la-pianiste-2001",
+     "t": "La Pianiste",
+     "y": 2001,
+     "d": "Michael Haneke",
+     "r": "Cinéma du corps et de l'extrême (Autriche)"
+    },
+    {
+     "id": "cache-2005",
+     "t": "Caché",
+     "y": 2005,
+     "d": "Michael Haneke",
+     "r": "Cinéma du corps et de l'extrême (Autriche)"
+    },
+    {
+     "id": "le-ruban-blanc-2009",
+     "t": "Le Ruban blanc",
+     "y": 2009,
+     "d": "Michael Haneke",
+     "r": "Cinéma du corps et de l'extrême (Autriche) · Palme d'or 2009"
+    },
+    {
+     "id": "la-mort-de-dante-lazarescu-2005",
+     "t": "La Mort de Dante Lazarescu",
+     "y": 2005,
+     "d": "Cristi Puiu",
+     "r": "Nouvelle vague roumaine"
+    },
+    {
+     "id": "4-mois-3-semaines-2-jours-2007",
+     "t": "4 mois, 3 semaines, 2 jours",
+     "y": 2007,
+     "d": "Cristian Mungiu",
+     "r": "Nouvelle vague roumaine · Palme d'or 2007"
+    },
+    {
+     "id": "amours-chiennes-2000",
+     "t": "Amours chiennes",
+     "y": 2000,
+     "d": "Alejandro González Iñárritu",
+     "r": "Le Mexique des « trois amis »"
+    },
+    {
+     "id": "y-tu-mama-tambien-2001",
+     "t": "Y tu mamá también",
+     "y": 2001,
+     "d": "Alfonso Cuarón",
+     "r": "Le Mexique des « trois amis »"
+    },
+    {
+     "id": "le-labyrinthe-de-pan-2006",
+     "t": "Le Labyrinthe de Pan",
+     "y": 2006,
+     "d": "Guillermo del Toro",
+     "r": "Le Mexique des « trois amis »"
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Nouvel Hollywood et derniers modernes",
+     "aide": "Les grands films des années 1970",
+     "ids": [
+      "les-dents-de-la-mer-1975",
+      "barry-lyndon-1975",
+      "taxi-driver-1976",
+      "la-guerre-des-etoiles-1977",
+      "apocalypse-now-1979",
+      "shining-1980",
+      "raging-bull-1980",
+      "jeanne-dielman-23-quai-du-commerce-1080-bruxelles-1975",
+      "les-ailes-du-desir-1987"
+     ]
+    },
+    {
+     "titre": "Courants depuis 1980",
+     "aide": "Les écoles nées depuis 1980",
+     "sous": [
+      {
+       "titre": "Cinéma du look",
+       "ids": [
+        "diva-1981",
+        "mauvais-sang-1986",
+        "le-grand-bleu-1988",
+        "delicatessen-1991",
+        "la-cite-des-enfants-perdus-1995"
+       ]
+      },
+      {
+       "titre": "Cinéma indépendant américain",
+       "ids": [
+        "do-the-right-thing-1989",
+        "pulp-fiction-1994",
+        "moonlight-2016",
+        "stranger-than-paradise-1984",
+        "sexe-mensonges-et-video-1989",
+        "barton-fink-1991",
+        "safe-1995",
+        "magnolia-1999"
+       ]
+      },
+      {
+       "titre": "Films-puzzles",
+       "ids": [
+        "memento-2000",
+        "le-nombre-23-2007",
+        "lost-highway-1997",
+        "being-john-malkovich-1999",
+        "fight-club-1999",
+        "donnie-darko-2001",
+        "eternal-sunshine-of-the-spotless-mind-2004",
+        "the-machinist-2004"
+       ]
+      },
+      {
+       "titre": "Horreur d'auteur et found footage",
+       "ids": [
+        "the-thing-1982",
+        "hellraiser-1987",
+        "tetsuo-1989",
+        "le-projet-blair-witch-1999"
+       ]
+      },
+      {
+       "titre": "Cinéma du corps et de l'extrême",
+       "ids": [
+        "seul-contre-tous-1998",
+        "beau-travail-1999",
+        "irreversible-2002",
+        "enter-the-void-2009",
+        "climax-2018",
+        "funny-games-1997",
+        "la-pianiste-2001",
+        "cache-2005",
+        "le-ruban-blanc-2009"
+       ]
+      },
+      {
+       "titre": "Dogme 95 et ses héritiers",
+       "ids": [
+        "festen-1998",
+        "les-idiots-1998",
+        "dancer-in-the-dark-2000",
+        "dogville-2003",
+        "melancholia-2011"
+       ]
+      },
+      {
+       "titre": "Cinéma lent",
+       "ids": [
+        "stalker-1979",
+        "satantango-1994",
+        "les-harmonies-werckmeister-2000",
+        "tropical-malady-2004",
+        "oncle-boonmee-celui-qui-se-souvient-de-ses-vies-anterieures-2010"
+       ]
+      },
+      {
+       "titre": "Roumanie et Mexique",
+       "ids": [
+        "la-mort-de-dante-lazarescu-2005",
+        "4-mois-3-semaines-2-jours-2007",
+        "les-fils-de-l-homme-2006",
+        "birdman-2014",
+        "amours-chiennes-2000",
+        "y-tu-mama-tambien-2001",
+        "le-labyrinthe-de-pan-2006"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Cinéma d'Asie",
+     "aide": "Hong Kong, Taïwan, Japon, Corée, Iran",
+     "sous": [
+      {
+       "titre": "Hong Kong et Taïwan",
+       "ids": [
+        "chungking-express-1994",
+        "in-the-mood-for-love-2000",
+        "happy-together-1997",
+        "yi-yi-2000",
+        "vive-l-amour-1994"
+       ]
+      },
+      {
+       "titre": "Japon",
+       "ids": [
+        "hana-bi-1997",
+        "cure-1997",
+        "ring-1998"
+       ]
+      },
+      {
+       "titre": "Corée du Sud",
+       "ids": [
+        "parasite-2019",
+        "memories-of-murder-2003",
+        "old-boy-2003",
+        "deux-surs-2003"
+       ]
+      },
+      {
+       "titre": "Iran",
+       "ids": [
+        "close-up-1990",
+        "le-ballon-blanc-1995",
+        "le-gout-de-la-cerise-1997"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Grand spectacle et animation",
+     "aide": "Effets spéciaux, science-fiction et dessins animés",
+     "ids": [
+      "blade-runner-1982",
+      "jurassic-park-1993",
+      "matrix-1999",
+      "mad-max-fury-road-2015",
+      "toy-story-1995",
+      "perfect-blue-1997",
+      "paprika-2006"
+     ]
+    },
+    {
+     "titre": "Documentaire et essai",
+     "aide": "Filmer la mémoire",
+     "ids": [
+      "sans-soleil-1983",
+      "shoah-1985"
+     ]
+    }
+   ]
+  },
+  "s08-liste-cauchemar": {
+   "films": [],
+   "parties": [
+    {
+     "titre": "Rêves et esprits qui se perdent",
+     "aide": "Quand le cauchemar est dans la tête",
+     "ids": [
+      "mulholland-drive-2001",
+      "inception-2010",
+      "paprika-2006",
+      "waking-life-2001",
+      "les-griffes-de-la-nuit-1984",
+      "the-nightmare-2015",
+      "repulsion-1965",
+      "perfect-blue-1997",
+      "take-shelter-2011",
+      "un-homme-d-exception-2001",
+      "bug-2006",
+      "le-nombre-23-2007",
+      "memento-2000",
+      "the-game-1997",
+      "nurse-betty-2000",
+      "room-237-2012"
+     ]
+    },
+    {
+     "titre": "Maisons et proches inquiétants",
+     "aide": "Ceux qui vivent avec toi",
+     "ids": [
+      "shining-1980",
+      "mister-babadook-2014",
+      "misery-1990",
+      "us-2019",
+      "relic-2020",
+      "smile-2022",
+      "ouija-les-origines-2016",
+      "the-visit-2015",
+      "jf-partagerait-appartement-1992",
+      "phantom-thread-2017",
+      "werewolf-by-night-2022"
+     ]
+    },
+    {
+     "titre": "Séries",
+     "aide": "Épisodes et saisons liés au cauchemar",
+     "ids": [
+      "desperate-housewives-serie-2004",
+      "x-files-episode-eve-1993",
+      "the-lost-room-mini-serie-2006",
+      "american-horror-story-serie-2011",
+      "shining-vale-serie-2022",
+      "ratched-serie-2020"
+     ]
+    },
+    {
+     "titre": "Pour respirer",
+     "aide": "Comédies et contes en lien avec le rêve",
+     "ids": [
+      "jumanji-1995",
+      "licorice-pizza-2021",
+      "les-valeurs-de-la-famille-addams-1993",
+      "jules-2023"
+     ]
     }
    ]
   }

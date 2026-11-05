@@ -277,6 +277,12 @@ section.s{background:var(--paper);border-radius:16px;overflow:hidden;border:1.5p
 .m{font-size:13px;color:var(--muted);margin-top:1px;}
 .why{font-size:13.5px;color:var(--ink);margin-top:4px;max-width:46ch;}
 .ctx{font-size:12.5px;color:var(--muted);margin-top:3px;max-width:52ch;}
+.subp{clear:both;display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:9px;}
+.subp label{display:block;max-width:100%;}
+.subp select{max-width:100%;font:600 14px/1.2 var(--font);color:var(--ink);background:var(--k-s-FFFFFFA6);border:1.5px solid var(--sc,var(--line));border-radius:99px;padding:7px 30px 7px 12px;cursor:pointer;-webkit-appearance:none;appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat;}
+.subp-a{font-size:12.5px;color:var(--muted);}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .grp{padding:9px 16px 5px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
 .grp b{color:var(--ink);font-weight:700;font-size:16px;}
 .ctrl{display:grid;gap:6px;justify-items:end;}
@@ -3198,18 +3204,48 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (Math.abs(d) > 2 && window.pageYOffset > 0) window.scrollBy(0, d);
     }); });
   }
+  // Sous-catégories d'une liste : parties, et parfois sous-parties (« sous »). Un film va dans la première qui le cite.
+  var SUBP = {};
+  function subMap(s){
+    if (s._subm && s._subm.p === s.parties) return s._subm.m;
+    var m = {};
+    (s.parties || []).forEach(function(p, k){
+      (p.ids || []).forEach(function(id){ if (!m[id]) m[id] = { k:k, j:null }; });
+      (p.sous || []).forEach(function(q, j){ (q.ids || []).forEach(function(id){ if (!m[id]) m[id] = { k:k, j:j }; }); });
+    });
+    s._subm = { p:s.parties, m:m }; return m;
+  }
   function sectionHtml(s, i, list, empty){
     // Dans chaque liste (thèmes, époques, envies…), les films vont du 10/10 estimé au plus bas, avec un intertitre par note,
     // puis les films déjà vus selon ta note. Les sous-parties d'un thème ne regroupent plus les films :
     // leur nom passe dans la petite note de chaque film, pour ne pas casser l'ordre des notes.
     var mode = s.auto === "classement" ? "note" : ((s.id === "tout" && !s.search && !s.plain) || s.auto === "meilleures" || (!s.auto && s.id !== "tout") ? "est" : ""), counts = {}, cur = null, PI = null;
-    if (mode === "est" && s.parties && s.parties.length) {
-      PI = {}; s.parties.forEach(function(p, k){ (p.ids || []).forEach(function(id){ if (!(id in PI)) PI[id] = k; }); });
-      list = list.map(function(f){
-        var pt = f.id in PI ? s.parties[PI[f.id]] : null;
-        return pt && pt.titre ? Object.assign({}, f, { r:pt.titre + (f.r ? " · " + f.r : "") }) : f;
+    // Sous-catégories : un seul menu en haut de la liste filtre les films ; l'ordre des notes estimées ne change pas.
+    var subHtml = "";
+    if (!s.auto && s.parties && s.parties.length && list.length) {
+      var SP = subMap(s), sel = SUBP[s.id] || "", nb = {}, other = 0;
+      list.forEach(function(f){ var w = SP[f.id]; if (!w) { other++; return; } nb[w.k] = (nb[w.k] || 0) + 1; if (w.j != null) nb[w.k + "." + w.j] = (nb[w.k + "." + w.j] || 0) + 1; });
+      if (sel && !nb[sel] && !(sel === "x" && other)) sel = SUBP[s.id] = "";
+      var opt = function(v, t, n){ return '<option value="' + v + '"' + (v === sel ? " selected" : "") + '>' + esc(t) + " · " + n + '</option>'; };
+      var opts = opt("", "Toutes les sous-catégories", list.length);
+      s.parties.forEach(function(p, k){
+        if (!nb[k]) return;
+        opts += opt(String(k), p.titre, nb[k]);
+        (p.sous || []).forEach(function(q, j){ if (nb[k + "." + j]) opts += opt(k + "." + j, "\u00a0\u00a0\u00a0↳ " + q.titre, nb[k + "." + j]); });
+      });
+      if (other) opts += opt("x", "Autres films", other);
+      var cp = sel && sel !== "x" ? s.parties[+sel.split(".")[0]] : null, cq = cp && sel.indexOf(".") > 0 ? (cp.sous || [])[+sel.split(".")[1]] : null;
+      subHtml = '<div class="subp"><label><span class="vh">Sous-catégorie</span><select data-subp="' + esc(s.id) + '">' + opts + '</select></label>' +
+        (cq ? '<span class="subp-a">dans « ' + esc(cp.titre) + ' »</span>' : cp && cp.aide ? '<span class="subp-a">' + esc(cp.aide) + '</span>' : "") + '</div>';
+      if (sel) list = list.filter(function(f){ var w = SP[f.id]; return sel === "x" ? !w : w && (String(w.k) === sel || (w.k + "." + w.j) === sel); });
+      if (mode === "est") list = list.map(function(f){
+        var w = SP[f.id]; if (!w) return f;
+        var p = s.parties[w.k], q = w.j != null ? p.sous[w.j] : null;
+        var lab = sel.indexOf(".") > 0 ? "" : sel ? (q ? q.titre : "") : p.titre + (q ? " · " + q.titre : "");
+        return lab ? Object.assign({}, f, { r:lab + (f.r ? " · " + f.r : "") }) : f;
       });
     }
+    if (mode === "part") { PI = {}; var SP2 = subMap(s); Object.keys(SP2).forEach(function(id){ PI[id] = SP2[id].k; }); }
     function key(f){
       if (mode === "part") return String(f.id in PI ? PI[f.id] : 99);
       if (mode === "note") { var fz = FRZ.n[s.id]; return String(fz && fz[f.id] != null ? fz[f.id] : (answers[f.id] || {}).note10); }
@@ -3238,7 +3274,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       (list.length > 1 ? '<button type="button" class="shb shd" data-rndsec="' + esc(s.id) + '" aria-label="Un film au hasard dans cette liste" title="Un film au hasard dans cette liste">🎲</button>' : "") +
       (fam ? '<div class="s-kick" style="color:' + famInk(fam) + '">' + famIcon(fam.id) + esc(fLabel(fam)) + '</div>' : "") +
       '<h2>' + esc(sTitre(s)) + '</h2>' +
-      '<div class="n" data-count="' + esc(s.id) + '"></div></div>' + (empty ? '<p class="vide">' + esc(empty) + '</p>' : body) +
+      '<div class="n" data-count="' + esc(s.id) + '"></div>' + subHtml + '</div>' + (empty ? '<p class="vide">' + esc(empty) + '</p>' : body) +
       (s.auto === "conseils" ? plExtraHtml(s) : "") + '</section>';
   }
 
@@ -3461,7 +3497,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     FAMS.forEach(function(f){
       if (!f || !f.id) return;
       if (f.mouvements) { if (MOUVS.length) fams.push(f); }
-      else if (view !== "global" && (TOCMAP[f.id] || sections.some(function(s){ return s.famille === f.id; }))) fams.push(f);
+      else if (view !== "global" && (TOCMAP[f.id] || sections.some(function(s){ return s.famille === f.id && !s.cache; }))) fams.push(f);
     });
     if (view !== "global") Object.keys(TOCMAP).forEach(function(fid){ if (!FAM_OF[fid]) fams.push({ id:fid, label:"Autres listes" }); });
     if (ENVIES.length) {
@@ -6680,6 +6716,16 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var chip = row.querySelector('[data-pn="_"]'); var i = envIdx("_", row.dataset.id);
     if (chip && i >= 0) chip.textContent = "♥ " + (ENVOI[i].nom || "Quelqu'un d'autre");
   });
+  // Sous-catégorie choisie dans le menu d'une liste.
+  $("main").addEventListener("change", function(ev){
+    var t = ev.target; if (!t.dataset || !t.dataset.subp) return;
+    SUBP[t.dataset.subp] = t.value;
+    var sec = t.closest("section"), top = sec ? sec.getBoundingClientRect().top : 0;
+    renderAll();
+    var ns = document.getElementById("sec-" + t.dataset.subp);
+    if (ns && sec) window.scrollBy(0, ns.getBoundingClientRect().top - top);
+    var nsel = ns && ns.querySelector("[data-subp]"); if (nsel) nsel.focus({ preventScroll:true });
+  });
   // « Autre nom… » choisi : le champ prénom apparaît.
   $("main").addEventListener("change", function(ev){
     if (!ev.target.classList || !ev.target.classList.contains("c-who")) return;
@@ -7057,7 +7103,12 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
           var x = Object.assign({}, d.data() || {}), have = {};
           (x.films || []).forEach(function(f){ have[f.id] = 1; });
           x.films = (x.films || []).concat((add.films || []).filter(function(f){ return !have[f.id]; }));
-          if (add.parties && !x.parties) x.parties = add.parties;
+          // Les sous-catégories des compléments remplacent celles de la base ; une liste peut être cachée (ses films sont rangés ailleurs).
+          if (add.parties) x.parties = add.parties;
+          if (add.cache) x.cache = true;
+          if (add.sous_titre) x.sous_titre = add.sous_titre;
+          // Une petite note pour les films de la base qui n'en ont pas encore dans cette liste.
+          if (add.notes) x.films = x.films.map(function(f){ return add.notes[f.id] && !f.r ? Object.assign({}, f, { r:add.notes[f.id] }) : f; });
           return x;
         } });
       });

@@ -28,6 +28,12 @@ def validate_data():
         key = (re.sub(r"^(the|le|la|les|l|a|an|un|une)-", "", slug(film["t"])), film["y"])
         assert seen.setdefault(key, film["id"]) == film["id"], f"Film en double : {seen[key]} et {film['id']}"
     assert all(sum(map(int, code)) == 10 for code in comp["familles"].values()), "Familles : le total doit faire 10"
+    # Sous-catégories : chaque film cité existe et n'est rangé qu'une fois par liste.
+    known = ids | set(comp["fiches"])
+    for sid, section in comp["sections"].items():
+        cited = [i for p in section.get("parties", []) for i in p.get("ids", []) + [x for q in p.get("sous", []) for x in q["ids"]]]
+        assert set(cited) <= known, (sid, set(cited) - known)
+        assert len(cited) == len(set(cited)), f"{sid} : un film est rangé deux fois"
     allowed = {"violence explicite", "violence sexuelle", "suicide", "automutilation",
                "maltraitance", "drogue", "images choquantes"}
     for fid in ids:
