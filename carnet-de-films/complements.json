@@ -122,6 +122,76 @@
      "y": 2014,
      "d": "Robert Nixon et Fisher Stevens",
      "r": "Sylvia Earle, une vie de plongées pour défendre la vie marine."
+    },
+    {
+     "id": "a-scene-at-the-sea-1991",
+     "t": "A Scene at the Sea",
+     "y": 1991,
+     "d": "Takeshi Kitano",
+     "r": ""
+    },
+    {
+     "id": "la-vie-aquatique-2004",
+     "t": "La Vie aquatique",
+     "y": 2004,
+     "d": "Wes Anderson",
+     "r": ""
+    },
+    {
+     "id": "atlantis-1991",
+     "t": "Atlantis",
+     "y": 1991,
+     "d": "Luc Besson",
+     "r": ""
+    },
+    {
+     "id": "ama-san-2016",
+     "t": "Ama-San",
+     "y": 2016,
+     "d": "Cláudia Varejão",
+     "r": ""
+    },
+    {
+     "id": "la-petite-sirene-1976",
+     "t": "La Petite Sirène",
+     "y": 1976,
+     "d": "Karel Kachyňa",
+     "r": ""
+    },
+    {
+     "id": "tabou-1931",
+     "t": "Tabou",
+     "y": 1931,
+     "d": "F. W. Murnau",
+     "r": ""
+    },
+    {
+     "id": "green-porno-courts-metrages-2008",
+     "t": "Green Porno (courts métrages)",
+     "y": 2008,
+     "d": "Isabella Rossellini",
+     "r": ""
+    },
+    {
+     "id": "triangle-2009",
+     "t": "Triangle",
+     "y": 2009,
+     "d": "Christopher Smith",
+     "r": ""
+    },
+    {
+     "id": "atlantique-2019",
+     "t": "Atlantique",
+     "y": 2019,
+     "d": "Mati Diop",
+     "r": ""
+    },
+    {
+     "id": "bait-2019",
+     "t": "Bait",
+     "y": 2019,
+     "d": "Mark Jenkin",
+     "r": ""
     }
    ],
    "parties": [
@@ -375,6 +445,34 @@
      "y": 2014,
      "d": "Kim Seong-hun",
      "r": "Le maître-chanteur au bout du fil, et un policier qui s'enfonce : le rire nerveux du thriller coréen."
+    },
+    {
+     "id": "incoherence-1994",
+     "t": "Incoherence",
+     "y": 1994,
+     "d": "Bong Joon-ho",
+     "r": "Le film d'études de Bong Joon-ho, en trois épisodes."
+    },
+    {
+     "id": "time-2006",
+     "t": "Time",
+     "y": 2006,
+     "d": "Kim Ki-duk",
+     "r": "Kim Ki-duk : changer de visage pour être aimée de nouveau."
+    },
+    {
+     "id": "haewon-et-les-hommes-2013",
+     "t": "Haewon et les hommes",
+     "y": 2013,
+     "d": "Hong Sang-soo",
+     "r": "Hong Sang-soo, Séoul et les amours qui se répètent."
+    },
+    {
+     "id": "past-lives-2023",
+     "t": "Past Lives",
+     "y": 2023,
+     "d": "Celine Song",
+     "r": "Film américain de la Coréenne Celine Song, à moitié en coréen, entre Séoul et New York."
     }
    ]
   },
@@ -437,11 +535,403 @@
      "r": "Une actrice se perd entre un film, un rôle, un souvenir et un cauchemar : Lynch filmé en vidéo numérique."
     },
     {
-     "id": "lobster-2015",
+     "id": "the-lobster-2015",
      "t": "The Lobster",
      "y": 2015,
-     "d": "Yorgos Lanthimos",
+     "d": "Yórgos Lánthimos",
      "r": "Être seul est interdit : 45 jours pour trouver l'âme sœur, sinon on devient un animal."
+    },
+    {
+     "id": "pauvres-creatures-2023",
+     "t": "Pauvres Créatures",
+     "y": 2023,
+     "d": "Yórgos Lánthimos",
+     "r": ""
+    },
+    {
+     "id": "le-carnaval-des-ames-1962",
+     "t": "Le Carnaval des âmes",
+     "y": 1962,
+     "d": "Herk Harvey",
+     "r": ""
+    },
+    {
+     "id": "creatures-celestes-1994",
+     "t": "Créatures célestes",
+     "y": 1994,
+     "d": "Peter Jackson",
+     "r": ""
+    },
+    {
+     "id": "twin-peaks-fire-walk-with-me-1992",
+     "t": "Twin Peaks : Fire Walk with Me",
+     "y": 1992,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "le-festin-nu-1991",
+     "t": "Le Festin nu",
+     "y": 1991,
+     "d": "David Cronenberg",
+     "r": ""
+    },
+    {
+     "id": "mind-game-2004",
+     "t": "Mind Game",
+     "y": 2004,
+     "d": "Masaaki Yuasa",
+     "r": ""
+    },
+    {
+     "id": "millennium-actress-2001",
+     "t": "Millennium Actress",
+     "y": 2001,
+     "d": "Satoshi Kon",
+     "r": ""
+    },
+    {
+     "id": "the-cell-2000",
+     "t": "The Cell",
+     "y": 2000,
+     "d": "Tarsem Singh",
+     "r": ""
+    },
+    {
+     "id": "enter-the-void-2009",
+     "t": "Enter the Void",
+     "y": 2009,
+     "d": "Gaspar Noé",
+     "r": ""
+    },
+    {
+     "id": "le-miroir-1975",
+     "t": "Le Miroir",
+     "y": 1975,
+     "d": "Andreï Tarkovski",
+     "r": ""
+    },
+    {
+     "id": "asparagus-1979",
+     "t": "Asparagus",
+     "y": 1979,
+     "d": "Suzan Pitt",
+     "r": ""
+    },
+    {
+     "id": "stille-nacht-i-dramolet-1988",
+     "t": "Stille Nacht I : Dramolet",
+     "y": 1988,
+     "d": "Frères Quay",
+     "r": ""
+    },
+    {
+     "id": "la-couleur-de-la-grenade-1969",
+     "t": "La Couleur de la grenade",
+     "y": 1969,
+     "d": "Sergueï Paradjanov",
+     "r": ""
+    },
+    {
+     "id": "twin-peaks-les-pieces-manquantes-2014",
+     "t": "Twin Peaks : les pièces manquantes",
+     "y": 2014,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "lux-terna-2019",
+     "t": "Lux Æterna",
+     "y": 2019,
+     "d": "Gaspar Noé",
+     "r": ""
+    },
+    {
+     "id": "thelma-2017",
+     "t": "Thelma",
+     "y": 2017,
+     "d": "Joachim Trier",
+     "r": ""
+    },
+    {
+     "id": "realite-2014",
+     "t": "Réalité",
+     "y": 2014,
+     "d": "Quentin Dupieux",
+     "r": ""
+    },
+    {
+     "id": "daaaaaali-2023",
+     "t": "Daaaaaalí !",
+     "y": 2023,
+     "d": "Quentin Dupieux",
+     "r": ""
+    },
+    {
+     "id": "under-the-silver-lake-2018",
+     "t": "Under the Silver Lake",
+     "y": 2018,
+     "d": "David Robert Mitchell",
+     "r": ""
+    },
+    {
+     "id": "mulholland-drive-2001",
+     "t": "Mulholland Drive",
+     "y": 2001,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "inception-2010",
+     "t": "Inception",
+     "y": 2010,
+     "d": "Christopher Nolan",
+     "r": ""
+    },
+    {
+     "id": "paprika-2006",
+     "t": "Paprika",
+     "y": 2006,
+     "d": "Satoshi Kon",
+     "r": ""
+    },
+    {
+     "id": "waking-life-2001",
+     "t": "Waking Life",
+     "y": 2001,
+     "d": "Richard Linklater",
+     "r": ""
+    },
+    {
+     "id": "les-griffes-de-la-nuit-1984",
+     "t": "Les Griffes de la nuit",
+     "y": 1984,
+     "d": "Wes Craven",
+     "r": ""
+    },
+    {
+     "id": "the-nightmare-2015",
+     "t": "The Nightmare",
+     "y": 2015,
+     "d": "Rodney Ascher",
+     "r": ""
+    },
+    {
+     "id": "le-cabinet-du-docteur-caligari-1920",
+     "t": "Le Cabinet du docteur Caligari",
+     "y": 1920,
+     "d": "Robert Wiene",
+     "r": ""
+    },
+    {
+     "id": "un-chien-andalou-1929",
+     "t": "Un chien andalou",
+     "y": 1929,
+     "d": "Luis Buñuel et Salvador Dalí",
+     "r": ""
+    },
+    {
+     "id": "l-age-d-or-1930",
+     "t": "L'Âge d'or",
+     "y": 1930,
+     "d": "Luis Buñuel",
+     "r": ""
+    },
+    {
+     "id": "l-annee-derniere-a-marienbad-1961",
+     "t": "L'Année dernière à Marienbad",
+     "y": 1961,
+     "d": "Alain Resnais",
+     "r": ""
+    },
+    {
+     "id": "persona-1966",
+     "t": "Persona",
+     "y": 1966,
+     "d": "Ingmar Bergman",
+     "r": ""
+    },
+    {
+     "id": "812-1963",
+     "t": "8½",
+     "y": 1963,
+     "d": "Federico Fellini",
+     "r": ""
+    },
+    {
+     "id": "oncle-boonmee-celui-qui-se-souvient-de-ses-vies-anterieures-2010",
+     "t": "Oncle Boonmee, celui qui se souvient de ses vies antérieures",
+     "y": 2010,
+     "d": "Apichatpong Weerasethakul",
+     "r": ""
+    },
+    {
+     "id": "la-chute-de-la-maison-usher-1928",
+     "t": "La Chute de la maison Usher",
+     "y": 1928,
+     "d": "Jean Epstein",
+     "r": ""
+    },
+    {
+     "id": "le-charme-discret-de-la-bourgeoisie-1972",
+     "t": "Le Charme discret de la bourgeoisie",
+     "y": 1972,
+     "d": "Luis Buñuel",
+     "r": ""
+    },
+    {
+     "id": "brazil-1985",
+     "t": "Brazil",
+     "y": 1985,
+     "d": "Terry Gilliam",
+     "r": ""
+    },
+    {
+     "id": "l-imaginarium-du-docteur-parnassus-2009",
+     "t": "L'Imaginarium du docteur Parnassus",
+     "y": 2009,
+     "d": "Terry Gilliam",
+     "r": ""
+    },
+    {
+     "id": "au-cur-de-la-nuit-1945",
+     "t": "Au cœur de la nuit",
+     "y": 1945,
+     "d": "Alberto Cavalcanti, Charles Crichton, Basil Dearden et Robert Hamer",
+     "r": ""
+    },
+    {
+     "id": "orphee-1950",
+     "t": "Orphée",
+     "y": 1950,
+     "d": "Jean Cocteau",
+     "r": ""
+    },
+    {
+     "id": "dark-city-1998",
+     "t": "Dark City",
+     "y": 1998,
+     "d": "Alex Proyas",
+     "r": ""
+    },
+    {
+     "id": "enemy-2013",
+     "t": "Enemy",
+     "y": 2013,
+     "d": "Denis Villeneuve",
+     "r": ""
+    },
+    {
+     "id": "annette-2021",
+     "t": "Annette",
+     "y": 2021,
+     "d": "Leos Carax",
+     "r": ""
+    },
+    {
+     "id": "au-dela-du-reel-1980",
+     "t": "Au-delà du réel",
+     "y": 1980,
+     "d": "Ken Russell",
+     "r": ""
+    },
+    {
+     "id": "sherlock-junior-1924",
+     "t": "Sherlock Junior",
+     "y": 1924,
+     "d": "Buster Keaton",
+     "r": ""
+    },
+    {
+     "id": "l-arche-russe-2002",
+     "t": "L'Arche russe",
+     "y": 2002,
+     "d": "Alexandre Sokourov",
+     "r": ""
+    },
+    {
+     "id": "channel-zero-the-dream-door-2018",
+     "t": "Channel Zero, saison 4 « The Dream Door »",
+     "y": 2018,
+     "d": "Série de Nick Antosca",
+     "r": ""
+    },
+    {
+     "id": "dead-man-1995",
+     "t": "Dead Man",
+     "y": 1995,
+     "d": "Jim Jarmusch",
+     "r": ""
+    },
+    {
+     "id": "cirque-du-soleil-quidam-1999",
+     "t": "Cirque du Soleil : Quidam",
+     "y": 1999,
+     "d": "David Mallet",
+     "r": ""
+    },
+    {
+     "id": "eyes-wide-shut-1999",
+     "t": "Eyes Wide Shut",
+     "y": 1999,
+     "d": "Stanley Kubrick",
+     "r": ""
+    },
+    {
+     "id": "sailor-et-lula-1990",
+     "t": "Sailor et Lula",
+     "y": 1990,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "la-double-vie-de-veronique-1991",
+     "t": "La Double Vie de Véronique",
+     "y": 1991,
+     "d": "Krzysztof Kieślowski",
+     "r": ""
+    },
+    {
+     "id": "locataires-2004",
+     "t": "Locataires",
+     "y": 2004,
+     "d": "Kim Ki-duk",
+     "r": ""
+    },
+    {
+     "id": "touki-bouki-1973",
+     "t": "Touki Bouki",
+     "y": 1973,
+     "d": "Djibril Diop Mambéty",
+     "r": ""
+    },
+    {
+     "id": "memoria-2021",
+     "t": "Memoria",
+     "y": 2021,
+     "d": "Apichatpong Weerasethakul",
+     "r": ""
+    },
+    {
+     "id": "atlantique-2019",
+     "t": "Atlantique",
+     "y": 2019,
+     "d": "Mati Diop",
+     "r": ""
+    },
+    {
+     "id": "le-regne-animal-2023",
+     "t": "Le Règne animal",
+     "y": 2023,
+     "d": "Thomas Cailley",
+     "r": ""
+    },
+    {
+     "id": "la-femme-des-sables-1964",
+     "t": "La Femme des sables",
+     "y": 1964,
+     "d": "Hiroshi Teshigahara",
+     "r": ""
     }
    ]
   },
@@ -474,6 +964,118 @@
      "y": 2009,
      "d": "Yorgos Lanthimos",
      "r": "Trois enfants jamais sortis de chez eux, à qui les parents ont inventé un autre monde."
+    },
+    {
+     "id": "clean-shaven-1993",
+     "t": "Clean, Shaven",
+     "y": 1993,
+     "d": "Lodge Kerrigan",
+     "r": ""
+    },
+    {
+     "id": "spider-2002",
+     "t": "Spider",
+     "y": 2002,
+     "d": "David Cronenberg",
+     "r": ""
+    },
+    {
+     "id": "possession-1981",
+     "t": "Possession",
+     "y": 1981,
+     "d": "Andrzej Żuławski",
+     "r": ""
+    },
+    {
+     "id": "faux-semblants-1988",
+     "t": "Faux-semblants",
+     "y": 1988,
+     "d": "David Cronenberg",
+     "r": ""
+    },
+    {
+     "id": "the-machinist-2004",
+     "t": "The Machinist",
+     "y": 2004,
+     "d": "Brad Anderson",
+     "r": ""
+    },
+    {
+     "id": "antichrist-2009",
+     "t": "Antichrist",
+     "y": 2009,
+     "d": "Lars von Trier",
+     "r": ""
+    },
+    {
+     "id": "la-servante-1960",
+     "t": "La Servante",
+     "y": 1960,
+     "d": "Kim Ki-young",
+     "r": ""
+    },
+    {
+     "id": "requiem-for-a-dream-2000",
+     "t": "Requiem for a Dream",
+     "y": 2000,
+     "d": "Darren Aronofsky",
+     "r": ""
+    },
+    {
+     "id": "les-blessures-assassines-2000",
+     "t": "Les Blessures assassines",
+     "y": 2000,
+     "d": "Jean-Pierre Denis",
+     "r": ""
+    },
+    {
+     "id": "take-shelter-2011",
+     "t": "Take Shelter",
+     "y": 2011,
+     "d": "Jeff Nichols",
+     "r": ""
+    },
+    {
+     "id": "la-pianiste-2001",
+     "t": "La Pianiste",
+     "y": 2001,
+     "d": "Michael Haneke",
+     "r": ""
+    },
+    {
+     "id": "safe-1995",
+     "t": "Safe",
+     "y": 1995,
+     "d": "Todd Haynes",
+     "r": ""
+    },
+    {
+     "id": "maniac-2012",
+     "t": "Maniac",
+     "y": 2012,
+     "d": "Franck Khalfoun",
+     "r": ""
+    },
+    {
+     "id": "les-chambres-rouges-2023",
+     "t": "Les Chambres rouges",
+     "y": 2023,
+     "d": "Pascal Plante",
+     "r": ""
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "la-femme-des-sables-1964",
+     "t": "La Femme des sables",
+     "y": 1964,
+     "d": "Hiroshi Teshigahara",
+     "r": ""
     }
    ]
   },
@@ -492,6 +1094,307 @@
      "y": 2021,
      "d": "Kentucker Audley et Albert Birney",
      "r": "Un contrôleur fiscal des rêves tombe amoureux dans le rêve d'une vieille dame : bricolé, doux et vertigineux."
+    },
+    {
+     "id": "suspiria-1977",
+     "t": "Suspiria",
+     "y": 1977,
+     "d": "Dario Argento",
+     "r": ""
+    },
+    {
+     "id": "edward-aux-mains-d-argent-1990",
+     "t": "Edward aux mains d'argent",
+     "y": 1990,
+     "d": "Tim Burton",
+     "r": ""
+    },
+    {
+     "id": "penelope-2006",
+     "t": "Penelope",
+     "y": 2006,
+     "d": "Mark Palansky",
+     "r": ""
+    },
+    {
+     "id": "hero-2002",
+     "t": "Hero",
+     "y": 2002,
+     "d": "Zhang Yimou",
+     "r": ""
+    },
+    {
+     "id": "le-secret-des-poignards-volants-2004",
+     "t": "Le Secret des poignards volants",
+     "y": 2004,
+     "d": "Zhang Yimou",
+     "r": ""
+    },
+    {
+     "id": "la-montagne-sacree-1973",
+     "t": "La Montagne sacrée",
+     "y": 1973,
+     "d": "Alejandro Jodorowsky",
+     "r": ""
+    },
+    {
+     "id": "valerie-au-pays-des-merveilles-1970",
+     "t": "Valérie au pays des merveilles",
+     "y": 1970,
+     "d": "Jaromil Jireš",
+     "r": ""
+    },
+    {
+     "id": "le-mepris-1963",
+     "t": "Le Mépris",
+     "y": 1963,
+     "d": "Jean-Luc Godard",
+     "r": ""
+    },
+    {
+     "id": "femmes-au-bord-de-la-crise-de-nerfs-1988",
+     "t": "Femmes au bord de la crise de nerfs",
+     "y": 1988,
+     "d": "Pedro Almodóvar",
+     "r": ""
+    },
+    {
+     "id": "kika-1993",
+     "t": "Kika",
+     "y": 1993,
+     "d": "Pedro Almodóvar",
+     "r": ""
+    },
+    {
+     "id": "les-petites-marguerites-1966",
+     "t": "Les Petites Marguerites",
+     "y": 1966,
+     "d": "Věra Chytilová",
+     "r": ""
+    },
+    {
+     "id": "la-couleur-de-la-grenade-1969",
+     "t": "La Couleur de la grenade",
+     "y": 1969,
+     "d": "Sergueï Paradjanov",
+     "r": ""
+    },
+    {
+     "id": "la-la-land-2016",
+     "t": "La La Land",
+     "y": 2016,
+     "d": "Damien Chazelle",
+     "r": ""
+    },
+    {
+     "id": "la-voix-humaine-2020",
+     "t": "La Voix humaine",
+     "y": 2020,
+     "d": "Pedro Almodóvar",
+     "r": ""
+    },
+    {
+     "id": "the-substance-2024",
+     "t": "The Substance",
+     "y": 2024,
+     "d": "Coralie Fargeat",
+     "r": ""
+    },
+    {
+     "id": "les-chaussons-rouges-1948",
+     "t": "Les Chaussons rouges",
+     "y": 1948,
+     "d": "Michael Powell et Emeric Pressburger",
+     "r": ""
+    },
+    {
+     "id": "in-the-mood-for-love-2000",
+     "t": "In the Mood for Love",
+     "y": 2000,
+     "d": "Wong Kar-wai",
+     "r": ""
+    },
+    {
+     "id": "lola-montes-1955",
+     "t": "Lola Montès",
+     "y": 1955,
+     "d": "Max Ophüls",
+     "r": ""
+    },
+    {
+     "id": "l-imaginarium-du-docteur-parnassus-2009",
+     "t": "L'Imaginarium du docteur Parnassus",
+     "y": 2009,
+     "d": "Terry Gilliam",
+     "r": ""
+    },
+    {
+     "id": "micmacs-a-tire-larigot-2009",
+     "t": "Micmacs à tire-larigot",
+     "y": 2009,
+     "d": "Jean-Pierre Jeunet",
+     "r": ""
+    },
+    {
+     "id": "west-side-story-1961",
+     "t": "West Side Story",
+     "y": 1961,
+     "d": "Robert Wise et Jerome Robbins",
+     "r": ""
+    },
+    {
+     "id": "pearl-2022",
+     "t": "Pearl",
+     "y": 2022,
+     "d": "Ti West",
+     "r": ""
+    },
+    {
+     "id": "kwaidan-1964",
+     "t": "Kwaidan",
+     "y": 1964,
+     "d": "Masaki Kobayashi",
+     "r": ""
+    },
+    {
+     "id": "midsommar-2019",
+     "t": "Midsommar",
+     "y": 2019,
+     "d": "Ari Aster",
+     "r": ""
+    },
+    {
+     "id": "le-masque-de-la-mort-rouge-1964",
+     "t": "Le Masque de la mort rouge",
+     "y": 1964,
+     "d": "Roger Corman",
+     "r": ""
+    },
+    {
+     "id": "chantons-sous-la-pluie-1952",
+     "t": "Chantons sous la pluie",
+     "y": 1952,
+     "d": "Stanley Donen et Gene Kelly",
+     "r": ""
+    },
+    {
+     "id": "au-revoir-la-haut-2017",
+     "t": "Au revoir là-haut",
+     "y": 2017,
+     "d": "Albert Dupontel",
+     "r": ""
+    },
+    {
+     "id": "vice-versa-2015",
+     "t": "Vice-Versa",
+     "y": 2015,
+     "d": "Pete Docter",
+     "r": ""
+    },
+    {
+     "id": "barfi-2012",
+     "t": "Barfi!",
+     "y": 2012,
+     "d": "Anurag Basu",
+     "r": ""
+    },
+    {
+     "id": "simple-simon-2010",
+     "t": "Simple Simon",
+     "y": 2010,
+     "d": "Andreas Öhman",
+     "r": ""
+    },
+    {
+     "id": "la-fleche-et-le-flambeau-1950",
+     "t": "La Flèche et le Flambeau",
+     "y": 1950,
+     "d": "Jacques Tourneur",
+     "r": ""
+    },
+    {
+     "id": "mishima-1985",
+     "t": "Mishima",
+     "y": 1985,
+     "d": "Paul Schrader",
+     "r": ""
+    },
+    {
+     "id": "37-2-le-matin-1986",
+     "t": "37°2 le matin",
+     "y": 1986,
+     "d": "Jean-Jacques Beineix",
+     "r": ""
+    },
+    {
+     "id": "diva-1981",
+     "t": "Diva",
+     "y": 1981,
+     "d": "Jean-Jacques Beineix",
+     "r": ""
+    },
+    {
+     "id": "mauvais-sang-1986",
+     "t": "Mauvais Sang",
+     "y": 1986,
+     "d": "Leos Carax",
+     "r": ""
+    },
+    {
+     "id": "medusa-deluxe-2022",
+     "t": "Medusa Deluxe",
+     "y": 2022,
+     "d": "Thomas Hardiman",
+     "r": ""
+    },
+    {
+     "id": "made-in-england-les-films-de-powell-et-pressburger-2024",
+     "t": "Made in England : les films de Powell et Pressburger",
+     "y": 2024,
+     "d": "David Hinton",
+     "r": ""
+    },
+    {
+     "id": "au-dela-de-nos-reves-1998",
+     "t": "Au-delà de nos rêves",
+     "y": 1998,
+     "d": "Vincent Ward",
+     "r": ""
+    },
+    {
+     "id": "the-voices-2014",
+     "t": "The Voices",
+     "y": 2014,
+     "d": "Marjane Satrapi",
+     "r": ""
+    },
+    {
+     "id": "les-frissons-de-l-angoisse-1975",
+     "t": "Les Frissons de l'angoisse",
+     "y": 1975,
+     "d": "Dario Argento",
+     "r": ""
+    },
+    {
+     "id": "il-faut-qu-on-parle-de-kevin-2011",
+     "t": "Il faut qu'on parle de Kevin",
+     "y": 2011,
+     "d": "Lynne Ramsay",
+     "r": ""
+    },
+    {
+     "id": "planete-interdite-1956",
+     "t": "Planète interdite",
+     "y": 1956,
+     "d": "Fred M. Wilcox",
+     "r": ""
+    },
+    {
+     "id": "punch-drunk-love-2002",
+     "t": "Punch-Drunk Love",
+     "y": 2002,
+     "d": "Paul Thomas Anderson",
+     "r": ""
     }
    ]
   },
@@ -514,6 +1417,153 @@
      "y": 2013,
      "d": "Richard Ayoade",
      "r": "Un employé effacé voit arriver son sosie parfait, qui lui vole tout : Dostoïevski dans un bureau sans fenêtres."
+    },
+    {
+     "id": "bugonia-2025",
+     "t": "Bugonia",
+     "y": 2025,
+     "d": "Yórgos Lánthimos",
+     "r": ""
+    },
+    {
+     "id": "save-the-green-planet-2003",
+     "t": "Save the Green Planet!",
+     "y": 2003,
+     "d": "Jang Joon-hwan",
+     "r": ""
+    },
+    {
+     "id": "the-truman-show-1998",
+     "t": "The Truman Show",
+     "y": 1998,
+     "d": "Peter Weir",
+     "r": ""
+    },
+    {
+     "id": "pi-1998",
+     "t": "Pi",
+     "y": 1998,
+     "d": "Darren Aronofsky",
+     "r": ""
+    },
+    {
+     "id": "the-machinist-2004",
+     "t": "The Machinist",
+     "y": 2004,
+     "d": "Brad Anderson",
+     "r": ""
+    },
+    {
+     "id": "blow-out-1981",
+     "t": "Blow Out",
+     "y": 1981,
+     "d": "Brian De Palma",
+     "r": ""
+    },
+    {
+     "id": "take-shelter-2011",
+     "t": "Take Shelter",
+     "y": 2011,
+     "d": "Jeff Nichols",
+     "r": ""
+    },
+    {
+     "id": "the-game-1997",
+     "t": "The Game",
+     "y": 1997,
+     "d": "David Fincher",
+     "r": ""
+    },
+    {
+     "id": "le-nombre-23-2007",
+     "t": "Le Nombre 23",
+     "y": 2007,
+     "d": "Joel Schumacher",
+     "r": ""
+    },
+    {
+     "id": "the-thing-1982",
+     "t": "The Thing",
+     "y": 1982,
+     "d": "John Carpenter",
+     "r": ""
+    },
+    {
+     "id": "under-the-silver-lake-2018",
+     "t": "Under the Silver Lake",
+     "y": 2018,
+     "d": "David Robert Mitchell",
+     "r": ""
+    },
+    {
+     "id": "l-invasion-des-profanateurs-de-sepultures-1956",
+     "t": "L'Invasion des profanateurs de sépultures",
+     "y": 1956,
+     "d": "Don Siegel",
+     "r": ""
+    },
+    {
+     "id": "clean-shaven-1993",
+     "t": "Clean, Shaven",
+     "y": 1993,
+     "d": "Lodge Kerrigan",
+     "r": ""
+    },
+    {
+     "id": "l-armee-des-12-singes-1995",
+     "t": "L'Armée des 12 singes",
+     "y": 1995,
+     "d": "Terry Gilliam",
+     "r": ""
+    },
+    {
+     "id": "fenetre-sur-cour-1954",
+     "t": "Fenêtre sur cour",
+     "y": 1954,
+     "d": "Alfred Hitchcock",
+     "r": ""
+    },
+    {
+     "id": "rosemary-s-baby-1968",
+     "t": "Rosemary's Baby",
+     "y": 1968,
+     "d": "Roman Polanski",
+     "r": ""
+    },
+    {
+     "id": "1984-1984",
+     "t": "1984",
+     "y": 1984,
+     "d": "Michael Radford",
+     "r": ""
+    },
+    {
+     "id": "perfect-blue-1997",
+     "t": "Perfect Blue",
+     "y": 1997,
+     "d": "Satoshi Kon",
+     "r": ""
+    },
+    {
+     "id": "sleep-2023",
+     "t": "Sleep",
+     "y": 2023,
+     "d": "Jason Yu",
+     "r": ""
+    },
+    {
+     "id": "the-witch-2015",
+     "t": "The Witch",
+     "y": 2015,
+     "d": "Robert Eggers",
+     "r": ""
+    },
+    {
+     "id": "zodiac-2007",
+     "t": "Zodiac",
+     "y": 2007,
+     "d": "David Fincher",
+     "r": ""
     }
    ]
   },
@@ -592,6 +1642,160 @@
      "y": 2024,
      "d": "Boris Lojkine",
      "r": "Deux jours dans la vie d'un livreur sans papiers à Paris, avant son entretien de demande d'asile."
+    },
+    {
+     "id": "la-liste-de-schindler-1993",
+     "t": "La Liste de Schindler",
+     "y": 1993,
+     "d": "Steven Spielberg",
+     "r": ""
+    },
+    {
+     "id": "le-labyrinthe-de-pan-2006",
+     "t": "Le Labyrinthe de Pan",
+     "y": 2006,
+     "d": "Guillermo del Toro",
+     "r": ""
+    },
+    {
+     "id": "4-mois-3-semaines-2-jours-2007",
+     "t": "4 mois, 3 semaines, 2 jours",
+     "y": 2007,
+     "d": "Cristian Mungiu",
+     "r": ""
+    },
+    {
+     "id": "la-antena-2007",
+     "t": "La Antena",
+     "y": 2007,
+     "d": "Esteban Sapir",
+     "r": ""
+    },
+    {
+     "id": "inglourious-basterds-2009",
+     "t": "Inglourious Basterds",
+     "y": 2009,
+     "d": "Quentin Tarantino",
+     "r": ""
+    },
+    {
+     "id": "loin-du-paradis-2002",
+     "t": "Loin du paradis",
+     "y": 2002,
+     "d": "Todd Haynes",
+     "r": ""
+    },
+    {
+     "id": "cache-2005",
+     "t": "Caché",
+     "y": 2005,
+     "d": "Michael Haneke",
+     "r": ""
+    },
+    {
+     "id": "1984-1984",
+     "t": "1984",
+     "y": 1984,
+     "d": "Michael Radford",
+     "r": ""
+    },
+    {
+     "id": "le-dictateur-1940",
+     "t": "Le Dictateur",
+     "y": 1940,
+     "d": "Charlie Chaplin",
+     "r": ""
+    },
+    {
+     "id": "tous-les-autres-s-appellent-ali-1974",
+     "t": "Tous les autres s'appellent Ali",
+     "y": 1974,
+     "d": "Rainer Werner Fassbinder",
+     "r": ""
+    },
+    {
+     "id": "get-out-2017",
+     "t": "Get Out",
+     "y": 2017,
+     "d": "Jordan Peele",
+     "r": ""
+    },
+    {
+     "id": "mission-1986",
+     "t": "Mission",
+     "y": 1986,
+     "d": "Roland Joffé",
+     "r": ""
+    },
+    {
+     "id": "nuit-et-brouillard-1956",
+     "t": "Nuit et Brouillard",
+     "y": 1956,
+     "d": "Alain Resnais",
+     "r": ""
+    },
+    {
+     "id": "conversation-secrete-1974",
+     "t": "Conversation secrète",
+     "y": 1974,
+     "d": "Francis Ford Coppola",
+     "r": ""
+    },
+    {
+     "id": "do-the-right-thing-1989",
+     "t": "Do the Right Thing",
+     "y": 1989,
+     "d": "Spike Lee",
+     "r": ""
+    },
+    {
+     "id": "cabaret-1972",
+     "t": "Cabaret",
+     "y": 1972,
+     "d": "Bob Fosse",
+     "r": ""
+    },
+    {
+     "id": "chocolat-1988",
+     "t": "Chocolat",
+     "y": 1988,
+     "d": "Claire Denis",
+     "r": ""
+    },
+    {
+     "id": "second-tour-2023",
+     "t": "Second tour",
+     "y": 2023,
+     "d": "Albert Dupontel",
+     "r": ""
+    },
+    {
+     "id": "oppenheimer-2023",
+     "t": "Oppenheimer",
+     "y": 2023,
+     "d": "Christopher Nolan",
+     "r": ""
+    },
+    {
+     "id": "120-battements-par-minute-2017",
+     "t": "120 battements par minute",
+     "y": 2017,
+     "d": "Robin Campillo",
+     "r": ""
+    },
+    {
+     "id": "chernobyl-serie-2019",
+     "t": "Chernobyl (série)",
+     "y": 2019,
+     "d": "Craig Mazin et Johan Renck",
+     "r": ""
+    },
+    {
+     "id": "conclave-2024",
+     "t": "Conclave",
+     "y": 2024,
+     "d": "Edward Berger",
+     "r": ""
     }
    ]
   },
@@ -794,7 +1998,13 @@
       "babylon-2022",
       "eyes-wide-shut-1999",
       "la-dolce-vita-1960",
-      "la-grande-bellezza-2013"
+      "la-grande-bellezza-2013",
+      "climax-2018",
+      "human-traffic-1999",
+      "oslo-31-aout-2011",
+      "strange-days-1995",
+      "midsommar-2019",
+      "carrie-au-bal-du-diable-1976"
      ]
     },
     {
@@ -807,7 +2017,12 @@
       "studio-54-2018",
       "120-battements-par-minute-2017",
       "paris-is-burning-1990",
-      "kiki-2016"
+      "kiki-2016",
+      "24-hour-party-people-2002",
+      "eden-2014",
+      "le-bal-1983",
+      "les-predateurs-1983",
+      "cruising-1980"
      ]
     },
     {
@@ -816,7 +2031,9 @@
      "ids": [
       "mektoub-my-love-canto-uno-2017",
       "bande-de-filles-2014",
-      "the-party-1968"
+      "the-party-1968",
+      "la-regle-du-jeu-1939",
+      "le-masque-de-la-mort-rouge-1964"
      ]
     }
    ],
@@ -946,6 +2163,97 @@
      "y": 1968,
      "d": "Blake Edwards",
      "r": "Peter Sellers sème le chaos dans une soirée hollywoodienne : la comédie de fête culte."
+    },
+    {
+     "id": "climax-2018",
+     "t": "Climax",
+     "y": 2018,
+     "d": "Gaspar Noé",
+     "r": ""
+    },
+    {
+     "id": "human-traffic-1999",
+     "t": "Human Traffic",
+     "y": 1999,
+     "d": "Justin Kerrigan",
+     "r": ""
+    },
+    {
+     "id": "24-hour-party-people-2002",
+     "t": "24 Hour Party People",
+     "y": 2002,
+     "d": "Michael Winterbottom",
+     "r": ""
+    },
+    {
+     "id": "eden-2014",
+     "t": "Eden",
+     "y": 2014,
+     "d": "Mia Hansen-Løve",
+     "r": ""
+    },
+    {
+     "id": "la-regle-du-jeu-1939",
+     "t": "La Règle du jeu",
+     "y": 1939,
+     "d": "Jean Renoir",
+     "r": ""
+    },
+    {
+     "id": "le-masque-de-la-mort-rouge-1964",
+     "t": "Le Masque de la mort rouge",
+     "y": 1964,
+     "d": "Roger Corman",
+     "r": ""
+    },
+    {
+     "id": "carrie-au-bal-du-diable-1976",
+     "t": "Carrie au bal du diable",
+     "y": 1976,
+     "d": "Brian De Palma",
+     "r": ""
+    },
+    {
+     "id": "midsommar-2019",
+     "t": "Midsommar",
+     "y": 2019,
+     "d": "Ari Aster",
+     "r": ""
+    },
+    {
+     "id": "le-bal-1983",
+     "t": "Le Bal",
+     "y": 1983,
+     "d": "Ettore Scola",
+     "r": ""
+    },
+    {
+     "id": "les-predateurs-1983",
+     "t": "Les Prédateurs",
+     "y": 1983,
+     "d": "Tony Scott",
+     "r": ""
+    },
+    {
+     "id": "cruising-1980",
+     "t": "Cruising",
+     "y": 1980,
+     "d": "William Friedkin",
+     "r": ""
+    },
+    {
+     "id": "oslo-31-aout-2011",
+     "t": "Oslo, 31 août",
+     "y": 2011,
+     "d": "Joachim Trier",
+     "r": ""
+    },
+    {
+     "id": "strange-days-1995",
+     "t": "Strange Days",
+     "y": 1995,
+     "d": "Kathryn Bigelow",
+     "r": ""
     }
    ]
   },
@@ -1042,6 +2350,2766 @@
    "titre": "Mes meilleures suggestions",
    "sous_titre": "Tous les films que tu n'as pas encore vus, du 10/10 estimé au plus bas.",
    "films": []
+  },
+  "s04-musique": {
+   "films": [
+    {
+     "id": "tar-2022",
+     "t": "Tár",
+     "y": 2022,
+     "d": "Todd Field",
+     "r": "Hildur Guðnadóttir : presque pas de musique de fosse, des bourdonnements et des bruits qui hantent la cheffe."
+    },
+    {
+     "id": "chernobyl-serie-2019",
+     "t": "Chernobyl (série)",
+     "y": 2019,
+     "d": "Craig Mazin et Johan Renck",
+     "r": "Hildur Guðnadóttir a enregistré la partition dans une vraie centrale nucléaire à l'arrêt, en Lituanie : aucun instrument."
+    },
+    {
+     "id": "the-brutalist-2024",
+     "t": "The Brutalist",
+     "y": 2024,
+     "d": "Brady Corbet",
+     "r": "Daniel Blumberg : ouverture, entracte, piano préparé et saxophone libre qui sonnent comme du béton."
+    },
+    {
+     "id": "sicario-2015",
+     "t": "Sicario",
+     "y": 2015,
+     "d": "Denis Villeneuve",
+     "r": "Jóhann Jóhannsson : des percussions graves comme un cœur qui cogne, la peur avant l'action."
+    },
+    {
+     "id": "jackie-2016",
+     "t": "Jackie",
+     "y": 2016,
+     "d": "Pablo Larraín",
+     "r": "Mica Levi : des cordes qui glissent et se tordent, le chagrin qui fait perdre l'équilibre."
+    },
+    {
+     "id": "monos-2019",
+     "t": "Monos",
+     "y": 2019,
+     "d": "Alejandro Landes",
+     "r": "Mica Levi : sifflements, souffles et timbales, une musique qui respire avec la montagne."
+    },
+    {
+     "id": "good-time-2017",
+     "t": "Good Time",
+     "y": 2017,
+     "d": "Josh et Benny Safdie",
+     "r": "Oneohtrix Point Never : synthétiseurs nerveux en continu, une nuit au rythme de la panique. Prix de la musique à Cannes."
+    },
+    {
+     "id": "spencer-2021",
+     "t": "Spencer",
+     "y": 2021,
+     "d": "Pablo Larraín",
+     "r": "Jonny Greenwood : un quatuor baroque qui déraille peu à peu en jazz libre, comme Diana."
+    },
+    {
+     "id": "atlantique-2019",
+     "t": "Atlantique",
+     "y": 2019,
+     "d": "Mati Diop",
+     "r": "Fatima Al Qadiri : synthétiseurs flottants pour l'océan et les fantômes de Dakar."
+    },
+    {
+     "id": "sound-of-metal-2019",
+     "t": "Sound of Metal",
+     "y": 2019,
+     "d": "Darius Marder",
+     "r": "Le son du film devient l'oreille de Ruben : bourdonnements, sons étouffés, implant qui grésille (Nicolas Becker)."
+    },
+    {
+     "id": "memoria-2021",
+     "t": "Memoria",
+     "y": 2021,
+     "d": "Apichatpong Weerasethakul",
+     "r": "Tout le film part d'un son : un « bang » que Jessica est seule à entendre, et qu'un ingénieur du son tente de recréer."
+    },
+    {
+     "id": "les-triplettes-de-belleville-2003",
+     "t": "Les Triplettes de Belleville",
+     "y": 2003,
+     "d": "Sylvain Chomet",
+     "r": "Benoît Charest : jazz de music-hall joué sur un frigo, un journal et un aspirateur."
+    },
+    {
+     "id": "mon-ami-robot-2023",
+     "t": "Mon ami robot",
+     "y": 2023,
+     "d": "Pablo Berger",
+     "r": "Sans un mot : la musique d'Alfonso de Vilallonga et les bruits de la ville racontent tout."
+    },
+    {
+     "id": "le-regne-animal-2023",
+     "t": "Le Règne animal",
+     "y": 2023,
+     "d": "Thomas Cailley",
+     "r": "Andrea Laszlo De Simone : de grands thèmes lyriques pour la forêt et les mutations. César de la meilleure musique."
+    },
+    {
+     "id": "challengers-2024",
+     "t": "Challengers",
+     "y": 2024,
+     "d": "Luca Guadagnino",
+     "r": "Trent Reznor et Atticus Ross : de la techno qui pulse pendant les matchs et couvre parfois les dialogues."
+    },
+    {
+     "id": "conclave-2024",
+     "t": "Conclave",
+     "y": 2024,
+     "d": "Edward Berger",
+     "r": "Volker Bertelmann : cordes frappées, archets qui grincent, le suspense comme une partition."
+    },
+    {
+     "id": "a-l-ouest-rien-de-nouveau-2022",
+     "t": "À l'Ouest, rien de nouveau",
+     "y": 2022,
+     "d": "Edward Berger",
+     "r": "Volker Bertelmann : trois notes jouées sur l'harmonium de sa grand-mère, saturées comme une machine de guerre."
+    },
+    {
+     "id": "bait-2019",
+     "t": "Bait",
+     "y": 2019,
+     "d": "Mark Jenkin",
+     "r": "Tourné en pellicule développée à la main ; tous les sons ont été recréés après coup, et la musique est de Mark Jenkin."
+    },
+    {
+     "id": "planete-interdite-1956",
+     "t": "Planète interdite",
+     "y": 1956,
+     "d": "Fred M. Wilcox",
+     "r": "Bebe et Louis Barron : la première musique de film entièrement électronique, des circuits qu'on faisait « souffrir »."
+    },
+    {
+     "id": "la-femme-des-sables-1964",
+     "t": "La Femme des sables",
+     "y": 1964,
+     "d": "Hiroshi Teshigahara",
+     "r": "Tōru Takemitsu : cordes et sons concrets qui coulent comme le sable."
+    },
+    {
+     "id": "akira-1988",
+     "t": "Akira",
+     "y": 1988,
+     "d": "Katsuhiro Ōtomo",
+     "r": "Geinoh Yamashirogumi : gamelan, chants du théâtre nō et chœurs, loin de toute musique de science-fiction."
+    },
+    {
+     "id": "alexandre-nevski-1938",
+     "t": "Alexandre Nevski",
+     "y": 1938,
+     "d": "Sergueï Eisenstein",
+     "r": "Sergueï Prokofiev : image et musique montées ensemble, plan par plan, pour la bataille sur la glace."
+    },
+    {
+     "id": "the-revenant-2015",
+     "t": "The Revenant",
+     "y": 2015,
+     "d": "Alejandro G. Iñárritu",
+     "r": "Ryuichi Sakamoto, Alva Noto et Bryce Dessner : nappes, souffles et silence pour l'hiver."
+    },
+    {
+     "id": "punch-drunk-love-2002",
+     "t": "Punch-Drunk Love",
+     "y": 2002,
+     "d": "Paul Thomas Anderson",
+     "r": "Jon Brion : percussions qui s'emballent avec les nerfs de Barry, et l'harmonium trouvé dans la rue."
+    },
+    {
+     "id": "pauvres-creatures-2023",
+     "t": "Pauvres Créatures",
+     "y": 2023,
+     "d": "Yórgos Lánthimos",
+     "r": "Jerskin Fendrix : une vraie partition originale, avec des instruments désaccordés et des voix étranges qui grandissent avec Bella."
+    },
+    {
+     "id": "kinds-of-kindness-2024",
+     "t": "Kinds of Kindness",
+     "y": 2024,
+     "d": "Yórgos Lánthimos",
+     "r": "Jerskin Fendrix : piano et chœurs dissonants, presque rien d'autre."
+    },
+    {
+     "id": "bugonia-2025",
+     "t": "Bugonia",
+     "y": 2025,
+     "d": "Yórgos Lánthimos",
+     "r": "Jerskin Fendrix, troisième collaboration avec Lánthimos."
+    },
+    {
+     "id": "la-zone-d-interet-2023",
+     "t": "La Zone d'intérêt",
+     "y": 2023,
+     "d": "Jonathan Glazer",
+     "r": "Mica Levi pour quelques minutes, et surtout le son de Johnnie Burn : le camp qu'on entend sans le voir."
+    },
+    {
+     "id": "under-the-skin-2013",
+     "t": "Under the Skin",
+     "y": 2013,
+     "d": "Jonathan Glazer",
+     "r": "Mica Levi : cordes qui se déforment, musique d'une extraterrestre qui découvre les humains."
+    },
+    {
+     "id": "berberian-sound-studio-2012",
+     "t": "Berberian Sound Studio",
+     "y": 2012,
+     "d": "Peter Strickland",
+     "r": "Un ingénieur du son anglais fait les bruitages d'un film d'horreur italien : légumes écrasés, cris, magnétophones."
+    },
+    {
+     "id": "les-oiseaux-1963",
+     "t": "Les Oiseaux",
+     "y": 1963,
+     "d": "Alfred Hitchcock",
+     "r": "Pas de musique : les cris des oiseaux ont été fabriqués à l'électronique (Oskar Sala, Remi Gassmann), sous la supervision de Bernard Herrmann."
+    },
+    {
+     "id": "eraserhead-1977",
+     "t": "Eraserhead",
+     "y": 1977,
+     "d": "David Lynch",
+     "r": "Le grondement continu d'Alan Splet et David Lynch : des usines, du vent, des tuyaux."
+    },
+    {
+     "id": "kwaidan-1964",
+     "t": "Kwaidan",
+     "y": 1964,
+     "d": "Masaki Kobayashi",
+     "r": "Tōru Takemitsu : musique concrète, bois qui craque et cordes de biwa, à la place d'une musique classique."
+    },
+    {
+     "id": "onibaba-1964",
+     "t": "Onibaba",
+     "y": 1964,
+     "d": "Kaneto Shindō",
+     "r": "Hikaru Hayashi : tambours et cris, au rythme des roseaux."
+    },
+    {
+     "id": "tetsuo-1989",
+     "t": "Tetsuo",
+     "y": 1989,
+     "d": "Shinya Tsukamoto",
+     "r": "Chu Ishikawa : percussions de métal industriel, frappées comme le corps qui devient machine."
+    },
+    {
+     "id": "ghost-in-the-shell-1995",
+     "t": "Ghost in the Shell",
+     "y": 1995,
+     "d": "Mamoru Oshii",
+     "r": "Kenji Kawai : chœurs en japonais ancien et tambours, pour une ville du futur."
+    },
+    {
+     "id": "paprika-2006",
+     "t": "Paprika",
+     "y": 2006,
+     "d": "Satoshi Kon",
+     "r": "Susumu Hirasawa : musique électronique et parade des rêves."
+    },
+    {
+     "id": "la-planete-sauvage-1973",
+     "t": "La Planète sauvage",
+     "y": 1973,
+     "d": "René Laloux",
+     "r": "Alain Goraguer : basse, flûte et chœurs psychédéliques pour la planète Ygam."
+    },
+    {
+     "id": "le-mepris-1963",
+     "t": "Le Mépris",
+     "y": 1963,
+     "d": "Jean-Luc Godard",
+     "r": "Georges Delerue : un seul thème de cordes qui revient comme une plainte."
+    },
+    {
+     "id": "playtime-1967",
+     "t": "Playtime",
+     "y": 1967,
+     "d": "Jacques Tati",
+     "r": "Jacques Tati : bruitages refaits en studio, portes qui soupirent, fauteuils qui chuintent."
+    },
+    {
+     "id": "the-witch-2015",
+     "t": "The Witch",
+     "y": 2015,
+     "d": "Robert Eggers",
+     "r": "Mark Korven : un instrument inventé pour le film, l'« apprehension engine », qui grince et gémit."
+    },
+    {
+     "id": "the-lighthouse-2019",
+     "t": "The Lighthouse",
+     "y": 2019,
+     "d": "Robert Eggers",
+     "r": "Mark Korven : cornes de brume, cuivres graves et vagues, la folie à deux qui monte."
+    },
+    {
+     "id": "heredite-2018",
+     "t": "Hérédité",
+     "y": 2018,
+     "d": "Ari Aster",
+     "r": "Colin Stetson : saxophones et souffles enregistrés de très près, qui ressemblent à des voix."
+    },
+    {
+     "id": "midsommar-2019",
+     "t": "Midsommar",
+     "y": 2019,
+     "d": "Ari Aster",
+     "r": "Bobby Krlic (The Haxan Cloak) : cordes et chœurs suédois qui rendent la lumière inquiétante."
+    },
+    {
+     "id": "it-follows-2014",
+     "t": "It Follows",
+     "y": 2014,
+     "d": "David Robert Mitchell",
+     "r": "Disasterpeace : synthétiseurs à la John Carpenter, en sourdine puis en alarme."
+    },
+    {
+     "id": "under-the-silver-lake-2018",
+     "t": "Under the Silver Lake",
+     "y": 2018,
+     "d": "David Robert Mitchell",
+     "r": "Disasterpeace : un grand orchestre hitchcockien pour une enquête paranoïaque."
+    },
+    {
+     "id": "suspiria-1977",
+     "t": "Suspiria",
+     "y": 1977,
+     "d": "Dario Argento",
+     "r": "Goblin : rock progressif, chuchotements et clochettes, à plein volume."
+    },
+    {
+     "id": "suspiria-remake-2018",
+     "t": "Suspiria (remake)",
+     "y": 2018,
+     "d": "Luca Guadagnino",
+     "r": "Thom Yorke : sa première musique de film, entre chansons douces et nappes inquiétantes."
+    },
+    {
+     "id": "le-pouvoir-du-chien-2021",
+     "t": "Le Pouvoir du chien",
+     "y": 2021,
+     "d": "Jane Campion",
+     "r": "Jonny Greenwood : un violoncelle joué comme un banjo, pincé, nerveux."
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": "Jonny Greenwood : cordes flottantes et percussions qui suivent l'esprit instable de Freddie."
+    },
+    {
+     "id": "phantom-thread-2017",
+     "t": "Phantom Thread",
+     "y": 2017,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "joker-2019",
+     "t": "Joker",
+     "y": 2019,
+     "d": "Todd Phillips",
+     "r": "Hildur Guðnadóttir : un violoncelle seul, composé avant le tournage, sur lequel Joaquin Phoenix a improvisé sa danse."
+    },
+    {
+     "id": "uncut-gems-2019",
+     "t": "Uncut Gems",
+     "y": 2019,
+     "d": "Josh et Benny Safdie",
+     "r": "Oneohtrix Point Never : synthétiseurs cosmiques et chœurs, pour un vendeur de bijoux au bord du gouffre."
+    },
+    {
+     "id": "irreversible-2002",
+     "t": "Irréversible",
+     "y": 2002,
+     "d": "Gaspar Noé",
+     "r": "Thomas Bangalter : un son grave à 28 hertz, à peine audible, qui donne la nausée dans le premier quart d'heure."
+    },
+    {
+     "id": "mandy-2018",
+     "t": "Mandy",
+     "y": 2018,
+     "d": "Panos Cosmatos",
+     "r": "Jóhann Jóhannsson : drone, guitares et synthétiseurs saturés, sa dernière partition."
+    },
+    {
+     "id": "beyond-the-black-rainbow-2010",
+     "t": "Beyond the Black Rainbow",
+     "y": 2010,
+     "d": "Panos Cosmatos",
+     "r": "Jeremy Schmidt (Sinoia Caves) : synthétiseurs analogiques des années 1980."
+    },
+    {
+     "id": "eternal-sunshine-of-the-spotless-mind-2004",
+     "t": "Eternal Sunshine of the Spotless Mind",
+     "y": 2004,
+     "d": "Michel Gondry",
+     "r": "Jon Brion : piano, petites boîtes à musique et sons défaits, comme les souvenirs qui s'effacent."
+    },
+    {
+     "id": "upstream-color-2013",
+     "t": "Upstream Color",
+     "y": 2013,
+     "d": "Shane Carruth",
+     "r": "Shane Carruth compose lui-même : des nappes et des sons qui relient les personnages."
+    },
+    {
+     "id": "aftersun-2022",
+     "t": "Aftersun",
+     "y": 2022,
+     "d": "Charlotte Wells",
+     "r": "Oliver Coates : violoncelle traité à l'électronique, le souvenir qui se brouille."
+    },
+    {
+     "id": "flow-2024",
+     "t": "Flow",
+     "y": 2024,
+     "d": "Gints Zilbalodis",
+     "r": "Sans un mot : la musique de Gints Zilbalodis et Rihards Zaļupe et les cris des animaux racontent le déluge."
+    },
+    {
+     "id": "portrait-de-la-jeune-fille-en-feu-2019",
+     "t": "Portrait de la jeune fille en feu",
+     "y": 2019,
+     "d": "Céline Sciamma",
+     "r": "Presque aucune musique, puis un chant de femmes écrit pour la scène du feu (Para One et Arthur Simonini)."
+    },
+    {
+     "id": "babylon-2022",
+     "t": "Babylon",
+     "y": 2022,
+     "d": "Damien Chazelle",
+     "r": "Justin Hurwitz : jazz frénétique, trompettes et fanfares, écrit avant le tournage."
+    },
+    {
+     "id": "la-la-land-2016",
+     "t": "La La Land",
+     "y": 2016,
+     "d": "Damien Chazelle",
+     "r": "Justin Hurwitz : chansons et thèmes écrits pour chaque scène dansée."
+    },
+    {
+     "id": "oppenheimer-2023",
+     "t": "Oppenheimer",
+     "y": 2023,
+     "d": "Christopher Nolan",
+     "r": "Ludwig Göransson : violon solo qui s'accélère, et le silence total au moment de l'explosion."
+    },
+    {
+     "id": "the-substance-2024",
+     "t": "The Substance",
+     "y": 2024,
+     "d": "Coralie Fargeat",
+     "r": "Raffertie : électronique écrasante, battements de cœur et sons de corps."
+    },
+    {
+     "id": "titane-2021",
+     "t": "Titane",
+     "y": 2021,
+     "d": "Julia Ducournau",
+     "r": "Jim Williams : orgues, chœurs et métal, pour un corps qui devient machine."
+    },
+    {
+     "id": "sirat-2025",
+     "t": "Sirāt",
+     "y": 2025,
+     "d": "Oliver Laxe",
+     "r": "Kangding Ray : musique électronique pensée pour le désert et les sound systems."
+    },
+    {
+     "id": "twin-peaks-serie-1990",
+     "t": "Twin Peaks (série)",
+     "y": 1990,
+     "d": "David Lynch et Mark Frost",
+     "r": "Angelo Badalamenti : le thème de Laura Palmer et le jazz qui flotte sur la ville."
+    },
+    {
+     "id": "twin-peaks-fire-walk-with-me-1992",
+     "t": "Twin Peaks : Fire Walk with Me",
+     "y": 1992,
+     "d": "David Lynch",
+     "r": "Angelo Badalamenti : jazz lent et nappes sombres, plus noires que dans la série."
+    },
+    {
+     "id": "mulholland-drive-2001",
+     "t": "Mulholland Drive",
+     "y": 2001,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "drive-2011",
+     "t": "Drive",
+     "y": 2011,
+     "d": "Nicolas Winding Refn",
+     "r": "Cliff Martinez : nappes de synthétiseur, la nuit de Los Angeles au ralenti."
+    },
+    {
+     "id": "the-neon-demon-2016",
+     "t": "The Neon Demon",
+     "y": 2016,
+     "d": "Nicolas Winding Refn",
+     "r": "Cliff Martinez : synthétiseurs froids et brillants comme les flashs."
+    },
+    {
+     "id": "her-2013",
+     "t": "Her",
+     "y": 2013,
+     "d": "Spike Jonze",
+     "r": "Arcade Fire et Owen Pallett : piano doux et voix, une ville tendre."
+    },
+    {
+     "id": "ex-machina-2014",
+     "t": "Ex Machina",
+     "y": 2014,
+     "d": "Alex Garland",
+     "r": "Ben Salisbury et Geoff Barrow : synthétiseurs et bruits de machine, inquiétude feutrée."
+    },
+    {
+     "id": "princesse-mononoke-1997",
+     "t": "Princesse Mononoké",
+     "y": 1997,
+     "d": "Hayao Miyazaki",
+     "r": "Joe Hisaishi : grand orchestre et thèmes de forêt."
+    },
+    {
+     "id": "le-voyage-de-chihiro-2001",
+     "t": "Le Voyage de Chihiro",
+     "y": 2001,
+     "d": "Hayao Miyazaki",
+     "r": "Joe Hisaishi : piano et orchestre pour le monde des esprits."
+    },
+    {
+     "id": "hana-bi-1997",
+     "t": "Hana-bi",
+     "y": 1997,
+     "d": "Takeshi Kitano",
+     "r": "Joe Hisaishi : thème au piano et cordes, la douceur au milieu de la violence."
+    },
+    {
+     "id": "koyaanisqatsi-1982",
+     "t": "Koyaanisqatsi",
+     "y": 1982,
+     "d": "Godfrey Reggio",
+     "r": "Philip Glass : musique répétitive montée avec les images, sans un mot."
+    },
+    {
+     "id": "mishima-1985",
+     "t": "Mishima",
+     "y": 1985,
+     "d": "Paul Schrader",
+     "r": "Philip Glass : cordes répétitives pour quatre chapitres d'une vie."
+    },
+    {
+     "id": "stalker-1979",
+     "t": "Stalker",
+     "y": 1979,
+     "d": "Andreï Tarkovski",
+     "r": "Edouard Artemiev : flûte, tar et électronique, le bruit du train mêlé à la musique."
+    },
+    {
+     "id": "la-couleur-de-la-grenade-1969",
+     "t": "La Couleur de la grenade",
+     "y": 1969,
+     "d": "Sergueï Paradjanov",
+     "r": "Tigran Mansourian : chants, cloches et bruits, des tableaux vivants qui sonnent."
+    },
+    {
+     "id": "les-parapluies-de-cherbourg-1964",
+     "t": "Les Parapluies de Cherbourg",
+     "y": 1964,
+     "d": "Jacques Demy",
+     "r": "Michel Legrand : tout le film est chanté, chaque réplique."
+    },
+    {
+     "id": "les-demoiselles-de-rochefort-1967",
+     "t": "Les Demoiselles de Rochefort",
+     "y": 1967,
+     "d": "Jacques Demy",
+     "r": "Michel Legrand : chansons et thèmes jazz pour une ville entière qui danse."
+    },
+    {
+     "id": "edward-aux-mains-d-argent-1990",
+     "t": "Edward aux mains d'argent",
+     "y": 1990,
+     "d": "Tim Burton",
+     "r": "Danny Elfman : chœurs d'enfants et neige, pour un conte."
+    },
+    {
+     "id": "big-fish-2003",
+     "t": "Big Fish",
+     "y": 2003,
+     "d": "Tim Burton",
+     "r": ""
+    },
+    {
+     "id": "beetlejuice-1988",
+     "t": "Beetlejuice",
+     "y": 1988,
+     "d": "Tim Burton",
+     "r": ""
+    },
+    {
+     "id": "la-cite-des-enfants-perdus-1995",
+     "t": "La Cité des enfants perdus",
+     "y": 1995,
+     "d": "Jean-Pierre Jeunet et Marc Caro",
+     "r": "Angelo Badalamenti : valse et cordes, un conte sombre."
+    },
+    {
+     "id": "gattaca-1997",
+     "t": "Gattaca",
+     "y": 1997,
+     "d": "Andrew Niccol",
+     "r": "Michael Nyman : cordes répétitives, froides et émouvantes."
+    },
+    {
+     "id": "the-cell-2000",
+     "t": "The Cell",
+     "y": 2000,
+     "d": "Tarsem Singh",
+     "r": "Howard Shore : orchestre et percussions marocaines dans l'esprit d'un tueur."
+    },
+    {
+     "id": "mr-nobody-2009",
+     "t": "Mr. Nobody",
+     "y": 2009,
+     "d": "Jaco Van Dormael",
+     "r": ""
+    },
+    {
+     "id": "coraline-2009",
+     "t": "Coraline",
+     "y": 2009,
+     "d": "Henry Selick",
+     "r": "Bruno Coulais : chœurs d'enfants dans une langue inventée."
+    },
+    {
+     "id": "the-grand-budapest-hotel-2014",
+     "t": "The Grand Budapest Hotel",
+     "y": 2014,
+     "d": "Wes Anderson",
+     "r": "Alexandre Desplat : balalaïkas, cymbalum et orgue, une Europe imaginaire."
+    },
+    {
+     "id": "toto-le-heros-1991",
+     "t": "Toto le héros",
+     "y": 1991,
+     "d": "Jaco Van Dormael",
+     "r": ""
+    },
+    {
+     "id": "mon-oncle-1958",
+     "t": "Mon oncle",
+     "y": 1958,
+     "d": "Jacques Tati",
+     "r": "Jacques Tati : un air de rue et des bruitages de maison moderne qui font rire."
+    },
+    {
+     "id": "psychose-1960",
+     "t": "Psychose",
+     "y": 1960,
+     "d": "Alfred Hitchcock",
+     "r": ""
+    },
+    {
+     "id": "sueurs-froides-1958",
+     "t": "Sueurs froides",
+     "y": 1958,
+     "d": "Alfred Hitchcock",
+     "r": ""
+    },
+    {
+     "id": "le-parrain-1972",
+     "t": "Le Parrain",
+     "y": 1972,
+     "d": "Francis Ford Coppola",
+     "r": ""
+    },
+    {
+     "id": "chinatown-1974",
+     "t": "Chinatown",
+     "y": 1974,
+     "d": "Roman Polanski",
+     "r": ""
+    },
+    {
+     "id": "e-t-l-extra-terrestre-1982",
+     "t": "E.T. l'extra-terrestre",
+     "y": 1982,
+     "d": "Steven Spielberg",
+     "r": ""
+    },
+    {
+     "id": "la-guerre-des-etoiles-1977",
+     "t": "La Guerre des étoiles",
+     "y": 1977,
+     "d": "George Lucas",
+     "r": ""
+    },
+    {
+     "id": "apocalypse-now-1979",
+     "t": "Apocalypse Now",
+     "y": 1979,
+     "d": "Francis Ford Coppola",
+     "r": ""
+    },
+    {
+     "id": "le-bon-la-brute-et-le-truand-1966",
+     "t": "Le Bon, la Brute et le Truand",
+     "y": 1966,
+     "d": "Sergio Leone",
+     "r": ""
+    },
+    {
+     "id": "et-pour-quelques-dollars-de-plus-1965",
+     "t": "Et pour quelques dollars de plus",
+     "y": 1965,
+     "d": "Sergio Leone",
+     "r": ""
+    },
+    {
+     "id": "mission-1986",
+     "t": "Mission",
+     "y": 1986,
+     "d": "Roland Joffé",
+     "r": ""
+    },
+    {
+     "id": "cinema-paradiso-1988",
+     "t": "Cinema Paradiso",
+     "y": 1988,
+     "d": "Giuseppe Tornatore",
+     "r": ""
+    },
+    {
+     "id": "no-country-for-old-men-2007",
+     "t": "No Country for Old Men",
+     "y": 2007,
+     "d": "Joel et Ethan Coen",
+     "r": "Presque pas de musique : le vent, les pas, le pistolet d'abattage (Carter Burwell, Skip Lievsay)."
+    },
+    {
+     "id": "le-peuple-migrateur-2001",
+     "t": "Le Peuple migrateur",
+     "y": 2001,
+     "d": "Jacques Perrin, Jacques Cluzaud et Michel Debats",
+     "r": "Bruno Coulais : voix et chœurs qui volent avec les oiseaux."
+    },
+    {
+     "id": "oceans-2009",
+     "t": "Océans",
+     "y": 2009,
+     "d": "Jacques Perrin et Jacques Cluzaud",
+     "r": ""
+    },
+    {
+     "id": "la-pianiste-2001",
+     "t": "La Pianiste",
+     "y": 2001,
+     "d": "Michael Haneke",
+     "r": ""
+    },
+    {
+     "id": "cold-war-2018",
+     "t": "Cold War",
+     "y": 2018,
+     "d": "Paweł Pawlikowski",
+     "r": ""
+    },
+    {
+     "id": "annette-2021",
+     "t": "Annette",
+     "y": 2021,
+     "d": "Leos Carax",
+     "r": "Sparks : un opéra rock écrit pour le film, chanté presque de bout en bout."
+    },
+    {
+     "id": "west-side-story-1961",
+     "t": "West Side Story",
+     "y": 1961,
+     "d": "Robert Wise et Jerome Robbins",
+     "r": "Leonard Bernstein : une partition de comédie musicale qui mêle jazz et opéra."
+    },
+    {
+     "id": "chantons-sous-la-pluie-1952",
+     "t": "Chantons sous la pluie",
+     "y": 1952,
+     "d": "Stanley Donen et Gene Kelly",
+     "r": ""
+    },
+    {
+     "id": "the-lure-2015",
+     "t": "The Lure",
+     "y": 2015,
+     "d": "Agnieszka Smoczyńska",
+     "r": "Des chansons écrites pour deux sirènes de cabaret, entre disco et punk (Ballady i Romanse)."
+    },
+    {
+     "id": "sweeney-todd-le-diabolique-barbier-de-fleet-street-2007",
+     "t": "Sweeney Todd, le diabolique barbier de Fleet Street",
+     "y": 2007,
+     "d": "Tim Burton",
+     "r": "Stephen Sondheim : une comédie musicale presque entièrement chantée."
+    },
+    {
+     "id": "only-lovers-left-alive-2013",
+     "t": "Only Lovers Left Alive",
+     "y": 2013,
+     "d": "Jim Jarmusch",
+     "r": "Jozef van Wissem et SQÜRL : luth et guitares saturées, la musique d'un vampire musicien."
+    },
+    {
+     "id": "dragons-2010",
+     "t": "Dragons",
+     "y": 2010,
+     "d": "Dean DeBlois et Chris Sanders",
+     "r": ""
+    }
+   ]
+  },
+  "s13-cours-4-musique": {
+   "films": [
+    {
+     "id": "tar-2022",
+     "t": "Tár",
+     "y": 2022,
+     "d": "Todd Field",
+     "r": "Sons sur mesure (Hildur Guðnadóttir)"
+    },
+    {
+     "id": "chernobyl-serie-2019",
+     "t": "Chernobyl (série)",
+     "y": 2019,
+     "d": "Craig Mazin et Johan Renck",
+     "r": "Sons sur mesure : la musique enregistrée dans une centrale (Hildur Guðnadóttir)"
+    },
+    {
+     "id": "the-brutalist-2024",
+     "t": "The Brutalist",
+     "y": 2024,
+     "d": "Brady Corbet",
+     "r": "Sons sur mesure (Daniel Blumberg)"
+    },
+    {
+     "id": "sicario-2015",
+     "t": "Sicario",
+     "y": 2015,
+     "d": "Denis Villeneuve",
+     "r": "La musique qui crée l'angoisse (Jóhann Jóhannsson)"
+    },
+    {
+     "id": "jackie-2016",
+     "t": "Jackie",
+     "y": 2016,
+     "d": "Pablo Larraín",
+     "r": "Sons sur mesure (Mica Levi)"
+    },
+    {
+     "id": "monos-2019",
+     "t": "Monos",
+     "y": 2019,
+     "d": "Alejandro Landes",
+     "r": "Sons sur mesure (Mica Levi)"
+    },
+    {
+     "id": "good-time-2017",
+     "t": "Good Time",
+     "y": 2017,
+     "d": "Josh et Benny Safdie",
+     "r": "L'électronique (Oneohtrix Point Never)"
+    },
+    {
+     "id": "spencer-2021",
+     "t": "Spencer",
+     "y": 2021,
+     "d": "Pablo Larraín",
+     "r": "Duo Larraín et Greenwood · Musique et image ne font qu'un"
+    },
+    {
+     "id": "atlantique-2019",
+     "t": "Atlantique",
+     "y": 2019,
+     "d": "Mati Diop",
+     "r": "L'électronique (Fatima Al Qadiri)"
+    },
+    {
+     "id": "sound-of-metal-2019",
+     "t": "Sound of Metal",
+     "y": 2019,
+     "d": "Darius Marder",
+     "r": "Bruitages et sound design : entendre comme le personnage (Nicolas Becker)"
+    },
+    {
+     "id": "memoria-2021",
+     "t": "Memoria",
+     "y": 2021,
+     "d": "Apichatpong Weerasethakul",
+     "r": "Bruitages et sound design : un film sur un son"
+    },
+    {
+     "id": "les-triplettes-de-belleville-2003",
+     "t": "Les Triplettes de Belleville",
+     "y": 2003,
+     "d": "Sylvain Chomet",
+     "r": "Bruitages et sound design : les objets deviennent instruments (Benoît Charest)"
+    },
+    {
+     "id": "mon-ami-robot-2023",
+     "t": "Mon ami robot",
+     "y": 2023,
+     "d": "Pablo Berger",
+     "r": "Musique et image ne font qu'un (Alfonso de Vilallonga)"
+    },
+    {
+     "id": "le-regne-animal-2023",
+     "t": "Le Règne animal",
+     "y": 2023,
+     "d": "Thomas Cailley",
+     "r": "Le grand thème orchestral (Andrea Laszlo De Simone)"
+    },
+    {
+     "id": "challengers-2024",
+     "t": "Challengers",
+     "y": 2024,
+     "d": "Luca Guadagnino",
+     "r": "L'électronique (Trent Reznor et Atticus Ross)"
+    },
+    {
+     "id": "conclave-2024",
+     "t": "Conclave",
+     "y": 2024,
+     "d": "Edward Berger",
+     "r": "La musique qui crée l'angoisse (Volker Bertelmann)"
+    },
+    {
+     "id": "a-l-ouest-rien-de-nouveau-2022",
+     "t": "À l'Ouest, rien de nouveau",
+     "y": 2022,
+     "d": "Edward Berger",
+     "r": "Sons sur mesure (Volker Bertelmann)"
+    },
+    {
+     "id": "bait-2019",
+     "t": "Bait",
+     "y": 2019,
+     "d": "Mark Jenkin",
+     "r": "Bruitages et sound design : tout le son recréé après le tournage"
+    },
+    {
+     "id": "planete-interdite-1956",
+     "t": "Planète interdite",
+     "y": 1956,
+     "d": "Fred M. Wilcox",
+     "r": "L'électronique : la première partition entièrement électronique (Bebe et Louis Barron)"
+    },
+    {
+     "id": "la-femme-des-sables-1964",
+     "t": "La Femme des sables",
+     "y": 1964,
+     "d": "Hiroshi Teshigahara",
+     "r": "Sons sur mesure (Tōru Takemitsu)"
+    },
+    {
+     "id": "akira-1988",
+     "t": "Akira",
+     "y": 1988,
+     "d": "Katsuhiro Ōtomo",
+     "r": "Sons sur mesure (Geinoh Yamashirogumi)"
+    },
+    {
+     "id": "alexandre-nevski-1938",
+     "t": "Alexandre Nevski",
+     "y": 1938,
+     "d": "Sergueï Eisenstein",
+     "r": "Musique et image ne font qu'un (Prokofiev et Eisenstein)"
+    },
+    {
+     "id": "the-revenant-2015",
+     "t": "The Revenant",
+     "y": 2015,
+     "d": "Alejandro G. Iñárritu",
+     "r": "Sons sur mesure (Sakamoto et Alva Noto)"
+    },
+    {
+     "id": "punch-drunk-love-2002",
+     "t": "Punch-Drunk Love",
+     "y": 2002,
+     "d": "Paul Thomas Anderson",
+     "r": "Musique et image ne font qu'un (Jon Brion)"
+    },
+    {
+     "id": "pauvres-creatures-2023",
+     "t": "Pauvres Créatures",
+     "y": 2023,
+     "d": "Yórgos Lánthimos",
+     "r": "Sons sur mesure (Jerskin Fendrix)"
+    },
+    {
+     "id": "kinds-of-kindness-2024",
+     "t": "Kinds of Kindness",
+     "y": 2024,
+     "d": "Yórgos Lánthimos",
+     "r": "Sons sur mesure (Jerskin Fendrix)"
+    },
+    {
+     "id": "bugonia-2025",
+     "t": "Bugonia",
+     "y": 2025,
+     "d": "Yórgos Lánthimos",
+     "r": "Sons sur mesure (Jerskin Fendrix)"
+    },
+    {
+     "id": "berberian-sound-studio-2012",
+     "t": "Berberian Sound Studio",
+     "y": 2012,
+     "d": "Peter Strickland",
+     "r": "Bruitages et sound design : le métier de bruiteur"
+    },
+    {
+     "id": "kwaidan-1964",
+     "t": "Kwaidan",
+     "y": 1964,
+     "d": "Masaki Kobayashi",
+     "r": "Sons sur mesure (Tōru Takemitsu)"
+    },
+    {
+     "id": "onibaba-1964",
+     "t": "Onibaba",
+     "y": 1964,
+     "d": "Kaneto Shindō",
+     "r": "Sons sur mesure (Hikaru Hayashi)"
+    },
+    {
+     "id": "tetsuo-1989",
+     "t": "Tetsuo",
+     "y": 1989,
+     "d": "Shinya Tsukamoto",
+     "r": "Sons sur mesure (Chu Ishikawa)"
+    },
+    {
+     "id": "ghost-in-the-shell-1995",
+     "t": "Ghost in the Shell",
+     "y": 1995,
+     "d": "Mamoru Oshii",
+     "r": "Sons sur mesure (Kenji Kawai)"
+    },
+    {
+     "id": "paprika-2006",
+     "t": "Paprika",
+     "y": 2006,
+     "d": "Satoshi Kon",
+     "r": "L'électronique (Susumu Hirasawa)"
+    },
+    {
+     "id": "la-planete-sauvage-1973",
+     "t": "La Planète sauvage",
+     "y": 1973,
+     "d": "René Laloux",
+     "r": "Sons sur mesure (Alain Goraguer)"
+    },
+    {
+     "id": "le-mepris-1963",
+     "t": "Le Mépris",
+     "y": 1963,
+     "d": "Jean-Luc Godard",
+     "r": "Le grand thème orchestral (Georges Delerue)"
+    },
+    {
+     "id": "playtime-1967",
+     "t": "Playtime",
+     "y": 1967,
+     "d": "Jacques Tati",
+     "r": "Bruitages et sound design : les sons comiques de Tati"
+    },
+    {
+     "id": "the-witch-2015",
+     "t": "The Witch",
+     "y": 2015,
+     "d": "Robert Eggers",
+     "r": "Sons sur mesure : un instrument inventé (Mark Korven)"
+    },
+    {
+     "id": "the-lighthouse-2019",
+     "t": "The Lighthouse",
+     "y": 2019,
+     "d": "Robert Eggers",
+     "r": "Sons sur mesure (Mark Korven)"
+    },
+    {
+     "id": "heredite-2018",
+     "t": "Hérédité",
+     "y": 2018,
+     "d": "Ari Aster",
+     "r": "Sons sur mesure (Colin Stetson)"
+    },
+    {
+     "id": "midsommar-2019",
+     "t": "Midsommar",
+     "y": 2019,
+     "d": "Ari Aster",
+     "r": "La musique qui crée l'angoisse (Bobby Krlic)"
+    },
+    {
+     "id": "it-follows-2014",
+     "t": "It Follows",
+     "y": 2014,
+     "d": "David Robert Mitchell",
+     "r": "L'électronique (Disasterpeace)"
+    },
+    {
+     "id": "under-the-silver-lake-2018",
+     "t": "Under the Silver Lake",
+     "y": 2018,
+     "d": "David Robert Mitchell",
+     "r": "Le grand thème orchestral (Disasterpeace)"
+    },
+    {
+     "id": "suspiria-1977",
+     "t": "Suspiria",
+     "y": 1977,
+     "d": "Dario Argento",
+     "r": "La musique qui crée l'angoisse (Goblin)"
+    },
+    {
+     "id": "le-pouvoir-du-chien-2021",
+     "t": "Le Pouvoir du chien",
+     "y": 2021,
+     "d": "Jane Campion",
+     "r": "Duo Campion et Greenwood · Sons sur mesure"
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": "Duo Anderson et Greenwood"
+    },
+    {
+     "id": "joker-2019",
+     "t": "Joker",
+     "y": 2019,
+     "d": "Todd Phillips",
+     "r": "Musique et image ne font qu'un (Hildur Guðnadóttir)"
+    },
+    {
+     "id": "uncut-gems-2019",
+     "t": "Uncut Gems",
+     "y": 2019,
+     "d": "Josh et Benny Safdie",
+     "r": "L'électronique (Oneohtrix Point Never)"
+    },
+    {
+     "id": "irreversible-2002",
+     "t": "Irréversible",
+     "y": 2002,
+     "d": "Gaspar Noé",
+     "r": "Sons sur mesure : l'infrason (Thomas Bangalter)"
+    },
+    {
+     "id": "mandy-2018",
+     "t": "Mandy",
+     "y": 2018,
+     "d": "Panos Cosmatos",
+     "r": "L'électronique (Jóhann Jóhannsson)"
+    },
+    {
+     "id": "eternal-sunshine-of-the-spotless-mind-2004",
+     "t": "Eternal Sunshine of the Spotless Mind",
+     "y": 2004,
+     "d": "Michel Gondry",
+     "r": "Musique et image ne font qu'un (Jon Brion)"
+    },
+    {
+     "id": "upstream-color-2013",
+     "t": "Upstream Color",
+     "y": 2013,
+     "d": "Shane Carruth",
+     "r": "Sons sur mesure (Shane Carruth)"
+    },
+    {
+     "id": "aftersun-2022",
+     "t": "Aftersun",
+     "y": 2022,
+     "d": "Charlotte Wells",
+     "r": "Sons sur mesure (Oliver Coates)"
+    },
+    {
+     "id": "flow-2024",
+     "t": "Flow",
+     "y": 2024,
+     "d": "Gints Zilbalodis",
+     "r": "Musique et image ne font qu'un"
+    },
+    {
+     "id": "portrait-de-la-jeune-fille-en-feu-2019",
+     "t": "Portrait de la jeune fille en feu",
+     "y": 2019,
+     "d": "Céline Sciamma",
+     "r": "Musique et image ne font qu'un : une seule scène chantée"
+    },
+    {
+     "id": "twin-peaks-serie-1990",
+     "t": "Twin Peaks (série)",
+     "y": 1990,
+     "d": "David Lynch et Mark Frost",
+     "r": "Duo Lynch et Badalamenti"
+    },
+    {
+     "id": "twin-peaks-fire-walk-with-me-1992",
+     "t": "Twin Peaks : Fire Walk with Me",
+     "y": 1992,
+     "d": "David Lynch",
+     "r": "Duo Lynch et Badalamenti"
+    },
+    {
+     "id": "drive-2011",
+     "t": "Drive",
+     "y": 2011,
+     "d": "Nicolas Winding Refn",
+     "r": "L'électronique (Cliff Martinez)"
+    },
+    {
+     "id": "mishima-1985",
+     "t": "Mishima",
+     "y": 1985,
+     "d": "Paul Schrader",
+     "r": "Le minimalisme répétitif (Philip Glass)"
+    },
+    {
+     "id": "la-couleur-de-la-grenade-1969",
+     "t": "La Couleur de la grenade",
+     "y": 1969,
+     "d": "Sergueï Paradjanov",
+     "r": "Sons sur mesure (Tigran Mansourian)"
+    },
+    {
+     "id": "coraline-2009",
+     "t": "Coraline",
+     "y": 2009,
+     "d": "Henry Selick",
+     "r": "Sons sur mesure (Bruno Coulais)"
+    },
+    {
+     "id": "the-grand-budapest-hotel-2014",
+     "t": "The Grand Budapest Hotel",
+     "y": 2014,
+     "d": "Wes Anderson",
+     "r": "Sons sur mesure (Alexandre Desplat)"
+    },
+    {
+     "id": "only-lovers-left-alive-2013",
+     "t": "Only Lovers Left Alive",
+     "y": 2013,
+     "d": "Jim Jarmusch",
+     "r": "Sons sur mesure (Jozef van Wissem et SQÜRL)"
+    }
+   ]
+  },
+  "s20-nouveau-cirque": {
+   "films": [
+    {
+     "id": "le-prestige-2006",
+     "t": "Le Prestige",
+     "y": 2006,
+     "d": "Christopher Nolan",
+     "r": "Magiciens de scène rivaux, tours et illusions du music-hall victorien."
+    },
+    {
+     "id": "save-the-green-planet-2003",
+     "t": "Save the Green Planet!",
+     "y": 2003,
+     "d": "Jang Joon-hwan",
+     "r": "La compagne du héros est funambule dans un petit cirque."
+    },
+    {
+     "id": "la-cite-des-enfants-perdus-1995",
+     "t": "La Cité des enfants perdus",
+     "y": 1995,
+     "d": "Jean-Pierre Jeunet et Marc Caro",
+     "r": "One, colosse de foire, et les numéros d'un cirque de quai."
+    },
+    {
+     "id": "big-fish-2003",
+     "t": "Big Fish",
+     "y": 2003,
+     "d": "Tim Burton",
+     "r": "Le jeune Edward travaille dans un cirque pour retrouver la femme de sa vie."
+    },
+    {
+     "id": "les-harmonies-werckmeister-2000",
+     "t": "Les Harmonies Werckmeister",
+     "y": 2000,
+     "d": "Béla Tarr",
+     "r": "Un cirque ambulant expose une baleine empaillée et sème le trouble."
+    },
+    {
+     "id": "les-enfants-du-paradis-1945",
+     "t": "Les Enfants du paradis",
+     "y": 1945,
+     "d": "Marcel Carné",
+     "r": "Le mime Baptiste au théâtre des Funambules, boulevard du Crime."
+    },
+    {
+     "id": "varietes-1925",
+     "t": "Variétés",
+     "y": 1925,
+     "d": "E. A. Dupont",
+     "r": "Un numéro de trapèze, filmé depuis les airs."
+    },
+    {
+     "id": "eo-2022",
+     "t": "EO",
+     "y": 2022,
+     "d": "Jerzy Skolimowski",
+     "r": "Un âne arraché à son cirque polonais et à son artiste."
+    },
+    {
+     "id": "les-ailes-du-desir-1987",
+     "t": "Les Ailes du désir",
+     "y": 1987,
+     "d": "Wim Wenders",
+     "r": "Marion, trapéziste d'un petit cirque berlinois, et l'ange qui tombe amoureux d'elle."
+    }
+   ]
+  },
+  "s21-nouveau-danse": {
+   "films": [
+    {
+     "id": "suspiria-1977",
+     "t": "Suspiria",
+     "y": 1977,
+     "d": "Dario Argento",
+     "r": ""
+    },
+    {
+     "id": "the-lure-2015",
+     "t": "The Lure",
+     "y": 2015,
+     "d": "Agnieszka Smoczyńska",
+     "r": ""
+    },
+    {
+     "id": "dancer-in-the-dark-2000",
+     "t": "Dancer in the Dark",
+     "y": 2000,
+     "d": "Lars von Trier",
+     "r": ""
+    },
+    {
+     "id": "paris-is-burning-1990",
+     "t": "Paris Is Burning",
+     "y": 1990,
+     "d": "Jennie Livingston",
+     "r": ""
+    },
+    {
+     "id": "fish-tank-2009",
+     "t": "Fish Tank",
+     "y": 2009,
+     "d": "Andrea Arnold",
+     "r": ""
+    },
+    {
+     "id": "les-demoiselles-de-rochefort-1967",
+     "t": "Les Demoiselles de Rochefort",
+     "y": 1967,
+     "d": "Jacques Demy",
+     "r": ""
+    },
+    {
+     "id": "moulin-rouge-2001",
+     "t": "Moulin Rouge",
+     "y": 2001,
+     "d": "Baz Luhrmann",
+     "r": ""
+    },
+    {
+     "id": "black-swan-2010",
+     "t": "Black Swan",
+     "y": 2010,
+     "d": "Darren Aronofsky",
+     "r": ""
+    },
+    {
+     "id": "la-la-land-2016",
+     "t": "La La Land",
+     "y": 2016,
+     "d": "Damien Chazelle",
+     "r": ""
+    },
+    {
+     "id": "suspiria-remake-2018",
+     "t": "Suspiria (remake)",
+     "y": 2018,
+     "d": "Luca Guadagnino",
+     "r": ""
+    },
+    {
+     "id": "girl-2018",
+     "t": "Girl",
+     "y": 2018,
+     "d": "Lukas Dhont",
+     "r": ""
+    },
+    {
+     "id": "climax-2018",
+     "t": "Climax",
+     "y": 2018,
+     "d": "Gaspar Noé",
+     "r": ""
+    },
+    {
+     "id": "happiness-therapy-2012",
+     "t": "Happiness Therapy",
+     "y": 2012,
+     "d": "David O. Russell",
+     "r": ""
+    },
+    {
+     "id": "beau-travail-1999",
+     "t": "Beau Travail",
+     "y": 1999,
+     "d": "Claire Denis",
+     "r": ""
+    },
+    {
+     "id": "drunk-2020",
+     "t": "Drunk",
+     "y": 2020,
+     "d": "Thomas Vinterberg",
+     "r": ""
+    },
+    {
+     "id": "cirque-du-soleil-quidam-1999",
+     "t": "Cirque du Soleil : Quidam",
+     "y": 1999,
+     "d": "David Mallet",
+     "r": ""
+    },
+    {
+     "id": "cirque-du-soleil-varekai-2003",
+     "t": "Cirque du Soleil : Varekai",
+     "y": 2003,
+     "d": "Dominic Champagne et Nick Morris",
+     "r": ""
+    },
+    {
+     "id": "satie-and-suzanne-1994",
+     "t": "Satie and Suzanne",
+     "y": 1994,
+     "d": "Tim Southam",
+     "r": ""
+    },
+    {
+     "id": "chantons-sous-la-pluie-1952",
+     "t": "Chantons sous la pluie",
+     "y": 1952,
+     "d": "Stanley Donen et Gene Kelly",
+     "r": ""
+    },
+    {
+     "id": "la-fievre-du-samedi-soir-1977",
+     "t": "La Fièvre du samedi soir",
+     "y": 1977,
+     "d": "John Badham",
+     "r": ""
+    },
+    {
+     "id": "kiki-2016",
+     "t": "Kiki",
+     "y": 2016,
+     "d": "Sara Jordenö",
+     "r": ""
+    },
+    {
+     "id": "broadway-rhythm-1944",
+     "t": "Broadway Rhythm",
+     "y": 1944,
+     "d": "Roy Del Ruth",
+     "r": ""
+    },
+    {
+     "id": "titane-2021",
+     "t": "Titane",
+     "y": 2021,
+     "d": "Julia Ducournau",
+     "r": ""
+    },
+    {
+     "id": "les-feux-de-la-rampe-1952",
+     "t": "Les Feux de la rampe",
+     "y": 1952,
+     "d": "Charlie Chaplin",
+     "r": ""
+    },
+    {
+     "id": "le-secret-des-poignards-volants-2004",
+     "t": "Le Secret des poignards volants",
+     "y": 2004,
+     "d": "Zhang Yimou",
+     "r": ""
+    }
+   ]
+  },
+  "s23-nouveau-quatrieme-dimension": {
+   "films": [
+    {
+     "id": "psychose-1960",
+     "t": "Psychose",
+     "y": 1960,
+     "d": "Alfred Hitchcock",
+     "r": ""
+    },
+    {
+     "id": "sixieme-sens-1999",
+     "t": "Sixième Sens",
+     "y": 1999,
+     "d": "M. Night Shyamalan",
+     "r": ""
+    },
+    {
+     "id": "usual-suspects-1995",
+     "t": "Usual Suspects",
+     "y": 1995,
+     "d": "Bryan Singer",
+     "r": ""
+    },
+    {
+     "id": "fight-club-1999",
+     "t": "Fight Club",
+     "y": 1999,
+     "d": "David Fincher",
+     "r": ""
+    },
+    {
+     "id": "peur-primale-1996",
+     "t": "Peur primale",
+     "y": 1996,
+     "d": "Gregory Hoblit",
+     "r": ""
+    },
+    {
+     "id": "le-prestige-2006",
+     "t": "Le Prestige",
+     "y": 2006,
+     "d": "Christopher Nolan",
+     "r": ""
+    },
+    {
+     "id": "identity-2003",
+     "t": "Identity",
+     "y": 2003,
+     "d": "James Mangold",
+     "r": ""
+    },
+    {
+     "id": "shutter-island-2010",
+     "t": "Shutter Island",
+     "y": 2010,
+     "d": "Martin Scorsese",
+     "r": ""
+    },
+    {
+     "id": "the-game-1997",
+     "t": "The Game",
+     "y": 1997,
+     "d": "David Fincher",
+     "r": ""
+    },
+    {
+     "id": "l-echelle-de-jacob-1990",
+     "t": "L'Échelle de Jacob",
+     "y": 1990,
+     "d": "Adrian Lyne",
+     "r": ""
+    },
+    {
+     "id": "the-machinist-2004",
+     "t": "The Machinist",
+     "y": 2004,
+     "d": "Brad Anderson",
+     "r": ""
+    },
+    {
+     "id": "deux-surs-2003",
+     "t": "Deux sœurs",
+     "y": 2003,
+     "d": "Kim Jee-woon",
+     "r": ""
+    },
+    {
+     "id": "la-jetee-1962",
+     "t": "La Jetée",
+     "y": 1962,
+     "d": "Chris Marker",
+     "r": ""
+    },
+    {
+     "id": "old-boy-2003",
+     "t": "Old Boy",
+     "y": 2003,
+     "d": "Park Chan-wook",
+     "r": ""
+    },
+    {
+     "id": "memento-2000",
+     "t": "Memento",
+     "y": 2000,
+     "d": "Christopher Nolan",
+     "r": ""
+    },
+    {
+     "id": "seven-1995",
+     "t": "Seven",
+     "y": 1995,
+     "d": "David Fincher",
+     "r": ""
+    },
+    {
+     "id": "goodnight-mommy-2014",
+     "t": "Goodnight Mommy",
+     "y": 2014,
+     "d": "Veronika Franz et Severin Fiala",
+     "r": ""
+    },
+    {
+     "id": "malignant-2021",
+     "t": "Malignant",
+     "y": 2021,
+     "d": "James Wan",
+     "r": ""
+    },
+    {
+     "id": "brazil-1985",
+     "t": "Brazil",
+     "y": 1985,
+     "d": "Terry Gilliam",
+     "r": ""
+    },
+    {
+     "id": "qu-est-il-arrive-a-baby-jane-1962",
+     "t": "Qu'est-il arrivé à Baby Jane ?",
+     "y": 1962,
+     "d": "Robert Aldrich",
+     "r": ""
+    },
+    {
+     "id": "incendies-2010",
+     "t": "Incendies",
+     "y": 2010,
+     "d": "Denis Villeneuve",
+     "r": ""
+    },
+    {
+     "id": "mother-2009",
+     "t": "Mother",
+     "y": 2009,
+     "d": "Bong Joon-ho",
+     "r": ""
+    },
+    {
+     "id": "le-pouvoir-du-chien-2021",
+     "t": "Le Pouvoir du chien",
+     "y": 2021,
+     "d": "Jane Campion",
+     "r": ""
+    },
+    {
+     "id": "insaisissables-2013",
+     "t": "Insaisissables",
+     "y": 2013,
+     "d": "Louis Leterrier",
+     "r": ""
+    },
+    {
+     "id": "gone-girl-2014",
+     "t": "Gone Girl",
+     "y": 2014,
+     "d": "David Fincher",
+     "r": ""
+    },
+    {
+     "id": "le-nombre-23-2007",
+     "t": "Le Nombre 23",
+     "y": 2007,
+     "d": "Joel Schumacher",
+     "r": ""
+    },
+    {
+     "id": "le-dernier-exorcisme-2010",
+     "t": "Le Dernier Exorcisme",
+     "y": 2010,
+     "d": "Daniel Stamm",
+     "r": ""
+    },
+    {
+     "id": "santa-sangre-1989",
+     "t": "Santa Sangre",
+     "y": 1989,
+     "d": "Alejandro Jodorowsky",
+     "r": ""
+    },
+    {
+     "id": "planete-interdite-1956",
+     "t": "Planète interdite",
+     "y": 1956,
+     "d": "Fred M. Wilcox",
+     "r": ""
+    }
+   ]
+  },
+  "s33-vengeance-aveugle": {
+   "films": [
+    {
+     "id": "memento-2000",
+     "t": "Memento",
+     "y": 2000,
+     "d": "Christopher Nolan",
+     "r": "Leonard se venge sans savoir qui il tue vraiment."
+    },
+    {
+     "id": "irreversible-2002",
+     "t": "Irréversible",
+     "y": 2002,
+     "d": "Gaspar Noé",
+     "r": "Dans la boîte de nuit, la vengeance frappe le mauvais homme."
+    },
+    {
+     "id": "carrie-au-bal-du-diable-1976",
+     "t": "Carrie au bal du diable",
+     "y": 1976,
+     "d": "Brian De Palma",
+     "r": "Humiliée, Carrie punit tout le bal, coupables et innocents."
+    }
+   ]
+  },
+  "s34-visages-bandes": {
+   "films": [
+    {
+     "id": "chinatown-1974",
+     "t": "Chinatown",
+     "y": 1974,
+     "d": "Roman Polanski",
+     "r": "Jack Nicholson passe la moitié du film le nez bandé."
+    },
+    {
+     "id": "au-revoir-la-haut-2017",
+     "t": "Au revoir là-haut",
+     "y": 2017,
+     "d": "Albert Dupontel",
+     "r": "Défiguré par un obus, Édouard cache son visage sous des bandages puis des masques."
+    },
+    {
+     "id": "goodnight-mommy-2014",
+     "t": "Goodnight Mommy",
+     "y": 2014,
+     "d": "Veronika Franz et Severin Fiala",
+     "r": "La mère revient d'une opération, le visage entièrement bandé."
+    },
+    {
+     "id": "elephant-man-1980",
+     "t": "Elephant Man",
+     "y": 1980,
+     "d": "David Lynch",
+     "r": "John Merrick cache son visage sous une cagoule de toile."
+    }
+   ]
+  },
+  "s35-erreur-sur-la-personne": {
+   "films": [
+    {
+     "id": "the-big-lebowski-1998",
+     "t": "The Big Lebowski",
+     "y": 1998,
+     "d": "Joel et Ethan Coen",
+     "r": ""
+    },
+    {
+     "id": "volte-face-1997",
+     "t": "Volte/Face",
+     "y": 1997,
+     "d": "John Woo",
+     "r": ""
+    },
+    {
+     "id": "la-double-vie-de-veronique-1991",
+     "t": "La Double Vie de Véronique",
+     "y": 1991,
+     "d": "Krzysztof Kieślowski",
+     "r": ""
+    },
+    {
+     "id": "le-visage-d-un-autre-1966",
+     "t": "Le Visage d'un autre",
+     "y": 1966,
+     "d": "Hiroshi Teshigahara",
+     "r": ""
+    },
+    {
+     "id": "les-passagers-de-la-nuit-1947",
+     "t": "Les Passagers de la nuit",
+     "y": 1947,
+     "d": "Delmer Daves",
+     "r": ""
+    },
+    {
+     "id": "alps-2011",
+     "t": "Alps",
+     "y": 2011,
+     "d": "Yorgos Lanthimos",
+     "r": ""
+    },
+    {
+     "id": "nimic-2019",
+     "t": "Nimic",
+     "y": 2019,
+     "d": "Yorgos Lanthimos",
+     "r": ""
+    },
+    {
+     "id": "us-2019",
+     "t": "Us",
+     "y": 2019,
+     "d": "Jordan Peele",
+     "r": ""
+    },
+    {
+     "id": "the-double-2013",
+     "t": "The Double",
+     "y": 2013,
+     "d": "Richard Ayoade",
+     "r": ""
+    },
+    {
+     "id": "enemy-2013",
+     "t": "Enemy",
+     "y": 2013,
+     "d": "Denis Villeneuve",
+     "r": ""
+    },
+    {
+     "id": "l-invasion-des-profanateurs-de-sepultures-1956",
+     "t": "L'Invasion des profanateurs de sépultures",
+     "y": 1956,
+     "d": "Don Siegel",
+     "r": ""
+    },
+    {
+     "id": "the-visit-2015",
+     "t": "The Visit",
+     "y": 2015,
+     "d": "M. Night Shyamalan",
+     "r": ""
+    },
+    {
+     "id": "close-up-1990",
+     "t": "Close-Up",
+     "y": 1990,
+     "d": "Abbas Kiarostami",
+     "r": ""
+    },
+    {
+     "id": "jf-partagerait-appartement-1992",
+     "t": "JF partagerait appartement",
+     "y": 1992,
+     "d": "Barbet Schroeder",
+     "r": ""
+    },
+    {
+     "id": "moon-2009",
+     "t": "Moon",
+     "y": 2009,
+     "d": "Duncan Jones",
+     "r": ""
+    },
+    {
+     "id": "detour-1945",
+     "t": "Détour",
+     "y": 1945,
+     "d": "Edgar G. Ulmer",
+     "r": ""
+    },
+    {
+     "id": "titane-2021",
+     "t": "Titane",
+     "y": 2021,
+     "d": "Julia Ducournau",
+     "r": ""
+    },
+    {
+     "id": "possessor-2020",
+     "t": "Possessor",
+     "y": 2020,
+     "d": "Brandon Cronenberg",
+     "r": ""
+    },
+    {
+     "id": "goodnight-mommy-2014",
+     "t": "Goodnight Mommy",
+     "y": 2014,
+     "d": "Veronika Franz et Severin Fiala",
+     "r": ""
+    },
+    {
+     "id": "a-history-of-violence-2005",
+     "t": "A History of Violence",
+     "y": 2005,
+     "d": "David Cronenberg",
+     "r": ""
+    },
+    {
+     "id": "shock-corridor-1963",
+     "t": "Shock Corridor",
+     "y": 1963,
+     "d": "Samuel Fuller",
+     "r": ""
+    }
+   ]
+  },
+  "s25-nouveau-emotion": {
+   "films": [
+    {
+     "id": "the-deepest-breath-2023",
+     "t": "The Deepest Breath",
+     "y": 2023,
+     "d": "Laura McGann",
+     "r": ""
+    },
+    {
+     "id": "dancer-in-the-dark-2000",
+     "t": "Dancer in the Dark",
+     "y": 2000,
+     "d": "Lars von Trier",
+     "r": ""
+    },
+    {
+     "id": "le-scaphandre-et-le-papillon-2007",
+     "t": "Le Scaphandre et le Papillon",
+     "y": 2007,
+     "d": "Julian Schnabel",
+     "r": ""
+    },
+    {
+     "id": "la-liste-de-schindler-1993",
+     "t": "La Liste de Schindler",
+     "y": 1993,
+     "d": "Steven Spielberg",
+     "r": ""
+    },
+    {
+     "id": "breaking-the-waves-1996",
+     "t": "Breaking the Waves",
+     "y": 1996,
+     "d": "Lars von Trier",
+     "r": ""
+    },
+    {
+     "id": "la-vie-est-belle-1997",
+     "t": "La vie est belle",
+     "y": 1997,
+     "d": "Roberto Benigni",
+     "r": ""
+    },
+    {
+     "id": "le-secret-de-brokeback-mountain-2005",
+     "t": "Le Secret de Brokeback Mountain",
+     "y": 2005,
+     "d": "Ang Lee",
+     "r": ""
+    },
+    {
+     "id": "trois-couleurs-bleu-1993",
+     "t": "Trois couleurs : Bleu",
+     "y": 1993,
+     "d": "Krzysztof Kieślowski",
+     "r": ""
+    },
+    {
+     "id": "trois-couleurs-rouge-1994",
+     "t": "Trois couleurs : Rouge",
+     "y": 1994,
+     "d": "Krzysztof Kieślowski",
+     "r": ""
+    },
+    {
+     "id": "the-fall-2006",
+     "t": "The Fall",
+     "y": 2006,
+     "d": "Tarsem Singh",
+     "r": ""
+    },
+    {
+     "id": "interstellar-2014",
+     "t": "Interstellar",
+     "y": 2014,
+     "d": "Christopher Nolan",
+     "r": ""
+    },
+    {
+     "id": "premier-contact-2016",
+     "t": "Premier Contact",
+     "y": 2016,
+     "d": "Denis Villeneuve",
+     "r": ""
+    },
+    {
+     "id": "paris-texas-1984",
+     "t": "Paris, Texas",
+     "y": 1984,
+     "d": "Wim Wenders",
+     "r": ""
+    },
+    {
+     "id": "voyage-au-bout-de-l-enfer-1978",
+     "t": "Voyage au bout de l'enfer",
+     "y": 1978,
+     "d": "Michael Cimino",
+     "r": ""
+    },
+    {
+     "id": "drive-my-car-2021",
+     "t": "Drive My Car",
+     "y": 2021,
+     "d": "Ryūsuke Hamaguchi",
+     "r": ""
+    },
+    {
+     "id": "past-lives-2023",
+     "t": "Past Lives",
+     "y": 2023,
+     "d": "Celine Song",
+     "r": ""
+    },
+    {
+     "id": "manchester-by-the-sea-2016",
+     "t": "Manchester by the Sea",
+     "y": 2016,
+     "d": "Kenneth Lonergan",
+     "r": ""
+    },
+    {
+     "id": "room-2015",
+     "t": "Room",
+     "y": 2015,
+     "d": "Lenny Abrahamson",
+     "r": ""
+    },
+    {
+     "id": "amour-2012",
+     "t": "Amour",
+     "y": 2012,
+     "d": "Michael Haneke",
+     "r": ""
+    },
+    {
+     "id": "the-father-2020",
+     "t": "The Father",
+     "y": 2020,
+     "d": "Florian Zeller",
+     "r": ""
+    },
+    {
+     "id": "la-strada-1954",
+     "t": "La Strada",
+     "y": 1954,
+     "d": "Federico Fellini",
+     "r": ""
+    },
+    {
+     "id": "cinema-paradiso-1988",
+     "t": "Cinema Paradiso",
+     "y": 1988,
+     "d": "Giuseppe Tornatore",
+     "r": ""
+    },
+    {
+     "id": "elephant-man-1980",
+     "t": "Elephant Man",
+     "y": 1980,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "perfect-days-2023",
+     "t": "Perfect Days",
+     "y": 2023,
+     "d": "Wim Wenders",
+     "r": ""
+    },
+    {
+     "id": "la-petite-sirene-1976",
+     "t": "La Petite Sirène",
+     "y": 1976,
+     "d": "Karel Kachyňa",
+     "r": ""
+    },
+    {
+     "id": "eo-2022",
+     "t": "EO",
+     "y": 2022,
+     "d": "Jerzy Skolimowski",
+     "r": ""
+    },
+    {
+     "id": "au-hasard-balthazar-1966",
+     "t": "Au hasard Balthazar",
+     "y": 1966,
+     "d": "Robert Bresson",
+     "r": ""
+    },
+    {
+     "id": "l-aurore-1927",
+     "t": "L'Aurore",
+     "y": 1927,
+     "d": "F. W. Murnau",
+     "r": ""
+    },
+    {
+     "id": "la-passion-de-jeanne-d-arc-1928",
+     "t": "La Passion de Jeanne d'Arc",
+     "y": 1928,
+     "d": "Carl Theodor Dreyer",
+     "r": ""
+    },
+    {
+     "id": "une-affaire-de-famille-2018",
+     "t": "Une affaire de famille",
+     "y": 2018,
+     "d": "Hirokazu Kore-eda",
+     "r": ""
+    },
+    {
+     "id": "120-battements-par-minute-2017",
+     "t": "120 battements par minute",
+     "y": 2017,
+     "d": "Robin Campillo",
+     "r": ""
+    },
+    {
+     "id": "les-feux-de-la-rampe-1952",
+     "t": "Les Feux de la rampe",
+     "y": 1952,
+     "d": "Charlie Chaplin",
+     "r": ""
+    },
+    {
+     "id": "reviens-moi-2007",
+     "t": "Reviens-moi",
+     "y": 2007,
+     "d": "Joe Wright",
+     "r": ""
+    },
+    {
+     "id": "the-whale-2022",
+     "t": "The Whale",
+     "y": 2022,
+     "d": "Darren Aronofsky",
+     "r": ""
+    },
+    {
+     "id": "leave-no-trace-2018",
+     "t": "Leave No Trace",
+     "y": 2018,
+     "d": "Debra Granik",
+     "r": ""
+    },
+    {
+     "id": "les-parapluies-de-cherbourg-1964",
+     "t": "Les Parapluies de Cherbourg",
+     "y": 1964,
+     "d": "Jacques Demy",
+     "r": ""
+    },
+    {
+     "id": "still-alice-2014",
+     "t": "Still Alice",
+     "y": 2014,
+     "d": "Richard Glatzer et Wash Westmoreland",
+     "r": ""
+    },
+    {
+     "id": "le-voleur-de-bicyclette-1948",
+     "t": "Le Voleur de bicyclette",
+     "y": 1948,
+     "d": "Vittorio De Sica",
+     "r": ""
+    },
+    {
+     "id": "hana-bi-1997",
+     "t": "Hana-bi",
+     "y": 1997,
+     "d": "Takeshi Kitano",
+     "r": ""
+    },
+    {
+     "id": "magnolia-1999",
+     "t": "Magnolia",
+     "y": 1999,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "les-evades-1994",
+     "t": "Les Évadés",
+     "y": 1994,
+     "d": "Frank Darabont",
+     "r": ""
+    },
+    {
+     "id": "jackie-2016",
+     "t": "Jackie",
+     "y": 2016,
+     "d": "Pablo Larraín",
+     "r": ""
+    },
+    {
+     "id": "sound-of-metal-2019",
+     "t": "Sound of Metal",
+     "y": 2019,
+     "d": "Darius Marder",
+     "r": ""
+    },
+    {
+     "id": "a-l-ouest-rien-de-nouveau-2022",
+     "t": "À l'Ouest, rien de nouveau",
+     "y": 2022,
+     "d": "Edward Berger",
+     "r": ""
+    }
+   ]
+  },
+  "s46-phobies-obsessions": {
+   "films": [
+    {
+     "id": "simple-simon-2010",
+     "t": "Simple Simon",
+     "y": 2010,
+     "d": "Andreas Öhman",
+     "r": "Les routines de Simon, qui ne supporte aucun imprévu."
+    }
+   ]
+  },
+  "s44-depression": {
+   "films": [
+    {
+     "id": "trois-couleurs-bleu-1993",
+     "t": "Trois couleurs : Bleu",
+     "y": 1993,
+     "d": "Krzysztof Kieślowski",
+     "r": ""
+    },
+    {
+     "id": "in-the-bedroom-2001",
+     "t": "In the Bedroom",
+     "y": 2001,
+     "d": "Todd Field",
+     "r": ""
+    },
+    {
+     "id": "drive-my-car-2021",
+     "t": "Drive My Car",
+     "y": 2021,
+     "d": "Ryūsuke Hamaguchi",
+     "r": ""
+    },
+    {
+     "id": "antichrist-2009",
+     "t": "Antichrist",
+     "y": 2009,
+     "d": "Lars von Trier",
+     "r": ""
+    },
+    {
+     "id": "dogs-don-t-wear-pants-2019",
+     "t": "Dogs Don't Wear Pants",
+     "y": 2019,
+     "d": "Jukka-Pekka Valkeapää",
+     "r": ""
+    },
+    {
+     "id": "la-haut-2009",
+     "t": "Là-haut",
+     "y": 2009,
+     "d": "Pete Docter",
+     "r": ""
+    },
+    {
+     "id": "le-dernier-voyage-de-tanya-2010",
+     "t": "Le Dernier Voyage de Tanya",
+     "y": 2010,
+     "d": "Aleksey Fedorchenko",
+     "r": ""
+    },
+    {
+     "id": "the-bothersome-man-2006",
+     "t": "The Bothersome Man",
+     "y": 2006,
+     "d": "Jens Lien",
+     "r": ""
+    },
+    {
+     "id": "jackie-2016",
+     "t": "Jackie",
+     "y": 2016,
+     "d": "Pablo Larraín",
+     "r": ""
+    }
+   ]
+  },
+  "s47-traumatismes": {
+   "films": [
+    {
+     "id": "le-silence-des-agneaux-1991",
+     "t": "Le Silence des agneaux",
+     "y": 1991,
+     "d": "Jonathan Demme",
+     "r": ""
+    },
+    {
+     "id": "will-hunting-1997",
+     "t": "Will Hunting",
+     "y": 1997,
+     "d": "Gus Van Sant",
+     "r": ""
+    },
+    {
+     "id": "twin-peaks-fire-walk-with-me-1992",
+     "t": "Twin Peaks : Fire Walk with Me",
+     "y": 1992,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "le-patient-anglais-1996",
+     "t": "Le Patient anglais",
+     "y": 1996,
+     "d": "Anthony Minghella",
+     "r": ""
+    },
+    {
+     "id": "mystic-river-2003",
+     "t": "Mystic River",
+     "y": 2003,
+     "d": "Clint Eastwood",
+     "r": ""
+    },
+    {
+     "id": "apocalypse-now-1979",
+     "t": "Apocalypse Now",
+     "y": 1979,
+     "d": "Francis Ford Coppola",
+     "r": ""
+    },
+    {
+     "id": "johnny-s-en-va-t-en-guerre-1971",
+     "t": "Johnny s'en va-t-en guerre",
+     "y": 1971,
+     "d": "Dalton Trumbo",
+     "r": ""
+    },
+    {
+     "id": "au-revoir-la-haut-2017",
+     "t": "Au revoir là-haut",
+     "y": 2017,
+     "d": "Albert Dupontel",
+     "r": ""
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "smile-2022",
+     "t": "Smile",
+     "y": 2022,
+     "d": "Parker Finn",
+     "r": ""
+    },
+    {
+     "id": "nurse-betty-2000",
+     "t": "Nurse Betty",
+     "y": 2000,
+     "d": "Neil LaBute",
+     "r": ""
+    },
+    {
+     "id": "leave-no-trace-2018",
+     "t": "Leave No Trace",
+     "y": 2018,
+     "d": "Debra Granik",
+     "r": ""
+    },
+    {
+     "id": "the-brutalist-2024",
+     "t": "The Brutalist",
+     "y": 2024,
+     "d": "Brady Corbet",
+     "r": ""
+    }
+   ]
+  },
+  "s48-personnalites": {
+   "films": [
+    {
+     "id": "whiplash-2014",
+     "t": "Whiplash",
+     "y": 2014,
+     "d": "Damien Chazelle",
+     "r": ""
+    },
+    {
+     "id": "stoker-2013",
+     "t": "Stoker",
+     "y": 2013,
+     "d": "Park Chan-wook",
+     "r": ""
+    },
+    {
+     "id": "le-silence-des-agneaux-1991",
+     "t": "Le Silence des agneaux",
+     "y": 1991,
+     "d": "Jonathan Demme",
+     "r": ""
+    },
+    {
+     "id": "misery-1990",
+     "t": "Misery",
+     "y": 1990,
+     "d": "Rob Reiner",
+     "r": ""
+    },
+    {
+     "id": "phantom-thread-2017",
+     "t": "Phantom Thread",
+     "y": 2017,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "the-servant-1963",
+     "t": "The Servant",
+     "y": 1963,
+     "d": "Joseph Losey",
+     "r": ""
+    },
+    {
+     "id": "foxcatcher-2014",
+     "t": "Foxcatcher",
+     "y": 2014,
+     "d": "Bennett Miller",
+     "r": ""
+    },
+    {
+     "id": "creep-2014",
+     "t": "Creep",
+     "y": 2014,
+     "d": "Patrick Brice",
+     "r": ""
+    },
+    {
+     "id": "qu-est-il-arrive-a-baby-jane-1962",
+     "t": "Qu'est-il arrivé à Baby Jane ?",
+     "y": 1962,
+     "d": "Robert Aldrich",
+     "r": ""
+    },
+    {
+     "id": "le-pouvoir-du-chien-2021",
+     "t": "Le Pouvoir du chien",
+     "y": 2021,
+     "d": "Jane Campion",
+     "r": ""
+    },
+    {
+     "id": "blue-velvet-1986",
+     "t": "Blue Velvet",
+     "y": 1986,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "the-love-witch-2016",
+     "t": "The Love Witch",
+     "y": 2016,
+     "d": "Anna Biller",
+     "r": ""
+    },
+    {
+     "id": "tar-2022",
+     "t": "Tár",
+     "y": 2022,
+     "d": "Todd Field",
+     "r": ""
+    }
+   ]
+  },
+  "s49-addictions": {
+   "films": [
+    {
+     "id": "le-festin-nu-1991",
+     "t": "Le Festin nu",
+     "y": 1991,
+     "d": "David Cronenberg",
+     "r": ""
+    },
+    {
+     "id": "le-feu-follet-1963",
+     "t": "Le Feu follet",
+     "y": 1963,
+     "d": "Louis Malle",
+     "r": ""
+    },
+    {
+     "id": "oslo-31-aout-2011",
+     "t": "Oslo, 31 août",
+     "y": 2011,
+     "d": "Joachim Trier",
+     "r": ""
+    },
+    {
+     "id": "withnail-and-i-1987",
+     "t": "Withnail and I",
+     "y": 1987,
+     "d": "Bruce Robinson",
+     "r": ""
+    },
+    {
+     "id": "berlin-calling-2008",
+     "t": "Berlin Calling",
+     "y": 2008,
+     "d": "Hannes Stöhr",
+     "r": ""
+    },
+    {
+     "id": "jusqu-au-bout-du-monde-1991",
+     "t": "Jusqu'au bout du monde",
+     "y": 1991,
+     "d": "Wim Wenders",
+     "r": ""
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "boogie-nights-1997",
+     "t": "Boogie Nights",
+     "y": 1997,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "the-brutalist-2024",
+     "t": "The Brutalist",
+     "y": 2024,
+     "d": "Brady Corbet",
+     "r": ""
+    }
+   ]
+  },
+  "s50-memoire-demence": {
+   "films": [
+    {
+     "id": "l-homme-sans-passe-2002",
+     "t": "L'Homme sans passé",
+     "y": 2002,
+     "d": "Aki Kaurismäki",
+     "r": ""
+    },
+    {
+     "id": "eternal-sunshine-of-the-spotless-mind-2004",
+     "t": "Eternal Sunshine of the Spotless Mind",
+     "y": 2004,
+     "d": "Michel Gondry",
+     "r": ""
+    },
+    {
+     "id": "dark-city-1998",
+     "t": "Dark City",
+     "y": 1998,
+     "d": "Alex Proyas",
+     "r": ""
+    },
+    {
+     "id": "mulholland-drive-2001",
+     "t": "Mulholland Drive",
+     "y": 2001,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "l-annee-derniere-a-marienbad-1961",
+     "t": "L'Année dernière à Marienbad",
+     "y": 1961,
+     "d": "Alain Resnais",
+     "r": ""
+    },
+    {
+     "id": "twin-peaks-the-return-serie-2017",
+     "t": "Twin Peaks : The Return (série)",
+     "y": 2017,
+     "d": "David Lynch",
+     "r": ""
+    }
+   ]
+  },
+  "s51-hopital-psychiatrique": {
+   "films": [
+    {
+     "id": "l-armee-des-12-singes-1995",
+     "t": "L'Armée des 12 singes",
+     "y": 1995,
+     "d": "Terry Gilliam",
+     "r": ""
+    },
+    {
+     "id": "une-femme-sous-influence-1974",
+     "t": "Une femme sous influence",
+     "y": 1974,
+     "d": "John Cassavetes",
+     "r": ""
+    },
+    {
+     "id": "family-life-1971",
+     "t": "Family Life",
+     "y": 1971,
+     "d": "Ken Loach",
+     "r": ""
+    },
+    {
+     "id": "thin-2006",
+     "t": "Thin",
+     "y": 2006,
+     "d": "Lauren Greenfield",
+     "r": ""
+    },
+    {
+     "id": "elle-s-appelle-sabine-2007",
+     "t": "Elle s'appelle Sabine",
+     "y": 2007,
+     "d": "Sandrine Bonnaire",
+     "r": ""
+    },
+    {
+     "id": "ratched-serie-2020",
+     "t": "Ratched (série)",
+     "y": 2020,
+     "d": "Evan Romansky et Ryan Murphy",
+     "r": ""
+    },
+    {
+     "id": "berlin-calling-2008",
+     "t": "Berlin Calling",
+     "y": 2008,
+     "d": "Hannes Stöhr",
+     "r": ""
+    },
+    {
+     "id": "devil-inside-2012",
+     "t": "Devil Inside",
+     "y": 2012,
+     "d": "William Brent Bell",
+     "r": ""
+    },
+    {
+     "id": "happiness-therapy-2012",
+     "t": "Happiness Therapy",
+     "y": 2012,
+     "d": "David O. Russell",
+     "r": ""
+    },
+    {
+     "id": "american-horror-story-serie-2011",
+     "t": "American Horror Story (série)",
+     "y": 2011,
+     "d": "Ryan Murphy et Brad Falchuk",
+     "r": "Surtout la saison 2, Asylum, dans un asile des années 1960."
+    }
+   ]
+  },
+  "s43-mythomanie": {
+   "films": [
+    {
+     "id": "big-fish-2003",
+     "t": "Big Fish",
+     "y": 2003,
+     "d": "Tim Burton",
+     "r": ""
+    },
+    {
+     "id": "rien-ne-va-plus-1997",
+     "t": "Rien ne va plus",
+     "y": 1997,
+     "d": "Claude Chabrol",
+     "r": ""
+    },
+    {
+     "id": "les-associes-2003",
+     "t": "Les Associés",
+     "y": 2003,
+     "d": "Ridley Scott",
+     "r": ""
+    },
+    {
+     "id": "le-retour-de-martin-guerre-1982",
+     "t": "Le Retour de Martin Guerre",
+     "y": 1982,
+     "d": "Daniel Vigne",
+     "r": ""
+    },
+    {
+     "id": "close-up-1990",
+     "t": "Close-Up",
+     "y": 1990,
+     "d": "Abbas Kiarostami",
+     "r": ""
+    },
+    {
+     "id": "the-visit-2015",
+     "t": "The Visit",
+     "y": 2015,
+     "d": "M. Night Shyamalan",
+     "r": ""
+    },
+    {
+     "id": "le-dernier-exorcisme-2010",
+     "t": "Le Dernier Exorcisme",
+     "y": 2010,
+     "d": "Daniel Stamm",
+     "r": ""
+    }
+   ]
+  },
+  "s42-troubles-alimentaires": {
+   "films": [
+    {
+     "id": "spencer-2021",
+     "t": "Spencer",
+     "y": 2021,
+     "d": "Pablo Larraín",
+     "r": "Diana et la boulimie, pendant trois jours de Noël."
+    }
+   ]
   }
  },
  "fiches": {
@@ -1918,7 +5986,6 @@
   "the-bothersome-man-2006": {"p": "Andreas arrive dans une ville sans savoir comment. On lui donne un emploi, un appartement, une compagne ; tout fonctionne, mais la nourriture n'a aucun goût, l'alcool ne fait pas d'effet et personne ne ressent rien. Même son suicide échoue. Il cherche une fissure vers un autre monde.", "c": "Norvège", "k": ["humour-absurde", "malaise", "societe"], "mv": "auteur-europeen", "e": 8, "duree": 95, "av": ["suicide", "images choquantes"], "th": ["conformisme", "au-delà", "désir"], "fiab": "à vérifier"},
   "swiss-army-man-2016": {"p": "Hank, naufragé prêt à se pendre, voit s'échouer le cadavre flatulent de Manny. Le corps devient jet-ski, réserve d'eau, boussole et peu à peu ami à qui Hank réapprend la vie. À la fin, on découvre que la forêt était derrière la maison de la femme qu'il observait en secret.", "c": "États-Unis", "k": ["humour-absurde", "marginaux", "obsession"], "mv": "independant-americain", "e": 6, "duree": 97, "av": ["suicide"], "th": ["solitude", "honte", "amitié"], "fiab": "à vérifier"},
   "the-double-2013": {"p": "Simon James travaille depuis sept ans dans une administration rétrofuturiste sombre, où personne ne le remarque. Arrive James Simon, son double exact, charmeur et sûr de lui, qui lui prend son travail et la femme qu'il aime. D'après Le Double de Dostoïevski.", "c": "Royaume-Uni", "k": ["paranoia", "malaise", "humour-absurde"], "mv": "auteur-europeen", "e": 8, "duree": 93, "av": ["suicide"], "th": ["double", "invisibilité", "identité"], "fiab": "à vérifier"},
-  "lobster-2015": {"duree": 118, "av": ["violence explicite", "automutilation", "suicide"], "th": ["couple", "conformisme", "solitude"], "fiab": "à vérifier"},
   "mississippi-burning-1988": {"p": "En 1964, trois militants des droits civiques disparaissent dans le Mississippi ; deux agents du FBI (Gene Hackman, Willem Dafoe) enquêtent face au Ku Klux Klan et au silence de toute une ville. D'après un vrai triple meurtre.", "c": "États-Unis", "k": ["suspense", "injustice", "histoire-vraie", "societe"], "mv": "hollywood-contemporain", "e": 7, "duree": 128, "av": ["violence explicite"], "th": ["racisme", "droits civiques", "enquête"], "fiab": "à vérifier"},
   "american-history-x-1998": {"p": "À Venice Beach, Derek (Edward Norton), ancien néonazi, sort de prison et veut empêcher son petit frère Danny (Edward Furlong) de suivre le même chemin ; le passé revient en noir et blanc.", "c": "États-Unis", "k": ["violence", "societe", "famille", "noir-et-blanc"], "mv": "hollywood-contemporain", "e": 7, "duree": 119, "av": ["violence explicite", "violence sexuelle", "images choquantes"], "th": ["extrême droite", "fraternité", "rédemption"], "fiab": "à vérifier"},
   "this-is-england-2006": {"p": "En 1983, Shaun, douze ans, dont le père est mort aux Malouines, est adopté par une bande de skinheads joyeux, jusqu'au retour de Combo, sorti de prison avec des idées nationalistes et racistes.", "c": "Royaume-Uni", "k": ["enfance", "societe", "violence", "retro"], "mv": "realisme-social-britannique", "e": 7, "duree": 101, "av": ["violence explicite", "drogue"], "th": ["skinheads", "nationalisme", "années Thatcher"], "fiab": "à vérifier"},
@@ -1962,7 +6029,31 @@
   "andrei-roublev-1966": {"p": "La vie du peintre d'icônes Andreï Roublev dans la Russie du quinzième siècle, en huit tableaux : invasions tatares, famines, fêtes païennes, et la fonte d'une immense cloche par un jeune garçon. En noir et blanc, puis en couleurs.", "c": "Union soviétique", "k": ["noir-et-blanc", "histoire", "contemplatif", "violence"], "mv": "cinema-lent", "e": 6, "duree": 183, "av": ["violence explicite", "images choquantes"], "th": ["foi", "art", "Moyen Âge"], "fiab": "à vérifier"},
   "tous-les-autres-s-appellent-ali-1974": {"p": "À Munich, Emmi, veuve et femme de ménage d'une soixantaine d'années, épouse Ali, travailleur marocain bien plus jeune ; voisins, collègues et enfants se liguent contre eux.", "c": "Allemagne de l'Ouest", "k": ["amour", "societe", "injustice"], "mv": "nouveau-cinema-allemand", "e": 7, "duree": 93, "av": [], "th": ["racisme", "amour", "solitude"], "fiab": "à vérifier"},
   "pather-panchali-1955": {"p": "Dans un village du Bengale, le petit Apu grandit avec sa grande sœur Durga, une mère épuisée, un père poète souvent absent et une vieille tante ; le premier volet de la trilogie d'Apu.", "c": "Inde", "k": ["enfance", "famille", "noir-et-blanc", "larmes"], "mv": "auteur-monde", "e": 6, "duree": 125, "av": [], "th": ["pauvreté", "enfance", "Bengale"], "fiab": "à vérifier"},
-  "le-samourai-1967": {"p": "Jef Costello (Alain Delon), tueur à gages solitaire qui vit avec un bouvreuil dans une chambre grise, prépare son alibi avec un soin maniaque ; après un contrat, police et commanditaires le traquent.", "c": "France", "k": ["suspense", "contemplatif", "couleurs"], "mv": "modernite-europeenne", "e": 8, "duree": 105, "av": ["violence explicite"], "th": ["tueur", "solitude", "rituel"], "fiab": "à vérifier"}
+  "le-samourai-1967": {"p": "Jef Costello (Alain Delon), tueur à gages solitaire qui vit avec un bouvreuil dans une chambre grise, prépare son alibi avec un soin maniaque ; après un contrat, police et commanditaires le traquent.", "c": "France", "k": ["suspense", "contemplatif", "couleurs"], "mv": "modernite-europeenne", "e": 8, "duree": 105, "av": ["violence explicite"], "th": ["tueur", "solitude", "rituel"], "fiab": "à vérifier"},
+  "tar-2022": {"p": "Lydia Tár (Cate Blanchett), première femme à diriger l'orchestre philharmonique de Berlin, prépare l'enregistrement de la Cinquième de Mahler pendant que son emprise sur son entourage se retourne contre elle.", "c": "États-Unis", "k": ["musique", "obsession", "chute", "heroines"], "mv": "independant-americain", "e": 8, "duree": 158, "av": [], "th": ["pouvoir", "création", "emprise"], "fiab": "à vérifier"},
+  "chernobyl-serie-2019": {"p": "Mini-série en cinq épisodes : l'explosion du réacteur n° 4 en avril 1986, les liquidateurs envoyés à la mort et le scientifique Valeri Legassov (Jared Harris) face au mensonge du régime soviétique.", "c": "Royaume-Uni, États-Unis", "k": ["serie", "histoire-vraie", "malaise", "injustice"], "mv": "series", "e": 9, "duree": 65, "av": ["images choquantes"], "th": ["mensonge d'État", "sacrifice", "catastrophe"], "fiab": "à vérifier", "duree_episode": true},
+  "the-brutalist-2024": {"p": "László Tóth (Adrien Brody), architecte juif hongrois rescapé des camps, arrive en Pennsylvanie en 1947 ; un riche industriel lui commande un bâtiment immense qui va le dévorer.", "c": "Royaume-Uni, États-Unis, Hongrie", "k": ["histoire", "obsession", "contemplatif"], "mv": "independant-americain", "e": 8, "duree": 215, "av": ["violence sexuelle", "drogue"], "th": ["exil", "architecture", "emprise"], "fiab": "à vérifier"},
+  "sicario-2015": {"p": "Une agente du FBI (Emily Blunt) rejoint une mission trouble contre un cartel à la frontière mexicaine, aux côtés d'un mystérieux consultant (Benicio del Toro).", "c": "États-Unis", "k": ["suspense", "violence"], "mv": "hollywood-contemporain", "e": 7, "duree": 121, "av": ["violence explicite"], "th": ["frontière", "cartels", "morale"], "fiab": "à vérifier"},
+  "jackie-2016": {"p": "Les jours qui suivent l'assassinat de John F. Kennedy, vus par sa veuve (Natalie Portman), qui organise les funérailles et la légende de son mari.", "c": "États-Unis, Chili, France", "k": ["histoire-vraie", "larmes", "heroines"], "mv": "auteur-monde", "e": 7, "duree": 100, "av": ["images choquantes"], "th": ["deuil", "image publique", "veuvage"], "fiab": "à vérifier"},
+  "monos-2019": {"p": "Sur un sommet des Andes puis dans la jungle, huit adolescents d'un groupe armé gardent une otage américaine et une vache ; la discipline vole en éclats.", "c": "Colombie, Argentine, Pays-Bas", "k": ["violence", "enfance", "marginaux", "malaise"], "mv": "auteur-monde", "e": 7, "duree": 102, "av": ["violence explicite", "maltraitance"], "th": ["guérilla", "adolescence", "sauvagerie"], "fiab": "à vérifier"},
+  "good-time-2017": {"p": "Après un braquage raté à New York, Connie (Robert Pattinson) a une nuit pour faire sortir de prison son frère handicapé mental.", "c": "États-Unis", "k": ["suspense", "neons", "marginaux"], "mv": "independant-americain", "e": 7, "duree": 101, "av": ["violence explicite", "drogue"], "th": ["fraternité", "fuite", "nuit"], "fiab": "à vérifier"},
+  "spencer-2021": {"p": "Trois jours de Noël à Sandringham en 1991 : Diana (Kristen Stewart) étouffe sous les rituels de la famille royale et décide de partir.", "c": "Royaume-Uni, Allemagne, Chili", "k": ["heroines", "malaise", "folie", "retro"], "mv": "auteur-monde", "e": 7, "duree": 117, "av": ["automutilation"], "th": ["enfermement", "royauté", "identité"], "fiab": "à vérifier"},
+  "atlantique-2019": {"p": "À Dakar, des ouvriers impayés partent en pirogue vers l'Espagne ; Ada, promise à un autre, attend Souleiman, et la nuit les absents reviennent posséder les vivants.", "c": "Sénégal, France, Belgique", "k": ["ocean", "amour", "reve", "heroines", "societe"], "mv": "auteur-monde", "e": 8, "duree": 106, "av": [], "th": ["exil", "fantômes", "amour"], "fiab": "à vérifier"},
+  "sound-of-metal-2019": {"p": "Ruben (Riz Ahmed), batteur d'un duo de métal et ancien toxicomane, perd l'ouïe en quelques jours et rejoint une communauté de personnes sourdes.", "c": "États-Unis", "k": ["musique", "larmes", "marginaux"], "mv": "independant-americain", "e": 8, "duree": 120, "av": ["drogue"], "th": ["surdité", "acceptation", "communauté"], "fiab": "à vérifier"},
+  "memoria-2021": {"p": "En Colombie, Jessica (Tilda Swinton) est réveillée par un « bang » sourd que personne d'autre n'entend ; elle cherche à le reproduire, jusqu'à un homme qui se souvient de tout.", "c": "Colombie, Thaïlande, France", "k": ["contemplatif", "reve", "sf"], "mv": "cinema-lent", "e": 7, "duree": 136, "av": [], "th": ["perception", "mémoire", "son"], "fiab": "à vérifier"},
+  "les-triplettes-de-belleville-2003": {"p": "Animation presque sans paroles : un cycliste du Tour de France est enlevé par la mafia ; sa grand-mère et son chien le cherchent avec trois vieilles chanteuses de music-hall.", "c": "France, Belgique, Canada", "k": ["animation", "musique", "humour-absurde", "retro"], "mv": "animation-auteur", "e": 8, "duree": 80, "av": [], "th": ["grand-mère", "jazz", "enlèvement"], "fiab": "à vérifier"},
+  "mon-ami-robot-2023": {"p": "Animation sans dialogues : dans le New York des années 1980, un chien solitaire monte un robot pour lui tenir compagnie, jusqu'à un été à la plage qui les sépare.", "c": "Espagne, France", "k": ["animation", "larmes", "doux", "retro"], "mv": "animation-auteur", "e": 8, "duree": 102, "av": [], "th": ["amitié", "séparation", "solitude"], "fiab": "à vérifier"},
+  "le-regne-animal-2023": {"p": "Dans un monde où des humains se transforment peu à peu en animaux, François (Romain Duris) cherche sa femme disparue dans les forêts des Landes avec leur fils Émile, qui mute à son tour.", "c": "France, Belgique", "k": ["transformations", "famille", "marginaux", "conte"], "mv": "auteur-francais", "e": 8, "duree": 128, "av": ["images choquantes"], "th": ["mutation", "paternité", "différence"], "fiab": "à vérifier"},
+  "challengers-2024": {"p": "Un match de tennis d'un tournoi secondaire oppose deux anciens meilleurs amis ; entre eux, depuis treize ans, Tashi (Zendaya), ancienne prodige devenue entraîneuse.", "c": "États-Unis, Italie", "k": ["amour", "obsession", "exploits"], "mv": "hollywood-contemporain", "e": 7, "duree": 131, "av": [], "th": ["rivalité", "désir", "compétition"], "fiab": "à vérifier"},
+  "conclave-2024": {"p": "À la mort du pape, le cardinal Lawrence (Ralph Fiennes) organise l'élection de son successeur au Vatican et découvre les secrets des favoris.", "c": "Royaume-Uni, États-Unis", "k": ["suspense", "huis-clos", "chute"], "mv": "hollywood-contemporain", "e": 7, "duree": 120, "av": [], "th": ["pouvoir", "foi", "secrets"], "fiab": "à vérifier"},
+  "a-l-ouest-rien-de-nouveau-2022": {"p": "En 1917, Paul, dix-sept ans, s'engage avec ses camarades de lycée, plein d'enthousiasme, et découvre les tranchées du front de l'Ouest. D'après Erich Maria Remarque.", "c": "Allemagne", "k": ["histoire", "violence", "larmes"], "mv": "auteur-europeen", "e": 8, "duree": 148, "av": ["violence explicite", "images choquantes"], "th": ["guerre", "jeunesse", "absurdité"], "fiab": "à vérifier"},
+  "bait-2019": {"p": "Dans un village de pêcheurs de Cornouailles envahi par les résidences secondaires, Martin, pêcheur sans bateau, s'oppose aux nouveaux propriétaires venus de Londres.", "c": "Royaume-Uni", "k": ["noir-et-blanc", "ocean", "societe"], "mv": "experimental", "e": 8, "duree": 89, "av": [], "th": ["pêche", "tourisme", "village"], "fiab": "à vérifier"},
+  "planete-interdite-1956": {"p": "Un équipage terrien se pose sur Altaïr IV, où vivent seuls un savant, sa fille et le robot Robby ; une force invisible attaque le vaisseau. D'après La Tempête de Shakespeare.", "c": "États-Unis", "k": ["sf", "couleurs", "retro", "chute"], "mv": "hollywood-classique", "e": 7, "duree": 98, "av": [], "th": ["inconscient", "savoir", "monstre"], "fiab": "à vérifier"},
+  "la-femme-des-sables-1964": {"p": "Un entomologiste de Tokyo passe la nuit chez une veuve au fond d'une fosse de sable ; au matin, l'échelle a disparu et il doit déblayer le sable avec elle.", "c": "Japon", "k": ["noir-et-blanc", "huis-clos", "malaise", "contemplatif"], "mv": "age-dor-japonais", "e": 8, "duree": 147, "av": ["violence sexuelle"], "th": ["captivité", "absurde", "désir"], "fiab": "à vérifier"},
+  "akira-1988": {"p": "Néo-Tokyo, 2019 : Tetsuo, membre d'un gang de motards, acquiert des pouvoirs psychiques qu'il ne contrôle plus, et son ami Kaneda tente de l'arrêter.", "c": "Japon", "k": ["animation", "sf", "violence", "transformations"], "mv": "anime-auteur", "e": 8, "duree": 124, "av": ["violence explicite", "images choquantes"], "th": ["pouvoir", "adolescence", "apocalypse"], "fiab": "à vérifier"},
+  "alexandre-nevski-1938": {"p": "Au XIIIe siècle, le prince Alexandre Nevski lève une armée de paysans contre les chevaliers Teutoniques, jusqu'à la bataille sur le lac gelé.", "c": "Union soviétique", "k": ["noir-et-blanc", "histoire", "exploits"], "mv": "montage-sovietique", "e": 7, "duree": 112, "av": [], "th": ["invasion", "héroïsme", "propagande"], "fiab": "à vérifier"},
+  "the-revenant-2015": {"p": "En 1823, le trappeur Hugh Glass (Leonardo DiCaprio), lacéré par un ourse et laissé pour mort, traverse seul l'hiver du Missouri pour retrouver celui qui a tué son fils.", "c": "États-Unis", "k": ["violence", "contemplatif", "exploits", "vengeance"], "mv": "hollywood-contemporain", "e": 7, "duree": 156, "av": ["violence explicite", "violence sexuelle"], "th": ["survie", "nature", "vengeance"], "fiab": "à vérifier"},
+  "punch-drunk-love-2002": {"p": "Barry (Adam Sandler), petit patron timide sujet à des crises de rage, trouve un harmonium dans la rue, accumule des miles grâce à des puddings et tombe amoureux.", "c": "États-Unis", "k": ["amour", "couleurs", "humour-absurde", "malaise"], "mv": "independant-americain", "e": 8, "duree": 95, "av": [], "th": ["anxiété", "amour", "solitude"], "fiab": "à vérifier"}
  },
  "familles": {
   "1917-2019": "30520",
@@ -2838,7 +6929,6 @@
   "the-bothersome-man-2006": "23050",
   "swiss-army-man-2016": "30025",
   "the-double-2013": "33031",
-  "lobster-2015": "22051",
   "mississippi-burning-1988": "03331",
   "american-history-x-1998": "04231",
   "this-is-england-2006": "12133",
@@ -2882,7 +6972,31 @@
   "andrei-roublev-1966": "32041",
   "tous-les-autres-s-appellent-ali-1974": "21025",
   "pather-panchali-1955": "20044",
-  "le-samourai-1967": "33310"
+  "le-samourai-1967": "33310",
+  "tar-2022": "32131",
+  "chernobyl-serie-2019": "14230",
+  "the-brutalist-2024": "42031",
+  "sicario-2015": "23410",
+  "jackie-2016": "33022",
+  "monos-2019": "33211",
+  "good-time-2017": "22411",
+  "spencer-2021": "42121",
+  "atlantique-2019": "42112",
+  "sound-of-metal-2019": "21133",
+  "memoria-2021": "50041",
+  "les-triplettes-de-belleville-2003": "60013",
+  "mon-ami-robot-2023": "40015",
+  "le-regne-animal-2023": "32122",
+  "challengers-2024": "30115",
+  "conclave-2024": "31321",
+  "a-l-ouest-rien-de-nouveau-2022": "25210",
+  "bait-2019": "51031",
+  "planete-interdite-1956": "41230",
+  "la-femme-des-sables-1964": "33121",
+  "akira-1988": "43210",
+  "alexandre-nevski-1938": "61120",
+  "the-revenant-2015": "43210",
+  "punch-drunk-love-2002": "41014"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }

@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from cineclub_fixture import ROOT, catalogue_fixture, install_routes
+from cineclub_fixture import ROOT, catalogue_fixture, install_routes, slug
 
 CAPTURES = ROOT / "docs/captures/fiches"
 
@@ -20,6 +20,14 @@ def validate_data():
     for section in comp["sections"].values():
         ids.update(film["id"] for film in section.get("films", []))
     assert ids <= comp["fiches"].keys(), "Des films n'ont pas de complément"
+    # Pas de film en double : même titre (sans article ni accent) et même année sous deux identifiants.
+    seen = {}
+    entries = [f for doc in fixture["films"].values() for f in doc.get("films", [])]
+    entries += [f for section in comp["sections"].values() for f in section.get("films", [])]
+    for film in entries:
+        key = (re.sub(r"^(the|le|la|les|l|a|an|un|une)-", "", slug(film["t"])), film["y"])
+        assert seen.setdefault(key, film["id"]) == film["id"], f"Film en double : {seen[key]} et {film['id']}"
+    assert all(sum(map(int, code)) == 10 for code in comp["familles"].values()), "Familles : le total doit faire 10"
     allowed = {"violence explicite", "violence sexuelle", "suicide", "automutilation",
                "maltraitance", "drogue", "images choquantes"}
     for fid in ids:
