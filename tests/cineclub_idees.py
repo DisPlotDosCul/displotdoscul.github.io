@@ -15,7 +15,7 @@ def open_page(browser, admin):
         fixture["profils"]["test-membre"].update(pid="licia", pseudo="Licia")
         fixture["films"]["pl-camille"] = {"auto": "conseils", "famille": "playlists", "films": [], "ordre": 0.8,
                                           "prenom": "m_test-autre", "titre": "Camille (test)"}
-    context = browser.new_context(viewport={"width": 360, "height": 780}, has_touch=True, is_mobile=True)
+    context = browser.new_context(service_workers="block", viewport={"width": 360, "height": 780}, has_touch=True, is_mobile=True)
     cf.FIREBASE_JS = FIREBASE_JS  # lu au moment des requêtes, pas à l'installation
     unexpected = cf.install_routes(context, fixture=fixture)
     if admin:
@@ -25,7 +25,8 @@ def open_page(browser, admin):
     context.add_init_script("localStorage.setItem('carnetAmbianceV1','neon');")
     # TMDB simulé : aucune requête ne part vers le vrai service.
     context.route("https://api.themoviedb.org/**", lambda r: r.fulfill(content_type="application/json", body=json.dumps(
-        {"results": [{"id": 694}]} if "/search/" in r.request.url else {"backdrops": [{"file_path": "/image-%d.jpg" % i, "iso_639_1": None} for i in range(6)]})))
+        {"results": [{"id": 694}]} if "/search/" in r.request.url else {"id": 694, "credits": {"crew": []},
+         "images": {"backdrops": [{"file_path": "/image-%d.jpg" % i, "iso_639_1": None} for i in range(6)]}})))
     context.route("https://image.tmdb.org/**", lambda r: r.fulfill(content_type="image/svg+xml", body='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="9"/>'))
     page = context.new_page()
     errors = []
@@ -104,6 +105,8 @@ def run():
             # Flèches ← → : retour à l'affichage précédent, puis au suivant.
             page.locator("#qx").click()
             page.locator("#navb").wait_for(state="visible")
+            # Une recherche tapée moins de 1,5 seconde après la précédente remplace l'étape au lieu d'en ajouter une.
+            page.wait_for_timeout(1600)
             page.locator("#q").fill("Swallow")
             page.wait_for_timeout(400)
             page.locator("#navBack").click()

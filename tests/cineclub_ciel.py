@@ -40,7 +40,7 @@ def run():
     with sync_playwright() as pw:
         browser = pw.chromium.launch(executable_path="/usr/bin/chromium" if Path("/usr/bin/chromium").exists() else None, args=["--no-sandbox"])
         for name, width, height in [("telephone", 360, 800), ("ordinateur", 1440, 960)]:
-            context = browser.new_context(viewport={"width": width, "height": height}, has_touch=True)
+            context = browser.new_context(service_workers="block", viewport={"width": width, "height": height}, has_touch=True)
             unexpected = install_routes(context)
             page = context.new_page()
             errors = []
@@ -140,7 +140,7 @@ def run():
                     break
             fixture["films"]["fiches-6"]["fiches"][fid] = fiche
         fixture["profils"]["test-membre"]["rep"] = {film["id"]: {"etat": "vu", "note10": 8} for film in source}
-        context = browser.new_context(viewport={"width": 1440, "height": 960})
+        context = browser.new_context(service_workers="block", viewport={"width": 1440, "height": 960})
         unexpected = install_routes(context, fixture=fixture)
         page = context.new_page()
         errors = []

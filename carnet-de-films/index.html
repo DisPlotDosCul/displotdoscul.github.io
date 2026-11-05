@@ -2442,6 +2442,9 @@ html.sky-on #rsheet{z-index:50;}
 
   var sections = [], films = {}, answers = {}, filter = "all", query = "";
   var col = null, dbReady = false, queues = {};
+  // Films en double retirés du catalogue : une note ou une liste faite sur l'ancien identifiant passe sur celui qui reste.
+  var DOUBLONS = { "lobster-2015":"the-lobster-2015" };
+  function aliasIn(o){ Object.keys(DOUBLONS).forEach(function(v){ if (o[v] && !o[DOUBLONS[v]]) o[DOUBLONS[v]] = o[v]; }); }
   // AUTO : réponses qui servent de règle à une section automatique ; RANK : la section « Ton classement » existe.
   var AUTO = {}, RANK = false;
   // Fiches : description (p), estimation sur 10 (e), envies (k) et raison (w) de chaque film, rangées dans les documents « fiches ».
@@ -2842,10 +2845,23 @@ html.sky-on #rsheet{z-index:50;}
   var MORE = {}, SEC_AUTO = {};
   // Images du film : quatre images tirées du film, venues de TMDB (The Movie Database), affichées dans la fiche.
   // Mémoire des images : version 2 depuis le meilleur choix des films (les anciens choix, parfois faux, sont oubliés).
-  var TMDB_KEY = "a35a6c94deab582e9348b58192ac4279", IMG_OPEN = {}, IMG_P = {}, IMG_C = {}, IMG_KEY = "carnetImagesV2";
-  // Films dont TMDB ne trouve pas le bon titre tout seul : identifiant TMDB fixé à la main.
-  var TMDB_FIXE = { "run-2020":546121 };
-  try { localStorage.removeItem("carnetImagesV1"); } catch (e) {}
+  // Mémoire des images : version 3 depuis la vérification du 5 novembre 2026 (cinéaste contrôlé, identifiants corrigés).
+  var TMDB_KEY = "a35a6c94deab582e9348b58192ac4279", IMG_OPEN = {}, IMG_P = {}, IMG_C = {}, IMG_KEY = "carnetImagesV3";
+  // Films dont TMDB ne trouve pas le bon titre tout seul : identifiant TMDB fixé à la main (vérifié le 5 novembre 2026).
+  // Un nombre : un film ; « tv/… » : une série (pour les épisodes, ce sont les images de la série).
+  var TMDB_FIXE = { "run-2020":546121, "comment-faire-l-amour-a-une-femme-1996":69131, "clean-shaven-1993":1479,
+    "jeanne-dielman-23-quai-du-commerce-1080-bruxelles-1975":44012, "pepi-luci-bom-et-les-autres-filles-du-quartier-1980":4499,
+    "docteur-jekyll-et-m-hyde-1931":3019, "suspiria-remake-2018":361292, "moon-2024":1172244, "toxic-2024":1315091,
+    "flow-2024":823219, "split-2016":381288, "cow-2021":661348, "beats-2019":493141,
+    "l-invasion-des-profanateurs-de-sepultures-1956":11549,
+    "green-porno-courts-metrages-2008":"tv/31688", "les-experts-manhattan-sans-visage-2006":"tv/2458",
+    "les-experts-manhattan-blood-sweat-tears-2005":"tv/2458", "les-experts-sqweegel-2010":"tv/1431",
+    "x-files-episode-eve-1993":"tv/4087", "x-files-compressions-et-le-retour-de-tooms-1993":"tv/4087",
+    "the-lost-room-mini-serie-2006":"tv/3868", "flash-rag-doll-2018":"tv/60735", "channel-zero-the-dream-door-2018":"tv/67752",
+    "la-caravane-de-l-etrange-saison-2-2005":"tv/185", "terminator-les-chroniques-de-sarah-connor-rosie-2008":"tv/433",
+    "orphelins-baudelaire-the-carnivorous-carnival-2018":"tv/65294", "game-of-thrones-kayla-2013":"tv/1399",
+    "cirque-du-soleil-fire-within-2002":"tv/46996", "chernobyl-serie-2019":"tv/87108" };
+  try { localStorage.removeItem("carnetImagesV1"); localStorage.removeItem("carnetImagesV2"); } catch (e) {}
   try { IMG_C = JSON.parse(localStorage.getItem(IMG_KEY) || "{}") || {}; } catch (e) { IMG_C = {}; }
   var IMG_SEL = {};
   function imgInner(id, r){
@@ -2857,7 +2873,9 @@ html.sky-on #rsheet{z-index:50;}
   }
   function imgBoxHtml(id){ return '<div class="fimg" data-imgbox="' + esc(id) + '" aria-live="polite">' + (IMG_C[id] ? imgInner(id, IMG_C[id]) : '<p class="fimg-n">Images du film…</p>') + '</div>'; }
   function tmdbFind(f){
-    var tv = /\(série\)$/.test(f.t || ""), title = String(f.t || "").replace(/\s*\(série\)$/, ""), base = "https://api.themoviedb.org/3/", key = "api_key=" + TMDB_KEY;
+    var fixe = TMDB_FIXE[f.id], fixeTv = typeof fixe === "string" && fixe.indexOf("tv/") === 0;
+    var tv = fixeTv || /\(série\)$/.test(f.t || ""), title = String(f.t || "").replace(/\s*\(série\)$/, ""), base = "https://api.themoviedb.org/3/", key = "api_key=" + TMDB_KEY;
+    if (fixeTv) fixe = +fixe.slice(3);
     var url = function(withYear){ return base + "search/" + (tv ? "tv" : "movie") + "?" + key + "&language=fr-FR&query=" + encodeURIComponent(title) + (withYear && f.y ? (tv ? "&first_air_date_year=" : "&year=") + f.y : ""); };
     var get = function(u){ return fetch(u).then(function(r){ if (!r.ok) throw Error("tmdb " + r.status); return r.json(); }); };
     // Le bon film parmi les résultats : même titre et même année d'abord ; un dessin animé est écarté
@@ -2870,17 +2888,38 @@ html.sky-on #rsheet{z-index:50;}
       if (!anim && (r.genre_ids || []).indexOf(16) >= 0) sc -= 90;
       return sc + Math.log(1 + (r.vote_count || 0));
     };
-    var pick = function(j){ return (j.results || []).slice(0, 20).sort(function(x, y){ return score(y) - score(x); })[0]; };
-    var fixe = TMDB_FIXE[f.id];
-    var found = fixe ? Promise.resolve({ results:[{ id:fixe, poster_path:"", backdrop_path:"" }] }) : get(url(true)).then(function(j){ return (j.results || []).length ? j : get(url(false)); });
-    return found.then(function(j){
-      var hit = fixe ? j.results[0] : pick(j); if (!hit) return null;
-      return get(base + (tv ? "tv/" : "movie/") + hit.id + "/images?" + key).then(function(im){
+    // Le cinéaste de la fiche doit se retrouver parmi les réalisateurs TMDB (Split de Shyamalan, pas un autre Split de 2016).
+    // Un nom écrit dans un autre alphabet (coréen, japonais, russe…) ne peut pas être comparé : il ne fait pas écarter le film.
+    var mots = function(s){ return norm(s).replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(function(w){ return w.length > 2; }); };
+    var fd = mots(f.d || "");
+    var sameDir = function(d){
+      var names = ((d.credits || {}).crew || []).filter(function(c){ return c.job === "Director"; }).map(function(c){ return c.name; })
+        .concat((d.created_by || []).map(function(c){ return c.name; }));
+      var latin = names.filter(function(n){ return /[a-z]/i.test(n); });
+      if (!fd.length || !latin.length || latin.length < names.length) return true;
+      return latin.some(function(n){ return mots(n).some(function(w){ return fd.indexOf(w) >= 0; }); });
+    };
+    var detail = function(id){ return get(base + (tv ? "tv/" : "movie/") + id + "?" + key + "&append_to_response=images,credits&include_image_language=null,fr,en,ja,ko,zh,es,it,de,pt,ru,sv,da,pl,cs"); };
+    var found = fixe ? Promise.resolve([{ id:fixe }]) : get(url(true)).then(function(j){ return (j.results || []).length ? j : get(url(false)); })
+      .then(function(j){ return (j.results || []).slice(0, 20).sort(function(x, y){ return score(y) - score(x); }).slice(0, 3); });
+    return found.then(function(list){
+      if (!list.length) return null;
+      var first = null;
+      var tryAt = function(i){
+        if (i >= list.length) return first;
+        return detail(list[i].id).then(function(d){
+          if (!first) first = d;
+          return fixe || sameDir(d) ? d : tryAt(i + 1);
+        });
+      };
+      return tryAt(0).then(function(d){
+        if (!d) return null;
+        var im = d.images || {};
         var bd = (im.backdrops || []).filter(function(x){ return !x.iso_639_1; }); if (bd.length < 4) bd = bd.concat((im.backdrops || []).filter(function(x){ return x.iso_639_1; }));
         var paths = bd.map(function(x){ return x.file_path; }).filter(Boolean);
-        if (!paths.length && hit.backdrop_path) paths = [hit.backdrop_path];
-        if (!paths.length && hit.poster_path) paths = [hit.poster_path];
-        return { t:tv ? "tv" : "movie", id:hit.id, p:paths.slice(0, 24), poster:hit.poster_path || "" };
+        if (!paths.length && d.backdrop_path) paths = [d.backdrop_path];
+        if (!paths.length && d.poster_path) paths = [d.poster_path];
+        return { t:tv ? "tv" : "movie", id:d.id, p:paths.slice(0, 24), poster:d.poster_path || "" };
       });
     });
   }
@@ -6998,6 +7037,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     listCol.limit(1000).onSnapshot(function(snap){
       var next = {};
       snap.docs.forEach(function(d){ next[d.id] = (d.data() || {}).ajout || "1"; });
+      aliasIn(next);
       var diff = Object.keys(LISTE).filter(function(k){ return !(k in next); }).concat(Object.keys(next).filter(function(k){ return LISTE[k] !== next[k]; }));
       LISTE = next; keepList();
       if (diff.length) {
@@ -7044,6 +7084,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         DATA_V++;
         answers = {};
         snap.docs.forEach(function(doc){ answers[doc.id] = pack(doc.data() || {}); });
+        aliasIn(answers);
         // Les changements faits sur cet appareil et pas encore confirmés passent devant la version reçue, puis repartent.
         Object.keys(PEND).forEach(function(id){ if (PEND[id].a) answers[id] = PEND[id].a; else delete answers[id]; });
         keepLocal(); renderAll();
