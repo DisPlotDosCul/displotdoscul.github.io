@@ -1831,6 +1831,7 @@ html.sky-on #rsheet{z-index:50;}
         '<div class="plf-b"><button type="button" class="plf-ok" id="ccSave">Enregistrer</button><button type="button" class="plf-no" id="ccOut">Se déconnecter</button></div>' +
         '<div class="plf-b"><button type="button" class="plf-no" data-ccimport="1">📥 Importer mes films (Letterboxd, IMDb)</button></div>' +
         (CC.admin ? modHtml() : "") +
+        (CC.admin ? '<div class="ccadm"><b>Sauvegarde complète</b><span class="sh-note">Tout le carnet dans un fichier : films, profils, conseils, commentaires, idées, messages.' + (ls("ccFullBackup") ? " Dernière : " + esc(new Date(ls("ccFullBackup")).toLocaleDateString("fr-FR")) + "." : " Jamais faite sur cet appareil.") + '</span><div class="plf-b"><button type="button" class="plf-ok" id="ccFull">💾 Tout sauvegarder</button></div></div>' : "") +
         (CC.admin ? '<div class="ccadm"><b>Importer des données</b><span class="sh-note">Un fichier préparé par Claude (films, réponses, liste, playlists). Tu verras ce qui sera ajouté ou remplacé avant toute écriture.</span><input type="file" id="ccFile" accept=".json,application/json"><div id="ccImp"></div></div>' : "");
     }
     $("lsheetBody").innerHTML = h + '<p class="sh-note" id="ccNote"></p><div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
@@ -1902,6 +1903,20 @@ html.sky-on #rsheet{z-index:50;}
     var a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([JSON.stringify(obj, null, 1)], { type:"application/json" }));
     a.download = name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+  // Sauvegarde complète de la base (hors GitHub) : à garder sur l'ordinateur et dans Google Drive.
+  function fullBackup(){
+    if (!CC.admin) return;
+    var cols = ["films", "profils", "conseils", "commentaires", "idees", "propositions", "messages", "signalements", "masques"], out = { date:new Date().toISOString(), collections:{} };
+    note("Sauvegarde en cours…");
+    Promise.all(cols.map(function(c){
+      return fs.collection(c).get().then(function(q){ var o = {}; q.forEach(function(d){ o[d.id] = d.data(); }); out.collections[c] = o; }, function(){ out.collections[c] = null; });
+    })).then(function(){
+      download("cineclub-complet-" + out.date.slice(0, 10) + ".json", out);
+      ls("ccFullBackup", out.date);
+      var n = cols.reduce(function(t, c){ return t + Object.keys(out.collections[c] || {}).length; }, 0);
+      note("Sauvegarde téléchargée : " + n + " éléments. Range-la aussi dans ton Google Drive.");
+    });
   }
   function importFile(file){
     if (!CC.admin || !file) return;
@@ -2265,6 +2280,7 @@ html.sky-on #rsheet{z-index:50;}
     if (t.closest("#ccGoogle")) { google(); return; }
     if (t.closest("#ccSave")) { saveProfile(); return; }
     if (t.closest("#ccOut")) { auth.signOut(); return; }
+    if (t.closest("#ccFull")) { fullBackup(); return; }
     if (t.closest("#ccBackup")) { if (IMP) { download("cineclub-sauvegarde-" + new Date().toISOString().slice(0, 10) + ".json", IMP.prev); note("Sauvegarde téléchargée. Tu peux maintenant importer."); } return; }
     if (t.closest("#ccImpGo")) { runImport(); return; }
     if (t.closest("#ccImpNo")) { IMP = null; $("ccImp").innerHTML = ""; note("Import annulé, rien n'a été écrit."); return; }
