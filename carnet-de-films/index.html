@@ -7361,7 +7361,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   var KEY = "ccLangueV1";
   var LANGS = [["fr","Français"],["en","English"],["es","Español"],["de","Deutsch"],["pt","Português"],["ko","한국어"],["ja","日本語"],["mn","Монгол"],["zh","中文"],["hi","हिन्दी"],["ar","العربية"],["bn","বাংলা"],["ru","Русский"]];
   // Langues dont le fichier de traduction existe déjà (les autres apparaissent « bientôt »).
-  var PRETES = { fr:1, en:1, es:1, de:1, pt:1, ru:1 };
+  var PRETES = { fr:1, en:1, es:1, de:1, pt:1, ru:1, zh:1 };
   var cur = "fr"; try { cur = localStorage.getItem(KEY) || "fr"; } catch (e) {}
   if (!PRETES[cur]) cur = "fr";
   var MAP = null, PATS = [], SKIP = "script,style,textarea,code,pre,[data-noi18n],[contenteditable]";
