@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vaut le coût ?</title>
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--ink:#1d1c1a;--mut:#6f6b63;--line:#e3dfd6;--ok:#2f8f5b;--mid:#d08a1e;--ko:#c2413a;--acc:#3b5bdb}
+@media (prefers-color-scheme:dark){:root{--bg:#151513;--card:#1f1f1c;--ink:#f0eee8;--mut:#a29e95;--line:#33322e;--acc:#7c95ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;padding:12px;max-width:560px;margin:auto}
+.res{border-radius:16px;padding:14px 16px;color:#fff;background:var(--ok);transition:background .2s;position:sticky;top:6px;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.res.mid{background:var(--mid)}.res.ko{background:var(--ko)}
+.big{font-size:34px;font-weight:700;letter-spacing:-.5px}
+.big small{font-size:15px;font-weight:500;opacity:.85}
+.verdict{font-weight:600;font-size:15px}
+.detail{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:13px;opacity:.95;margin-top:8px}
+.detail span:nth-child(even){text-align:right;font-variant-numeric:tabular-nums}
+.warn{margin-top:6px;font-size:13px;background:rgba(0,0,0,.18);padding:6px 8px;border-radius:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-size:12px;color:var(--mut);margin-bottom:3px}
+input[type=number],input[type=text]{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);font-size:16px}
+.seg{display:flex;gap:4px;flex-wrap:nowrap;overflow:hidden}
+.seg button{flex:1;padding:8px 2px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:9px;font-size:13px;cursor:pointer;white-space:nowrap}
+.seg button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.full{grid-column:1/-1}
+.tog{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer}
+.tog input{width:18px;height:18px}
+.row{display:flex;gap:8px}
+.btn{padding:10px 14px;border-radius:10px;border:0;background:var(--acc);color:#fff;font-size:15px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.list{list-style:none;padding:0;margin:8px 0 0}
+.list li{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.list .n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.list .c{font-weight:600;font-variant-numeric:tabular-nums}
+.list .x{border:0;background:none;color:var(--mut);font-size:18px;cursor:pointer;padding:0 4px}
+.hint{font-size:12px;color:var(--mut)}
+h3{margin:0 0 6px;font-size:14px}
+.cur{font-size:13px;opacity:.92;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cur a{color:#fff}
+.list .lk{color:var(--acc);text-decoration:none;font-size:16px;padding:0 4px}
+</style>
+</head>
+<body>
+
+<div class="res" id="res">
+  <div class="cur" id="cur" hidden></div>
+  <div class="verdict" id="verdict">—</div>
+  <div class="big"><span id="total">0 €</span> <small>/ mois, APL déduite</small></div>
+  <div class="detail" id="detail"></div>
+  <div class="warn" id="warn" hidden></div>
+</div>
+
+<div class="card">
+  <div class="grid">
+    <div><label>Loyer hors charges (€)</label><input type="number" id="loyer" inputmode="decimal" value="380"></div>
+    <div><label>Charges (€)</label><input type="number" id="charges" inputmode="decimal" value="40"></div>
+    <div><label>Surface (m²)</label><input type="number" id="surface" inputmode="decimal" value="12"></div>
+    <div><label>Hauteur sous plafond (m)</label><input type="number" id="hsp" inputmode="decimal" step="0.1" value="2.5"></div>
+
+    <div class="full"><label>Chauffage</label>
+      <div class="seg" data-k="chauf">
+        <button data-v="coll">Collectif</button><button data-v="elec" class="on">Électrique</button><button data-v="gaz">Gaz indiv.</button>
+      </div></div>
+
+    <div class="full"><label>DPE (diagnostic de performance énergétique)</label>
+      <div class="seg" data-k="dpe">
+        <button data-v="A">A</button><button data-v="B">B</button><button data-v="C">C</button><button data-v="D">D</button><button data-v="E" class="on">E</button><button data-v="F">F</button><button data-v="G">G</button><button data-v="?">?</button>
+      </div></div>
+
+    <div class="full"><label>Eau chaude</label>
+      <div class="seg" data-k="ecs">
+        <button data-v="coll">Collective</button><button data-v="elec" class="on">Ballon élec.</button><button data-v="gaz">Gaz</button>
+      </div></div>
+
+    <div><label>APL simulée CAF (€) — vide = estimée</label><input type="number" id="apl" inputmode="decimal" placeholder="auto"></div>
+    <div><label>Mon plafond (€)</label><input type="number" id="seuil" inputmode="decimal" value="200"></div>
+
+    <label class="tog full"><input type="checkbox" id="chaud" checked> J'aime avoir très chaud (≈ 22–23 °C)</label>
+    <label class="tog full"><input type="checkbox" id="regul" checked> Prévoir +15 % de régularisation sur les charges</label>
+    <label class="tog full"><input type="checkbox" id="meuble"> Meublé (la CAF ne retient que 2/3 du loyer charges comprises)</label>
+    <label class="tog full"><input type="checkbox" id="coloc"> Colocation (loyer et charges = ma part)</label>
+    <label class="tog full"><input type="checkbox" id="prud"> Marge de sécurité sur l'APL (−20 %)</label>
+  </div>
+</div>
+
+<div class="card">
+  <div class="row">
+    <input type="text" id="nom" placeholder="Nom ou lien de l'annonce">
+    <button class="btn" id="save">Garder</button>
+  </div>
+  <ul class="list" id="list"></ul>
+</div>
+
+<p class="hint">Barème APL zone 1 (Paris et petite couronne), personne seule, ressources sous 5 235 €/an (le RSA ne compte pas) : plafond de loyer 333,14 € (colocation 249,86 €), forfait charges 60,59 € (colocation 30,30 €), participation minimale 39,15 €, minoration 5 €, CRDS 0,5 %. Studio non meublé au plafond : 347 €. Électricité à 0,20 €/kWh, gaz à 0,12 €/kWh. Ce sont des estimations : la simulation sur caf.fr reste la référence.</p>
+
+<script>
+const $=id=>document.getElementById(id);
+const st={chauf:'elec',dpe:'E',ecs:'elec'};
+document.querySelectorAll('.seg').forEach(seg=>{
+  seg.addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    st[seg.dataset.k]=b.dataset.v;calc();
+  });
+});
+['loyer','charges','surface','hsp','apl','seuil','chaud','regul','prud','meuble','coloc'].forEach(id=>$(id).addEventListener('input',calc));
+
+// besoin de chauffage, kWh d'énergie finale par m² et par an (ordre de grandeur)
+const HEAT={A:15,B:30,C:50,D:80,E:115,F:150,G:190,'?':120};
+const PE=0.20, PG=0.12;
+const fmt=n=>Math.round(n).toLocaleString('fr-FR')+' €';
+const num=id=>{const v=parseFloat(($(id).value||'').replace(',','.'));return isNaN(v)?0:v};
+
+function compute(){
+  const L=num('loyer'),Ch=num('charges'),S=num('surface'),H=num('hsp')||2.5;
+  const chaud=$('chaud').checked?1.25:1;
+  // électricité de base : abonnement + usages (cuisine, frigo, lumière, petit labo)
+  let elec=(st.chauf==='elec'?14:11)+1300*PE/12;
+  let gaz=0;
+  const heat=S*HEAT[st.dpe]*chaud;
+  if(st.chauf==='elec')elec+=heat*PE/12;
+  if(st.chauf==='gaz')gaz+=10+heat*1.15*PG/12;
+  if(st.ecs==='elec')elec+=1000*PE/12;
+  if(st.ecs==='gaz')gaz+=(st.chauf==='gaz'?0:10)+1100*PG/12;
+  const chargesR=Ch*($('regul').checked?1.15:1);
+  // APL
+  const decent=(S>=9&&H>=2.2)||(S*H>=20);
+  const coloc=$('coloc').checked, meuble=$('meuble').checked;
+  const plaf=coloc?249.86:333.14, Cf=coloc?30.30:60.59;
+  const Lret=meuble?(L+Ch)*2/3:L;
+  const Lp=Math.min(Lret,plaf);
+  const P0=Math.max(39.15,0.085*(Lp+Cf));
+  let aplEst=Math.floor(Math.max(0,Lp+Cf-P0-5)*0.995);
+  let apl=$('apl').value!==''?num('apl'):aplEst;
+  const aplBrut=apl;
+  if($('prud').checked)apl*=0.8;
+  if(!decent)apl=0;
+  const total=L+chargesR+elec+gaz-apl;
+  return {L,chargesR,elec,gaz,apl,aplBrut,aplEst,total,decent,S,H,Lret,plaf,meuble,
+    auto:$('apl').value===''};
+}
+
+function level(total,decent){
+  const s=num('seuil');
+  if(!decent||st.dpe==='G'||total>s+50)return 'ko';
+  if(total>s)return 'mid';
+  return 'ok';
+}
+
+function calc(){
+  const r=compute();const lv=level(r.total,r.decent);
+  $('res').className='res '+(lv==='ok'?'':lv);
+  $('verdict').textContent=lv==='ok'?'Ça vaut le coup — candidate':lv==='mid'?'Limite — seulement s\'il coche tout le reste':'Trop cher — annonce suivante';
+  $('total').textContent=fmt(r.total);
+  const rows=[['Loyer + charges'+($('regul').checked?' (+15 %)':''),fmt(r.L+r.chargesR)],
+    ['Électricité'+(st.chauf==='elec'?' + chauffage':''),fmt(r.elec)]];
+  if(r.gaz)rows.push(['Gaz',fmt(r.gaz)]);
+  rows.push(['APL '+(r.auto?'estimée':'simulée')+($('prud').checked?' −20 %':''),'− '+fmt(r.apl)]);
+  rows.push(['Total payé avant APL',fmt(r.L+r.chargesR+r.elec+r.gaz)]);
+  $('detail').innerHTML=rows.map(([a,b])=>`<span>${a}</span><span>${b}</span>`).join('');
+  const w=[];
+  if(!r.decent)w.push(`Sous les règles de décence (9 m² avec 2,20 m de hauteur, ou 20 m³) : ${Math.round(r.S*r.H*10)/10} m³. Pas d'APL dans ce cas.`);
+  else if(r.S<9)w.push(`Moins de 9 m², mais ${Math.round(r.S*r.H*10)/10} m³ grâce à la hauteur : décent au sens du volume (20 m³ minimum).`);
+  if(st.dpe==='G')w.push(`DPE G : logement non décent pour les nouveaux baux depuis 2025. La CAF peut bloquer l'aide.`);
+  if(r.meuble)w.push(`Meublé : la CAF retient ${fmt(r.Lret)} (2/3 du loyer charges comprises).`);
+  if(r.Lret<r.plaf&&r.auto)w.push(`Loyer retenu sous le plafond APL (${fmt(r.plaf)}) : l'aide baisse d'autant.`);
+  $('warn').hidden=!w.length;$('warn').innerHTML=w.join('<br>');
+}
+
+// liste gardée
+const KEY=(window.CALC&&CALC.key)||'vautlecout.v1';
+let saved=[];
+try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){saved=[]}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}}
+function snapshot(){
+  const f={};['loyer','charges','surface','hsp','apl','seuil'].forEach(id=>f[id]=$(id).value);
+  ['chaud','regul','prud','meuble','coloc'].forEach(id=>f[id]=$(id).checked);
+  return {f,st:{...st}};
+}
+function applySnap(s){
+  Object.entries(s.f).forEach(([k,v])=>{if(typeof v==='boolean')$(k).checked=v;else $(k).value=v});
+  Object.assign(st,s.st);
+  document.querySelectorAll('.seg').forEach(seg=>seg.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===st[seg.dataset.k])));
+}
+function restore(s){applySnap(s);calc();}
+function evalSnap(s){const cur=snapshot();applySnap(s);const r=compute();const lv=level(r.total,r.decent);applySnap(cur);return {total:r.total,lv};}
+function setCur(nom,url){
+  const c=$('cur');if(!nom){c.hidden=true;return}
+  c.hidden=false;
+  c.innerHTML=(url?`<a href="${url}" target="_blank" rel="noopener">`:'')+nom.replace(/[<>&]/g,'')+(url?' ↗</a>':'');
+}
+
+// annonces ajoutées par Claude : présentes sur tous les appareils
+const PRESETS=(window.CALC&&Array.isArray(CALC.presets))?CALC.presets:[
+  {id:'seloger-26SSIAXBQPW5',nom:'Bobigny, Les Vignes · 36 m² + terrasse · RDC · Agata',
+   url:'https://www.seloger.com/annonce/location/ile-de-france/seine-saint-denis-93/bobigny-93000/26SSIAXBQPW5',
+   snap:{f:{loyer:'450',charges:'100',surface:'36',hsp:'2.5',apl:'',seuil:'200',chaud:true,regul:false,prud:false,meuble:false,coloc:false},st:{chauf:'coll',dpe:'?',ecs:'coll'}}}
+];
+const KEYH=(window.CALC&&CALC.key)?CALC.key+'.hidden':'vautlecout.hidden';
+let hidden=[];
+try{hidden=JSON.parse(localStorage.getItem(KEYH)||'[]')}catch(e){hidden=[]}
+function persistH(){try{localStorage.setItem(KEYH,JSON.stringify(hidden))}catch(e){}}
+function render(){
+  const colors={ok:'var(--ok)',mid:'var(--mid)',ko:'var(--ko)'};
+  const items=saved.map((s,i)=>({nom:s.nom,total:s.total,lv:s.lv,k:'s'+i}));
+  PRESETS.filter(p=>!hidden.includes(p.id)).forEach(p=>{const e=evalSnap(p.snap);items.push({nom:p.nom,url:p.url,total:e.total,lv:e.lv,k:'p'+p.id})});
+  items.sort((a,b)=>a.total-b.total);
+  $('list').innerHTML=items.map(s=>`<li data-k="${s.k}"><span class="dot" style="background:${colors[s.lv]}"></span><span class="n">${s.nom.replace(/[<>&]/g,'')}</span>${s.url?`<a class="lk" href="${s.url}" target="_blank" rel="noopener" aria-label="Ouvrir l'annonce">↗</a>`:''}<span class="c">${fmt(s.total)}</span><button class="x" data-del="${s.k}" aria-label="Supprimer">×</button></li>`).join('');
+}
+$('save').addEventListener('click',()=>{
+  const r=compute();const nom=$('nom').value.trim()||('Annonce '+(saved.length+1));
+  saved.push({nom,total:r.total,lv:level(r.total,r.decent),snap:snapshot()});
+  $('nom').value='';persist();render();
+});
+$('list').addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  const d=e.target.closest('[data-del]');
+  if(d){const k=d.dataset.del;if(k[0]==='s')saved.splice(+k.slice(1),1);else hidden.push(k.slice(1));persist();persistH();render();return}
+  const li=e.target.closest('li');if(!li)return;const k=li.dataset.k;
+  if(k[0]==='s'){const s=saved[+k.slice(1)];restore(s.snap);setCur(s.nom)}
+  else{const p=PRESETS.find(x=>x.id===k.slice(1));restore(p.snap);setCur(p.nom,p.url)}
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+if(window.CALC&&CALC.defaults)applySnap(CALC.defaults);
+{const p=[...PRESETS].reverse().find(x=>!hidden.includes(x.id));if(p){applySnap(p.snap);setCur(p.nom,p.url)}}
+calc();render();
+</script>
+</body>
+</html>

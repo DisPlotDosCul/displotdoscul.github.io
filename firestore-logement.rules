@@ -1,0 +1,35 @@
+rules_version = '2';
+// Règles de Cap Logement (projet Firebase à part, sans lien avec le Ciné-club).
+// À coller dans la console Firebase du projet logement : Firestore Database > Règles > Publier.
+// L'administratrice est reconnue par l'empreinte SHA-256 de son adresse e-mail vérifiée : l'adresse n'est pas écrite ici.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null && request.auth.token.email_verified == true; }
+    function email() { return request.auth.token.email.lower(); }
+    function isAdmin() {
+      return signedIn() && hashing.sha256(email()).toBase64() == 'ZceI5qzxvNBqyoj9L/XQV9safr6QBBnC2uw+Ncd2c6I=';
+    }
+    function membre(espace) {
+      return signedIn()
+        && exists(/databases/$(database)/documents/acces/$(espace))
+        && email() in get(/databases/$(database)/documents/acces/$(espace)).data.emails;
+    }
+
+    // Clé de chaque espace : lue par les adresses autorisées et l'administratrice, écrite par l'administratrice.
+    match /cles/{espace} {
+      allow read: if isAdmin() || membre(espace);
+      allow write: if isAdmin();
+    }
+    // Liste des adresses autorisées par espace.
+    match /acces/{espace} {
+      allow read: if isAdmin() || membre(espace);
+      allow write: if isAdmin();
+    }
+    // Demandes d'accès : chacune crée la sienne, l'administratrice les lit et les traite.
+    match /demandes/{uid} {
+      allow create, update: if signedIn() && request.auth.uid == uid && request.resource.data.email == email();
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow delete: if isAdmin();
+    }
+  }
+}
