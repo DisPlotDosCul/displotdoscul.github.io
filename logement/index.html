@@ -13,7 +13,7 @@ button{font:700 1rem system-ui,sans-serif;border:0;border-radius:8px;padding:11p
 label.r{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.9rem}label.r input{width:auto}
 #err{color:var(--bad);font-weight:700;margin:0;min-height:1.2em}a{color:var(--accent)}</style></head><body>
 <form id="f"><h1>Cap Logement</h1>
-<input id="c" type="password" placeholder="Code d'accès" aria-label="Code d'accès" autocomplete="current-password" required autofocus>
+<input id="c" type="text" placeholder="Code d'accès" aria-label="Code d'accès" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" required autofocus>
 <label class="r"><input id="m" type="checkbox" checked> Rester connecté sur cet appareil</label>
 <button type="submit">Entrer</button><p id="err"></p></form>
 <script>
@@ -32,8 +32,8 @@ function forget(){try{localStorage.removeItem("caplogement.code");sessionStorage
 const saved=st.get("caplogement.code");
 if(saved)openPage(saved).then(()=>keep(saved,false)).catch(forget);
 document.getElementById("f").addEventListener("submit",async e=>{e.preventDefault();
-  const code=document.getElementById("c").value.trim();document.getElementById("err").textContent="";
+  const code=document.getElementById("c").value.normalize("NFKC").toLowerCase().replace(/[\u2010-\u2015\u2212_ ]+/g,"-").replace(/\s+/g,"").replace(/^-+|-+$/g,"");const E=document.getElementById("err");E.style.color="inherit";E.textContent="Ouverture…";
   try{await (async()=>{keep(code,document.getElementById("m").checked);await openPage(code)})()}
-  catch(x){forget();document.getElementById("err").textContent="Code incorrect";}
+  catch(x){forget();E.style.color="";E.textContent=window.crypto&&crypto.subtle?"Code incorrect":"Ce navigateur ne peut pas ouvrir la page : essaie Chrome ou Safari à jour.";}
 });
 </script></body></html>
