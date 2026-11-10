@@ -29,21 +29,29 @@ au premier passage, le site reste en français. Changer de langue recharge la pa
 2. Ajouter `<code>:1` à `PRETES` dans le script de langue de `index.html`.
 3. Vérifier sur téléphone et ordinateur, et pour l'arabe la mise en page de droite à gauche.
 
-## Où on en est (31 octobre 2026)
+## Où on en est (10 novembre 2026)
 
 | Langue | Code | Interface | Titres de listes et thèmes | Résumés des fiches |
 |---|---|---|---|---|
 | Français | fr | langue d'origine | langue d'origine | langue d'origine |
 | English | en | 990 textes et 30 modèles | à faire | à faire |
 | Español | es | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
-| Deutsch, Português, 한국어, 日本語, Монгол, 中文, हिन्दी, العربية, বাংলা, Русский | de, pt, ko, ja, mn, zh, hi, ar, bn, ru | à faire (« bientôt ») | à faire | à faire |
+| Deutsch | de | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| Português | pt | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| Русский | ru | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| 中文 | zh | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| 日本語 | ja | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| 한국어 | ko | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| العربية | ar | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| हिन्दी | hi | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| বাংলা | bn | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
+| Монгол | mn | 993 textes et 30 modèles (10 novembre 2026) | à faire | à faire |
 
 Les textes de l'interface ont été relevés dans le HTML, dans les chaînes du JavaScript et en parcourant
 les écrans principaux avec Playwright (onglets, panneau « Aa », recherche, fiche d'un film, boîte à idées).
 
 ## Ce qui reste
 
-- Les dix autres langues de l'interface (une ou deux à la fois, en partant de `en.json`).
 - Les phrases que le JavaScript assemble avec des noms ou des nombres et qui n'ont pas encore de modèle :
   elles restent en français jusqu'à ce qu'on ajoute leur modèle.
 - Les titres et sous-titres des listes et des thèmes (« Le monde de la fête », « Politique »…).
