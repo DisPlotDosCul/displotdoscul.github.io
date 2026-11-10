@@ -2444,6 +2444,13 @@
      "y": 1964,
      "d": "Stanley Kubrick",
      "r": "Le pouvoir militaire et politique face à la bombe, en comédie noire."
+    },
+    {
+     "id": "the-days-serie-2023",
+     "t": "The Days (série)",
+     "y": 2023,
+     "d": "Masaki Nishiura et Hideo Nakata",
+     "r": "Un exploitant et un gouvernement dépassés pendant que la centrale de Fukushima s'emballe."
     }
    ],
    "parties": [
@@ -2524,7 +2531,8 @@
       "le-syndrome-chinois-1979",
       "le-mystere-silkwood-1983",
       "dark-waters-2019",
-      "76-days-2020"
+      "76-days-2020",
+      "the-days-serie-2023"
      ]
     }
    ]
@@ -7465,8 +7473,8 @@
    "sous_titre": "Les grandes catastrophes qui ont marqué le monde, nucléaires, naturelles ou causées par l'homme : films, séries et documentaires.",
    "parties": [
     {
-     "titre": "Tchernobyl",
-     "aide": "La série, les vraies images et la zone",
+     "titre": "Catastrophes nucléaires",
+     "aide": "Tchernobyl, Fukushima, Hiroshima et la peur de la bombe",
      "ids": [
       "chernobyl-serie-2019",
       "chernobyl-the-lost-tapes-2022",
@@ -7474,13 +7482,12 @@
       "pripyat-1999",
       "la-terre-outragee-2011",
       "the-babushkas-of-chernobyl-2015",
-      "stalker-1979"
-     ]
-    },
-    {
-     "titre": "Hiroshima et la peur de la bombe",
-     "aide": "La bombe, ses survivants et la guerre nucléaire",
-     "ids": [
+      "stalker-1979",
+      "the-days-serie-2023",
+      "the-land-of-hope-2012",
+      "nuclear-nation-2012",
+      "le-syndrome-chinois-1979",
+      "le-mystere-silkwood-1983",
       "pluie-noire-1989",
       "gen-d-hiroshima-1983",
       "hiroshima-mon-amour-1959",
@@ -7489,16 +7496,6 @@
       "docteur-folamour-1964",
       "threads-1984",
       "le-sacrifice-1986"
-     ]
-    },
-    {
-     "titre": "Fukushima et autres accidents nucléaires",
-     "aide": "Centrales, contaminations et lanceurs d'alerte",
-     "ids": [
-      "the-land-of-hope-2012",
-      "nuclear-nation-2012",
-      "le-syndrome-chinois-1979",
-      "le-mystere-silkwood-1983"
      ]
     },
     {
@@ -7757,6 +7754,13 @@
      "y": 2020,
      "d": "Hao Wu, Weixi Chen et un réalisateur anonyme",
      "r": "Les hôpitaux de Wuhan pendant les 76 jours du premier confinement, sans commentaire."
+    },
+    {
+     "id": "the-days-serie-2023",
+     "t": "The Days (série)",
+     "y": 2023,
+     "d": "Masaki Nishiura et Hideo Nakata",
+     "r": "Fukushima vu depuis la salle de contrôle, jour après jour, comme la série Chernobyl."
     }
    ]
   }
@@ -8727,7 +8731,8 @@
   "les-betes-du-sud-sauvage-2012": {"p": "Hushpuppy, six ans, vit avec son père malade dans le Bathtub, une île du bayou de Louisiane, derrière les digues. Une tempête noie l'île, et l'enfant imagine que des aurochs géants libérés par la fonte des glaces arrivent sur eux. Son père meurt à la fin, et elle reste debout.", "c": "États-Unis", "k": ["conte", "enfance", "marginaux", "larmes"], "mv": "independant-americain", "e": 7, "duree": 93, "av": [], "th": ["inondation", "enfance", "résilience"], "fiab": "à vérifier"},
   "les-raisins-de-la-colere-1940": {"p": "Après la sécheresse et les tempêtes de poussière du Dust Bowl, la famille Joad perd sa ferme de l'Oklahoma et part pour la Californie, où on promet du travail. Ils n'y trouvent que des camps de misère et des patrons qui exploitent les migrants. Henry Fonda en Tom Joad, d'après John Steinbeck.", "c": "États-Unis", "k": ["noir-et-blanc", "injustice", "famille", "societe"], "mv": "hollywood-classique", "e": 8, "duree": 129, "av": [], "th": ["exode", "pauvreté", "catastrophe écologique"], "fiab": "à vérifier"},
   "dark-waters-2019": {"p": "D'après une histoire vraie : Robert Bilott (Mark Ruffalo), avocat d'affaires, défend un fermier de Virginie-Occidentale dont les vaches meurent. Il découvre que le géant de la chimie DuPont rejette depuis des décennies un produit toxique, le PFOA (un PFAS), en le cachant, et y consacre près de vingt ans de sa vie.", "c": "États-Unis", "k": ["histoire-vraie", "injustice", "suspense", "societe"], "mv": "hollywood-contemporain", "e": 7, "duree": 127, "av": [], "th": ["pollution", "lanceur d'alerte", "justice"], "fiab": "à vérifier"},
-  "76-days-2020": {"p": "Documentaire tourné dans quatre hôpitaux de Wuhan pendant le confinement total de la ville, au début de l'épidémie de Covid-19 : soignants en combinaison, malades isolés, familles séparées. Pas de commentaire, seulement ce qui se passe.", "c": "Chine, États-Unis", "k": ["documentaire", "histoire-vraie", "huis-clos", "larmes"], "mv": "doc-observation", "e": 7, "duree": 93, "av": [], "th": ["épidémie", "soignants", "isolement"], "fiab": "à vérifier"}
+  "76-days-2020": {"p": "Documentaire tourné dans quatre hôpitaux de Wuhan pendant le confinement total de la ville, au début de l'épidémie de Covid-19 : soignants en combinaison, malades isolés, familles séparées. Pas de commentaire, seulement ce qui se passe.", "c": "Chine, États-Unis", "k": ["documentaire", "histoire-vraie", "huis-clos", "larmes"], "mv": "doc-observation", "e": 7, "duree": 93, "av": [], "th": ["épidémie", "soignants", "isolement"], "fiab": "à vérifier"},
+  "the-days-serie-2023": {"p": "Série japonaise en huit épisodes : le 11 mars 2011, après le séisme et le tsunami, la centrale de Fukushima Daiichi perd son refroidissement. On vit les jours qui suivent dans la salle de contrôle, avec le directeur Masao Yoshida (Kōji Yakusho), ses ouvriers qui risquent leur vie, et un siège de l'exploitant et un gouvernement qui comprennent mal ce qui se passe.", "c": "Japon", "k": ["serie", "histoire-vraie", "suspense", "huis-clos"], "mv": "series", "e": 7, "duree": 54, "av": [], "th": ["catastrophe", "sacrifice", "mensonge d'État"], "fiab": "à vérifier", "duree_episode": true}
  },
  "familles": {
   "1917-2019": "30520",
@@ -9695,7 +9700,8 @@
   "les-betes-du-sud-sauvage-2012": "31114",
   "les-raisins-de-la-colere-1940": "21142",
   "dark-waters-2019": "12241",
-  "76-days-2020": "12223"
+  "76-days-2020": "12223",
+  "the-days-serie-2023": "13330"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }

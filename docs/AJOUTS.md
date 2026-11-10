@@ -96,9 +96,9 @@ de santé mentale. Les époques se font déjà toutes seules à partir de l’an
 
 ## 10 novembre 2026 : thème « Catastrophes »
 
-Nouveau thème `s53-catastrophes` (famille Thèmes), en six sous-catégories : Tchernobyl ; Hiroshima et la peur
-de la bombe ; Fukushima et autres accidents nucléaires ; Tsunamis et séismes ; Ouragans, volcans et sécheresse ;
-Naufrage, poison et épidémie. 32 titres : 25 nouveaux, 7 déjà au catalogue (Chernobyl, Stalker, Hiroshima mon amour,
+Nouveau thème `s53-catastrophes` (famille Thèmes), en quatre sous-catégories : Catastrophes nucléaires
+(Tchernobyl, Fukushima, Hiroshima et la peur de la bombe, regroupés à la demande de Licia) ; Tsunamis et séismes ;
+Ouragans, volcans et sécheresse ; Naufrage, poison et épidémie. 33 titres : 26 nouveaux, 7 déjà au catalogue (Chernobyl, Stalker, Hiroshima mon amour,
 Oppenheimer, Le Sacrifice, Titanic, Fire of Love). Cinéastes et durées comparés à TMDB le 10 novembre 2026.
 
 | Film | Année | Cinéaste | Durée | Genre |
@@ -108,6 +108,7 @@ Oppenheimer, Le Sacrifice, Titanic, Fire of Love). Cinéastes et durées compar�
 | Pripyat | 1999 | Nikolaus Geyrhalter | 100 min | documentaire |
 | La Terre outragée | 2011 | Michale Boganim | 108 min | fiction |
 | The Babushkas of Chernobyl | 2015 | Holly Morris et Anne Bogart | 72 min | documentaire |
+| The Days (série) | 2023 | Masaki Nishiura et Hideo Nakata | 8 × 48 à 66 min | série |
 | Pluie noire | 1989 | Shōhei Imamura | 123 min | fiction |
 | Gen d'Hiroshima | 1983 | Mori Masaki | 83 min | animation |
 | Godzilla | 1954 | Ishirō Honda | 98 min | fiction |
@@ -129,7 +130,7 @@ Oppenheimer, Le Sacrifice, Titanic, Fire of Love). Cinéastes et durées compar�
 | Dark Waters | 2019 | Todd Haynes | 127 min | fiction |
 | 76 Days | 2020 | Hao Wu, Weixi Chen et un anonyme | 93 min | documentaire |
 
-Rangés aussi ailleurs : « Politique » gagne une sous-catégorie « L'État face aux catastrophes » (11 titres) et
+Rangés aussi ailleurs : « Politique » gagne une sous-catégorie « L'État face aux catastrophes » (12 titres) et
 Docteur Folamour dans « Pouvoir et coulisses » ; « Films qui émeuvent » reçoit Pluie noire, Gen d'Hiroshima et
 The Land of Hope (Guerre et injustice), The Impossible et Tangshan (Deuil, famille et filiation).
 
