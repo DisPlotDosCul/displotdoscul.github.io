@@ -2360,6 +2360,97 @@
      "y": 2024,
      "d": "Edward Berger",
      "r": ""
+    },
+    {
+     "id": "chernobyl-the-lost-tapes-2022",
+     "t": "Chernobyl: The Lost Tapes",
+     "y": 2022,
+     "d": "James Jones",
+     "r": "Le mensonge des autorités soviétiques, en images d'archives."
+    },
+    {
+     "id": "la-bataille-de-tchernobyl-2006",
+     "t": "La Bataille de Tchernobyl",
+     "y": 2006,
+     "d": "Thomas Johnson",
+     "r": "Le secret d'État, l'évacuation tardive et le coût qui a pesé sur la fin de l'URSS."
+    },
+    {
+     "id": "when-the-levees-broke-2006",
+     "t": "When the Levees Broke (série)",
+     "y": 2006,
+     "d": "Spike Lee",
+     "r": "L'État fédéral qui laisse La Nouvelle-Orléans sans secours pendant des jours."
+    },
+    {
+     "id": "trouble-the-water-2008",
+     "t": "Trouble the Water",
+     "y": 2008,
+     "d": "Carl Deal et Tia Lessin",
+     "r": "Les quartiers pauvres abandonnés pendant Katrina."
+    },
+    {
+     "id": "assistance-mortelle-2013",
+     "t": "Assistance mortelle",
+     "y": 2013,
+     "d": "Raoul Peck",
+     "r": "L'aide internationale qui décide de tout à la place des Haïtiens."
+    },
+    {
+     "id": "nuclear-nation-2012",
+     "t": "Nuclear Nation",
+     "y": 2012,
+     "d": "Atsushi Funahashi",
+     "r": "Des évacués de Fukushima oubliés par l'État et l'exploitant."
+    },
+    {
+     "id": "the-land-of-hope-2012",
+     "t": "The Land of Hope",
+     "y": 2012,
+     "d": "Sion Sono",
+     "r": "Une zone d'évacuation absurde, tracée au milieu d'un jardin."
+    },
+    {
+     "id": "le-syndrome-chinois-1979",
+     "t": "Le Syndrome chinois",
+     "y": 1979,
+     "d": "James Bridges",
+     "r": "Une compagnie qui falsifie la sécurité et des médias qu'on fait taire."
+    },
+    {
+     "id": "le-mystere-silkwood-1983",
+     "t": "Le Mystère Silkwood",
+     "y": 1983,
+     "d": "Mike Nichols",
+     "r": "Une ouvrière qui dénonce la sécurité d'une usine de plutonium."
+    },
+    {
+     "id": "dark-waters-2019",
+     "t": "Dark Waters",
+     "y": 2019,
+     "d": "Todd Haynes",
+     "r": "Un géant de la chimie qui cache un poison, et des autorités qui laissent faire."
+    },
+    {
+     "id": "76-days-2020",
+     "t": "76 Days",
+     "y": 2020,
+     "d": "Hao Wu, Weixi Chen et un réalisateur anonyme",
+     "r": "Wuhan au début du Covid-19, tourné malgré la censure chinoise."
+    },
+    {
+     "id": "docteur-folamour-1964",
+     "t": "Docteur Folamour",
+     "y": 1964,
+     "d": "Stanley Kubrick",
+     "r": "Le pouvoir militaire et politique face à la bombe, en comédie noire."
+    },
+    {
+     "id": "the-days-serie-2023",
+     "t": "The Days (série)",
+     "y": 2023,
+     "d": "Masaki Nishiura et Hideo Nakata",
+     "r": "Un exploitant et un gouvernement dépassés pendant que la centrale de Fukushima s'emballe."
     }
    ],
    "parties": [
@@ -2422,7 +2513,26 @@
      "ids": [
       "second-tour-2023",
       "oppenheimer-2023",
-      "conclave-2024"
+      "conclave-2024",
+      "docteur-folamour-1964"
+     ]
+    },
+    {
+     "titre": "L'État face aux catastrophes",
+     "aide": "Mensonges, retards et abandon",
+     "ids": [
+      "chernobyl-the-lost-tapes-2022",
+      "la-bataille-de-tchernobyl-2006",
+      "when-the-levees-broke-2006",
+      "trouble-the-water-2008",
+      "assistance-mortelle-2013",
+      "nuclear-nation-2012",
+      "the-land-of-hope-2012",
+      "le-syndrome-chinois-1979",
+      "le-mystere-silkwood-1983",
+      "dark-waters-2019",
+      "76-days-2020",
+      "the-days-serie-2023"
      ]
     }
    ]
@@ -5878,6 +5988,41 @@
      "y": 2022,
      "d": "Edward Berger",
      "r": ""
+    },
+    {
+     "id": "pluie-noire-1989",
+     "t": "Pluie noire",
+     "y": 1989,
+     "d": "Shōhei Imamura",
+     "r": "Une jeune femme irradiée que personne ne veut épouser."
+    },
+    {
+     "id": "gen-d-hiroshima-1983",
+     "t": "Gen d'Hiroshima",
+     "y": 1983,
+     "d": "Mori Masaki",
+     "r": "Un enfant seul dans Hiroshima détruite."
+    },
+    {
+     "id": "the-land-of-hope-2012",
+     "t": "The Land of Hope",
+     "y": 2012,
+     "d": "Sion Sono",
+     "r": "Un vieux couple qui refuse de quitter sa ferme après l'accident nucléaire."
+    },
+    {
+     "id": "the-impossible-2012",
+     "t": "The Impossible",
+     "y": 2012,
+     "d": "J. A. Bayona",
+     "r": "Une famille séparée par le tsunami qui se cherche."
+    },
+    {
+     "id": "tremblement-de-terre-a-tangshan-2010",
+     "t": "Tremblement de terre à Tangshan",
+     "y": 2010,
+     "d": "Feng Xiaogang",
+     "r": "Une mère qui a dû choisir entre ses deux enfants."
     }
    ],
    "parties": [
@@ -5920,7 +6065,9 @@
       "une-affaire-de-famille-2018",
       "jackie-2016",
       "cinema-paradiso-1988",
-      "au-dela-de-nos-reves-1998"
+      "au-dela-de-nos-reves-1998",
+      "the-impossible-2012",
+      "tremblement-de-terre-a-tangshan-2010"
      ]
     },
     {
@@ -5937,7 +6084,10 @@
       "les-evades-1994",
       "la-passion-de-jeanne-d-arc-1928",
       "dancer-in-the-dark-2000",
-      "le-voleur-de-bicyclette-1948"
+      "le-voleur-de-bicyclette-1948",
+      "pluie-noire-1989",
+      "gen-d-hiroshima-1983",
+      "the-land-of-hope-2012"
      ]
     },
     {
@@ -7315,6 +7465,304 @@
      ]
     }
    ]
+  },
+  "s53-catastrophes": {
+   "famille": "themes",
+   "ordre": 1.3695,
+   "titre": "Catastrophes",
+   "sous_titre": "Les grandes catastrophes qui ont marqué le monde, nucléaires, naturelles ou causées par l'homme : films, séries et documentaires.",
+   "parties": [
+    {
+     "titre": "Catastrophes nucléaires",
+     "aide": "Tchernobyl, Fukushima, Hiroshima et la peur de la bombe",
+     "ids": [
+      "chernobyl-serie-2019",
+      "chernobyl-the-lost-tapes-2022",
+      "la-bataille-de-tchernobyl-2006",
+      "pripyat-1999",
+      "la-terre-outragee-2011",
+      "the-babushkas-of-chernobyl-2015",
+      "stalker-1979",
+      "the-days-serie-2023",
+      "the-land-of-hope-2012",
+      "nuclear-nation-2012",
+      "le-syndrome-chinois-1979",
+      "le-mystere-silkwood-1983",
+      "pluie-noire-1989",
+      "gen-d-hiroshima-1983",
+      "hiroshima-mon-amour-1959",
+      "godzilla-1954",
+      "oppenheimer-2023",
+      "docteur-folamour-1964",
+      "threads-1984",
+      "le-sacrifice-1986"
+     ]
+    },
+    {
+     "titre": "Tsunamis et séismes",
+     "aide": "Thaïlande, Chine, Japon, Haïti",
+     "ids": [
+      "the-impossible-2012",
+      "tremblement-de-terre-a-tangshan-2010",
+      "suzume-2022",
+      "the-tsunami-and-the-cherry-blossom-2011",
+      "assistance-mortelle-2013"
+     ]
+    },
+    {
+     "titre": "Ouragans, volcans et sécheresse",
+     "aide": "Katrina, les Krafft et le Dust Bowl",
+     "ids": [
+      "when-the-levees-broke-2006",
+      "trouble-the-water-2008",
+      "les-betes-du-sud-sauvage-2012",
+      "fire-of-love-2022",
+      "les-raisins-de-la-colere-1940"
+     ]
+    },
+    {
+     "titre": "Naufrage, poison et épidémie",
+     "aide": "Titanic, pollution chimique et Covid-19",
+     "ids": [
+      "titanic-1997",
+      "dark-waters-2019",
+      "76-days-2020"
+     ]
+    }
+   ],
+   "films": [
+    {
+     "id": "chernobyl-serie-2019",
+     "t": "Chernobyl (série)",
+     "y": 2019,
+     "d": "Craig Mazin et Johan Renck",
+     "r": "La série de référence : l'explosion, les liquidateurs et le mensonge soviétique."
+    },
+    {
+     "id": "chernobyl-the-lost-tapes-2022",
+     "t": "Chernobyl: The Lost Tapes",
+     "y": 2022,
+     "d": "James Jones",
+     "r": "Les vraies images de la catastrophe, sans voix off : ce que la série a reconstitué."
+    },
+    {
+     "id": "la-bataille-de-tchernobyl-2006",
+     "t": "La Bataille de Tchernobyl",
+     "y": 2006,
+     "d": "Thomas Johnson",
+     "r": "Le documentaire français de référence, avec Gorbatchev et Hans Blix."
+    },
+    {
+     "id": "pripyat-1999",
+     "t": "Pripyat",
+     "y": 1999,
+     "d": "Nikolaus Geyrhalter",
+     "r": "En noir et blanc : ceux qui vivent et travaillent encore dans la zone, treize ans après."
+    },
+    {
+     "id": "la-terre-outragee-2011",
+     "t": "La Terre outragée",
+     "y": 2011,
+     "d": "Michale Boganim",
+     "r": "Tchernobyl en fiction, tourné dans la vraie zone, comme une rêverie mélancolique."
+    },
+    {
+     "id": "the-babushkas-of-chernobyl-2015",
+     "t": "The Babushkas of Chernobyl",
+     "y": 2015,
+     "d": "Holly Morris et Anne Bogart",
+     "r": "Des grands-mères revenues vivre dans la zone interdite, contre tout bon sens."
+    },
+    {
+     "id": "stalker-1979",
+     "t": "Stalker",
+     "y": 1979,
+     "d": "Andreï Tarkovski",
+     "r": "Une zone interdite et contaminée, sept ans avant Tchernobyl ; on l'y a souvent comparé."
+    },
+    {
+     "id": "pluie-noire-1989",
+     "t": "Pluie noire",
+     "y": 1989,
+     "d": "Shōhei Imamura",
+     "r": "Hiroshima, la pluie radioactive et ses suites, en noir et blanc ; musique de Tōru Takemitsu."
+    },
+    {
+     "id": "gen-d-hiroshima-1983",
+     "t": "Gen d'Hiroshima",
+     "y": 1983,
+     "d": "Mori Masaki",
+     "r": "Animation : la bombe vue par un enfant, d'après le manga de Keiji Nakazawa, survivant."
+    },
+    {
+     "id": "hiroshima-mon-amour-1959",
+     "t": "Hiroshima mon amour",
+     "y": 1959,
+     "d": "Alain Resnais",
+     "r": "Une Française et un Japonais à Hiroshima : la mémoire de la bombe et celle d'un amour."
+    },
+    {
+     "id": "godzilla-1954",
+     "t": "Godzilla",
+     "y": 1954,
+     "d": "Ishirō Honda",
+     "r": "Le premier Godzilla : un monstre né des essais nucléaires, neuf ans après Hiroshima."
+    },
+    {
+     "id": "oppenheimer-2023",
+     "t": "Oppenheimer",
+     "y": 2023,
+     "d": "Christopher Nolan",
+     "r": "Le père de la bombe atomique, du désert de Los Alamos à la culpabilité."
+    },
+    {
+     "id": "docteur-folamour-1964",
+     "t": "Docteur Folamour",
+     "y": 1964,
+     "d": "Stanley Kubrick",
+     "r": "La guerre nucléaire en comédie noire : un général fou lance l'attaque, personne ne sait l'arrêter."
+    },
+    {
+     "id": "threads-1984",
+     "t": "Threads",
+     "y": 1984,
+     "d": "Mick Jackson",
+     "r": "Une guerre nucléaire vue depuis Sheffield, jusqu'à l'hiver nucléaire : le plus dur de tous."
+    },
+    {
+     "id": "le-sacrifice-1986",
+     "t": "Le Sacrifice",
+     "y": 1986,
+     "d": "Andreï Tarkovski",
+     "r": "Une guerre nucléaire éclate : un homme promet tout ce qu'il a pour qu'elle n'ait pas eu lieu."
+    },
+    {
+     "id": "the-land-of-hope-2012",
+     "t": "The Land of Hope",
+     "y": 2012,
+     "d": "Sion Sono",
+     "r": "Après Fukushima, une famille de fermiers à la limite de la zone d'évacuation."
+    },
+    {
+     "id": "nuclear-nation-2012",
+     "t": "Nuclear Nation",
+     "y": 2012,
+     "d": "Atsushi Funahashi",
+     "r": "Documentaire : la ville de Futaba, évacuée après Fukushima, réfugiée dans un lycée de Tokyo."
+    },
+    {
+     "id": "le-syndrome-chinois-1979",
+     "t": "Le Syndrome chinois",
+     "y": 1979,
+     "d": "James Bridges",
+     "r": "Une journaliste filme un accident évité de justesse dans une centrale ; Three Mile Island arrive douze jours après la sortie."
+    },
+    {
+     "id": "le-mystere-silkwood-1983",
+     "t": "Le Mystère Silkwood",
+     "y": 1983,
+     "d": "Mike Nichols",
+     "r": "Karen Silkwood, ouvrière contaminée dans une usine de plutonium, morte avant de parler."
+    },
+    {
+     "id": "the-impossible-2012",
+     "t": "The Impossible",
+     "y": 2012,
+     "d": "J. A. Bayona",
+     "r": "Le tsunami de 2004 en Thaïlande, vécu par une famille séparée par la vague."
+    },
+    {
+     "id": "tremblement-de-terre-a-tangshan-2010",
+     "t": "Tremblement de terre à Tangshan",
+     "y": 2010,
+     "d": "Feng Xiaogang",
+     "r": "Le séisme de 1976, l'un des plus meurtriers du siècle : une mère doit choisir quel enfant sauver."
+    },
+    {
+     "id": "suzume-2022",
+     "t": "Suzume",
+     "y": 2022,
+     "d": "Makoto Shinkai",
+     "r": "Animation : des portes qui libèrent les séismes, et le souvenir du tsunami de 2011."
+    },
+    {
+     "id": "the-tsunami-and-the-cherry-blossom-2011",
+     "t": "The Tsunami and the Cherry Blossom",
+     "y": 2011,
+     "d": "Lucy Walker",
+     "r": "Court documentaire : les survivants du tsunami de 2011 et la floraison des cerisiers."
+    },
+    {
+     "id": "assistance-mortelle-2013",
+     "t": "Assistance mortelle",
+     "y": 2013,
+     "d": "Raoul Peck",
+     "r": "Après le séisme d'Haïti en 2010, l'aide internationale qui ne reconstruit rien."
+    },
+    {
+     "id": "when-the-levees-broke-2006",
+     "t": "When the Levees Broke (série)",
+     "y": 2006,
+     "d": "Spike Lee",
+     "r": "Série documentaire : l'ouragan Katrina et l'abandon de La Nouvelle-Orléans par l'État."
+    },
+    {
+     "id": "trouble-the-water-2008",
+     "t": "Trouble the Water",
+     "y": 2008,
+     "d": "Carl Deal et Tia Lessin",
+     "r": "Katrina filmé de l'intérieur par une habitante, avec sa petite caméra."
+    },
+    {
+     "id": "les-betes-du-sud-sauvage-2012",
+     "t": "Les Bêtes du sud sauvage",
+     "y": 2012,
+     "d": "Benh Zeitlin",
+     "r": "Une fillette du bayou face à la tempête qui noie son île, entre conte et Katrina."
+    },
+    {
+     "id": "fire-of-love-2022",
+     "t": "Fire of Love",
+     "y": 2022,
+     "d": "Sara Dosa",
+     "r": "Katia et Maurice Krafft, volcanologues amoureux, morts au mont Unzen en 1991."
+    },
+    {
+     "id": "les-raisins-de-la-colere-1940",
+     "t": "Les Raisins de la colère",
+     "y": 1940,
+     "d": "John Ford",
+     "r": "Le Dust Bowl : des fermiers chassés par les tempêtes de poussière et les banques."
+    },
+    {
+     "id": "titanic-1997",
+     "t": "Titanic",
+     "y": 1997,
+     "d": "James Cameron",
+     "r": "Le naufrage de 1912, reconstitué minute par minute."
+    },
+    {
+     "id": "dark-waters-2019",
+     "t": "Dark Waters",
+     "y": 2019,
+     "d": "Todd Haynes",
+     "r": "Un avocat contre DuPont, qui a empoisonné l'eau de toute une région en le sachant."
+    },
+    {
+     "id": "76-days-2020",
+     "t": "76 Days",
+     "y": 2020,
+     "d": "Hao Wu, Weixi Chen et un réalisateur anonyme",
+     "r": "Les hôpitaux de Wuhan pendant les 76 jours du premier confinement, sans commentaire."
+    },
+    {
+     "id": "the-days-serie-2023",
+     "t": "The Days (série)",
+     "y": 2023,
+     "d": "Masaki Nishiura et Hideo Nakata",
+     "r": "Fukushima vu depuis la salle de contrôle, jour après jour, comme la série Chernobyl."
+    }
+   ]
   }
  },
  "fiches": {
@@ -8258,7 +8706,33 @@
   "akira-1988": {"p": "Néo-Tokyo, 2019 : Tetsuo, membre d'un gang de motards, acquiert des pouvoirs psychiques qu'il ne contrôle plus, et son ami Kaneda tente de l'arrêter.", "c": "Japon", "k": ["animation", "sf", "violence", "transformations"], "mv": "anime-auteur", "e": 8, "duree": 124, "av": ["violence explicite", "images choquantes"], "th": ["pouvoir", "adolescence", "apocalypse"], "fiab": "à vérifier"},
   "alexandre-nevski-1938": {"p": "Au XIIIe siècle, le prince Alexandre Nevski lève une armée de paysans contre les chevaliers Teutoniques, jusqu'à la bataille sur le lac gelé.", "c": "Union soviétique", "k": ["noir-et-blanc", "histoire", "exploits"], "mv": "montage-sovietique", "e": 7, "duree": 112, "av": [], "th": ["invasion", "héroïsme", "propagande"], "fiab": "à vérifier"},
   "the-revenant-2015": {"p": "En 1823, le trappeur Hugh Glass (Leonardo DiCaprio), lacéré par un ourse et laissé pour mort, traverse seul l'hiver du Missouri pour retrouver celui qui a tué son fils.", "c": "États-Unis", "k": ["violence", "contemplatif", "exploits", "vengeance"], "mv": "hollywood-contemporain", "e": 7, "duree": 156, "av": ["violence explicite", "violence sexuelle"], "th": ["survie", "nature", "vengeance"], "fiab": "à vérifier"},
-  "punch-drunk-love-2002": {"p": "Barry (Adam Sandler), petit patron timide sujet à des crises de rage, trouve un harmonium dans la rue, accumule des miles grâce à des puddings et tombe amoureux.", "c": "États-Unis", "k": ["amour", "couleurs", "humour-absurde", "malaise"], "mv": "independant-americain", "e": 8, "duree": 95, "av": [], "th": ["anxiété", "amour", "solitude"], "fiab": "à vérifier"}
+  "punch-drunk-love-2002": {"p": "Barry (Adam Sandler), petit patron timide sujet à des crises de rage, trouve un harmonium dans la rue, accumule des miles grâce à des puddings et tombe amoureux.", "c": "États-Unis", "k": ["amour", "couleurs", "humour-absurde", "malaise"], "mv": "independant-americain", "e": 8, "duree": 95, "av": [], "th": ["anxiété", "amour", "solitude"], "fiab": "à vérifier"},
+  "chernobyl-the-lost-tapes-2022": {"p": "Documentaire fait uniquement d'images d'archives retrouvées, filmées dans la centrale et à Prypiat pendant la catastrophe, et d'entretiens avec ceux qui y étaient : liquidateurs, habitants évacués, responsables qui ont menti.", "c": "Royaume-Uni", "k": ["documentaire", "histoire-vraie", "injustice", "malaise"], "mv": "doc-observation", "e": 8, "duree": 96, "av": ["images choquantes"], "th": ["mensonge d'État", "sacrifice", "catastrophe"], "fiab": "à vérifier"},
+  "la-bataille-de-tchernobyl-2006": {"p": "Le 26 avril 1986, le réacteur n° 4 explose. Archives inédites et témoignages (Mikhaïl Gorbatchev, Hans Blix, liquidateurs) racontent la bataille de 500 000 hommes pour éteindre le réacteur, construire le sarcophage et éviter une seconde explosion.", "c": "France", "k": ["documentaire", "histoire-vraie", "injustice"], "mv": "doc-observation", "e": 8, "duree": 94, "av": ["images choquantes"], "th": ["liquidateurs", "mensonge d'État", "sacrifice"], "fiab": "à vérifier"},
+  "pripyat-1999": {"p": "Documentaire en noir et blanc, sans commentaire : treize ans après l'accident, Nikolaus Geyrhalter filme les gens restés dans la zone interdite autour de Tchernobyl, des ingénieurs qui font encore tourner la centrale aux vieux qui sont revenus chez eux.", "c": "Autriche", "k": ["documentaire", "noir-et-blanc", "contemplatif"], "mv": "doc-observation", "e": 7, "duree": 100, "av": [], "th": ["zone interdite", "solitude", "après-catastrophe"], "fiab": "à vérifier"},
+  "la-terre-outragee-2011": {"p": "Prypiat, 26 avril 1986 : Anya (Olga Kurylenko) se marie le jour de l'explosion, et son mari, pompier, part éteindre l'incendie sans revenir. Dix ans plus tard, elle est guide dans la zone interdite et ne parvient pas à la quitter. Tourné sur place.", "c": "France, Ukraine, Allemagne, Pologne", "k": ["histoire-vraie", "contemplatif", "amour", "larmes"], "mv": "auteur-europeen", "e": 7, "duree": 108, "av": [], "th": ["exil", "deuil", "après-catastrophe"], "fiab": "à vérifier"},
+  "the-babushkas-of-chernobyl-2015": {"p": "Documentaire : quelques centaines de femmes âgées sont revenues vivre illégalement dans leurs villages de la zone interdite, à cultiver leur jardin et boire leur vodka. Elles semblent parfois mieux s'en sortir que ceux qui sont partis.", "c": "États-Unis", "k": ["documentaire", "histoire-vraie", "doux", "marginaux"], "mv": "doc-observation", "e": 7, "duree": 72, "av": [], "th": ["vieillesse", "attachement", "zone interdite"], "fiab": "à vérifier"},
+  "pluie-noire-1989": {"p": "Hiroshima, 1945 : Yasuko est prise sous la pluie noire tombée après la bombe. Cinq ans plus tard, dans un village, personne ne veut l'épouser par peur des radiations. La maladie gagne autour d'elle, puis elle perd ses cheveux ; le film se termine sur un arc-en-ciel qui n'arrive pas. Musique de Tōru Takemitsu.", "c": "Japon", "k": ["noir-et-blanc", "histoire-vraie", "larmes", "famille"], "mv": "japon", "e": 8, "duree": 123, "av": ["images choquantes"], "th": ["bombe atomique", "rejet", "maladie"], "fiab": "à vérifier"},
+  "gen-d-hiroshima-1983": {"p": "Animation japonaise d'après le manga de Keiji Nakazawa, qui a survécu à la bombe : Gen, six ans, vit à Hiroshima le 6 août 1945. Il voit son père, sa sœur et son frère mourir dans les flammes, et survit dans la ville détruite avec sa mère.", "c": "Japon", "k": ["animation", "enfance", "histoire-vraie", "larmes"], "mv": "anime-auteur", "e": 8, "duree": 83, "av": ["images choquantes", "violence explicite"], "th": ["bombe atomique", "survie", "enfance"], "fiab": "à vérifier"},
+  "godzilla-1954": {"p": "Réveillé et brûlé par les essais de bombe H dans le Pacifique, un monstre géant ravage Tokyo. Neuf ans après Hiroshima, un film en noir et blanc beaucoup plus grave que ses suites : hôpitaux, enfants irradiés et savant qui hésite à créer une arme pire encore.", "c": "Japon", "k": ["noir-et-blanc", "sf", "horreur"], "mv": "japon", "e": 7, "duree": 98, "av": [], "th": ["bombe atomique", "monstre", "culpabilité"], "fiab": "à vérifier"},
+  "docteur-folamour-1964": {"p": "Un général américain paranoïaque lance de lui-même ses bombardiers nucléaires sur l'URSS. Dans la salle de guerre, le président et ses conseillers, dont l'inquiétant docteur Folamour (Peter Sellers, qui joue trois rôles), découvrent que les Soviétiques ont une machine apocalyptique automatique. À la fin, un cowboy chevauche la bombe et le monde explose sur une chanson douce.", "c": "Royaume-Uni, États-Unis", "k": ["humour-absurde", "noir-et-blanc", "societe", "absurde"], "mv": "nouvel-hollywood", "e": 8, "duree": 93, "av": [], "th": ["guerre froide", "absurdité", "pouvoir"], "fiab": "à vérifier"},
+  "threads-1984": {"p": "Téléfilm de la BBC : à Sheffield, deux jeunes gens apprennent qu'ils vont avoir un enfant pendant que la tension monte entre l'Est et l'Ouest. Puis les bombes tombent, et le film suit les années qui suivent : brûlures, famine, hiver nucléaire, effondrement de tout. La fin, avec la naissance d'un enfant, est l'une des plus terribles du cinéma.", "c": "Royaume-Uni, Australie", "k": ["malaise", "horreur", "societe"], "mv": "realisme-social-britannique", "e": 7, "duree": 114, "av": ["images choquantes", "violence explicite"], "th": ["guerre nucléaire", "effondrement", "survie"], "fiab": "à vérifier"},
+  "the-land-of-hope-2012": {"p": "Peu après un séisme, la centrale d'une préfecture fictive explose, comme à Fukushima. La zone interdite passe au milieu du jardin d'un vieux fermier : il envoie son fils et sa belle-fille à l'abri, mais reste avec sa femme, qui a perdu la mémoire. À la fin, le couple se donne la mort dans la ferme, pendant que la belle-fille, enceinte, vit dans la peur des radiations.", "c": "Japon, Royaume-Uni, Allemagne, Taïwan", "k": ["famille", "larmes", "injustice", "societe"], "mv": "japon", "e": 7, "duree": 133, "av": ["suicide"], "th": ["évacuation", "peur", "vieillesse"], "fiab": "à vérifier"},
+  "nuclear-nation-2012": {"p": "Documentaire : après l'accident de Fukushima, les habitants de Futaba, la ville de la centrale, sont relogés dans un lycée désaffecté près de Tokyo. Pendant des mois, on suit ces exilés, leur maire, et leur colère contre l'État et l'exploitant de la centrale.", "c": "Japon", "k": ["documentaire", "histoire-vraie", "injustice", "contemplatif"], "mv": "doc-observation", "e": 7, "duree": 145, "av": [], "th": ["exil", "évacuation", "abandon"], "fiab": "à vérifier"},
+  "le-syndrome-chinois-1979": {"p": "Une journaliste de télévision (Jane Fonda) et son caméraman (Michael Douglas) assistent par hasard à un incident dans une centrale nucléaire californienne. Un ingénieur (Jack Lemmon) découvre que des contrôles de sécurité ont été falsifiés et finit par prendre la salle de contrôle en otage. Le film est sorti douze jours avant l'accident de Three Mile Island.", "c": "États-Unis", "k": ["suspense", "societe", "injustice"], "mv": "nouvel-hollywood", "e": 7, "duree": 122, "av": [], "th": ["lanceur d'alerte", "mensonge", "médias"], "fiab": "à vérifier"},
+  "le-mystere-silkwood-1983": {"p": "D'après une histoire vraie : Karen Silkwood (Meryl Streep), ouvrière dans une usine de combustible nucléaire de l'Oklahoma, découvre les fautes de sécurité, est elle-même contaminée et réunit des preuves. Elle meurt dans un accident de voiture en allant les remettre à un journaliste.", "c": "États-Unis", "k": ["histoire-vraie", "injustice", "heroines", "societe"], "mv": "nouvel-hollywood", "e": 7, "duree": 131, "av": [], "th": ["lanceuse d'alerte", "contamination", "syndicat"], "fiab": "à vérifier"},
+  "the-impossible-2012": {"p": "D'après l'histoire vraie d'une famille espagnole : le 26 décembre 2004, le tsunami frappe leur hôtel en Thaïlande. Maria (Naomi Watts), grièvement blessée, est emportée avec son fils aîné ; le père (Ewan McGregor) cherche les deux autres enfants. Ils finissent par se retrouver tous les cinq à l'hôpital.", "c": "Espagne, États-Unis", "k": ["histoire-vraie", "larmes", "famille", "ocean"], "mv": "hollywood-contemporain", "e": 7, "duree": 114, "av": ["images choquantes"], "th": ["survie", "famille", "tsunami"], "fiab": "à vérifier"},
+  "tremblement-de-terre-a-tangshan-2010": {"p": "En 1976, un séisme détruit la ville chinoise de Tangshan et fait des centaines de milliers de morts. Coincés sous les décombres, des jumeaux ne peuvent être sauvés tous les deux : leur mère choisit le garçon. La fille survit pourtant, adoptée ailleurs, et ne la retrouvera que trente-deux ans plus tard, après un autre séisme, celui du Sichuan.", "c": "Chine, Hong Kong", "k": ["histoire-vraie", "larmes", "famille"], "mv": "auteur-monde", "e": 7, "duree": 135, "av": ["images choquantes"], "th": ["choix impossible", "culpabilité", "séisme"], "fiab": "à vérifier"},
+  "suzume-2022": {"p": "Animation japonaise : Suzume, lycéenne, ouvre par erreur une porte dans des ruines et doit, avec un jeune homme changé en petite chaise, refermer à travers le Japon les portes d'où sortent les séismes. Le voyage la ramène à sa région natale et à sa mère, morte dans le tsunami de 2011.", "c": "Japon", "k": ["animation", "conte", "couleurs", "larmes"], "mv": "anime-auteur", "e": 7, "duree": 122, "av": [], "th": ["deuil", "séisme", "voyage"], "fiab": "à vérifier"},
+  "the-tsunami-and-the-cherry-blossom-2011": {"p": "Court documentaire de 39 minutes, nommé aux Oscars : quelques semaines après le tsunami de mars 2011, les cerisiers fleurissent sur la côte détruite du Tōhoku. Des survivants racontent la vague et ce que la floraison représente pour eux.", "c": "États-Unis", "k": ["documentaire", "court", "contemplatif", "larmes"], "mv": "doc-observation", "e": 7, "duree": 39, "av": [], "th": ["renaissance", "deuil", "tsunami"], "fiab": "à vérifier"},
+  "assistance-mortelle-2013": {"p": "Documentaire de Raoul Peck : après le séisme de janvier 2010 en Haïti, des milliards d'aide sont promis. Deux ans durant, il filme les réunions, les ONG et les camps de sinistrés, et montre comment l'aide internationale décide de tout sans les Haïtiens et ne reconstruit presque rien.", "c": "Haïti, France, Belgique, États-Unis", "k": ["documentaire", "histoire-vraie", "injustice", "societe"], "mv": "doc-essai", "e": 7, "duree": 100, "av": [], "th": ["aide humanitaire", "néocolonialisme", "séisme"], "fiab": "à vérifier"},
+  "when-the-levees-broke-2006": {"p": "Série documentaire en quatre parties d'environ une heure : en août 2005, l'ouragan Katrina rompt les digues de La Nouvelle-Orléans. Spike Lee donne la parole aux habitants, surtout noirs et pauvres, laissés des jours sans secours, et dénonce les responsables politiques.", "c": "États-Unis", "k": ["documentaire", "serie", "histoire-vraie", "injustice", "societe"], "mv": "doc-essai", "e": 8, "duree": 60, "av": ["images choquantes"], "th": ["abandon", "racisme", "ouragan"], "duree_episode": true, "fiab": "à vérifier"},
+  "trouble-the-water-2008": {"p": "Documentaire : la veille de l'ouragan Katrina, Kimberly Rivers Roberts, rappeuse de 24 ans du quartier pauvre de Ninth Ward, s'achète une petite caméra. Elle filme l'eau qui monte dans sa maison, puis son quartier abandonné ; ces images forment le cœur du film.", "c": "États-Unis", "k": ["documentaire", "histoire-vraie", "injustice", "heroines"], "mv": "doc-observation", "e": 7, "duree": 93, "av": [], "th": ["survie", "abandon", "ouragan"], "fiab": "à vérifier"},
+  "les-betes-du-sud-sauvage-2012": {"p": "Hushpuppy, six ans, vit avec son père malade dans le Bathtub, une île du bayou de Louisiane, derrière les digues. Une tempête noie l'île, et l'enfant imagine que des aurochs géants libérés par la fonte des glaces arrivent sur eux. Son père meurt à la fin, et elle reste debout.", "c": "États-Unis", "k": ["conte", "enfance", "marginaux", "larmes"], "mv": "independant-americain", "e": 7, "duree": 93, "av": [], "th": ["inondation", "enfance", "résilience"], "fiab": "à vérifier"},
+  "les-raisins-de-la-colere-1940": {"p": "Après la sécheresse et les tempêtes de poussière du Dust Bowl, la famille Joad perd sa ferme de l'Oklahoma et part pour la Californie, où on promet du travail. Ils n'y trouvent que des camps de misère et des patrons qui exploitent les migrants. Henry Fonda en Tom Joad, d'après John Steinbeck.", "c": "États-Unis", "k": ["noir-et-blanc", "injustice", "famille", "societe"], "mv": "hollywood-classique", "e": 8, "duree": 129, "av": [], "th": ["exode", "pauvreté", "catastrophe écologique"], "fiab": "à vérifier"},
+  "dark-waters-2019": {"p": "D'après une histoire vraie : Robert Bilott (Mark Ruffalo), avocat d'affaires, défend un fermier de Virginie-Occidentale dont les vaches meurent. Il découvre que le géant de la chimie DuPont rejette depuis des décennies un produit toxique, le PFOA (un PFAS), en le cachant, et y consacre près de vingt ans de sa vie.", "c": "États-Unis", "k": ["histoire-vraie", "injustice", "suspense", "societe"], "mv": "hollywood-contemporain", "e": 7, "duree": 127, "av": [], "th": ["pollution", "lanceur d'alerte", "justice"], "fiab": "à vérifier"},
+  "76-days-2020": {"p": "Documentaire tourné dans quatre hôpitaux de Wuhan pendant le confinement total de la ville, au début de l'épidémie de Covid-19 : soignants en combinaison, malades isolés, familles séparées. Pas de commentaire, seulement ce qui se passe.", "c": "Chine, États-Unis", "k": ["documentaire", "histoire-vraie", "huis-clos", "larmes"], "mv": "doc-observation", "e": 7, "duree": 93, "av": [], "th": ["épidémie", "soignants", "isolement"], "fiab": "à vérifier"},
+  "the-days-serie-2023": {"p": "Série japonaise en huit épisodes : le 11 mars 2011, après le séisme et le tsunami, la centrale de Fukushima Daiichi perd son refroidissement. On vit les jours qui suivent dans la salle de contrôle, avec le directeur Masao Yoshida (Kōji Yakusho), ses ouvriers qui risquent leur vie, et un siège de l'exploitant et un gouvernement qui comprennent mal ce qui se passe.", "c": "Japon", "k": ["serie", "histoire-vraie", "suspense", "huis-clos"], "mv": "series", "e": 7, "duree": 54, "av": [], "th": ["catastrophe", "sacrifice", "mensonge d'État"], "fiab": "à vérifier", "duree_episode": true}
  },
  "familles": {
   "1917-2019": "30520",
@@ -9201,7 +9675,33 @@
   "akira-1988": "43210",
   "alexandre-nevski-1938": "61120",
   "the-revenant-2015": "43210",
-  "punch-drunk-love-2002": "41014"
+  "punch-drunk-love-2002": "41014",
+  "chernobyl-the-lost-tapes-2022": "23320",
+  "la-bataille-de-tchernobyl-2006": "13240",
+  "pripyat-1999": "43021",
+  "la-terre-outragee-2011": "42112",
+  "the-babushkas-of-chernobyl-2015": "21034",
+  "pluie-noire-1989": "43021",
+  "gen-d-hiroshima-1983": "14113",
+  "godzilla-1954": "33310",
+  "docteur-folamour-1964": "21430",
+  "threads-1984": "05230",
+  "the-land-of-hope-2012": "22132",
+  "nuclear-nation-2012": "12241",
+  "le-syndrome-chinois-1979": "03331",
+  "le-mystere-silkwood-1983": "12232",
+  "the-impossible-2012": "22213",
+  "tremblement-de-terre-a-tangshan-2010": "12124",
+  "suzume-2022": "50113",
+  "the-tsunami-and-the-cherry-blossom-2011": "42022",
+  "assistance-mortelle-2013": "02260",
+  "when-the-levees-broke-2006": "02242",
+  "trouble-the-water-2008": "12232",
+  "les-betes-du-sud-sauvage-2012": "31114",
+  "les-raisins-de-la-colere-1940": "21142",
+  "dark-waters-2019": "12241",
+  "76-days-2020": "12223",
+  "the-days-serie-2023": "13330"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }

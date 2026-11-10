@@ -94,6 +94,48 @@ Cirque et acrobates, Mer et apnée, Fins à rebondissement, Malaise et folie, Fi
 Le monde de la fête, Cinéma coréen, Vengeance aveugle, Visages bandés, Erreur sur la personne, et les listes
 de santé mentale. Les époques se font déjà toutes seules à partir de l’année. 390 ajouts dans ces listes.
 
+## 10 novembre 2026 : thème « Catastrophes »
+
+Nouveau thème `s53-catastrophes` (famille Thèmes), en quatre sous-catégories : Catastrophes nucléaires
+(Tchernobyl, Fukushima, Hiroshima et la peur de la bombe, regroupés à la demande de Licia) ; Tsunamis et séismes ;
+Ouragans, volcans et sécheresse ; Naufrage, poison et épidémie. 33 titres : 26 nouveaux, 7 déjà au catalogue (Chernobyl, Stalker, Hiroshima mon amour,
+Oppenheimer, Le Sacrifice, Titanic, Fire of Love). Cinéastes et durées comparés à TMDB le 10 novembre 2026.
+
+| Film | Année | Cinéaste | Durée | Genre |
+|---|---|---|---|---|
+| Chernobyl: The Lost Tapes | 2022 | James Jones | 96 min | documentaire |
+| La Bataille de Tchernobyl | 2006 | Thomas Johnson | 94 min | documentaire |
+| Pripyat | 1999 | Nikolaus Geyrhalter | 100 min | documentaire |
+| La Terre outragée | 2011 | Michale Boganim | 108 min | fiction |
+| The Babushkas of Chernobyl | 2015 | Holly Morris et Anne Bogart | 72 min | documentaire |
+| The Days (série) | 2023 | Masaki Nishiura et Hideo Nakata | 8 × 48 à 66 min | série |
+| Pluie noire | 1989 | Shōhei Imamura | 123 min | fiction |
+| Gen d'Hiroshima | 1983 | Mori Masaki | 83 min | animation |
+| Godzilla | 1954 | Ishirō Honda | 98 min | fiction |
+| Docteur Folamour | 1964 | Stanley Kubrick | 93 min | fiction |
+| Threads | 1984 | Mick Jackson | 114 min | téléfilm |
+| The Land of Hope | 2012 | Sion Sono | 133 min | fiction |
+| Nuclear Nation | 2012 | Atsushi Funahashi | 145 min | documentaire |
+| Le Syndrome chinois | 1979 | James Bridges | 122 min | fiction |
+| Le Mystère Silkwood | 1983 | Mike Nichols | 131 min | fiction |
+| The Impossible | 2012 | J. A. Bayona | 114 min | fiction |
+| Tremblement de terre à Tangshan | 2010 | Feng Xiaogang | 135 min | fiction |
+| Suzume | 2022 | Makoto Shinkai | 122 min | animation |
+| The Tsunami and the Cherry Blossom | 2011 | Lucy Walker | 39 min | court documentaire |
+| Assistance mortelle | 2013 | Raoul Peck | 100 min | documentaire |
+| When the Levees Broke | 2006 | Spike Lee | 4 × 60 min | série documentaire |
+| Trouble the Water | 2008 | Carl Deal et Tia Lessin | 93 min | documentaire |
+| Les Bêtes du sud sauvage | 2012 | Benh Zeitlin | 93 min | fiction |
+| Les Raisins de la colère | 1940 | John Ford | 129 min | fiction |
+| Dark Waters | 2019 | Todd Haynes | 127 min | fiction |
+| 76 Days | 2020 | Hao Wu, Weixi Chen et un anonyme | 93 min | documentaire |
+
+Rangés aussi ailleurs : « Politique » gagne une sous-catégorie « L'État face aux catastrophes » (12 titres) et
+Docteur Folamour dans « Pouvoir et coulisses » ; « Films qui émeuvent » reçoit Pluie noire, Gen d'Hiroshima et
+The Land of Hope (Guerre et injustice), The Impossible et Tangshan (Deuil, famille et filiation).
+
+Écartés car jugés moins bons : Chernobyl 1986 (2021), Fukushima 50 (2020), Deepwater (2016), Contagion (2011).
+
 ## Pistes pour la suite
 
 - Sight and Sound 2022, suite : Céline et Julie vont en bateau, La Maman et la Putain, Killer of Sheep,
