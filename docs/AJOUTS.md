@@ -138,32 +138,44 @@ The Land of Hope (Guerre et injustice), The Impossible et Tangshan (Deuil, famil
 
 ## 12 novembre 2026 : politique, grands compositeurs
 
-### Politique : 59 très bons films en plus
+### Politique : 75 films en plus, tous les courants à égalité
 
-Idée de Licia du 10 novembre : seulement de très bons films, un large éventail de mouvements politiques,
-des films historiques et des films d'aujourd'hui. Cinéastes, années, durées et identifiants comparés
-à TMDB (The Movie Database) le 12 novembre 2026 ; les durées sont celles de TMDB (The Act of Killing :
-version longue de 159 min ; la version cinéma fait environ deux heures).
+Idées de Licia des 10 et 12 novembre : seulement des films intéressants ou atypiques (des films grand public
+seulement s'ils sont très bons), des films historiques et d'aujourd'hui, et aucun favoritisme : couvrir
+le plus grand nombre possible d'idées politiques. Cinéastes, années, durées et identifiants comparés à TMDB
+(The Movie Database) le 12 novembre 2026 ; les durées sont celles de TMDB (The Act of Killing : version
+longue de 159 min ; la version cinéma fait environ deux heures).
 
 | Film | Année | Cinéaste | Durée |
 |---|---|---|---|
+| Zéro de conduite | 1933 | Jean Vigo | 41 min |
+| Monsieur Smith au Sénat | 1939 | Frank Capra | 124 min |
 | Rome, ville ouverte | 1945 | Roberto Rossellini | 100 min |
+| Le Rebelle | 1949 | King Vidor | 114 min |
 | Le Sel de la terre | 1954 | Herbert J. Biberman | 95 min |
+| Douze Hommes en colère | 1957 | Sidney Lumet | 95 min |
 | Les Sentiers de la gloire | 1957 | Stanley Kubrick | 86 min |
+| Un homme dans la foule | 1957 | Elia Kazan | 126 min |
+| Le Guépard | 1963 | Luchino Visconti | 170 min |
 | Soy Cuba | 1964 | Mikhaïl Kalatozov | 140 min |
 | La Bataille d'Alger | 1966 | Gillo Pontecorvo | 121 min |
+| La Chinoise | 1967 | Jean-Luc Godard | 90 min |
 | Mémoires du sous-développement | 1968 | Tomás Gutiérrez Alea | 99 min |
-| Z | 1969 | Costa-Gavras | 125 min |
 | L'Armée des ombres | 1969 | Jean-Pierre Melville | 140 min |
+| Z | 1969 | Costa-Gavras | 125 min |
 | L'Aveu | 1970 | Costa-Gavras | 139 min |
 | Le Conformiste | 1970 | Bernardo Bertolucci | 107 min |
 | La classe ouvrière va au paradis | 1971 | Elio Petri | 125 min |
+| L'An 01 | 1973 | Jacques Doillon, Alain Resnais et Jean Rouch | 90 min |
+| Lacombe Lucien | 1974 | Louis Malle | 138 min |
 | Xala | 1975 | Ousmane Sembène | 121 min |
 | Harlan County, USA | 1976 | Barbara Kopple | 104 min |
 | Les Hommes du président | 1976 | Alan J. Pakula | 139 min |
 | Network | 1976 | Sidney Lumet | 121 min |
 | L'Homme de marbre | 1977 | Andrzej Wajda | 160 min |
+| Bienvenue Mister Chance | 1979 | Hal Ashby | 130 min |
 | Missing | 1982 | Costa-Gavras | 122 min |
+| Danton | 1983 | Andrzej Wajda | 136 min |
 | Furyo | 1983 | Nagisa Ōshima | 124 min |
 | Requiem pour un massacre | 1985 | Elem Klimov | 136 min |
 | Le Dernier Empereur | 1987 | Bernardo Bertolucci | 156 min |
@@ -171,39 +183,44 @@ version longue de 159 min ; la version cinéma fait environ deux heures).
 | Malcolm X | 1992 | Spike Lee | 202 min |
 | Vivre ! | 1994 | Zhang Yimou | 133 min |
 | Land and Freedom | 1995 | Ken Loach | 109 min |
-| Lumumba | 2000 | Raoul Peck | 116 min |
+| L'Anglaise et le Duc | 2001 | Éric Rohmer | 129 min |
 | Buongiorno, notte | 2003 | Marco Bellocchio | 105 min |
 | Paradise Now | 2005 | Hany Abu-Assad | 87 min |
 | Le vent se lève | 2006 | Ken Loach | 124 min |
 | Hunger | 2008 | Steve McQueen | 100 min |
-| Harvey Milk | 2008 | Gus Van Sant | 128 min |
 | Il Divo | 2008 | Paolo Sorrentino | 108 min |
+| Des hommes et des dieux | 2010 | Xavier Beauvois | 122 min |
+| Four Lions | 2010 | Chris Morris | 101 min |
 | Nostalgie de la lumière | 2010 | Patricio Guzmán | 93 min |
 | L'Exercice de l'État | 2011 | Pierre Schoeller | 112 min |
+| Margin Call | 2011 | J. C. Chandor | 107 min |
+| Les Chevaux de Dieu | 2012 | Nabil Ayouch | 115 min |
 | No | 2012 | Pablo Larraín | 117 min |
 | The Act of Killing | 2012 | Joshua Oppenheimer | 159 min |
-| Ida | 2013 | Paweł Pawlikowski | 80 min |
 | A Touch of Sin | 2013 | Jia Zhangke | 130 min |
+| Ida | 2013 | Paweł Pawlikowski | 80 min |
+| L'Image manquante | 2013 | Rithy Panh | 96 min |
 | Citizenfour | 2014 | Laura Poitras | 113 min |
+| Léviathan | 2014 | Andreï Zviaguintsev | 141 min |
 | Timbuktu | 2014 | Abderrahmane Sissako | 97 min |
-| Pride | 2014 | Matthew Warchus | 117 min |
 | Le Fils de Saul | 2015 | László Nemes | 107 min |
+| Fuocoammare, par-delà Lampedusa | 2016 | Gianfranco Rosi | 107 min |
 | I Am Not Your Negro | 2016 | Raoul Peck | 89 min |
 | Moi, Daniel Blake | 2016 | Ken Loach | 97 min |
-| Fuocoammare, par-delà Lampedusa | 2016 | Gianfranco Rosi | 107 min |
 | La Mort de Staline | 2017 | Armando Iannucci | 107 min |
 | En guerre | 2018 | Stéphane Brizé | 112 min |
 | Woman at War | 2018 | Benedikt Erlingsson | 101 min |
 | Les Misérables | 2019 | Ladj Ly | 102 min |
+| Une vie cachée | 2019 | Terrence Malick | 173 min |
 | Chers camarades ! | 2020 | Andreï Kontchalovski | 120 min |
 | L'Événement | 2021 | Audrey Diwan | 100 min |
-| Argentina, 1985 | 2022 | Santiago Mitre | 141 min |
 | How to Blow Up a Pipeline | 2022 | Daniel Goldhaber | 104 min |
+| Sans filtre | 2022 | Ruben Östlund | 149 min |
 | Green Border | 2023 | Agnieszka Holland | 147 min |
 | Moi capitaine | 2023 | Matteo Garrone | 124 min |
+| Dahomey | 2024 | Mati Diop | 68 min |
 | Je suis toujours là | 2024 | Walter Salles | 135 min |
 | Les Graines du figuier sauvage | 2024 | Mohammad Rasoulof | 166 min |
-| Dahomey | 2024 | Mati Diop | 68 min |
 | No Other Land | 2024 | Basel Adra, Hamdan Ballal, Yuval Abraham et Rachel Szor | 95 min |
 | Un simple accident | 2025 | Jafar Panahi | 102 min |
 
@@ -211,21 +228,27 @@ Déjà au catalogue et rangés aussi dans « Politique » : La Haine, Persepolis
 Le diable n'existe pas, Le Ruban blanc, Le Cuirassé Potemkine, Shoah, Incendies, Brazil, Alphaville,
 Sorry to Bother You, Metropolis, Les Temps modernes, Les Raisins de la colère, Le Pianiste, Mustang,
 Thelma et Louise, Paris Is Burning, Les Fils de l'homme, Utøya 22 juillet, Johnny s'en va-t-en guerre,
-Apocalypse Now, À l'Ouest, rien de nouveau, Voyage au bout de l'enfer, Cold War.
+Apocalypse Now, À l'Ouest, rien de nouveau, Voyage au bout de l'enfer, Cold War, La Favorite, Tár, Mishima,
+Citizen Kane, There Will Be Blood.
 
-« Politique » passe de 45 à 129 films, en 11 sous-catégories : Dictatures et surveillance (Surveiller
-et contrôler, Le bloc soviétique, Juntes et coups d'État, Iran et Chine) ; Fascisme, nazisme et extrême
-droite ; Révolutions et lutte armée ; Colonies et indépendances ; Racisme et droits civiques ; Travail,
-classes et syndicats ; Féminismes et luttes LGBT+ ; Guerre et paix ; Pouvoir, médias et coulisses ;
-Migrations et écologie ; L'État face aux catastrophes. Mouvements couverts, entre autres : communisme
-et dissidence, anarchisme (guerre d'Espagne), fascisme et antifascisme, indépendances (Algérie, Irlande,
-Congo), droits civiques et Black Power, féminisme, luttes LGBT+, syndicalisme, écologie radicale,
-islamisme (Timbuktu), Mafia et démocratie chrétienne (Il Divo).
+Sortis de « Politique », car grand public sans être assez forts (ils restent au catalogue) : La Ligne verte,
+V pour Vendetta, Second tour, La Vague (rangé dans « Années 2000 ») et Mississippi Burning (« Avant 1990 »).
+Retirés du catalogue le jour même, jugés trop classiques : Pride, Harvey Milk, Argentina, 1985, Lumumba.
+
+« Politique » passe de 45 à 145 films. En tête, « Courants politiques » : chaque grande famille d'idées vue
+de l'intérieur, par ceux qui y croient, avec ses élans et ses dérives, dans l'ordre alphabétique pour n'en
+favoriser aucune, de trois à cinq films chacune : Anarchisme, Communisme, Conservatisme et monarchie,
+Démocratie libérale, Écologie, Extrême droite et fascisme, Féminisme, Libéralisme et marché, Mouvements LGBT+,
+Nationalismes, Religion et pouvoir, Socialisme et syndicalisme. Puis les sujets : Dictatures et surveillance
+(régimes communistes, juntes militaires et théocratie, côte à côte), Nazisme et Seconde Guerre mondiale,
+Révolutions et terrorisme, Colonies et indépendances, Racisme et droits civiques, Argent, travail et classes,
+Guerre et paix, Pouvoir, médias et populisme, Migrations et frontières, L'État face aux catastrophes.
 
 Rangés aussi ailleurs : « Films qui émeuvent » (Je suis toujours là, Requiem pour un massacre, Vivre !,
-Les Sentiers de la gloire, Le vent se lève, Moi capitaine, Moi, Daniel Blake, Ida), « Couleurs vives »
-(Le Conformiste, Il Divo, Le Dernier Empereur), « Vengeance aveugle » (Un simple accident),
-« Traumatismes » (Requiem pour un massacre).
+Les Sentiers de la gloire, Le vent se lève, Moi capitaine, Moi, Daniel Blake, Ida, Une vie cachée,
+Des hommes et des dieux, L'Image manquante), « Couleurs vives » (Le Conformiste, Il Divo, Le Dernier Empereur,
+Le Guépard, L'Anglaise et le Duc), « Rêve et étrangeté » (Solaris, Bienvenue Mister Chance),
+« Vengeance aveugle » (Un simple accident), « Traumatismes » (Requiem pour un massacre).
 
 ### Musique de film : « Grands compositeurs » et deux nouveaux regroupements
 
@@ -236,8 +259,8 @@ de leurs débuts : Bernard Herrmann (7), Fumio Hayasaka (3), Georges Auric (4), 
 
 Pour avoir au moins trois films par compositeur quand c'était possible : Solaris (Edouard Artemiev),
 Furyo et Le Dernier Empereur (Ryuichi Sakamoto), La Leçon de piano (Michael Nyman) ; Le Conformiste
-(Georges Delerue), La Bataille d'Alger et La classe ouvrière va au paradis (Ennio Morricone) et Citizenfour
-(Trent Reznor et Atticus Ross) viennent de la liste politique.
+(Georges Delerue), La Bataille d'Alger et La classe ouvrière va au paradis (Ennio Morricone) et Le Guépard
+(Nino Rota) viennent de la liste politique.
 
 Autres grands thèmes musicaux trouvés dans le catalogue :
 
@@ -249,7 +272,12 @@ Autres grands thèmes musicaux trouvés dans le catalogue :
   Barry Lyndon, Raging Bull, Melancholia, Le Feu follet, Elephant, Funny Games, Je vous salue, Marie…
 
 Un film peut maintenant être dans plusieurs sous-catégories à la fois (voir `SOUS-CATEGORIES.md`).
-« Musique de film » passe de 144 à 260 films, chacun avec une phrase sur sa musique.
+À la demande de Licia, seuls restent les films dont la musique a un vrai intérêt : 16 films rangés d'abord
+au seul nom de leur compositeur, à la musique discrète ou dans des films moyens, ont été retirés de la liste
+(Licorice Pizza, Citizenfour, Prisoners, Spider, Seven, Le Faux Coupable, Garde à vue, Le Mystère Silkwood,
+Being John Malkovich, Barton Fink, Sexe, mensonges et vidéo, La Voix humaine, Strange Way of Life,
+Je suis toujours là, Le Soliste, Berlin Calling). « Musique de film » passe de 144 à 245 films, chacun avec
+une phrase sur sa musique.
 
 ## Pistes pour la suite
 
