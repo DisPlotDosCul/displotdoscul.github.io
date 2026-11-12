@@ -35,5 +35,5 @@ Dans `complements.json → sections → <liste>` :
 
 Musique de film (9 sous-catégories depuis le 12 novembre, dont « Grands compositeurs » et ses 35 compositeurs), Rêve et étrangeté, Couleurs vives, Cirque et
 acrobates, Films qui émeuvent, Fins à rebondissement, Malaise et folie, Liste cauchemar, Danse, Mer et apnée,
-Erreur sur la personne, Politique (11 sous-catégories depuis le 12 novembre), Cinéma coréen, Vengeance aveugle, Paranoïa et folie à deux, et les trois
+Erreur sur la personne, Politique (12 sous-catégories depuis le 12 novembre, dont « Courants politiques »), Cinéma coréen, Vengeance aveugle, Paranoïa et folie à deux, et les trois
 listes de l'École de cinéma (par courant). Rave, Le monde de la fête et Sous la menace avaient déjà les leurs.

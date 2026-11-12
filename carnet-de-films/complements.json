@@ -9,6 +9,13 @@
      "y": 2006,
      "d": "Mark Palansky",
      "r": "Une héritière maudite naît avec un groin de cochon ; Christina Ricci et James McAvoy."
+    },
+    {
+     "id": "la-vague-2008",
+     "t": "La Vague",
+     "y": 2008,
+     "d": "Dennis Gansel",
+     "r": "Un professeur montre à ses élèves comment naît une dictature, et l'expérience lui échappe."
     }
    ]
   },
@@ -1031,6 +1038,13 @@
      "y": 1972,
      "d": "Andreï Tarkovski",
      "r": "Un océan qui fait revenir les morts que l'on a aimés."
+    },
+    {
+     "id": "bienvenue-mister-chance-1979",
+     "t": "Bienvenue Mister Chance",
+     "y": 1979,
+     "d": "Hal Ashby",
+     "r": "Un jardinier simplet pris pour un sage par tout Washington."
     }
    ],
    "parties": [
@@ -1122,7 +1136,8 @@
       "synecdoche-new-york-2008",
       "pauvres-creatures-2023",
       "brazil-1985",
-      "la-femme-des-sables-1964"
+      "la-femme-des-sables-1964",
+      "bienvenue-mister-chance-1979"
      ]
     },
     {
@@ -1790,6 +1805,20 @@
      "y": 1987,
      "d": "Bernardo Bertolucci",
      "r": "Le jaune impérial de la Cité interdite, filmé pour la première fois."
+    },
+    {
+     "id": "le-guepard-1963",
+     "t": "Le Guépard",
+     "y": 1963,
+     "d": "Luchino Visconti",
+     "r": "Le Technicolor des palais siciliens et un bal de trois quarts d'heure."
+    },
+    {
+     "id": "l-anglaise-et-le-duc-2001",
+     "t": "L'Anglaise et le Duc",
+     "y": 2001,
+     "d": "Éric Rohmer",
+     "r": "Les acteurs jouent devant des tableaux peints du Paris de la Révolution."
     }
    ],
    "parties": [
@@ -1906,7 +1935,9 @@
         "mauvais-sang-1986",
         "medusa-deluxe-2022",
         "le-conformiste-1970",
-        "il-divo-2008"
+        "il-divo-2008",
+        "le-guepard-1963",
+        "l-anglaise-et-le-duc-2001"
        ]
       },
       {
@@ -2170,32 +2201,11 @@
    "sous_titre": "Des films sur le pouvoir et ceux qui lui résistent : dictatures, fascisme, révolutions, colonies, racisme, luttes ouvrières, féministes et LGBT+, guerres, migrations et écologie, d'hier à aujourd'hui.",
    "films": [
     {
-     "id": "mississippi-burning-1988",
-     "t": "Mississippi Burning",
-     "y": 1988,
-     "d": "Alan Parker",
-     "r": "Deux agents du FBI face au Ku Klux Klan et au silence d'une ville du Mississippi en 1964, d'après un vrai triple meurtre."
-    },
-    {
      "id": "american-history-x-1998",
      "t": "American History X",
      "y": 1998,
      "d": "Tony Kaye",
      "r": "Un ancien néonazi sorti de prison veut empêcher son petit frère de suivre le même chemin."
-    },
-    {
-     "id": "la-ligne-verte-1999",
-     "t": "La Ligne verte",
-     "y": 1999,
-     "d": "Frank Darabont",
-     "r": "Dans le Sud des années 1930, un homme noir condamné à mort pour un crime qu'il n'a pas commis."
-    },
-    {
-     "id": "v-pour-vendetta-2005",
-     "t": "V pour Vendetta",
-     "y": 2005,
-     "d": "James McTeigue",
-     "r": "Une Angleterre devenue dictature et un homme masqué qui pousse le peuple à se soulever ; le masque est devenu un symbole de contestation."
     },
     {
      "id": "la-vie-des-autres-2006",
@@ -2210,13 +2220,6 @@
      "y": 2006,
      "d": "Shane Meadows",
      "r": "L'Angleterre de Thatcher en 1983 : un garçon trouve une famille chez des skinheads, avant que le racisme ne s'invite."
-    },
-    {
-     "id": "la-vague-2008",
-     "t": "La Vague",
-     "y": 2008,
-     "d": "Dennis Gansel",
-     "r": "Un professeur montre à ses élèves comment naît une dictature, et l'expérience lui échappe."
     },
     {
      "id": "parasite-2019",
@@ -2356,13 +2359,6 @@
      "t": "Chocolat",
      "y": 1988,
      "d": "Claire Denis",
-     "r": ""
-    },
-    {
-     "id": "second-tour-2023",
-     "t": "Second tour",
-     "y": 2023,
-     "d": "Albert Dupontel",
      "r": ""
     },
     {
@@ -2569,13 +2565,6 @@
      "r": "La campagne publicitaire qui a fait tomber Pinochet par les urnes, en 1988."
     },
     {
-     "id": "argentina-1985-2022",
-     "t": "Argentina, 1985",
-     "y": 2022,
-     "d": "Santiago Mitre",
-     "r": "Le procès des généraux de la junte argentine, mené par un procureur menacé et des juristes débutants."
-    },
-    {
      "id": "je-suis-toujours-la-2024",
      "t": "Je suis toujours là",
      "y": 2024,
@@ -2779,13 +2768,6 @@
      "r": "Deux frères dans la guerre d'indépendance irlandaise, puis dans deux camps opposés."
     },
     {
-     "id": "lumumba-2000",
-     "t": "Lumumba",
-     "y": 2000,
-     "d": "Raoul Peck",
-     "r": "Le premier chef de gouvernement du Congo indépendant, renversé puis assassiné en sept mois."
-    },
-    {
      "id": "camp-de-thiaroye-1988",
      "t": "Camp de Thiaroye",
      "y": 1988,
@@ -2856,13 +2838,6 @@
      "r": "Un ouvrier stakhanoviste perd un doigt et passe chez les militants radicaux."
     },
     {
-     "id": "pride-2014",
-     "t": "Pride",
-     "y": 2014,
-     "d": "Matthew Warchus",
-     "r": "Des militants gays et lesbiens soutiennent la grève des mineurs gallois en 1984."
-    },
-    {
      "id": "en-guerre-2018",
      "t": "En guerre",
      "y": 2018,
@@ -2924,13 +2899,6 @@
      "y": 1991,
      "d": "Ridley Scott",
      "r": "Deux amies en cavale après avoir tué l'homme qui violentait l'une d'elles."
-    },
-    {
-     "id": "harvey-milk-2008",
-     "t": "Harvey Milk",
-     "y": 2008,
-     "d": "Gus Van Sant",
-     "r": "Le premier élu ouvertement gay de Californie, de sa campagne à son assassinat."
     },
     {
      "id": "paris-is-burning-1990",
@@ -3071,76 +3039,355 @@
      "y": 2022,
      "d": "Daniel Goldhaber",
      "r": "Huit jeunes militants préparent le sabotage d'un oléoduc, comme dans un film de casse."
+    },
+    {
+     "id": "zero-de-conduite-1933",
+     "t": "Zéro de conduite",
+     "y": 1933,
+     "d": "Jean Vigo",
+     "r": "Des écoliers en révolte libertaire contre le collège : un film interdit jusqu'en 1945."
+    },
+    {
+     "id": "l-an-01-1973",
+     "t": "L'An 01",
+     "y": 1973,
+     "d": "Jacques Doillon, Alain Resnais et Jean Rouch",
+     "r": "Un jour, tout le monde arrête de travailler pour réfléchir : l'utopie joyeuse de l'après-68."
+    },
+    {
+     "id": "la-chinoise-1967",
+     "t": "La Chinoise",
+     "y": 1967,
+     "d": "Jean-Luc Godard",
+     "r": "Une cellule maoïste d'étudiants parisiens, un an avant Mai 68, filmée avec tendresse et ironie."
+    },
+    {
+     "id": "le-guepard-1963",
+     "t": "Le Guépard",
+     "y": 1963,
+     "d": "Luchino Visconti",
+     "r": "Un prince sicilien regarde son monde finir et pactise : « Il faut que tout change pour que rien ne change. »"
+    },
+    {
+     "id": "l-anglaise-et-le-duc-2001",
+     "t": "L'Anglaise et le Duc",
+     "y": 2001,
+     "d": "Éric Rohmer",
+     "r": "La Terreur vue par une aristocrate royaliste, devant des décors peints du Paris de 1793."
+    },
+    {
+     "id": "la-favorite-2018",
+     "t": "La Favorite",
+     "y": 2018,
+     "d": "Yorgos Lanthimos",
+     "r": "Deux cousines se disputent la faveur de la reine Anne, entre tories et whigs, guerre et paix."
+    },
+    {
+     "id": "monsieur-smith-au-senat-1939",
+     "t": "Monsieur Smith au Sénat",
+     "y": 1939,
+     "d": "Frank Capra",
+     "r": "Un sénateur naïf garde la parole près de vingt-quatre heures pour défendre la démocratie contre la corruption."
+    },
+    {
+     "id": "douze-hommes-en-colere-1957",
+     "t": "Douze Hommes en colère",
+     "y": 1957,
+     "d": "Sidney Lumet",
+     "r": "Un juré seul contre onze : la justice, le doute et les préjugés, dans une seule pièce."
+    },
+    {
+     "id": "lacombe-lucien-1974",
+     "t": "Lacombe Lucien",
+     "y": 1974,
+     "d": "Louis Malle",
+     "r": "Un garçon de ferme devient collaborateur par hasard, en juin 1944, sans aucune conviction."
+    },
+    {
+     "id": "le-rebelle-1949",
+     "t": "Le Rebelle",
+     "y": 1949,
+     "d": "King Vidor",
+     "r": "Un architecte qui refuse tout compromis : le manifeste individualiste d'Ayn Rand, adapté par elle-même."
+    },
+    {
+     "id": "there-will-be-blood-2007",
+     "t": "There Will Be Blood",
+     "y": 2007,
+     "d": "Paul Thomas Anderson",
+     "r": "Un pionnier du pétrole à l'ambition sans limite, face à un jeune prédicateur."
+    },
+    {
+     "id": "margin-call-2011",
+     "t": "Margin Call",
+     "y": 2011,
+     "d": "J. C. Chandor",
+     "r": "Une nuit dans une banque d'affaires, la veille du krach de 2008 : le marché vu de l'intérieur, sans caricature."
+    },
+    {
+     "id": "mishima-1985",
+     "t": "Mishima",
+     "y": 1985,
+     "d": "Paul Schrader",
+     "r": "L'écrivain Yukio Mishima, jusqu'à sa tentative de coup d'État nationaliste et son suicide en 1970."
+    },
+    {
+     "id": "des-hommes-et-des-dieux-2010",
+     "t": "Des hommes et des dieux",
+     "y": 2010,
+     "d": "Xavier Beauvois",
+     "r": "Des moines français choisissent de rester au milieu de la guerre civile algérienne, malgré les islamistes."
+    },
+    {
+     "id": "leviathan-2014",
+     "t": "Léviathan",
+     "y": 2014,
+     "d": "Andreï Zviaguintsev",
+     "r": "Un garagiste face à un maire corrompu, soutenu par l'Église orthodoxe, dans la Russie de Poutine."
+    },
+    {
+     "id": "une-vie-cachee-2019",
+     "t": "Une vie cachée",
+     "y": 2019,
+     "d": "Terrence Malick",
+     "r": "Un paysan catholique autrichien refuse de prêter serment à Hitler, jusqu'au bout."
+    },
+    {
+     "id": "l-image-manquante-2013",
+     "t": "L'Image manquante",
+     "y": 2013,
+     "d": "Rithy Panh",
+     "r": "Le régime des Khmers rouges raconté avec des figurines d'argile, faute d'images."
+    },
+    {
+     "id": "danton-1983",
+     "t": "Danton",
+     "y": 1983,
+     "d": "Andrzej Wajda",
+     "r": "Robespierre fait guillotiner Danton : la Révolution qui dévore ses enfants, vue de la Pologne de 1982."
+    },
+    {
+     "id": "four-lions-2010",
+     "t": "Four Lions",
+     "y": 2010,
+     "d": "Chris Morris",
+     "r": "Quatre apprentis djihadistes de Sheffield, incapables et dangereux : une satire très noire."
+    },
+    {
+     "id": "les-chevaux-de-dieu-2012",
+     "t": "Les Chevaux de Dieu",
+     "y": 2012,
+     "d": "Nabil Ayouch",
+     "r": "Des enfants d'un bidonville de Casablanca recrutés par des islamistes, jusqu'aux attentats de 2003."
+    },
+    {
+     "id": "sans-filtre-2022",
+     "t": "Sans filtre",
+     "y": 2022,
+     "d": "Ruben Östlund",
+     "r": "Une croisière de milliardaires, un capitaine marxiste face à un oligarque, puis une île où l'ordre s'inverse."
+    },
+    {
+     "id": "citizen-kane-1941",
+     "t": "Citizen Kane",
+     "y": 1941,
+     "d": "Orson Welles",
+     "r": "Un magnat de la presse qui fait l'opinion, puis rate sa carrière politique."
+    },
+    {
+     "id": "un-homme-dans-la-foule-1957",
+     "t": "Un homme dans la foule",
+     "y": 1957,
+     "d": "Elia Kazan",
+     "r": "Un vagabond charmeur devient star de la télévision, puis faiseur de présidents."
+    },
+    {
+     "id": "bienvenue-mister-chance-1979",
+     "t": "Bienvenue Mister Chance",
+     "y": 1979,
+     "d": "Hal Ashby",
+     "r": "Un jardinier simplet dont les phrases sur les plantes passent pour de la sagesse politique."
+    },
+    {
+     "id": "tar-2022",
+     "t": "Tár",
+     "y": 2022,
+     "d": "Todd Field",
+     "r": "Une cheffe d'orchestre toute-puissante, accusée d'abus, et le tribunal des réseaux sociaux."
     }
    ],
    "parties": [
     {
-     "titre": "Dictatures et surveillance",
-     "aide": "Régimes qui écrasent, et ceux qui résistent",
+     "titre": "Courants politiques",
+     "aide": "Chaque grande famille d'idées vue de l'intérieur, par ceux qui y croient, avec ses élans et ses dérives",
      "sous": [
       {
-       "titre": "Surveiller et contrôler",
+       "titre": "Anarchisme",
        "ids": [
-        "1984-1984",
-        "la-vie-des-autres-2006",
-        "v-pour-vendetta-2005",
-        "la-antena-2007",
-        "conversation-secrete-1974",
-        "brazil-1985",
-        "alphaville-1965",
-        "citizenfour-2014"
+        "zero-de-conduite-1933",
+        "l-an-01-1973",
+        "land-and-freedom-1995"
        ]
       },
       {
-       "titre": "Le bloc soviétique",
+       "titre": "Communisme",
        "ids": [
-        "l-aveu-1970",
+        "la-chinoise-1967",
+        "memoires-du-sous-developpement-1968",
         "l-homme-de-marbre-1977",
-        "chers-camarades-2020",
-        "la-mort-de-staline-2017",
-        "ida-2013",
-        "cold-war-2018",
-        "4-mois-3-semaines-2-jours-2007"
+        "chers-camarades-2020"
        ]
       },
       {
-       "titre": "Juntes et coups d'État",
+       "titre": "Conservatisme et monarchie",
        "ids": [
-        "z-1969",
-        "missing-1982",
-        "no-2012",
-        "argentina-1985-2022",
-        "je-suis-toujours-la-2024",
-        "nostalgie-de-la-lumiere-2010",
-        "the-act-of-killing-2012"
-       ]
-      },
-      {
-       "titre": "Iran et Chine",
-       "ids": [
-        "persepolis-2007",
-        "le-diable-n-existe-pas-2020",
-        "les-graines-du-figuier-sauvage-2024",
-        "un-simple-accident-2025",
-        "vivre-1994",
+        "le-guepard-1963",
         "le-dernier-empereur-1987",
-        "a-touch-of-sin-2013"
+        "l-anglaise-et-le-duc-2001",
+        "la-favorite-2018"
+       ]
+      },
+      {
+       "titre": "Démocratie libérale",
+       "ids": [
+        "monsieur-smith-au-senat-1939",
+        "douze-hommes-en-colere-1957",
+        "les-hommes-du-president-1976",
+        "l-exercice-de-l-etat-2011"
+       ]
+      },
+      {
+       "titre": "Écologie",
+       "ids": [
+        "l-an-01-1973",
+        "woman-at-war-2018",
+        "how-to-blow-up-a-pipeline-2022"
+       ]
+      },
+      {
+       "titre": "Extrême droite et fascisme",
+       "ids": [
+        "le-conformiste-1970",
+        "lacombe-lucien-1974",
+        "american-history-x-1998",
+        "this-is-england-2006"
+       ]
+      },
+      {
+       "titre": "Féminisme",
+       "ids": [
+        "le-sel-de-la-terre-1954",
+        "thelma-et-louise-1991",
+        "mustang-2015",
+        "l-evenement-2021"
+       ]
+      },
+      {
+       "titre": "Libéralisme et marché",
+       "ids": [
+        "le-rebelle-1949",
+        "there-will-be-blood-2007",
+        "margin-call-2011"
+       ]
+      },
+      {
+       "titre": "Mouvements LGBT+",
+       "ids": [
+        "paris-is-burning-1990",
+        "120-battements-par-minute-2017"
+       ]
+      },
+      {
+       "titre": "Nationalismes",
+       "ids": [
+        "la-bataille-d-alger-1966",
+        "mishima-1985",
+        "le-vent-se-leve-2006",
+        "hunger-2008"
+       ]
+      },
+      {
+       "titre": "Religion et pouvoir",
+       "ids": [
+        "des-hommes-et-des-dieux-2010",
+        "leviathan-2014",
+        "timbuktu-2014",
+        "une-vie-cachee-2019",
+        "conclave-2024"
+       ]
+      },
+      {
+       "titre": "Socialisme et syndicalisme",
+       "ids": [
+        "le-sel-de-la-terre-1954",
+        "la-classe-ouvriere-va-au-paradis-1971",
+        "harlan-county-usa-1976",
+        "en-guerre-2018"
        ]
       }
      ]
     },
     {
-     "titre": "Fascisme, nazisme et extrême droite",
-     "aide": "Comprendre la haine organisée, et ne pas oublier",
+     "titre": "Dictatures et surveillance",
+     "aide": "Des régimes de tous bords, et ceux qui leur résistent",
      "sous": [
       {
-       "titre": "La montée du fascisme",
+       "titre": "Surveiller et contrôler",
        "ids": [
-        "le-ruban-blanc-2009",
-        "le-conformiste-1970",
-        "cabaret-1972",
+        "1984-1984",
+        "alphaville-1965",
+        "conversation-secrete-1974",
+        "brazil-1985",
+        "la-vie-des-autres-2006",
+        "la-antena-2007",
+        "citizenfour-2014"
+       ]
+      },
+      {
+       "titre": "Régimes communistes",
+       "ids": [
+        "l-aveu-1970",
+        "vivre-1994",
+        "4-mois-3-semaines-2-jours-2007",
+        "ida-2013",
+        "l-image-manquante-2013",
+        "la-mort-de-staline-2017",
+        "cold-war-2018"
+       ]
+      },
+      {
+       "titre": "Juntes et dictatures militaires",
+       "ids": [
+        "z-1969",
+        "missing-1982",
+        "le-labyrinthe-de-pan-2006",
+        "nostalgie-de-la-lumiere-2010",
+        "no-2012",
+        "the-act-of-killing-2012",
+        "je-suis-toujours-la-2024"
+       ]
+      },
+      {
+       "titre": "Théocratie iranienne",
+       "ids": [
+        "persepolis-2007",
+        "le-diable-n-existe-pas-2020",
+        "les-graines-du-figuier-sauvage-2024",
+        "un-simple-accident-2025"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Nazisme et Seconde Guerre mondiale",
+     "aide": "Comprendre, résister ou collaborer, ne pas oublier",
+     "sous": [
+      {
+       "titre": "Avant la guerre",
+       "ids": [
         "le-dictateur-1940",
-        "la-vague-2008"
+        "cabaret-1972",
+        "le-ruban-blanc-2009"
        ]
       },
       {
@@ -3150,50 +3397,45 @@
         "shoah-1985",
         "la-liste-de-schindler-1993",
         "le-pianiste-2002",
+        "inglourious-basterds-2009",
         "le-fils-de-saul-2015",
-        "la-zone-d-interet-2023",
-        "inglourious-basterds-2009"
+        "la-zone-d-interet-2023"
        ]
       },
       {
-       "titre": "Résister",
+       "titre": "Résister ou collaborer",
        "ids": [
         "rome-ville-ouverte-1945",
         "l-armee-des-ombres-1969",
+        "lacombe-lucien-1974",
         "requiem-pour-un-massacre-1985",
-        "le-labyrinthe-de-pan-2006"
-       ]
-      },
-      {
-       "titre": "L'extrême droite aujourd'hui",
-       "ids": [
-        "american-history-x-1998",
-        "this-is-england-2006",
-        "utoya-22-juillet-2018"
+        "une-vie-cachee-2019"
        ]
       }
      ]
     },
     {
-     "titre": "Révolutions et lutte armée",
-     "aide": "Changer le monde, et ce que ça coûte",
+     "titre": "Révolutions et terrorisme",
+     "aide": "Prendre le pouvoir par la force, et ce que ça coûte",
      "sous": [
       {
        "titre": "Révolutions",
        "ids": [
         "le-cuirasse-potemkine-1925",
         "soy-cuba-1964",
-        "memoires-du-sous-developpement-1968",
-        "land-and-freedom-1995"
+        "danton-1983",
+        "land-and-freedom-1995",
+        "l-anglaise-et-le-duc-2001"
        ]
       },
       {
-       "titre": "Terrorisme et violence politique",
+       "titre": "Terrorisme",
        "ids": [
         "buongiorno-notte-2003",
         "paradise-now-2005",
-        "hunger-2008",
-        "timbuktu-2014"
+        "four-lions-2010",
+        "les-chevaux-de-dieu-2012",
+        "utoya-22-juillet-2018"
        ]
       }
      ]
@@ -3207,17 +3449,16 @@
        "ids": [
         "la-bataille-d-alger-1966",
         "le-vent-se-leve-2006",
-        "lumumba-2000",
         "hunger-2008"
        ]
       },
       {
        "titre": "Le poids des colonies",
        "ids": [
+        "xala-1975",
         "mission-1986",
         "chocolat-1988",
         "camp-de-thiaroye-1988",
-        "xala-1975",
         "cache-2005",
         "dahomey-2024"
        ]
@@ -3231,13 +3472,11 @@
       {
        "titre": "États-Unis",
        "ids": [
-        "mississippi-burning-1988",
-        "malcolm-x-1992",
-        "i-am-not-your-negro-2016",
         "do-the-right-thing-1989",
-        "get-out-2017",
+        "malcolm-x-1992",
         "loin-du-paradis-2002",
-        "la-ligne-verte-1999"
+        "i-am-not-your-negro-2016",
+        "get-out-2017"
        ]
       },
       {
@@ -3251,57 +3490,17 @@
      ]
     },
     {
-     "titre": "Travail, classes et syndicats",
-     "aide": "Argent, travail et solidarité",
-     "sous": [
-      {
-       "titre": "Grèves et syndicats",
-       "ids": [
-        "le-sel-de-la-terre-1954",
-        "harlan-county-usa-1976",
-        "la-classe-ouvriere-va-au-paradis-1971",
-        "pride-2014",
-        "en-guerre-2018"
-       ]
-      },
-      {
-       "titre": "Riches et pauvres",
-       "ids": [
-        "metropolis-1927",
-        "les-temps-modernes-1936",
-        "les-raisins-de-la-colere-1940",
-        "parasite-2019",
-        "moi-daniel-blake-2016",
-        "sorry-to-bother-you-2018",
-        "l-histoire-de-souleymane-2024"
-       ]
-      }
-     ]
-    },
-    {
-     "titre": "Féminismes et luttes LGBT+",
-     "aide": "Disposer de son corps et de sa vie",
-     "sous": [
-      {
-       "titre": "Droits des femmes",
-       "ids": [
-        "l-evenement-2021",
-        "4-mois-3-semaines-2-jours-2007",
-        "les-graines-du-figuier-sauvage-2024",
-        "mustang-2015",
-        "thelma-et-louise-1991",
-        "le-sel-de-la-terre-1954"
-       ]
-      },
-      {
-       "titre": "Luttes LGBT+",
-       "ids": [
-        "harvey-milk-2008",
-        "paris-is-burning-1990",
-        "120-battements-par-minute-2017",
-        "pride-2014"
-       ]
-      }
+     "titre": "Argent, travail et classes",
+     "aide": "Riches, pauvres, et ce qui les sépare",
+     "ids": [
+      "metropolis-1927",
+      "les-temps-modernes-1936",
+      "les-raisins-de-la-colere-1940",
+      "a-touch-of-sin-2013",
+      "moi-daniel-blake-2016",
+      "sorry-to-bother-you-2018",
+      "parasite-2019",
+      "sans-filtre-2022"
      ]
     },
     {
@@ -3312,8 +3511,8 @@
        "titre": "Contre la guerre",
        "ids": [
         "les-sentiers-de-la-gloire-1957",
-        "johnny-s-en-va-t-en-guerre-1971",
         "docteur-folamour-1964",
+        "johnny-s-en-va-t-en-guerre-1971",
         "voyage-au-bout-de-l-enfer-1978",
         "apocalypse-now-1979",
         "furyo-1983",
@@ -3324,51 +3523,37 @@
       {
        "titre": "Proche-Orient",
        "ids": [
+        "paradise-now-2005",
         "valse-avec-bachir-2008",
         "incendies-2010",
-        "paradise-now-2005",
         "no-other-land-2024"
        ]
       }
      ]
     },
     {
-     "titre": "Pouvoir, médias et coulisses",
-     "aide": "Élections, presse, argent et secrets",
+     "titre": "Pouvoir, médias et populisme",
+     "aide": "Démagogues, presse, coulisses et chutes",
      "ids": [
-      "les-hommes-du-president-1976",
+      "citizen-kane-1941",
+      "un-homme-dans-la-foule-1957",
       "network-1976",
+      "bienvenue-mister-chance-1979",
       "il-divo-2008",
-      "l-exercice-de-l-etat-2011",
-      "second-tour-2023",
-      "oppenheimer-2023",
-      "conclave-2024",
-      "docteur-folamour-1964",
-      "la-mort-de-staline-2017"
+      "la-mort-de-staline-2017",
+      "tar-2022",
+      "oppenheimer-2023"
      ]
     },
     {
-     "titre": "Migrations et écologie",
-     "aide": "Les luttes d'aujourd'hui",
-     "sous": [
-      {
-       "titre": "Migrations et frontières",
-       "ids": [
-        "green-border-2023",
-        "moi-capitaine-2023",
-        "fuocoammare-2016",
-        "l-histoire-de-souleymane-2024",
-        "les-fils-de-l-homme-2006"
-       ]
-      },
-      {
-       "titre": "Écologie et désobéissance",
-       "ids": [
-        "woman-at-war-2018",
-        "how-to-blow-up-a-pipeline-2022",
-        "dark-waters-2019"
-       ]
-      }
+     "titre": "Migrations et frontières",
+     "aide": "Partir, traverser, être refoulé",
+     "ids": [
+      "les-fils-de-l-homme-2006",
+      "fuocoammare-2016",
+      "green-border-2023",
+      "moi-capitaine-2023",
+      "l-histoire-de-souleymane-2024"
      ]
     },
     {
@@ -3918,6 +4103,13 @@
      "y": 1974,
      "d": "Rainer Werner Fassbinder",
      "r": "Un mélodrame de Fassbinder sur le racisme ordinaire, simple et déchirant."
+    },
+    {
+     "id": "mississippi-burning-1988",
+     "t": "Mississippi Burning",
+     "y": 1988,
+     "d": "Alan Parker",
+     "r": "Deux agents du FBI face au Ku Klux Klan et au silence d'une ville du Mississippi en 1964, d'après un vrai triple meurtre."
     }
    ]
   },
@@ -4801,13 +4993,6 @@
      "r": "Bernard Herrmann, pour son premier film : la musique vieillit avec Kane, de l'éclat au requiem."
     },
     {
-     "id": "le-faux-coupable-1956",
-     "t": "Le Faux Coupable",
-     "y": 1956,
-     "d": "Alfred Hitchcock",
-     "r": "Bernard Herrmann : une contrebasse obsédante, l'instrument du musicien accusé à tort."
-    },
-    {
      "id": "la-mort-aux-trousses-1959",
      "t": "La Mort aux trousses",
      "y": 1959,
@@ -4934,20 +5119,6 @@
      "r": "Georges Delerue : des thèmes élégants et une valse qui contrastent avec la lâcheté du héros."
     },
     {
-     "id": "garde-a-vue-1981",
-     "t": "Garde à vue",
-     "y": 1981,
-     "d": "Claude Miller",
-     "r": "Georges Delerue : une musique rare et retenue pour un huis clos d'interrogatoire."
-    },
-    {
-     "id": "le-mystere-silkwood-1983",
-     "t": "Le Mystère Silkwood",
-     "y": 1983,
-     "d": "Mike Nichols",
-     "r": "Georges Delerue : une mélodie simple et grave pour une ouvrière lanceuse d'alerte."
-    },
-    {
      "id": "la-bataille-d-alger-1966",
      "t": "La Bataille d'Alger",
      "y": 1966,
@@ -5046,13 +5217,6 @@
      "r": "Howard Shore et le saxophone libre d'Ornette Coleman : le free jazz des hallucinations."
     },
     {
-     "id": "seven-1995",
-     "t": "Seven",
-     "y": 1995,
-     "d": "David Fincher",
-     "r": "Howard Shore : une musique sourde, sans mélodie, faite de pluie et de pourriture."
-    },
-    {
      "id": "crash-1996",
      "t": "Crash",
      "y": 1996,
@@ -5065,13 +5229,6 @@
      "y": 2001,
      "d": "Peter Jackson",
      "r": "Howard Shore : un thème pour chaque peuple, la Comté à la flûte irlandaise."
-    },
-    {
-     "id": "spider-2002",
-     "t": "Spider",
-     "y": 2002,
-     "d": "David Cronenberg",
-     "r": "Howard Shore : des cordes étouffées pour un esprit qui se défait."
     },
     {
      "id": "les-crimes-du-futur-2022",
@@ -5179,13 +5336,6 @@
      "r": "Michael Nyman : le piano est la voix d'Ada, qui ne parle pas ; des airs écossais rejoués en boucle."
     },
     {
-     "id": "sexe-mensonges-et-video-1989",
-     "t": "Sexe, mensonges et vidéo",
-     "y": 1989,
-     "d": "Steven Soderbergh",
-     "r": "Cliff Martinez, ancien batteur des Red Hot Chili Peppers : des nappes calmes pour des confessions filmées."
-    },
-    {
      "id": "spring-breakers-2012",
      "t": "Spring Breakers",
      "y": 2012,
@@ -5221,25 +5371,11 @@
      "r": "Joe Hisaishi : un grand orchestre à la Wagner pour une petite fille-poisson."
     },
     {
-     "id": "barton-fink-1991",
-     "t": "Barton Fink",
-     "y": 1991,
-     "d": "Joel et Ethan Coen",
-     "r": "Carter Burwell : une musique d'hôtel moite, qui suinte comme les murs."
-    },
-    {
      "id": "fargo-1996",
      "t": "Fargo",
      "y": 1996,
      "d": "Joel et Ethan Coen",
      "r": "Carter Burwell : un vieil air norvégien, grandiose, pour des crimes minables dans la neige."
-    },
-    {
-     "id": "being-john-malkovich-1999",
-     "t": "Being John Malkovich",
-     "y": 1999,
-     "d": "Spike Jonze",
-     "r": "Carter Burwell : une musique de marionnettiste, tendre et étrange."
     },
     {
      "id": "anomalisa-2015",
@@ -5296,20 +5432,6 @@
      "y": 2011,
      "d": "Pedro Almodóvar",
      "r": "Alberto Iglesias : des cordes glaçantes et précises comme un scalpel."
-    },
-    {
-     "id": "la-voix-humaine-2020",
-     "t": "La Voix humaine",
-     "y": 2020,
-     "d": "Pedro Almodóvar",
-     "r": "Alberto Iglesias : quelques motifs de cordes autour d'un monologue au téléphone."
-    },
-    {
-     "id": "strange-way-of-life-2023",
-     "t": "Strange Way of Life",
-     "y": 2023,
-     "d": "Pedro Almodóvar",
-     "r": "Alberto Iglesias : un western intime, guitare et cordes."
     },
     {
      "id": "cube-1997",
@@ -5382,13 +5504,6 @@
      "r": "Jonny Greenwood : guitare électrique et cordes inquiètes pour une mère hantée."
     },
     {
-     "id": "licorice-pizza-2021",
-     "t": "Licorice Pizza",
-     "y": 2021,
-     "d": "Paul Thomas Anderson",
-     "r": "Jonny Greenwood, et des chansons des années 70 qui donnent le rythme de l'adolescence."
-    },
-    {
      "id": "naissance-des-pieuvres-2007",
      "t": "Naissance des pieuvres",
      "y": 2007,
@@ -5403,25 +5518,11 @@
      "r": "Para One, et « Diamonds » de Rihanna dansée dans une chambre d'hôtel."
     },
     {
-     "id": "prisoners-2013",
-     "t": "Prisoners",
-     "y": 2013,
-     "d": "Denis Villeneuve",
-     "r": "Jóhann Jóhannsson : cordes et orgue funèbres sous la pluie de Pennsylvanie."
-    },
-    {
      "id": "gone-girl-2014",
      "t": "Gone Girl",
      "y": 2014,
      "d": "David Fincher",
      "r": "Trent Reznor et Atticus Ross (Nine Inch Nails) : une musique de spa qui grince, fausse douceur conjugale."
-    },
-    {
-     "id": "citizenfour-2014",
-     "t": "Citizenfour",
-     "y": 2014,
-     "d": "Laura Poitras",
-     "r": "Trent Reznor et Atticus Ross : des nappes inquiètes, presque inaudibles, sous les révélations."
     },
     {
      "id": "grave-2016",
@@ -5529,20 +5630,6 @@
      "r": "Wojciech Kilar, et surtout Chopin, que joue le pianiste Władysław Szpilman pour survivre."
     },
     {
-     "id": "berlin-calling-2008",
-     "t": "Berlin Calling",
-     "y": 2008,
-     "d": "Hannes Stöhr",
-     "r": "Paul Kalkbrenner joue un DJ de techno berlinois interné, et signe sa musique."
-    },
-    {
-     "id": "le-soliste-2009",
-     "t": "Le Soliste",
-     "y": 2009,
-     "d": "Joe Wright",
-     "r": "Dario Marianelli et Beethoven : un violoncelliste de génie devenu sans-abri."
-    },
-    {
      "id": "eden-2014",
      "t": "Eden",
      "y": 2014,
@@ -5599,11 +5686,11 @@
      "r": "Dean Blunt et Wally Badarou : des nappes électroniques pour la voix d'une statue qui rentre chez elle."
     },
     {
-     "id": "je-suis-toujours-la-2024",
-     "t": "Je suis toujours là",
-     "y": 2024,
-     "d": "Walter Salles",
-     "r": "Warren Ellis : peu de musique, des nappes douces, et les chansons brésiliennes de l'époque."
+     "id": "le-guepard-1963",
+     "t": "Le Guépard",
+     "y": 1963,
+     "d": "Luchino Visconti",
+     "r": "Nino Rota, et une valse inédite de Verdi qu'il orchestre pour le grand bal : la fin d'un monde en musique."
     }
    ],
    "notes": {
@@ -5632,7 +5719,6 @@
        "titre": "Bernard Herrmann",
        "ids": [
         "citizen-kane-1941",
-        "le-faux-coupable-1956",
         "sueurs-froides-1958",
         "la-mort-aux-trousses-1959",
         "psychose-1960",
@@ -5663,6 +5749,7 @@
         "la-strada-1954",
         "la-dolce-vita-1960",
         "plein-soleil-1960",
+        "le-guepard-1963",
         "812-1963",
         "le-parrain-1972"
        ]
@@ -5681,9 +5768,7 @@
        "ids": [
         "hiroshima-mon-amour-1959",
         "le-mepris-1963",
-        "le-conformiste-1970",
-        "garde-a-vue-1981",
-        "le-mystere-silkwood-1983"
+        "le-conformiste-1970"
        ]
       },
       {
@@ -5745,10 +5830,8 @@
         "la-mouche-1986",
         "faux-semblants-1988",
         "le-festin-nu-1991",
-        "seven-1995",
         "crash-1996",
         "le-seigneur-des-anneaux-la-communaute-de-l-anneau-2001",
-        "spider-2002",
         "les-crimes-du-futur-2022"
        ]
       },
@@ -5797,7 +5880,6 @@
       {
        "titre": "Cliff Martinez",
        "ids": [
-        "sexe-mensonges-et-video-1989",
         "drive-2011",
         "spring-breakers-2012",
         "the-neon-demon-2016"
@@ -5818,9 +5900,7 @@
       {
        "titre": "Carter Burwell",
        "ids": [
-        "barton-fink-1991",
         "fargo-1996",
-        "being-john-malkovich-1999",
         "no-country-for-old-men-2007",
         "anomalisa-2015"
        ]
@@ -5848,9 +5928,7 @@
         "en-chair-et-en-os-1997",
         "tout-sur-ma-mere-1999",
         "volver-2006",
-        "la-piel-que-habito-2011",
-        "la-voix-humaine-2020",
-        "strange-way-of-life-2023"
+        "la-piel-que-habito-2011"
        ]
       },
       {
@@ -5897,8 +5975,7 @@
         "the-master-2012",
         "phantom-thread-2017",
         "le-pouvoir-du-chien-2021",
-        "spencer-2021",
-        "licorice-pizza-2021"
+        "spencer-2021"
        ]
       },
       {
@@ -5912,7 +5989,6 @@
       {
        "titre": "Jóhann Jóhannsson",
        "ids": [
-        "prisoners-2013",
         "sicario-2015",
         "premier-contact-2016",
         "mandy-2018"
@@ -5931,7 +6007,6 @@
        "titre": "Trent Reznor et Atticus Ross",
        "ids": [
         "gone-girl-2014",
-        "citizenfour-2014",
         "challengers-2024"
        ]
       },
@@ -6223,8 +6298,6 @@
       "genghis-blues-1999",
       "la-pianiste-2001",
       "le-pianiste-2002",
-      "berlin-calling-2008",
-      "le-soliste-2009",
       "only-lovers-left-alive-2013",
       "whiplash-2014",
       "eden-2014",
@@ -6260,8 +6333,7 @@
       "annihilation-2018",
       "uncut-gems-2019",
       "challengers-2024",
-      "dahomey-2024",
-      "je-suis-toujours-la-2024"
+      "dahomey-2024"
      ]
     }
    ]
@@ -8161,6 +8233,27 @@
      "y": 2013,
      "d": "Paweł Pawlikowski",
      "r": "Une jeune novice et sa tante cherchent la tombe de leur famille."
+    },
+    {
+     "id": "une-vie-cachee-2019",
+     "t": "Une vie cachée",
+     "y": 2019,
+     "d": "Terrence Malick",
+     "r": "Un paysan qui refuse Hitler, et sa femme qui l'aime sans le comprendre tout à fait."
+    },
+    {
+     "id": "des-hommes-et-des-dieux-2010",
+     "t": "Des hommes et des dieux",
+     "y": 2010,
+     "d": "Xavier Beauvois",
+     "r": "Des moines qui choisissent de rester, et un dernier dîner sur Le Lac des cygnes."
+    },
+    {
+     "id": "l-image-manquante-2013",
+     "t": "L'Image manquante",
+     "y": 2013,
+     "d": "Rithy Panh",
+     "r": "Une enfance sous les Khmers rouges, racontée avec des figurines d'argile."
     }
    ],
    "parties": [
@@ -8233,7 +8326,10 @@
       "vivre-1994",
       "les-sentiers-de-la-gloire-1957",
       "le-vent-se-leve-2006",
-      "moi-capitaine-2023"
+      "moi-capitaine-2023",
+      "une-vie-cachee-2019",
+      "des-hommes-et-des-dieux-2010",
+      "l-image-manquante-2013"
      ]
     },
     {
@@ -22957,25 +23053,6 @@
    ],
    "fiab": "à vérifier"
   },
-  "argentina-1985-2022": {
-   "p": "1985, deux ans après la fin de la dictature. Le procureur Julio Strassera (Ricardo Darín) et son jeune adjoint Luis Moreno Ocampo doivent juger les généraux de la junte. Menacés, sans moyens, ils montent une équipe de jeunes juristes et recueillent les témoignages des victimes : le premier grand procès d'une dictature devant un tribunal civil.",
-   "c": "Argentine",
-   "k": [
-    "histoire-vraie",
-    "suspense",
-    "injustice"
-   ],
-   "mv": "argentin",
-   "e": 6,
-   "duree": 141,
-   "av": [],
-   "th": [
-    "procès",
-    "junte",
-    "témoignages"
-   ],
-   "fiab": "à vérifier"
-  },
   "je-suis-toujours-la-2024": {
    "p": "Rio de Janeiro, 1971. Eunice Paiva (Fernanda Torres) vit dans une maison ouverte et joyeuse avec son mari, ancien député, et leurs cinq enfants. Un jour, des militaires emmènent son mari, qui ne reviendra jamais. Elle tient la famille debout et se bat pendant des décennies pour la vérité. D'après le livre de son fils, Marcelo Rubens Paiva.",
    "c": "Brésil, France",
@@ -23457,27 +23534,6 @@
    ],
    "fiab": "à vérifier"
   },
-  "lumumba-2000": {
-   "p": "Congo, 1960. Patrice Lumumba, ancien employé des postes devenu tribun, mène son pays à l'indépendance face à la Belgique et devient Premier ministre. En quelques mois, sécession du Katanga, mutineries, Guerre froide : il est renversé, livré à ses ennemis et assassiné en janvier 1961, avec la complicité des Occidentaux.",
-   "c": "France, Belgique, Allemagne, Haïti",
-   "k": [
-    "histoire-vraie",
-    "histoire",
-    "injustice"
-   ],
-   "mv": "auteur-monde",
-   "e": 6,
-   "duree": 116,
-   "av": [
-    "violence explicite"
-   ],
-   "th": [
-    "indépendance",
-    "assassinat politique",
-    "Guerre froide"
-   ],
-   "fiab": "à vérifier"
-  },
   "dahomey-2024": {
    "p": "Novembre 2021 : 26 trésors royaux du Dahomey, pillés par l'armée française en 1892, quittent Paris pour rentrer au Bénin. Mati Diop suit leur voyage, donne la parole à l'une des statues, puis aux étudiants de Cotonou qui débattent de ce que ce retour veut dire. Ours d'or à Berlin.",
    "c": "France, Sénégal, Bénin",
@@ -23703,47 +23759,6 @@
     "avortement",
     "solitude",
     "corps"
-   ],
-   "fiab": "à vérifier"
-  },
-  "harvey-milk-2008": {
-   "p": "San Francisco, années 1970. Harvey Milk (Sean Penn), New-Yorkais installé dans le quartier de Castro, devient la figure du mouvement gay et le premier élu ouvertement homosexuel de Californie, avant d'être assassiné en 1978 par un ancien collègue du conseil municipal.",
-   "c": "États-Unis",
-   "k": [
-    "histoire-vraie",
-    "amour",
-    "injustice"
-   ],
-   "mv": "independant-americain",
-   "e": 6,
-   "duree": 128,
-   "av": [
-    "violence explicite"
-   ],
-   "th": [
-    "droits LGBT",
-    "élection",
-    "assassinat politique"
-   ],
-   "fiab": "à vérifier"
-  },
-  "pride-2014": {
-   "p": "Londres, été 1984. Pendant la grande grève des mineurs contre Margaret Thatcher, de jeunes militants gays et lesbiens décident de collecter de l'argent pour un village minier du pays de Galles. L'accueil est d'abord glacial, puis tout change. D'après une histoire vraie.",
-   "c": "Royaume-Uni",
-   "k": [
-    "comedie",
-    "histoire-vraie",
-    "amour",
-    "doux"
-   ],
-   "mv": "realisme-social-britannique",
-   "e": 6,
-   "duree": 117,
-   "av": [],
-   "th": [
-    "solidarité",
-    "grève",
-    "droits LGBT"
    ],
    "fiab": "à vérifier"
   },
@@ -24064,6 +24079,408 @@
     "mutisme",
     "désir",
     "émancipation"
+   ],
+   "fiab": "à vérifier"
+  },
+  "la-chinoise-1967": {
+   "p": "Été 1967, dans un appartement parisien prêté pour les vacances. Cinq étudiants, dont Véronique (Anne Wiazemsky) et Guillaume (Jean-Pierre Léaud), forment une cellule maoïste : lectures du Petit Livre rouge, exposés, slogans peints sur les murs, jusqu'à projeter un attentat. Godard les filme avec tendresse et ironie, en couleurs franches, un an avant Mai 68.",
+   "c": "France",
+   "k": [
+    "couleurs",
+    "absurde",
+    "huis-clos"
+   ],
+   "mv": "nouvelle-vague",
+   "e": 6,
+   "duree": 90,
+   "av": [],
+   "th": [
+    "maoïsme",
+    "jeunesse militante",
+    "utopie"
+   ],
+   "fiab": "à vérifier"
+  },
+  "zero-de-conduite-1933": {
+   "p": "Dans un collège de province, quatre pensionnaires étouffent sous les surveillants et les punitions. Le jour de la fête de l'école, ils se révoltent : bataille de polochons au ralenti dans une neige de plumes, puis bombardement des notables depuis les toits. Interdit en France jusqu'en 1945 pour son esprit libertaire.",
+   "c": "France",
+   "k": [
+    "noir-et-blanc",
+    "enfance",
+    "court",
+    "reve"
+   ],
+   "mv": "realisme-poetique",
+   "e": 7,
+   "duree": 41,
+   "av": [],
+   "th": [
+    "révolte",
+    "pensionnat",
+    "liberté"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-an-01-1973": {
+   "p": "Un jour, tout le monde décide d'arrêter : « On arrête tout, on réfléchit, et c'est pas triste. » Plus de travail inutile ni de propriété, les clés restent sur les portes, les trains ne vont plus nulle part. D'après la bande dessinée de Gébé, une utopie joyeuse en noir et blanc, avec Gérard Depardieu, Miou-Miou et Coluche à leurs débuts.",
+   "c": "France",
+   "k": [
+    "humour-absurde",
+    "comedie",
+    "noir-et-blanc",
+    "doux"
+   ],
+   "mv": "modernite-europeenne",
+   "e": 6,
+   "duree": 90,
+   "av": [],
+   "th": [
+    "utopie",
+    "décroissance",
+    "arrêt collectif"
+   ],
+   "fiab": "à vérifier"
+  },
+  "le-guepard-1963": {
+   "p": "Sicile, 1860. Garibaldi débarque pour unifier l'Italie. Le prince Salina (Burt Lancaster), grand seigneur lucide, voit son monde disparaître ; il laisse son neveu Tancredi (Alain Delon) rejoindre les révolutionnaires puis épouser la fille d'un riche parvenu (Claudia Cardinale). « Il faut que tout change pour que rien ne change. » Le bal final dure près de trois quarts d'heure. Palme d'or 1963.",
+   "c": "Italie, France",
+   "k": [
+    "couleurs",
+    "histoire",
+    "contemplatif"
+   ],
+   "mv": "classiques-europeens",
+   "e": 8,
+   "duree": 170,
+   "av": [],
+   "th": [
+    "aristocratie",
+    "déclin",
+    "Risorgimento"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-anglaise-et-le-duc-2001": {
+   "p": "Paris, 1790-1793. Grace Elliott, aristocrate écossaise et royaliste, ancienne maîtresse du duc d'Orléans, cousin du roi rallié à la Révolution, vit la Terreur de l'intérieur : elle cache un proscrit sous son matelas et supplie le duc de ne pas voter la mort de Louis XVI. Les acteurs jouent devant des tableaux peints du Paris de l'époque, incrustés à l'image : un film unique.",
+   "c": "France",
+   "k": [
+    "histoire",
+    "histoire-vraie",
+    "couleurs"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 129,
+   "av": [],
+   "th": [
+    "Terreur",
+    "royalisme",
+    "amitié"
+   ],
+   "fiab": "à vérifier"
+  },
+  "danton-1983": {
+   "p": "Printemps 1794. Danton (Gérard Depardieu) revient à Paris pour arrêter la Terreur ; Robespierre (Wojciech Pszoniak), incorruptible et glacé, le fait juger et guillotiner. Tourné par un Polonais pendant l'état de siège dans son pays, le film parle autant de la Révolution française que des régimes qui dévorent leurs propres enfants.",
+   "c": "France, Pologne",
+   "k": [
+    "histoire",
+    "huis-clos",
+    "injustice"
+   ],
+   "mv": "auteur-europeen",
+   "e": 7,
+   "duree": 136,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "Terreur",
+    "Robespierre",
+    "procès"
+   ],
+   "fiab": "à vérifier"
+  },
+  "monsieur-smith-au-senat-1939": {
+   "p": "Jefferson Smith (James Stewart), chef scout naïf, est nommé sénateur par une machine politique qui le croit inoffensif. À Washington, il découvre que son mentor trempe dans une magouille autour d'un barrage, et se bat seul au Sénat en gardant la parole pendant près de vingt-quatre heures pour ne pas céder.",
+   "c": "États-Unis",
+   "k": [
+    "noir-et-blanc",
+    "injustice",
+    "comedie"
+   ],
+   "mv": "hollywood-classique",
+   "e": 6,
+   "duree": 124,
+   "av": [],
+   "th": [
+    "démocratie",
+    "corruption",
+    "obstruction"
+   ],
+   "fiab": "à vérifier"
+  },
+  "douze-hommes-en-colere-1957": {
+   "p": "Une salle de délibération étouffante, un jour de canicule. Douze jurés doivent décider du sort d'un jeune accusé de parricide ; onze votent coupable sans hésiter. Le douzième (Henry Fonda) a un doute raisonnable et le défend, argument après argument. Presque tout le film dans une seule pièce.",
+   "c": "États-Unis",
+   "k": [
+    "noir-et-blanc",
+    "huis-clos",
+    "suspense"
+   ],
+   "mv": "hollywood-classique",
+   "e": 7,
+   "duree": 95,
+   "av": [],
+   "th": [
+    "justice",
+    "doute",
+    "préjugés"
+   ],
+   "fiab": "à vérifier"
+  },
+  "lacombe-lucien-1974": {
+   "p": "Sud-Ouest de la France, juin 1944. Lucien, 17 ans, garçon de ferme, veut entrer dans la Résistance, qui le refuse. Par hasard, il entre dans la police allemande et y trouve un pouvoir qu'il n'avait jamais eu. Il tombe amoureux d'une jeune juive, France. Un film qui a fait scandale en montrant un collaborateur sans idées, presque sans raison.",
+   "c": "France, Italie, Allemagne de l'Ouest",
+   "k": [
+    "histoire",
+    "malaise",
+    "amour"
+   ],
+   "mv": "modernite-europeenne",
+   "e": 7,
+   "duree": 138,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "collaboration",
+    "hasard",
+    "banalité"
+   ],
+   "fiab": "à vérifier"
+  },
+  "le-rebelle-1949": {
+   "p": "Howard Roark (Gary Cooper), architecte de génie, refuse tout compromis avec les clients, les critiques et la foule : il préfère travailler dans une carrière plutôt que dessiner ce qu'il méprise, et fait sauter un immeuble dont on a défiguré les plans. Écrit par Ayn Rand d'après son propre roman, le manifeste de son individualisme, avec des décors modernistes spectaculaires.",
+   "c": "États-Unis",
+   "k": [
+    "noir-et-blanc",
+    "obsession",
+    "amour"
+   ],
+   "mv": "hollywood-classique",
+   "e": 6,
+   "duree": 114,
+   "av": [],
+   "th": [
+    "individualisme",
+    "architecture",
+    "intégrité"
+   ],
+   "fiab": "à vérifier"
+  },
+  "margin-call-2011": {
+   "p": "Une nuit de 2008, dans une grande banque d'affaires de New York. Un jeune analyste découvre que les produits de la banque valent bien moins que prévu et qu'elle peut sombrer. Jusqu'à l'aube, l'alerte remonte jusqu'au patron (Jeremy Irons), qui décide de tout vendre avant que le marché comprenne. Pas de méchants caricaturaux : des gens ordinaires face à une décision énorme.",
+   "c": "États-Unis",
+   "k": [
+    "suspense",
+    "huis-clos",
+    "societe"
+   ],
+   "mv": "independant-americain",
+   "e": 6,
+   "duree": 107,
+   "av": [],
+   "th": [
+    "finance",
+    "krach",
+    "responsabilité"
+   ],
+   "fiab": "à vérifier"
+  },
+  "des-hommes-et-des-dieux-2010": {
+   "p": "Algérie, années 1990. Huit moines cisterciens vivent en paix avec les villageois musulmans de Tibhirine, qu'ils soignent. Quand la guerre civile et les groupes islamistes les menacent, ils doivent choisir : partir ou rester. Chants liturgiques, silences, et Le Lac des cygnes au dernier dîner. Grand prix à Cannes.",
+   "c": "France",
+   "k": [
+    "contemplatif",
+    "histoire-vraie",
+    "larmes",
+    "musique"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 122,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "foi",
+    "guerre civile",
+    "rester"
+   ],
+   "fiab": "à vérifier"
+  },
+  "une-vie-cachee-2019": {
+   "p": "Autriche, 1939-1943. Franz Jägerstätter, paysan catholique d'un village de montagne, refuse de prêter serment à Hitler. Ni le maire, ni l'évêque, ni l'amour de sa femme ne le font céder, malgré la prison et la menace de mort. Des images de montagnes et de champs d'une beauté immense.",
+   "c": "États-Unis, Allemagne",
+   "k": [
+    "contemplatif",
+    "histoire-vraie",
+    "famille",
+    "voix-off"
+   ],
+   "mv": "independant-americain",
+   "e": 7,
+   "duree": 173,
+   "av": [],
+   "th": [
+    "objection",
+    "foi",
+    "résistance"
+   ],
+   "fiab": "à vérifier"
+  },
+  "leviathan-2014": {
+   "p": "Au bord de la mer de Barents, Kolia, garagiste, refuse de céder sa maison au maire corrompu de la petite ville, qui veut le terrain. Un ami avocat venu de Moscou tente de l'aider avec un dossier compromettant. Mais le maire a pour lui la police, les juges et l'évêque orthodoxe. Le livre de Job dans la Russie de Poutine.",
+   "c": "Russie",
+   "k": [
+    "ocean",
+    "injustice",
+    "contemplatif",
+    "famille"
+   ],
+   "mv": "auteur-europeen",
+   "e": 7,
+   "duree": 141,
+   "av": [],
+   "th": [
+    "corruption",
+    "Église orthodoxe",
+    "expropriation"
+   ],
+   "fiab": "à vérifier"
+  },
+  "les-chevaux-de-dieu-2012": {
+   "p": "Sidi Moumen, bidonville de Casablanca. Yachine et son frère Hamid grandissent entre football, petits trafics et violence. Hamid sort de prison transformé par un groupe islamiste, qui recrute peu à peu Yachine et ses amis. Le film les suit jusqu'aux attentats-suicides de Casablanca, le 16 mai 2003.",
+   "c": "Maroc, France",
+   "k": [
+    "enfance",
+    "violence",
+    "societe"
+   ],
+   "mv": "auteur-monde",
+   "e": 7,
+   "duree": 115,
+   "av": [
+    "violence explicite",
+    "violence sexuelle"
+   ],
+   "th": [
+    "radicalisation",
+    "bidonville",
+    "attentats"
+   ],
+   "fiab": "à vérifier"
+  },
+  "four-lions-2010": {
+   "p": "Sheffield. Omar et ses amis rêvent de djihad mais ratent tout : vidéos de revendication grotesques, camp d'entraînement au Pakistan désastreux, explosifs transportés en courant. Une comédie très noire sur l'absurdité du terrorisme, qui fait rire jusqu'au moment où il n'y a plus de quoi rire.",
+   "c": "Royaume-Uni",
+   "k": [
+    "humour-absurde",
+    "comedie",
+    "malaise"
+   ],
+   "mv": "auteur-europeen",
+   "e": 6,
+   "duree": 101,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "djihadisme",
+    "satire",
+    "bêtise"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-image-manquante-2013": {
+   "p": "Rithy Panh avait 11 ans quand les Khmers rouges ont vidé Phnom Penh, en 1975 ; sa famille est morte dans les camps de travail. De cette époque, il ne reste presque que les images de propagande du régime. Alors il sculpte de petites figurines d'argile pour reconstituer ses souvenirs. Prix Un certain regard à Cannes.",
+   "c": "Cambodge, France",
+   "k": [
+    "documentaire",
+    "voix-off",
+    "animation",
+    "enfance"
+   ],
+   "mv": "doc-essai",
+   "e": 8,
+   "duree": 96,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "Khmers rouges",
+    "mémoire",
+    "figurines"
+   ],
+   "fiab": "à vérifier"
+  },
+  "un-homme-dans-la-foule-1957": {
+   "p": "Une journaliste de radio découvre en prison un vagabond chanteur, Lonesome Rhodes (Andy Griffith), et en fait une vedette. Charmeur, drôle, « proche du peuple », il devient une star de la télévision puis un faiseur de présidents, de plus en plus méprisant envers son public. Un portrait de démagogue étonnamment actuel.",
+   "c": "États-Unis",
+   "k": [
+    "noir-et-blanc",
+    "societe",
+    "folie"
+   ],
+   "mv": "hollywood-classique",
+   "e": 7,
+   "duree": 126,
+   "av": [],
+   "th": [
+    "populisme",
+    "télévision",
+    "démagogie"
+   ],
+   "fiab": "à vérifier"
+  },
+  "bienvenue-mister-chance-1979": {
+   "p": "Chance (Peter Sellers), jardinier simple d'esprit qui n'a jamais quitté la maison de son maître et ne connaît le monde que par la télévision, se retrouve à la rue. Ses phrases sur le jardinage sont prises pour des métaphores profondes par un milliardaire, puis par le président des États-Unis, et tout Washington le voit en homme d'État.",
+   "c": "États-Unis",
+   "k": [
+    "humour-absurde",
+    "comedie",
+    "doux"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 7,
+   "duree": 130,
+   "av": [],
+   "th": [
+    "innocence",
+    "pouvoir",
+    "télévision"
+   ],
+   "fiab": "à vérifier"
+  },
+  "sans-filtre-2022": {
+   "p": "Un couple de mannequins influenceurs embarque pour une croisière de luxe avec des milliardaires. Le capitaine, marxiste alcoolique, débat avec un oligarque russe capitaliste pendant que la tempête retourne tous les estomacs. Puis, après le naufrage, sur une île, l'ordre s'inverse : c'est la femme de ménage, qui sait pêcher, qui commande. Palme d'or 2022.",
+   "c": "Suède, France, Royaume-Uni, Allemagne",
+   "k": [
+    "humour-absurde",
+    "malaise",
+    "ocean",
+    "comedie"
+   ],
+   "mv": "auteur-europeen",
+   "e": 7,
+   "duree": 149,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "riches",
+    "renversement",
+    "satire"
    ],
    "fiab": "à vérifier"
   }
@@ -25044,7 +25461,6 @@
   "z-1969": "13330",
   "missing-1982": "13231",
   "no-2012": "21142",
-  "argentina-1985-2022": "02242",
   "je-suis-toujours-la-2024": "22024",
   "nostalgie-de-la-lumiere-2010": "51031",
   "the-act-of-killing-2012": "26020",
@@ -25068,7 +25484,6 @@
   "paradise-now-2005": "13231",
   "camp-de-thiaroye-1988": "13042",
   "xala-1975": "31132",
-  "lumumba-2000": "12232",
   "dahomey-2024": "51040",
   "timbuktu-2014": "42022",
   "i-am-not-your-negro-2016": "21061",
@@ -25080,8 +25495,6 @@
   "moi-daniel-blake-2016": "02044",
   "en-guerre-2018": "02350",
   "l-evenement-2021": "14221",
-  "harvey-milk-2008": "11053",
-  "pride-2014": "10036",
   "woman-at-war-2018": "30133",
   "how-to-blow-up-a-pipeline-2022": "03340",
   "green-border-2023": "23032",
@@ -25096,7 +25509,27 @@
   "il-divo-2008": "51130",
   "furyo-1983": "32032",
   "solaris-1972": "51031",
-  "la-lecon-de-piano-1993": "41023"
+  "la-lecon-de-piano-1993": "41023",
+  "la-chinoise-1967": "41140",
+  "zero-de-conduite-1933": "40042",
+  "l-an-01-1973": "10153",
+  "le-guepard-1963": "51031",
+  "l-anglaise-et-le-duc-2001": "61030",
+  "danton-1983": "22150",
+  "monsieur-smith-au-senat-1939": "11143",
+  "douze-hommes-en-colere-1957": "11350",
+  "lacombe-lucien-1974": "24130",
+  "le-rebelle-1949": "40141",
+  "margin-call-2011": "02350",
+  "des-hommes-et-des-dieux-2010": "31042",
+  "une-vie-cachee-2019": "61021",
+  "leviathan-2014": "32041",
+  "les-chevaux-de-dieu-2012": "23230",
+  "four-lions-2010": "03232",
+  "l-image-manquante-2013": "52030",
+  "un-homme-dans-la-foule-1957": "12241",
+  "bienvenue-mister-chance-1979": "21043",
+  "sans-filtre-2022": "11233"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
