@@ -92,3 +92,21 @@ Filtres (24 octobre 2026) : un seul bouton « Filtres ▾ » à côté de la rec
 s'ouvrent dessous, sans icône ; le bouton affiche le filtre actif. Express : en grand l'affiche, le
 titre, « Pas vu », « Adoré », « Bien », « Pas aimé » ; en discret « + » (ma liste) à côté de
 l'affiche, « Vu mais oublié », « Noter /10 » (1 à 10) près de « Vu, sans avis ».
+
+## Dictée de la boîte à idées (12 novembre 2026)
+
+Idée de Licia du 10 novembre : sur téléphone, la dictée écrivait plusieurs fois le même mot et
+s'arrêtait quand on continuait de parler ; sur ordinateur, elle ne se lançait pas.
+
+- Mots répétés : sur Android, chaque résultat de la reconnaissance reprend le précédent en plus
+  long (« je », « je veux », « je veux un film »). Un résultat qui prolonge le précédent le remplace
+  au lieu de s'y ajouter ; sur Android, l'écoute se fait phrase par phrase.
+- Arrêt en cours de route : la reconnaissance se relance seule après une pause, tant qu'on n'a pas
+  appuyé sur « ⏹ Arrêter la dictée » ; elle s'arrête d'elle-même après environ une minute de silence.
+- Ne se lance pas : la raison s'affiche maintenant dans le panneau (micro refusé, aucun micro,
+  dictée du navigateur injoignable…), avec une autre solution : touche Windows + H sur ordinateur
+  Windows, micro du clavier sur téléphone. Un point clignote pendant l'écoute.
+- Corriger à la main pendant la dictée reprend à partir du texte corrigé.
+
+Essai : `tests/cineclub_idees.py` simule une reconnaissance qui répète les mots comme Android,
+une pause, l'arrêt et un micro refusé. La dictée réelle reste à essayer sur le Huawei et le MateBook.
