@@ -3489,6 +3489,27 @@
      "y": 2024,
      "d": "Brady Corbet",
      "r": "Un architecte juif hongrois rescapé des camps tente de se reconstruire en Amérique."
+    },
+    {
+     "id": "wall-street-1987",
+     "t": "Wall Street",
+     "y": 1987,
+     "d": "Oliver Stone",
+     "r": "Un jeune courtier séduit par Gordon Gekko, pour qui « l'avidité, c'est bien » : le marché vu de l'intérieur."
+    },
+    {
+     "id": "tucker-1988",
+     "t": "Tucker : l'homme et son rêve",
+     "y": 1988,
+     "d": "Francis Ford Coppola",
+     "r": "Un inventeur qui veut bâtir sa propre voiture face aux géants de Detroit : l'esprit d'entreprise, histoire vraie."
+    },
+    {
+     "id": "princesse-mononoke-1997",
+     "t": "Princesse Mononoké",
+     "y": 1997,
+     "d": "Hayao Miyazaki",
+     "r": "Une princesse élevée par les loups contre les forges qui dévorent la forêt : l'écologie en fable."
     }
    ],
    "parties": [
@@ -3500,6 +3521,7 @@
        "titre": "Anarchisme",
        "ids": [
         "zero-de-conduite-1933",
+        "les-petites-marguerites-1966",
         "l-an-01-1973",
         "land-and-freedom-1995",
         "v-pour-vendetta-2005"
@@ -3510,6 +3532,7 @@
        "ids": [
         "la-chinoise-1967",
         "memoires-du-sous-developpement-1968",
+        "l-aveu-1970",
         "l-homme-de-marbre-1977",
         "chers-camarades-2020"
        ]
@@ -3520,7 +3543,8 @@
         "le-guepard-1963",
         "le-dernier-empereur-1987",
         "l-anglaise-et-le-duc-2001",
-        "la-favorite-2018"
+        "la-favorite-2018",
+        "une-vie-cachee-2019"
        ]
       },
       {
@@ -3529,13 +3553,15 @@
         "monsieur-smith-au-senat-1939",
         "douze-hommes-en-colere-1957",
         "les-hommes-du-president-1976",
-        "l-exercice-de-l-etat-2011"
+        "l-exercice-de-l-etat-2011",
+        "argentina-1985-2022"
        ]
       },
       {
        "titre": "Écologie",
        "ids": [
         "l-an-01-1973",
+        "princesse-mononoke-1997",
         "woman-at-war-2018",
         "honeyland-2019",
         "how-to-blow-up-a-pipeline-2022"
@@ -3555,7 +3581,6 @@
        "titre": "Féminisme",
        "ids": [
         "le-sel-de-la-terre-1954",
-        "les-petites-marguerites-1966",
         "thelma-et-louise-1991",
         "mustang-2015",
         "l-evenement-2021",
@@ -3567,6 +3592,8 @@
        "titre": "Libéralisme et marché",
        "ids": [
         "le-rebelle-1949",
+        "wall-street-1987",
+        "tucker-1988",
         "there-will-be-blood-2007",
         "margin-call-2011"
        ]
@@ -26910,6 +26937,44 @@
     "Guerre froide"
    ],
    "fiab": "à vérifier"
+  },
+  "wall-street-1987": {
+   "p": "New York, 1985. Bud Fox (Charlie Sheen), jeune courtier ambitieux, réussit à approcher Gordon Gekko (Michael Douglas), raider de la Bourse qui proclame que « l'avidité, c'est bien ». Pour lui plaire, Bud lui livre des informations confidentielles, jusqu'à mettre en jeu la compagnie aérienne où travaille son père, syndicaliste.",
+   "c": "États-Unis",
+   "k": [
+    "suspense",
+    "societe",
+    "obsession"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 6,
+   "duree": 122,
+   "av": [],
+   "th": [
+    "finance",
+    "ambition",
+    "délit d'initié"
+   ],
+   "fiab": "à vérifier"
+  },
+  "tucker-1988": {
+   "p": "Années 1940. Preston Tucker (Jeff Bridges), inventeur optimiste, veut construire la voiture la plus sûre et la plus moderne d'Amérique. Il lève de l'argent, monte une usine et présente sa Tucker Torpedo, mais les trois géants de Detroit et un sénateur s'allient pour le faire tomber. D'après une histoire vraie, dans des couleurs de publicité d'époque.",
+   "c": "États-Unis",
+   "k": [
+    "histoire-vraie",
+    "retro",
+    "couleurs"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 6,
+   "duree": 111,
+   "av": [],
+   "th": [
+    "entrepreneur",
+    "automobile",
+    "concurrence"
+   ],
+   "fiab": "à vérifier"
   }
  },
  "familles": {
@@ -27960,7 +28025,9 @@
   "pride-2014": "10036",
   "harvey-milk-2008": "11053",
   "argentina-1985-2022": "02242",
-  "lumumba-2000": "12232"
+  "lumumba-2000": "12232",
+  "wall-street-1987": "12241",
+  "tucker-1988": "31033"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }

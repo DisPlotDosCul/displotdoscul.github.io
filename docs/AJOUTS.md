@@ -241,9 +241,14 @@ Naissance d'une nation (signalé comme film de propagande raciste, document hist
 (1934), La Règle du jeu, The Servant, Snowpiercer, Au-delà des montagnes, First Cow, Everybody in the Place, Threads,
 Un long dimanche de fiançailles, Au revoir là-haut, Chinatown.
 
-« Politique » passe de 45 à 185 films. En tête, « Courants politiques » : chaque grande famille d'idées vue
+Vérification du soir : pour qu'aucun courant ne soit favorisé, chacun a maintenant cinq films. Ajoutés : Wall Street
+(Oliver Stone, 1987, 122 min) et Tucker : l'homme et son rêve (Francis Ford Coppola, 1988, 111 min) dans « Libéralisme
+et marché » ; rangés aussi dans un courant : Les Petites Marguerites (anarchisme), L'Aveu (communisme), Une vie cachée
+(conservatisme), Argentina, 1985 (démocratie libérale), Princesse Mononoké (écologie).
+
+« Politique » passe de 45 à 188 films. En tête, « Courants politiques » : chaque grande famille d'idées vue
 de l'intérieur, par ceux qui y croient, avec ses élans et ses dérives, dans l'ordre alphabétique pour n'en
-favoriser aucune, de trois à cinq films chacune : Anarchisme, Communisme, Conservatisme et monarchie,
+favoriser aucune, cinq films chacune (six pour le féminisme, le catalogue en comptant davantage) : Anarchisme, Communisme, Conservatisme et monarchie,
 Démocratie libérale, Écologie, Extrême droite et fascisme, Féminisme, Libéralisme et marché, Mouvements LGBT+,
 Nationalismes, Religion et pouvoir, Socialisme et syndicalisme. Puis les sujets : Dictatures et surveillance
 (régimes communistes, juntes militaires et théocratie, côte à côte), Nazisme et Seconde Guerre mondiale,
