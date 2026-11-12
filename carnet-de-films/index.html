@@ -979,6 +979,20 @@ html.aff-grand .rime-grid{grid-template-columns:1fr;}
 .ccsw{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer;}
 .ccsw input{width:20px;height:20px;margin-top:1px;flex:none;accent-color:var(--k-s-2C6660);}
 .ccsw small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px;}
+/* Confidentialité et amis (12 novembre) */
+.ccpriv{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:6px;font-size:14px;}
+.cpv-h{font-size:15px;}
+.cpv-m{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+.cpv-m .chip{justify-content:center;min-height:40px;}
+.cpv-m .chip[aria-checked="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+.cpv-t{display:grid;gap:8px;}
+.cpv-r{display:grid;gap:4px;font-weight:600;}
+.cpv-r select{font-weight:400;}
+.cpv-p{display:grid;gap:6px;}
+.ami-b{align-items:center;flex-wrap:wrap;}
+.ami-ok{font-weight:600;font-size:14px;}
+.mrow-f{font-style:normal;}
+.cpv-x{color:var(--ink);}
 .cgouts{margin:0;font-style:italic;font-size:15px;}
 .sh-note.ok{color:var(--fini);font-weight:600;}
 .mfilm.fil span{white-space:normal;}
@@ -1794,26 +1808,155 @@ html.sky-on #rsheet{z-index:50;}
     return JSON.stringify(o) + "|" + ((CC.me || {}).pseudo || "") + "|" + JSON.stringify((CC.me || {}).bloques || []);
   }
   var SIG = "", PIDFIX = false;
+  // ---------- Confidentialité (12 novembre) ----------
+  // Les notes, la liste, les goûts et les chiffres de chacun quittent le profil (lu par tous les membres) pour des documents
+  // « carnets/{compte}__{partie} ». Chaque document dit qui peut le lire : « tous », ou seulement les comptes de « lect »
+  // (amis ou proches), et les règles de la base le vérifient. Tant que ces règles ne sont pas publiées, tout reste dans le profil, comme avant.
+  var RAWP = null, CARNQ = [null, null, null], CARNOK = null, MIGR = false, STAT_T = 0;
+  CC.PARTS = ["rep", "liste", "quiz", "gouts", "stats"];
+  var PART_DEF = { rep:{}, liste:{}, quiz:{}, gouts:"", stats:{} };
+  function cref(part){ return fs.collection("carnets").doc(CC.uid + "__" + part); }
+  function moved(u){ return !!(RAWP && RAWP[u] && RAWP[u].carnet); }
+  CC.carnetMode = function(){ return moved(CC.uid); };
+  CC.carnetOk = function(){ return CARNOK === true; };
+  function carnOf(u){ var c = {}; CARNQ.forEach(function(m){ if (m && m[u]) Object.assign(c, m[u]); }); return c; }
+  function withCarn(u, raw){
+    var p = Object.assign({}, raw), c = carnOf(u);
+    if (u === CC.uid) p.reglages = (c.reglages && c.reglages.data) || {};
+    if (!raw.carnet) return p;
+    p.cache = {};
+    CC.PARTS.forEach(function(k){ if (c[k] && c[k].data !== undefined) p[k] = c[k].data; else { delete p[k]; if (u !== CC.uid && !c[k]) p.cache[k] = true; } });
+    return p;
+  }
+  // Mode choisi : public, privé (amis), personnalisé ou bulle. Les comptes d'avant restent publics (ou dans leur bulle).
+  CC.mode = function(p){ p = p || (RAWP && RAWP[CC.uid]) || CC.me || {}; return p.vis || (p.bulle ? "bulle" : "public"); };
+  function reg(){ return (CC.me && CC.me.reglages) || {}; }
+  function amisOf(p){ return (p && Array.isArray(p.amis) && p.amis) || []; }
+  function myAmis(){ return amisOf(RAWP && RAWP[CC.uid]); }
+  // Pour chaque élément du carnet : « tous », « amis », « proches » ou « moi ».
+  CC.aud = function(k){
+    var mode = CC.mode();
+    if (mode === "public") return "tous"; if (mode === "prive") return "amis"; if (mode === "bulle") return "moi";
+    var v = (reg().voir || {})[k];
+    return ["tous", "amis", "proches", "moi"].indexOf(v) >= 0 ? v : "tous";
+  };
+  CC.visOf = function(k){
+    var a = CC.aud(k), am = myAmis();
+    var lect = a === "amis" ? am : a === "proches" ? (reg().proches || []).filter(function(u){ return am.indexOf(u) >= 0; }) : [];
+    return { vis:a, lect:lect.slice().sort() };
+  };
+  // Amis : une demande acceptée des deux côtés. Chacun écrit seulement sa propre liste.
+  CC.amis = myAmis;
+  CC.isAmi = function(u){ return myAmis().indexOf(u) >= 0 && amisOf(RAWP && RAWP[u]).indexOf(CC.uid) >= 0; };
+  // Ce que l'autre membre me montre (fil, soirée) : « tous », ou « amis » si je suis dans sa liste.
+  CC.lets = function(u, k){ var p = (RAWP && RAWP[u]) || {}, v = p[k] || "tous"; return u === CC.uid || v === "tous" || (v === "amis" && amisOf(p).indexOf(CC.uid) >= 0); };
+  function listenCarnets(){
+    var col = fs.collection("carnets");
+    [col.where("uid", "==", CC.uid), col.where("vis", "==", "tous"), col.where("lect", "array-contains", CC.uid)].forEach(function(q, i){
+      q.onSnapshot(function(s){
+        var m = {}; s.docs.forEach(function(d){ var x = d.data() || {}; if (x.uid && x.part) (m[x.uid] = m[x.uid] || {})[x.part] = x; });
+        CARNQ[i] = m; if (i === 0) CARNOK = true;
+        applyProfils();
+      }, function(){ if (i === 0) { CARNOK = false; CARNQ[0] = {}; applyProfils(); } });
+    });
+  }
+  // Premier passage avec les nouvelles règles : mes données passent du profil à mes documents « carnets », en une seule écriture.
+  function migrate(){
+    if (MIGR || CARNOK !== true || CC.view || !RAWP || !RAWP[CC.uid]) return;
+    if (RAWP[CC.uid].carnet) { repair(); return; }
+    MIGR = true;
+    var raw = RAWP[CC.uid], b = fs.batch(), F = firebase.firestore.FieldValue;
+    CC.PARTS.forEach(function(k){ b.set(cref(k), Object.assign({ uid:CC.uid, part:k, data:raw[k] != null ? raw[k] : PART_DEF[k] }, CC.visOf(k)), { merge:true }); });
+    b.set(cref("reglages"), { uid:CC.uid, part:"reglages", vis:"moi", lect:[] }, { merge:true });
+    b.update(fs.collection("profils").doc(CC.uid), { carnet:1, rep:F.delete(), liste:F.delete(), quiz:F.delete(), gouts:F.delete() });
+    b.commit().catch(function(){ MIGR = "échec"; });
+  }
+  // Un onglet resté ouvert avec l'ancienne version a pu réécrire des réponses dans le profil : elles rejoignent mes carnets.
+  var REPAIR = false;
+  function repair(){
+    var raw = RAWP[CC.uid], ks = CC.PARTS.filter(function(k){ return raw[k] != null; });
+    if (REPAIR || !ks.length || !CARNQ[0]) return;
+    REPAIR = true;
+    var b = fs.batch(), F = firebase.firestore.FieldValue, del = {};
+    ks.forEach(function(k){ b.set(cref(k), Object.assign({ uid:CC.uid, part:k, data:raw[k] }, CC.visOf(k)), { merge:true }); del[k] = F.delete(); });
+    b.update(fs.collection("profils").doc(CC.uid), del);
+    b.commit().then(function(){ REPAIR = false; }, function(){});
+  }
+  // Qui peut lire chaque document : remis à jour quand le mode, les réglages ou les amis changent.
+  var VSYNC = false;
+  function syncVis(){
+    if (VSYNC || !moved(CC.uid) || !CARNQ[0] || CC.view) return;
+    var mine = CARNQ[0][CC.uid] || {}, ps = [];
+    CC.PARTS.forEach(function(k){
+      var v = CC.visOf(k), cur = mine[k];
+      if (cur && cur.vis === v.vis && JSON.stringify(cur.lect || []) === JSON.stringify(v.lect)) return;
+      ps.push(cref(k).set(Object.assign({ uid:CC.uid, part:k }, v), { merge:true }));
+    });
+    if (!ps.length) return;
+    VSYNC = true;
+    Promise.all(ps).then(function(){ VSYNC = false; }, function(){ VSYNC = false; });
+  }
+  // Mes chiffres (films vus, notés, moyenne) : un petit document à part, qu'on peut montrer sans montrer les notes.
+  function statsOf(rep){
+    var vus = 0, n = 0, sum = 0, pf = 0;
+    Object.keys(rep || {}).forEach(function(id){ var r = rep[id] || {}; if (r.etat === "vu" || r.etat === "pas_fini") vus++; if (r.etat === "pas_fini") pf++; if (r.note10) { n++; sum += +r.note10; } });
+    return { vus:vus, notes:n, moy:n ? Math.round(sum / n * 10) / 10 : 0, pasFinis:pf };
+  }
+  CC.statsOf = statsOf;
+  function syncStats(){
+    if (!moved(CC.uid) || !CARNQ[0] || !CC.me || CC.view) return;
+    var st = statsOf(CC.me.rep), cur = (CARNQ[0][CC.uid] || {}).stats;
+    if (cur && JSON.stringify(cur.data || {}) === JSON.stringify(st)) return;
+    clearTimeout(STAT_T);
+    STAT_T = setTimeout(function(){ cref("stats").set(Object.assign({ uid:CC.uid, part:"stats", data:st }, CC.visOf("stats")), { merge:true }).catch(function(){}); }, 1500);
+  }
+  function applyProfils(){
+    if (!RAWP) return;
+    // Mes propres documents d'abord, pour ne pas afficher un carnet vide le temps qu'ils arrivent.
+    if (moved(CC.uid) && !CARNQ[0] && CARNOK !== false) return;
+    var m = {}; Object.keys(RAWP).forEach(function(u){ m[u] = withCarn(u, RAWP[u]); });
+    CC.profils = m; CC.me = m[CC.uid] || null;
+    var firstLoad = !CC.meLoaded; CC.meLoaded = true;
+    if (CC.view && !m[CC.view]) { CC.exitView(); return; }
+    if (CC.view) CC.viewName = m[CC.view].pseudo || CC.viewName;
+    meCbs.forEach(function(f){ try { f(); } catch (e) {} });
+    paintBar();
+    if (firstLoad && !CC.me) openLogin();
+    if (CC.me && !CC.me.pid && !PIDFIX) { PIDFIX = true; fs.collection("profils").doc(CC.uid).update({ pid:CC.me.slug || ("m_" + CC.uid) }).catch(function(){ PIDFIX = false; }); }
+    var sg = otherSig();
+    if (sg !== SIG) { SIG = sg; CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); }
+    if (firstLoad && CC.me) listenCom();
+    if (!$("msheet").hidden) renderCom();
+    var pv = $("ccPriv"); if (pv && !$("lsheet").hidden) pv.innerHTML = privHtml();
+    if (CC.me) { migrate(); syncVis(); syncStats(); amiSync(); if (CC.comSync) CC.comSync(); if (CC.autoLink) CC.autoLink(); }
+  }
   boot.then(function(){
     paintBar();
     if (!CC.uid) return;
+    listenCarnets();
     fs.collection("profils").onSnapshot(function(s){
       var m = {}; s.docs.forEach(function(d){ m[d.id] = d.data() || {}; });
-      CC.profils = m; CC.me = m[CC.uid] || null;
-      var firstLoad = !CC.meLoaded; CC.meLoaded = true;
-      if (CC.view && !m[CC.view]) { CC.exitView(); return; }
-      if (CC.view) CC.viewName = m[CC.view].pseudo || CC.viewName;
-      meCbs.forEach(function(f){ try { f(); } catch (e) {} });
-      paintBar();
-      if (firstLoad && !CC.me) openLogin();
-      if (CC.me && !CC.me.pid && !PIDFIX) { PIDFIX = true; fs.collection("profils").doc(CC.uid).update({ pid:CC.me.slug || ("m_" + CC.uid) }).catch(function(){ PIDFIX = false; }); }
-      var sg = otherSig();
-      if (sg !== SIG) { SIG = sg; CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); }
-      if (firstLoad && CC.me) listenCom();
-      if (!$("msheet").hidden) renderCom();
+      RAWP = m; applyProfils();
     }, function(e){ CC.loadErr && CC.loadErr("les profils des membres", e); });
   });
 
+  // Écrire une entrée (ou plusieurs) d'une partie du carnet : « rep », « liste »… (valeur FieldValue.delete() pour l'effacer).
+  CC.putPart = function(part, id, v){
+    var FP = firebase.firestore.FieldPath, pairs = typeof id === "object" ? id : null;
+    var args = function(root){ var a = []; if (pairs) Object.keys(pairs).forEach(function(k){ a.push(root ? new FP(root, k) : new FP("data", k), pairs[k]); }); else a.push(root ? new FP(root, id) : new FP("data", id), v); return a; };
+    if (!moved(CC.uid)) { var pr = fs.collection("profils").doc(CC.uid); return pr.update.apply(pr, args(part)); }
+    var r = cref(part);
+    return r.update.apply(r, args("")).catch(function(e){
+      if (!e || e.code !== "not-found") throw e;
+      var data = {}; if (pairs) Object.keys(pairs).forEach(function(k){ data[k] = pairs[k]; }); else data[id] = v;
+      return r.set(Object.assign({ uid:CC.uid, part:part, data:data }, CC.visOf(part)), { merge:true });
+    });
+  };
+  // Une partie entière (questionnaire, phrase de goûts).
+  CC.setPart = function(part, v){
+    if (!moved(CC.uid)) { var o = {}; o[part] = v; return fs.collection("profils").doc(CC.uid).update(o); }
+    return cref(part).set(Object.assign({ uid:CC.uid, part:part, data:v }, CC.visOf(part)), { merge:true });
+  };
   // « reponses » et « maliste » : ranges dans le profil de la personne connectée, vus par le carnet comme des collections.
   function perUser(field){
     var api = {
@@ -1839,14 +1982,14 @@ html.sky-on #rsheet{z-index:50;}
         return function(){ var i = meCbs.indexOf(f); if (i >= 0) meCbs.splice(i, 1); };
       },
       doc:function(id){
-        var path = function(){ return new firebase.firestore.FieldPath(field, id); };
-        var ref = function(){ return fs.collection("profils").doc(CC.uid); };
         var no = function(){ return Promise.reject({ code:"invalid_argument", message:"non connecté" }); };
+        // Dans le profil (avant les nouvelles règles) ou dans mon document « carnets » (après).
+        var put = function(v){ return CC.uid && CC.me ? CC.putPart(field, id, v).catch(mapErr) : no(); };
         return { id:id,
           get:function(){ var v = CC.me && CC.me[field] && CC.me[field][id]; return Promise.resolve({ id:id, exists:!!v, data:function(){ return v; } }); },
-          set:function(d){ return CC.uid && CC.me ? ref().update(path(), clean(d)).catch(mapErr) : no(); },
-          update:function(d){ var v = Object.assign({}, (CC.me && CC.me[field] && CC.me[field][id]) || {}, clean(d)); return CC.uid && CC.me ? ref().update(path(), v).catch(mapErr) : no(); },
-          delete:function(){ return CC.uid && CC.me ? ref().update(path(), firebase.firestore.FieldValue.delete()).catch(mapErr) : no(); } };
+          set:function(d){ return put(clean(d)); },
+          update:function(d){ return put(Object.assign({}, (CC.me && CC.me[field] && CC.me[field][id]) || {}, clean(d))); },
+          delete:function(){ return put(firebase.firestore.FieldValue.delete()); } };
       }
     };
     return api;
@@ -1910,13 +2053,130 @@ html.sky-on #rsheet{z-index:50;}
       h = '<h3>' + esc(CC.me.pseudo) + '</h3><p class="sh-note">Connecté' + (CC.user && CC.user.email ? " avec " + esc(CC.user.email) : "") + (CC.admin ? " · tu gères le carnet" : "") + '</p>' +
         '<label class="ccl"><span>Changer de pseudo</span><input type="text" id="ccPseudo" class="ccin" maxlength="30" value="' + esc(CC.me.pseudo) + '"></label>' +
         '<label class="ccl"><span>Mes goûts en une phrase</span><textarea id="ccGouts" class="ccin" maxlength="140" rows="2" placeholder="Par exemple : le cinéma qui dérange et les films d\'animation">' + esc(CC.me.gouts || "") + '</textarea></label>' +
-        '<label class="ccsw"><input type="checkbox" id="ccBulle"' + (CC.me.bulle ? " checked" : "") + '><span><b>Rester dans ma bulle</b><small>Tu n\'apparais pas dans le fil, personne ne peut te conseiller de film, et le fil disparaît pour toi. Tes notes restent visibles.</small></span></label>' +
+        '<label class="ccl"><span>Le nom de ma playlist <i>(facultatif)</i></span><input type="text" id="ccPlT" class="ccin" maxlength="60" placeholder="' + esc(CC.me.pseudo) + '" value="' + esc(CC.me.plTitre || "") + '"></label>' +
+        '<label class="ccl"><span>Ma playlist en une phrase <i>(facultatif)</i></span><input type="text" id="ccPlD" class="ccin" maxlength="160" placeholder="Les films que j\'ai aimés et que je conseille à tout le monde." value="' + esc(CC.me.plDesc || "") + '"></label>' +
         '<div class="plf-b"><button type="button" class="plf-ok" id="ccSave">Enregistrer</button><button type="button" class="plf-no" id="ccOut">Se déconnecter</button></div>' +
-        '<div class="plf-b"><button type="button" class="plf-no" data-ccimport="1">📥 Importer mes films (Letterboxd, IMDb)</button></div>' +
+        '<div class="plf-b">' + (CC.admin ? "" : '<button type="button" class="plf-no" data-myplay="1">🎁 Voir ma playlist</button>') + '<button type="button" class="plf-no" data-ccimport="1">📥 Importer mes films (Letterboxd, IMDb)</button></div>' +
+        '<div id="ccPriv" class="ccpriv">' + privHtml() + '</div>' +
         (CC.admin ? modHtml() : "") +
         (CC.admin ? '<div class="ccadm"><b>Importer des données</b><span class="sh-note">Un fichier préparé par Claude (films, réponses, liste, playlists). Tu verras ce qui sera ajouté ou remplacé avant toute écriture.</span><input type="file" id="ccFile" accept=".json,application/json"><div id="ccImp"></div></div>' : "");
     }
     $("lsheetBody").innerHTML = h + '<p class="sh-note" id="ccNote"></p><div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
+  }
+  // ---------- Qui voit quoi : quatre modes, et le mode personnalisé élément par élément ----------
+  var PRIV_M = [["public", "🌍 Public", "Tous les membres voient ton carnet, tes commentaires et ton activité."],
+    ["prive", "👫 Privé", "Seuls tes amis voient ton carnet, tes commentaires et ton activité, et eux seuls peuvent t'envoyer des conseils."],
+    ["perso", "🎛️ Personnalisé", "Tu choisis, pour chaque chose, qui peut la voir."],
+    ["bulle", "🫧 Bulle", "Personne ne voit rien de toi à part ton pseudo et ta playlist. Tu n'apparais pas dans le fil, personne ne peut te conseiller de film, et le fil disparaît pour toi."]];
+  var PRIV_I = [["rep", "Mes films vus, mes notes et mes avis", 1], ["liste", "Ma liste de films à voir", 1], ["stats", "Mes chiffres (films vus, notés, ma moyenne)", 1],
+    ["gouts", "Ma phrase de goûts", 1], ["quiz", "Mes réponses au questionnaire de goûts", 1], ["com", "Mes commentaires sur les films", 1],
+    ["fil", "Mon activité dans le fil", 0], ["soiree", "Me proposer dans la Soirée ciné des autres", 0], ["recoit", "Qui peut m'envoyer des conseils", 0]];
+  var PRIV_A = [["tous", "Tout le monde"], ["amis", "Mes amis"], ["proches", "Mes proches"], ["moi", "Personne d'autre que moi"]];
+  function privHtml(){
+    if (!CC.me) return "";
+    var mode = CC.mode(), ok = CC.carnetOk(), R = (CC.me.reglages || {}), V = R.voir || {}, am = CC.amis(), P = CC.profils;
+    var h = '<b class="cpv-h">🔒 Qui peut voir mon carnet ?</b>';
+    if (!ok) h += '<p class="sh-note err">Pas encore disponible : Licia doit d\'abord publier les nouvelles règles de la base (fichier « firestore.rules »). En attendant, ton carnet reste visible par tous les membres.</p>';
+    h += '<div class="cpv-m" role="radiogroup" aria-label="Qui peut voir mon carnet">' + PRIV_M.map(function(m){
+      return '<button type="button" class="chip" role="radio" data-pmode="' + m[0] + '" aria-checked="' + (mode === m[0]) + '" aria-pressed="' + (mode === m[0]) + '"' + (ok ? "" : " disabled") + '>' + esc(m[1]) + '</button>'; }).join("") + '</div>' +
+      '<p class="sh-note">' + esc((PRIV_M.filter(function(m){ return m[0] === mode; })[0] || PRIV_M[0])[2]) + '</p>';
+    if (mode === "perso") {
+      h += '<div class="cpv-t">' + PRIV_I.map(function(it){
+        var cur = V[it[0]] || "tous", opts = PRIV_A.filter(function(a){ return it[2] || a[0] !== "proches"; });
+        return '<label class="cpv-r"><span>' + esc(it[1]) + '</span><select class="ccin" data-pvoir="' + it[0] + '"' + (ok ? "" : " disabled") + '>' + opts.map(function(a){
+          var lab = !it[2] && a[0] === "moi" ? "Personne" : a[1];
+          return '<option value="' + a[0] + '"' + (cur === a[0] ? " selected" : "") + '>' + esc(lab) + '</option>'; }).join("") + '</select></label>'; }).join("") + '</div>';
+      var pro = R.proches || [];
+      h += '<div class="mh">Mes proches</div>' + (am.length ? '<p class="sh-note">Une partie de tes amis, pour ce que tu ne montres qu\'à eux.</p><div class="cpv-p">' + am.map(function(u){
+          return '<label class="ccsw"><input type="checkbox" data-proche="' + esc(u) + '"' + (pro.indexOf(u) >= 0 ? " checked" : "") + (ok ? "" : " disabled") + '><span><b>' + esc((P[u] || {}).pseudo || "Un membre") + '</b></span></label>'; }).join("") + '</div>'
+        : '<p class="sh-note">Tu n\'as pas encore d\'amis : demande-les depuis la liste des membres (Communauté).</p>');
+    }
+    h += '<div class="mh">Mes amis' + (am.length ? " · " + am.length : "") + '</div>' + (am.length ? '<div class="mlist">' + am.map(function(u){
+        return '<button type="button" class="mrow" data-amiview="' + esc(u) + '"><b>' + esc((P[u] || {}).pseudo || "Un membre") + '</b><span>' + (CC.isAmi(u) ? "👫 ami" : "⏳ en attente") + '</span></button>'; }).join("") + '</div>'
+      : '<p class="sh-note">Pour avoir des amis : Communauté › Membres, touche un membre, puis « ➕ Demander en ami ». Ton ami accepte, et c\'est fait.</p>');
+    return h;
+  }
+  // Enregistrer un changement de mode ou de réglage : le profil garde le mode (et ce que les règles doivent savoir),
+  // le document « réglages » (lu par moi seul) garde le détail et mes proches.
+  function savePriv(ch){
+    if (!CC.me || !CC.carnetOk()) return;
+    var R = CC.me.reglages || {}, mode = ch.mode || CC.mode(), voir = Object.assign({}, R.voir || {}, ch.voir || {}), proches = ch.proches || R.proches || [];
+    var eff = function(k){ var v = mode === "public" ? "tous" : mode === "prive" ? "amis" : mode === "bulle" ? "moi" : (voir[k] || "tous"); return v === "proches" ? "amis" : v; };
+    var up = { vis:mode, bulle:mode === "bulle", recoit:eff("recoit"), fil:eff("fil"), soiree:eff("soiree") };
+    note("Enregistrement…");
+    var reg = fs.collection("carnets").doc(CC.uid + "__reglages");
+    Promise.all([reg.set({ uid:CC.uid, part:"reglages", vis:"moi", lect:[], data:{ voir:voir, proches:proches } }, { merge:true }), fs.collection("profils").doc(CC.uid).update(up)])
+      .then(function(){ note(mode === "bulle" ? "Tu restes dans ta bulle." : "C'est enregistré."); }, function(){ note("Pas enregistré, réessaie dans un instant.", true); });
+  }
+  CC.savePriv = savePriv;
+  // Les anciennes playlists faites par Licia pour Arthur, Violette et Jean rejoignent leurs comptes (12 novembre) :
+  // dès que Licia ouvre le site, un compte dont le pseudo commence par ce prénom (un seul) est relié à sa playlist,
+  // et ce qu'il avait déjà mis dans sa nouvelle playlist y est ajouté. Le reste se fait à la main (Communauté › Membres › Relier).
+  var AUTO_PL = ["arthur", "violette", "jean"], ALINK = {};
+  CC.autoLink = function(){
+    if (!CC.admin || !RAWP || !CC.playlists || !CC.movePl) return;
+    var used = {}; Object.keys(RAWP).forEach(function(u){ used[CC.pidOf(RAWP[u])] = u; });
+    AUTO_PL.forEach(function(pl){
+      if (used[pl] || ALINK[pl] || !CC.playlists.some(function(p){ return p.prenom === pl; })) return;
+      var c = Object.keys(RAWP).filter(function(u){ var p = RAWP[u]; return u !== CC.uid && p.pseudo && CC.slug(p.pseudo) === pl && /^m_/.test(CC.pidOf(p)); });
+      if (c.length !== 1) return;
+      ALINK[pl] = 1;
+      var u = c[0], old = CC.pidOf(RAWP[u]);
+      fs.collection("profils").doc(u).update({ pid:pl }).then(function(){ return CC.movePl(old, pl); })
+        .then(function(){ toastCC("La playlist de " + RAWP[u].pseudo + " est reliée à son compte."); }, function(){ delete ALINK[pl]; });
+    });
+  };
+  function toastCC(m){ var t = $("toast"); if (!t) return; t.textContent = m; t.hidden = false; clearTimeout(toastCC.t); toastCC.t = setTimeout(function(){ t.hidden = true; }, 4200); }
+  // ---------- Amis : demande, acceptation (des deux côtés), retrait ----------
+  function amiMsg(to, type){ return fs.collection("messages").doc().set({ from:CC.uid, to:to, type:type, mot:"", ajout:new Date().toISOString() }); }
+  function isAmiMsg(x){ return x && /^ami-/.test(String(x.type || "")); }
+  function sentTo(u){ return Object.keys(MSG).some(function(k){ var x = MSG[k]; return x.type === "ami-dem" && x.from === CC.uid && x.to === u; }); }
+  function askedBy(u){ return Object.keys(MSG).some(function(k){ var x = MSG[k]; return x.type === "ami-dem" && x.from === u && x.to === CC.uid && !x.lu; }); }
+  function amiAdd(u){ return fs.collection("profils").doc(CC.uid).update({ amis:firebase.firestore.FieldValue.arrayUnion(u) }); }
+  function amiDel(u){
+    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.type === "ami-dem" && x.from === CC.uid && x.to === u) fs.collection("messages").doc(x.id).delete().catch(function(){}); });
+    return fs.collection("profils").doc(CC.uid).update({ amis:firebase.firestore.FieldValue.arrayRemove(u) });
+  }
+  var AMIQ = {};
+  function amiDone(x){ AMIQ[x.id] = 1; x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); }
+  // Réponses reçues : une acceptation ajoute l'ami (si je l'avais demandé), un retrait l'enlève. Deux demandes croisées valent acceptation.
+  function amiSync(){
+    if (!CC.me || !RAWP || CC.view) return;
+    var my = CC.amis();
+    Object.keys(MSG).forEach(function(k){
+      var x = MSG[k]; if (!x || x.to !== CC.uid || x.lu || AMIQ[x.id] || !isAmiMsg(x)) return;
+      if (x.type === "ami-ok") { if (sentTo(x.from) && my.indexOf(x.from) < 0) amiAdd(x.from).catch(function(){}); amiDone(x); }
+      else if (x.type === "ami-fin") { if (my.indexOf(x.from) >= 0) amiDel(x.from).catch(function(){}); amiDone(x); }
+      else if (x.type === "ami-dem" && !isBlocked(x.from) && (sentTo(x.from) || my.indexOf(x.from) >= 0)) {
+        AMIQ[x.id] = 1;
+        (my.indexOf(x.from) >= 0 ? Promise.resolve() : amiAdd(x.from)).then(function(){ return amiMsg(x.from, "ami-ok"); }).then(function(){ amiDone(x); }, function(){ delete AMIQ[x.id]; });
+      }
+    });
+  }
+  CC.amiAsk = function(u){ return amiMsg(u, "ami-dem"); };
+  CC.amiAccept = function(u){
+    var req = Object.keys(MSG).map(function(k){ return MSG[k]; }).filter(function(x){ return x.type === "ami-dem" && x.from === u && x.to === CC.uid; });
+    return amiAdd(u).then(function(){ return amiMsg(u, "ami-ok"); }).then(function(){ req.forEach(amiDone); });
+  };
+  CC.amiRefuse = function(u){ Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.type === "ami-dem" && x.from === u && x.to === CC.uid && !x.lu) amiDone(x); }); };
+  CC.amiCancel = function(u){ return amiDel(u); };
+  CC.amiRemove = function(u){ return amiDel(u).then(function(){ return amiMsg(u, "ami-fin"); }); };
+  function amiBtns(u){
+    if (!CC.me || u === CC.uid) return "";
+    var mine = CC.amis().indexOf(u) >= 0, b;
+    if (CC.isAmi(u)) b = '<span class="ami-ok">👫 Vous êtes amis</span><button type="button" class="plf-no ccsm" data-amifin="' + esc(u) + '">Retirer de mes amis</button>';
+    else if (askedBy(u)) b = '<span class="ami-ok">' + esc(pseudoOf(u)) + ' te demande en ami</span><button type="button" class="plf-ok ccsm" data-amiok="' + esc(u) + '">Accepter</button><button type="button" class="plf-no ccsm" data-amino="' + esc(u) + '">Refuser</button>';
+    else if (sentTo(u) || mine) b = '<span class="ami-ok">⏳ Demande envoyée</span><button type="button" class="plf-no ccsm" data-amicx="' + esc(u) + '">Annuler</button>';
+    else if (inBulle(u)) b = '<span class="sh-note">' + esc(pseudoOf(u)) + ' préfère rester dans sa bulle.</span>';
+    else b = '<button type="button" class="plf-ok ccsm" data-amidem="' + esc(u) + '">➕ Demander en ami</button>';
+    return '<div class="plf-b ami-b">' + b + '</div>';
+  }
+  // Demandes en attente, en haut de « Pour moi ».
+  function amiReqHtml(){
+    var R = Object.keys(MSG).map(function(k){ return MSG[k]; }).filter(function(x){ return x.type === "ami-dem" && x.to === CC.uid && !x.lu && !isBlocked(x.from) && !CC.isAmi(x.from); });
+    var seen = {}; R = R.filter(function(x){ if (seen[x.from]) return false; seen[x.from] = 1; return true; });
+    return R.map(function(x){ return '<div class="cthread"><div class="cth">👫 ' + esc(pseudoOf(x.from)) + ' te demande en ami<small>' + esc(ago(x.ajout)) + '</small></div>' +
+      '<div class="plf-b"><button type="button" class="plf-ok ccsm" data-amiok="' + esc(x.from) + '">Accepter</button><button type="button" class="plf-no ccsm" data-amino="' + esc(x.from) + '">Refuser</button><button type="button" class="plf-no ccsm" data-msel="' + esc(x.from) + '">Voir son profil</button></div></div>'; }).join("");
   }
   function modHtml(){
     if (!SIGN.length) return '<div class="ccadm"><b>Signalements</b><span class="sh-note">Aucun signalement.</span></div>';
@@ -1936,7 +2196,11 @@ html.sky-on #rsheet{z-index:50;}
     var ref = fs.collection("profils").doc(CC.uid), isNew = !CC.me, pid = CC.admin ? "licia" : "m_" + CC.uid;
     note("Enregistrement…");
     var g = $("ccGouts") ? String($("ccGouts").value || "").trim().replace(/\s+/g, " ").slice(0, 140) : null;
-    var w = isNew ? ref.set({ pseudo:p, pid:pid, slug:pid, rep:{}, liste:{}, cree:new Date().toISOString() }) : ref.update(g == null ? { pseudo:p } : { pseudo:p, gouts:g });
+    var pl = function(id, n){ var e = $(id); return e ? String(e.value || "").trim().replace(/\s+/g, " ").slice(0, n) : null; };
+    var up = { pseudo:p }, plt = pl("ccPlT", 60), pld = pl("ccPlD", 160);
+    if (plt != null) up.plTitre = plt; if (pld != null) up.plDesc = pld;
+    var w = isNew ? ref.set({ pseudo:p, pid:pid, slug:pid, rep:{}, liste:{}, cree:new Date().toISOString() })
+      : Promise.all([ref.update(up), g == null || g === (CC.me.gouts || "") ? null : CC.setPart("gouts", g)]);
     w.then(function(){ if (isNew) location.reload(); else note("C'est enregistré."); }, function(){ note("Pas enregistré, réessaie dans un instant.", true); });
   }
   function sendLink(){
@@ -2014,7 +2278,10 @@ html.sky-on #rsheet{z-index:50;}
           var ids = Object.keys(part);
           for (var i = 0; i < ids.length; i += 300) {
             var chunk = {}; ids.slice(i, i + 300).forEach(function(id){ chunk[id] = part[id]; });
-            var d = {}; d[f] = chunk; ops.push({ c:"profils", id:CC.uid, data:d, merge:true });
+            var d = {}; d[f] = chunk;
+            // Avec les nouvelles règles, les réponses et la liste vont dans mes documents « carnets ».
+            if (CC.carnetMode()) ops.push({ c:"carnets", id:CC.uid + "__" + f, data:Object.assign({ uid:CC.uid, part:f, data:chunk }, CC.visOf(f)), merge:true });
+            else ops.push({ c:"profils", id:CC.uid, data:d, merge:true });
           }
         });
         var job = "ccImport-" + hashStr(r.result), batches = [];
@@ -2065,10 +2332,11 @@ html.sky-on #rsheet{z-index:50;}
     if (!MSEL || !P[MSEL]) {
       var ids = Object.keys(P).filter(function(u){ return P[u] && P[u].pseudo; }).sort(function(a, b){ return String(P[a].pseudo).localeCompare(String(P[b].pseudo), "fr"); });
       h = '<h3>Membres du Ciné-club</h3><div class="mlist">' + ids.map(function(u){
-        var r = P[u].rep || {}, k = Object.keys(r), vus = k.filter(function(id){ return r[id].etat === "vu" || r[id].etat === "pas_fini"; }).length,
-            nt = k.filter(function(id){ return r[id].note10; }).length;
-        var af = u !== CC.uid && CC.me && CC.taste && !P[u].bulle && !me().bulle ? CC.taste.compare(me().rep || {}, r).pct : null;
-        return '<button type="button" class="mrow" data-msel="' + esc(u) + '"><b>' + esc(P[u].pseudo) + (u === CC.uid ? " (toi)" : "") + '</b><span>' + (af != null ? '<i class="mrow-a">' + af + ' %</i> · ' : "") + vus + ' vu' + (vus > 1 ? "s" : "") + ' · ' + nt + ' noté' + (nt > 1 ? "s" : "") + '</span></button>';
+        // Carnet caché à mes yeux : ses chiffres seulement s'il les montre, sinon un cadenas.
+        var hid = !!(P[u].cache && P[u].cache.rep), r = P[u].rep || {}, st = hid ? (P[u].stats || null) : CC.statsOf(r);
+        var af = !hid && u !== CC.uid && CC.me && CC.taste && !P[u].bulle && !me().bulle ? CC.taste.compare(me().rep || {}, r).pct : null;
+        var info = st ? st.vus + ' vu' + (st.vus > 1 ? "s" : "") + ' · ' + st.notes + ' noté' + (st.notes > 1 ? "s" : "") : "🔒 carnet privé";
+        return '<button type="button" class="mrow" data-msel="' + esc(u) + '"><b>' + esc(P[u].pseudo) + (u === CC.uid ? " (toi)" : "") + (u !== CC.uid && CC.isAmi(u) ? ' <i class="mrow-f" title="Ami">👫</i>' : "") + '</b><span>' + (af != null ? '<i class="mrow-a">' + af + ' %</i> · ' : "") + info + '</span></button>';
       }).join("") + '</div>' + (CC.invite && CC.me ? '<div class="plf-b"><button type="button" class="plf-ok" data-invite="1">✉️ Inviter quelqu\'un à se comparer à moi</button></div><p class="sh-note">Ton ami répond à quelques films en deux minutes, sans inscription, et découvre votre affinité.</p>' : "");
     } else {
       var p = P[MSEL], rep = p.rep || {}, ids2 = Object.keys(rep).filter(function(id){ return rep[id] && rep[id].etat; });
@@ -2076,16 +2344,24 @@ html.sky-on #rsheet{z-index:50;}
       var noted = ids2.filter(function(id){ return rep[id].note10; }), others = ids2.filter(function(id){ return !rep[id].note10; });
       var row = function(id){ var x = rep[id]; return '<button type="button" class="mfilm" data-mfilm="' + esc(x.titre || id) + '"><span>' + esc(x.titre || id) + (x.annee ? ' <small>' + esc(x.annee) + '</small>' : "") + '</span><b>' + (x.note10 ? "★ " + fmtN(x.note10) + "/10" : esc(LAB[x.etat] || x.etat)) + '</b></button>'; };
       h = '<button type="button" class="plf-no" data-msel="">‹ Tous les membres</button><h3>' + esc(p.pseudo) + '</h3>' +
-        (MSEL !== CC.uid && MSEL !== CC.view ? '<button type="button" class="plf-ok mview" data-mview="' + esc(MSEL) + '">📖 Ouvrir le carnet ' + (/^[aeiouyéèêh]/i.test(p.pseudo) ? "d'" : "de ") + esc(p.pseudo) + '</button>' : "") +
+        (MSEL !== CC.uid && MSEL !== CC.view && !(p.cache && p.cache.rep) ? '<button type="button" class="plf-ok mview" data-mview="' + esc(MSEL) + '">📖 Ouvrir le carnet ' + (/^[aeiouyéèêh]/i.test(p.pseudo) ? "d'" : "de ") + esc(p.pseudo) + '</button>' : "") +
         (CC.view && MSEL === CC.uid ? '<button type="button" class="plf-ok mview" data-mback="1">📖 Revenir à mon carnet</button>' : "") +
+        amiBtns(MSEL) + hiddenNote(p) +
         profileExtra(MSEL) +
         (CC.admin && MSEL !== CC.uid ? linkHtml(MSEL) : "") +
         '<p class="sh-note">' + noted.length + ' film' + (noted.length > 1 ? "s" : "") + ' noté' + (noted.length > 1 ? "s" : "") + ' · ' + others.length + ' autre' + (others.length > 1 ? "s" : "") + ' réponse' + (others.length > 1 ? "s" : "") + '. Touche un film pour le retrouver dans le carnet.</p>' +
         (noted.length ? '<div class="mh">Toutes ses notes</div><div class="mlist">' + noted.map(row).join("") + '</div>' : "") +
         (others.length ? '<div class="mh">Sans note</div><div class="mlist">' + others.map(row).join("") + '</div>' : "") +
-        (!ids2.length ? '<p class="sh-note">Pas encore de réponse.</p>' : "");
+        (!ids2.length && !(p.cache && p.cache.rep) ? '<p class="sh-note">Pas encore de réponse.</p>' : "");
     }
     return h;
+  }
+  // Ce qu'un membre ne me montre pas : dit simplement, avec ses chiffres s'il les partage.
+  function hiddenNote(p){
+    var c = p.cache || {}, L = { rep:"ses notes", liste:"sa liste", stats:"ses chiffres", gouts:"sa phrase de goûts", quiz:"son questionnaire" };
+    var k = Object.keys(L).filter(function(x){ return c[x]; });
+    var st = c.rep && p.stats ? '<p class="sh-note">' + p.stats.vus + ' film' + (p.stats.vus > 1 ? "s" : "") + ' vu' + (p.stats.vus > 1 ? "s" : "") + ' · ' + p.stats.notes + ' noté' + (p.stats.notes > 1 ? "s" : "") + (p.stats.moy ? ' · moyenne ' + fmtN(p.stats.moy) + '/10' : "") + '</p>' : "";
+    return (k.length ? '<p class="sh-note cpv-x">🔒 ' + esc(p.pseudo || "Ce membre") + ' ne partage pas avec toi ' + k.map(function(x){ return L[x]; }).join(", ").replace(/, ([^,]*)$/, " ni $1") + '.</p>' : "") + st;
   }
   // ---------- Communauté : membres, conseils privés (« Pour moi »), fil, profils, bulle, signalements, visite guidée ----------
   var TAB = "membres", MSG = {}, MSGALL = false, MSGQ = [{}, {}], MSGERR = null, MASQ = {}, SIGN = [], SEND = null, REPORT = null;
@@ -2113,13 +2389,13 @@ html.sky-on #rsheet{z-index:50;}
       [["to", 0], ["from", 1]].forEach(function(q){
         fs.collection("messages").where(q[0], "==", CC.uid).onSnapshot(function(s){
           var m = {}; s.docs.forEach(function(d){ var x = d.data() || {}; if (x[q[0]] === CC.uid) m[d.id] = Object.assign({ id:d.id }, x); });
-          MSGQ[q[1]] = m; MSG = Object.assign({}, MSGQ[0], MSGQ[1]); MSGERR = null; paintBar(); comRefresh();
+          MSGQ[q[1]] = m; MSG = Object.assign({}, MSGQ[0], MSGQ[1]); MSGERR = null; paintBar(); comRefresh(); amiSync();
         }, function(e){ MSGERR = e; paintBar(); comRefresh(); });
       });
     };
     fs.collection("messages").onSnapshot(function(s){
       var m = {}; s.docs.forEach(function(d){ m[d.id] = Object.assign({ id:d.id }, d.data() || {}); });
-      MSGALL = true; MSG = m; MSGERR = null; paintBar(); comRefresh(); CC.hooks.forEach(function(f){ try { f(); } catch (e) {} });
+      MSGALL = true; MSG = m; MSGERR = null; paintBar(); comRefresh(); amiSync(); CC.hooks.forEach(function(f){ try { f(); } catch (e) {} });
     }, function(){ MSGALL = false; mine(); });
     fs.collection("masques").onSnapshot(function(s){
       var m = {}; s.docs.forEach(function(d){ m[d.id] = 1; }); MASQ = m;
@@ -2130,10 +2406,10 @@ html.sky-on #rsheet{z-index:50;}
       if (!$("lsheet").hidden) renderLogin();
     }, function(){});
   }
-  function unread(){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && !CC.hidden("msg", x.id, x.from); }).length; }
+  function unread(){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && !CC.hidden("msg", x.id, x.from) && (!isAmiMsg(x) || x.type === "ami-dem"); }).length; }
   // Avis de recherche : un film dont on a oublié le titre, décrit à tout le monde ; les réponses arrivent comme des conseils.
   function isAvis(x){ return x.type === "avis" || x.type === "avis-rep"; }
-  function unreadOf(av){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && isAvis(x) === av && !CC.hidden("msg", x.id, x.from); }).length; }
+  function unreadOf(av){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && isAvis(x) === av && !CC.hidden("msg", x.id, x.from) && (!isAmiMsg(x) || x.type === "ami-dem"); }).length; }
   function comRefresh(){ if (!$("msheet").hidden) renderCom(); }
 
   // Fils de conversation : un par film et par personne.
@@ -2142,7 +2418,7 @@ html.sky-on #rsheet{z-index:50;}
     Object.keys(MSG).forEach(function(k){
       var x = MSG[k], other = x.from === CC.uid ? x.to : x.from;
       if (x.from !== CC.uid && x.to !== CC.uid && x.to !== "*") return;
-      if (isAvis(x)) return;
+      if (isAvis(x) || isAmiMsg(x)) return;
       if (x.to === "*" && x.from !== CC.uid && (inBulle(x.from) || me().bulle)) return;
       if (CC.hidden("msg", x.id, x.from === CC.uid ? "" : x.from)) return;
       var key = x.film + "|" + other, t = T[key] = T[key] || { key:key, film:x.film, titre:x.titre, annee:x.annee, other:other, list:[], last:"" };
@@ -2152,7 +2428,7 @@ html.sky-on #rsheet{z-index:50;}
       .sort(function(a, b){ return b.last.localeCompare(a.last); });
   }
   function markRead(av){
-    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.to === CC.uid && !x.lu && isAvis(x) === !!av) { x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); } });
+    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.to === CC.uid && !x.lu && isAvis(x) === !!av && !isAmiMsg(x)) { x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); } });
     paintBar();
   }
 
@@ -2160,7 +2436,7 @@ html.sky-on #rsheet{z-index:50;}
   function feed(){
     var out = [], lim = Date.now() - 30 * 864e5, P = CC.profils;
     Object.keys(P).forEach(function(u){
-      if (u === CC.uid || inBulle(u) || isBlocked(u)) return;
+      if (u === CC.uid || inBulle(u) || isBlocked(u) || !CC.lets(u, "fil")) return;
       var rep = P[u].rep || {};
       Object.keys(rep).forEach(function(id){
         var r = rep[id], t = Date.parse(r.maj || ""); if (!(t > lim)) return;
@@ -2171,14 +2447,14 @@ html.sky-on #rsheet{z-index:50;}
     });
     Object.keys(MSG).forEach(function(k){
       var x = MSG[k], t = Date.parse(x.ajout || "");
-      if (x.type !== "conseil" || !(t > lim) || x.from === CC.uid || inBulle(x.from) || CC.hidden("msg", x.id, x.from)) return;
+      if (x.type !== "conseil" || !(t > lim) || x.from === CC.uid || inBulle(x.from) || !CC.lets(x.from, "fil") || CC.hidden("msg", x.id, x.from)) return;
       var dest = x.to === "*" ? "à tout le monde" : x.to === CC.uid ? "à toi" : "à " + pseudoOf(x.to);
       out.push({ t:t, iso:x.ajout, uid:x.from, film:x.film, titre:x.titre || x.film, annee:x.annee, txt:"conseille", apres:" " + dest, com:x.mot });
     });
     var C = CC.coms || {};
     Object.keys(C).forEach(function(fid){
       (C[fid] || []).forEach(function(c){
-        var t = Date.parse(c.ajout || ""); if (!(t > lim) || !c.uid || c.uid === CC.uid || inBulle(c.uid) || CC.hidden("com", c.id, c.uid)) return;
+        var t = Date.parse(c.ajout || ""); if (!(t > lim) || !c.uid || c.uid === CC.uid || inBulle(c.uid) || !CC.lets(c.uid, "fil") || CC.hidden("com", c.id, c.uid)) return;
         var info = (CC.filmInfo && CC.filmInfo(fid)) || {};
         out.push({ t:t, iso:c.ajout, uid:c.uid, film:fid, titre:info.t || fid, annee:info.y, txt:"a commenté", com:c.texte });
       });
@@ -2222,8 +2498,12 @@ html.sky-on #rsheet{z-index:50;}
 
   function renderPourMoi(){
     if (MSGERR) return '<p class="sh-note">Les conseils privés ne sont pas encore activés : Licia doit publier les nouvelles règles de la base (fichier « firestore.rules »).</p>';
-    var T = threads();
+    var T = threads(), AR = amiReqHtml();
+    if (AR) return AR + (T.length ? renderThreads(T) : "");
     if (!T.length) return '<p class="sh-note">Aucun conseil pour l\'instant. Pour en envoyer un : sous un film, touche « ♡ Conseiller », puis « Le conseiller… », à tout le monde ou à certaines personnes.</p>';
+    return renderThreads(T);
+  }
+  function renderThreads(T){
     return T.map(function(t){
       var first = t.list[0], fromMe = first.from === CC.uid, other = pseudoOf(t.other);
       var head = fromMe ? "Tu as conseillé " + filmLabel(t) + (t.other === "*" ? " à tout le monde" : " à " + other) : other + (first.to === "*" ? " conseille à tout le monde " : " te conseille ") + filmLabel(t);
@@ -2339,8 +2619,11 @@ html.sky-on #rsheet{z-index:50;}
       '<p class="sh-note">' + (SEND.pub ? "Le conseil apparaît dans le fil de tous les membres." : "Les personnes choisies le reçoivent dans « Pour moi ». Il reste visible dans le fil des autres membres.") + '</p>' +
       (SEND.pub ? "" : !ids.length ? '<p class="sh-note">Pas encore d\'autre membre. Envoie le lien de la page à un ami pour qu\'il te rejoigne.</p>' :
       '<div class="mlist" role="group" aria-label="Personnes choisies">' + ids.map(function(u){
-        var no = inBulle(u) || (P[u].bloques || []).indexOf(CC.uid) >= 0, on = SEND.tos.indexOf(u) >= 0;
-        return '<button type="button" class="mrow" role="checkbox" data-sendto="' + esc(u) + '" aria-checked="' + on + '"' + (no ? ' disabled' : '') + '><b>' + esc(P[u].pseudo) + '</b><span>' + (no ? "préfère rester dans sa bulle" : on ? "✓ choisi" : "") + '</span></button>';
+        // Son réglage « Qui peut m'envoyer des conseils » : tout le monde, ses amis, ou personne.
+        var bul = inBulle(u) || (P[u].bloques || []).indexOf(CC.uid) >= 0, rc = P[u].recoit || "tous";
+        var ferme = !bul && (rc === "moi" || (rc === "amis" && (P[u].amis || []).indexOf(CC.uid) < 0));
+        var no = bul || ferme, on = SEND.tos.indexOf(u) >= 0;
+        return '<button type="button" class="mrow" role="checkbox" data-sendto="' + esc(u) + '" aria-checked="' + on + '"' + (no ? ' disabled' : '') + '><b>' + esc(P[u].pseudo) + '</b><span>' + (bul ? "préfère rester dans sa bulle" : ferme ? (rc === "amis" ? "reçoit les conseils de ses amis seulement" : "ne reçoit pas de conseils") : on ? "✓ choisi" : "") + '</span></button>';
       }).join("") + '</div>') +
       '<label class="ccl"><span>Un mot (facultatif)</span><textarea id="ccSendTxt" class="ccin" maxlength="200" rows="3" placeholder="Pourquoi ce film ? 200 caractères au plus">' + esc(SEND.mot || "") + '</textarea></label>' +
       '<div class="plf-b"><button type="button" class="plf-ok" id="ccSendGo"' + (ok ? "" : " disabled") + '>' + (SEND.pub ? "Conseiller à tout le monde" : SEND.tos.length > 1 ? "Envoyer à " + SEND.tos.length + " personnes" : "Envoyer le conseil") + '</button><button type="button" class="plf-no" data-sendno="1">Annuler</button></div>' +
@@ -2369,7 +2652,7 @@ html.sky-on #rsheet{z-index:50;}
   // Soirée ciné : on choisit qui vient ; le site propose des films que personne n'a vus.
   var SOI = [];
   function renderSoiree(){
-    var P = CC.profils, ids = Object.keys(P).filter(function(u){ return u !== CC.uid && P[u] && P[u].pseudo && !P[u].bulle && !isBlocked(u); })
+    var P = CC.profils, ids = Object.keys(P).filter(function(u){ return u !== CC.uid && P[u] && P[u].pseudo && !P[u].bulle && !isBlocked(u) && CC.lets(u, "soiree"); })
       .sort(function(a, b){ return String(P[a].pseudo).localeCompare(String(P[b].pseudo), "fr"); });
     SOI = SOI.filter(function(u){ return ids.indexOf(u) >= 0; });
     var h = '<h3>Qui vient ?</h3>' + (ids.length ? '<div class="soi-who">' + ids.map(function(u){ var on = SOI.indexOf(u) >= 0;
@@ -2451,6 +2734,16 @@ html.sky-on #rsheet{z-index:50;}
     if (t.closest("#ccSend")) { sendLink(); return; }
     if (t.closest("#ccGoogle")) { google(); return; }
     if (t.closest("#ccSave")) { saveProfile(); return; }
+    var pm = t.closest("[data-pmode]"); if (pm) { savePriv({ mode:pm.dataset.pmode }); return; }
+    if (t.closest("[data-myplay]")) { sheetOpen(""); if (CC.plOpen) setTimeout(function(){ CC.plOpen("pl-" + CC.pid()); }, 60); return; }
+    var av = t.closest("[data-amiview]"); if (av) { sheetOpen(""); CC.openMembers(av.dataset.amiview); return; }
+    var amiA = function(sel, fn, ok){ var b = t.closest("[" + sel + "]"); if (!b) return false; var u = b.getAttribute(sel); b.disabled = true;
+      Promise.resolve(fn(u)).then(function(){ toastCC(ok(pseudoOf(u))); renderCom(); }, function(){ b.disabled = false; toastCC("Pas enregistré, réessaie dans un instant."); }); return true; };
+    if (amiA("data-amidem", CC.amiAsk, function(n){ return "Demande envoyée à " + n + "."; })) return;
+    if (amiA("data-amiok", CC.amiAccept, function(n){ return "Vous êtes amis, " + n + " et toi."; })) return;
+    if (amiA("data-amino", CC.amiRefuse, function(){ return "Demande refusée."; })) return;
+    if (amiA("data-amicx", CC.amiCancel, function(){ return "Demande annulée."; })) return;
+    if (amiA("data-amifin", CC.amiRemove, function(n){ return n + " n'est plus dans tes amis."; })) return;
     if (t.closest("#ccOut")) { auth.signOut(); return; }
     if (t.closest("#ccBackup")) { if (IMP) { download("cineclub-sauvegarde-" + new Date().toISOString().slice(0, 10) + ".json", IMP.prev); note("Sauvegarde téléchargée. Tu peux maintenant importer."); } return; }
     if (t.closest("#ccImpGo")) { runImport(); return; }
@@ -2510,9 +2803,13 @@ html.sky-on #rsheet{z-index:50;}
   });
   document.addEventListener("change", function(ev){
     if (ev.target && ev.target.id === "ccFile") importFile(ev.target.files[0]);
-    if (ev.target && ev.target.id === "ccBulle") {
-      var on = ev.target.checked;
-      fs.collection("profils").doc(CC.uid).update({ bulle:on }).then(function(){ note(on ? "Tu restes dans ta bulle." : "Tu sors de ta bulle."); }, function(){ ev.target.checked = !on; note("Pas enregistré, réessaie.", true); });
+    var pv = ev.target && ev.target.closest && ev.target.closest("[data-pvoir]");
+    if (pv) { var o = {}; o[pv.dataset.pvoir] = pv.value; savePriv({ voir:o }); }
+    var pr = ev.target && ev.target.closest && ev.target.closest("[data-proche]");
+    if (pr) {
+      var L = ((CC.me && CC.me.reglages) || {}).proches || [], u = pr.dataset.proche;
+      L = L.filter(function(x){ return x !== u; }); if (pr.checked) L.push(u);
+      savePriv({ proches:L });
     }
   });
   // Échap ferme les volets et la visite guidée.
@@ -2654,7 +2951,7 @@ html.sky-on #rsheet{z-index:50;}
   // Playlists : une liste par prénom (sections « auto: conseils »), remplie dans la collection « conseils ».
   var PEOPLE = [], CONSEILS = {}, MOTS = {}, AVIS = {}, plCol = null, OPEN_PL = "", pqueues = {};
   // Films proposés hors du carnet (collection « propositions ») ; brouillon du formulaire de chaque playlist.
-  var PROPS = {}, propCol = null, DRAFT = {}, catCol = null, cqueue = Promise.resolve();
+  var PROPS = {}, propCol = null, DRAFT = {}, catCol = null, ajCol = null, cqueue = Promise.resolve();
   // Les films ajoutés depuis une proposition vont dans une liste cachée du catalogue.
   var HOST = "pl-ajouts", HOSTRAW = null;
   // Conseils à envoyer : quand on ne peut pas écrire dans le carnet, les conseils attendent ici (dans ce navigateur)
@@ -3042,7 +3339,7 @@ html.sky-on #rsheet{z-index:50;}
   var TMDB_KEY = "a35a6c94deab582e9348b58192ac4279", IMG_OPEN = {}, IMG_P = {}, IMG_C = {}, IMG_KEY = "carnetImagesV3";
   // Films dont TMDB ne trouve pas le bon titre tout seul : identifiant TMDB fixé à la main (vérifié le 5 novembre 2026).
   // Un nombre : un film ; « tv/… » : une série (pour les épisodes, ce sont les images de la série).
-  var TMDB_FIXE = { "run-2020":546121, "comment-faire-l-amour-a-une-femme-1996":69131, "clean-shaven-1993":1479,
+  var TMDB_FIXE = { "judas-and-the-black-messiah-2021":583406, "the-black-power-mixtape-1967-1975-2011":75000, "a-cause-d-un-assassinat-1974":17365, "jfk-1991":820, "eddington-2025":648878, "la-dialectique-peut-elle-casser-des-briques-1973":31343, "easy-rider-1969":624, "zabriskie-point-1970":2998, "hair-1979":10654, "the-internet-s-own-boy-l-histoire-d-aaron-swartz-2014":250658, "tpb-afk-the-pirate-bay-away-from-keyboard-2013":50275, "we-steal-secrets-la-verite-sur-wikileaks-2013":159154, "mr-robot-serie-2015":"tv/62560", "la-soupe-au-canard-1933":3063, "passeport-pour-pimlico-1949":30095, "la-souris-qui-rugissait-1959":12649, "le-roi-de-coeur-1966":17685, "bananas-1971":11302, "l-incroyable-histoire-de-l-ile-de-la-rose-2020":636565, "gandhi-1982":783, "joyeux-noel-2005":11661, "selma-2014":273895, "tu-ne-tueras-point-2016":324786, "together-2000":742, "captain-fantastic-2016":334533, "wild-wild-country-serie-2018":"tv/77601", "la-commune-paris-1871-2000":63195, "lincoln-2012":72976, "run-2020":546121, "comment-faire-l-amour-a-une-femme-1996":69131, "clean-shaven-1993":1479,
     "jeanne-dielman-23-quai-du-commerce-1080-bruxelles-1975":44012, "pepi-luci-bom-et-les-autres-filles-du-quartier-1980":4499,
     "docteur-jekyll-et-m-hyde-1931":3019, "suspiria-remake-2018":361292, "moon-2024":1172244, "toxic-2024":1315091,
     "flow-2024":823219, "split-2016":381288, "cow-2021":661348, "beats-2019":493141,
@@ -3304,7 +3601,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       h += '<button type="button" class="envgo" data-envopen="1">✓ Valider mes conseils</button></div>';
     }
     var dr = DRAFT[pid] || {};
-    if (!dr.open) h += '<div class="pladd"><button type="button" class="pl-open" data-plopen="' + esc(pid) + '">+ Ajouter un film absent de la base de données</button></div>';
+    // Chacun ajoute des films à sa propre playlist seulement (Licia peut aider partout).
+    if (!CCA() && !selfOnly(pid)) {}
+    else if (!dr.open) h += '<div class="pladd"><button type="button" class="pl-open" data-plopen="' + esc(pid) + '">+ Ajouter un film absent de la base de données</button></div>';
     else h += '<form class="pladd plform" data-plform="' + esc(pid) + '">' +
       '<label><span>Titre du film</span><input name="titre" maxlength="120" required autocomplete="off" value="' + esc(dr.titre || "") + '"></label>' +
       '<div class="sugg" hidden></div>' +
@@ -3879,7 +4178,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
           (x.stats ? "" : '<span class="sc">' + x.n + (sx ? '<span class="sx-ar" aria-hidden="true">' + (open ? "▾" : "▸") + '</span>' : "") + '</span>') + (x.np ? '<span class="nb">' + x.np + '</span>' : "") + '</button>' +
           (open ? sxBlock(sx) : "");
       }).join("") + (f.id === "playlists" && isMine() && CCA() && PEOPLE.length ? '<button type="button" class="sub vchip" data-vmsg="1">' + subIc(["✉️", "#0E7490"]) + '<span class="sl">Valider un message reçu</span></button>' : "") +
-        (f.id === "carnet" && ROLE === "proprio" && !GUEST && CCA() ? '<button type="button" class="sub vchip" data-guest="1">' + subIc(["👀", "#475569"]) + '<span class="sl">Voir comme mes amis</span></button>' : "") + '</div>' +
+        (f.id === "carnet" && ROLE === "proprio" && !GUEST && CCA() ? '<button type="button" class="sub vchip" data-guest="1">' + subIc(["👀", "#475569"]) + '<span class="sl">Voir comme mes amis</span></button>' : "") +
+        // Chacun a sa playlist (pour conseiller des films à tous) : rangée dans la communauté, elle s'ouvre aussi depuis Mon carnet.
+        (f.id === "carnet" && isMine() && CCM() && SELF() && !CC.view ? '<button type="button" class="sub vchip" data-s="pl-' + esc(CC.pid()) + '">' + subIc(["🎁", "#BE185D"]) + '<span class="sl">Ma playlist : je conseille des films à tous</span><span class="sc">' + Object.keys(CONSEILS[CC.pid()] || {}).length + '</span></button>' : "") + '</div>' +
         ((TOCDATA[f.id] || []).length ? '<button type="button" class="allb" data-showfam="' + esc(f.id) + '"' + (SHOW && ((SHOW.k === "fam" && SHOW.id === f.id) || (SHOW.k === "all" && f.id === "epoques")) ? ' aria-pressed="true"' : "") + '>' + esc(allLabel(f)) + '</button>' : "");
     }
     TOC_FIT = true;
@@ -4260,7 +4561,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       QZ_Q.concat([["sens"]], QZ_Q2).forEach(function(x){ if (QZ[x[0]] !== undefined && QZ[x[0]] !== "") quiz[x[0]] = +QZ[x[0]]; });
       if (CC.me) CC.me.quiz = quiz;
       RECO.sig = "";
-      firebase.firestore().collection("profils").doc(CC.uid).update({ quiz:quiz }).then(function(){ setStatus("Vos goûts sont enregistrés."); }, function(){ setStatus("Pas enregistré, réessayez dans un instant.", true); });
+      CC.setPart("quiz", quiz).then(function(){ setStatus("Vos goûts sont enregistrés."); }, function(){ setStatus("Pas enregistré, réessayez dans un instant.", true); });
       QZ_MODE = "fait"; qzPaint(); p.scrollTop = 0; renderAll();
     }
   });
@@ -4601,13 +4902,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var ids = Object.keys(map), now = new Date().toISOString();
     ids.forEach(function(id){ answers[id] = pack(map[id]); }); keepLocal(); RECO.sig = "";
     if (!(window.CC && CC.uid && CC.fs)) { renderAll(); return Promise.resolve(ids.length); }
-    var ref = CC.fs.collection("profils").doc(CC.uid), FP = firebase.firestore.FieldPath, chunks = [];
+    var chunks = [];
     for (var i = 0; i < ids.length; i += 150) chunks.push(ids.slice(i, i + 150));
     return chunks.reduce(function(p, ch){
       return p.then(function(){
-        var args = [];
-        ch.forEach(function(id){ var a = answers[id], f = films[id] || {}; args.push(new FP("rep", id), { etat:a.etat || "", note:a.note || 0, note10:a.note10 || 0, titre:f.t || "", annee:f.y || "", cineaste:f.d || "", section:f.sid || "", maj:now }); });
-        return ref.update.apply(ref, args);
+        var pairs = {};
+        ch.forEach(function(id){ var a = answers[id], f = films[id] || {}; pairs[id] = { etat:a.etat || "", note:a.note || 0, note10:a.note10 || 0, titre:f.t || "", annee:f.y || "", cineaste:f.d || "", section:f.sid || "", maj:now }; });
+        return CC.putPart("rep", pairs);
       });
     }, Promise.resolve()).then(function(){ renderAll(); return ids.length; });
   }
@@ -4939,7 +5240,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<label><span>Année <i>(si vous la connaissez)</i></span><input name="annee" inputmode="numeric" maxlength="4"></label>' +
       '<label><span>Autres indices <i>(facultatif)</i></span><input name="indices" maxlength="200" autocomplete="off" placeholder="Cinéaste, acteur, genre, pays, un détail…"></label>' +
       (ROLE === "lecteur" || GUEST ? '<label><span>Votre prénom</span><input name="nom" maxlength="30" value="' + esc(monNom()) + '"></label>' : "") +
-      '<button type="submit" class="plf-ok">' + (CCM() || ROLE === "lecteur" || GUEST ? "🎬 Proposer ce film" : "🎬 Ajouter le film") + '</button></form><div class="idsw">' + ideesList() + '</div>';
+      '<button type="submit" class="plf-ok">' + (ROLE === "lecteur" || GUEST ? "🎬 Proposer ce film" : "🎬 Ajouter le film") + '</button></form><div class="idsw">' + ideesList() + '</div>';
     if (k !== "categorie") return hintP("Que voulez-vous proposer ?") + choix + '<div class="idsw">' + ideesList() + '</div>';
     return hintP("Que voulez-vous proposer ?") + choix +
       '<form class="idf" data-idform="1" autocomplete="off">' +
@@ -5281,7 +5582,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<label><span>Année <i>(si vous la connaissez)</i></span><input name="annee" inputmode="numeric" maxlength="4" autocomplete="off" value="' + esc(ADDQ.annee || "") + '"></label>' +
       '<label><span>Autres indices <i>(facultatif)</i></span><input name="indices" maxlength="200" autocomplete="off" placeholder="Cinéaste, acteur, genre, pays, un détail…" value="' + esc(ADDQ.indices || "") + '"></label>' +
       (amis ? '<label><span>Ton prénom</span><input name="nom" maxlength="30" autocomplete="off" value="' + esc(ADDQ.nom != null ? ADDQ.nom : monNom()) + '"></label>' : "") +
-      '<div class="plf-b"><button type="submit" class="plf-ok">' + (amis ? "Ajouter à mes conseils à valider" : CCM() ? "Proposer ce film à Licia" : "Ajouter à la base de données") + '</button>' +
+      '<div class="plf-b"><button type="submit" class="plf-ok">' + (amis ? "Ajouter à mes conseils à valider" : "Ajouter à la base de données") + '</button>' +
       '<button type="button" class="plf-no" data-addno="1">Annuler</button></div></form>';
   }
   function addMissing(t, y, nom, ind){
@@ -5302,9 +5603,15 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     }
     if (CCM()) {
       if (!propCol || !CC.me) { setStatus("Connecte-toi d'abord (bouton en haut).", true); return; }
-      ADDQ = null; renderAll(); setStatus("Envoi…");
-      propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:ind, ajout:new Date().toISOString() })
-        .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(){ setStatus("Pas envoyé, réessaie dans un instant.", true); });
+      // Chaque membre ajoute lui-même le film à la base (idée 18). Si la base refuse encore (règles pas publiées),
+      // le film part dans les propositions, comme avant, pour que Licia l'ajoute.
+      var fid = (slug(t) || "film") + "-" + (yy || "sans-annee"); if (films[fid]) fid += "-" + Date.now().toString(36);
+      ADDQ = null; $("q").value = t; $("qx").hidden = false; query = norm(t); renderAll(); setStatus("Enregistrement…");
+      var prop = function(){ return propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:ind, ajout:new Date().toISOString() })
+        .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(){ setStatus("Pas envoyé, réessaie dans un instant.", true); }); };
+      if (!ajCol) { prop(); return; }
+      ajCol.doc(fid).set({ fid:fid, t:t, y:yy ? String(yy) : "", d:"", mot:ind, ajout:new Date().toISOString() })
+        .then(function(){ setStatus("« " + t + " » est dans la base : tout le monde peut le trouver."); }, prop);
       return;
     }
     var id = (slug(t) || "film") + "-" + (yy || "sans-annee"); if (films[id]) id += "-" + Date.now().toString(36);
@@ -5370,7 +5677,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (bare && s.auto === "liste" && isMine()) return { html:sectionHtml(s, i, [], "Ta liste est vide. Clique sur « + Ma liste » sous un film pour le mettre de côté ici."), n:0, show:true };
     if (bare && s.auto === "conseils") {
       var nom = s.titre || s.prenom;
+      var own = window.CC && CC.me && String(s.prenom) === CC.pid() && !CC.view;
       return { html:sectionHtml(s, i, [], ROLE === "lecteur" ? "Pas encore de film dans cette liste. Sous un film que tu as aimé, touche « ♡ Conseiller », puis ton prénom." :
+        own ? "Ta playlist est vide. Sous un film que tu as aimé, touche « ♡ Conseiller », puis « " + nom + " » : il apparaît ici, pour tout le monde. Pour un film qui n'est pas dans le carnet, utilise le bouton ci-dessous." :
         "Pas encore de film dans cette liste. Sous un film " + que(nom) + " a aimé, touche « ♡ Conseiller », puis « " + nom +
         " ». Pour un film qui n'est pas dans le carnet, utilise le bouton ci-dessous."), n:0, show:true };
     }
@@ -5559,7 +5868,17 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     });
     if (!dup) { ENVOI.push(x); keepEnvoi(); }
   }
+  // Un membre et sa propre playlist : le film entre dans la base et dans sa playlist tout de suite (sans validation).
   function proposeFilm(pid, t, y, mot){
+    var yy = /^[0-9]{4}$/.test(String(y || "")) ? +y : 0, tt = String(t || "").trim().slice(0, 120);
+    if (!(CCM() && CC.me && pid === CC.pid() && ajCol && plCol && tt)) { proposeFilm0(pid, t, y, mot); return; }
+    var ex = findFilm(tt, yy), fid = ex || ((slug(tt) || "film") + "-" + (yy || "sans-annee")), now = new Date().toISOString(), p = person(pid);
+    DRAFT[pid] = { open:false }; setStatus("Enregistrement…");
+    (ex ? Promise.resolve() : ajCol.doc(fid).set({ fid:fid, t:tt, y:yy ? String(yy) : "", d:"", mot:"", ajout:now }))
+      .then(function(){ return plCol.doc(pid + "__" + fid).set({ prenom:pid, film:fid, titre:ex ? films[ex].t : tt, annee:yy || (ex && films[ex].y) || 0, ajout:now, mot:String(mot || "").slice(0, 200) }); })
+      .then(function(){ keepSection(p.sid, renderAll); setStatus("« " + tt + " » est dans ta playlist" + (ex ? "." : " et dans la base.")); }, function(){ proposeFilm0(pid, t, y, mot); });
+  }
+  function proposeFilm0(pid, t, y, mot){
     var p = person(pid);
     if (ROLE === "lecteur") {
       addEnvoi({ pid:pid, t:t.slice(0, 120), y:y, mot:mot.slice(0, 200), libre:true });
@@ -5760,7 +6079,10 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     }
     if (ROLE === "lecteur" || !comCol) { viaForm(); return; }
     var key = pid + "__" + id + "__" + Date.now();
-    comCol.doc(key).set({ prenom:pid, nom:nom, film:id, titre:f.t || "", annee:f.y || 0, texte:txt, ajout:new Date().toISOString() }).then(function(){
+    var cd = { prenom:pid, nom:nom, film:id, titre:f.t || "", annee:f.y || 0, texte:txt, ajout:new Date().toISOString() };
+    var cv = window.CC && CC.carnetMode && CC.carnetMode() && CC.visOf ? CC.visOf("com") : { vis:"tous" };
+    var cw = cv.vis === "tous" ? comCol.doc(key).set(cd) : CC.fs.collection("commentairesPrives").doc(key).set(Object.assign(cd, { uid:CC.uid }, cv));
+    cw.then(function(){
       OPEN_COM = ""; refreshFilm(id); setStatus("Commentaire ajouté");
     }, function(e){ if (e && e.code === "invalid_argument") { denied(); viaForm(); } else setStatus("Commentaire pas enregistré, réessaie dans un instant.", true); });
   }
@@ -6067,7 +6389,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (b.dataset.cok) { submitCom(row); return; }
     if (b.dataset.cdel) {
       var cid = b.dataset.cdel; if (!comCol) return;
-      comCol.doc(cid).delete().then(function(){ setStatus("Commentaire supprimé"); }, function(){ setStatus("Pas supprimé, réessaie dans un instant.", true); });
+      ((window.CC && CC.comPrv && CC.comPrv(cid)) || comCol.doc(cid)).delete().then(function(){ setStatus("Commentaire supprimé"); }, function(){ setStatus("Pas supprimé, réessaie dans un instant.", true); });
       return;
     }
     if (b.dataset.pmok) { var pin = row.querySelector('.pm-in[data-pmot="' + CSS.escape(b.dataset.pmok) + '"]'); saveMot(b.dataset.pmok, id, pin ? pin.value : ""); return; }
@@ -7346,14 +7668,16 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     ENVIES.forEach(function(e){ LABEL_OF[e.id] = e.label; (e.sous || []).forEach(function(s){ ENV_OF[s.id] = e.id; LABEL_OF[s.id] = e.label + " " + s.label; }); });
     if (env1 && !ENVIES.some(function(e){ return e.id === env1; })) { env1 = ""; env2 = ""; }
     if (window.CC) CC.playlists = secDocs.filter(function(d){ return d.x.auto === "conseils"; }).map(function(d){ return { prenom:String(d.x.prenom), titre:d.x.titre || "" }; });
+    if (window.CC && CC.autoLink) setTimeout(CC.autoLink, 0);
     // Chaque membre a sa playlist, même sans liste créée par Licia.
     var CCP = (window.CC && CC.profils) || {};
     Object.keys(CCP).forEach(function(u){
       var pr = CCP[u], pid = CC.pidOf(pr); if (!pr || !pid || !pr.pseudo || pid === "licia") return;
       var own = secDocs.filter(function(d){ return d.x.auto === "conseils" && String(d.x.prenom) === pid; })[0];
-      if (own) { own.x = Object.assign({}, own.x, { titre:pr.pseudo }); return; }
-      secDocs.push({ id:"pl-" + pid, x:{ auto:"conseils", famille:"playlists", films:[], ordre:0.9, prenom:pid, titre:pr.pseudo,
-        sous_titre:"Les films " + que(pr.pseudo) + " a aimés et conseille." } });
+      // Chacun nomme et décrit sa playlist s'il le souhaite (Mon compte).
+      if (own) { own.x = Object.assign({}, own.x, { titre:pr.plTitre || pr.pseudo }, pr.plDesc ? { sous_titre:pr.plDesc } : {}); return; }
+      secDocs.push({ id:"pl-" + pid, x:{ auto:"conseils", famille:"playlists", films:[], ordre:0.9, prenom:pid, titre:pr.plTitre || pr.pseudo,
+        sous_titre:pr.plDesc || "Les films " + que(pr.pseudo) + " a aimés et conseille." } });
     });
     SEC_AUTO = {}; secDocs.forEach(function(d){ if (d.x.auto) SEC_AUTO[d.id] = d.x.auto; });
     sections = secDocs.map(function(d){
@@ -7486,12 +7810,29 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (Object.keys(FSENT).length !== fk.length) { keepFsent(); changed = true; }
       if (changed) { var anc = anchors(null); renderAll(); restore(anc); }
     }, function(e){ if (window.CC && CC.uid) loadErr("les playlists", e); });
+    // Déplacer les films d'une playlist vers une autre (quand un compte est relié à son ancienne playlist).
+    CC.movePl = function(from, to){
+      var ids = Object.keys(CONSEILS[from] || {});
+      return ids.reduce(function(p, fid){
+        return p.then(function(){
+          if ((CONSEILS[to] || {})[fid]) return plCol.doc(from + "__" + fid).delete();
+          var f = films[fid] || {}, d = { prenom:to, film:fid, titre:f.t || "", annee:f.y || 0, ajout:CONSEILS[from][fid], mot:(MOTS[from] || {})[fid] || "" };
+          if ((AVIS[from] || {})[fid] === "non") d.avis = "non";
+          return plCol.doc(to + "__" + fid).set(d).then(function(){ return plCol.doc(from + "__" + fid).delete(); });
+        });
+      }, Promise.resolve());
+    };
     comCol = db.collection("commentaires");
-    comCol.limit(2000).onSnapshot(function(snap){
+    // Commentaires publics (« commentaires ») et commentaires réservés à des amis ou des proches (« commentairesPrives »,
+    // lus seulement par leur auteur et les comptes de « lect »). Les deux sont réunis film par film.
+    var COMPUB = {}, COMPRV = [{}, {}];
+    function comApply(){
       var next = {};
-      snap.docs.forEach(function(d){ var x = d.data() || {}; if (!x.film || !x.texte) return; (next[x.film] = next[x.film] || []).push({ id:d.id, prenom:x.prenom || "", nom:x.nom || x.prenom || "", texte:x.texte, ajout:x.ajout || "", uid:x.uid || "" }); });
+      var put = function(id, x, pv){ if (!x.film || !x.texte) return; (next[x.film] = next[x.film] || []).push({ id:id, prenom:x.prenom || "", nom:x.nom || x.prenom || "", texte:x.texte, ajout:x.ajout || "", uid:x.uid || "", pv:pv }); };
+      Object.keys(COMPUB).forEach(function(id){ put(id, COMPUB[id], false); });
+      var pv = Object.assign({}, COMPRV[1], COMPRV[0]); Object.keys(pv).forEach(function(id){ put(id, pv[id], true); });
       Object.keys(next).forEach(function(k){ next[k].sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); }); });
-      var sig = function(m){ return Object.keys(m).sort().map(function(k){ return k + ":" + m[k].map(function(c){ return c.id + "~" + c.texte + "~" + c.nom + "~" + c.uid + "~" + c.ajout; }).join("|"); }).join(","); };
+      var sig = function(m){ return Object.keys(m).sort().map(function(k){ return k + ":" + m[k].map(function(c){ return c.id + "~" + c.texte + "~" + c.nom + "~" + c.uid + "~" + c.ajout + "~" + c.pv; }).join("|"); }).join(","); };
       if (sig(next) === sig(COMS)) return;
       COMS = next; if (window.CC) CC.coms = COMS;
       // Un commentaire envoyé par le formulaire et maintenant dans le carnet quitte la liste à valider.
@@ -7499,7 +7840,34 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       ENVOI = ENVOI.filter(function(x){ return x.kind !== "com" || !(next[x.id] || []).some(function(c){ return c.texte === x.com; }); });
       if (ENVOI.length !== nb) { keepEnvoi(); renderEnv(); }
       var anc = anchors(null); renderAll(); restore(anc);
+      if (window.CC && CC.comSync) CC.comSync();
+    }
+    comCol.limit(2000).onSnapshot(function(snap){
+      var m = {}; snap.docs.forEach(function(d){ m[d.id] = d.data() || {}; }); COMPUB = m; comApply();
     }, function(e){ if (window.CC && CC.uid) loadErr("les commentaires", e); });
+    var prvCol = window.CC && CC.uid && CC.fs ? CC.fs.collection("commentairesPrives") : null;
+    if (prvCol) [prvCol.where("uid", "==", CC.uid), prvCol.where("lect", "array-contains", CC.uid)].forEach(function(q, i){
+      q.onSnapshot(function(snap){ var m = {}; snap.docs.forEach(function(d){ m[d.id] = d.data() || {}; }); COMPRV[i] = m; comApply(); }, function(){});
+    });
+    CC.comPrv = function(id){ return prvCol && COMPRV[0][id] ? prvCol.doc(id) : null; };
+    // Quand je change qui peut voir mes commentaires : ils passent d'une collection à l'autre, ou changent de lecteurs.
+    var CSYNC = false;
+    CC.comSync = function(){
+      if (CSYNC || !prvCol || !CC.me || CC.view || !CC.carnetMode || !CC.carnetMode() || !CC.comReady) return;
+      var v = CC.visOf("com"), pid = CC.pid(), ops = [];
+      var mine = function(x){ return x.uid === CC.uid && (!x.prenom || x.prenom === pid); };
+      var strip = function(x){ var y = Object.assign({}, x); delete y.vis; delete y.lect; return y; };
+      Object.keys(COMPUB).forEach(function(id){ var x = COMPUB[id]; if (!mine(x) || v.vis === "tous") return;
+        ops.push(function(){ return prvCol.doc(id).set(Object.assign(strip(x), { uid:CC.uid }, v)).then(function(){ return CC.fs.collection("commentaires").doc(id).delete(); }); }); });
+      Object.keys(COMPRV[0]).forEach(function(id){ var x = COMPRV[0][id]; if (!mine(x)) return;
+        if (v.vis === "tous") ops.push(function(){ return CC.fs.collection("commentaires").doc(id).set(Object.assign(strip(x), { uid:CC.uid })).then(function(){ return prvCol.doc(id).delete(); }); });
+        else if (x.vis !== v.vis || JSON.stringify(x.lect || []) !== JSON.stringify(v.lect)) ops.push(function(){ return prvCol.doc(id).set(v, { merge:true }); }); });
+      if (!ops.length) return;
+      CSYNC = true;
+      ops.reduce(function(p, f){ return p.then(f); }, Promise.resolve()).then(function(){ CSYNC = false; }, function(){ CSYNC = false; });
+    };
+    // On attend d'avoir reçu les deux sortes de commentaires avant de déplacer quoi que ce soit.
+    setTimeout(function(){ CC.comReady = true; if (CC.comSync) CC.comSync(); }, 2500);
     ideeCol = db.collection("idees");
     ideeCol.limit(500).onSnapshot(function(snap){
       var next = {};
@@ -7514,6 +7882,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       IDEES = next; idRefresh();
     }, function(e){ if (window.CC && CC.uid) loadErr("les idées", e); });
     propCol = db.collection("propositions");
+    ajCol = db.collection("ajouts");
     propCol.limit(500).onSnapshot(function(snap){
       var next = {};
       snap.docs.forEach(function(d){
@@ -7560,14 +7929,31 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       Object.keys(S).forEach(function(id){ if (!seen[id] && S[id].titre) out.push({ id:id, data:function(){ return JSON.parse(JSON.stringify(S[id])); } }); });
       return out;
     }
+    // Films ajoutés directement par les membres (collection « ajouts ») : une liste de plus, « Films ajoutés par les membres ».
+    var AJ = [];
+    function ajDoc(){
+      if (!AJ.length) return [];
+      var P = (window.CC && CC.profils) || {}, seen = {};
+      var fl = AJ.slice().sort(function(a, b){ return String(a.ajout || "").localeCompare(String(b.ajout || "")); }).filter(function(x){ if (!x.fid || !x.t || seen[x.fid]) return false; seen[x.fid] = 1; return true; })
+        .map(function(x){ var who = (P[x.uid] && P[x.uid].pseudo) || "un membre";
+          return { id:x.fid, t:String(x.t), y:/^[0-9]{4}$/.test(String(x.y || "")) ? +x.y : "", d:String(x.d || ""), r:"Ajouté par " + who + (x.mot ? " · Indices : " + x.mot : ""), aj:x.uid || "" }; });
+      return [{ id:"ajouts-membres", data:function(){ return { titre:"Films ajoutés par les membres", famille:"playlists", ordre:9.1,
+        sous_titre:"Les films que les membres ont ajoutés à la base. Licia les range ensuite dans les bonnes catégories.", films:fl }; } }];
+    }
+    function catDocs(){ return (LASTCAT || []).concat(ajDoc()); }
+    CC.ajouts = function(){ return AJ; };
     fetch("complements.json", { cache:"no-cache" }).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
       if (!j) return; COMP = j; FAM5 = j.familles || {};
-      if (LASTCAT) { var anc = anchors(null); setSections(compDocs(LASTCAT)); restore(anc); }
+      if (LASTCAT) { var anc = anchors(null); setSections(compDocs(catDocs())); restore(anc); }
     }).catch(function(){});
-    if (window.CC) CC.hooks.push(function(){ if (LASTCAT) { var anc = anchors(null); setSections(compDocs(LASTCAT)); restore(anc); } });
+    if (window.CC) CC.hooks.push(function(){ if (LASTCAT) { var anc = anchors(null); setSections(compDocs(catDocs())); restore(anc); } });
+    db.collection("ajouts").limit(3000).onSnapshot(function(snap){
+      AJ = snap.docs.map(function(d){ return Object.assign({ id:d.id }, d.data() || {}); });
+      if (LASTCAT) { var anc = anchors(null); setSections(compDocs(catDocs())); restore(anc); }
+    }, function(){});
     db.collection("catalogue").onSnapshot(function(snap){
       LASTCAT = snap.docs;
-      var anc = anchors(null); setSections(compDocs(snap.docs)); restore(anc);
+      var anc = anchors(null); setSections(compDocs(catDocs())); restore(anc);
     }, function(e){
       loadErr("la liste de films", e);
       $("main").innerHTML = '<p class="notice">La liste de films n\'a pas pu se charger. Recharge la page.</p>';

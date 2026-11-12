@@ -147,3 +147,47 @@ ou du téléphone la ferme aussi) ; ses onglets tiennent sur deux rangées au pl
 « 📰 Quoi de neuf chez les membres ? » ouvre directement le fil (membres connectés, hors bulle). Les playlists des
 membres ne sont plus une catégorie de l'accueil : elles sont dans l'onglet « Playlists » de la communauté
 (avec « Valider les conseils reçus » pour l'administratrice).
+
+## Qui voit quoi, amis, films ajoutés par les membres, playlists (12 novembre 2026)
+
+Idées 12, 13 et 18 de Licia, et sa demande sur les playlists.
+
+**Quatre modes** (Mon compte › « 🔒 Qui peut voir mon carnet ? ») : 🌍 Public (tous les membres voient tout,
+le mode des comptes existants), 👫 Privé (seulement les amis, qui sont aussi les seuls à pouvoir envoyer des conseils),
+🎛️ Personnalisé, 🫧 Bulle (personne ne voit rien à part le pseudo et la playlist ; pas de fil, pas de conseils ;
+les comptes qui étaient déjà « dans leur bulle » y restent).
+
+**Mode personnalisé, élément par élément** : mes films vus, notes et avis ; ma liste de films à voir ; mes chiffres
+(films vus, notés, moyenne) ; ma phrase de goûts ; mes réponses au questionnaire ; mes commentaires ; mon activité
+dans le fil ; me proposer dans la Soirée ciné des autres ; qui peut m'envoyer des conseils. Pour chacun : tout le monde,
+mes amis, mes proches (une partie des amis, cochés un par un) ou personne d'autre que moi. On peut par exemple
+montrer ses chiffres sans montrer ses notes.
+
+**Vraiment protégé, pas seulement caché** : les notes, la liste, les goûts, le questionnaire et les chiffres quittent
+le profil (lu par tous les membres) pour des documents « carnets/{compte}__{partie} » ; chacun dit qui peut le lire
+(« tous », ou la liste des amis ou des proches), et les règles de la base le vérifient. Les commentaires réservés vont
+dans « commentairesPrives », lus seulement par leur auteur et les personnes choisies ; ils changent de collection quand
+le réglage change. Le fil, la Soirée ciné et « qui peut m'envoyer des conseils » suivent aussi le réglage (ce dernier
+est vérifié par les règles). Le déplacement se fait tout seul, au premier passage de chacun après la publication des
+règles ; avant, rien ne change et le réglage est grisé avec une explication.
+
+**Amis** : Communauté › Membres › un membre › « ➕ Demander en ami ». La demande arrive dans « Pour moi »
+(Accepter, Refuser, Voir son profil) ; une fois acceptée, chacun ajoute l'autre à sa liste (deux demandes croisées
+valent acceptation). « Retirer de mes amis » prévient l'autre. Chaque membre écrit seulement sa propre liste. Les
+amis ont 👫 dans la liste des membres ; un carnet fermé affiche 🔒 et ses chiffres s'ils sont partagés.
+
+**Films ajoutés par les membres** (idée 18) : un membre connecté ajoute lui-même un film absent (recherche, boîte à
+idées ou sa playlist) ; il entre tout de suite dans la base (collection « ajouts »), visible par tous, dans la liste
+« Films ajoutés par les membres » (Communauté › Playlists), avec « Ajouté par … » et ses indices. Si la base refuse
+encore (règles pas publiées), le film part dans les propositions, comme avant.
+
+**Chacun sa playlist, et seulement la sienne** : chaque membre a une playlist pour conseiller des films à tous,
+ouverte depuis Mon carnet (« 🎁 Ma playlist ») ou Mon compte, avec un nom et une phrase facultatifs. On y ajoute,
+modifie et retire librement ses films ; les règles refusent qu'on touche à celle d'un autre (l'administratrice peut
+aider partout). Les anciennes playlists d'Arthur, Violette et Jean se relient toutes seules à leurs comptes quand
+Licia ouvre le site (un compte dont le pseudo commence par ce prénom, s'il n'y en a qu'un) ; leurs films suivent.
+Sinon : Communauté › Membres › le membre › « Relier ».
+
+Vérifié par `tests/cineclub_confidentialite.py` (faux Firestore qui suit les filtres des requêtes) et par
+`tests/regles_firestore.mjs` (60 cas dans l'émulateur Firestore, avec le vrai fichier `firestore.rules`).
+

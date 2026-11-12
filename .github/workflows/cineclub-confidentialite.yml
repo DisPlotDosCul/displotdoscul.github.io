@@ -1,0 +1,23 @@
+name: Ciné-club — confidentialité, amis, ajouts et playlists (12 novembre)
+on:
+  pull_request:
+    paths:
+      - carnet-de-films/**
+      - tests/cineclub_confidentialite.py
+      - tests/cineclub_fixture.py
+      - .github/workflows/cineclub-confidentialite.yml
+permissions:
+  contents: read
+jobs:
+  confidentialite:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - run: python tests/cineclub_confidentialite.py

@@ -294,6 +294,37 @@ discrète : … », « Peu de musique originale : … », « Musique existante :
 à Michel Legrand sans que le générique du film le confirme. « Musique de film » passe de 144 à 282 films, chacun
 avec une phrase sur sa musique.
 
+### Politique : sept courants de plus, dont quelques-uns loufoques (12 novembre, soir)
+
+Licia a demandé de vérifier qu'aucun courant ne manquait, « même des courants un peu loufoques », pour que tous les
+sujets politiques puissent être explorés. Sept courants s'ajoutent, toujours dans l'ordre alphabétique et seulement
+avec des films intéressants, atypiques ou qui font réfléchir (vérifiés sur TMDB : titre, année, réalisateur, durée) :
+
+- « Black Power et panafricanisme » : Malcolm X et Lumumba (déjà au catalogue), The Black Power Mixtape 1967-1975
+  (Göran Olsson, 2011, 100 min), Judas and the Black Messiah (Shaka King, 2021, 126 min).
+- « Complots et complotisme » : À cause d'un assassinat (Alan J. Pakula, 1974, 102 min), JFK (Oliver Stone, 1991,
+  189 min), Bugonia (déjà au catalogue), Eddington (Ari Aster, 2025, 148 min).
+- « Contre-culture et situationnisme » : Easy Rider (Dennis Hopper, 1969, 90 min), Zabriskie Point (Michelangelo
+  Antonioni, 1970, 105 min), La dialectique peut-elle casser des briques ? (René Viénet, 1973, 90 min), Hair
+  (Miloš Forman, 1979, 121 min).
+- « Hackers et libertés numériques » : TPB AFK (Simon Klose, 2013, 82 min), We Steal Secrets (Alex Gibney, 2013,
+  130 min), Citizenfour (déjà au catalogue), The Internet's Own Boy (Brian Knappenberger, 2014, 105 min),
+  Mr. Robot (série de Sam Esmail, 2015, 45 épisodes).
+- « Micronations et républiques loufoques » : La Soupe au canard (Leo McCarey, 1933, 65 min), Passeport pour Pimlico
+  (Henry Cornelius, 1949, 84 min), La Souris qui rugissait (Jack Arnold, 1959, 83 min), Le Roi de cœur
+  (Philippe de Broca, 1966, 102 min), Bananas (Woody Allen, 1971, 82 min), L'Incroyable Histoire de l'Île de la Rose
+  (Sydney Sibilia, 2020, 117 min).
+- « Pacifisme et non-violence » : Gandhi (Richard Attenborough, 1982, 190 min), Joyeux Noël (Christian Carion, 2005,
+  116 min), Selma (Ava DuVernay, 2014, 128 min), Tu ne tueras point (Mel Gibson, 2016, 139 min), Une vie cachée.
+- « Utopies et vies en communauté » : L'An 01, Together (Lukas Moodysson, 2000, 102 min), La Commune (Paris, 1871)
+  (Peter Watkins, 2000, version complète de 5 h 45), Captain Fantastic (Matt Ross, 2016, 118 min),
+  Wild Wild Country (série documentaire de Chapman et Maclain Way, 2018, 6 épisodes).
+
+Aussi : Fight Club (déjà au catalogue) dans « Anarchisme », Lincoln (Steven Spielberg, 2012, 150 min) dans
+« Démocratie libérale ». Rangés ailleurs aussi : Hair dans « Comédies musicales », Easy Rider et Zabriskie Point
+dans « Musique choisie, pas composée », Mr. Robot dans « Identités multiples », Le Roi de cœur dans
+« Hôpital psychiatrique ». « Politique » : 225 films, 22 courants. Les 28 nouvelles fiches restent « à vérifier ».
+
 ## Pistes pour la suite
 
 - Sight and Sound 2022, suite : Céline et Julie vont en bateau, La Maman et la Putain, Killer of Sheep,
