@@ -139,3 +139,11 @@ personne) : les règles Firebase actuelles suffisent. Une recherche sans résult
 Quand on ajoute un film, un champ « Autres indices » (cinéaste, acteur, genre, détail…) accompagne le titre et l'année.
 
 Essai : `tests/cineclub_avis.py`.
+
+## Communauté en page entière, fil et playlists (12 novembre 2026)
+
+Idées 5, 10 et 16 de Licia : la communauté s'ouvre en page entière avec « ← Retour » en haut (le Retour du navigateur
+ou du téléphone la ferme aussi) ; ses onglets tiennent sur deux rangées au plus. Sur l'accueil, la carte
+« 📰 Quoi de neuf chez les membres ? » ouvre directement le fil (membres connectés, hors bulle). Les playlists des
+membres ne sont plus une catégorie de l'accueil : elles sont dans l'onglet « Playlists » de la communauté
+(avec « Valider les conseils reçus » pour l'administratrice).
