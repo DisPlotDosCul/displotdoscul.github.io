@@ -1,20 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#3E8A7E"/><stop offset="1" stop-color="#245A52"/>
-    </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="48%" r="70%">
+      <stop offset="0" stop-color="#1F5A52"/><stop offset="0.55" stop-color="#103631"/><stop offset="1" stop-color="#08201D"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#FFD58A" stop-opacity=".55"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
   </defs>
   <rect width="512" height="512" fill="url(#bg)"/>
-  <!-- soleil -->
-  <circle cx="352" cy="160" r="40" fill="#F6C66B"/>
-  <!-- colline -->
-  <path d="M0 400 Q130 330 256 372 T512 352 V512 H0Z" fill="#1C4842"/>
-  <!-- maison -->
-  <path d="M150 262 L256 166 L362 262" fill="none" stroke="#FBF6EC" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M176 252 V384 H336 V252 L256 180Z" fill="#FBF6EC"/>
-  <rect x="232" y="304" width="48" height="80" rx="6" fill="#E9785F"/>
-  <!-- boussole / cap -->
-  <circle cx="256" cy="246" r="30" fill="#2F6B62"/>
-  <path d="M256 222 L266 246 L256 270 L246 246Z" fill="#F6C66B"/>
-  <path d="M256 222 L266 246 L246 246Z" fill="#E9785F"/>
+  <circle cx="256" cy="268" r="150" fill="url(#glow)"/>
+  <!-- petites étoiles -->
+  <g fill="#FFE7B5">
+    <circle cx="138" cy="150" r="4"/><circle cx="378" cy="142" r="5"/><circle cx="160" cy="356" r="3"/><circle cx="360" cy="372" r="3.5"/><circle cx="256" cy="112" r="3"/>
+  </g>
+  <!-- maison lumineuse -->
+  <g filter="url(#soft)" opacity=".8">
+    <path d="M166 258 L256 178 L346 258" fill="none" stroke="#FFD58A" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M166 258 L256 178 L346 258" fill="none" stroke="#FFF4DD" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M190 246 V352 a10 10 0 0 0 10 10 H312 a10 10 0 0 0 10 -10 V246 L256 188Z" fill="#FFF4DD"/>
+  <rect x="236" y="296" width="40" height="66" rx="8" fill="#F2A65A"/>
+  <!-- cap : étoile-boussole -->
+  <path d="M256 214 L264 240 L290 248 L264 256 L256 282 L248 256 L222 248 L248 240Z" fill="#1F5A52"/>
+  <circle cx="256" cy="248" r="5" fill="#FFD58A"/>
 </svg>
