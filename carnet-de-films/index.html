@@ -1017,6 +1017,11 @@ html.aff-calme .ccg-on{transition:none;}
 .nt-ed{display:block!important;}
 .nt-ed textarea{width:100%;box-sizing:border-box;}
 .nt-mic[aria-pressed="true"]{border-color:var(--vu);color:var(--vu);}
+.nt-msg{margin:0;font-size:13px;line-height:1.35;color:var(--muted);}
+.nt-msg.err{color:var(--vu);}
+.nt-msg.rec::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--vu);margin-right:6px;vertical-align:1px;animation:ntPulse 1.2s ease-in-out infinite;}
+@keyframes ntPulse{50%{opacity:.25;}}
+@media (prefers-reduced-motion:reduce){.nt-msg.rec::before{animation:none;}}
 .nt-x{border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer;padding:4px 8px;}
 .nt-panel textarea{font:400 16px/1.35 var(--font);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:9px 11px;resize:vertical;}
 .nt-b{display:flex;gap:8px;flex-wrap:wrap;}
@@ -2866,7 +2871,24 @@ html.sky-on #rsheet{z-index:50;}
     "the-lost-room-mini-serie-2006":"tv/3868", "flash-rag-doll-2018":"tv/60735", "channel-zero-the-dream-door-2018":"tv/67752",
     "la-caravane-de-l-etrange-saison-2-2005":"tv/185", "terminator-les-chroniques-de-sarah-connor-rosie-2008":"tv/433",
     "orphelins-baudelaire-the-carnivorous-carnival-2018":"tv/65294", "game-of-thrones-kayla-2013":"tv/1399",
-    "cirque-du-soleil-fire-within-2002":"tv/46996", "chernobyl-serie-2019":"tv/87108" };
+    "cirque-du-soleil-fire-within-2002":"tv/46996", "chernobyl-serie-2019":"tv/87108",
+    // Films ajoutés le 12 novembre 2026 (politique et compositeurs), identifiants vérifiés à la main.
+    "l-aveu-1970":60859, "l-homme-de-marbre-1977":224, "chers-camarades-2020":587609, "la-mort-de-staline-2017":402897,
+    "ida-2013":209274, "z-1969":2721, "missing-1982":15600, "no-2012":110398,
+    "argentina-1985-2022":714888, "je-suis-toujours-la-2024":1000837, "nostalgie-de-la-lumiere-2010":72721, "the-act-of-killing-2012":123678,
+    "les-graines-du-figuier-sauvage-2024":1278263, "un-simple-accident-2025":1456349, "vivre-1994":31439, "le-dernier-empereur-1987":746,
+    "a-touch-of-sin-2013":187022, "citizenfour-2014":293310, "le-conformiste-1970":8416, "le-fils-de-saul-2015":336050,
+    "l-armee-des-ombres-1969":15383, "rome-ville-ouverte-1945":307, "soy-cuba-1964":32015, "memoires-du-sous-developpement-1968":47576,
+    "land-and-freedom-1995":38884, "le-vent-se-leve-2006":1116, "la-bataille-d-alger-1966":17295, "hunger-2008":10360,
+    "buongiorno-notte-2003":24164, "paradise-now-2005":67, "camp-de-thiaroye-1988":103203, "xala-1975":76636,
+    "lumumba-2000":55551, "dahomey-2024":1101256, "timbuktu-2014":265228, "i-am-not-your-negro-2016":411019,
+    "malcolm-x-1992":1883, "les-miserables-2019":586863, "le-sel-de-la-terre-1954":23620, "harlan-county-usa-1976":33324,
+    "la-classe-ouvriere-va-au-paradis-1971":56231, "moi-daniel-blake-2016":374473, "en-guerre-2018":485162, "l-evenement-2021":793998,
+    "harvey-milk-2008":10139, "pride-2014":234200, "woman-at-war-2018":348657, "how-to-blow-up-a-pipeline-2022":1008048,
+    "green-border-2023":1121956, "moi-capitaine-2023":937746, "fuocoammare-2016":377151, "les-sentiers-de-la-gloire-1957":975,
+    "requiem-pour-un-massacre-1985":25237, "no-other-land-2024":1232493, "les-hommes-du-president-1976":891, "network-1976":10774,
+    "l-exercice-de-l-etat-2011":95448, "il-divo-2008":8832, "furyo-1983":11948, "solaris-1972":593,
+    "la-lecon-de-piano-1993":713 };
   try { localStorage.removeItem("carnetImagesV1"); localStorage.removeItem("carnetImagesV2"); } catch (e) {}
   try { IMG_C = JSON.parse(localStorage.getItem(IMG_KEY) || "{}") || {}; } catch (e) { IMG_C = {}; }
   var IMG_SEL = {};
@@ -3204,14 +3226,17 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (Math.abs(d) > 2 && window.pageYOffset > 0) window.scrollBy(0, d);
     }); });
   }
-  // Sous-catégories d'une liste : parties, et parfois sous-parties (« sous »). Un film va dans la première qui le cite.
+  // Sous-catégories d'une liste : parties, et parfois sous-parties (« sous »). Un film peut être dans plusieurs
+  // (Pauvres Créatures : « Cordes et voix déformées » et « Grands compositeurs · Jerskin Fendrix ») ; sa petite note
+  // reprend la première qui le cite, ou celle de la partie choisie dans le menu.
   var SUBP = {};
   function subMap(s){
     if (s._subm && s._subm.p === s.parties) return s._subm.m;
     var m = {};
+    var put = function(id, k, j){ var l = m[id] || (m[id] = []); if (!l.some(function(w){ return w.k === k && w.j === j; })) l.push({ k:k, j:j }); };
     (s.parties || []).forEach(function(p, k){
-      (p.ids || []).forEach(function(id){ if (!m[id]) m[id] = { k:k, j:null }; });
-      (p.sous || []).forEach(function(q, j){ (q.ids || []).forEach(function(id){ if (!m[id]) m[id] = { k:k, j:j }; }); });
+      (p.ids || []).forEach(function(id){ put(id, k, null); });
+      (p.sous || []).forEach(function(q, j){ (q.ids || []).forEach(function(id){ put(id, k, j); }); });
     });
     s._subm = { p:s.parties, m:m }; return m;
   }
@@ -3224,7 +3249,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var subHtml = "";
     if (!s.auto && s.parties && s.parties.length && list.length) {
       var SP = subMap(s), sel = SUBP[s.id] || "", nb = {}, other = 0;
-      list.forEach(function(f){ var w = SP[f.id]; if (!w) { other++; return; } nb[w.k] = (nb[w.k] || 0) + 1; if (w.j != null) nb[w.k + "." + w.j] = (nb[w.k + "." + w.j] || 0) + 1; });
+      list.forEach(function(f){
+        var ws = SP[f.id], seenK = {}; if (!ws) { other++; return; }
+        ws.forEach(function(w){
+          if (!seenK[w.k]) { seenK[w.k] = 1; nb[w.k] = (nb[w.k] || 0) + 1; }
+          if (w.j != null) nb[w.k + "." + w.j] = (nb[w.k + "." + w.j] || 0) + 1;
+        });
+      });
       if (sel && !nb[sel] && !(sel === "x" && other)) sel = SUBP[s.id] = "";
       var opt = function(v, t, n){ return '<option value="' + v + '"' + (v === sel ? " selected" : "") + '>' + esc(t) + " · " + n + '</option>'; };
       var opts = opt("", "Toutes les sous-catégories", list.length);
@@ -3237,15 +3268,17 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       var cp = sel && sel !== "x" ? s.parties[+sel.split(".")[0]] : null, cq = cp && sel.indexOf(".") > 0 ? (cp.sous || [])[+sel.split(".")[1]] : null;
       subHtml = '<div class="subp"><label><span class="vh">Sous-catégorie</span><select data-subp="' + esc(s.id) + '">' + opts + '</select></label>' +
         (cq ? '<span class="subp-a">dans « ' + esc(cp.titre) + ' »</span>' : cp && cp.aide ? '<span class="subp-a">' + esc(cp.aide) + '</span>' : "") + '</div>';
-      if (sel) list = list.filter(function(f){ var w = SP[f.id]; return sel === "x" ? !w : w && (String(w.k) === sel || (w.k + "." + w.j) === sel); });
+      var inSel = function(w){ return String(w.k) === sel || (w.k + "." + w.j) === sel; };
+      if (sel) list = list.filter(function(f){ var ws = SP[f.id]; return sel === "x" ? !ws : !!ws && ws.some(inSel); });
       if (mode === "est") list = list.map(function(f){
-        var w = SP[f.id]; if (!w) return f;
+        var ws = SP[f.id]; if (!ws) return f;
+        var w = (sel && sel !== "x" ? ws.filter(inSel)[0] : null) || ws[0];
         var p = s.parties[w.k], q = w.j != null ? p.sous[w.j] : null;
         var lab = sel.indexOf(".") > 0 ? "" : sel ? (q ? q.titre : "") : p.titre + (q ? " · " + q.titre : "");
         return lab ? Object.assign({}, f, { r:lab + (f.r ? " · " + f.r : "") }) : f;
       });
     }
-    if (mode === "part") { PI = {}; var SP2 = subMap(s); Object.keys(SP2).forEach(function(id){ PI[id] = SP2[id].k; }); }
+    if (mode === "part") { PI = {}; var SP2 = subMap(s); Object.keys(SP2).forEach(function(id){ PI[id] = SP2[id][0].k; }); }
     function key(f){
       if (mode === "part") return String(f.id in PI ? PI[f.id] : 99);
       if (mode === "note") { var fz = FRZ.n[s.id]; return String(fz && fz[f.id] != null ? fz[f.id] : (answers[f.id] || {}).note10); }
@@ -3713,12 +3746,20 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   }
   // Le panneau reste petit (ou se réduit à une ligne) pour garder le site visible pendant qu'on écrit ; la dictée vocale s'ajoute si le navigateur la connaît.
   var NT_DRAFT = "", NT_EDIT = -1, NT_MINI = false, NT_LIST = false, NT_REC = null, SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  // Dictée : NT_WANT reste vrai tant qu'on n'a pas appuyé sur « Arrêter » ; la reconnaissance se relance seule après un silence.
+  var NT_WANT = false, NT_BASE = "", NT_MSG = "", NT_MSGERR = false, NT_IDLE = 0, NT_GAP = null, NT_HEARD = false, NT_TRY = 0;
+  var NT_ANDROID = /Android/i.test(navigator.userAgent || ""), NT_WIN = /Windows/i.test(navigator.userAgent || "");
+  var NT_HELP = NT_WIN ? "Autre solution : clique dans le cadre puis appuie sur la touche Windows + H (dictée de Windows)."
+    : /Android|iPhone|iPad/i.test(navigator.userAgent || "") ? "Autre solution : le micro du clavier du téléphone."
+    : "Autre solution : la dictée du système (sur Mac, deux fois la touche Fn).";
   function notesHtml(){
-    var mic = SR ? '<button type="button" class="plf-no nt-mic" data-ntmic="1" aria-pressed="' + !!NT_REC + '">' + (NT_REC ? "⏹ Arrêter la dictée" : "🎤 Dicter") + '</button>' : "";
+    var on = NT_WANT;
+    var mic = '<button type="button" class="plf-no nt-mic" data-ntmic="1" aria-pressed="' + on + '">' + (on ? "⏹ Arrêter la dictée" : "🎤 Dicter") + '</button>';
     return '<div class="nt-h"><b>Mes idées pour le site</b><span><button type="button" class="nt-x" data-ntmini="1" aria-label="' + (NT_MINI ? "Agrandir" : "Réduire") + '" title="' + (NT_MINI ? "Agrandir" : "Réduire") + '">' + (NT_MINI ? "▴" : "▾") + '</button><button type="button" class="nt-x" data-ntclose="1" aria-label="Fermer">✕</button></span></div>' +
       '<textarea id="ntTxt" rows="2" maxlength="1000" placeholder="Une idée, un défaut, une envie…">' + esc(NT_DRAFT) + '</textarea>' +
       '<div class="nt-b"><button type="button" class="plf-ok" data-ntadd="1">Noter</button>' + mic +
       (NT_MINI ? "" : '<button type="button" class="plf-no" data-ntcopy="1">📋 Tout copier</button>') + '</div>' +
+      '<p class="nt-msg' + (NT_MSGERR ? " err" : "") + (on ? " rec" : "") + '" id="ntMsg" role="status" aria-live="polite"' + (NT_MSG ? "" : " hidden") + '>' + esc(NT_MSG) + '</p>' +
       (NT_MINI ? "" : NOTES.length && !NT_LIST && NT_EDIT < 0 ? '<button type="button" class="nt-tog" data-ntlist="1" aria-expanded="false">Mes notes (' + NOTES.length + ') ▸</button>' :
        NOTES.length ? '<button type="button" class="nt-tog" data-ntlist="1" aria-expanded="true">Mes notes (' + NOTES.length + ') ▾</button><ol class="nt-l">' + NOTES.map(function(n, i){
         if (i === NT_EDIT) return '<li class="nt-ed"><textarea id="ntEd" rows="3" maxlength="1000" aria-label="Modifier cette note">' + esc(n.t) + '</textarea><span class="nt-b"><button type="button" class="plf-ok" data-ntsave="' + i + '">Enregistrer</button><button type="button" class="plf-no" data-ntcancel="1">Annuler</button></span></li>';
@@ -3726,16 +3767,99 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       }).join("") + '</ol><button type="button" class="nt-clear" data-ntclear="1">Tout effacer (après l\'envoi à Claude)</button>' : '<p class="id-n">Rien de noté pour l\'instant.</p>');
   }
   function ntPaint(focus){ var p = $("ntPanel"); if (!p) return; p.classList.toggle("mini", NT_MINI); p.innerHTML = notesHtml(); var ta = $(focus || "ntTxt"); if (ta && focus !== false) { ta.focus({ preventScroll:true }); try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) {} } }
-  function ntMicStop(){ if (NT_REC) { try { NT_REC.stop(); } catch (e) {} NT_REC = null; } }
+  function ntSay(msg, err){
+    NT_MSG = msg || ""; NT_MSGERR = !!err;
+    var m = $("ntMsg"); if (!m) return;
+    m.textContent = NT_MSG; m.hidden = !NT_MSG; m.classList.toggle("err", NT_MSGERR); m.classList.toggle("rec", NT_WANT);
+  }
+  // Les résultats de la reconnaissance, mis bout à bout. Sur Android, chaque résultat reprend souvent le précédent en plus long
+  // (« je », « je veux », « je veux un film ») : on remplace au lieu d'ajouter, ce qui évite les mots écrits plusieurs fois.
+  function ntKey(s){ return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim(); }
+  function ntJoin(parts){
+    var out = [];
+    parts.forEach(function(t){
+      t = String(t || "").replace(/\s+/g, " ").trim(); if (!t) return;
+      var last = out.length ? out[out.length - 1] : "", a = ntKey(last), b = ntKey(t);
+      if (!b) return;
+      if (last && b.indexOf(a) === 0) out[out.length - 1] = t;
+      else if (last && a.indexOf(b) === 0) return;
+      else out.push(t);
+    });
+    return out.join(" ");
+  }
+  function ntGlue(base, txt){
+    if (!txt) return base;
+    if (!base) return txt.charAt(0).toUpperCase() + txt.slice(1);
+    return base.replace(/\s*$/, " ") + txt;
+  }
+  function ntShow(){ var ta = $("ntTxt"); if (ta && ta.value !== NT_DRAFT) { ta.value = NT_DRAFT; ta.scrollTop = ta.scrollHeight; } }
+  // discard : on jette ce qui n'est pas encore écrit (bouton « Noter », fermeture) ; sinon le dernier morceau entendu s'écrit encore.
+  function ntMicStop(discard){
+    NT_WANT = false; clearTimeout(NT_GAP);
+    var r = NT_REC; if (!r) return;
+    if (discard) { NT_REC = null; try { r.abort(); } catch (e) {} }
+    else { try { r.stop(); } catch (e) { NT_REC = null; } }
+  }
+  var NT_ERR = {
+    "not-allowed":"Le micro est refusé pour ce site. Autorise-le (cadenas à gauche de l'adresse, puis Micro), puis réessaie.",
+    "service-not-allowed":"Ce navigateur ne propose pas la dictée sur ce site.",
+    "audio-capture":"Aucun micro n'a été trouvé, ou un autre logiciel l'utilise déjà.",
+    "network":"La dictée de ce navigateur ne répond pas (elle passe par Internet).",
+    "language-not-supported":"Ce navigateur ne sait pas écouter le français."
+  };
+  function ntFail(code){
+    ntMicStop(true);
+    ntSay((NT_ERR[code] || "La dictée n'a pas pu démarrer.") + " " + NT_HELP, true);
+    var b = document.querySelector("[data-ntmic]"); if (b) { b.setAttribute("aria-pressed", "false"); b.textContent = "🎤 Dicter"; }
+  }
+  function ntListen(){
+    if (!NT_WANT) return;
+    var r; try { r = new SR(); } catch (e) { ntFail(""); return; }
+    // Sur Android, l'écoute en continu répète les mots : on écoute phrase par phrase et on relance aussitôt.
+    r.lang = "fr-FR"; r.continuous = !NT_ANDROID; r.interimResults = true; r.maxAlternatives = 1;
+    var got = "";
+    r.onresult = function(e){
+      if (NT_REC !== r) return;
+      var parts = []; for (var i = 0; i < e.results.length; i++) parts.push(e.results[i][0].transcript);
+      got = ntJoin(parts); NT_IDLE = 0; NT_HEARD = true;
+      NT_DRAFT = ntGlue(NT_BASE, got).slice(0, 1000); ntShow();
+      if (NT_MSG && !NT_MSGERR) ntSay("");
+    };
+    r.onerror = function(e){
+      if (NT_REC !== r) return;
+      var c = (e && e.error) || "";
+      if (c === "no-speech" || c === "aborted") return;
+      if (NT_ERR[c] || !NT_HEARD) ntFail(c);
+    };
+    r.onend = function(){
+      if (NT_REC !== r) return;
+      NT_REC = null; NT_BASE = NT_DRAFT;
+      if (!got) NT_IDLE++;
+      // Relance après une pause ; au bout d'environ une minute de silence, la dictée s'arrête d'elle-même.
+      if (NT_WANT && NT_IDLE < 12) { clearTimeout(NT_GAP); NT_GAP = setTimeout(ntListen, NT_ANDROID ? 250 : 80); return; }
+      if (NT_WANT) ntSay("Dictée arrêtée après un long silence.");
+      NT_WANT = false; ntPaint(false);
+    };
+    try { r.start(); NT_REC = r; NT_TRY = 0; }
+    catch (e) {
+      NT_REC = null;
+      // Une relance trop rapide peut être refusée : on réessaie un peu plus tard avant d'abandonner.
+      if (NT_HEARD && NT_TRY++ < 4) { clearTimeout(NT_GAP); NT_GAP = setTimeout(ntListen, 400); } else ntFail("");
+    }
+  }
   function ntMic(){
-    if (NT_REC) { ntMicStop(); ntPaint(); return; }
-    var r = new SR(), base = NT_DRAFT ? NT_DRAFT.replace(/\s*$/, " ") : "";
-    r.lang = "fr-FR"; r.continuous = true; r.interimResults = true;
-    r.onresult = function(e){ var txt = ""; for (var i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript; NT_DRAFT = (base + txt).slice(0, 1000); var ta = $("ntTxt"); if (ta) ta.value = NT_DRAFT; };
-    r.onend = function(){ if (NT_REC === r) { NT_REC = null; ntPaint(false); } };
-    r.onerror = function(){ if (NT_REC === r) { NT_REC = null; ntPaint(false); setStatus("La dictée n'a pas pu démarrer : utilise le micro du clavier.", true); } };
-    try { r.start(); NT_REC = r; } catch (e) { NT_REC = null; }
-    ntPaint(false);
+    if (NT_WANT) {
+      // Le dernier morceau entendu peut encore s'écrire ; si le navigateur ne répond plus, on coupe quand même.
+      var r0 = NT_REC; ntMicStop(false); ntSay(""); ntPaint(false);
+      setTimeout(function(){ if (r0 && NT_REC === r0) { NT_REC = null; try { r0.abort(); } catch (e) {} ntPaint(false); } }, 1500);
+      return;
+    }
+    if (!SR) { ntSay("Ce navigateur n'a pas de dictée. " + NT_HELP, true); return; }
+    if (NT_REC) { var o = NT_REC; NT_REC = null; try { o.abort(); } catch (e) {} }
+    var ta = $("ntTxt"); if (ta) NT_DRAFT = ta.value;
+    NT_WANT = true; NT_IDLE = 0; NT_HEARD = false; NT_BASE = NT_DRAFT;
+    NT_MSG = "J'écoute… Parle normalement, le texte s'écrit au fur et à mesure."; NT_MSGERR = false;
+    ntListen(); ntPaint(false);
   }
   function notesSync(){
     var b = $("ntBtn"), on = !!(window.CC && CC.admin);
@@ -3750,14 +3874,14 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   document.addEventListener("click", function(ev){
     var t = ev.target; if (!t.closest) return;
     var p = $("ntPanel");
-    if (t.closest("#ntBtn")) { if (p.hidden) { NT_CLEAR = false; NT_EDIT = -1; p.hidden = false; ntPaint(); } else { ntMicStop(); p.hidden = true; } return; }
+    if (t.closest("#ntBtn")) { if (p.hidden) { NT_CLEAR = false; NT_EDIT = -1; p.hidden = false; ntPaint(); } else { ntMicStop(true); p.hidden = true; } return; }
     if (!t.closest("#ntPanel")) return;
-    if (t.closest("[data-ntclose]")) { ntMicStop(); p.hidden = true; return; }
+    if (t.closest("[data-ntclose]")) { ntMicStop(true); NT_MSG = ""; p.hidden = true; return; }
     if (t.closest("[data-ntmini]")) { NT_MINI = !NT_MINI; ntPaint(false); return; }
     if (t.closest("[data-ntlist]")) { NT_LIST = !NT_LIST; ntPaint(false); return; }
     if (t.closest("[data-ntmic]")) { ntMic(); return; }
     if (t.closest("[data-ntadd]")) {
-      ntMicStop();
+      ntMicStop(true); NT_MSG = "";
       var v = ($("ntTxt").value || "").trim(); if (!v) { $("ntTxt").focus(); return; }
       NOTES.push({ t:v.slice(0, 1000), d:new Date().toISOString(), w:notesWhere() }); keepNotes(); NT_DRAFT = ""; ntPaint(); return;
     }
@@ -3774,9 +3898,14 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       copyText([mine, idTodo()].filter(Boolean).join("\n\n"), "vos notes et les suggestions des membres", t.closest("[data-ntcopy]"));
     }
   });
-  document.addEventListener("input", function(ev){ if (ev.target && ev.target.id === "ntTxt") NT_DRAFT = ev.target.value; });
+  document.addEventListener("input", function(ev){
+    if (!ev.target || ev.target.id !== "ntTxt") return;
+    NT_DRAFT = ev.target.value;
+    // Une correction à la main pendant la dictée : on repart de ce qui est écrit.
+    if (NT_REC) { var r = NT_REC; NT_BASE = NT_DRAFT; NT_REC = null; try { r.abort(); } catch (e) {} if (NT_WANT) { clearTimeout(NT_GAP); NT_GAP = setTimeout(ntListen, 80); } }
+  });
   document.addEventListener("keydown", function(ev){
-    if (ev.key === "Escape") { var p = $("ntPanel"); if (p && !p.hidden) { ntMicStop(); p.hidden = true; } }
+    if (ev.key === "Escape") { var p = $("ntPanel"); if (p && !p.hidden) { ntMicStop(true); p.hidden = true; } }
     if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey) && ev.target.id === "ntTxt") { var a = document.querySelector("[data-ntadd]"); if (a) a.click(); }
   });
   var QZ_Q = [
