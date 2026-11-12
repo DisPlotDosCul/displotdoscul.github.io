@@ -241,14 +241,19 @@ Naissance d'une nation (signalé comme film de propagande raciste, document hist
 (1934), La Règle du jeu, The Servant, Snowpiercer, Au-delà des montagnes, First Cow, Everybody in the Place, Threads,
 Un long dimanche de fiançailles, Au revoir là-haut, Chinatown.
 
-Vérification du soir : pour qu'aucun courant ne soit favorisé, chacun a maintenant cinq films. Ajoutés : Wall Street
-(Oliver Stone, 1987, 122 min) et Tucker : l'homme et son rêve (Francis Ford Coppola, 1988, 111 min) dans « Libéralisme
-et marché » ; rangés aussi dans un courant : Les Petites Marguerites (anarchisme), L'Aveu (communisme), Une vie cachée
-(conservatisme), Argentina, 1985 (démocratie libérale), Princesse Mononoké (écologie).
+Vérification du soir : il ne s'agit pas d'avoir autant de films par courant, mais que tous les courants soient
+présents, sans favoriser l'un d'eux, et seulement avec de bons films. Trois courants manquaient et sont ajoutés :
+« Altermondialisme » (Le Cauchemar de Darwin, Hubert Sauper, 2004, 107 min ; Bamako, Abderrahmane Sissako, 2006,
+115 min), « Cause animale » (Okja, Bong Joon-ho, 2017, 121 min ; Gunda, déjà au catalogue) et « Peuples autochtones »
+(L'Étreinte du serpent, Ciro Guerra, 2015, 125 min ; Killers of the Flower Moon, Martin Scorsese, 2023, 206 min ;
+Avatar, déjà au catalogue). Wall Street (Oliver Stone, 1987, 122 min) entre dans « Libéralisme et marché » ;
+Gattaca dans « Surveiller et contrôler » ; Okja aussi dans « Cinéma coréen ». Rangés aussi dans un courant :
+Les Petites Marguerites (anarchisme), L'Aveu (communisme), Une vie cachée (conservatisme), Argentina, 1985
+(démocratie libérale), Princesse Mononoké (écologie). « Politique » : 195 films, 15 courants.
 
-« Politique » passe de 45 à 188 films. En tête, « Courants politiques » : chaque grande famille d'idées vue
+« Politique » passe de 45 à 195 films. En tête, « Courants politiques » : chaque grande famille d'idées vue
 de l'intérieur, par ceux qui y croient, avec ses élans et ses dérives, dans l'ordre alphabétique pour n'en
-favoriser aucune, cinq films chacune (six pour le féminisme, le catalogue en comptant davantage) : Anarchisme, Communisme, Conservatisme et monarchie,
+favoriser aucune, de deux à sept films chacune, selon les bons films qui existent : Anarchisme, Communisme, Conservatisme et monarchie,
 Démocratie libérale, Écologie, Extrême droite et fascisme, Féminisme, Libéralisme et marché, Mouvements LGBT+,
 Nationalismes, Religion et pouvoir, Socialisme et syndicalisme. Puis les sujets : Dictatures et surveillance
 (régimes communistes, juntes militaires et théocratie, côte à côte), Nazisme et Seconde Guerre mondiale,

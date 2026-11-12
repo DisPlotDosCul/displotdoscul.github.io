@@ -495,6 +495,13 @@
      "y": 2023,
      "d": "Celine Song",
      "r": "Film américain de la Coréenne Celine Song, à moitié en coréen, entre Séoul et New York."
+    },
+    {
+     "id": "okja-2017",
+     "t": "Okja",
+     "y": 2017,
+     "d": "Bong Joon-ho",
+     "r": "Bong Joon-ho entre Séoul et New York : une fable sur la cause animale, drôle puis glaçante."
     }
    ],
    "parties": [
@@ -532,7 +539,8 @@
       "the-strangers-2016",
       "sleep-2023",
       "exhuma-2024",
-      "save-the-green-planet-2003"
+      "save-the-green-planet-2003",
+      "okja-2017"
      ]
     },
     {
@@ -3498,18 +3506,67 @@
      "r": "Un jeune courtier séduit par Gordon Gekko, pour qui « l'avidité, c'est bien » : le marché vu de l'intérieur."
     },
     {
-     "id": "tucker-1988",
-     "t": "Tucker : l'homme et son rêve",
-     "y": 1988,
-     "d": "Francis Ford Coppola",
-     "r": "Un inventeur qui veut bâtir sa propre voiture face aux géants de Detroit : l'esprit d'entreprise, histoire vraie."
-    },
-    {
      "id": "princesse-mononoke-1997",
      "t": "Princesse Mononoké",
      "y": 1997,
      "d": "Hayao Miyazaki",
      "r": "Une princesse élevée par les loups contre les forges qui dévorent la forêt : l'écologie en fable."
+    },
+    {
+     "id": "okja-2017",
+     "t": "Okja",
+     "y": 2017,
+     "d": "Bong Joon-ho",
+     "r": "Une fillette et son cochon géant contre une multinationale de la viande, aidés par des militants de la cause animale."
+    },
+    {
+     "id": "bamako-2006",
+     "t": "Bamako",
+     "y": 2006,
+     "d": "Abderrahmane Sissako",
+     "r": "Dans une cour de Bamako, un procès de la Banque mondiale et du FMI (Fonds monétaire international), au milieu de la vie quotidienne."
+    },
+    {
+     "id": "le-cauchemar-de-darwin-2004",
+     "t": "Le Cauchemar de Darwin",
+     "y": 2004,
+     "d": "Hubert Sauper",
+     "r": "Le lac Victoria, la perche du Nil exportée vers l'Europe et la misère autour : la mondialisation vue d'en bas."
+    },
+    {
+     "id": "l-etreinte-du-serpent-2015",
+     "t": "L'Étreinte du serpent",
+     "y": 2015,
+     "d": "Ciro Guerra",
+     "r": "Un chaman d'Amazonie, dernier de son peuple, guide deux savants blancs : la colonisation vue par ceux qui la subissent."
+    },
+    {
+     "id": "killers-of-the-flower-moon-2023",
+     "t": "Killers of the Flower Moon",
+     "y": 2023,
+     "d": "Martin Scorsese",
+     "r": "Les Osages, enrichis par le pétrole, assassinés un à un pour leur fortune : une histoire vraie des années 1920."
+    },
+    {
+     "id": "gunda-2020",
+     "t": "Gunda",
+     "y": 2020,
+     "d": "Viktor Kossakovsky",
+     "r": "La vie d'une truie et de ses petits, filmée sans un mot en noir et blanc : un regard sur la condition animale."
+    },
+    {
+     "id": "avatar-2009",
+     "t": "Avatar",
+     "y": 2009,
+     "d": "James Cameron",
+     "r": "Un peuple indigène défend sa forêt contre une compagnie minière venue de la Terre."
+    },
+    {
+     "id": "gattaca-1997",
+     "t": "Gattaca",
+     "y": 1997,
+     "d": "Andrew Niccol",
+     "r": "Une société qui trie les humains selon leurs gènes, et un homme qui triche pour échapper à son destin."
     }
    ],
    "parties": [
@@ -3518,6 +3575,13 @@
      "aide": "Chaque grande famille d'idées vue de l'intérieur, par ceux qui y croient, avec ses élans et ses dérives",
      "sous": [
       {
+       "titre": "Altermondialisme",
+       "ids": [
+        "le-cauchemar-de-darwin-2004",
+        "bamako-2006"
+       ]
+      },
+      {
        "titre": "Anarchisme",
        "ids": [
         "zero-de-conduite-1933",
@@ -3525,6 +3589,13 @@
         "l-an-01-1973",
         "land-and-freedom-1995",
         "v-pour-vendetta-2005"
+       ]
+      },
+      {
+       "titre": "Cause animale",
+       "ids": [
+        "okja-2017",
+        "gunda-2020"
        ]
       },
       {
@@ -3593,7 +3664,6 @@
        "ids": [
         "le-rebelle-1949",
         "wall-street-1987",
-        "tucker-1988",
         "there-will-be-blood-2007",
         "margin-call-2011"
        ]
@@ -3616,6 +3686,14 @@
         "mishima-1985",
         "le-vent-se-leve-2006",
         "hunger-2008"
+       ]
+      },
+      {
+       "titre": "Peuples autochtones",
+       "ids": [
+        "avatar-2009",
+        "l-etreinte-du-serpent-2015",
+        "killers-of-the-flower-moon-2023"
        ]
       },
       {
@@ -3650,6 +3728,7 @@
         "alphaville-1965",
         "conversation-secrete-1974",
         "1984-1984",
+        "gattaca-1997",
         "brazil-1985",
         "la-vie-des-autres-2006",
         "la-antena-2007",
@@ -3802,7 +3881,8 @@
         "la-ligne-verte-1999",
         "loin-du-paradis-2002",
         "i-am-not-your-negro-2016",
-        "get-out-2017"
+        "get-out-2017",
+        "killers-of-the-flower-moon-2023"
        ]
       },
       {
@@ -26957,22 +27037,110 @@
    ],
    "fiab": "à vérifier"
   },
-  "tucker-1988": {
-   "p": "Années 1940. Preston Tucker (Jeff Bridges), inventeur optimiste, veut construire la voiture la plus sûre et la plus moderne d'Amérique. Il lève de l'argent, monte une usine et présente sa Tucker Torpedo, mais les trois géants de Detroit et un sénateur s'allient pour le faire tomber. D'après une histoire vraie, dans des couleurs de publicité d'époque.",
+  "okja-2017": {
+   "p": "Dans les montagnes de Corée, Mija, treize ans, a grandi avec Okja, un gigantesque cochon créé en laboratoire par une multinationale américaine. Le jour où l'entreprise vient reprendre l'animal pour en faire de la viande, Mija part le chercher jusqu'à New York, aidée par un groupe de militants de la libération animale. Jusqu'à l'abattoir géant.",
+   "c": "Corée du Sud, États-Unis",
+   "k": [
+    "animaux",
+    "aventure",
+    "humour-absurde",
+    "enfance"
+   ],
+   "mv": "coree",
+   "e": 7,
+   "duree": 121,
+   "av": [
+    "maltraitance"
+   ],
+   "th": [
+    "cause animale",
+    "agro-industrie",
+    "amitié"
+   ],
+   "fiab": "à vérifier"
+  },
+  "bamako-2006": {
+   "p": "Dans la cour d'une maison de Bamako, un tribunal se tient au milieu de la vie quotidienne : la société civile africaine fait le procès de la Banque mondiale et du Fonds monétaire international, accusés d'avoir ruiné le continent. Avocats en robe, témoins venus raconter leur vie, linge qui sèche, une chanteuse qui répète, un couple qui se sépare.",
+   "c": "Mali, France",
+   "k": [
+    "huis-clos",
+    "societe",
+    "injustice",
+    "musique"
+   ],
+   "mv": "auteur-monde",
+   "e": 7,
+   "duree": 115,
+   "av": [],
+   "th": [
+    "mondialisation",
+    "dette",
+    "procès"
+   ],
+   "fiab": "à vérifier"
+  },
+  "le-cauchemar-de-darwin-2004": {
+   "p": "Au bord du lac Victoria, en Tanzanie, la perche du Nil, introduite dans les années 1960, a détruit l'écosystème mais nourrit une industrie d'exportation vers l'Europe. Les avions qui emportent les filets de poisson reviennent-ils vides, ou chargés d'armes ? Pêcheurs, enfants des rues, pilotes russes : la mondialisation vue d'en bas.",
+   "c": "Autriche, Belgique, France",
+   "k": [
+    "documentaire",
+    "societe",
+    "injustice"
+   ],
+   "mv": "doc-observation",
+   "e": 7,
+   "duree": 107,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "mondialisation",
+    "pêche",
+    "pauvreté"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-etreinte-du-serpent-2015": {
+   "p": "Amazonie colombienne. Karamakate, chaman, dernier survivant de son peuple, guide à quarante ans d'écart deux scientifiques blancs venus chercher une plante sacrée, la yakruna. Missions catholiques qui battent les enfants, exploitation du caoutchouc, folie messianique : la destruction d'un monde, filmée dans un noir et blanc somptueux.",
+   "c": "Colombie, Venezuela, Argentine",
+   "k": [
+    "noir-et-blanc",
+    "contemplatif",
+    "reve",
+    "aventure"
+   ],
+   "mv": "auteur-monde",
+   "e": 8,
+   "duree": 125,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "peuples autochtones",
+    "colonisation",
+    "mémoire"
+   ],
+   "fiab": "à vérifier"
+  },
+  "killers-of-the-flower-moon-2023": {
+   "p": "Oklahoma, années 1920. Les Osages sont devenus riches grâce au pétrole découvert sur leurs terres. Ernest Burkhart (Leonardo DiCaprio) épouse l'une d'eux, Mollie (Lily Gladstone), pendant que son oncle (Robert De Niro) organise l'assassinat des Osages pour s'emparer de leur fortune. D'après une histoire vraie.",
    "c": "États-Unis",
    "k": [
     "histoire-vraie",
-    "retro",
-    "couleurs"
+    "injustice",
+    "violence",
+    "amour"
    ],
    "mv": "hollywood-contemporain",
-   "e": 6,
-   "duree": 111,
-   "av": [],
+   "e": 7,
+   "duree": 206,
+   "av": [
+    "violence explicite"
+   ],
    "th": [
-    "entrepreneur",
-    "automobile",
-    "concurrence"
+    "peuples autochtones",
+    "racisme",
+    "cupidité"
    ],
    "fiab": "à vérifier"
   }
@@ -28027,7 +28195,11 @@
   "argentina-1985-2022": "02242",
   "lumumba-2000": "12232",
   "wall-street-1987": "12241",
-  "tucker-1988": "31033"
+  "okja-2017": "21124",
+  "bamako-2006": "31051",
+  "le-cauchemar-de-darwin-2004": "13051",
+  "l-etreinte-du-serpent-2015": "61030",
+  "killers-of-the-flower-moon-2023": "23131"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
