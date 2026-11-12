@@ -1,0 +1,81 @@
+/* Cap Logement · couche de design commune
+   Idée : des touches qu'on enfonce (bord épais en bas) et, pour ce qui est choisi,
+   le bleu des plaques de rue de Paris avec leur filet blanc intérieur. */
+:root{--dz-plaque:#34546B;--dz-edge:rgba(31,43,41,.28);--dz-r:7px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="soft"]){--dz-plaque:#3B6585;--dz-edge:rgba(0,0,0,.55)}}
+:root[data-theme="dark"]{--dz-plaque:#3B6585;--dz-edge:rgba(0,0,0,.55)}
+:root[data-theme="soft"]{--dz-plaque:#4A5E3A}
+
+/* ---------- Touches ---------- */
+html .themes button,html .opts button,html .modes button,html .seg button,html .bmore,html .btn,
+html .zbtn button,html .nav button,html .ch button,html .add,html .dz-key,html #crit-reset,html .danger{
+  border-radius:var(--dz-r);border:1.5px solid color-mix(in srgb,var(--ink) 28%,var(--line));
+  background:var(--surface);color:var(--ink);box-shadow:0 2px 0 var(--dz-edge);
+  transition:transform .06s ease,box-shadow .06s ease;font-weight:600}
+html .themes button:active,html .opts button:active,html .modes button:active,html .seg button:active,html .bmore:active,
+html .btn:active,html .zbtn button:active,html .nav button:active,html .ch button:active,html .add:active,html .dz-key:active{
+  transform:translateY(2px);box-shadow:0 0 0 var(--dz-edge)}
+/* Choisi : plaque émaillée */
+html .themes button[aria-selected="true"],html .opts button[aria-pressed="true"],html .modes button[aria-pressed="true"],
+html .modes button[aria-selected="true"],html .seg button[aria-pressed="true"],html .zbtn button[aria-pressed="true"],
+html .nav button[aria-pressed="true"],html .ch button[aria-pressed="true"],html .add[aria-pressed="true"],html .dz-key[aria-pressed="true"],
+html .jump a[aria-current="true"],html .dz-tabs button[aria-current="true"],html #annbtn[aria-pressed="true"],html #calcbtn[aria-pressed="true"]{
+  background:var(--dz-plaque);border-color:var(--dz-plaque);color:#fff;
+  box-shadow:inset 0 0 0 2px var(--dz-plaque),inset 0 0 0 3.5px rgba(255,255,255,.7),0 2px 0 var(--dz-edge)}
+/* Groupes : touches séparées, pas de pilule commune */
+html .seg{border:0;border-radius:0;overflow:visible;gap:4px;display:inline-flex;flex-wrap:wrap}
+html .opts{background:none;padding:0}
+html .bmore,html .btn{color:var(--ink)}
+html .btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#fff)}
+html .danger{color:var(--bad,#B23A3A)}
+
+/* ---------- Barre d'onglets sur une seule ligne ---------- */
+html .jump,html .dz-tabs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:3px;overflow:visible;padding:4px 0;margin:0;border-bottom:0;background:var(--bg);position:sticky;top:0;z-index:6}
+html .jump a,html .dz-tabs button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;
+  padding:5px 2px;border-radius:var(--dz-r);font:600 11px/1.15 var(--display,system-ui);color:var(--ink-2,var(--ink));text-decoration:none;
+  text-align:center;border:1.5px solid transparent;background:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html .jump a svg{width:19px;height:19px;flex:none}
+html .jump a:hover,html .dz-tabs button:hover{background:var(--surface-2,var(--surface))}
+
+/* ---------- Plus compact ---------- */
+html .card{border-radius:10px}
+html .toi,html .rank,html .budget,html .streets,html .panel{padding:12px;gap:8px}
+html .fiche{padding:12px;gap:8px}
+html .themes button{min-height:34px;padding:4px 10px;font-size:13.5px}
+html .opts button,html .modes button,html .zbtn button,html .seg button{min-height:32px;padding:3px 10px;font-size:13.5px}
+html .bmore{min-height:34px;padding:4px 12px;font-size:14px}
+html .wrap{gap:10px}
+html header h1{font-size:20px}
+html header .meta{font-size:12px;margin:2px 0 0}
+html h2{font-size:16.5px}
+html .toi li{padding:7px 9px;border-radius:8px}
+html .toi p{font-size:13px}
+
+/* Explications repliées */
+details.dz-why{margin:0;font-size:13px;color:var(--muted)}
+details.dz-why>summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:5px;font-weight:600;color:var(--ink-2,var(--ink));font-size:12.5px}
+details.dz-why>summary::-webkit-details-marker{display:none}
+details.dz-why>summary::before{content:"i";display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;border:1.5px solid currentColor;font:700 10px/1 Georgia,serif}
+details.dz-why[open]>summary{margin-bottom:4px}
+details.dz-why .sub{margin:0}
+
+/* Voir plus */
+.dz-more{display:flex;justify-content:center;margin-top:6px}
+
+/* Barre de l'accueil sur une ligne */
+html .bar{flex-wrap:nowrap;gap:5px;padding-top:max(6px,env(safe-area-inset-top,0px));padding-bottom:6px}
+html .bar .home{padding:6px}
+html .bar .home .dz-hide{display:none}
+html .bar .add{min-height:34px;padding:4px 8px;font-size:13px;gap:4px;white-space:nowrap}
+html .bar #seg button{min-height:34px;padding:4px 8px;font-size:13px}
+html .bar #seg button .dot{display:none}
+html .bar .modes{display:none}
+html .bar .dz-theme{margin-left:auto;min-height:34px;width:36px;padding:0;display:grid;place-items:center}
+@media (max-width:420px){html .bar #addbtn .dz-lbl{display:none}}
+
+@media (prefers-reduced-motion:reduce){html .btn,html .seg button,html .nav button{transition:none}}
+
+/* Annonces : titres en minuscules, cartes plus serrées */
+html .wrap>section>h2{text-transform:none;letter-spacing:0;font-size:16.5px;margin:0 0 6px}
+html .wrap>header h1{font-size:20px}
+html .dz-theme svg{width:19px;height:19px}
