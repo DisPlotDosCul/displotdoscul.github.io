@@ -1,5 +1,5 @@
 // Cap Logement, appli installable : toujours la version en ligne d'abord ; la copie gardée sert seulement hors connexion.
-var CACHE = "caplogement-v1";
+var CACHE = "caplogement-v2";
 var CORE = ["./", "calculateur.html", "annonces.html", "licia.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png", "icons/icon-32.png"];
 self.addEventListener("install", function(e){
   e.waitUntil(caches.open(CACHE).then(function(c){ return c.addAll(CORE); }).catch(function(){}).then(function(){ return self.skipWaiting(); }));
