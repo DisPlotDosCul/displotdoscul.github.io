@@ -1,4 +1,4 @@
-"""Idées du 22 octobre : dé, recherche, avis à son nom, apostrophe, flèches, résumé, Boussole, boîte à idées, images, mode édition."""
+"""Idées du 22 octobre : dé, recherche, avis à son nom, apostrophe, flèches, résumé, Boussole, boîte à idées, images, mode édition ; dictée (10 novembre)."""
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -23,6 +23,19 @@ def open_page(browser, admin):
             "CC.admin = !!(u && uh[1] === ADMIN_SHA);", "CC.admin = true;")
         context.route("https://cineclub.test/carnet-de-films/", lambda r: r.fulfill(content_type="text/html", body=html))
     context.add_init_script("localStorage.setItem('carnetAmbianceV1','neon');")
+    # Dictée simulée : on décide nous-mêmes de ce que le « micro » entend, comme le ferait un téléphone Android.
+    context.add_init_script("""
+      window.__sr = [];
+      function FakeSR(){ this.lang = ''; this.started = false; window.__sr.push(this); }
+      FakeSR.prototype.start = function(){ this.started = true; };
+      FakeSR.prototype.stop = function(){ var s = this; setTimeout(function(){ s.onend && s.onend(); }, 10); };
+      FakeSR.prototype.abort = function(){ var s = this; setTimeout(function(){ s.onend && s.onend(); }, 5); };
+      FakeSR.prototype.emit = function(list){
+        var results = list.map(function(x){ var r = [{ transcript:x[0] }]; r.isFinal = x[1]; return r; });
+        this.onresult && this.onresult({ resultIndex:0, results:results });
+      };
+      window.SpeechRecognition = window.webkitSpeechRecognition = FakeSR;
+    """)
     # TMDB simulé : aucune requête ne part vers le vrai service.
     context.route("https://api.themoviedb.org/**", lambda r: r.fulfill(content_type="application/json", body=json.dumps(
         {"results": [{"id": 694}]} if "/search/" in r.request.url else {"id": 694, "credits": {"crew": []},
@@ -119,6 +132,7 @@ def run():
             page.locator("#qx").click()
 
             # Boussole : questionnaire déjà rempli → questions repliées ; « Pas vu » s'enregistre tout de suite.
+            cf.open_more(page)
             page.locator("#ccQuiz").click()
             assert page.locator("#qzPanel .qz-ok").is_visible() and page.locator('#qzPanel [data-qz="sombre"]').count() == 0
             fid = page.locator("#qzPanel [data-qzf]").first.get_attribute("data-qzf")
@@ -187,6 +201,29 @@ def run():
                 page.locator("[data-ntsave]").click()
                 assert "Idée corrigée" in page.locator(".nt-l").inner_text()
                 assert page.locator("#ntTxt").input_value() == "Brouillon en cours"
+                # Dictée : les résultats qui se répètent en s'allongeant (Android) ne s'écrivent qu'une fois,
+                # et l'écoute se relance seule après une pause au lieu de s'arrêter.
+                page.locator("#ntTxt").fill("")
+                page.locator("[data-ntmic]").click()
+                assert page.locator("#ntMsg").is_visible() and "J'écoute" in page.locator("#ntMsg").inner_text()
+                page.evaluate("__sr[0].emit([['je', false]])")
+                page.evaluate("__sr[0].emit([['je', true], ['je veux', true], ['je veux un film', false]])")
+                assert page.locator("#ntTxt").input_value() == "Je veux un film", page.locator("#ntTxt").input_value()
+                page.evaluate("__sr[0].onend()")
+                page.wait_for_function("__sr.length === 2 && __sr[1].started")
+                page.evaluate("__sr[1].emit([['et une série', false]])")
+                page.evaluate("__sr[1].emit([['et une série', true], ['et une série coréenne', true]])")
+                assert page.locator("#ntTxt").input_value() == "Je veux un film et une série coréenne", page.locator("#ntTxt").input_value()
+                page.locator("[data-ntmic]").click()
+                page.wait_for_function("document.querySelector('[data-ntmic]').getAttribute('aria-pressed') === 'false'")
+                assert page.locator("#ntTxt").input_value() == "Je veux un film et une série coréenne"
+                assert page.evaluate("__sr.length") == 2, "la dictée a redémarré après « Arrêter »"
+                # Micro refusé : la raison et une autre solution s'affichent dans le panneau.
+                page.locator("[data-ntmic]").click()
+                page.evaluate("__sr[2].onerror({ error:'not-allowed' })")
+                assert "refusé" in page.locator("#ntMsg").inner_text() and "Autre solution" in page.locator("#ntMsg").inner_text()
+                assert page.locator("[data-ntmic]").get_attribute("aria-pressed") == "false"
+                page.locator("#ntTxt").fill("Brouillon en cours")
                 page.locator("[data-ntmini]").click()
                 assert page.locator("#ntPanel.mini").is_visible() and page.locator(".nt-l").count() == 0
                 page.locator("[data-ntclose]").click()
@@ -211,7 +248,7 @@ def run():
                 assert page.locator("#skyToggle").inner_text() == "✦ Mes étoiles"
 
             assert not errors and not unexpected, (errors, unexpected)
-            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées, images, retour exact, notes, mode édition, suggestions et console : OK", flush=True)
+            print(f"{who} : dé et recherche, recherche en haut, apostrophe, avis à son nom, conseil à tous, flèches, résumé, Boussole, idées, images, retour exact, notes, dictée, mode édition, suggestions et console : OK", flush=True)
             context.close()
         browser.close()
 

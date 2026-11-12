@@ -70,46 +70,108 @@ def catalogue_fixture():
 
 FIREBASE_JS = r"""
 (function(){
+  // Faux Firestore : collections, requêtes « where » (== et array-contains), écritures fusionnées, lots,
+  // et règles simulées : les collections de window.__fixtureDeny refusent lectures et écritures
+  // (par défaut, les nouvelles collections du 12 novembre, comme tant que les règles ne sont pas publiées).
   var data = window.__fixture, listeners = {}, serial = 0;
+  var deny = window.__fixtureDeny || ['carnets', 'ajouts', 'commentairesPrives'];
   window.__fixtureWrites = [];
-  function copy(x){ return JSON.parse(JSON.stringify(x)); }
+  function copy(x){ return x === undefined ? undefined : JSON.parse(JSON.stringify(x)); }
+  function refused(){ return Promise.reject({ code:'permission-denied', message:'Missing or insufficient permissions.' }); }
+  function sentinel(v){ return v && typeof v === 'object' && (v.deleted || v.__union || v.__remove); }
+  // Appliquer une valeur, avec les marqueurs delete / arrayUnion / arrayRemove.
+  function apply(target, key, v){
+    if (v && v.deleted) { delete target[key]; return; }
+    if (v && v.__union) { var a = Array.isArray(target[key]) ? target[key].slice() : []; v.__union.forEach(function(x){ if (a.indexOf(x) < 0) a.push(x); }); target[key] = a; return; }
+    if (v && v.__remove) { target[key] = (Array.isArray(target[key]) ? target[key] : []).filter(function(x){ return v.__remove.indexOf(x) < 0; }); return; }
+    target[key] = copy(v);
+  }
+  function merge(target, src){
+    Object.keys(src).forEach(function(k){
+      var v = src[k];
+      if (v && typeof v === 'object' && !Array.isArray(v) && !sentinel(v)) { if (!target[k] || typeof target[k] !== 'object' || Array.isArray(target[k])) target[k] = {}; merge(target[k], v); }
+      else apply(target, k, v);
+    });
+  }
+  function clean(v){ // set() sans fusion : les marqueurs delete disparaissent
+    if (!v || typeof v !== 'object' || Array.isArray(v)) return v;
+    var o = {}; Object.keys(v).forEach(function(k){ var x = v[k]; if (x && x.deleted) return; if (x && x.__union) { o[k] = x.__union.slice(); return; } if (x && x.__remove) { o[k] = []; return; } o[k] = clean(x); }); return o;
+  }
   function doc(name, id){ return { id:id, exists:!!(data[name] || {})[id], data:function(){ return copy((data[name] || {})[id] || {}); } }; }
-  function snapshot(name){ return { docs:Object.keys(data[name] || {}).map(function(id){ return doc(name,id); }), docChanges:function(){ return this.docs.map(function(d){ return {type:'added',doc:d}; }); } }; }
-  function emit(name){ (listeners[name] || []).forEach(function(cb){ queueMicrotask(function(){ cb(snapshot(name)); }); }); }
-  function collection(name){
-    data[name] = data[name] || {};
-    return {
-      limit:function(){ return this; }, where:function(){ return this; },
-      onSnapshot:function(cb){ (listeners[name] = listeners[name] || []).push(cb); queueMicrotask(function(){ cb(snapshot(name)); }); return function(){}; },
-      doc:function(id){
-        id = id || ('test-document-' + ++serial);
-        var api = { id:id, get:function(){ return Promise.resolve(doc(name,id)); },
-          set:function(value){ window.__fixtureWrites.push({collection:name,id:id,value:copy(value)}); data[name][id]=copy(value); emit(name); return Promise.resolve(); },
-          update:function(field,value){
-            // Comme Firestore : un objet, ou des paires « chemin, valeur » (plusieurs champs d'un coup).
-            var root=data[name][id] = data[name][id] || {}, args=arguments;
-            if(!(field && field.parts)){ window.__fixtureWrites.push({collection:name,id:id,field:field,value:value}); Object.assign(root,copy(field)); emit(name); return Promise.resolve(); }
-            for(var k=0;k<args.length;k+=2){
-              var f=args[k], v=args[k+1], target=root, a=f.parts;
-              window.__fixtureWrites.push({collection:name,id:id,field:f,value:v});
-              for(var i=0;i<a.length-1;i++) target=target[a[i]] = target[a[i]] || {};
-              if(v && v.deleted) delete target[a[a.length-1]]; else target[a[a.length-1]]=copy(v);
-            }
-            emit(name); return Promise.resolve();
-          },
-          delete:function(){ window.__fixtureWrites.push({collection:name,id:id,deleted:true}); delete data[name][id]; emit(name); return Promise.resolve(); }
-        }; return api;
-      }
+  function match(x, f){
+    var v = x[f[0]];
+    if (f[1] === '==') return JSON.stringify(v) === JSON.stringify(f[2]);
+    if (f[1] === 'array-contains') return Array.isArray(v) && v.indexOf(f[2]) >= 0;
+    return true;
+  }
+  function snapshot(name, filters){
+    var ids = Object.keys(data[name] || {}).filter(function(id){ return (filters || []).every(function(f){ return match(data[name][id], f); }); });
+    return { docs:ids.map(function(id){ return doc(name,id); }), docChanges:function(){ return this.docs.map(function(d){ return {type:'added',doc:d}; }); } };
+  }
+  function emit(name){ (listeners[name] || []).forEach(function(l){ queueMicrotask(function(){ l.cb(snapshot(name, l.f)); }); }); }
+  function write(name, id, fn, log){
+    if (deny.indexOf(name) >= 0) return refused();
+    window.__fixtureWrites.push(Object.assign({ collection:name, id:id }, log));
+    data[name] = data[name] || {}; fn(); emit(name); return Promise.resolve();
+  }
+  function ref(name, id){
+    id = id || ('test-document-' + ++serial);
+    return { id:id, _n:name,
+      get:function(){ return deny.indexOf(name) >= 0 ? refused() : Promise.resolve(doc(name,id)); },
+      set:function(value, opt){ return write(name, id, function(){ if (opt && opt.merge) { data[name][id] = data[name][id] || {}; merge(data[name][id], value); } else data[name][id] = clean(copy(value)); }, { value:copy(value), merge:!!(opt && opt.merge) }); },
+      update:function(field, value){
+        // Comme Firestore : un objet, ou des paires « chemin, valeur » (plusieurs champs d'un coup). Refusé si le document n'existe pas.
+        var args = arguments;
+        if (deny.indexOf(name) < 0 && !(data[name] || {})[id]) return Promise.reject({ code:'not-found', message:'No document to update' });
+        if (!(field && field.parts)) return write(name, id, function(){ var root = data[name][id]; Object.keys(field).forEach(function(k){ var p = k.split('.'), t = root; for (var i = 0; i < p.length - 1; i++) t = t[p[i]] = t[p[i]] || {}; apply(t, p[p.length - 1], field[k]); }); }, { field:field, value:value });
+        return write(name, id, function(){
+          var root = data[name][id];
+          for (var k = 0; k < args.length; k += 2) {
+            var f = args[k], v = args[k + 1], target = root, a = f.parts;
+            for (var i = 0; i < a.length - 1; i++) target = target[a[i]] = target[a[i]] || {};
+            apply(target, a[a.length - 1], v);
+          }
+        }, { field:field, value:value });
+      },
+      delete:function(){ return write(name, id, function(){ delete data[name][id]; }, { deleted:true }); }
     };
   }
-  var fs = { collection:collection, enablePersistence:function(){ return Promise.resolve(); } };
-  var auth = { isSignInWithEmailLink:function(){ return false; }, onAuthStateChanged:function(cb){ queueMicrotask(function(){ cb({uid:'test-membre',email:'test@example.invalid',emailVerified:false}); }); return function(){}; } };
+  function query(name, filters){
+    return {
+      limit:function(){ return this; },
+      where:function(a, op, b){ return query(name, filters.concat([[a, op, b]])); },
+      onSnapshot:function(cb, err){
+        if (deny.indexOf(name) >= 0) { queueMicrotask(function(){ if (err) err({ code:'permission-denied' }); }); return function(){}; }
+        (listeners[name] = listeners[name] || []).push({ cb:cb, f:filters }); queueMicrotask(function(){ cb(snapshot(name, filters)); }); return function(){};
+      },
+      doc:function(id){ return ref(name, id); },
+      add:function(v){ var r = ref(name); return r.set(v).then(function(){ return r; }); }
+    };
+  }
+  function collection(name){ data[name] = data[name] || {}; return query(name, []); }
+  function batch(){
+    var ops = [];
+    return { set:function(r, v, o){ ops.push(function(){ return r.set(v, o); }); }, update:function(r, v){ ops.push(function(){ return r.update(v); }); }, delete:function(r){ ops.push(function(){ return r.delete(); }); },
+      commit:function(){ return ops.reduce(function(p, f){ return p.then(f); }, Promise.resolve()); } };
+  }
+  // Pour les tests : écrire comme le ferait un autre membre, sans passer par les règles (null efface).
+  window.__fixturePut = function(name, id, v){ data[name] = data[name] || {}; if (v === null) delete data[name][id]; else data[name][id] = copy(v); emit(name); };
+  var fs = { collection:collection, batch:batch, enablePersistence:function(){ return Promise.resolve(); } };
+  var who = window.__fixtureUid || 'test-membre';
+  var auth = { isSignInWithEmailLink:function(){ return false; }, onAuthStateChanged:function(cb){ queueMicrotask(function(){ cb({uid:who,email:'test@example.invalid',emailVerified:false}); }); return function(){}; } };
   function firestore(){ return fs; }
   firestore.FieldPath = function(){ this.parts=Array.prototype.slice.call(arguments); };
-  firestore.FieldValue = {delete:function(){ return {deleted:true}; }, arrayUnion:function(){ return Array.prototype.slice.call(arguments); }};
+  firestore.FieldValue = {delete:function(){ return {deleted:true}; }, arrayUnion:function(){ return {__union:Array.prototype.slice.call(arguments)}; }, arrayRemove:function(){ return {__remove:Array.prototype.slice.call(arguments)}; }};
   window.firebase = {initializeApp:function(){},auth:function(){return auth;},firestore:firestore};
 })();
 """
+
+
+def open_more(page):
+    """Express, Boussole, Dérive et Ciel sont rangés derrière « Autres façons de choisir » (12 novembre)."""
+    page.wait_for_selector("#ccMoreB")
+    if page.locator("#ccMore").is_hidden():
+        page.locator("#ccMoreB").click()
 
 
 def install_routes(context, fixture=None, complements=None):

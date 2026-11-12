@@ -2,7 +2,7 @@
 import re
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from cineclub_fixture import ROOT, catalogue_fixture, install_routes
+from cineclub_fixture import ROOT, catalogue_fixture, install_routes, open_more
 
 
 def ready(page):
@@ -52,14 +52,18 @@ def run():
             assert page.locator(".nbulbs .dead").count() == 1
             assert page.locator("#ccRanger").is_hidden(), "Le rangement reste réservé à l'administratrice"
             if device == "telephone":
-                # Deux rangées compactes : Communauté et Mon compte, puis Boussole, Dérive et Ciel ; chaque libellé tient sur une ligne.
+                # Communauté et Mon compte sur une rangée ; dessous, « Autres façons de choisir » ouvre Express, Boussole,
+                # Dérive et Ciel, chacun avec une phrase d'explication (12 novembre) ; chaque libellé tient sur une ligne.
                 account = [page.locator(f"#{bid}").bounding_box() for bid in ("ccMbr", "ccMe")]
                 assert len({round(box["y"]) for box in account}) == 1, account
+                assert page.locator("#ccMore").is_hidden() and page.locator("#ccMoreB").bounding_box()["y"] > account[0]["y"]
+                open_more(page)
                 exploration = [page.locator(f"#{bid}").bounding_box() for bid in ("ccQuiz", "skyToggle", "drToggle")]
-                assert len({round(box["y"]) for box in exploration}) == 1, exploration
                 assert exploration[0]["y"] > account[0]["y"]
+                assert page.locator("#ccMore .ccm-d").count() == 4
                 assert all(box["height"] >= 40 and box["width"] >= 44 for box in account + exploration)
-                assert page.evaluate("['ccMbr','ccMe','ccQuiz','skyToggle','drToggle'].every(id => { const b = document.getElementById(id); return b.scrollWidth <= b.clientWidth + 1; })"), "un libellé est coupé"
+                assert page.evaluate("['ccMbr','ccMe','ccMoreB','ccQuiz','skyToggle','drToggle'].every(id => { const b = document.getElementById(id); return b.scrollWidth <= b.clientWidth + 1; })"), "un libellé est coupé"
+                page.locator("#ccMoreB").click()
             for theme in ("jour", "neon"):
                 page.evaluate("theme => AMBI.set(theme)", theme)
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
@@ -158,6 +162,7 @@ def run():
         page = context.new_page()
         errors = errors_on(page)
         ready(page)
+        open_more(page)
         page.locator("#skyToggle").click()
         page.locator("#skySearch").fill("Shining")
         page.locator("#skyResults button").first.click()

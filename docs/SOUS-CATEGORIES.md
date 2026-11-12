@@ -10,6 +10,13 @@ sous-catégorie et, en retrait (↳), ses sous-sous-catégories, avec le nombre 
 sans changer l'ordre des notes estimées. Sans choix, chaque film rappelle sa sous-catégorie dans sa petite note.
 Un film qu'aucune sous-catégorie ne cite (ajouté plus tard) apparaît dans « Autres films ».
 
+Depuis le 12 novembre 2026, un film peut être dans plusieurs sous-catégories (Pauvres Créatures :
+« Cordes et voix déformées » et « Grands compositeurs › Jerskin Fendrix »). Il est compté et affiché dans
+chacune ; sa petite note reprend la première qui le cite, ou celle de la partie choisie dans le menu.
+
+Depuis le 12 novembre, le panneau d'une catégorie ouvre aussi les sous-catégories d'une liste juste sous son nom,
+puis leurs sous-catégories, avec le nombre de films ; toucher la dernière affiche ses films.
+
 ## Données
 
 Dans `complements.json → sections → <liste>` :
@@ -29,7 +36,7 @@ Dans `complements.json → sections → <liste>` :
 
 ## Listes découpées
 
-Musique de film (6 sous-catégories, 14 sous-sous-catégories), Rêve et étrangeté, Couleurs vives, Cirque et
+Musique de film (9 sous-catégories depuis le 12 novembre, dont « Grands compositeurs » et ses 35 compositeurs), Rêve et étrangeté, Couleurs vives, Cirque et
 acrobates, Films qui émeuvent, Fins à rebondissement, Malaise et folie, Liste cauchemar, Danse, Mer et apnée,
-Erreur sur la personne, Politique, Cinéma coréen, Vengeance aveugle, Paranoïa et folie à deux, et les trois
+Erreur sur la personne, Politique (12 sous-catégories depuis le 12 novembre, dont « Courants politiques »), Cinéma coréen, Vengeance aveugle, Paranoïa et folie à deux, et les trois
 listes de l'École de cinéma (par courant). Rave, Le monde de la fête et Sous la menace avaient déjà les leurs.

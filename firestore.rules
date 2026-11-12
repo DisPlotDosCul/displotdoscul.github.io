@@ -1,15 +1,23 @@
 rules_version = '2';
-// Règles proposées pour Ciné-club (à coller dans la console Firebase : Firestore Database > Règles > Publier).
+// Règles de Ciné-club (à coller dans la console Firebase : Firestore Database > Règles > Publier).
+// Version du 12 novembre 2026 : carnets privés (public, privé, personnalisé, bulle), amis, films ajoutés par les membres,
+// chacun modifie sa propre playlist et seulement la sienne. Pas de limite de longueur ajoutée aux textes.
 // L'administratrice est reconnue par l'empreinte SHA-256 de son adresse e-mail vérifiée : l'adresse n'est pas écrite ici.
 service cloud.firestore {
   match /databases/{database}/documents {
     function signedIn() { return request.auth != null; }
     function isAdmin() {
-      return signedIn() && request.auth.token.email_verified == true
-        && hashing.sha256(request.auth.token.email.lower()).toBase64() == 'ZceI5qzxvNBqyoj9L/XQV9safr6QBBnC2uw+Ncd2c6I=';
+      return signedIn() && request.auth.token.get('email_verified', false) == true
+        && hashing.sha256(request.auth.token.get('email', '').lower()).toBase64() == 'ZceI5qzxvNBqyoj9L/XQV9safr6QBBnC2uw+Ncd2c6I=';
     }
-    function perso(col) { return col in ['conseils', 'commentaires', 'idees', 'propositions']; }
+    function perso(col) { return col in ['commentaires', 'idees', 'propositions']; }
     function profil(uid) { return get(/databases/$(database)/documents/profils/$(uid)).data; }
+    // Identifiant de playlist de la personne connectée (« pid », ou « slug » pour les tout premiers comptes).
+    function myPid() {
+      let p = profil(request.auth.uid);
+      return p.get('pid', p.get('slug', ''));
+    }
+    function audience(v) { return v in ['tous', 'amis', 'proches', 'moi']; }
 
     // Catalogue : lu par tous (même sans compte), écrit par l'administratrice seulement.
     match /films/{id} {
@@ -17,15 +25,67 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // Profils (pseudo, réponses, liste, goûts, bulle, blocages) : lus par les membres connectés, écrits par leur seul propriétaire.
-    // L'administratrice peut seulement relier un membre à une ancienne playlist (champ pid).
+    // Profils : pseudo, mode de confidentialité, amis, bulle, blocages, nom et phrase de la playlist.
+    // Lus par les membres connectés, écrits par leur seul propriétaire. Le lien avec une playlist (pid) ne se change pas soi-même :
+    // un nouveau compte reçoit « m_ » + son identifiant (ou « licia » pour l'administratrice) ; seule l'administratrice relie un compte à une ancienne playlist.
     match /profils/{uid} {
+      function pidNeuf() { return isAdmin() ? 'licia' : 'm_' + uid; }
       allow read: if signedIn();
-      allow create, update, delete: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.get('pid', pidNeuf()) == pidNeuf()
+        && request.resource.data.get('slug', pidNeuf()) == pidNeuf();
+      allow update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.get('slug', null) == resource.data.get('slug', null)
+        && (request.resource.data.get('pid', null) == resource.data.get('pid', null)
+          || (resource.data.get('pid', null) == null && request.resource.data.get('pid', null) == resource.data.get('slug', 'm_' + uid)));
+      allow delete: if signedIn() && request.auth.uid == uid;
       allow update: if isAdmin() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['pid']);
     }
 
-    // Conseils de playlist, commentaires, idées, propositions : créés avec le bon identifiant d'auteur,
+    // Carnets : notes (rep), liste, questionnaire (quiz), phrase de goûts (gouts), chiffres (stats) et réglages de chacun,
+    // un document par partie : « compte__partie ». Lu par son propriétaire, par tout membre si « vis » vaut « tous »,
+    // sinon seulement par les comptes de « lect » (ses amis ou ses proches). Écrit par son seul propriétaire.
+    match /carnets/{id} {
+      allow read: if signedIn() && (resource.data.uid == request.auth.uid || resource.data.vis == 'tous' || request.auth.uid in resource.data.get('lect', []));
+      allow create, update: if signedIn() && request.resource.data.uid == request.auth.uid
+        && request.resource.data.part in ['rep', 'liste', 'quiz', 'gouts', 'stats', 'reglages']
+        && id == request.auth.uid + '__' + request.resource.data.part
+        && audience(request.resource.data.vis) && request.resource.data.lect is list
+        && (request.resource.data.part != 'reglages' || (request.resource.data.vis == 'moi' && request.resource.data.lect.size() == 0));
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
+    }
+
+    // Commentaires réservés à des amis ou des proches : lus par leur auteur et les comptes de « lect ».
+    match /commentairesPrives/{id} {
+      allow read: if signedIn() && (resource.data.uid == request.auth.uid || request.auth.uid in resource.data.get('lect', []));
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid && audience(request.resource.data.vis) && request.resource.data.lect is list;
+      allow update: if signedIn() && resource.data.uid == request.auth.uid && request.resource.data.uid == request.auth.uid
+        && audience(request.resource.data.vis) && request.resource.data.lect is list;
+      allow delete: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+
+    // Playlists : chacun ajoute, modifie et retire les films de sa propre playlist, et seulement de la sienne (champ « prenom »).
+    // Les films d'une ancienne playlist reliée à un compte deviennent modifiables par ce compte. L'administratrice peut tout faire.
+    match /conseils/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid && request.resource.data.prenom == myPid();
+      allow update: if signedIn() && (resource.data.get('uid', '') == request.auth.uid || resource.data.get('prenom', '') == myPid())
+        && request.resource.data.uid == request.auth.uid && request.resource.data.prenom == myPid();
+      allow delete: if signedIn() && (resource.data.get('uid', '') == request.auth.uid || resource.data.get('prenom', '') == myPid());
+      allow write: if isAdmin();
+    }
+
+    // Films ajoutés directement par les membres : visibles par tous, comme le catalogue ;
+    // modifiés ou retirés par la personne qui les a ajoutés, ou par l'administratrice.
+    match /ajouts/{id} {
+      allow read: if true;
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow update: if signedIn() && resource.data.uid == request.auth.uid && request.resource.data.uid == request.auth.uid;
+      allow delete: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    // Commentaires publics, idées, propositions : créés avec le bon identifiant d'auteur,
     // modifiés ou supprimés par leur auteur ou par l'administratrice.
     match /{col}/{id} {
       allow read: if signedIn() && perso(col);
@@ -35,16 +95,23 @@ service cloud.firestore {
       allow write: if isAdmin() && perso(col);
     }
 
-    // Conseils entre membres : visibles par tous les membres connectés (le site fonctionne comme un réseau social).
-    // Destinataire « * » : conseil à tout le monde. Sinon, refusé si le destinataire reste dans sa bulle ou a bloqué l'expéditeur.
+    // Messages entre membres (conseils, avis de recherche, demandes d'ami) : visibles par les membres connectés.
+    // Destinataire « * » : à tout le monde. Sinon, refusé si le destinataire reste dans sa bulle ou a bloqué l'expéditeur,
+    // et les conseils suivent son réglage « recoit » (tous, amis ou personne). Demandes d'ami et réponses aux avis de recherche passent toujours.
     match /messages/{id} {
+      function recoitOk(to) {
+        let p = profil(to);
+        let r = p.get('recoit', 'tous');
+        return p.get('bulle', false) != true
+          && !(request.auth.uid in p.get('bloques', []))
+          && (request.resource.data.get('type', 'conseil') in ['ami-dem', 'ami-ok', 'ami-fin', 'avis-rep']
+            || r == 'tous' || (r == 'amis' && request.auth.uid in p.get('amis', [])));
+      }
       allow read: if signedIn();
       allow create: if signedIn() && request.resource.data.from == request.auth.uid
         && request.resource.data.to is string && request.resource.data.to != request.auth.uid
         && request.resource.data.mot is string && request.resource.data.mot.size() <= 200
-        && (request.resource.data.to == '*' || (
-          profil(request.resource.data.to).get('bulle', false) != true
-          && !(request.auth.uid in profil(request.resource.data.to).get('bloques', []))));
+        && (request.resource.data.to == '*' || recoitOk(request.resource.data.to));
       allow update: if signedIn() && resource.data.to == request.auth.uid
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lu']);
       allow delete: if signedIn() && (resource.data.from == request.auth.uid || isAdmin());

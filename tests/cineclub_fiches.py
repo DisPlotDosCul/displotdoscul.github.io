@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from cineclub_fixture import ROOT, catalogue_fixture, install_routes, slug
+from cineclub_fixture import ROOT, catalogue_fixture, install_routes, open_more, slug
 
 CAPTURES = ROOT / "docs/captures/fiches"
 
@@ -28,12 +28,18 @@ def validate_data():
         key = (re.sub(r"^(the|le|la|les|l|a|an|un|une)-", "", slug(film["t"])), film["y"])
         assert seen.setdefault(key, film["id"]) == film["id"], f"Film en double : {seen[key]} et {film['id']}"
     assert all(sum(map(int, code)) == 10 for code in comp["familles"].values()), "Familles : le total doit faire 10"
-    # Sous-catégories : chaque film cité existe et n'est rangé qu'une fois par liste.
+    # Sous-catégories : chaque film cité existe et fait partie de la liste. Un film peut être dans plusieurs
+    # sous-catégories (un compositeur et un style de musique), mais une seule fois dans chacune.
     known = ids | set(comp["fiches"])
     for sid, section in comp["sections"].items():
-        cited = [i for p in section.get("parties", []) for i in p.get("ids", []) + [x for q in p.get("sous", []) for x in q["ids"]]]
+        groups = [p.get("ids", []) for p in section.get("parties", [])] + [q["ids"] for p in section.get("parties", []) for q in p.get("sous", [])]
+        cited = [i for g in groups for i in g]
         assert set(cited) <= known, (sid, set(cited) - known)
-        assert len(cited) == len(set(cited)), f"{sid} : un film est rangé deux fois"
+        for g in groups:
+            assert len(g) == len(set(g)), f"{sid} : un film est rangé deux fois dans la même sous-catégorie"
+        if section.get("titre"):  # liste qui n'existe que dans les compléments
+            listed = {f["id"] for f in section.get("films", [])}
+            assert set(cited) <= listed, (sid, "rangés mais absents de la liste", set(cited) - listed)
     allowed = {"violence explicite", "violence sexuelle", "suicide", "automutilation",
                "maltraitance", "drogue", "images choquantes"}
     for fid in ids:
@@ -129,6 +135,7 @@ def browser_checks():
             assert_no_overflow(page)
 
             # Le questionnaire garde le nom validé et les réglages d'accessibilité fonctionnent.
+            open_more(page)
             page.locator("#ccQuiz").click()
             assert "Boussole cinéma" in page.locator("#qzPanel").inner_text()
             page.locator("[data-qzclose]").click()

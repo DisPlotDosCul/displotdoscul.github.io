@@ -92,3 +92,102 @@ Filtres (24 octobre 2026) : un seul bouton « Filtres ▾ » à côté de la rec
 s'ouvrent dessous, sans icône ; le bouton affiche le filtre actif. Express : en grand l'affiche, le
 titre, « Pas vu », « Adoré », « Bien », « Pas aimé » ; en discret « + » (ma liste) à côté de
 l'affiche, « Vu mais oublié », « Noter /10 » (1 à 10) près de « Vu, sans avis ».
+
+## Dictée de la boîte à idées (12 novembre 2026)
+
+Idée de Licia du 10 novembre : sur téléphone, la dictée écrivait plusieurs fois le même mot et
+s'arrêtait quand on continuait de parler ; sur ordinateur, elle ne se lançait pas.
+
+- Mots répétés : sur Android, chaque résultat de la reconnaissance reprend le précédent en plus
+  long (« je », « je veux », « je veux un film »). Un résultat qui prolonge le précédent le remplace
+  au lieu de s'y ajouter ; sur Android, l'écoute se fait phrase par phrase.
+- Arrêt en cours de route : la reconnaissance se relance seule après une pause, tant qu'on n'a pas
+  appuyé sur « ⏹ Arrêter la dictée » ; elle s'arrête d'elle-même après environ une minute de silence.
+- Ne se lance pas : la raison s'affiche maintenant dans le panneau (micro refusé, aucun micro,
+  dictée du navigateur injoignable…), avec une autre solution : touche Windows + H sur ordinateur
+  Windows, micro du clavier sur téléphone. Un point clignote pendant l'écoute.
+- Corriger à la main pendant la dictée reprend à partir du texte corrigé.
+
+Essai : `tests/cineclub_idees.py` simule une reconnaissance qui répète les mots comme Android,
+une pause, l'arrêt et un micro refusé. La dictée réelle reste à essayer sur le Huawei et le MateBook.
+
+## Accueil plus simple et avis de recherche (12 novembre 2026)
+
+Idées de Licia du 10 novembre, pour qu'une personne âgée ou très jeune ne se perde pas :
+
+- En-tête : « ⚙ Réglages » en haut à droite (taille, ambiance, langue, installer l'appli) ; le bouton soleil, qui
+  changeait l'écran d'un coup, est retiré (l'ambiance se choisit dans Réglages). « ← Retour » apparaît en haut à gauche
+  dès qu'on a changé d'affichage, en plus du bouton du bas. Un Retour de trop à l'accueil (navigateur ou téléphone)
+  ne fait plus quitter le site : un message propose d'appuyer encore pour le quitter.
+- Compteur : seulement « répondus » en haut ; les vus, oubliés et notés sont en tête de « Mon carnet ».
+- Santé mentale : n'est plus une catégorie à part, c'est un thème (`s54-sante-mentale`) avec une sous-catégorie par
+  trouble ; les anciennes listes sont cachées (`cache: true`) et leurs films gardés.
+- Dans le panneau d'une catégorie, toucher une liste découpée ouvre ses sous-catégories juste dessous, puis leurs
+  sous-catégories ; chaque case donne son nombre de films. Les envies et leurs nuances aussi.
+- Express, Boussole, Dérive et Ciel sont rangés derrière « ✨ Autres façons de choisir », chacun avec une phrase.
+- Visite guidée en deux bulles au lieu de trois ; l'écran du premier affichage renvoie à « Réglages ».
+- Pied de page : « 📤 Envoyer le Ciné-club à un ami » (partage du téléphone, sinon lien copié), « ✉️ Écrire à l'équipe »
+  (la boîte à idées s'ouvre, prête pour un message), et « 💛 Soutenir le Ciné-club », caché tant que `DON_URL` est vide.
+- Boutons : coins à peine arrondis et bord du bas plus marqué au lieu des pilules aux contours fins.
+
+Avis de recherche (idée 4) : dans la communauté, onglet « 🔎 Avis de recherche ». On décrit un film, une série, un épisode
+ou un documentaire dont on a oublié le titre ; pendant qu'on écrit, les films du catalogue qui ressemblent à la
+description s'affichent. Les autres membres répondent « 💡 Je crois savoir » avec un titre ; la personne est prévenue
+(compteur sur « Communauté » et sur l'onglet), peut ouvrir le film s'il est au catalogue ou le proposer s'il n'y est pas,
+puis retirer son avis. Les avis et réponses sont des messages (`type: "avis"` à tout le monde, `type: "avis-rep"` à la
+personne) : les règles Firebase actuelles suffisent. Une recherche sans résultat propose aussi de lancer un avis.
+Quand on ajoute un film, un champ « Autres indices » (cinéaste, acteur, genre, détail…) accompagne le titre et l'année.
+
+Essai : `tests/cineclub_avis.py`.
+
+## Communauté en page entière, fil et playlists (12 novembre 2026)
+
+Idées 5, 10 et 16 de Licia : la communauté s'ouvre en page entière avec « ← Retour » en haut (le Retour du navigateur
+ou du téléphone la ferme aussi) ; ses onglets tiennent sur deux rangées au plus. Sur l'accueil, la carte
+« 📰 Quoi de neuf chez les membres ? » ouvre directement le fil (membres connectés, hors bulle). Les playlists des
+membres ne sont plus une catégorie de l'accueil : elles sont dans l'onglet « Playlists » de la communauté
+(avec « Valider les conseils reçus » pour l'administratrice).
+
+## Qui voit quoi, amis, films ajoutés par les membres, playlists (12 novembre 2026)
+
+Idées 12, 13 et 18 de Licia, et sa demande sur les playlists.
+
+**Quatre modes** (Mon compte › « 🔒 Qui peut voir mon carnet ? ») : 🌍 Public (tous les membres voient tout,
+le mode des comptes existants), 👫 Privé (seulement les amis, qui sont aussi les seuls à pouvoir envoyer des conseils),
+🎛️ Personnalisé, 🫧 Bulle (personne ne voit rien à part le pseudo et la playlist ; pas de fil, pas de conseils ;
+les comptes qui étaient déjà « dans leur bulle » y restent).
+
+**Mode personnalisé, élément par élément** : mes films vus, notes et avis ; ma liste de films à voir ; mes chiffres
+(films vus, notés, moyenne) ; ma phrase de goûts ; mes réponses au questionnaire ; mes commentaires ; mon activité
+dans le fil ; me proposer dans la Soirée ciné des autres ; qui peut m'envoyer des conseils. Pour chacun : tout le monde,
+mes amis, mes proches (une partie des amis, cochés un par un) ou personne d'autre que moi. On peut par exemple
+montrer ses chiffres sans montrer ses notes.
+
+**Vraiment protégé, pas seulement caché** : les notes, la liste, les goûts, le questionnaire et les chiffres quittent
+le profil (lu par tous les membres) pour des documents « carnets/{compte}__{partie} » ; chacun dit qui peut le lire
+(« tous », ou la liste des amis ou des proches), et les règles de la base le vérifient. Les commentaires réservés vont
+dans « commentairesPrives », lus seulement par leur auteur et les personnes choisies ; ils changent de collection quand
+le réglage change. Le fil, la Soirée ciné et « qui peut m'envoyer des conseils » suivent aussi le réglage (ce dernier
+est vérifié par les règles). Le déplacement se fait tout seul, au premier passage de chacun après la publication des
+règles ; avant, rien ne change et le réglage est grisé avec une explication.
+
+**Amis** : Communauté › Membres › un membre › « ➕ Demander en ami ». La demande arrive dans « Pour moi »
+(Accepter, Refuser, Voir son profil) ; une fois acceptée, chacun ajoute l'autre à sa liste (deux demandes croisées
+valent acceptation). « Retirer de mes amis » prévient l'autre. Chaque membre écrit seulement sa propre liste. Les
+amis ont 👫 dans la liste des membres ; un carnet fermé affiche 🔒 et ses chiffres s'ils sont partagés.
+
+**Films ajoutés par les membres** (idée 18) : un membre connecté ajoute lui-même un film absent (recherche, boîte à
+idées ou sa playlist) ; il entre tout de suite dans la base (collection « ajouts »), visible par tous, dans la liste
+« Films ajoutés par les membres » (Communauté › Playlists), avec « Ajouté par … » et ses indices. Si la base refuse
+encore (règles pas publiées), le film part dans les propositions, comme avant.
+
+**Chacun sa playlist, et seulement la sienne** : chaque membre a une playlist pour conseiller des films à tous,
+ouverte depuis Mon carnet (« 🎁 Ma playlist ») ou Mon compte, avec un nom et une phrase facultatifs. On y ajoute,
+modifie et retire librement ses films ; les règles refusent qu'on touche à celle d'un autre (l'administratrice peut
+aider partout). Les anciennes playlists d'Arthur, Violette et Jean se relient toutes seules à leurs comptes quand
+Licia ouvre le site (un compte dont le pseudo commence par ce prénom, s'il n'y en a qu'un) ; leurs films suivent.
+Sinon : Communauté › Membres › le membre › « Relier ».
+
+Vérifié par `tests/cineclub_confidentialite.py` (faux Firestore qui suit les filtres des requêtes) et par
+`tests/regles_firestore.mjs` (60 cas dans l'émulateur Firestore, avec le vrai fichier `firestore.rules`).
+

@@ -3,7 +3,7 @@ import base64
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from cineclub_fixture import ROOT, install_routes
+from cineclub_fixture import ROOT, install_routes, open_more
 
 
 def ready(page, url="https://cineclub.test/carnet-de-films/"):
@@ -33,6 +33,7 @@ def run():
         for name, width, height in [("telephone", 360, 800), ("ordinateur", 1440, 960)]:
             context, page, errors, unexpected = context_for(browser, width, height)
             ready(page)
+            open_more(page)
             page.locator("#drToggle").click()
             page.locator("[data-drstart]").first.click()
             first = page.locator(".dr-film").get_attribute("data-film")
@@ -70,6 +71,7 @@ def run():
             if page.locator("#introX").is_visible():
                 page.locator("#introX").click()
             page.locator("#intro").wait_for(state="hidden")
+            open_more(page)
             page.locator("#drToggle").click()
             page.locator("[data-drarchive]").click()
             page.locator('[data-drread="0"]').click()
@@ -85,6 +87,7 @@ def run():
             page.locator("#aab").click()
             page.locator('[data-taille="grand"]').click()
             page.locator("#aab").click()
+            open_more(page)
             page.locator("#drToggle").click()
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             page.keyboard.press("Escape")

@@ -979,6 +979,20 @@ html.aff-grand .rime-grid{grid-template-columns:1fr;}
 .ccsw{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer;}
 .ccsw input{width:20px;height:20px;margin-top:1px;flex:none;accent-color:var(--k-s-2C6660);}
 .ccsw small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px;}
+/* Confidentialité et amis (12 novembre) */
+.ccpriv{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:6px;font-size:14px;}
+.cpv-h{font-size:15px;}
+.cpv-m{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+.cpv-m .chip{justify-content:center;min-height:40px;}
+.cpv-m .chip[aria-checked="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+.cpv-t{display:grid;gap:8px;}
+.cpv-r{display:grid;gap:4px;font-weight:600;}
+.cpv-r select{font-weight:400;}
+.cpv-p{display:grid;gap:6px;}
+.ami-b{align-items:center;flex-wrap:wrap;}
+.ami-ok{font-weight:600;font-size:14px;}
+.mrow-f{font-style:normal;}
+.cpv-x{color:var(--ink);}
 .cgouts{margin:0;font-style:italic;font-size:15px;}
 .sh-note.ok{color:var(--fini);font-weight:600;}
 .mfilm.fil span{white-space:normal;}
@@ -1017,6 +1031,11 @@ html.aff-calme .ccg-on{transition:none;}
 .nt-ed{display:block!important;}
 .nt-ed textarea{width:100%;box-sizing:border-box;}
 .nt-mic[aria-pressed="true"]{border-color:var(--vu);color:var(--vu);}
+.nt-msg{margin:0;font-size:13px;line-height:1.35;color:var(--muted);}
+.nt-msg.err{color:var(--vu);}
+.nt-msg.rec::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--vu);margin-right:6px;vertical-align:1px;animation:ntPulse 1.2s ease-in-out infinite;}
+@keyframes ntPulse{50%{opacity:.25;}}
+@media (prefers-reduced-motion:reduce){.nt-msg.rec::before{animation:none;}}
 .nt-x{border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer;padding:4px 8px;}
 .nt-panel textarea{font:400 16px/1.35 var(--font);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:9px 11px;resize:vertical;}
 .nt-b{display:flex;gap:8px;flex-wrap:wrap;}
@@ -1348,6 +1367,76 @@ html.sky-on #rsheet .plf-b button{min-height:42px;}
 html.sky-on #rsheet{z-index:50;}
 @media(max-width:600px){.sky-tools{left:12px;right:12px;gap:8px;}.sky-tools h2{font-size:25px;}.sky-tools #skyClose{margin-left:auto;}.sky-search{order:3;width:100%;}.sky-tools select{order:4;max-width:100%;}.sky-caption{left:12px;right:150px;}.sky-zoom{right:12px;gap:4px;}.sky-zoom button{min-width:40px;}}
 @media(prefers-reduced-motion:reduce){.sky *{scroll-behavior:auto!important;}}
+
+/* 12 novembre : en-tête lisible. « ← Retour » en haut à gauche dès qu'on a changé d'affichage,
+   « ⚙ Réglages » en haut à droite (taille, ambiance, langue…) ; le bouton soleil, qui changeait l'écran d'un coup, est retiré. */
+.ambb{display:none!important;}
+.aab{left:auto;right:-6px;width:auto;height:40px;padding:0 13px;border-radius:8px;gap:6px;display:inline-flex;align-items:center;font:700 14.5px/1 var(--font);letter-spacing:0;white-space:nowrap;}
+.aab-ic{font-size:17px;line-height:1;}
+.aamenu{left:auto;right:-6px;top:40px;}
+.topback{position:absolute;left:-6px;top:-16px;z-index:5;height:40px;padding:0 14px;display:inline-flex;align-items:center;gap:6px;font:700 15px/1 var(--font);
+  color:var(--k-s-FFFFFF);background:var(--k-s-8A4A12);border:0;border-radius:8px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25);}
+.topback span{font-size:20px;line-height:1;}
+.topback[hidden]{display:none;}
+@media (max-width:520px){header.top{padding-top:46px;} .aab,.topback{top:-4px;} .aamenu{top:40px;}}
+/* Le compteur garde seulement « répondus » ; les vus, oubliés et notés sont dans Mon carnet. */
+.pn-st{margin:0 0 10px;font-size:14px;color:var(--fi,var(--muted));}
+/* Sous-catégories ouvertes juste sous la liste touchée, puis leurs sous-catégories juste dessous. */
+.sx-open{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:7px;padding:10px;margin:-2px 0 4px;border-radius:8px;background:var(--k-s-FFFFFF59);border:1px dashed var(--fc,var(--line));}
+.sx-open .sx-in{flex-basis:100%;display:flex;flex-wrap:wrap;gap:7px;padding:8px 0 4px 14px;border-left:3px solid var(--fc,var(--line));}
+.sx-c{display:inline-flex;align-items:center;gap:6px;font:600 14px/1.2 var(--font);color:var(--ink);background:var(--paper);border:1px solid var(--fc,var(--line));border-bottom-width:3px;border-radius:6px;padding:8px 11px;cursor:pointer;text-align:left;}
+.sx-c[aria-expanded="true"]{background:var(--fb,var(--paper));}
+.sx-c .sc{font-weight:500;color:var(--muted);}
+.sx-c.sx-all{font-weight:700;}
+.sub .sc .sx-ar{margin-left:4px;color:var(--muted);}
+@media (max-width:700px){
+  .bar .ccbar #ccMbr,.bar .ccbar #ccMe{grid-column:span 3;}
+  .bar .ccbar #ccMoreB,.bar .ccbar .ccmore{grid-column:1/-1;}
+  .bar .ccbar .ccmore .ccb{grid-column:auto;font-size:13px;padding-inline:8px;}
+}
+/* Pied de page : partager le Ciné-club, écrire à l'équipe. */
+.ccfoot{display:grid;gap:10px;margin:28px 0 8px;padding-top:16px;border-top:1px solid var(--line);}
+@media (min-width:640px){.ccfoot{grid-template-columns:1fr 1fr;}}
+.ccf-b{display:grid;gap:3px;text-align:left;padding:12px 14px;font:400 13.5px/1.3 var(--font);color:var(--muted);background:var(--paper);border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;cursor:pointer;}
+.ccf-b b{font-size:15.5px;color:var(--ink);}
+/* Autres façons de choisir un film : rangées derrière un seul bouton, chacune expliquée en une phrase. */
+.ccmore{flex-basis:100%;display:grid;gap:8px;padding:10px;border:1px dashed var(--line);border-radius:8px;}
+.ccmore[hidden]{display:none;}
+.ccm-it{display:flex;align-items:center;gap:10px;}
+.ccm-it .chip{flex:none;min-width:8.2em;justify-content:center;}
+.ccm-d{font-size:13.5px;line-height:1.3;color:var(--muted);text-align:left;}
+/* Boutons moins « appli d'IA » : plus de pilules aux contours fins, des coins à peine arrondis
+   et un bord du bas plus marqué, comme une touche ou un ticket. */
+.addq-b,.pl-open,.chip,.sub,.allb,.shb,.dr-back,.dr-clear,.tp-x,.mvx,.lst,.plb,.fsh,.shopt,.av-b,.padd,.pdel,.plf-ok,.plf-no,.cmb,.idb,.dice,.fbtn,.seg,.subp select,.totop,.aamenu button,.mini,.minis.cats .mini .sq,.c-who,.c-nom,.c-in,.np-in{border-radius:6px!important;}
+.chip,.sub,.allb,.shb,.plf-no,.shopt,.av-b,.mvx,.tp-x,.dr-back,.fbtn,.mini,.minis.cats .mini .sq,.idb{border-width:1px!important;border-bottom-width:3px!important;}
+.chip:active,.sub:active,.allb:active,.plf-no:active,.mini:active,.sx-c:active,.ccf-b:active{transform:translateY(1px);}
+
+/* Avis de recherche (communauté) */
+.cthread.avis .av-t{margin:6px 0 8px;font-style:italic;line-height:1.4;}
+.avf{display:grid;gap:8px;margin:8px 0 14px;}
+.crep.avr{display:grid;gap:6px;}
+.addq .addq-b + .addq-b{margin-top:6px;}
+
+/* 12 novembre (idées 5, 10, 16) : la communauté s'ouvre en page entière, avec « ← Retour » en haut ;
+   le fil des membres est à un toucher depuis l'accueil ; les playlists des amis sont dans la communauté. */
+#msheet{top:0;bottom:0;max-width:none;max-height:none;height:100%;border-radius:0;align-content:start;padding-top:calc(6px + env(safe-area-inset-top,0px));}
+#msheetBody{width:100%;max-width:740px;margin:0 auto;display:grid;gap:10px;}
+.com-top{position:sticky;top:-6px;z-index:3;display:flex;align-items:center;gap:12px;padding:8px 0 10px;background:var(--paper);border-bottom:1px solid var(--line);}
+.com-top b{font:600 20px/1.2 var(--font-title,var(--font));}
+.com-back{height:40px;padding:0 14px;display:inline-flex;align-items:center;gap:6px;font:700 15px/1 var(--font);color:var(--k-s-FFFFFF);background:var(--k-s-8A4A12);border:0;border-radius:8px;cursor:pointer;}
+.com-back span{font-size:20px;line-height:1;}
+.feedcard{display:flex;align-items:center;gap:12px;width:100%;margin:10px 0 2px;padding:11px 14px;text-align:left;font:400 13.5px/1.3 var(--font);color:var(--muted);background:var(--paper);border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;cursor:pointer;}
+.feedcard[hidden]{display:none;}
+.feedcard b{display:block;font-size:15.5px;color:var(--ink);}
+.feedcard .fc-ic{font-size:24px;line-height:1;}
+.feedcard .fc-n{margin-left:auto;min-width:24px;height:24px;padding:0 6px;border-radius:12px;display:grid;place-items:center;font:700 13px/1 var(--font);color:var(--k-s-FFFFFF);background:var(--vu);}
+.cpl{display:grid;gap:8px;}
+/* Onglets de la communauté : tous visibles d'un coup, sur deux rangées au plus. */
+#msheet .ctabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+#msheet .ctabs .chip{justify-content:center;text-align:center;white-space:normal;line-height:1.15;min-height:40px;padding:5px 6px;font-size:14px;}
+@media (min-width:640px){#msheet .ctabs{grid-template-columns:repeat(6,minmax(0,1fr));}}
+@media (max-width:420px){.feedcard b{font-size:15px;}}
+.cpl .sub{width:100%;}
 </style>
 <script>
 // Ambiances : jour, crépuscule ou néon selon la hauteur du soleil (ou au choix), appliquées avant le premier affichage.
@@ -1485,7 +1574,8 @@ html.sky-on #rsheet{z-index:50;}
   <header class="top">
     <h1><span class="nvh">Ciné-club</span><span class="nlet" aria-hidden="true"><span class="nl">C</span><span class="nl">i</span><span class="nl">n</span><span class="nl">é</span><span class="nl">-</span><span class="nl">c</span><span class="nl">l</span><span class="nl">u</span><span class="nl">b</span></span></h1>
     <div class="nbulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <button type="button" class="nuitb aab" id="aab" aria-haspopup="true" aria-expanded="false" aria-controls="aamenu" aria-label="Affichage" title="Affichage">Aa</button>
+    <button type="button" class="topback" id="topBack" hidden aria-label="Revenir à l'affichage précédent"><span aria-hidden="true">←</span> Retour</button>
+    <button type="button" class="nuitb aab" id="aab" aria-haspopup="true" aria-expanded="false" aria-controls="aamenu" aria-label="Réglages : taille du texte, ambiance, langue, installer l'appli" title="Réglages"><span class="aab-ic" aria-hidden="true">⚙</span> Réglages</button>
     <div class="aamenu" id="aamenu" role="group" aria-label="Affichage" hidden>
       <button type="button" class="aa-app" id="appInstall" data-appinst="1" hidden><b>📲 Installer l'appli</b><span>Sur ton téléphone, ta tablette ou ton ordinateur</span></button>
       <p class="aa-h">Taille</p>
@@ -1511,13 +1601,14 @@ html.sky-on #rsheet{z-index:50;}
       <button type="button" class="aa-intro" data-guide="1">🧭 Revoir la visite guidée</button>
       <button type="button" class="aa-intro" data-bugbtn="1">🐞 Signaler un bug</button>
     </div>
-    <button type="button" class="nuitb ambb" id="nuitb" aria-label="Ambiance" title="Ambiance"><span id="ambIc" class="amb-ic"></span><i class="amb-a" aria-hidden="true">A</i></button>
+    <button type="button" class="nuitb ambb" id="nuitb" hidden aria-label="Ambiance" title="Ambiance"><span id="ambIc" class="amb-ic"></span><i class="amb-a" aria-hidden="true">A</i></button>
 </header>
 
   <div class="bar">
     <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb" id="ccQuiz" data-tx="btn.boussole" aria-label="Boussole cinéma" hidden>🧭 Boussole</button></div>
     <div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+    <button type="button" class="feedcard" id="feedCard" hidden><span class="fc-ic" aria-hidden="true">📰</span><span><b>Quoi de neuf chez les membres ?</b><small>Les derniers films notés, conseillés et cherchés</small></span><span class="fc-n" id="feedN" hidden></span></button>
     <label class="hint hint-q" for="q"><span class="fl" aria-hidden="true">↓</span> <span data-tx="recherche.aide">Chercher un film, un cinéaste ou un thème</span></label>
     <div class="row-tools">
       <div class="qwrap"><div class="qsug" id="qSug" role="listbox" aria-label="Suggestions de films" hidden></div><input type="search" id="q" data-txph="recherche.champ" placeholder="Film, cinéaste, thème…" aria-label="Chercher un film, un·e cinéaste ou un thème"><button type="button" class="qx" id="qx" aria-label="Effacer la recherche" hidden>✕</button></div>
@@ -1539,6 +1630,11 @@ html.sky-on #rsheet{z-index:50;}
   <nav class="toc" id="toc" aria-label="Aller à une liste"></nav>
   <nav class="mvnav" id="mvnav" aria-label="Choisir un mouvement cinématographique" hidden></nav>
   <main id="main"><p class="notice">Chargement de la liste de films…</p></main>
+  <footer class="ccfoot" id="ccFoot">
+    <button type="button" class="ccf-b" data-shareapp="1"><b>📤 Envoyer le Ciné-club à un ami</b><span>Le lien pour l'ouvrir et l'installer sur son téléphone</span></button>
+    <button type="button" class="ccf-b" data-contact="1"><b>✉️ Écrire à l'équipe du Ciné-club</b><span>Une idée, un souci, une question</span></button>
+    <button type="button" class="ccf-b" data-don="1" hidden><b>💛 Soutenir le Ciné-club</b><span>Une cagnotte, seulement pour améliorer la plateforme</span></button>
+  </footer>
 </div>
 <section class="sky" id="sky" role="dialog" aria-modal="true" aria-labelledby="skyTitle" hidden>
   <canvas id="skyCanvas" tabindex="0" role="img" aria-label="Ciel de films. La recherche permet de choisir une étoile ; les flèches déplacent le ciel et les boutons changent le zoom."></canvas>
@@ -1565,7 +1661,7 @@ html.sky-on #rsheet{z-index:50;}
       <button type="button" class="aa-sw" data-iopt="lecture" role="switch" aria-checked="false"><b>Lecture facilitée</b><span>Lettres espacées</span></button>
     </div>
     <button type="button" class="ch-go" id="chGo">Entrer dans le cinéma ›</button>
-    <p class="ch-n">Modifiable plus tard avec « Aa ».</p>
+    <p class="ch-n">Modifiable plus tard dans « ⚙ Réglages », en haut à droite.</p>
     <button type="button" class="ch-app" id="appInstall2" data-appinst="1" hidden>📲 Installer l'appli Ciné-club</button>
   </div>
   <button type="button" class="intro-x" id="introX">Passer ›</button>
@@ -1712,26 +1808,155 @@ html.sky-on #rsheet{z-index:50;}
     return JSON.stringify(o) + "|" + ((CC.me || {}).pseudo || "") + "|" + JSON.stringify((CC.me || {}).bloques || []);
   }
   var SIG = "", PIDFIX = false;
+  // ---------- Confidentialité (12 novembre) ----------
+  // Les notes, la liste, les goûts et les chiffres de chacun quittent le profil (lu par tous les membres) pour des documents
+  // « carnets/{compte}__{partie} ». Chaque document dit qui peut le lire : « tous », ou seulement les comptes de « lect »
+  // (amis ou proches), et les règles de la base le vérifient. Tant que ces règles ne sont pas publiées, tout reste dans le profil, comme avant.
+  var RAWP = null, CARNQ = [null, null, null], CARNOK = null, MIGR = false, STAT_T = 0;
+  CC.PARTS = ["rep", "liste", "quiz", "gouts", "stats"];
+  var PART_DEF = { rep:{}, liste:{}, quiz:{}, gouts:"", stats:{} };
+  function cref(part){ return fs.collection("carnets").doc(CC.uid + "__" + part); }
+  function moved(u){ return !!(RAWP && RAWP[u] && RAWP[u].carnet); }
+  CC.carnetMode = function(){ return moved(CC.uid); };
+  CC.carnetOk = function(){ return CARNOK === true; };
+  function carnOf(u){ var c = {}; CARNQ.forEach(function(m){ if (m && m[u]) Object.assign(c, m[u]); }); return c; }
+  function withCarn(u, raw){
+    var p = Object.assign({}, raw), c = carnOf(u);
+    if (u === CC.uid) p.reglages = (c.reglages && c.reglages.data) || {};
+    if (!raw.carnet) return p;
+    p.cache = {};
+    CC.PARTS.forEach(function(k){ if (c[k] && c[k].data !== undefined) p[k] = c[k].data; else { delete p[k]; if (u !== CC.uid && !c[k]) p.cache[k] = true; } });
+    return p;
+  }
+  // Mode choisi : public, privé (amis), personnalisé ou bulle. Les comptes d'avant restent publics (ou dans leur bulle).
+  CC.mode = function(p){ p = p || (RAWP && RAWP[CC.uid]) || CC.me || {}; return p.vis || (p.bulle ? "bulle" : "public"); };
+  function reg(){ return (CC.me && CC.me.reglages) || {}; }
+  function amisOf(p){ return (p && Array.isArray(p.amis) && p.amis) || []; }
+  function myAmis(){ return amisOf(RAWP && RAWP[CC.uid]); }
+  // Pour chaque élément du carnet : « tous », « amis », « proches » ou « moi ».
+  CC.aud = function(k){
+    var mode = CC.mode();
+    if (mode === "public") return "tous"; if (mode === "prive") return "amis"; if (mode === "bulle") return "moi";
+    var v = (reg().voir || {})[k];
+    return ["tous", "amis", "proches", "moi"].indexOf(v) >= 0 ? v : "tous";
+  };
+  CC.visOf = function(k){
+    var a = CC.aud(k), am = myAmis();
+    var lect = a === "amis" ? am : a === "proches" ? (reg().proches || []).filter(function(u){ return am.indexOf(u) >= 0; }) : [];
+    return { vis:a, lect:lect.slice().sort() };
+  };
+  // Amis : une demande acceptée des deux côtés. Chacun écrit seulement sa propre liste.
+  CC.amis = myAmis;
+  CC.isAmi = function(u){ return myAmis().indexOf(u) >= 0 && amisOf(RAWP && RAWP[u]).indexOf(CC.uid) >= 0; };
+  // Ce que l'autre membre me montre (fil, soirée) : « tous », ou « amis » si je suis dans sa liste.
+  CC.lets = function(u, k){ var p = (RAWP && RAWP[u]) || {}, v = p[k] || "tous"; return u === CC.uid || v === "tous" || (v === "amis" && amisOf(p).indexOf(CC.uid) >= 0); };
+  function listenCarnets(){
+    var col = fs.collection("carnets");
+    [col.where("uid", "==", CC.uid), col.where("vis", "==", "tous"), col.where("lect", "array-contains", CC.uid)].forEach(function(q, i){
+      q.onSnapshot(function(s){
+        var m = {}; s.docs.forEach(function(d){ var x = d.data() || {}; if (x.uid && x.part) (m[x.uid] = m[x.uid] || {})[x.part] = x; });
+        CARNQ[i] = m; if (i === 0) CARNOK = true;
+        applyProfils();
+      }, function(){ if (i === 0) { CARNOK = false; CARNQ[0] = {}; applyProfils(); } });
+    });
+  }
+  // Premier passage avec les nouvelles règles : mes données passent du profil à mes documents « carnets », en une seule écriture.
+  function migrate(){
+    if (MIGR || CARNOK !== true || CC.view || !RAWP || !RAWP[CC.uid]) return;
+    if (RAWP[CC.uid].carnet) { repair(); return; }
+    MIGR = true;
+    var raw = RAWP[CC.uid], b = fs.batch(), F = firebase.firestore.FieldValue;
+    CC.PARTS.forEach(function(k){ b.set(cref(k), Object.assign({ uid:CC.uid, part:k, data:raw[k] != null ? raw[k] : PART_DEF[k] }, CC.visOf(k)), { merge:true }); });
+    b.set(cref("reglages"), { uid:CC.uid, part:"reglages", vis:"moi", lect:[] }, { merge:true });
+    b.update(fs.collection("profils").doc(CC.uid), { carnet:1, rep:F.delete(), liste:F.delete(), quiz:F.delete(), gouts:F.delete() });
+    b.commit().catch(function(){ MIGR = "échec"; });
+  }
+  // Un onglet resté ouvert avec l'ancienne version a pu réécrire des réponses dans le profil : elles rejoignent mes carnets.
+  var REPAIR = false;
+  function repair(){
+    var raw = RAWP[CC.uid], ks = CC.PARTS.filter(function(k){ return raw[k] != null; });
+    if (REPAIR || !ks.length || !CARNQ[0]) return;
+    REPAIR = true;
+    var b = fs.batch(), F = firebase.firestore.FieldValue, del = {};
+    ks.forEach(function(k){ b.set(cref(k), Object.assign({ uid:CC.uid, part:k, data:raw[k] }, CC.visOf(k)), { merge:true }); del[k] = F.delete(); });
+    b.update(fs.collection("profils").doc(CC.uid), del);
+    b.commit().then(function(){ REPAIR = false; }, function(){});
+  }
+  // Qui peut lire chaque document : remis à jour quand le mode, les réglages ou les amis changent.
+  var VSYNC = false;
+  function syncVis(){
+    if (VSYNC || !moved(CC.uid) || !CARNQ[0] || CC.view) return;
+    var mine = CARNQ[0][CC.uid] || {}, ps = [];
+    CC.PARTS.forEach(function(k){
+      var v = CC.visOf(k), cur = mine[k];
+      if (cur && cur.vis === v.vis && JSON.stringify(cur.lect || []) === JSON.stringify(v.lect)) return;
+      ps.push(cref(k).set(Object.assign({ uid:CC.uid, part:k }, v), { merge:true }));
+    });
+    if (!ps.length) return;
+    VSYNC = true;
+    Promise.all(ps).then(function(){ VSYNC = false; }, function(){ VSYNC = false; });
+  }
+  // Mes chiffres (films vus, notés, moyenne) : un petit document à part, qu'on peut montrer sans montrer les notes.
+  function statsOf(rep){
+    var vus = 0, n = 0, sum = 0, pf = 0;
+    Object.keys(rep || {}).forEach(function(id){ var r = rep[id] || {}; if (r.etat === "vu" || r.etat === "pas_fini") vus++; if (r.etat === "pas_fini") pf++; if (r.note10) { n++; sum += +r.note10; } });
+    return { vus:vus, notes:n, moy:n ? Math.round(sum / n * 10) / 10 : 0, pasFinis:pf };
+  }
+  CC.statsOf = statsOf;
+  function syncStats(){
+    if (!moved(CC.uid) || !CARNQ[0] || !CC.me || CC.view) return;
+    var st = statsOf(CC.me.rep), cur = (CARNQ[0][CC.uid] || {}).stats;
+    if (cur && JSON.stringify(cur.data || {}) === JSON.stringify(st)) return;
+    clearTimeout(STAT_T);
+    STAT_T = setTimeout(function(){ cref("stats").set(Object.assign({ uid:CC.uid, part:"stats", data:st }, CC.visOf("stats")), { merge:true }).catch(function(){}); }, 1500);
+  }
+  function applyProfils(){
+    if (!RAWP) return;
+    // Mes propres documents d'abord, pour ne pas afficher un carnet vide le temps qu'ils arrivent.
+    if (moved(CC.uid) && !CARNQ[0] && CARNOK !== false) return;
+    var m = {}; Object.keys(RAWP).forEach(function(u){ m[u] = withCarn(u, RAWP[u]); });
+    CC.profils = m; CC.me = m[CC.uid] || null;
+    var firstLoad = !CC.meLoaded; CC.meLoaded = true;
+    if (CC.view && !m[CC.view]) { CC.exitView(); return; }
+    if (CC.view) CC.viewName = m[CC.view].pseudo || CC.viewName;
+    meCbs.forEach(function(f){ try { f(); } catch (e) {} });
+    paintBar();
+    if (firstLoad && !CC.me) openLogin();
+    if (CC.me && !CC.me.pid && !PIDFIX) { PIDFIX = true; fs.collection("profils").doc(CC.uid).update({ pid:CC.me.slug || ("m_" + CC.uid) }).catch(function(){ PIDFIX = false; }); }
+    var sg = otherSig();
+    if (sg !== SIG) { SIG = sg; CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); }
+    if (firstLoad && CC.me) listenCom();
+    if (!$("msheet").hidden) renderCom();
+    var pv = $("ccPriv"); if (pv && !$("lsheet").hidden) pv.innerHTML = privHtml();
+    if (CC.me) { migrate(); syncVis(); syncStats(); amiSync(); if (CC.comSync) CC.comSync(); if (CC.autoLink) CC.autoLink(); }
+  }
   boot.then(function(){
     paintBar();
     if (!CC.uid) return;
+    listenCarnets();
     fs.collection("profils").onSnapshot(function(s){
       var m = {}; s.docs.forEach(function(d){ m[d.id] = d.data() || {}; });
-      CC.profils = m; CC.me = m[CC.uid] || null;
-      var firstLoad = !CC.meLoaded; CC.meLoaded = true;
-      if (CC.view && !m[CC.view]) { CC.exitView(); return; }
-      if (CC.view) CC.viewName = m[CC.view].pseudo || CC.viewName;
-      meCbs.forEach(function(f){ try { f(); } catch (e) {} });
-      paintBar();
-      if (firstLoad && !CC.me) openLogin();
-      if (CC.me && !CC.me.pid && !PIDFIX) { PIDFIX = true; fs.collection("profils").doc(CC.uid).update({ pid:CC.me.slug || ("m_" + CC.uid) }).catch(function(){ PIDFIX = false; }); }
-      var sg = otherSig();
-      if (sg !== SIG) { SIG = sg; CC.hooks.forEach(function(f){ try { f(); } catch (e) {} }); }
-      if (firstLoad && CC.me) listenCom();
-      if (!$("msheet").hidden) renderCom();
+      RAWP = m; applyProfils();
     }, function(e){ CC.loadErr && CC.loadErr("les profils des membres", e); });
   });
 
+  // Écrire une entrée (ou plusieurs) d'une partie du carnet : « rep », « liste »… (valeur FieldValue.delete() pour l'effacer).
+  CC.putPart = function(part, id, v){
+    var FP = firebase.firestore.FieldPath, pairs = typeof id === "object" ? id : null;
+    var args = function(root){ var a = []; if (pairs) Object.keys(pairs).forEach(function(k){ a.push(root ? new FP(root, k) : new FP("data", k), pairs[k]); }); else a.push(root ? new FP(root, id) : new FP("data", id), v); return a; };
+    if (!moved(CC.uid)) { var pr = fs.collection("profils").doc(CC.uid); return pr.update.apply(pr, args(part)); }
+    var r = cref(part);
+    return r.update.apply(r, args("")).catch(function(e){
+      if (!e || e.code !== "not-found") throw e;
+      var data = {}; if (pairs) Object.keys(pairs).forEach(function(k){ data[k] = pairs[k]; }); else data[id] = v;
+      return r.set(Object.assign({ uid:CC.uid, part:part, data:data }, CC.visOf(part)), { merge:true });
+    });
+  };
+  // Une partie entière (questionnaire, phrase de goûts).
+  CC.setPart = function(part, v){
+    if (!moved(CC.uid)) { var o = {}; o[part] = v; return fs.collection("profils").doc(CC.uid).update(o); }
+    return cref(part).set(Object.assign({ uid:CC.uid, part:part, data:v }, CC.visOf(part)), { merge:true });
+  };
   // « reponses » et « maliste » : ranges dans le profil de la personne connectée, vus par le carnet comme des collections.
   function perUser(field){
     var api = {
@@ -1757,14 +1982,14 @@ html.sky-on #rsheet{z-index:50;}
         return function(){ var i = meCbs.indexOf(f); if (i >= 0) meCbs.splice(i, 1); };
       },
       doc:function(id){
-        var path = function(){ return new firebase.firestore.FieldPath(field, id); };
-        var ref = function(){ return fs.collection("profils").doc(CC.uid); };
         var no = function(){ return Promise.reject({ code:"invalid_argument", message:"non connecté" }); };
+        // Dans le profil (avant les nouvelles règles) ou dans mon document « carnets » (après).
+        var put = function(v){ return CC.uid && CC.me ? CC.putPart(field, id, v).catch(mapErr) : no(); };
         return { id:id,
           get:function(){ var v = CC.me && CC.me[field] && CC.me[field][id]; return Promise.resolve({ id:id, exists:!!v, data:function(){ return v; } }); },
-          set:function(d){ return CC.uid && CC.me ? ref().update(path(), clean(d)).catch(mapErr) : no(); },
-          update:function(d){ var v = Object.assign({}, (CC.me && CC.me[field] && CC.me[field][id]) || {}, clean(d)); return CC.uid && CC.me ? ref().update(path(), v).catch(mapErr) : no(); },
-          delete:function(){ return CC.uid && CC.me ? ref().update(path(), firebase.firestore.FieldValue.delete()).catch(mapErr) : no(); } };
+          set:function(d){ return put(clean(d)); },
+          update:function(d){ return put(Object.assign({}, (CC.me && CC.me[field] && CC.me[field][id]) || {}, clean(d))); },
+          delete:function(){ return put(firebase.firestore.FieldValue.delete()); } };
       }
     };
     return api;
@@ -1798,6 +2023,7 @@ html.sky-on #rsheet{z-index:50;}
   // ---------- Connexion, pseudo, membres ----------
   function paintBar(){
     var b = $("ccMe"), m = $("ccMbr"); if (!b) return;
+    var fc = $("feedCard"); if (fc) fc.hidden = !CC.me || !!(CC.me && CC.me.bulle);
     var g = $("gpill"); if (g && CC.view) g.textContent = "📖 Carnet de " + CC.viewName + " · Revenir au mien";
     var tx = function(k, d){ return window.CCTX ? CCTX(k, d) : d; };
     b.textContent = !CC.uid ? "👤 Se connecter" : CC.me ? tx("btn.compte", "👤 Mon compte") : "👤 Choisir mon pseudo";
@@ -1827,13 +2053,130 @@ html.sky-on #rsheet{z-index:50;}
       h = '<h3>' + esc(CC.me.pseudo) + '</h3><p class="sh-note">Connecté' + (CC.user && CC.user.email ? " avec " + esc(CC.user.email) : "") + (CC.admin ? " · tu gères le carnet" : "") + '</p>' +
         '<label class="ccl"><span>Changer de pseudo</span><input type="text" id="ccPseudo" class="ccin" maxlength="30" value="' + esc(CC.me.pseudo) + '"></label>' +
         '<label class="ccl"><span>Mes goûts en une phrase</span><textarea id="ccGouts" class="ccin" maxlength="140" rows="2" placeholder="Par exemple : le cinéma qui dérange et les films d\'animation">' + esc(CC.me.gouts || "") + '</textarea></label>' +
-        '<label class="ccsw"><input type="checkbox" id="ccBulle"' + (CC.me.bulle ? " checked" : "") + '><span><b>Rester dans ma bulle</b><small>Tu n\'apparais pas dans le fil, personne ne peut te conseiller de film, et le fil disparaît pour toi. Tes notes restent visibles.</small></span></label>' +
+        '<label class="ccl"><span>Le nom de ma playlist <i>(facultatif)</i></span><input type="text" id="ccPlT" class="ccin" maxlength="60" placeholder="' + esc(CC.me.pseudo) + '" value="' + esc(CC.me.plTitre || "") + '"></label>' +
+        '<label class="ccl"><span>Ma playlist en une phrase <i>(facultatif)</i></span><input type="text" id="ccPlD" class="ccin" maxlength="160" placeholder="Les films que j\'ai aimés et que je conseille à tout le monde." value="' + esc(CC.me.plDesc || "") + '"></label>' +
         '<div class="plf-b"><button type="button" class="plf-ok" id="ccSave">Enregistrer</button><button type="button" class="plf-no" id="ccOut">Se déconnecter</button></div>' +
-        '<div class="plf-b"><button type="button" class="plf-no" data-ccimport="1">📥 Importer mes films (Letterboxd, IMDb)</button></div>' +
+        '<div class="plf-b">' + (CC.admin ? "" : '<button type="button" class="plf-no" data-myplay="1">🎁 Voir ma playlist</button>') + '<button type="button" class="plf-no" data-ccimport="1">📥 Importer mes films (Letterboxd, IMDb)</button></div>' +
+        '<div id="ccPriv" class="ccpriv">' + privHtml() + '</div>' +
         (CC.admin ? modHtml() : "") +
         (CC.admin ? '<div class="ccadm"><b>Importer des données</b><span class="sh-note">Un fichier préparé par Claude (films, réponses, liste, playlists). Tu verras ce qui sera ajouté ou remplacé avant toute écriture.</span><input type="file" id="ccFile" accept=".json,application/json"><div id="ccImp"></div></div>' : "");
     }
     $("lsheetBody").innerHTML = h + '<p class="sh-note" id="ccNote"></p><div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
+  }
+  // ---------- Qui voit quoi : quatre modes, et le mode personnalisé élément par élément ----------
+  var PRIV_M = [["public", "🌍 Public", "Tous les membres voient ton carnet, tes commentaires et ton activité."],
+    ["prive", "👫 Privé", "Seuls tes amis voient ton carnet, tes commentaires et ton activité, et eux seuls peuvent t'envoyer des conseils."],
+    ["perso", "🎛️ Personnalisé", "Tu choisis, pour chaque chose, qui peut la voir."],
+    ["bulle", "🫧 Bulle", "Personne ne voit rien de toi à part ton pseudo et ta playlist. Tu n'apparais pas dans le fil, personne ne peut te conseiller de film, et le fil disparaît pour toi."]];
+  var PRIV_I = [["rep", "Mes films vus, mes notes et mes avis", 1], ["liste", "Ma liste de films à voir", 1], ["stats", "Mes chiffres (films vus, notés, ma moyenne)", 1],
+    ["gouts", "Ma phrase de goûts", 1], ["quiz", "Mes réponses au questionnaire de goûts", 1], ["com", "Mes commentaires sur les films", 1],
+    ["fil", "Mon activité dans le fil", 0], ["soiree", "Me proposer dans la Soirée ciné des autres", 0], ["recoit", "Qui peut m'envoyer des conseils", 0]];
+  var PRIV_A = [["tous", "Tout le monde"], ["amis", "Mes amis"], ["proches", "Mes proches"], ["moi", "Personne d'autre que moi"]];
+  function privHtml(){
+    if (!CC.me) return "";
+    var mode = CC.mode(), ok = CC.carnetOk(), R = (CC.me.reglages || {}), V = R.voir || {}, am = CC.amis(), P = CC.profils;
+    var h = '<b class="cpv-h">🔒 Qui peut voir mon carnet ?</b>';
+    if (!ok) h += '<p class="sh-note err">Pas encore disponible : Licia doit d\'abord publier les nouvelles règles de la base (fichier « firestore.rules »). En attendant, ton carnet reste visible par tous les membres.</p>';
+    h += '<div class="cpv-m" role="radiogroup" aria-label="Qui peut voir mon carnet">' + PRIV_M.map(function(m){
+      return '<button type="button" class="chip" role="radio" data-pmode="' + m[0] + '" aria-checked="' + (mode === m[0]) + '" aria-pressed="' + (mode === m[0]) + '"' + (ok ? "" : " disabled") + '>' + esc(m[1]) + '</button>'; }).join("") + '</div>' +
+      '<p class="sh-note">' + esc((PRIV_M.filter(function(m){ return m[0] === mode; })[0] || PRIV_M[0])[2]) + '</p>';
+    if (mode === "perso") {
+      h += '<div class="cpv-t">' + PRIV_I.map(function(it){
+        var cur = V[it[0]] || "tous", opts = PRIV_A.filter(function(a){ return it[2] || a[0] !== "proches"; });
+        return '<label class="cpv-r"><span>' + esc(it[1]) + '</span><select class="ccin" data-pvoir="' + it[0] + '"' + (ok ? "" : " disabled") + '>' + opts.map(function(a){
+          var lab = !it[2] && a[0] === "moi" ? "Personne" : a[1];
+          return '<option value="' + a[0] + '"' + (cur === a[0] ? " selected" : "") + '>' + esc(lab) + '</option>'; }).join("") + '</select></label>'; }).join("") + '</div>';
+      var pro = R.proches || [];
+      h += '<div class="mh">Mes proches</div>' + (am.length ? '<p class="sh-note">Une partie de tes amis, pour ce que tu ne montres qu\'à eux.</p><div class="cpv-p">' + am.map(function(u){
+          return '<label class="ccsw"><input type="checkbox" data-proche="' + esc(u) + '"' + (pro.indexOf(u) >= 0 ? " checked" : "") + (ok ? "" : " disabled") + '><span><b>' + esc((P[u] || {}).pseudo || "Un membre") + '</b></span></label>'; }).join("") + '</div>'
+        : '<p class="sh-note">Tu n\'as pas encore d\'amis : demande-les depuis la liste des membres (Communauté).</p>');
+    }
+    h += '<div class="mh">Mes amis' + (am.length ? " · " + am.length : "") + '</div>' + (am.length ? '<div class="mlist">' + am.map(function(u){
+        return '<button type="button" class="mrow" data-amiview="' + esc(u) + '"><b>' + esc((P[u] || {}).pseudo || "Un membre") + '</b><span>' + (CC.isAmi(u) ? "👫 ami" : "⏳ en attente") + '</span></button>'; }).join("") + '</div>'
+      : '<p class="sh-note">Pour avoir des amis : Communauté › Membres, touche un membre, puis « ➕ Demander en ami ». Ton ami accepte, et c\'est fait.</p>');
+    return h;
+  }
+  // Enregistrer un changement de mode ou de réglage : le profil garde le mode (et ce que les règles doivent savoir),
+  // le document « réglages » (lu par moi seul) garde le détail et mes proches.
+  function savePriv(ch){
+    if (!CC.me || !CC.carnetOk()) return;
+    var R = CC.me.reglages || {}, mode = ch.mode || CC.mode(), voir = Object.assign({}, R.voir || {}, ch.voir || {}), proches = ch.proches || R.proches || [];
+    var eff = function(k){ var v = mode === "public" ? "tous" : mode === "prive" ? "amis" : mode === "bulle" ? "moi" : (voir[k] || "tous"); return v === "proches" ? "amis" : v; };
+    var up = { vis:mode, bulle:mode === "bulle", recoit:eff("recoit"), fil:eff("fil"), soiree:eff("soiree") };
+    note("Enregistrement…");
+    var reg = fs.collection("carnets").doc(CC.uid + "__reglages");
+    Promise.all([reg.set({ uid:CC.uid, part:"reglages", vis:"moi", lect:[], data:{ voir:voir, proches:proches } }, { merge:true }), fs.collection("profils").doc(CC.uid).update(up)])
+      .then(function(){ note(mode === "bulle" ? "Tu restes dans ta bulle." : "C'est enregistré."); }, function(){ note("Pas enregistré, réessaie dans un instant.", true); });
+  }
+  CC.savePriv = savePriv;
+  // Les anciennes playlists faites par Licia pour Arthur, Violette et Jean rejoignent leurs comptes (12 novembre) :
+  // dès que Licia ouvre le site, un compte dont le pseudo commence par ce prénom (un seul) est relié à sa playlist,
+  // et ce qu'il avait déjà mis dans sa nouvelle playlist y est ajouté. Le reste se fait à la main (Communauté › Membres › Relier).
+  var AUTO_PL = ["arthur", "violette", "jean"], ALINK = {};
+  CC.autoLink = function(){
+    if (!CC.admin || !RAWP || !CC.playlists || !CC.movePl) return;
+    var used = {}; Object.keys(RAWP).forEach(function(u){ used[CC.pidOf(RAWP[u])] = u; });
+    AUTO_PL.forEach(function(pl){
+      if (used[pl] || ALINK[pl] || !CC.playlists.some(function(p){ return p.prenom === pl; })) return;
+      var c = Object.keys(RAWP).filter(function(u){ var p = RAWP[u]; return u !== CC.uid && p.pseudo && CC.slug(p.pseudo) === pl && /^m_/.test(CC.pidOf(p)); });
+      if (c.length !== 1) return;
+      ALINK[pl] = 1;
+      var u = c[0], old = CC.pidOf(RAWP[u]);
+      fs.collection("profils").doc(u).update({ pid:pl }).then(function(){ return CC.movePl(old, pl); })
+        .then(function(){ toastCC("La playlist de " + RAWP[u].pseudo + " est reliée à son compte."); }, function(){ delete ALINK[pl]; });
+    });
+  };
+  function toastCC(m){ var t = $("toast"); if (!t) return; t.textContent = m; t.hidden = false; clearTimeout(toastCC.t); toastCC.t = setTimeout(function(){ t.hidden = true; }, 4200); }
+  // ---------- Amis : demande, acceptation (des deux côtés), retrait ----------
+  function amiMsg(to, type){ return fs.collection("messages").doc().set({ from:CC.uid, to:to, type:type, mot:"", ajout:new Date().toISOString() }); }
+  function isAmiMsg(x){ return x && /^ami-/.test(String(x.type || "")); }
+  function sentTo(u){ return Object.keys(MSG).some(function(k){ var x = MSG[k]; return x.type === "ami-dem" && x.from === CC.uid && x.to === u; }); }
+  function askedBy(u){ return Object.keys(MSG).some(function(k){ var x = MSG[k]; return x.type === "ami-dem" && x.from === u && x.to === CC.uid && !x.lu; }); }
+  function amiAdd(u){ return fs.collection("profils").doc(CC.uid).update({ amis:firebase.firestore.FieldValue.arrayUnion(u) }); }
+  function amiDel(u){
+    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.type === "ami-dem" && x.from === CC.uid && x.to === u) fs.collection("messages").doc(x.id).delete().catch(function(){}); });
+    return fs.collection("profils").doc(CC.uid).update({ amis:firebase.firestore.FieldValue.arrayRemove(u) });
+  }
+  var AMIQ = {};
+  function amiDone(x){ AMIQ[x.id] = 1; x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); }
+  // Réponses reçues : une acceptation ajoute l'ami (si je l'avais demandé), un retrait l'enlève. Deux demandes croisées valent acceptation.
+  function amiSync(){
+    if (!CC.me || !RAWP || CC.view) return;
+    var my = CC.amis();
+    Object.keys(MSG).forEach(function(k){
+      var x = MSG[k]; if (!x || x.to !== CC.uid || x.lu || AMIQ[x.id] || !isAmiMsg(x)) return;
+      if (x.type === "ami-ok") { if (sentTo(x.from) && my.indexOf(x.from) < 0) amiAdd(x.from).catch(function(){}); amiDone(x); }
+      else if (x.type === "ami-fin") { if (my.indexOf(x.from) >= 0) amiDel(x.from).catch(function(){}); amiDone(x); }
+      else if (x.type === "ami-dem" && !isBlocked(x.from) && (sentTo(x.from) || my.indexOf(x.from) >= 0)) {
+        AMIQ[x.id] = 1;
+        (my.indexOf(x.from) >= 0 ? Promise.resolve() : amiAdd(x.from)).then(function(){ return amiMsg(x.from, "ami-ok"); }).then(function(){ amiDone(x); }, function(){ delete AMIQ[x.id]; });
+      }
+    });
+  }
+  CC.amiAsk = function(u){ return amiMsg(u, "ami-dem"); };
+  CC.amiAccept = function(u){
+    var req = Object.keys(MSG).map(function(k){ return MSG[k]; }).filter(function(x){ return x.type === "ami-dem" && x.from === u && x.to === CC.uid; });
+    return amiAdd(u).then(function(){ return amiMsg(u, "ami-ok"); }).then(function(){ req.forEach(amiDone); });
+  };
+  CC.amiRefuse = function(u){ Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.type === "ami-dem" && x.from === u && x.to === CC.uid && !x.lu) amiDone(x); }); };
+  CC.amiCancel = function(u){ return amiDel(u); };
+  CC.amiRemove = function(u){ return amiDel(u).then(function(){ return amiMsg(u, "ami-fin"); }); };
+  function amiBtns(u){
+    if (!CC.me || u === CC.uid) return "";
+    var mine = CC.amis().indexOf(u) >= 0, b;
+    if (CC.isAmi(u)) b = '<span class="ami-ok">👫 Vous êtes amis</span><button type="button" class="plf-no ccsm" data-amifin="' + esc(u) + '">Retirer de mes amis</button>';
+    else if (askedBy(u)) b = '<span class="ami-ok">' + esc(pseudoOf(u)) + ' te demande en ami</span><button type="button" class="plf-ok ccsm" data-amiok="' + esc(u) + '">Accepter</button><button type="button" class="plf-no ccsm" data-amino="' + esc(u) + '">Refuser</button>';
+    else if (sentTo(u) || mine) b = '<span class="ami-ok">⏳ Demande envoyée</span><button type="button" class="plf-no ccsm" data-amicx="' + esc(u) + '">Annuler</button>';
+    else if (inBulle(u)) b = '<span class="sh-note">' + esc(pseudoOf(u)) + ' préfère rester dans sa bulle.</span>';
+    else b = '<button type="button" class="plf-ok ccsm" data-amidem="' + esc(u) + '">➕ Demander en ami</button>';
+    return '<div class="plf-b ami-b">' + b + '</div>';
+  }
+  // Demandes en attente, en haut de « Pour moi ».
+  function amiReqHtml(){
+    var R = Object.keys(MSG).map(function(k){ return MSG[k]; }).filter(function(x){ return x.type === "ami-dem" && x.to === CC.uid && !x.lu && !isBlocked(x.from) && !CC.isAmi(x.from); });
+    var seen = {}; R = R.filter(function(x){ if (seen[x.from]) return false; seen[x.from] = 1; return true; });
+    return R.map(function(x){ return '<div class="cthread"><div class="cth">👫 ' + esc(pseudoOf(x.from)) + ' te demande en ami<small>' + esc(ago(x.ajout)) + '</small></div>' +
+      '<div class="plf-b"><button type="button" class="plf-ok ccsm" data-amiok="' + esc(x.from) + '">Accepter</button><button type="button" class="plf-no ccsm" data-amino="' + esc(x.from) + '">Refuser</button><button type="button" class="plf-no ccsm" data-msel="' + esc(x.from) + '">Voir son profil</button></div></div>'; }).join("");
   }
   function modHtml(){
     if (!SIGN.length) return '<div class="ccadm"><b>Signalements</b><span class="sh-note">Aucun signalement.</span></div>';
@@ -1853,7 +2196,11 @@ html.sky-on #rsheet{z-index:50;}
     var ref = fs.collection("profils").doc(CC.uid), isNew = !CC.me, pid = CC.admin ? "licia" : "m_" + CC.uid;
     note("Enregistrement…");
     var g = $("ccGouts") ? String($("ccGouts").value || "").trim().replace(/\s+/g, " ").slice(0, 140) : null;
-    var w = isNew ? ref.set({ pseudo:p, pid:pid, slug:pid, rep:{}, liste:{}, cree:new Date().toISOString() }) : ref.update(g == null ? { pseudo:p } : { pseudo:p, gouts:g });
+    var pl = function(id, n){ var e = $(id); return e ? String(e.value || "").trim().replace(/\s+/g, " ").slice(0, n) : null; };
+    var up = { pseudo:p }, plt = pl("ccPlT", 60), pld = pl("ccPlD", 160);
+    if (plt != null) up.plTitre = plt; if (pld != null) up.plDesc = pld;
+    var w = isNew ? ref.set({ pseudo:p, pid:pid, slug:pid, rep:{}, liste:{}, cree:new Date().toISOString() })
+      : Promise.all([ref.update(up), g == null || g === (CC.me.gouts || "") ? null : CC.setPart("gouts", g)]);
     w.then(function(){ if (isNew) location.reload(); else note("C'est enregistré."); }, function(){ note("Pas enregistré, réessaie dans un instant.", true); });
   }
   function sendLink(){
@@ -1931,7 +2278,10 @@ html.sky-on #rsheet{z-index:50;}
           var ids = Object.keys(part);
           for (var i = 0; i < ids.length; i += 300) {
             var chunk = {}; ids.slice(i, i + 300).forEach(function(id){ chunk[id] = part[id]; });
-            var d = {}; d[f] = chunk; ops.push({ c:"profils", id:CC.uid, data:d, merge:true });
+            var d = {}; d[f] = chunk;
+            // Avec les nouvelles règles, les réponses et la liste vont dans mes documents « carnets ».
+            if (CC.carnetMode()) ops.push({ c:"carnets", id:CC.uid + "__" + f, data:Object.assign({ uid:CC.uid, part:f, data:chunk }, CC.visOf(f)), merge:true });
+            else ops.push({ c:"profils", id:CC.uid, data:d, merge:true });
           }
         });
         var job = "ccImport-" + hashStr(r.result), batches = [];
@@ -1966,7 +2316,7 @@ html.sky-on #rsheet{z-index:50;}
   }
   // Membres : la liste, puis le profil de chacun (ses films vus et ses notes).
   var MSEL = "";
-  CC.openMembers = function(uid){ MSEL = uid || ""; TAB = "membres"; SEND = null; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0; };
+  CC.openMembers = function(uid){ MSEL = uid || ""; TAB = "membres"; SEND = null; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0; comPush(); };
   var LAB = { vu:"Vu", pas_fini:"Pas fini", oublie:"Oublié", pas_vu:"Pas vu" };
   function fmtN(n){ return String(Math.round((+n || 0) * 10) / 10).replace(".", ","); }
   function linkHtml(u){
@@ -1982,10 +2332,11 @@ html.sky-on #rsheet{z-index:50;}
     if (!MSEL || !P[MSEL]) {
       var ids = Object.keys(P).filter(function(u){ return P[u] && P[u].pseudo; }).sort(function(a, b){ return String(P[a].pseudo).localeCompare(String(P[b].pseudo), "fr"); });
       h = '<h3>Membres du Ciné-club</h3><div class="mlist">' + ids.map(function(u){
-        var r = P[u].rep || {}, k = Object.keys(r), vus = k.filter(function(id){ return r[id].etat === "vu" || r[id].etat === "pas_fini"; }).length,
-            nt = k.filter(function(id){ return r[id].note10; }).length;
-        var af = u !== CC.uid && CC.me && CC.taste && !P[u].bulle && !me().bulle ? CC.taste.compare(me().rep || {}, r).pct : null;
-        return '<button type="button" class="mrow" data-msel="' + esc(u) + '"><b>' + esc(P[u].pseudo) + (u === CC.uid ? " (toi)" : "") + '</b><span>' + (af != null ? '<i class="mrow-a">' + af + ' %</i> · ' : "") + vus + ' vu' + (vus > 1 ? "s" : "") + ' · ' + nt + ' noté' + (nt > 1 ? "s" : "") + '</span></button>';
+        // Carnet caché à mes yeux : ses chiffres seulement s'il les montre, sinon un cadenas.
+        var hid = !!(P[u].cache && P[u].cache.rep), r = P[u].rep || {}, st = hid ? (P[u].stats || null) : CC.statsOf(r);
+        var af = !hid && u !== CC.uid && CC.me && CC.taste && !P[u].bulle && !me().bulle ? CC.taste.compare(me().rep || {}, r).pct : null;
+        var info = st ? st.vus + ' vu' + (st.vus > 1 ? "s" : "") + ' · ' + st.notes + ' noté' + (st.notes > 1 ? "s" : "") : "🔒 carnet privé";
+        return '<button type="button" class="mrow" data-msel="' + esc(u) + '"><b>' + esc(P[u].pseudo) + (u === CC.uid ? " (toi)" : "") + (u !== CC.uid && CC.isAmi(u) ? ' <i class="mrow-f" title="Ami">👫</i>' : "") + '</b><span>' + (af != null ? '<i class="mrow-a">' + af + ' %</i> · ' : "") + info + '</span></button>';
       }).join("") + '</div>' + (CC.invite && CC.me ? '<div class="plf-b"><button type="button" class="plf-ok" data-invite="1">✉️ Inviter quelqu\'un à se comparer à moi</button></div><p class="sh-note">Ton ami répond à quelques films en deux minutes, sans inscription, et découvre votre affinité.</p>' : "");
     } else {
       var p = P[MSEL], rep = p.rep || {}, ids2 = Object.keys(rep).filter(function(id){ return rep[id] && rep[id].etat; });
@@ -1993,16 +2344,24 @@ html.sky-on #rsheet{z-index:50;}
       var noted = ids2.filter(function(id){ return rep[id].note10; }), others = ids2.filter(function(id){ return !rep[id].note10; });
       var row = function(id){ var x = rep[id]; return '<button type="button" class="mfilm" data-mfilm="' + esc(x.titre || id) + '"><span>' + esc(x.titre || id) + (x.annee ? ' <small>' + esc(x.annee) + '</small>' : "") + '</span><b>' + (x.note10 ? "★ " + fmtN(x.note10) + "/10" : esc(LAB[x.etat] || x.etat)) + '</b></button>'; };
       h = '<button type="button" class="plf-no" data-msel="">‹ Tous les membres</button><h3>' + esc(p.pseudo) + '</h3>' +
-        (MSEL !== CC.uid && MSEL !== CC.view ? '<button type="button" class="plf-ok mview" data-mview="' + esc(MSEL) + '">📖 Ouvrir le carnet ' + (/^[aeiouyéèêh]/i.test(p.pseudo) ? "d'" : "de ") + esc(p.pseudo) + '</button>' : "") +
+        (MSEL !== CC.uid && MSEL !== CC.view && !(p.cache && p.cache.rep) ? '<button type="button" class="plf-ok mview" data-mview="' + esc(MSEL) + '">📖 Ouvrir le carnet ' + (/^[aeiouyéèêh]/i.test(p.pseudo) ? "d'" : "de ") + esc(p.pseudo) + '</button>' : "") +
         (CC.view && MSEL === CC.uid ? '<button type="button" class="plf-ok mview" data-mback="1">📖 Revenir à mon carnet</button>' : "") +
+        amiBtns(MSEL) + hiddenNote(p) +
         profileExtra(MSEL) +
         (CC.admin && MSEL !== CC.uid ? linkHtml(MSEL) : "") +
         '<p class="sh-note">' + noted.length + ' film' + (noted.length > 1 ? "s" : "") + ' noté' + (noted.length > 1 ? "s" : "") + ' · ' + others.length + ' autre' + (others.length > 1 ? "s" : "") + ' réponse' + (others.length > 1 ? "s" : "") + '. Touche un film pour le retrouver dans le carnet.</p>' +
         (noted.length ? '<div class="mh">Toutes ses notes</div><div class="mlist">' + noted.map(row).join("") + '</div>' : "") +
         (others.length ? '<div class="mh">Sans note</div><div class="mlist">' + others.map(row).join("") + '</div>' : "") +
-        (!ids2.length ? '<p class="sh-note">Pas encore de réponse.</p>' : "");
+        (!ids2.length && !(p.cache && p.cache.rep) ? '<p class="sh-note">Pas encore de réponse.</p>' : "");
     }
     return h;
+  }
+  // Ce qu'un membre ne me montre pas : dit simplement, avec ses chiffres s'il les partage.
+  function hiddenNote(p){
+    var c = p.cache || {}, L = { rep:"ses notes", liste:"sa liste", stats:"ses chiffres", gouts:"sa phrase de goûts", quiz:"son questionnaire" };
+    var k = Object.keys(L).filter(function(x){ return c[x]; });
+    var st = c.rep && p.stats ? '<p class="sh-note">' + p.stats.vus + ' film' + (p.stats.vus > 1 ? "s" : "") + ' vu' + (p.stats.vus > 1 ? "s" : "") + ' · ' + p.stats.notes + ' noté' + (p.stats.notes > 1 ? "s" : "") + (p.stats.moy ? ' · moyenne ' + fmtN(p.stats.moy) + '/10' : "") + '</p>' : "";
+    return (k.length ? '<p class="sh-note cpv-x">🔒 ' + esc(p.pseudo || "Ce membre") + ' ne partage pas avec toi ' + k.map(function(x){ return L[x]; }).join(", ").replace(/, ([^,]*)$/, " ni $1") + '.</p>' : "") + st;
   }
   // ---------- Communauté : membres, conseils privés (« Pour moi »), fil, profils, bulle, signalements, visite guidée ----------
   var TAB = "membres", MSG = {}, MSGALL = false, MSGQ = [{}, {}], MSGERR = null, MASQ = {}, SIGN = [], SEND = null, REPORT = null;
@@ -2030,13 +2389,13 @@ html.sky-on #rsheet{z-index:50;}
       [["to", 0], ["from", 1]].forEach(function(q){
         fs.collection("messages").where(q[0], "==", CC.uid).onSnapshot(function(s){
           var m = {}; s.docs.forEach(function(d){ var x = d.data() || {}; if (x[q[0]] === CC.uid) m[d.id] = Object.assign({ id:d.id }, x); });
-          MSGQ[q[1]] = m; MSG = Object.assign({}, MSGQ[0], MSGQ[1]); MSGERR = null; paintBar(); comRefresh();
+          MSGQ[q[1]] = m; MSG = Object.assign({}, MSGQ[0], MSGQ[1]); MSGERR = null; paintBar(); comRefresh(); amiSync();
         }, function(e){ MSGERR = e; paintBar(); comRefresh(); });
       });
     };
     fs.collection("messages").onSnapshot(function(s){
       var m = {}; s.docs.forEach(function(d){ m[d.id] = Object.assign({ id:d.id }, d.data() || {}); });
-      MSGALL = true; MSG = m; MSGERR = null; paintBar(); comRefresh(); CC.hooks.forEach(function(f){ try { f(); } catch (e) {} });
+      MSGALL = true; MSG = m; MSGERR = null; paintBar(); comRefresh(); amiSync(); CC.hooks.forEach(function(f){ try { f(); } catch (e) {} });
     }, function(){ MSGALL = false; mine(); });
     fs.collection("masques").onSnapshot(function(s){
       var m = {}; s.docs.forEach(function(d){ m[d.id] = 1; }); MASQ = m;
@@ -2047,7 +2406,10 @@ html.sky-on #rsheet{z-index:50;}
       if (!$("lsheet").hidden) renderLogin();
     }, function(){});
   }
-  function unread(){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && !CC.hidden("msg", x.id, x.from); }).length; }
+  function unread(){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && !CC.hidden("msg", x.id, x.from) && (!isAmiMsg(x) || x.type === "ami-dem"); }).length; }
+  // Avis de recherche : un film dont on a oublié le titre, décrit à tout le monde ; les réponses arrivent comme des conseils.
+  function isAvis(x){ return x.type === "avis" || x.type === "avis-rep"; }
+  function unreadOf(av){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && isAvis(x) === av && !CC.hidden("msg", x.id, x.from) && (!isAmiMsg(x) || x.type === "ami-dem"); }).length; }
   function comRefresh(){ if (!$("msheet").hidden) renderCom(); }
 
   // Fils de conversation : un par film et par personne.
@@ -2056,6 +2418,7 @@ html.sky-on #rsheet{z-index:50;}
     Object.keys(MSG).forEach(function(k){
       var x = MSG[k], other = x.from === CC.uid ? x.to : x.from;
       if (x.from !== CC.uid && x.to !== CC.uid && x.to !== "*") return;
+      if (isAvis(x) || isAmiMsg(x)) return;
       if (x.to === "*" && x.from !== CC.uid && (inBulle(x.from) || me().bulle)) return;
       if (CC.hidden("msg", x.id, x.from === CC.uid ? "" : x.from)) return;
       var key = x.film + "|" + other, t = T[key] = T[key] || { key:key, film:x.film, titre:x.titre, annee:x.annee, other:other, list:[], last:"" };
@@ -2064,8 +2427,8 @@ html.sky-on #rsheet{z-index:50;}
     return Object.keys(T).map(function(k){ var t = T[k]; t.list.sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); }); return t; })
       .sort(function(a, b){ return b.last.localeCompare(a.last); });
   }
-  function markRead(){
-    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.to === CC.uid && !x.lu) { x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); } });
+  function markRead(av){
+    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.to === CC.uid && !x.lu && isAvis(x) === !!av && !isAmiMsg(x)) { x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); } });
     paintBar();
   }
 
@@ -2073,7 +2436,7 @@ html.sky-on #rsheet{z-index:50;}
   function feed(){
     var out = [], lim = Date.now() - 30 * 864e5, P = CC.profils;
     Object.keys(P).forEach(function(u){
-      if (u === CC.uid || inBulle(u) || isBlocked(u)) return;
+      if (u === CC.uid || inBulle(u) || isBlocked(u) || !CC.lets(u, "fil")) return;
       var rep = P[u].rep || {};
       Object.keys(rep).forEach(function(id){
         var r = rep[id], t = Date.parse(r.maj || ""); if (!(t > lim)) return;
@@ -2084,14 +2447,14 @@ html.sky-on #rsheet{z-index:50;}
     });
     Object.keys(MSG).forEach(function(k){
       var x = MSG[k], t = Date.parse(x.ajout || "");
-      if (x.type !== "conseil" || !(t > lim) || x.from === CC.uid || inBulle(x.from) || CC.hidden("msg", x.id, x.from)) return;
+      if (x.type !== "conseil" || !(t > lim) || x.from === CC.uid || inBulle(x.from) || !CC.lets(x.from, "fil") || CC.hidden("msg", x.id, x.from)) return;
       var dest = x.to === "*" ? "à tout le monde" : x.to === CC.uid ? "à toi" : "à " + pseudoOf(x.to);
       out.push({ t:t, iso:x.ajout, uid:x.from, film:x.film, titre:x.titre || x.film, annee:x.annee, txt:"conseille", apres:" " + dest, com:x.mot });
     });
     var C = CC.coms || {};
     Object.keys(C).forEach(function(fid){
       (C[fid] || []).forEach(function(c){
-        var t = Date.parse(c.ajout || ""); if (!(t > lim) || !c.uid || c.uid === CC.uid || inBulle(c.uid) || CC.hidden("com", c.id, c.uid)) return;
+        var t = Date.parse(c.ajout || ""); if (!(t > lim) || !c.uid || c.uid === CC.uid || inBulle(c.uid) || !CC.lets(c.uid, "fil") || CC.hidden("com", c.id, c.uid)) return;
         var info = (CC.filmInfo && CC.filmInfo(fid)) || {};
         out.push({ t:t, iso:c.ajout, uid:c.uid, film:fid, titre:info.t || fid, annee:info.y, txt:"a commenté", com:c.texte });
       });
@@ -2111,19 +2474,36 @@ html.sky-on #rsheet{z-index:50;}
   }
 
   function tabsHtml(){
-    var n = unread(), bulle = me().bulle;
+    var n = unreadOf(false), na = unreadOf(true), bulle = me().bulle;
     var t = [["membres", "Membres"], ["pourmoi", "Pour moi" + (n && !bulle ? " · " + n : "")]];
     if (!bulle) t.push(["fil", "Fil"]);
+    if (!bulle) t.push(["avis", "🔎 Avis de recherche" + (na ? " · " + na : "")]);
+    if (CC.plList && CC.plList().length) t.push(["playlists", "Playlists"]);
     if (CC.soiree) t.push(["soiree", "Soirée ciné"]);
     return '<div class="ctabs" role="tablist">' + t.map(function(x){ return '<button type="button" class="chip" role="tab" data-ctab="' + x[0] + '" aria-selected="' + (TAB === x[0]) + '" aria-pressed="' + (TAB === x[0]) + '">' + esc(x[1]) + '</button>'; }).join("") + '</div>';
   }
+  // Les playlists des membres (rangées avant dans la catégorie « Playlists » de l'accueil).
+  function renderPlaylists(){
+    var L = CC.plList ? CC.plList() : [];
+    if (!L.length) return '<p class="sh-note">Aucune playlist pour l\'instant.</p>';
+    return '<p class="sh-note">Les listes de films de chacun, et les conseils reçus. Touchez une playlist pour voir ses films.</p><div class="cpl">' + L.map(function(x){
+      return '<button type="button" class="sub" data-cplay="' + esc(x.id) + '"><span class="sl">' + esc(x.titre) + '</span>' + (x.stats ? "" : '<span class="sc">' + x.n + '</span>') + (x.np ? '<span class="nb">' + x.np + '</span>' : "") + '</button>';
+    }).join("") + '</div>' + (CC.plValider && CC.plValider() ? '<div class="plf-b"><button type="button" class="plf-no" data-cplv="1">✉️ Valider les conseils reçus</button></div>' : "");
+  }
+  // Page entière : une étape dans l'historique, pour que Retour (bouton, navigateur, téléphone) ferme la communauté.
+  function comPush(){ try { if (!(history.state && history.state.com)) history.pushState(Object.assign({}, history.state || {}, { com:1 }), ""); } catch (e) {} }
+  function comClose(){ if (history.state && history.state.com) history.back(); else sheetOpen(""); }
   function filmBtn(fid, titre){ return '<button type="button" class="plf-no ccsm" data-mfilm="' + esc(titre || fid) + '">Voir le film</button>'; }
   function flagBtn(type, id, author, extrait){ return author && author !== CC.uid ? '<button type="button" class="ccflag" data-report="' + esc(type + "|" + id + "|" + author) + '" data-extrait="' + esc(String(extrait || "").slice(0, 140)) + '" aria-label="Signaler" title="Signaler">⚑</button>' : ""; }
 
   function renderPourMoi(){
     if (MSGERR) return '<p class="sh-note">Les conseils privés ne sont pas encore activés : Licia doit publier les nouvelles règles de la base (fichier « firestore.rules »).</p>';
-    var T = threads();
+    var T = threads(), AR = amiReqHtml();
+    if (AR) return AR + (T.length ? renderThreads(T) : "");
     if (!T.length) return '<p class="sh-note">Aucun conseil pour l\'instant. Pour en envoyer un : sous un film, touche « ♡ Conseiller », puis « Le conseiller… », à tout le monde ou à certaines personnes.</p>';
+    return renderThreads(T);
+  }
+  function renderThreads(T){
     return T.map(function(t){
       var first = t.list[0], fromMe = first.from === CC.uid, other = pseudoOf(t.other);
       var head = fromMe ? "Tu as conseillé " + filmLabel(t) + (t.other === "*" ? " à tout le monde" : " à " + other) : other + (first.to === "*" ? " conseille à tout le monde " : " te conseille ") + filmLabel(t);
@@ -2139,6 +2519,88 @@ html.sky-on #rsheet{z-index:50;}
         (first.from !== CC.uid ? flagBtn("msg", first.id, first.from, first.mot).replace('class="ccflag"', 'class="ccflag lab"').replace('>⚑<', '>⚑ Signaler<') : "") + '</div></div>';
     }).join("");
   }
+  var AV = { form:false, kind:"un film", texte:"", rep:"", t:"", y:"", mot:"" }, AV_T = null;
+  var AV_KINDS = [["un film", "Un film"], ["une série", "Une série"], ["un épisode", "Un épisode"], ["un documentaire", "Un documentaire"], ["un dessin animé", "Un dessin animé"], ["un court métrage", "Un court métrage"]];
+  CC.openAvis = function(){ if (!CC.me) { openLogin(); return; } AV.form = true; CC.openCom("avis"); };
+  function avisSugg(){
+    var r = CC.findByClues ? CC.findByClues(AV.texte) : [];
+    return r.length ? '<div class="mh">Dans le catalogue, c\'est peut-être…</div><div class="mlist">' + r.map(function(f){
+      return '<button type="button" class="mfilm" data-mfilm="' + esc(f.t) + '"><span>' + esc(f.t) + (f.y ? ' <small>' + esc(f.y) + '</small>' : "") + (f.d ? ' <small>' + esc(f.d) + '</small>' : "") + '</span></button>'; }).join("") + '</div>' : "";
+  }
+  function renderAvis(){
+    if (MSGERR) return '<p class="sh-note">Les avis de recherche ne sont pas encore activés : Licia doit publier les nouvelles règles de la base (fichier « firestore.rules »).</p>';
+    var all = Object.keys(MSG).map(function(k){ return MSG[k]; });
+    var avis = all.filter(function(x){ return x.type === "avis" && !CC.hidden("msg", x.id, x.from) && (x.from === CC.uid || (!inBulle(x.from) && !isBlocked(x.from))); })
+      .sort(function(a, b){ return String(b.ajout).localeCompare(String(a.ajout)); });
+    var reps = all.filter(function(x){ return x.type === "avis-rep" && !CC.hidden("msg", x.id, x.from) && !isBlocked(x.from); })
+      .sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); });
+    var h = '<p class="sh-note">Un film, une série, un épisode ou un documentaire dont le titre vous échappe ? Racontez ce dont vous vous souvenez : les autres cinéphiles vous aident à le retrouver, et vous êtes prévenu dès qu\'on vous répond.</p>';
+    h += AV.form ? '<div class="avf"><div class="ctabs" role="radiogroup" aria-label="Que cherchez-vous ?">' + AV_KINDS.map(function(k){
+        return '<button type="button" class="chip" role="radio" data-avk="' + esc(k[0]) + '" aria-checked="' + (AV.kind === k[0]) + '" aria-pressed="' + (AV.kind === k[0]) + '">' + esc(k[1]) + '</button>'; }).join("") + '</div>' +
+      '<label class="ccl"><span>Ce dont vous vous souvenez</span><textarea id="avTxt" class="ccin" maxlength="1000" rows="5" placeholder="L\'histoire, une scène, un acteur, l\'époque, le pays, la langue, les couleurs, la musique… Tout peut aider.">' + esc(AV.texte) + '</textarea></label>' +
+      '<div id="avSugg">' + avisSugg() + '</div>' +
+      '<div class="plf-b"><button type="button" class="plf-ok" data-avsend="1">Publier l\'avis de recherche</button><button type="button" class="plf-no" data-avno="1">Annuler</button></div><p class="sh-note" id="avNote"></p></div>'
+      : '<div class="plf-b"><button type="button" class="plf-ok" data-avnew="1">🔎 Lancer un avis de recherche</button></div>';
+    if (!avis.length) return h + '<p class="sh-note">Aucun avis de recherche pour l\'instant.</p>';
+    return h + avis.map(function(a){
+      var mine = a.from === CC.uid, rs = reps.filter(function(r){ return r.ref === a.id; }), open = AV.rep === a.id;
+      var head = mine ? "Votre avis de recherche" : pseudoOf(a.from) + " cherche " + (a.genre || "un film");
+      return '<div class="cthread avis"><div class="cth">' + esc(head) + '<small>' + esc(ago(a.ajout)) + '</small></div>' +
+        '<p class="av-t">« ' + esc(a.texte || a.mot || "") + ' »</p>' +
+        rs.map(function(r){
+          var by = r.from === CC.uid ? "Vous proposez" : pseudoOf(r.from) + " propose";
+          return '<div class="cmsg' + (r.from === CC.uid ? " moi" : "") + '"><b>' + esc(by) + '</b> ' + esc(r.titre || "?") + (r.annee ? " (" + esc(r.annee) + ")" : "") + (r.mot ? " : « " + esc(r.mot) + " »" : "") +
+            '<div class="plf-b">' + (r.film ? filmBtn(r.film, r.titre) : mine ? '<button type="button" class="plf-no ccsm" data-avadd="' + esc(r.id) + '">➕ Ajouter ce film au carnet</button>' : "") +
+            flagBtn("msg", r.id, r.from === CC.uid ? "" : r.from, r.titre + " " + (r.mot || "")) + '</div></div>';
+        }).join("") +
+        (open ? '<div class="crep avr"><label class="ccl"><span>Le titre, d\'après vous</span><input id="avRepT" class="ccin" maxlength="120" value="' + esc(AV.t) + '"></label>' +
+          '<label class="ccl"><span>L\'année <i>(si vous la connaissez)</i></span><input id="avRepY" class="ccin" inputmode="numeric" maxlength="4" value="' + esc(AV.y) + '"></label>' +
+          '<label class="ccl"><span>Un mot <i>(facultatif)</i></span><textarea id="avRepMot" class="ccin" maxlength="200" rows="2" placeholder="Pourquoi vous pensez à ce film">' + esc(AV.mot) + '</textarea></label>' +
+          '<div class="plf-b"><button type="button" class="plf-ok ccsm" data-avrepsend="' + esc(a.id) + '">Envoyer ma réponse</button><button type="button" class="plf-no ccsm" data-avrepno="1">Annuler</button></div><p class="sh-note" id="avRepNote"></p></div>' : "") +
+        '<div class="plf-b">' + (mine ? '<button type="button" class="plf-no ccsm" data-avdel="' + esc(a.id) + '">✓ Trouvé : retirer mon avis</button>' : open ? "" : '<button type="button" class="plf-ok ccsm" data-avrep="' + esc(a.id) + '">💡 Je crois savoir</button>') +
+        (mine ? "" : flagBtn("msg", a.id, a.from, a.texte || a.mot).replace('class="ccflag"', 'class="ccflag lab"').replace('>⚑<', '>⚑ Signaler<')) + '</div></div>';
+    }).join("");
+  }
+  function avisNote(id, m){ var n = $(id); if (n) n.textContent = m; }
+  document.addEventListener("input", function(ev){
+    var t = ev.target; if (!t || !t.id) return;
+    if (t.id === "avTxt") { AV.texte = t.value; clearTimeout(AV_T); AV_T = setTimeout(function(){ var b = $("avSugg"); if (b) b.innerHTML = avisSugg(); }, 300); }
+    else if (t.id === "avRepT") AV.t = t.value; else if (t.id === "avRepY") AV.y = t.value; else if (t.id === "avRepMot") AV.mot = t.value;
+  });
+  document.addEventListener("click", function(ev){
+    var t = ev.target.closest && ev.target.closest("[data-avopen],[data-avnew],[data-avno],[data-avk],[data-avsend],[data-avrep],[data-avrepno],[data-avrepsend],[data-avdel],[data-avadd]"); if (!t) return;
+    if (t.dataset.avopen) { CC.openAvis(); return; }
+    if (t.dataset.avnew) { AV.form = true; renderCom(); var ta = $("avTxt"); if (ta) ta.focus(); return; }
+    if (t.dataset.avno) { AV.form = false; renderCom(); return; }
+    if (t.dataset.avk) { AV.kind = t.dataset.avk; renderCom(); return; }
+    if (t.dataset.avrepno) { AV.rep = ""; renderCom(); return; }
+    if (t.dataset.avrep) { AV.rep = t.dataset.avrep; AV.t = ""; AV.y = ""; AV.mot = ""; renderCom(); var ti = $("avRepT"); if (ti) ti.focus(); return; }
+    if (t.dataset.avsend) {
+      var tx = String(AV.texte || "").trim();
+      if (tx.length < 15) { avisNote("avNote", "Racontez un peu plus ce dont vous vous souvenez."); return; }
+      t.disabled = true;
+      fs.collection("messages").add({ from:CC.uid, to:"*", type:"avis", genre:AV.kind, film:"", titre:"", annee:"", mot:tx.slice(0, 200), texte:tx.slice(0, 1000), ajout:new Date().toISOString(), lu:false })
+        .then(function(){ AV.form = false; AV.texte = ""; renderCom(); }, function(e){ t.disabled = false; avisNote("avNote", "Pas publié : " + ((e && e.code) || "réessayez dans un instant") + "."); });
+      return;
+    }
+    if (t.dataset.avrepsend) {
+      var a = MSG[t.dataset.avrepsend], tt = String(AV.t || "").trim().slice(0, 120), yy = String(AV.y || "").trim();
+      if (!a) return;
+      if (!tt) { avisNote("avRepNote", "Écrivez le titre auquel vous pensez."); return; }
+      if (yy && !/^[0-9]{4}$/.test(yy)) { avisNote("avRepNote", "L'année doit avoir quatre chiffres, ou rester vide."); return; }
+      t.disabled = true;
+      fs.collection("messages").add({ from:CC.uid, to:a.from, type:"avis-rep", ref:a.id, film:CC.findFilm ? CC.findFilm(tt, yy) : "", titre:tt, annee:yy, mot:String(AV.mot || "").trim().slice(0, 200), ajout:new Date().toISOString(), lu:false })
+        .then(function(){ AV.rep = ""; renderCom(); }, function(e){ t.disabled = false; avisNote("avRepNote", "Pas envoyé : " + ((e && e.code) || "réessayez dans un instant") + "."); });
+      return;
+    }
+    if (t.dataset.avdel) { fs.collection("messages").doc(t.dataset.avdel).delete().then(renderCom, function(){ alert("Pas retiré, réessayez dans un instant."); }); return; }
+    if (t.dataset.avadd) {
+      var r = MSG[t.dataset.avadd]; if (!r || !CC.addMissing) return;
+      var av = MSG[r.ref] || {};
+      CC.addMissing(r.titre, r.annee, "Avis de recherche : " + String(av.texte || av.mot || "").slice(0, 170));
+      t.disabled = true; t.textContent = "✓ Envoyé";
+    }
+  });
   function renderFil(){
     var F = feed();
     if (!F.length) return '<p class="sh-note">Rien de nouveau ces 30 derniers jours. Les notes, commentaires et conseils des autres membres apparaîtront ici.</p>';
@@ -2157,8 +2619,11 @@ html.sky-on #rsheet{z-index:50;}
       '<p class="sh-note">' + (SEND.pub ? "Le conseil apparaît dans le fil de tous les membres." : "Les personnes choisies le reçoivent dans « Pour moi ». Il reste visible dans le fil des autres membres.") + '</p>' +
       (SEND.pub ? "" : !ids.length ? '<p class="sh-note">Pas encore d\'autre membre. Envoie le lien de la page à un ami pour qu\'il te rejoigne.</p>' :
       '<div class="mlist" role="group" aria-label="Personnes choisies">' + ids.map(function(u){
-        var no = inBulle(u) || (P[u].bloques || []).indexOf(CC.uid) >= 0, on = SEND.tos.indexOf(u) >= 0;
-        return '<button type="button" class="mrow" role="checkbox" data-sendto="' + esc(u) + '" aria-checked="' + on + '"' + (no ? ' disabled' : '') + '><b>' + esc(P[u].pseudo) + '</b><span>' + (no ? "préfère rester dans sa bulle" : on ? "✓ choisi" : "") + '</span></button>';
+        // Son réglage « Qui peut m'envoyer des conseils » : tout le monde, ses amis, ou personne.
+        var bul = inBulle(u) || (P[u].bloques || []).indexOf(CC.uid) >= 0, rc = P[u].recoit || "tous";
+        var ferme = !bul && (rc === "moi" || (rc === "amis" && (P[u].amis || []).indexOf(CC.uid) < 0));
+        var no = bul || ferme, on = SEND.tos.indexOf(u) >= 0;
+        return '<button type="button" class="mrow" role="checkbox" data-sendto="' + esc(u) + '" aria-checked="' + on + '"' + (no ? ' disabled' : '') + '><b>' + esc(P[u].pseudo) + '</b><span>' + (bul ? "préfère rester dans sa bulle" : ferme ? (rc === "amis" ? "reçoit les conseils de ses amis seulement" : "ne reçoit pas de conseils") : on ? "✓ choisi" : "") + '</span></button>';
       }).join("") + '</div>') +
       '<label class="ccl"><span>Un mot (facultatif)</span><textarea id="ccSendTxt" class="ccin" maxlength="200" rows="3" placeholder="Pourquoi ce film ? 200 caractères au plus">' + esc(SEND.mot || "") + '</textarea></label>' +
       '<div class="plf-b"><button type="button" class="plf-ok" id="ccSendGo"' + (ok ? "" : " disabled") + '>' + (SEND.pub ? "Conseiller à tout le monde" : SEND.tos.length > 1 ? "Envoyer à " + SEND.tos.length + " personnes" : "Envoyer le conseil") + '</button><button type="button" class="plf-no" data-sendno="1">Annuler</button></div>' +
@@ -2187,7 +2652,7 @@ html.sky-on #rsheet{z-index:50;}
   // Soirée ciné : on choisit qui vient ; le site propose des films que personne n'a vus.
   var SOI = [];
   function renderSoiree(){
-    var P = CC.profils, ids = Object.keys(P).filter(function(u){ return u !== CC.uid && P[u] && P[u].pseudo && !P[u].bulle && !isBlocked(u); })
+    var P = CC.profils, ids = Object.keys(P).filter(function(u){ return u !== CC.uid && P[u] && P[u].pseudo && !P[u].bulle && !isBlocked(u) && CC.lets(u, "soiree"); })
       .sort(function(a, b){ return String(P[a].pseudo).localeCompare(String(P[b].pseudo), "fr"); });
     SOI = SOI.filter(function(u){ return ids.indexOf(u) >= 0; });
     var h = '<h3>Qui vient ?</h3>' + (ids.length ? '<div class="soi-who">' + ids.map(function(u){ var on = SOI.indexOf(u) >= 0;
@@ -2203,16 +2668,19 @@ html.sky-on #rsheet{z-index:50;}
     if (SEND && !SEND.reply) h = renderSend();
     else if (REPORT) h = renderReport();
     else {
-      if (TAB === "fil" && me().bulle) TAB = "membres";
+      if ((TAB === "fil" || TAB === "avis") && me().bulle) TAB = "membres";
       h = tabsHtml();
       if (TAB === "pourmoi") { h += renderPourMoi(); markRead(); }
       else if (TAB === "fil") h += renderFil();
+      else if (TAB === "avis") { h += renderAvis(); markRead(true); }
       else if (TAB === "soiree") h += renderSoiree();
+      else if (TAB === "playlists") h += renderPlaylists();
       else h += membersHtml();
     }
-    $("msheetBody").innerHTML = h + '<div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
+    $("msheetBody").innerHTML = '<div class="com-top"><button type="button" class="com-back" data-ccclose="1" aria-label="Fermer la communauté et revenir"><span aria-hidden="true">←</span> Retour</button><b>Communauté</b></div>' +
+      h + '<div class="plf-b"><button type="button" class="plf-no" data-ccclose="1">Fermer</button></div>';
   }
-  CC.openCom = function(tab){ TAB = tab || TAB || "membres"; SEND = null; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0; };
+  CC.openCom = function(tab){ TAB = tab || TAB || "membres"; SEND = null; REPORT = null; renderCom(); sheetOpen("msheet"); $("msheet").scrollTop = 0; comPush(); };
   CC.sendFilm = function(fid){
     if (!CC.me) { openLogin(); return; }
     var info = (CC.filmInfo && CC.filmInfo(fid)) || {};
@@ -2225,9 +2693,8 @@ html.sky-on #rsheet{z-index:50;}
   // ---------- Visite guidée (3 bulles), après le lever de rideau, une fois par appareil et par compte ----------
   var GKEY = "ccGuideV1" + CC.lsKey, GI = -1;
   var GSTEPS = [
-    { sel:"#toc", t:"Les catégories", d:"Touchez un carré pour ouvrir ses listes de films." },
-    { sel:".qwrap", t:"Chercher et répondre", d:"Cherchez un film ici. Sous chaque film, dites si vous l'avez vu, puis notez-le sur 10." },
-    { sel:"#ccMbr", alt:"#ccMe", t:"La communauté", d:"Les carnets des autres membres, les conseils qu'on vous envoie et, si vous préférez, « Rester dans ma bulle » dans Mon compte." }
+    { sel:".qwrap", t:"Chercher un film", d:"Écrivez ici le nom d'un film, d'un cinéaste ou d'un thème." },
+    { sel:"#toc", t:"Ou choisir une catégorie", d:"Touchez un carré : ses films s'affichent. Sous chaque film, dites si vous l'avez vu." }
   ];
   function guideShow(){
     var g = $("ccGuide"); if (!g) return;
@@ -2259,11 +2726,24 @@ html.sky-on #rsheet{z-index:50;}
   document.addEventListener("click", function(ev){
     var t = ev.target.closest ? ev.target : null; if (!t) return;
     if (t.closest("#ccMe")) { openLogin(); return; }
+    if (t.closest("#feedCard")) { MSEL = ""; CC.openCom("fil"); return; }
     if (t.closest("#ccMbr")) { MSEL = ""; CC.openCom(unread() && !me().bulle ? "pourmoi" : TAB); return; }
-    if (t.closest("[data-ccclose]")) { sheetOpen(""); return; }
+    if (t.closest("[data-ccclose]")) { comClose(); return; }
+    var cpl = t.closest("[data-cplay]"); if (cpl) { comClose(); setTimeout(function(){ CC.plOpen(cpl.dataset.cplay); }, 60); return; }
+    if (t.closest("[data-cplv]")) { comClose(); setTimeout(function(){ CC.plValider()(); }, 60); return; }
     if (t.closest("#ccSend")) { sendLink(); return; }
     if (t.closest("#ccGoogle")) { google(); return; }
     if (t.closest("#ccSave")) { saveProfile(); return; }
+    var pm = t.closest("[data-pmode]"); if (pm) { savePriv({ mode:pm.dataset.pmode }); return; }
+    if (t.closest("[data-myplay]")) { sheetOpen(""); if (CC.plOpen) setTimeout(function(){ CC.plOpen("pl-" + CC.pid()); }, 60); return; }
+    var av = t.closest("[data-amiview]"); if (av) { sheetOpen(""); CC.openMembers(av.dataset.amiview); return; }
+    var amiA = function(sel, fn, ok){ var b = t.closest("[" + sel + "]"); if (!b) return false; var u = b.getAttribute(sel); b.disabled = true;
+      Promise.resolve(fn(u)).then(function(){ toastCC(ok(pseudoOf(u))); renderCom(); }, function(){ b.disabled = false; toastCC("Pas enregistré, réessaie dans un instant."); }); return true; };
+    if (amiA("data-amidem", CC.amiAsk, function(n){ return "Demande envoyée à " + n + "."; })) return;
+    if (amiA("data-amiok", CC.amiAccept, function(n){ return "Vous êtes amis, " + n + " et toi."; })) return;
+    if (amiA("data-amino", CC.amiRefuse, function(){ return "Demande refusée."; })) return;
+    if (amiA("data-amicx", CC.amiCancel, function(){ return "Demande annulée."; })) return;
+    if (amiA("data-amifin", CC.amiRemove, function(n){ return n + " n'est plus dans tes amis."; })) return;
     if (t.closest("#ccOut")) { auth.signOut(); return; }
     if (t.closest("#ccBackup")) { if (IMP) { download("cineclub-sauvegarde-" + new Date().toISOString().slice(0, 10) + ".json", IMP.prev); note("Sauvegarde téléchargée. Tu peux maintenant importer."); } return; }
     if (t.closest("#ccImpGo")) { runImport(); return; }
@@ -2323,9 +2803,13 @@ html.sky-on #rsheet{z-index:50;}
   });
   document.addEventListener("change", function(ev){
     if (ev.target && ev.target.id === "ccFile") importFile(ev.target.files[0]);
-    if (ev.target && ev.target.id === "ccBulle") {
-      var on = ev.target.checked;
-      fs.collection("profils").doc(CC.uid).update({ bulle:on }).then(function(){ note(on ? "Tu restes dans ta bulle." : "Tu sors de ta bulle."); }, function(){ ev.target.checked = !on; note("Pas enregistré, réessaie.", true); });
+    var pv = ev.target && ev.target.closest && ev.target.closest("[data-pvoir]");
+    if (pv) { var o = {}; o[pv.dataset.pvoir] = pv.value; savePriv({ voir:o }); }
+    var pr = ev.target && ev.target.closest && ev.target.closest("[data-proche]");
+    if (pr) {
+      var L = ((CC.me && CC.me.reglages) || {}).proches || [], u = pr.dataset.proche;
+      L = L.filter(function(x){ return x !== u; }); if (pr.checked) L.push(u);
+      savePriv({ proches:L });
     }
   });
   // Échap ferme les volets et la visite guidée.
@@ -2467,7 +2951,7 @@ html.sky-on #rsheet{z-index:50;}
   // Playlists : une liste par prénom (sections « auto: conseils »), remplie dans la collection « conseils ».
   var PEOPLE = [], CONSEILS = {}, MOTS = {}, AVIS = {}, plCol = null, OPEN_PL = "", pqueues = {};
   // Films proposés hors du carnet (collection « propositions ») ; brouillon du formulaire de chaque playlist.
-  var PROPS = {}, propCol = null, DRAFT = {}, catCol = null, cqueue = Promise.resolve();
+  var PROPS = {}, propCol = null, DRAFT = {}, catCol = null, ajCol = null, cqueue = Promise.resolve();
   // Les films ajoutés depuis une proposition vont dans une liste cachée du catalogue.
   var HOST = "pl-ajouts", HOSTRAW = null;
   // Conseils à envoyer : quand on ne peut pas écrire dans le carnet, les conseils attendent ici (dans ce navigateur)
@@ -2855,7 +3339,7 @@ html.sky-on #rsheet{z-index:50;}
   var TMDB_KEY = "a35a6c94deab582e9348b58192ac4279", IMG_OPEN = {}, IMG_P = {}, IMG_C = {}, IMG_KEY = "carnetImagesV3";
   // Films dont TMDB ne trouve pas le bon titre tout seul : identifiant TMDB fixé à la main (vérifié le 5 novembre 2026).
   // Un nombre : un film ; « tv/… » : une série (pour les épisodes, ce sont les images de la série).
-  var TMDB_FIXE = { "run-2020":546121, "comment-faire-l-amour-a-une-femme-1996":69131, "clean-shaven-1993":1479,
+  var TMDB_FIXE = { "judas-and-the-black-messiah-2021":583406, "the-black-power-mixtape-1967-1975-2011":75000, "a-cause-d-un-assassinat-1974":17365, "jfk-1991":820, "eddington-2025":648878, "la-dialectique-peut-elle-casser-des-briques-1973":31343, "easy-rider-1969":624, "zabriskie-point-1970":2998, "hair-1979":10654, "the-internet-s-own-boy-l-histoire-d-aaron-swartz-2014":250658, "tpb-afk-the-pirate-bay-away-from-keyboard-2013":50275, "we-steal-secrets-la-verite-sur-wikileaks-2013":159154, "mr-robot-serie-2015":"tv/62560", "la-soupe-au-canard-1933":3063, "passeport-pour-pimlico-1949":30095, "la-souris-qui-rugissait-1959":12649, "le-roi-de-coeur-1966":17685, "bananas-1971":11302, "l-incroyable-histoire-de-l-ile-de-la-rose-2020":636565, "gandhi-1982":783, "joyeux-noel-2005":11661, "selma-2014":273895, "tu-ne-tueras-point-2016":324786, "together-2000":742, "captain-fantastic-2016":334533, "wild-wild-country-serie-2018":"tv/77601", "la-commune-paris-1871-2000":63195, "lincoln-2012":72976, "run-2020":546121, "comment-faire-l-amour-a-une-femme-1996":69131, "clean-shaven-1993":1479,
     "jeanne-dielman-23-quai-du-commerce-1080-bruxelles-1975":44012, "pepi-luci-bom-et-les-autres-filles-du-quartier-1980":4499,
     "docteur-jekyll-et-m-hyde-1931":3019, "suspiria-remake-2018":361292, "moon-2024":1172244, "toxic-2024":1315091,
     "flow-2024":823219, "split-2016":381288, "cow-2021":661348, "beats-2019":493141,
@@ -2866,7 +3350,29 @@ html.sky-on #rsheet{z-index:50;}
     "the-lost-room-mini-serie-2006":"tv/3868", "flash-rag-doll-2018":"tv/60735", "channel-zero-the-dream-door-2018":"tv/67752",
     "la-caravane-de-l-etrange-saison-2-2005":"tv/185", "terminator-les-chroniques-de-sarah-connor-rosie-2008":"tv/433",
     "orphelins-baudelaire-the-carnivorous-carnival-2018":"tv/65294", "game-of-thrones-kayla-2013":"tv/1399",
-    "cirque-du-soleil-fire-within-2002":"tv/46996", "chernobyl-serie-2019":"tv/87108" };
+    "cirque-du-soleil-fire-within-2002":"tv/46996", "chernobyl-serie-2019":"tv/87108",
+    // Films ajoutés le 12 novembre 2026 (politique et compositeurs), identifiants vérifiés à la main.
+    "l-aveu-1970":60859, "l-homme-de-marbre-1977":224, "chers-camarades-2020":587609, "la-mort-de-staline-2017":402897,
+    "ida-2013":209274, "z-1969":2721, "missing-1982":15600, "no-2012":110398,
+    "je-suis-toujours-la-2024":1000837, "nostalgie-de-la-lumiere-2010":72721, "the-act-of-killing-2012":123678,
+    "les-graines-du-figuier-sauvage-2024":1278263, "un-simple-accident-2025":1456349, "vivre-1994":31439, "le-dernier-empereur-1987":746,
+    "a-touch-of-sin-2013":187022, "citizenfour-2014":293310, "le-conformiste-1970":8416, "le-fils-de-saul-2015":336050,
+    "l-armee-des-ombres-1969":15383, "rome-ville-ouverte-1945":307, "soy-cuba-1964":32015, "memoires-du-sous-developpement-1968":47576,
+    "land-and-freedom-1995":38884, "le-vent-se-leve-2006":1116, "la-bataille-d-alger-1966":17295, "hunger-2008":10360,
+    "buongiorno-notte-2003":24164, "paradise-now-2005":67, "camp-de-thiaroye-1988":103203, "xala-1975":76636,
+    "dahomey-2024":1101256, "timbuktu-2014":265228, "i-am-not-your-negro-2016":411019,
+    "malcolm-x-1992":1883, "les-miserables-2019":586863, "le-sel-de-la-terre-1954":23620, "harlan-county-usa-1976":33324,
+    "la-classe-ouvriere-va-au-paradis-1971":56231, "moi-daniel-blake-2016":374473, "en-guerre-2018":485162, "l-evenement-2021":793998,
+    "woman-at-war-2018":348657, "how-to-blow-up-a-pipeline-2022":1008048,
+    "green-border-2023":1121956, "moi-capitaine-2023":937746, "fuocoammare-2016":377151, "les-sentiers-de-la-gloire-1957":975,
+    "requiem-pour-un-massacre-1985":25237, "no-other-land-2024":1232493, "les-hommes-du-president-1976":891, "network-1976":10774,
+    "l-exercice-de-l-etat-2011":95448, "il-divo-2008":8832, "furyo-1983":11948, "solaris-1972":593,
+    "la-lecon-de-piano-1993":713, "pride-2014":234200, "harvey-milk-2008":10139, "argentina-1985-2022":714888, "lumumba-2000":55551, "wall-street-1987":10673, "okja-2017":387426, "bamako-2006":62652, "le-cauchemar-de-darwin-2004":415253, "l-etreinte-du-serpent-2015":336808, "killers-of-the-flower-moon-2023":466420,
+    "la-chinoise-1967":1629, "zero-de-conduite-1933":44494, "l-an-01-1973":63172, "le-guepard-1963":1040,
+    "l-anglaise-et-le-duc-2001":2894, "danton-1983":4202, "monsieur-smith-au-senat-1939":3083, "douze-hommes-en-colere-1957":389,
+    "lacombe-lucien-1974":55368, "le-rebelle-1949":24650, "margin-call-2011":50839, "des-hommes-et-des-dieux-2010":46332,
+    "une-vie-cachee-2019":403300, "leviathan-2014":265180, "les-chevaux-de-dieu-2012":134908, "four-lions-2010":37495,
+    "l-image-manquante-2013":186997, "un-homme-dans-la-foule-1957":21849, "bienvenue-mister-chance-1979":10322, "sans-filtre-2022":497828 };
   try { localStorage.removeItem("carnetImagesV1"); localStorage.removeItem("carnetImagesV2"); } catch (e) {}
   try { IMG_C = JSON.parse(localStorage.getItem(IMG_KEY) || "{}") || {}; } catch (e) { IMG_C = {}; }
   var IMG_SEL = {};
@@ -3039,6 +3545,26 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   // Les autres membres qui ont répondu pour ce film (leur note, ou vu / pas vu).
   function ccSendBtn(f){ return window.CC && CC.me && !GUEST ? '<button type="button" class="chip cc-send" data-cconseil="' + esc(f.id) + '">📣 Le conseiller…</button>' : ""; }
   if (window.CC) CC.filmInfo = function(id){ var f = films[id]; return f ? { t:f.t, y:f.y } : null; };
+  // Avis de recherche : les films du catalogue qui ressemblent à ce que la personne raconte.
+  var CLUE_STOP = "dans avec pour film films serie series dont elle elles etait etaient avait avaient plus comme mais tout tous toute tres cette leur leurs quand alors apres avant entre sans sous souviens souvient rappelle rappelais personnage personnages histoire scene scenes jeune jeunes femme homme hommes femmes enfant enfants quelqu chose choses vers fois aussi encore deja bien vraiment peut etre pense crois sais savoir titre annee annees vieux ancien episode documentaire".split(" ");
+  if (window.CC) CC.findByClues = function(text){
+    var words = norm(String(text || "")).replace(/[^a-z0-9]+/g, " ").split(" ").filter(function(w){ return w.length >= 4 && CLUE_STOP.indexOf(w) < 0; });
+    words = words.filter(function(w, i){ return words.indexOf(w) === i; });
+    if (words.length < 2) return [];
+    var out = [];
+    // Un mot compte s'il apparaît dans le résumé, les thèmes, le titre, le cinéaste ou le pays (sans tenir compte du pluriel) ;
+    // il faut au moins deux mots différents pour proposer un film.
+    var stems = words.map(function(w){ return w.replace(/(s|x)$/, ""); });
+    Object.keys(films).forEach(function(id){
+      var f = films[id]; if (!f || !f.t) return;
+      var hay = norm([f.t || "", f.d || "", f.p || "", (f.th || []).join(" "), (f.k || []).join(" "), f.c || ""].join(" "));
+      var n = 0; stems.forEach(function(w){ if (hay.indexOf(w) >= 0) n++; });
+      if (n >= 2) out.push({ id:id, t:f.t, y:f.y, d:f.d || "", sc:n + (f.e || 0) / 100 });
+    });
+    return out.sort(function(a, b){ return b.sc - a.sc; }).slice(0, 5);
+  };
+  if (window.CC) CC.findFilm = function(t, y){ return findFilm(t, /^[0-9]{4}$/.test(String(y || "")) ? +y : 0) || ""; };
+  if (window.CC) CC.addMissing = function(t, y, ind){ addMissing(t, y, "", ind); };
   function mbrHtml(f){
     var P = window.CC && CC.uid ? CC.profils : null; if (!P) return "";
     var out = [];
@@ -3075,7 +3601,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       h += '<button type="button" class="envgo" data-envopen="1">✓ Valider mes conseils</button></div>';
     }
     var dr = DRAFT[pid] || {};
-    if (!dr.open) h += '<div class="pladd"><button type="button" class="pl-open" data-plopen="' + esc(pid) + '">+ Ajouter un film absent de la base de données</button></div>';
+    // Chacun ajoute des films à sa propre playlist seulement (Licia peut aider partout).
+    if (!CCA() && !selfOnly(pid)) {}
+    else if (!dr.open) h += '<div class="pladd"><button type="button" class="pl-open" data-plopen="' + esc(pid) + '">+ Ajouter un film absent de la base de données</button></div>';
     else h += '<form class="pladd plform" data-plform="' + esc(pid) + '">' +
       '<label><span>Titre du film</span><input name="titre" maxlength="120" required autocomplete="off" value="' + esc(dr.titre || "") + '"></label>' +
       '<div class="sugg" hidden></div>' +
@@ -3204,14 +3732,17 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (Math.abs(d) > 2 && window.pageYOffset > 0) window.scrollBy(0, d);
     }); });
   }
-  // Sous-catégories d'une liste : parties, et parfois sous-parties (« sous »). Un film va dans la première qui le cite.
+  // Sous-catégories d'une liste : parties, et parfois sous-parties (« sous »). Un film peut être dans plusieurs
+  // (Pauvres Créatures : « Cordes et voix déformées » et « Grands compositeurs · Jerskin Fendrix ») ; sa petite note
+  // reprend la première qui le cite, ou celle de la partie choisie dans le menu.
   var SUBP = {};
   function subMap(s){
     if (s._subm && s._subm.p === s.parties) return s._subm.m;
     var m = {};
+    var put = function(id, k, j){ var l = m[id] || (m[id] = []); if (!l.some(function(w){ return w.k === k && w.j === j; })) l.push({ k:k, j:j }); };
     (s.parties || []).forEach(function(p, k){
-      (p.ids || []).forEach(function(id){ if (!m[id]) m[id] = { k:k, j:null }; });
-      (p.sous || []).forEach(function(q, j){ (q.ids || []).forEach(function(id){ if (!m[id]) m[id] = { k:k, j:j }; }); });
+      (p.ids || []).forEach(function(id){ put(id, k, null); });
+      (p.sous || []).forEach(function(q, j){ (q.ids || []).forEach(function(id){ put(id, k, j); }); });
     });
     s._subm = { p:s.parties, m:m }; return m;
   }
@@ -3224,7 +3755,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var subHtml = "";
     if (!s.auto && s.parties && s.parties.length && list.length) {
       var SP = subMap(s), sel = SUBP[s.id] || "", nb = {}, other = 0;
-      list.forEach(function(f){ var w = SP[f.id]; if (!w) { other++; return; } nb[w.k] = (nb[w.k] || 0) + 1; if (w.j != null) nb[w.k + "." + w.j] = (nb[w.k + "." + w.j] || 0) + 1; });
+      list.forEach(function(f){
+        var ws = SP[f.id], seenK = {}; if (!ws) { other++; return; }
+        ws.forEach(function(w){
+          if (!seenK[w.k]) { seenK[w.k] = 1; nb[w.k] = (nb[w.k] || 0) + 1; }
+          if (w.j != null) nb[w.k + "." + w.j] = (nb[w.k + "." + w.j] || 0) + 1;
+        });
+      });
       if (sel && !nb[sel] && !(sel === "x" && other)) sel = SUBP[s.id] = "";
       var opt = function(v, t, n){ return '<option value="' + v + '"' + (v === sel ? " selected" : "") + '>' + esc(t) + " · " + n + '</option>'; };
       var opts = opt("", "Toutes les sous-catégories", list.length);
@@ -3237,15 +3774,17 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       var cp = sel && sel !== "x" ? s.parties[+sel.split(".")[0]] : null, cq = cp && sel.indexOf(".") > 0 ? (cp.sous || [])[+sel.split(".")[1]] : null;
       subHtml = '<div class="subp"><label><span class="vh">Sous-catégorie</span><select data-subp="' + esc(s.id) + '">' + opts + '</select></label>' +
         (cq ? '<span class="subp-a">dans « ' + esc(cp.titre) + ' »</span>' : cp && cp.aide ? '<span class="subp-a">' + esc(cp.aide) + '</span>' : "") + '</div>';
-      if (sel) list = list.filter(function(f){ var w = SP[f.id]; return sel === "x" ? !w : w && (String(w.k) === sel || (w.k + "." + w.j) === sel); });
+      var inSel = function(w){ return String(w.k) === sel || (w.k + "." + w.j) === sel; };
+      if (sel) list = list.filter(function(f){ var ws = SP[f.id]; return sel === "x" ? !ws : !!ws && ws.some(inSel); });
       if (mode === "est") list = list.map(function(f){
-        var w = SP[f.id]; if (!w) return f;
+        var ws = SP[f.id]; if (!ws) return f;
+        var w = (sel && sel !== "x" ? ws.filter(inSel)[0] : null) || ws[0];
         var p = s.parties[w.k], q = w.j != null ? p.sous[w.j] : null;
         var lab = sel.indexOf(".") > 0 ? "" : sel ? (q ? q.titre : "") : p.titre + (q ? " · " + q.titre : "");
         return lab ? Object.assign({}, f, { r:lab + (f.r ? " · " + f.r : "") }) : f;
       });
     }
-    if (mode === "part") { PI = {}; var SP2 = subMap(s); Object.keys(SP2).forEach(function(id){ PI[id] = SP2[id].k; }); }
+    if (mode === "part") { PI = {}; var SP2 = subMap(s); Object.keys(SP2).forEach(function(id){ PI[id] = SP2[id][0].k; }); }
     function key(f){
       if (mode === "part") return String(f.id in PI ? PI[f.id] : 99);
       if (mode === "note") { var fz = FRZ.n[s.id]; return String(fz && fz[f.id] != null ? fz[f.id] : (answers[f.id] || {}).note10); }
@@ -3412,6 +3951,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     return '<div class="subs">' + underRow(items, at, block) + '</div>';
   }
   // Sommaire : une tuile par famille (icône, couleur, nombre) ; la tuile touchée ouvre ses sous-catégories. Au départ, tout est fermé.
+  var STATN = "", SX_S = "", SX_P = "";
   var TAB_KEY = "carnetOngletV1", TAB = "", TOCMAP = {}, TOCN = {}, TOCDATA = {}, TABS_X = 0;
   // Une phrase courte sur chaque tuile, pour que tout le monde comprenne ce qu'il y a dedans.
   var TILE_D = { carnet:"Ma liste, mes notes", playlists:"Les conseils des amis", mouvements:"Les grands courants", ecole:"Les films étudiés",
@@ -3474,12 +4014,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     return items.slice(0, end).join("") + block + items.slice(end).join("");
   }
   function envChips(){
-    var items = [], at = -1, sub = "";
+    var items = [], at = -1, sub = "", gf = globalFilms().filter(matchSt);
+    var nOf = function(se){ return gf.filter(function(f){ return matchShow(f, se); }).length; };
     ENVIES.forEach(function(e, i){
       var on = env1 === e.id; if (on) at = i;
-      items.push('<button type="button" class="sub env" data-e1="' + esc(e.id) + '" aria-pressed="' + on + '">' + subIc(ENV_IC[e.id]) + '<span class="sl">' + esc(e.label) + '</span></button>');
+      items.push('<button type="button" class="sub env" data-e1="' + esc(e.id) + '" aria-pressed="' + on + '">' + subIc(ENV_IC[e.id]) + '<span class="sl">' + esc(e.label) + '</span><span class="sc">' + nOf({ k:"env", e1:e.id }) + '</span></button>');
       if (on) (e.sous || []).forEach(function(x){
-        sub += '<button type="button" class="chip env nuance" data-e2="' + esc(x.id) + '" aria-pressed="' + (!!SHOW && SHOW.k === "env" && SHOW.e2 === x.id) + '">' + esc(x.label) + '</button>';
+        sub += '<button type="button" class="chip env nuance" data-e2="' + esc(x.id) + '" aria-pressed="' + (!!SHOW && SHOW.k === "env" && SHOW.e2 === x.id) + '">' + esc(x.label) + '<span class="cnt">' + nOf({ k:"env", e1:e.id, e2:x.id }) + '</span></button>';
       });
     });
     var sel = env1 ? { k:"env", e1:env1 } : null;
@@ -3533,12 +4074,18 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function navPaint(){
     var b = $("navb"); if (!b) return;
     b.hidden = NAV.i <= 0 && NAV.max <= NAV.i; document.documentElement.classList.toggle("navon", !b.hidden);
+    var tb = $("topBack"); if (tb) tb.hidden = NAV.i <= 0;
     $("navBack").disabled = NAV.i <= 0; $("navFwd").disabled = NAV.i >= NAV.max;
   }
   function navRecord(){
     if (NAV.busy || !sections.length) return;
     var st = navNow(), cur = history.state && history.state.cc ? history.state : null;
-    if (!cur) { st.i = NAV.i = 0; NAV.max = 0; st.max = 0; st.y = window.pageYOffset; try { history.replaceState(st, ""); } catch (e) {} navPaint(); return; }
+    if (!cur) {
+      st.i = NAV.i = 0; NAV.max = 0; st.max = 0; st.y = window.pageYOffset;
+      // Une étape « garde » avant l'accueil : un Retour de trop (navigateur, téléphone) reste dans le Ciné-club.
+      try { history.replaceState({ cc:1, guard:1 }, ""); history.pushState(st, ""); } catch (e) {}
+      navPaint(); return;
+    }
     if (navSig(cur) === navSig(st)) return;
     var now = Date.now(), typing = cur.q !== st.q && navSig(Object.assign({}, cur, { q:"" })) === navSig(Object.assign({}, st, { q:"" }));
     try {
@@ -3555,10 +4102,23 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   }
   var NAV_T = 0;
   function navLater(){ clearTimeout(NAV_T); NAV_T = setTimeout(navRecord, 0); }
+  var GUARD_T = 0;
+  function navGuard(){
+    if (Date.now() - GUARD_T < 4000) { GUARD_T = 0; history.back(); return; }
+    GUARD_T = Date.now();
+    var st = navNow(); st.i = NAV.i = 0; st.max = NAV.max = 0; st.y = window.pageYOffset;
+    try { history.pushState(st, ""); } catch (e) {}
+    navPaint();
+    toast("Vous êtes à l'accueil du Ciné-club. Appuyez encore sur Retour pour le quitter.");
+  }
   window.addEventListener("popstate", function(ev){
-    var st = ev.state; if (!st || !st.cc) return;
+    var st = ev.state, msh = $("msheet");
+    if (msh && !msh.hidden && !(st && st.com)) { msh.hidden = true; if (st && st.cc && !st.guard && st.i === NAV.i) return; }
+    if (st && st.cc && st.guard) { navGuard(); return; }
+    if (!st || !st.cc) return;
     NAV.busy = true; NAV.i = st.i || 0; NAV.max = Math.max(NAV.max, st.max || 0, NAV.i); NAV.q = false;
     SHOW = st.show || null; filter = st.f || "all"; TAB = st.tab || "";
+    if (SHOW && SHOW.k === "sec" && SHOW.sp != null) SUBP[SHOW.id] = SHOW.sp;
     $("q").value = st.q || ""; $("qx").hidden = !st.q; query = norm(String(st.q || "").trim()); ADDQ = null;
     document.documentElement.classList.toggle("qon", !!query);
     document.querySelectorAll("#filters .chip").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.f === filter ? "true" : "false"); });
@@ -3567,6 +4127,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     navPaint();
   });
   $("navBack").addEventListener("click", function(){ if (NAV.i > 0) history.back(); });
+  $("topBack").addEventListener("click", function(){ if (NAV.i > 0) history.back(); });
   $("navFwd").addEventListener("click", function(){ if (NAV.i < NAV.max) history.forward(); });
   function renderToc(){
     var fa = document.activeElement, fin = fa && fa.closest && fa.closest("#toc form[data-idform]") && fa.name ? { n:fa.name, p:fa.selectionStart } : null;
@@ -3576,8 +4137,12 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (ni) { ni.focus({ preventScroll:true }); try { ni.setSelectionRange(fin.p, fin.p); } catch (e) {} }
     }
   }
+  window.CC = window.CC || {};
+  CC.plList = function(){ return TOCDATA.playlists || []; };
+  CC.plOpen = function(id){ TAB = ""; SHOW = { k:"sec", id:id }; showFilms(); };
+  CC.plValider = function(){ return isMine() && CCA() && PEOPLE.length ? function(){ openV(""); } : null; };
   function renderToc0(){
-    var el = $("toc"), fams = tocFams();
+    var el = $("toc"), fams = tocFams().filter(function(x){ return x.id !== "playlists"; });
     if (!fams.length) { el.innerHTML = ""; return; }
     var f = TAB === "idees" ? IDEES_FAM : fams.filter(function(x){ return x.id === TAB; })[0];
     var nMv = MOUVS.filter(function(g){ return (g.sous || []).some(function(x){ return MV_COUNT[x.id]; }); }).length;
@@ -3604,14 +4169,18 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     else if (f.mouvements || f.envies) {
       body = (f.mouvements ? mvChips() : envChips());
     } else {
-      body = !(TOCDATA[f.id] || []).length ? '<p class="pn-vide">Aucune liste avec ce filtre.</p>' : '<div class="subs">' + (TOCDATA[f.id] || []).map(function(x, i){
+      if (f.id === "carnet" && isMine() && STATN) body = '<p class="pn-st" id="carnetSt">' + STATN + '</p>';
+      body += !(TOCDATA[f.id] || []).length ? '<p class="pn-vide">Aucune liste avec ce filtre.</p>' : '<div class="subs">' + (TOCDATA[f.id] || []).map(function(x, i){
         var pic = x.auto === "conseils" ? '<span class="em av" style="--ec:' + tc(AV_C[i % AV_C.length]) + '">' + esc(String(x.titre || "?").charAt(0).toUpperCase()) + '</span>'
                 : subIc(SUB_IC[x.id] || SUB_AUTO[x.auto]);
-        var on = !!SHOW && SHOW.k === "sec" && SHOW.id === x.id;
-        return '<button type="button" class="sub' + (String(x.titre).length > 32 ? " wide" : "") + '" data-s="' + esc(x.id) + '" aria-pressed="' + on + '">' + pic + '<span class="sl">' + esc(x.titre).replace(/\//g, "/<wbr>") + '</span>' +
-          (x.stats ? "" : '<span class="sc">' + x.n + '</span>') + (x.np ? '<span class="nb">' + x.np + '</span>' : "") + '</button>';
+        var on = !!SHOW && SHOW.k === "sec" && SHOW.id === x.id, sx = sxSec(x.id), open = !!sx && SX_S === x.id;
+        return '<button type="button" class="sub' + (String(x.titre).length > 32 || open ? " wide" : "") + '" ' + (sx ? 'data-sx="' + esc(x.id) + '" aria-expanded="' + open + '"' : 'data-s="' + esc(x.id) + '"') + ' aria-pressed="' + on + '">' + pic + '<span class="sl">' + esc(x.titre).replace(/\//g, "/<wbr>") + '</span>' +
+          (x.stats ? "" : '<span class="sc">' + x.n + (sx ? '<span class="sx-ar" aria-hidden="true">' + (open ? "▾" : "▸") + '</span>' : "") + '</span>') + (x.np ? '<span class="nb">' + x.np + '</span>' : "") + '</button>' +
+          (open ? sxBlock(sx) : "");
       }).join("") + (f.id === "playlists" && isMine() && CCA() && PEOPLE.length ? '<button type="button" class="sub vchip" data-vmsg="1">' + subIc(["✉️", "#0E7490"]) + '<span class="sl">Valider un message reçu</span></button>' : "") +
-        (f.id === "carnet" && ROLE === "proprio" && !GUEST && CCA() ? '<button type="button" class="sub vchip" data-guest="1">' + subIc(["👀", "#475569"]) + '<span class="sl">Voir comme mes amis</span></button>' : "") + '</div>' +
+        (f.id === "carnet" && ROLE === "proprio" && !GUEST && CCA() ? '<button type="button" class="sub vchip" data-guest="1">' + subIc(["👀", "#475569"]) + '<span class="sl">Voir comme mes amis</span></button>' : "") +
+        // Chacun a sa playlist (pour conseiller des films à tous) : rangée dans la communauté, elle s'ouvre aussi depuis Mon carnet.
+        (f.id === "carnet" && isMine() && CCM() && SELF() && !CC.view ? '<button type="button" class="sub vchip" data-s="pl-' + esc(CC.pid()) + '">' + subIc(["🎁", "#BE185D"]) + '<span class="sl">Ma playlist : je conseille des films à tous</span><span class="sc">' + Object.keys(CONSEILS[CC.pid()] || {}).length + '</span></button>' : "") + '</div>' +
         ((TOCDATA[f.id] || []).length ? '<button type="button" class="allb" data-showfam="' + esc(f.id) + '"' + (SHOW && ((SHOW.k === "fam" && SHOW.id === f.id) || (SHOW.k === "all" && f.id === "epoques")) ? ' aria-pressed="true"' : "") + '>' + esc(allLabel(f)) + '</button>' : "");
     }
     TOC_FIT = true;
@@ -3619,6 +4188,27 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<div class="pn-h"><span class="ic">' + famIcon(key) + '</span><b>' + esc(fLabel(f)) + '</b>' +
       (canRang ? '<button type="button" class="pn-x pn-r" data-ranger="1" aria-pressed="' + RANGER + '" aria-label="Changer l\'ordre" title="Changer l\'ordre">⇅ Ranger</button>' : "") +
       '<button type="button" class="pn-x" data-tback="1" aria-label="Fermer ' + esc(fLabel(f)) + '">✕</button></div>' + body + '</div>';
+  }
+  // Une liste découpée en sous-catégories : toucher son nom ouvre ses sous-catégories juste dessous,
+  // toucher une sous-catégorie qui en a d'autres les ouvre encore dessous ; une sous-catégorie sans suite affiche ses films.
+  function sxSec(id){ var s = sections.filter(function(x){ return x.id === id; })[0]; return s && !s.auto && s.parties && s.parties.length ? s : null; }
+  function sxBlock(s){
+    var SP = subMap(s), nb = {}, all = 0;
+    (s.films || []).forEach(function(f){
+      if (!matchSt(f)) return; all++;
+      var ws = SP[f.id] || [], seenK = {};
+      ws.forEach(function(w){ if (!seenK[w.k]) { seenK[w.k] = 1; nb[w.k] = (nb[w.k] || 0) + 1; } if (w.j != null) nb[w.k + "." + w.j] = (nb[w.k + "." + w.j] || 0) + 1; });
+    });
+    var h = '<div class="sx-open" role="group" aria-label="Sous-catégories de ' + esc(sTitre(s)) + '">';
+    s.parties.forEach(function(p, k){
+      if (!nb[k]) return;
+      var has = (p.sous || []).some(function(q, j){ return nb[k + "." + j]; }), key = s.id + "|" + k, open = has && SX_P === key;
+      h += '<button type="button" class="sx-c" ' + (has ? 'data-sxp="' + esc(key) + '" aria-expanded="' + open + '"' : 'data-sxl="' + esc(key) + '"') + ' title="' + esc(p.aide || "") + '">' + esc(p.titre) + ' <span class="sc">' + nb[k] + '</span>' + (has ? '<span aria-hidden="true">' + (open ? " ▾" : " ▸") + '</span>' : "") + '</button>';
+      if (open) h += '<div class="sx-in" role="group" aria-label="Dans ' + esc(p.titre) + '">' + (p.sous || []).map(function(q, j){
+          return nb[k + "." + j] ? '<button type="button" class="sx-c" data-sxl="' + esc(s.id + "|" + k + "." + j) + '">' + esc(q.titre) + ' <span class="sc">' + nb[k + "." + j] + '</span></button>' : "";
+        }).join("") + '<button type="button" class="sx-c sx-all" data-sxl="' + esc(key) + '">Tout « ' + esc(p.titre) + ' » <span class="sc">' + nb[k] + '</span></button></div>';
+    });
+    return h + '<button type="button" class="sx-c sx-all" data-sxl="' + esc(s.id + "|") + '">Toute la liste <span class="sc">' + all + '</span></button></div>';
   }
   // Après l'affichage du panneau : chaque nom qui ne tient pas sur deux lignes passe sur toute la largeur.
   var TOC_FIT = false;
@@ -3713,12 +4303,20 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   }
   // Le panneau reste petit (ou se réduit à une ligne) pour garder le site visible pendant qu'on écrit ; la dictée vocale s'ajoute si le navigateur la connaît.
   var NT_DRAFT = "", NT_EDIT = -1, NT_MINI = false, NT_LIST = false, NT_REC = null, SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  // Dictée : NT_WANT reste vrai tant qu'on n'a pas appuyé sur « Arrêter » ; la reconnaissance se relance seule après un silence.
+  var NT_WANT = false, NT_BASE = "", NT_MSG = "", NT_MSGERR = false, NT_IDLE = 0, NT_GAP = null, NT_HEARD = false, NT_TRY = 0;
+  var NT_ANDROID = /Android/i.test(navigator.userAgent || ""), NT_WIN = /Windows/i.test(navigator.userAgent || "");
+  var NT_HELP = NT_WIN ? "Autre solution : clique dans le cadre puis appuie sur la touche Windows + H (dictée de Windows)."
+    : /Android|iPhone|iPad/i.test(navigator.userAgent || "") ? "Autre solution : le micro du clavier du téléphone."
+    : "Autre solution : la dictée du système (sur Mac, deux fois la touche Fn).";
   function notesHtml(){
-    var mic = SR ? '<button type="button" class="plf-no nt-mic" data-ntmic="1" aria-pressed="' + !!NT_REC + '">' + (NT_REC ? "⏹ Arrêter la dictée" : "🎤 Dicter") + '</button>' : "";
+    var on = NT_WANT;
+    var mic = '<button type="button" class="plf-no nt-mic" data-ntmic="1" aria-pressed="' + on + '">' + (on ? "⏹ Arrêter la dictée" : "🎤 Dicter") + '</button>';
     return '<div class="nt-h"><b>Mes idées pour le site</b><span><button type="button" class="nt-x" data-ntmini="1" aria-label="' + (NT_MINI ? "Agrandir" : "Réduire") + '" title="' + (NT_MINI ? "Agrandir" : "Réduire") + '">' + (NT_MINI ? "▴" : "▾") + '</button><button type="button" class="nt-x" data-ntclose="1" aria-label="Fermer">✕</button></span></div>' +
       '<textarea id="ntTxt" rows="2" maxlength="1000" placeholder="Une idée, un défaut, une envie…">' + esc(NT_DRAFT) + '</textarea>' +
       '<div class="nt-b"><button type="button" class="plf-ok" data-ntadd="1">Noter</button>' + mic +
       (NT_MINI ? "" : '<button type="button" class="plf-no" data-ntcopy="1">📋 Tout copier</button>') + '</div>' +
+      '<p class="nt-msg' + (NT_MSGERR ? " err" : "") + (on ? " rec" : "") + '" id="ntMsg" role="status" aria-live="polite"' + (NT_MSG ? "" : " hidden") + '>' + esc(NT_MSG) + '</p>' +
       (NT_MINI ? "" : NOTES.length && !NT_LIST && NT_EDIT < 0 ? '<button type="button" class="nt-tog" data-ntlist="1" aria-expanded="false">Mes notes (' + NOTES.length + ') ▸</button>' :
        NOTES.length ? '<button type="button" class="nt-tog" data-ntlist="1" aria-expanded="true">Mes notes (' + NOTES.length + ') ▾</button><ol class="nt-l">' + NOTES.map(function(n, i){
         if (i === NT_EDIT) return '<li class="nt-ed"><textarea id="ntEd" rows="3" maxlength="1000" aria-label="Modifier cette note">' + esc(n.t) + '</textarea><span class="nt-b"><button type="button" class="plf-ok" data-ntsave="' + i + '">Enregistrer</button><button type="button" class="plf-no" data-ntcancel="1">Annuler</button></span></li>';
@@ -3726,16 +4324,99 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       }).join("") + '</ol><button type="button" class="nt-clear" data-ntclear="1">Tout effacer (après l\'envoi à Claude)</button>' : '<p class="id-n">Rien de noté pour l\'instant.</p>');
   }
   function ntPaint(focus){ var p = $("ntPanel"); if (!p) return; p.classList.toggle("mini", NT_MINI); p.innerHTML = notesHtml(); var ta = $(focus || "ntTxt"); if (ta && focus !== false) { ta.focus({ preventScroll:true }); try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) {} } }
-  function ntMicStop(){ if (NT_REC) { try { NT_REC.stop(); } catch (e) {} NT_REC = null; } }
+  function ntSay(msg, err){
+    NT_MSG = msg || ""; NT_MSGERR = !!err;
+    var m = $("ntMsg"); if (!m) return;
+    m.textContent = NT_MSG; m.hidden = !NT_MSG; m.classList.toggle("err", NT_MSGERR); m.classList.toggle("rec", NT_WANT);
+  }
+  // Les résultats de la reconnaissance, mis bout à bout. Sur Android, chaque résultat reprend souvent le précédent en plus long
+  // (« je », « je veux », « je veux un film ») : on remplace au lieu d'ajouter, ce qui évite les mots écrits plusieurs fois.
+  function ntKey(s){ return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim(); }
+  function ntJoin(parts){
+    var out = [];
+    parts.forEach(function(t){
+      t = String(t || "").replace(/\s+/g, " ").trim(); if (!t) return;
+      var last = out.length ? out[out.length - 1] : "", a = ntKey(last), b = ntKey(t);
+      if (!b) return;
+      if (last && b.indexOf(a) === 0) out[out.length - 1] = t;
+      else if (last && a.indexOf(b) === 0) return;
+      else out.push(t);
+    });
+    return out.join(" ");
+  }
+  function ntGlue(base, txt){
+    if (!txt) return base;
+    if (!base) return txt.charAt(0).toUpperCase() + txt.slice(1);
+    return base.replace(/\s*$/, " ") + txt;
+  }
+  function ntShow(){ var ta = $("ntTxt"); if (ta && ta.value !== NT_DRAFT) { ta.value = NT_DRAFT; ta.scrollTop = ta.scrollHeight; } }
+  // discard : on jette ce qui n'est pas encore écrit (bouton « Noter », fermeture) ; sinon le dernier morceau entendu s'écrit encore.
+  function ntMicStop(discard){
+    NT_WANT = false; clearTimeout(NT_GAP);
+    var r = NT_REC; if (!r) return;
+    if (discard) { NT_REC = null; try { r.abort(); } catch (e) {} }
+    else { try { r.stop(); } catch (e) { NT_REC = null; } }
+  }
+  var NT_ERR = {
+    "not-allowed":"Le micro est refusé pour ce site. Autorise-le (cadenas à gauche de l'adresse, puis Micro), puis réessaie.",
+    "service-not-allowed":"Ce navigateur ne propose pas la dictée sur ce site.",
+    "audio-capture":"Aucun micro n'a été trouvé, ou un autre logiciel l'utilise déjà.",
+    "network":"La dictée de ce navigateur ne répond pas (elle passe par Internet).",
+    "language-not-supported":"Ce navigateur ne sait pas écouter le français."
+  };
+  function ntFail(code){
+    ntMicStop(true);
+    ntSay((NT_ERR[code] || "La dictée n'a pas pu démarrer.") + " " + NT_HELP, true);
+    var b = document.querySelector("[data-ntmic]"); if (b) { b.setAttribute("aria-pressed", "false"); b.textContent = "🎤 Dicter"; }
+  }
+  function ntListen(){
+    if (!NT_WANT) return;
+    var r; try { r = new SR(); } catch (e) { ntFail(""); return; }
+    // Sur Android, l'écoute en continu répète les mots : on écoute phrase par phrase et on relance aussitôt.
+    r.lang = "fr-FR"; r.continuous = !NT_ANDROID; r.interimResults = true; r.maxAlternatives = 1;
+    var got = "";
+    r.onresult = function(e){
+      if (NT_REC !== r) return;
+      var parts = []; for (var i = 0; i < e.results.length; i++) parts.push(e.results[i][0].transcript);
+      got = ntJoin(parts); NT_IDLE = 0; NT_HEARD = true;
+      NT_DRAFT = ntGlue(NT_BASE, got).slice(0, 1000); ntShow();
+      if (NT_MSG && !NT_MSGERR) ntSay("");
+    };
+    r.onerror = function(e){
+      if (NT_REC !== r) return;
+      var c = (e && e.error) || "";
+      if (c === "no-speech" || c === "aborted") return;
+      if (NT_ERR[c] || !NT_HEARD) ntFail(c);
+    };
+    r.onend = function(){
+      if (NT_REC !== r) return;
+      NT_REC = null; NT_BASE = NT_DRAFT;
+      if (!got) NT_IDLE++;
+      // Relance après une pause ; au bout d'environ une minute de silence, la dictée s'arrête d'elle-même.
+      if (NT_WANT && NT_IDLE < 12) { clearTimeout(NT_GAP); NT_GAP = setTimeout(ntListen, NT_ANDROID ? 250 : 80); return; }
+      if (NT_WANT) ntSay("Dictée arrêtée après un long silence.");
+      NT_WANT = false; ntPaint(false);
+    };
+    try { r.start(); NT_REC = r; NT_TRY = 0; }
+    catch (e) {
+      NT_REC = null;
+      // Une relance trop rapide peut être refusée : on réessaie un peu plus tard avant d'abandonner.
+      if (NT_HEARD && NT_TRY++ < 4) { clearTimeout(NT_GAP); NT_GAP = setTimeout(ntListen, 400); } else ntFail("");
+    }
+  }
   function ntMic(){
-    if (NT_REC) { ntMicStop(); ntPaint(); return; }
-    var r = new SR(), base = NT_DRAFT ? NT_DRAFT.replace(/\s*$/, " ") : "";
-    r.lang = "fr-FR"; r.continuous = true; r.interimResults = true;
-    r.onresult = function(e){ var txt = ""; for (var i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript; NT_DRAFT = (base + txt).slice(0, 1000); var ta = $("ntTxt"); if (ta) ta.value = NT_DRAFT; };
-    r.onend = function(){ if (NT_REC === r) { NT_REC = null; ntPaint(false); } };
-    r.onerror = function(){ if (NT_REC === r) { NT_REC = null; ntPaint(false); setStatus("La dictée n'a pas pu démarrer : utilise le micro du clavier.", true); } };
-    try { r.start(); NT_REC = r; } catch (e) { NT_REC = null; }
-    ntPaint(false);
+    if (NT_WANT) {
+      // Le dernier morceau entendu peut encore s'écrire ; si le navigateur ne répond plus, on coupe quand même.
+      var r0 = NT_REC; ntMicStop(false); ntSay(""); ntPaint(false);
+      setTimeout(function(){ if (r0 && NT_REC === r0) { NT_REC = null; try { r0.abort(); } catch (e) {} ntPaint(false); } }, 1500);
+      return;
+    }
+    if (!SR) { ntSay("Ce navigateur n'a pas de dictée. " + NT_HELP, true); return; }
+    if (NT_REC) { var o = NT_REC; NT_REC = null; try { o.abort(); } catch (e) {} }
+    var ta = $("ntTxt"); if (ta) NT_DRAFT = ta.value;
+    NT_WANT = true; NT_IDLE = 0; NT_HEARD = false; NT_BASE = NT_DRAFT;
+    NT_MSG = "J'écoute… Parle normalement, le texte s'écrit au fur et à mesure."; NT_MSGERR = false;
+    ntListen(); ntPaint(false);
   }
   function notesSync(){
     var b = $("ntBtn"), on = !!(window.CC && CC.admin);
@@ -3750,14 +4431,14 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   document.addEventListener("click", function(ev){
     var t = ev.target; if (!t.closest) return;
     var p = $("ntPanel");
-    if (t.closest("#ntBtn")) { if (p.hidden) { NT_CLEAR = false; NT_EDIT = -1; p.hidden = false; ntPaint(); } else { ntMicStop(); p.hidden = true; } return; }
+    if (t.closest("#ntBtn")) { if (p.hidden) { NT_CLEAR = false; NT_EDIT = -1; p.hidden = false; ntPaint(); } else { ntMicStop(true); p.hidden = true; } return; }
     if (!t.closest("#ntPanel")) return;
-    if (t.closest("[data-ntclose]")) { ntMicStop(); p.hidden = true; return; }
+    if (t.closest("[data-ntclose]")) { ntMicStop(true); NT_MSG = ""; p.hidden = true; return; }
     if (t.closest("[data-ntmini]")) { NT_MINI = !NT_MINI; ntPaint(false); return; }
     if (t.closest("[data-ntlist]")) { NT_LIST = !NT_LIST; ntPaint(false); return; }
     if (t.closest("[data-ntmic]")) { ntMic(); return; }
     if (t.closest("[data-ntadd]")) {
-      ntMicStop();
+      ntMicStop(true); NT_MSG = "";
       var v = ($("ntTxt").value || "").trim(); if (!v) { $("ntTxt").focus(); return; }
       NOTES.push({ t:v.slice(0, 1000), d:new Date().toISOString(), w:notesWhere() }); keepNotes(); NT_DRAFT = ""; ntPaint(); return;
     }
@@ -3774,9 +4455,14 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       copyText([mine, idTodo()].filter(Boolean).join("\n\n"), "vos notes et les suggestions des membres", t.closest("[data-ntcopy]"));
     }
   });
-  document.addEventListener("input", function(ev){ if (ev.target && ev.target.id === "ntTxt") NT_DRAFT = ev.target.value; });
+  document.addEventListener("input", function(ev){
+    if (!ev.target || ev.target.id !== "ntTxt") return;
+    NT_DRAFT = ev.target.value;
+    // Une correction à la main pendant la dictée : on repart de ce qui est écrit.
+    if (NT_REC) { var r = NT_REC; NT_BASE = NT_DRAFT; NT_REC = null; try { r.abort(); } catch (e) {} if (NT_WANT) { clearTimeout(NT_GAP); NT_GAP = setTimeout(ntListen, 80); } }
+  });
   document.addEventListener("keydown", function(ev){
-    if (ev.key === "Escape") { var p = $("ntPanel"); if (p && !p.hidden) { ntMicStop(); p.hidden = true; } }
+    if (ev.key === "Escape") { var p = $("ntPanel"); if (p && !p.hidden) { ntMicStop(true); p.hidden = true; } }
     if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey) && ev.target.id === "ntTxt") { var a = document.querySelector("[data-ntadd]"); if (a) a.click(); }
   });
   var QZ_Q = [
@@ -3875,7 +4561,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       QZ_Q.concat([["sens"]], QZ_Q2).forEach(function(x){ if (QZ[x[0]] !== undefined && QZ[x[0]] !== "") quiz[x[0]] = +QZ[x[0]]; });
       if (CC.me) CC.me.quiz = quiz;
       RECO.sig = "";
-      firebase.firestore().collection("profils").doc(CC.uid).update({ quiz:quiz }).then(function(){ setStatus("Vos goûts sont enregistrés."); }, function(){ setStatus("Pas enregistré, réessayez dans un instant.", true); });
+      CC.setPart("quiz", quiz).then(function(){ setStatus("Vos goûts sont enregistrés."); }, function(){ setStatus("Pas enregistré, réessayez dans un instant.", true); });
       QZ_MODE = "fait"; qzPaint(); p.scrollTop = 0; renderAll();
     }
   });
@@ -4216,13 +4902,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var ids = Object.keys(map), now = new Date().toISOString();
     ids.forEach(function(id){ answers[id] = pack(map[id]); }); keepLocal(); RECO.sig = "";
     if (!(window.CC && CC.uid && CC.fs)) { renderAll(); return Promise.resolve(ids.length); }
-    var ref = CC.fs.collection("profils").doc(CC.uid), FP = firebase.firestore.FieldPath, chunks = [];
+    var chunks = [];
     for (var i = 0; i < ids.length; i += 150) chunks.push(ids.slice(i, i + 150));
     return chunks.reduce(function(p, ch){
       return p.then(function(){
-        var args = [];
-        ch.forEach(function(id){ var a = answers[id], f = films[id] || {}; args.push(new FP("rep", id), { etat:a.etat || "", note:a.note || 0, note10:a.note10 || 0, titre:f.t || "", annee:f.y || "", cineaste:f.d || "", section:f.sid || "", maj:now }); });
-        return ref.update.apply(ref, args);
+        var pairs = {};
+        ch.forEach(function(id){ var a = answers[id], f = films[id] || {}; pairs[id] = { etat:a.etat || "", note:a.note || 0, note10:a.note10 || 0, titre:f.t || "", annee:f.y || "", cineaste:f.d || "", section:f.sid || "", maj:now }; });
+        return CC.putPart("rep", pairs);
       });
     }, Promise.resolve()).then(function(){ renderAll(); return ids.length; });
   }
@@ -4543,7 +5229,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         : '<button type="submit" class="plf-ok">' + lbl + '</button>'; };
     if (k === "amelio" || k === "bug") return hintP("Que voulez-vous proposer ?") + choix +
       '<form class="idf" data-idform="1" autocomplete="off">' +
-      '<label><span>' + (k === "bug" ? "Que s'est-il passé ?" : "Votre idée pour améliorer le Ciné-club") + '</span><textarea name="texte" maxlength="500" rows="4" placeholder="' +
+      '<label><span>' + (k === "bug" ? "Que s'est-il passé ?" : d.contact ? "Votre message pour l'équipe du Ciné-club" : "Votre idée pour améliorer le Ciné-club") + '</span><textarea name="texte" maxlength="500" rows="4" placeholder="' +
         (k === "bug" ? "Ex. : dans « Époques », le bouton « Vu » ne répond pas sur mon téléphone" : "Ex. : pouvoir trier ma liste par durée") + '">' + esc(d.texte) + '</textarea></label>' +
       prenom + (k === "bug" ? '<p class="id-n">La taille de l\'écran, l\'ambiance et le navigateur sont joints pour aider à corriger.</p>' : "") +
       envoi(k === "bug" ? "🐞 Signaler le bug" : "✨ Envoyer l'idée") + '</form><div class="idsw">' + ideesList() + '</div>';
@@ -4552,8 +5238,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<form class="idf" data-idfilm="1" autocomplete="off">' +
       '<label><span>Titre du film</span><input name="titre" maxlength="120" required></label>' +
       '<label><span>Année <i>(si vous la connaissez)</i></span><input name="annee" inputmode="numeric" maxlength="4"></label>' +
+      '<label><span>Autres indices <i>(facultatif)</i></span><input name="indices" maxlength="200" autocomplete="off" placeholder="Cinéaste, acteur, genre, pays, un détail…"></label>' +
       (ROLE === "lecteur" || GUEST ? '<label><span>Votre prénom</span><input name="nom" maxlength="30" value="' + esc(monNom()) + '"></label>' : "") +
-      '<button type="submit" class="plf-ok">' + (CCM() || ROLE === "lecteur" || GUEST ? "🎬 Proposer ce film" : "🎬 Ajouter le film") + '</button></form><div class="idsw">' + ideesList() + '</div>';
+      '<button type="submit" class="plf-ok">' + (ROLE === "lecteur" || GUEST ? "🎬 Proposer ce film" : "🎬 Ajouter le film") + '</button></form><div class="idsw">' + ideesList() + '</div>';
     if (k !== "categorie") return hintP("Que voulez-vous proposer ?") + choix + '<div class="idsw">' + ideesList() + '</div>';
     return hintP("Que voulez-vous proposer ?") + choix +
       '<form class="idf" data-idform="1" autocomplete="off">' +
@@ -4670,7 +5357,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       var el = ff.elements, t = el.namedItem("titre").value.trim(), y = el.namedItem("annee").value.trim();
       if (!t) { setStatus("Écrivez le titre du film.", true); el.namedItem("titre").focus(); return; }
       if (y && !/^[0-9]{4}$/.test(y)) { setStatus("L'année doit avoir quatre chiffres, ou rester vide.", true); el.namedItem("annee").focus(); return; }
-      addMissing(t, y, el.namedItem("nom") ? el.namedItem("nom").value : "");
+      addMissing(t, y, el.namedItem("nom") ? el.namedItem("nom").value : "", el.namedItem("indices") ? el.namedItem("indices").value : "");
       ff.reset();
       return;
     }
@@ -4694,6 +5381,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     "s33-vengeance-aveugle":["🪃", "#9F1239"],
     "s03-couleurs":["🌈", "#C026D3"], "s04-musique":["🎵", "#0F766E"], "s27-camera-subjective":["👁️", "#92400E"], "s28-un-seul-plan":["⏱️", "#A16207"], "s29-cinema-coreen":["🇰🇷", "#1D4ED8"],
     "s34-visages-bandes":["🩹", "#B45309"], "s35-erreur-sur-la-personne":["🆔", "#6D28D9"],
+    "s36-chantage-emprise":["🕸️", "#7C2D12"], "s37-politique":["🏛️", "#1E3A8A"], "s38-rave":["🔊", "#7E22CE"], "s39-monde-de-la-fete":["🥂", "#B45309"],
+    "s53-catastrophes":["🌋", "#B91C1C"], "s54-sante-mentale":["🧠", "#4D7C0F"],
     "s40-psychoses":["🗣️", "#4338CA"], "s41-identites-multiples":["👥", "#7E22CE"], "s42-troubles-alimentaires":["🍽️", "#B45309"],
     "s43-mythomanie":["🤥", "#C2410C"], "s44-depression":["🌧️", "#475569"], "s45-bipolarite":["🎢", "#BE185D"],
     "s46-phobies-obsessions":["😰", "#0369A1"], "s47-traumatismes":["💥", "#B91C1C"], "s48-personnalites":["🎭", "#7C2D12"],
@@ -4886,16 +5575,20 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   // Recherche : un film absent s'ajoute à la base (pour toi), ou part dans les conseils à valider (pour les amis).
   function addBoxHtml(raw){
     var amis = ROLE === "lecteur" || GUEST;
-    if (!ADDQ) return '<div class="addq"><span>Pas dans la liste ?</span><button type="button" class="addq-b" data-addq="1">+ Ajouter un film manquant à la base de données</button></div>';
+    if (!ADDQ) return '<div class="addq"><span>Pas dans la liste ?</span><button type="button" class="addq-b" data-addq="1">+ Ajouter un film manquant à la base de données</button>' +
+      (window.CC && CC.openAvis && !amis ? '<button type="button" class="addq-b" data-avopen="1">🔎 Je ne connais pas le titre : lancer un avis de recherche</button>' : "") + '</div>';
     return '<form class="addq addf" data-addform="1">' +
       '<label><span>Titre du film</span><input name="titre" maxlength="120" required autocomplete="off" value="' + esc(ADDQ.titre != null ? ADDQ.titre : raw) + '"></label>' +
       '<label><span>Année <i>(si vous la connaissez)</i></span><input name="annee" inputmode="numeric" maxlength="4" autocomplete="off" value="' + esc(ADDQ.annee || "") + '"></label>' +
+      '<label><span>Autres indices <i>(facultatif)</i></span><input name="indices" maxlength="200" autocomplete="off" placeholder="Cinéaste, acteur, genre, pays, un détail…" value="' + esc(ADDQ.indices || "") + '"></label>' +
       (amis ? '<label><span>Ton prénom</span><input name="nom" maxlength="30" autocomplete="off" value="' + esc(ADDQ.nom != null ? ADDQ.nom : monNom()) + '"></label>' : "") +
-      '<div class="plf-b"><button type="submit" class="plf-ok">' + (amis ? "Ajouter à mes conseils à valider" : CCM() ? "Proposer ce film à Licia" : "Ajouter à la base de données") + '</button>' +
+      '<div class="plf-b"><button type="submit" class="plf-ok">' + (amis ? "Ajouter à mes conseils à valider" : "Ajouter à la base de données") + '</button>' +
       '<button type="button" class="plf-no" data-addno="1">Annuler</button></div></form>';
   }
-  function addMissing(t, y, nom){
+  function addMissing(t, y, nom, ind){
     t = String(t || "").trim().replace(/\s+/g, " ").slice(0, 120); if (!t) return;
+    // Les indices (cinéaste, acteur, genre, détail…) aident à reconnaître le bon film quand on l'ajoute.
+    ind = String(ind || "").trim().replace(/\s+/g, " ").slice(0, 200);
     var yy = /^[0-9]{4}$/.test(String(y || "")) ? +y : 0, ex = findFilm(t, yy);
     if (ex) { ADDQ = null; setStatus("« " + films[ex].t + " » est déjà dans le carnet."); $("q").value = films[ex].t; $("qx").hidden = false; query = norm(films[ex].t); renderAll(); return; }
     if (ROLE === "lecteur" || GUEST) {
@@ -4903,20 +5596,26 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (!nom) { setStatus("Écris ton prénom.", true); var ni = document.querySelector('form[data-addform] [name="nom"]'); if (ni) ni.focus(); return; }
       nom = nom.charAt(0).toUpperCase() + nom.slice(1);
       try { localStorage.setItem(MONNOM_KEY, nom); } catch (e) {}
-      addEnvoi({ pid:"_", nom:nom, t:t, y:yy || "", mot:"", libre:true });
+      addEnvoi({ pid:"_", nom:nom, t:t, y:yy || "", mot:ind, libre:true });
       ADDQ = null; renderAll(); renderEnv();
       setStatus("« " + t + " » est dans tes conseils à valider : touche « ✓ Valider mes conseils ».");
       return;
     }
     if (CCM()) {
       if (!propCol || !CC.me) { setStatus("Connecte-toi d'abord (bouton en haut).", true); return; }
-      ADDQ = null; renderAll(); setStatus("Envoi…");
-      propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:"", ajout:new Date().toISOString() })
-        .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(){ setStatus("Pas envoyé, réessaie dans un instant.", true); });
+      // Chaque membre ajoute lui-même le film à la base (idée 18). Si la base refuse encore (règles pas publiées),
+      // le film part dans les propositions, comme avant, pour que Licia l'ajoute.
+      var fid = (slug(t) || "film") + "-" + (yy || "sans-annee"); if (films[fid]) fid += "-" + Date.now().toString(36);
+      ADDQ = null; $("q").value = t; $("qx").hidden = false; query = norm(t); renderAll(); setStatus("Enregistrement…");
+      var prop = function(){ return propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:ind, ajout:new Date().toISOString() })
+        .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(){ setStatus("Pas envoyé, réessaie dans un instant.", true); }); };
+      if (!ajCol) { prop(); return; }
+      ajCol.doc(fid).set({ fid:fid, t:t, y:yy ? String(yy) : "", d:"", mot:ind, ajout:new Date().toISOString() })
+        .then(function(){ setStatus("« " + t + " » est dans la base : tout le monde peut le trouver."); }, prop);
       return;
     }
     var id = (slug(t) || "film") + "-" + (yy || "sans-annee"); if (films[id]) id += "-" + Date.now().toString(36);
-    var entry = { id:id, t:t, y:yy || "", d:"", r:"" };
+    var entry = { id:id, t:t, y:yy || "", d:"", r:ind ? "Indices : " + ind : "" };
     var raw = HOSTRAW ? JSON.parse(JSON.stringify(HOSTRAW)) : { ordre:9, famille:"playlists", titre:"Films ajoutés depuis les playlists", cache:true, films:[] };
     raw.films = (raw.films || []).concat([entry]); HOSTRAW = raw;
     var f = films[id] = Object.assign({}, entry, { sid:HOST, _i:999, p:"", e:0, k:[], w:"", m:0, c:"", mv:"" });
@@ -4978,7 +5677,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (bare && s.auto === "liste" && isMine()) return { html:sectionHtml(s, i, [], "Ta liste est vide. Clique sur « + Ma liste » sous un film pour le mettre de côté ici."), n:0, show:true };
     if (bare && s.auto === "conseils") {
       var nom = s.titre || s.prenom;
+      var own = window.CC && CC.me && String(s.prenom) === CC.pid() && !CC.view;
       return { html:sectionHtml(s, i, [], ROLE === "lecteur" ? "Pas encore de film dans cette liste. Sous un film que tu as aimé, touche « ♡ Conseiller », puis ton prénom." :
+        own ? "Ta playlist est vide. Sous un film que tu as aimé, touche « ♡ Conseiller », puis « " + nom + " » : il apparaît ici, pour tout le monde. Pour un film qui n'est pas dans le carnet, utilise le bouton ci-dessous." :
         "Pas encore de film dans cette liste. Sous un film " + que(nom) + " a aimé, touche « ♡ Conseiller », puis « " + nom +
         " ». Pour un film qui n'est pas dans le carnet, utilise le bouton ci-dessous."), n:0, show:true };
     }
@@ -5061,8 +5762,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var g = document.querySelector('[data-count="tout"]');
     if (g && GLOBAL) g.textContent = document.querySelectorAll("#sec-tout .film").length + " films affichés";
     // Chaque morceau reste sur une ligne ; le retour à la ligne se fait entre les morceaux.
-    var parts = ["<b>" + answered + "</b> / " + total + " répondus", "<b>" + seen + "</b> " + (seen > 1 ? "vus" : "vu"),
-      "<b>" + forgot + "</b> " + (forgot > 1 ? "oubliés" : "oublié"), "<b>" + rated + "</b> " + (rated > 1 ? "notés" : "noté")];
+    var parts = ["<b>" + answered + "</b> / " + total + " répondus"];
+    STATN = "<b>" + seen + "</b> " + (seen > 1 ? "vus" : "vu") + " · <b>" + forgot + "</b> " + (forgot > 1 ? "oubliés" : "oublié") + " · <b>" + rated + "</b> " + (rated > 1 ? "notés" : "noté");
+    var cst = $("carnetSt"); if (cst) cst.innerHTML = STATN;
     $("stats").innerHTML = total ? parts.map(function(x){ return '<span class="st">' + x + '</span>'; }).join(" · ") : "Chargement…";
     $("prog").style.width = total ? Math.round(100 * answered / total) + "%" : "0";
   }
@@ -5166,7 +5868,17 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     });
     if (!dup) { ENVOI.push(x); keepEnvoi(); }
   }
+  // Un membre et sa propre playlist : le film entre dans la base et dans sa playlist tout de suite (sans validation).
   function proposeFilm(pid, t, y, mot){
+    var yy = /^[0-9]{4}$/.test(String(y || "")) ? +y : 0, tt = String(t || "").trim().slice(0, 120);
+    if (!(CCM() && CC.me && pid === CC.pid() && ajCol && plCol && tt)) { proposeFilm0(pid, t, y, mot); return; }
+    var ex = findFilm(tt, yy), fid = ex || ((slug(tt) || "film") + "-" + (yy || "sans-annee")), now = new Date().toISOString(), p = person(pid);
+    DRAFT[pid] = { open:false }; setStatus("Enregistrement…");
+    (ex ? Promise.resolve() : ajCol.doc(fid).set({ fid:fid, t:tt, y:yy ? String(yy) : "", d:"", mot:"", ajout:now }))
+      .then(function(){ return plCol.doc(pid + "__" + fid).set({ prenom:pid, film:fid, titre:ex ? films[ex].t : tt, annee:yy || (ex && films[ex].y) || 0, ajout:now, mot:String(mot || "").slice(0, 200) }); })
+      .then(function(){ keepSection(p.sid, renderAll); setStatus("« " + tt + " » est dans ta playlist" + (ex ? "." : " et dans la base.")); }, function(){ proposeFilm0(pid, t, y, mot); });
+  }
+  function proposeFilm0(pid, t, y, mot){
     var p = person(pid);
     if (ROLE === "lecteur") {
       addEnvoi({ pid:pid, t:t.slice(0, 120), y:y, mot:mot.slice(0, 200), libre:true });
@@ -5367,7 +6079,10 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     }
     if (ROLE === "lecteur" || !comCol) { viaForm(); return; }
     var key = pid + "__" + id + "__" + Date.now();
-    comCol.doc(key).set({ prenom:pid, nom:nom, film:id, titre:f.t || "", annee:f.y || 0, texte:txt, ajout:new Date().toISOString() }).then(function(){
+    var cd = { prenom:pid, nom:nom, film:id, titre:f.t || "", annee:f.y || 0, texte:txt, ajout:new Date().toISOString() };
+    var cv = window.CC && CC.carnetMode && CC.carnetMode() && CC.visOf ? CC.visOf("com") : { vis:"tous" };
+    var cw = cv.vis === "tous" ? comCol.doc(key).set(cd) : CC.fs.collection("commentairesPrives").doc(key).set(Object.assign(cd, { uid:CC.uid }, cv));
+    cw.then(function(){
       OPEN_COM = ""; refreshFilm(id); setStatus("Commentaire ajouté");
     }, function(e){ if (e && e.code === "invalid_argument") { denied(); viaForm(); } else setStatus("Commentaire pas enregistré, réessaie dans un instant.", true); });
   }
@@ -5674,7 +6389,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (b.dataset.cok) { submitCom(row); return; }
     if (b.dataset.cdel) {
       var cid = b.dataset.cdel; if (!comCol) return;
-      comCol.doc(cid).delete().then(function(){ setStatus("Commentaire supprimé"); }, function(){ setStatus("Pas supprimé, réessaie dans un instant.", true); });
+      ((window.CC && CC.comPrv && CC.comPrv(cid)) || comCol.doc(cid)).delete().then(function(){ setStatus("Commentaire supprimé"); }, function(){ setStatus("Pas supprimé, réessaie dans un instant.", true); });
       return;
     }
     if (b.dataset.pmok) { var pin = row.querySelector('.pm-in[data-pmot="' + CSS.escape(b.dataset.pmok) + '"]'); saveMot(b.dataset.pmok, id, pin ? pin.value : ""); return; }
@@ -5836,7 +6551,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (rg.dataset.ranger || rg.dataset.rgdone) { RANGER = rg.dataset.ranger ? !RANGER : false; renderToc(); return; }
       var dir = +rg.dataset.dir, f0 = tocFams().filter(function(x){ return x.id === TAB; })[0]; if (!f0) return;
       RANG = RANG ? JSON.parse(JSON.stringify(RANG)) : {}; RANG.listes = RANG.listes || {};
-      if (rg.dataset.rgf) { var ids = tocFams().map(function(x){ return x.id; }); if (!moveIn(ids, rg.dataset.rgf, dir)) return; RANG.familles = ids; }
+      if (rg.dataset.rgf) { var ids = tocFams().filter(function(x){ return x.id !== "playlists"; }).map(function(x){ return x.id; }); ids.push("playlists"); if (!moveIn(ids, rg.dataset.rgf, dir)) return; RANG.familles = ids; }
       else { var key = famKey(f0), sids = rangItems(f0).map(function(x){ return x.id; }); if (!moveIn(sids, rg.dataset.rgs, dir)) return; RANG.listes[key] = sids; }
       var sel = '[data-' + (rg.dataset.rgf ? "rgf" : "rgs") + '="' + CSS.escape(rg.dataset.rgf || rg.dataset.rgs) + '"][data-dir="' + dir + '"]';
       applyRang();
@@ -5869,6 +6584,12 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (ec.dataset.e1) { if (env1 === ec.dataset.e1) { env1 = ""; env2 = ""; } else { env1 = ec.dataset.e1; env2 = ""; } keepToc(renderToc); return; }
       env2 = ec.dataset.e2; SHOW = { k:"env", e1:env1, e2:env2 }; showFilms(); return;
     }
+    var sxo = ev.target.closest("[data-sx]");
+    if (sxo) { SX_S = SX_S === sxo.dataset.sx ? "" : sxo.dataset.sx; SX_P = ""; keepToc(renderToc); return; }
+    var sxp = ev.target.closest("[data-sxp]");
+    if (sxp) { SX_P = SX_P === sxp.dataset.sxp ? "" : sxp.dataset.sxp; keepToc(renderToc); return; }
+    var sxl = ev.target.closest("[data-sxl]");
+    if (sxl) { var sa2 = sxl.dataset.sxl.split("|"); SUBP[sa2[0]] = sa2[1]; SHOW = { k:"sec", id:sa2[0], sp:sa2[1] }; showFilms(); return; }
     var c = ev.target.closest(".chip, .row-s, .sub"); if (!c) return;
     if (c.dataset.vmsg) { openV(""); return; }
     if (c.dataset.guest) { setGuest(true); return; }
@@ -5903,7 +6624,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     ev.preventDefault();
     var el = fm.elements, y = el.namedItem("annee").value.trim();
     if (y && !/^[0-9]{4}$/.test(y)) { setStatus("L'année doit avoir quatre chiffres, ou rester vide.", true); el.namedItem("annee").focus(); return; }
-    addMissing(el.namedItem("titre").value, y, el.namedItem("nom") ? el.namedItem("nom").value : "");
+    addMissing(el.namedItem("titre").value, y, el.namedItem("nom") ? el.namedItem("nom").value : "", el.namedItem("indices") ? el.namedItem("indices").value : "");
   });
   $("q").addEventListener("input", function(){ $("qx").hidden = !$("q").value; ADDQ = null; });
   // Chercher remplace le film tiré au hasard : il ne doit pas cacher les résultats.
@@ -6134,6 +6855,50 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   });
   $("aamenu").addEventListener("click", function(ev){ var a = ev.target.closest("[data-amb]"); if (a) AMBI.set(a.dataset.amb); });
   $("aab").addEventListener("click", function(){ ambUi(); });
+  // ---------- Pied de page : envoyer le Ciné-club à un ami, écrire à l'équipe, soutenir ----------
+  // Lien de la cagnotte (page de dons hébergée ailleurs, permise par GitHub) : le bouton s'affiche dès qu'il est rempli.
+  var DON_URL = "";
+  (function(){ var d = document.querySelector("[data-don]"); if (d && DON_URL) { d.hidden = false; d.addEventListener("click", function(){ window.open(DON_URL, "_blank", "noopener"); }); } })();
+  function appUrl(){ return location.origin + location.pathname.replace(/[^/]*$/, ""); }
+  function shareApp(btn){
+    var url = appUrl(), txt = "Viens noter des films avec moi sur le Ciné-club. Il s'installe comme une appli sur le téléphone.";
+    if (navigator.share) { navigator.share({ title:"Ciné-club", text:txt, url:url }).catch(function(){}); return; }
+    var done = function(){ toast("Lien copié : " + url + " — collez-le dans un message à votre ami."); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt + " " + url).then(done, function(){ toast("Envoyez ce lien à votre ami : " + url); });
+    else toast("Envoyez ce lien à votre ami : " + url);
+  }
+  document.addEventListener("click", function(ev){
+    var t = ev.target.closest && ev.target.closest("[data-shareapp],[data-contact]"); if (!t) return;
+    if (t.dataset.shareapp) { shareApp(t); return; }
+    // Écrire à l'équipe : la boîte à idées s'ouvre, prête pour un message.
+    IDRAFT.kind = "amelio"; IDRAFT.contact = true; TAB = "idees"; renderToc();
+    var toc = $("toc"); if (toc) toc.scrollIntoView({ block:"start", behavior:"smooth" });
+    setTimeout(function(){ var ta = document.querySelector('#toc form[data-idform] textarea'); if (ta) ta.focus({ preventScroll:true }); }, 350);
+  });
+  // ---------- Autres façons de choisir un film : derrière un seul bouton, chacune expliquée ----------
+  var CCM_D = { ccXp:"Dire vite si l'on a vu chaque film, l'un après l'autre", ccQuiz:"Quelques questions pour connaître vos goûts",
+    drToggle:"Partir d'un film aimé et voyager de film en film", skyToggle:"Tous les films en constellations, à explorer" };
+  function ccMore(){
+    var bar = document.querySelector(".ccbar"); if (!bar || $("ccMore")) return;
+    bar.insertAdjacentHTML("beforeend", '<button type="button" class="chip ccb" id="ccMoreB" aria-expanded="false" aria-controls="ccMore">✨ Autres façons de choisir ▾</button>' +
+      '<div class="ccmore" id="ccMore" role="group" aria-label="Autres façons de choisir un film" hidden></div>');
+    var box = $("ccMore");
+    ["ccXp", "ccQuiz", "drToggle", "skyToggle"].forEach(function(id){
+      var b = $(id); if (!b) return;
+      var it = document.createElement("div"); it.className = "ccm-it"; it.dataset.for = id;
+      it.appendChild(b); it.insertAdjacentHTML("beforeend", '<span class="ccm-d">' + esc(CCM_D[id]) + '</span>');
+      box.appendChild(it);
+    });
+    // La Boussole n'apparaît qu'une fois connecté : sa ligne suit, dès que le bouton change.
+    var sync = function(){ box.querySelectorAll(".ccm-it").forEach(function(it){ var b = $(it.dataset.for); it.hidden = !b || b.hidden; }); };
+    sync();
+    var mo = new MutationObserver(sync);
+    box.querySelectorAll(".ccm-it > button").forEach(function(b){ mo.observe(b, { attributes:true, attributeFilter:["hidden"] }); });
+    $("ccMoreB").addEventListener("click", function(){
+      var open = box.hidden; box.hidden = !open; this.setAttribute("aria-expanded", open); this.textContent = open ? "✨ Autres façons de choisir ▴" : "✨ Autres façons de choisir ▾";
+    });
+  }
+  (function waitMore(n){ if ($("skyToggle") && $("drToggle")) ccMore(); else if (n < 60) setTimeout(function(){ waitMore(n + 1); }, 100); })(0);
   // Un film au hasard dans tout le carnet : vus, notés, oubliés ou pas encore vus, quel que soit le filtre affiché.
   var RND = "", RND_LAST = [];
   function rndPool(){ return Object.keys(films).filter(function(id){ return films[id] && films[id].t; }); }
@@ -6720,6 +7485,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   $("main").addEventListener("change", function(ev){
     var t = ev.target; if (!t.dataset || !t.dataset.subp) return;
     SUBP[t.dataset.subp] = t.value;
+    if (SHOW && SHOW.k === "sec" && SHOW.id === t.dataset.subp) SHOW.sp = t.value;
     var sec = t.closest("section"), top = sec ? sec.getBoundingClientRect().top : 0;
     renderAll();
     var ns = document.getElementById("sec-" + t.dataset.subp);
@@ -6902,14 +7668,16 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     ENVIES.forEach(function(e){ LABEL_OF[e.id] = e.label; (e.sous || []).forEach(function(s){ ENV_OF[s.id] = e.id; LABEL_OF[s.id] = e.label + " " + s.label; }); });
     if (env1 && !ENVIES.some(function(e){ return e.id === env1; })) { env1 = ""; env2 = ""; }
     if (window.CC) CC.playlists = secDocs.filter(function(d){ return d.x.auto === "conseils"; }).map(function(d){ return { prenom:String(d.x.prenom), titre:d.x.titre || "" }; });
+    if (window.CC && CC.autoLink) setTimeout(CC.autoLink, 0);
     // Chaque membre a sa playlist, même sans liste créée par Licia.
     var CCP = (window.CC && CC.profils) || {};
     Object.keys(CCP).forEach(function(u){
       var pr = CCP[u], pid = CC.pidOf(pr); if (!pr || !pid || !pr.pseudo || pid === "licia") return;
       var own = secDocs.filter(function(d){ return d.x.auto === "conseils" && String(d.x.prenom) === pid; })[0];
-      if (own) { own.x = Object.assign({}, own.x, { titre:pr.pseudo }); return; }
-      secDocs.push({ id:"pl-" + pid, x:{ auto:"conseils", famille:"playlists", films:[], ordre:0.9, prenom:pid, titre:pr.pseudo,
-        sous_titre:"Les films " + que(pr.pseudo) + " a aimés et conseille." } });
+      // Chacun nomme et décrit sa playlist s'il le souhaite (Mon compte).
+      if (own) { own.x = Object.assign({}, own.x, { titre:pr.plTitre || pr.pseudo }, pr.plDesc ? { sous_titre:pr.plDesc } : {}); return; }
+      secDocs.push({ id:"pl-" + pid, x:{ auto:"conseils", famille:"playlists", films:[], ordre:0.9, prenom:pid, titre:pr.plTitre || pr.pseudo,
+        sous_titre:pr.plDesc || "Les films " + que(pr.pseudo) + " a aimés et conseille." } });
     });
     SEC_AUTO = {}; secDocs.forEach(function(d){ if (d.x.auto) SEC_AUTO[d.id] = d.x.auto; });
     sections = secDocs.map(function(d){
@@ -7042,12 +7810,29 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (Object.keys(FSENT).length !== fk.length) { keepFsent(); changed = true; }
       if (changed) { var anc = anchors(null); renderAll(); restore(anc); }
     }, function(e){ if (window.CC && CC.uid) loadErr("les playlists", e); });
+    // Déplacer les films d'une playlist vers une autre (quand un compte est relié à son ancienne playlist).
+    CC.movePl = function(from, to){
+      var ids = Object.keys(CONSEILS[from] || {});
+      return ids.reduce(function(p, fid){
+        return p.then(function(){
+          if ((CONSEILS[to] || {})[fid]) return plCol.doc(from + "__" + fid).delete();
+          var f = films[fid] || {}, d = { prenom:to, film:fid, titre:f.t || "", annee:f.y || 0, ajout:CONSEILS[from][fid], mot:(MOTS[from] || {})[fid] || "" };
+          if ((AVIS[from] || {})[fid] === "non") d.avis = "non";
+          return plCol.doc(to + "__" + fid).set(d).then(function(){ return plCol.doc(from + "__" + fid).delete(); });
+        });
+      }, Promise.resolve());
+    };
     comCol = db.collection("commentaires");
-    comCol.limit(2000).onSnapshot(function(snap){
+    // Commentaires publics (« commentaires ») et commentaires réservés à des amis ou des proches (« commentairesPrives »,
+    // lus seulement par leur auteur et les comptes de « lect »). Les deux sont réunis film par film.
+    var COMPUB = {}, COMPRV = [{}, {}];
+    function comApply(){
       var next = {};
-      snap.docs.forEach(function(d){ var x = d.data() || {}; if (!x.film || !x.texte) return; (next[x.film] = next[x.film] || []).push({ id:d.id, prenom:x.prenom || "", nom:x.nom || x.prenom || "", texte:x.texte, ajout:x.ajout || "", uid:x.uid || "" }); });
+      var put = function(id, x, pv){ if (!x.film || !x.texte) return; (next[x.film] = next[x.film] || []).push({ id:id, prenom:x.prenom || "", nom:x.nom || x.prenom || "", texte:x.texte, ajout:x.ajout || "", uid:x.uid || "", pv:pv }); };
+      Object.keys(COMPUB).forEach(function(id){ put(id, COMPUB[id], false); });
+      var pv = Object.assign({}, COMPRV[1], COMPRV[0]); Object.keys(pv).forEach(function(id){ put(id, pv[id], true); });
       Object.keys(next).forEach(function(k){ next[k].sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); }); });
-      var sig = function(m){ return Object.keys(m).sort().map(function(k){ return k + ":" + m[k].map(function(c){ return c.id + "~" + c.texte + "~" + c.nom + "~" + c.uid + "~" + c.ajout; }).join("|"); }).join(","); };
+      var sig = function(m){ return Object.keys(m).sort().map(function(k){ return k + ":" + m[k].map(function(c){ return c.id + "~" + c.texte + "~" + c.nom + "~" + c.uid + "~" + c.ajout + "~" + c.pv; }).join("|"); }).join(","); };
       if (sig(next) === sig(COMS)) return;
       COMS = next; if (window.CC) CC.coms = COMS;
       // Un commentaire envoyé par le formulaire et maintenant dans le carnet quitte la liste à valider.
@@ -7055,7 +7840,34 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       ENVOI = ENVOI.filter(function(x){ return x.kind !== "com" || !(next[x.id] || []).some(function(c){ return c.texte === x.com; }); });
       if (ENVOI.length !== nb) { keepEnvoi(); renderEnv(); }
       var anc = anchors(null); renderAll(); restore(anc);
+      if (window.CC && CC.comSync) CC.comSync();
+    }
+    comCol.limit(2000).onSnapshot(function(snap){
+      var m = {}; snap.docs.forEach(function(d){ m[d.id] = d.data() || {}; }); COMPUB = m; comApply();
     }, function(e){ if (window.CC && CC.uid) loadErr("les commentaires", e); });
+    var prvCol = window.CC && CC.uid && CC.fs ? CC.fs.collection("commentairesPrives") : null;
+    if (prvCol) [prvCol.where("uid", "==", CC.uid), prvCol.where("lect", "array-contains", CC.uid)].forEach(function(q, i){
+      q.onSnapshot(function(snap){ var m = {}; snap.docs.forEach(function(d){ m[d.id] = d.data() || {}; }); COMPRV[i] = m; comApply(); }, function(){});
+    });
+    CC.comPrv = function(id){ return prvCol && COMPRV[0][id] ? prvCol.doc(id) : null; };
+    // Quand je change qui peut voir mes commentaires : ils passent d'une collection à l'autre, ou changent de lecteurs.
+    var CSYNC = false;
+    CC.comSync = function(){
+      if (CSYNC || !prvCol || !CC.me || CC.view || !CC.carnetMode || !CC.carnetMode() || !CC.comReady) return;
+      var v = CC.visOf("com"), pid = CC.pid(), ops = [];
+      var mine = function(x){ return x.uid === CC.uid && (!x.prenom || x.prenom === pid); };
+      var strip = function(x){ var y = Object.assign({}, x); delete y.vis; delete y.lect; return y; };
+      Object.keys(COMPUB).forEach(function(id){ var x = COMPUB[id]; if (!mine(x) || v.vis === "tous") return;
+        ops.push(function(){ return prvCol.doc(id).set(Object.assign(strip(x), { uid:CC.uid }, v)).then(function(){ return CC.fs.collection("commentaires").doc(id).delete(); }); }); });
+      Object.keys(COMPRV[0]).forEach(function(id){ var x = COMPRV[0][id]; if (!mine(x)) return;
+        if (v.vis === "tous") ops.push(function(){ return CC.fs.collection("commentaires").doc(id).set(Object.assign(strip(x), { uid:CC.uid })).then(function(){ return prvCol.doc(id).delete(); }); });
+        else if (x.vis !== v.vis || JSON.stringify(x.lect || []) !== JSON.stringify(v.lect)) ops.push(function(){ return prvCol.doc(id).set(v, { merge:true }); }); });
+      if (!ops.length) return;
+      CSYNC = true;
+      ops.reduce(function(p, f){ return p.then(f); }, Promise.resolve()).then(function(){ CSYNC = false; }, function(){ CSYNC = false; });
+    };
+    // On attend d'avoir reçu les deux sortes de commentaires avant de déplacer quoi que ce soit.
+    setTimeout(function(){ CC.comReady = true; if (CC.comSync) CC.comSync(); }, 2500);
     ideeCol = db.collection("idees");
     ideeCol.limit(500).onSnapshot(function(snap){
       var next = {};
@@ -7070,6 +7882,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       IDEES = next; idRefresh();
     }, function(e){ if (window.CC && CC.uid) loadErr("les idées", e); });
     propCol = db.collection("propositions");
+    ajCol = db.collection("ajouts");
     propCol.limit(500).onSnapshot(function(snap){
       var next = {};
       snap.docs.forEach(function(d){
@@ -7116,14 +7929,31 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       Object.keys(S).forEach(function(id){ if (!seen[id] && S[id].titre) out.push({ id:id, data:function(){ return JSON.parse(JSON.stringify(S[id])); } }); });
       return out;
     }
+    // Films ajoutés directement par les membres (collection « ajouts ») : une liste de plus, « Films ajoutés par les membres ».
+    var AJ = [];
+    function ajDoc(){
+      if (!AJ.length) return [];
+      var P = (window.CC && CC.profils) || {}, seen = {};
+      var fl = AJ.slice().sort(function(a, b){ return String(a.ajout || "").localeCompare(String(b.ajout || "")); }).filter(function(x){ if (!x.fid || !x.t || seen[x.fid]) return false; seen[x.fid] = 1; return true; })
+        .map(function(x){ var who = (P[x.uid] && P[x.uid].pseudo) || "un membre";
+          return { id:x.fid, t:String(x.t), y:/^[0-9]{4}$/.test(String(x.y || "")) ? +x.y : "", d:String(x.d || ""), r:"Ajouté par " + who + (x.mot ? " · Indices : " + x.mot : ""), aj:x.uid || "" }; });
+      return [{ id:"ajouts-membres", data:function(){ return { titre:"Films ajoutés par les membres", famille:"playlists", ordre:9.1,
+        sous_titre:"Les films que les membres ont ajoutés à la base. Licia les range ensuite dans les bonnes catégories.", films:fl }; } }];
+    }
+    function catDocs(){ return (LASTCAT || []).concat(ajDoc()); }
+    CC.ajouts = function(){ return AJ; };
     fetch("complements.json", { cache:"no-cache" }).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
       if (!j) return; COMP = j; FAM5 = j.familles || {};
-      if (LASTCAT) { var anc = anchors(null); setSections(compDocs(LASTCAT)); restore(anc); }
+      if (LASTCAT) { var anc = anchors(null); setSections(compDocs(catDocs())); restore(anc); }
     }).catch(function(){});
-    if (window.CC) CC.hooks.push(function(){ if (LASTCAT) { var anc = anchors(null); setSections(compDocs(LASTCAT)); restore(anc); } });
+    if (window.CC) CC.hooks.push(function(){ if (LASTCAT) { var anc = anchors(null); setSections(compDocs(catDocs())); restore(anc); } });
+    db.collection("ajouts").limit(3000).onSnapshot(function(snap){
+      AJ = snap.docs.map(function(d){ return Object.assign({ id:d.id }, d.data() || {}); });
+      if (LASTCAT) { var anc = anchors(null); setSections(compDocs(catDocs())); restore(anc); }
+    }, function(){});
     db.collection("catalogue").onSnapshot(function(snap){
       LASTCAT = snap.docs;
-      var anc = anchors(null); setSections(compDocs(snap.docs)); restore(anc);
+      var anc = anchors(null); setSections(compDocs(catDocs())); restore(anc);
     }, function(e){
       loadErr("la liste de films", e);
       $("main").innerHTML = '<p class="notice">La liste de films n\'a pas pu se charger. Recharge la page.</p>';
