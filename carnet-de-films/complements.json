@@ -9,13 +9,6 @@
      "y": 2006,
      "d": "Mark Palansky",
      "r": "Une héritière maudite naît avec un groin de cochon ; Christina Ricci et James McAvoy."
-    },
-    {
-     "id": "la-vague-2008",
-     "t": "La Vague",
-     "y": 2008,
-     "d": "Dennis Gansel",
-     "r": "Un professeur montre à ses élèves comment naît une dictature, et l'expérience lui échappe."
     }
    ]
   },
@@ -1979,7 +1972,8 @@
      "d": "Richard Ayoade",
      "r": "Un employé effacé voit arriver son sosie parfait, qui lui vole tout : Dostoïevski dans un bureau sans fenêtres."
     }
-   ]
+   ],
+   "cache": true
   },
   "s52-paranoia": {
    "films": [
@@ -2192,7 +2186,8 @@
       "l-invasion-des-profanateurs-de-sepultures-1956"
      ]
     }
-   ]
+   ],
+   "cache": true
   },
   "s37-politique": {
    "famille": "themes",
@@ -2247,147 +2242,147 @@
      "t": "La Liste de Schindler",
      "y": 1993,
      "d": "Steven Spielberg",
-     "r": ""
+     "r": "Un industriel nazi qui sauve plus de mille Juifs en les employant dans son usine."
     },
     {
      "id": "le-labyrinthe-de-pan-2006",
      "t": "Le Labyrinthe de Pan",
      "y": 2006,
      "d": "Guillermo del Toro",
-     "r": ""
+     "r": "Espagne, 1944 : une fillette s'évade dans un conte pendant que son beau-père franquiste traque les maquisards."
     },
     {
      "id": "4-mois-3-semaines-2-jours-2007",
      "t": "4 mois, 3 semaines, 2 jours",
      "y": 2007,
      "d": "Cristian Mungiu",
-     "r": ""
+     "r": "Roumanie, 1987 : une étudiante aide son amie à avorter, quand c'était interdit sous Ceaușescu."
     },
     {
      "id": "la-antena-2007",
      "t": "La Antena",
      "y": 2007,
      "d": "Esteban Sapir",
-     "r": ""
+     "r": "Une ville où un magnat de la télévision a volé la voix des habitants : une fable muette sur la propagande."
     },
     {
      "id": "inglourious-basterds-2009",
      "t": "Inglourious Basterds",
      "y": 2009,
      "d": "Quentin Tarantino",
-     "r": ""
+     "r": "Une uchronie de Tarantino : un commando juif et une jeune femme veulent tuer Hitler dans un cinéma."
     },
     {
      "id": "loin-du-paradis-2002",
      "t": "Loin du paradis",
      "y": 2002,
      "d": "Todd Haynes",
-     "r": ""
+     "r": "Années 50 : une femme au foyer s'attache à son jardinier noir, et sa ville la rejette."
     },
     {
      "id": "cache-2005",
      "t": "Caché",
      "y": 2005,
      "d": "Michael Haneke",
-     "r": ""
+     "r": "Des cassettes anonymes réveillent chez un présentateur la mémoire du massacre d'Algériens à Paris en 1961."
     },
     {
      "id": "1984-1984",
      "t": "1984",
      "y": 1984,
      "d": "Michael Radford",
-     "r": ""
+     "r": "Big Brother, la police de la pensée, la réécriture de l'histoire : le roman d'Orwell, filmé en 1984."
     },
     {
      "id": "le-dictateur-1940",
      "t": "Le Dictateur",
      "y": 1940,
      "d": "Charlie Chaplin",
-     "r": ""
+     "r": "Chaplin se moque d'Hitler en pleine guerre, et finit par un discours pour la paix."
     },
     {
      "id": "tous-les-autres-s-appellent-ali-1974",
      "t": "Tous les autres s'appellent Ali",
      "y": 1974,
      "d": "Rainer Werner Fassbinder",
-     "r": ""
+     "r": "Une femme de ménage âgée épouse un travailleur immigré marocain, sous le regard méprisant de tous."
     },
     {
      "id": "get-out-2017",
      "t": "Get Out",
      "y": 2017,
      "d": "Jordan Peele",
-     "r": ""
+     "r": "Un jeune Noir rencontre la famille de sa compagne blanche, trop accueillante : le racisme déguisé en horreur."
     },
     {
      "id": "mission-1986",
      "t": "Mission",
      "y": 1986,
      "d": "Roland Joffé",
-     "r": ""
+     "r": "Des jésuites défendent les Guaranis contre les colons portugais et espagnols, au XVIIIe siècle."
     },
     {
      "id": "nuit-et-brouillard-1956",
      "t": "Nuit et Brouillard",
      "y": 1956,
      "d": "Alain Resnais",
-     "r": ""
+     "r": "Trente minutes sur les camps de concentration, dix ans après leur libération."
     },
     {
      "id": "conversation-secrete-1974",
      "t": "Conversation secrète",
      "y": 1974,
      "d": "Francis Ford Coppola",
-     "r": ""
+     "r": "Un expert en écoutes rongé par la paranoïa, au moment du Watergate."
     },
     {
      "id": "do-the-right-thing-1989",
      "t": "Do the Right Thing",
      "y": 1989,
      "d": "Spike Lee",
-     "r": ""
+     "r": "Le jour le plus chaud de l'été à Brooklyn, et les tensions raciales qui explosent."
     },
     {
      "id": "cabaret-1972",
      "t": "Cabaret",
      "y": 1972,
      "d": "Bob Fosse",
-     "r": ""
+     "r": "Berlin, 1931 : les nuits d'un cabaret pendant que les nazis prennent le pouvoir."
     },
     {
      "id": "chocolat-1988",
      "t": "Chocolat",
      "y": 1988,
      "d": "Claire Denis",
-     "r": ""
+     "r": "Une enfance au Cameroun colonial, et le lien silencieux entre une fillette blanche et le domestique noir."
     },
     {
      "id": "oppenheimer-2023",
      "t": "Oppenheimer",
      "y": 2023,
      "d": "Christopher Nolan",
-     "r": ""
+     "r": "Le père de la bombe atomique, de Los Alamos aux procès du maccarthysme."
     },
     {
      "id": "120-battements-par-minute-2017",
      "t": "120 battements par minute",
      "y": 2017,
      "d": "Robin Campillo",
-     "r": ""
+     "r": "Paris, années 90 : les militants d'Act Up contre l'indifférence face au sida."
     },
     {
      "id": "chernobyl-serie-2019",
      "t": "Chernobyl (série)",
      "y": 2019,
      "d": "Craig Mazin et Johan Renck",
-     "r": ""
+     "r": "L'explosion de 1986 et les mensonges du pouvoir soviétique, en cinq épisodes."
     },
     {
      "id": "conclave-2024",
      "t": "Conclave",
      "y": 2024,
      "d": "Edward Berger",
-     "r": ""
+     "r": "Les intrigues des cardinaux enfermés au Vatican pour élire un nouveau pape."
     },
     {
      "id": "chernobyl-the-lost-tapes-2022",
@@ -3214,6 +3209,286 @@
      "y": 2022,
      "d": "Todd Field",
      "r": "Une cheffe d'orchestre toute-puissante, accusée d'abus, et le tribunal des réseaux sociaux."
+    },
+    {
+     "id": "v-pour-vendetta-2005",
+     "t": "V pour Vendetta",
+     "y": 2005,
+     "d": "James McTeigue",
+     "r": "Une Angleterre devenue dictature et un homme masqué qui pousse le peuple à se soulever ; le masque est devenu un symbole de contestation."
+    },
+    {
+     "id": "honeyland-2019",
+     "t": "Honeyland",
+     "y": 2019,
+     "d": "Tamara Kotevska et Ljubomir Stefanov",
+     "r": "La dernière cueilleuse de miel sauvage de Macédoine, et des voisins qui épuisent tout."
+    },
+    {
+     "id": "la-vague-2008",
+     "t": "La Vague",
+     "y": 2008,
+     "d": "Dennis Gansel",
+     "r": "Un professeur montre à ses élèves comment naît une dictature, et l'expérience lui échappe."
+    },
+    {
+     "id": "les-petites-marguerites-1966",
+     "t": "Les Petites Marguerites",
+     "y": 1966,
+     "d": "Věra Chytilová",
+     "r": "Deux jeunes filles décident que le monde est pourri et le saccagent joyeusement, dans la Tchécoslovaquie de 1966."
+    },
+    {
+     "id": "barbie-2023",
+     "t": "Barbie",
+     "y": 2023,
+     "d": "Greta Gerwig",
+     "r": "Barbie quitte son monde parfait, découvre le patriarcat dans le monde réel, puis sa propre liberté."
+    },
+    {
+     "id": "pauvres-creatures-2023",
+     "t": "Pauvres Créatures",
+     "y": 2023,
+     "d": "Yórgos Lánthimos",
+     "r": "Une femme ramenée à la vie découvre le monde et s'émancipe des hommes qui veulent la posséder."
+    },
+    {
+     "id": "harvey-milk-2008",
+     "t": "Harvey Milk",
+     "y": 2008,
+     "d": "Gus Van Sant",
+     "r": "Le premier élu ouvertement gay de Californie, de sa campagne à son assassinat."
+    },
+    {
+     "id": "pride-2014",
+     "t": "Pride",
+     "y": 2014,
+     "d": "Matthew Warchus",
+     "r": "Des militants gays et lesbiens soutiennent la grève des mineurs gallois en 1984."
+    },
+    {
+     "id": "maurice-s-bar-2023",
+     "t": "Maurice's Bar",
+     "y": 2023,
+     "d": "Tom Prezman et Tzor Edery",
+     "r": "Un bar parisien, refuge des homosexuels de l'entre-deux-guerres, jusqu'à la persécution sous l'Occupation."
+    },
+    {
+     "id": "alexandre-nevski-1938",
+     "t": "Alexandre Nevski",
+     "y": 1938,
+     "d": "Sergueï Eisenstein",
+     "r": "Une épopée patriotique commandée sous Staline contre l'envahisseur germanique, sortie en 1938."
+    },
+    {
+     "id": "argentina-1985-2022",
+     "t": "Argentina, 1985",
+     "y": 2022,
+     "d": "Santiago Mitre",
+     "r": "Le procès des généraux de la junte argentine, mené par un procureur menacé et des juristes débutants."
+    },
+    {
+     "id": "la-casa-lobo-2018",
+     "t": "La Casa Lobo",
+     "y": 2018,
+     "d": "Cristóbal León et Joaquín Cociña",
+     "r": "Une fable animée née de la Colonia Dignidad, colonie allemande liée à la dictature de Pinochet."
+    },
+    {
+     "id": "m-le-maudit-1931",
+     "t": "M le maudit",
+     "y": 1931,
+     "d": "Fritz Lang",
+     "r": "Berlin, 1931 : la pègre et la police traquent un tueur d'enfants, et la foule veut juger elle-même."
+    },
+    {
+     "id": "la-vie-est-belle-1997",
+     "t": "La vie est belle",
+     "y": 1997,
+     "d": "Roberto Benigni",
+     "r": "Un père fait croire à son fils que le camp de concentration est un grand jeu."
+    },
+    {
+     "id": "lumumba-2000",
+     "t": "Lumumba",
+     "y": 2000,
+     "d": "Raoul Peck",
+     "r": "Le premier chef de gouvernement du Congo indépendant, renversé puis assassiné en sept mois."
+    },
+    {
+     "id": "les-roseaux-sauvages-1994",
+     "t": "Les Roseaux sauvages",
+     "y": 1994,
+     "d": "André Téchiné",
+     "r": "1962 : la guerre d'Algérie vue par des lycéens du Sud-Ouest, entre premiers désirs et engagements."
+    },
+    {
+     "id": "oss-117-le-caire-nid-d-espions-2006",
+     "t": "OSS 117 : Le Caire, nid d'espions",
+     "y": 2006,
+     "d": "Michel Hazanavicius",
+     "r": "Une parodie d'espionnage qui se moque de l'arrogance coloniale française, au Caire en 1955."
+    },
+    {
+     "id": "oss-117-alerte-rouge-en-afrique-noire-2021",
+     "t": "OSS 117 : Alerte rouge en Afrique noire",
+     "y": 2021,
+     "d": "Nicolas Bedos",
+     "r": "OSS 117 en Afrique en 1981 : la Françafrique et les préjugés d'un agent qui ne comprend rien."
+    },
+    {
+     "id": "naissance-d-une-nation-1915",
+     "t": "Naissance d'une nation",
+     "y": 1915,
+     "d": "D. W. Griffith",
+     "r": "Le film de propagande raciste qui a relancé le Ku Klux Klan : un document historique, pas un film à aimer."
+    },
+    {
+     "id": "west-side-story-1961",
+     "t": "West Side Story",
+     "y": 1961,
+     "d": "Robert Wise et Jerome Robbins",
+     "r": "Roméo et Juliette entre bandes blanches et portoricaines dans le New York des années 50."
+    },
+    {
+     "id": "shock-corridor-1963",
+     "t": "Shock Corridor",
+     "y": 1963,
+     "d": "Samuel Fuller",
+     "r": "Dans un asile, un ancien étudiant noir se prend pour un membre du Ku Klux Klan : l'Amérique malade de ses haines."
+    },
+    {
+     "id": "mississippi-burning-1988",
+     "t": "Mississippi Burning",
+     "y": 1988,
+     "d": "Alan Parker",
+     "r": "Deux agents du FBI face au Ku Klux Klan et au silence d'une ville du Mississippi en 1964, d'après un vrai triple meurtre."
+    },
+    {
+     "id": "la-ligne-verte-1999",
+     "t": "La Ligne verte",
+     "y": 1999,
+     "d": "Frank Darabont",
+     "r": "Dans le Sud des années 1930, un homme noir condamné à mort pour un crime qu'il n'a pas commis."
+    },
+    {
+     "id": "chocolat-2016",
+     "t": "Chocolat",
+     "y": 2016,
+     "d": "Roschdy Zem",
+     "r": "Le premier artiste noir de la scène française, clown vedette de la Belle Époque, puis rejeté."
+    },
+    {
+     "id": "les-miserables-1934",
+     "t": "Les Misérables",
+     "y": 1934,
+     "d": "Raymond Bernard",
+     "r": "Jean Valjean, condamné pour un pain, et l'inspecteur Javert : la misère et la justice selon Victor Hugo."
+    },
+    {
+     "id": "la-regle-du-jeu-1939",
+     "t": "La Règle du jeu",
+     "y": 1939,
+     "d": "Jean Renoir",
+     "r": "La haute société s'amuse à la veille de la guerre, et les domestiques imitent leurs maîtres."
+    },
+    {
+     "id": "the-servant-1963",
+     "t": "The Servant",
+     "y": 1963,
+     "d": "Joseph Losey",
+     "r": "Un domestique prend peu à peu le pouvoir sur son jeune maître aristocrate."
+    },
+    {
+     "id": "snowpiercer-le-transperceneige-2013",
+     "t": "Snowpiercer, le Transperceneige",
+     "y": 2013,
+     "d": "Bong Joon-ho",
+     "r": "Un train où les pauvres s'entassent en queue et les riches vivent en tête, jusqu'à la révolte."
+    },
+    {
+     "id": "au-dela-des-montagnes-2015",
+     "t": "Au-delà des montagnes",
+     "y": 2015,
+     "d": "Jia Zhangke",
+     "r": "Trois amis de la Chine des années 90, séparés par l'argent du boom économique."
+    },
+    {
+     "id": "first-cow-2019",
+     "t": "First Cow",
+     "y": 2019,
+     "d": "Kelly Reichardt",
+     "r": "Deux amis volent le lait de la seule vache de l'Oregon, vers 1820 : le capitalisme à ses débuts."
+    },
+    {
+     "id": "everybody-in-the-place-2019",
+     "t": "Everybody in the Place",
+     "y": 2019,
+     "d": "Jeremy Deller",
+     "r": "L'acid house racontée à des lycéens comme une histoire sociale, de la grève des mineurs aux free parties."
+    },
+    {
+     "id": "threads-1984",
+     "t": "Threads",
+     "y": 1984,
+     "d": "Mick Jackson",
+     "r": "Une ville anglaise pendant et après une guerre nucléaire : le film qui a terrifié la Grande-Bretagne."
+    },
+    {
+     "id": "un-long-dimanche-de-fiancailles-2004",
+     "t": "Un long dimanche de fiançailles",
+     "y": 2004,
+     "d": "Jean-Pierre Jeunet",
+     "r": "Une jeune femme cherche son fiancé, condamné avec quatre soldats à être abandonné entre les tranchées en 1917."
+    },
+    {
+     "id": "au-revoir-la-haut-2017",
+     "t": "Au revoir là-haut",
+     "y": 2017,
+     "d": "Albert Dupontel",
+     "r": "Deux rescapés de 1918 montent une escroquerie aux monuments aux morts."
+    },
+    {
+     "id": "chinatown-1974",
+     "t": "Chinatown",
+     "y": 1974,
+     "d": "Roman Polanski",
+     "r": "Un détective découvre une immense escroquerie sur l'eau de Los Angeles, et ceux qui la protègent."
+    },
+    {
+     "id": "second-tour-2023",
+     "t": "Second tour",
+     "y": 2023,
+     "d": "Albert Dupontel",
+     "r": "Une journaliste suit un candidat à la présidentielle et découvre un secret qui change tout."
+    },
+    {
+     "id": "s-en-fout-la-mort-1990",
+     "t": "S'en fout la mort",
+     "y": 1990,
+     "d": "Claire Denis",
+     "r": "Deux immigrés, un Béninois et un Antillais, élèvent des coqs de combat dans un sous-sol près de Rungis."
+    },
+    {
+     "id": "import-export-2007",
+     "t": "Import/Export",
+     "y": 2007,
+     "d": "Ulrich Seidl",
+     "r": "Une infirmière ukrainienne part travailler en Autriche, un jeune Autrichien sans emploi part en Ukraine."
+    },
+    {
+     "id": "atlantique-2019",
+     "t": "Atlantique",
+     "y": 2019,
+     "d": "Mati Diop",
+     "r": "À Dakar, des ouvriers jamais payés partent en mer vers l'Espagne ; leurs fantômes reviennent réclamer leur dû."
+    },
+    {
+     "id": "the-brutalist-2024",
+     "t": "The Brutalist",
+     "y": 2024,
+     "d": "Brady Corbet",
+     "r": "Un architecte juif hongrois rescapé des camps tente de se reconstruire en Amérique."
     }
    ],
    "parties": [
@@ -3226,7 +3501,8 @@
        "ids": [
         "zero-de-conduite-1933",
         "l-an-01-1973",
-        "land-and-freedom-1995"
+        "land-and-freedom-1995",
+        "v-pour-vendetta-2005"
        ]
       },
       {
@@ -3261,6 +3537,7 @@
        "ids": [
         "l-an-01-1973",
         "woman-at-war-2018",
+        "honeyland-2019",
         "how-to-blow-up-a-pipeline-2022"
        ]
       },
@@ -3270,16 +3547,20 @@
         "le-conformiste-1970",
         "lacombe-lucien-1974",
         "american-history-x-1998",
-        "this-is-england-2006"
+        "this-is-england-2006",
+        "la-vague-2008"
        ]
       },
       {
        "titre": "Féminisme",
        "ids": [
         "le-sel-de-la-terre-1954",
+        "les-petites-marguerites-1966",
         "thelma-et-louise-1991",
         "mustang-2015",
-        "l-evenement-2021"
+        "l-evenement-2021",
+        "barbie-2023",
+        "pauvres-creatures-2023"
        ]
       },
       {
@@ -3294,12 +3575,16 @@
        "titre": "Mouvements LGBT+",
        "ids": [
         "paris-is-burning-1990",
-        "120-battements-par-minute-2017"
+        "harvey-milk-2008",
+        "pride-2014",
+        "120-battements-par-minute-2017",
+        "maurice-s-bar-2023"
        ]
       },
       {
        "titre": "Nationalismes",
        "ids": [
+        "alexandre-nevski-1938",
         "la-bataille-d-alger-1966",
         "mishima-1985",
         "le-vent-se-leve-2006",
@@ -3322,6 +3607,7 @@
         "le-sel-de-la-terre-1954",
         "la-classe-ouvriere-va-au-paradis-1971",
         "harlan-county-usa-1976",
+        "pride-2014",
         "en-guerre-2018"
        ]
       }
@@ -3334,9 +3620,9 @@
       {
        "titre": "Surveiller et contrôler",
        "ids": [
-        "1984-1984",
         "alphaville-1965",
         "conversation-secrete-1974",
+        "1984-1984",
         "brazil-1985",
         "la-vie-des-autres-2006",
         "la-antena-2007",
@@ -3364,6 +3650,8 @@
         "nostalgie-de-la-lumiere-2010",
         "no-2012",
         "the-act-of-killing-2012",
+        "la-casa-lobo-2018",
+        "argentina-1985-2022",
         "je-suis-toujours-la-2024"
        ]
       },
@@ -3385,6 +3673,7 @@
       {
        "titre": "Avant la guerre",
        "ids": [
+        "m-le-maudit-1931",
         "le-dictateur-1940",
         "cabaret-1972",
         "le-ruban-blanc-2009"
@@ -3396,6 +3685,7 @@
         "nuit-et-brouillard-1956",
         "shoah-1985",
         "la-liste-de-schindler-1993",
+        "la-vie-est-belle-1997",
         "le-pianiste-2002",
         "inglourious-basterds-2009",
         "le-fils-de-saul-2015",
@@ -3448,6 +3738,7 @@
        "titre": "Luttes de libération",
        "ids": [
         "la-bataille-d-alger-1966",
+        "lumumba-2000",
         "le-vent-se-leve-2006",
         "hunger-2008"
        ]
@@ -3459,7 +3750,10 @@
         "mission-1986",
         "chocolat-1988",
         "camp-de-thiaroye-1988",
+        "les-roseaux-sauvages-1994",
         "cache-2005",
+        "oss-117-le-caire-nid-d-espions-2006",
+        "oss-117-alerte-rouge-en-afrique-noire-2021",
         "dahomey-2024"
        ]
       }
@@ -3472,8 +3766,13 @@
       {
        "titre": "États-Unis",
        "ids": [
+        "naissance-d-une-nation-1915",
+        "west-side-story-1961",
+        "shock-corridor-1963",
+        "mississippi-burning-1988",
         "do-the-right-thing-1989",
         "malcolm-x-1992",
+        "la-ligne-verte-1999",
         "loin-du-paradis-2002",
         "i-am-not-your-negro-2016",
         "get-out-2017"
@@ -3484,6 +3783,7 @@
        "ids": [
         "tous-les-autres-s-appellent-ali-1974",
         "la-haine-1995",
+        "chocolat-2016",
         "les-miserables-2019"
        ]
       }
@@ -3494,12 +3794,19 @@
      "aide": "Riches, pauvres, et ce qui les sépare",
      "ids": [
       "metropolis-1927",
+      "les-miserables-1934",
       "les-temps-modernes-1936",
+      "la-regle-du-jeu-1939",
       "les-raisins-de-la-colere-1940",
+      "the-servant-1963",
       "a-touch-of-sin-2013",
+      "snowpiercer-le-transperceneige-2013",
+      "au-dela-des-montagnes-2015",
       "moi-daniel-blake-2016",
       "sorry-to-bother-you-2018",
       "parasite-2019",
+      "first-cow-2019",
+      "everybody-in-the-place-2019",
       "sans-filtre-2022"
      ]
     },
@@ -3516,7 +3823,10 @@
         "voyage-au-bout-de-l-enfer-1978",
         "apocalypse-now-1979",
         "furyo-1983",
+        "threads-1984",
         "requiem-pour-un-massacre-1985",
+        "un-long-dimanche-de-fiancailles-2004",
+        "au-revoir-la-haut-2017",
         "a-l-ouest-rien-de-nouveau-2022"
        ]
       },
@@ -3537,45 +3847,52 @@
      "ids": [
       "citizen-kane-1941",
       "un-homme-dans-la-foule-1957",
+      "chinatown-1974",
       "network-1976",
       "bienvenue-mister-chance-1979",
       "il-divo-2008",
       "la-mort-de-staline-2017",
       "tar-2022",
-      "oppenheimer-2023"
+      "oppenheimer-2023",
+      "second-tour-2023"
      ]
     },
     {
      "titre": "Migrations et frontières",
      "aide": "Partir, traverser, être refoulé",
      "ids": [
+      "s-en-fout-la-mort-1990",
       "les-fils-de-l-homme-2006",
+      "import-export-2007",
       "fuocoammare-2016",
+      "atlantique-2019",
       "green-border-2023",
       "moi-capitaine-2023",
-      "l-histoire-de-souleymane-2024"
+      "l-histoire-de-souleymane-2024",
+      "the-brutalist-2024"
      ]
     },
     {
      "titre": "L'État face aux catastrophes",
      "aide": "Mensonges, retards et abandon",
      "ids": [
-      "chernobyl-serie-2019",
-      "chernobyl-the-lost-tapes-2022",
+      "le-syndrome-chinois-1979",
+      "le-mystere-silkwood-1983",
       "la-bataille-de-tchernobyl-2006",
       "when-the-levees-broke-2006",
       "trouble-the-water-2008",
-      "assistance-mortelle-2013",
       "nuclear-nation-2012",
       "the-land-of-hope-2012",
-      "le-syndrome-chinois-1979",
-      "le-mystere-silkwood-1983",
+      "assistance-mortelle-2013",
+      "chernobyl-serie-2019",
       "dark-waters-2019",
       "76-days-2020",
+      "chernobyl-the-lost-tapes-2022",
       "the-days-serie-2023"
      ]
     }
-   ]
+   ],
+   "notes": {}
   },
   "s38-rave": {
    "famille": "themes",
@@ -4103,13 +4420,6 @@
      "y": 1974,
      "d": "Rainer Werner Fassbinder",
      "r": "Un mélodrame de Fassbinder sur le racisme ordinaire, simple et déchirant."
-    },
-    {
-     "id": "mississippi-burning-1988",
-     "t": "Mississippi Burning",
-     "y": 1988,
-     "d": "Alan Parker",
-     "r": "Deux agents du FBI face au Ku Klux Klan et au silence d'une ville du Mississippi en 1964, d'après un vrai triple meurtre."
     }
    ]
   },
@@ -4899,14 +5209,14 @@
      "t": "La Pianiste",
      "y": 2001,
      "d": "Michael Haneke",
-     "r": ""
+     "r": "Schubert surtout : une professeure de piano au conservatoire de Vienne, et la musique comme seul lieu de contrôle."
     },
     {
      "id": "cold-war-2018",
      "t": "Cold War",
      "y": 2018,
      "d": "Paweł Pawlikowski",
-     "r": ""
+     "r": "Des chants folkloriques polonais au jazz du Paris des années 50 : la même chanson, « Deux cœurs », change de vie avec les amants."
     },
     {
      "id": "annette-2021",
@@ -4927,7 +5237,7 @@
      "t": "Chantons sous la pluie",
      "y": 1952,
      "d": "Stanley Donen et Gene Kelly",
-     "r": ""
+     "r": "Les chansons de Nacio Herb Brown et Arthur Freed : le passage du muet au parlant, en claquettes sous la pluie."
     },
     {
      "id": "the-lure-2015",
@@ -5277,7 +5587,7 @@
      "t": "Lost Highway",
      "y": 1997,
      "d": "David Lynch",
-     "r": "Angelo Badalamenti, avec Bowie, Rammstein et Trent Reznor : saxophone hurlant et nappes noires."
+     "r": "Angelo Badalamenti, et une bande originale réunie par Trent Reznor : saxophone hurlant, Bowie et Rammstein."
     },
     {
      "id": "une-histoire-vraie-1999",
@@ -5691,6 +6001,265 @@
      "y": 1963,
      "d": "Luchino Visconti",
      "r": "Nino Rota, et une valse inédite de Verdi qu'il orchestre pour le grand bal : la fin d'un monde en musique."
+    },
+    {
+     "id": "le-faux-coupable-1956",
+     "t": "Le Faux Coupable",
+     "y": 1956,
+     "d": "Alfred Hitchcock",
+     "r": "Musique discrète : Bernard Herrmann, une contrebasse obsédante, l'instrument du musicien accusé à tort."
+    },
+    {
+     "id": "au-cur-de-la-nuit-1945",
+     "t": "Au cœur de la nuit",
+     "y": 1945,
+     "d": "Alberto Cavalcanti, Charles Crichton, Basil Dearden et Robert Hamer",
+     "r": "Georges Auric : une musique de cauchemar pour un film à sketches de fantômes."
+    },
+    {
+     "id": "garde-a-vue-1981",
+     "t": "Garde à vue",
+     "y": 1981,
+     "d": "Claude Miller",
+     "r": "Très peu de musique : Georges Delerue, quelques notes retenues pour un huis clos d'interrogatoire."
+    },
+    {
+     "id": "le-mystere-silkwood-1983",
+     "t": "Le Mystère Silkwood",
+     "y": 1983,
+     "d": "Mike Nichols",
+     "r": "Musique discrète : Georges Delerue, une mélodie simple et grave pour une ouvrière lanceuse d'alerte."
+    },
+    {
+     "id": "fenetre-secrete-2004",
+     "t": "Fenêtre secrète",
+     "y": 2004,
+     "d": "David Koepp",
+     "r": "Philip Glass, avec Geoff Zanelli : des boucles inquiètes pour un écrivain accusé de plagiat."
+    },
+    {
+     "id": "leviathan-2014",
+     "t": "Léviathan",
+     "y": 2014,
+     "d": "Andreï Zviaguintsev",
+     "r": "Musique existante : un extrait de l'opéra Akhnaten de Philip Glass, sur la mer de Barents."
+    },
+    {
+     "id": "after-hours-1985",
+     "t": "After Hours",
+     "y": 1985,
+     "d": "Martin Scorsese",
+     "r": "Howard Shore : une musique nerveuse et ironique pour une nuit sans fin à SoHo."
+    },
+    {
+     "id": "le-silence-des-agneaux-1991",
+     "t": "Le Silence des agneaux",
+     "y": 1991,
+     "d": "Jonathan Demme",
+     "r": "Howard Shore : des cordes graves et retenues qui accompagnent la descente vers Hannibal Lecter."
+    },
+    {
+     "id": "jf-partagerait-appartement-1992",
+     "t": "JF partagerait appartement",
+     "y": 1992,
+     "d": "Barbet Schroeder",
+     "r": "Musique discrète : Howard Shore, quelques motifs angoissants pour une colocation qui tourne au cauchemar."
+    },
+    {
+     "id": "seven-1995",
+     "t": "Seven",
+     "y": 1995,
+     "d": "David Fincher",
+     "r": "Musique discrète : Howard Shore, une musique sourde, sans mélodie, qui se fond dans la pluie."
+    },
+    {
+     "id": "the-game-1997",
+     "t": "The Game",
+     "y": 1997,
+     "d": "David Fincher",
+     "r": "Howard Shore : un piano froid et répétitif pour un jeu qui prend toute une vie."
+    },
+    {
+     "id": "existenz-1999",
+     "t": "eXistenZ",
+     "y": 1999,
+     "d": "David Cronenberg",
+     "r": "Howard Shore : des cordes organiques et inquiétantes pour un jeu vidéo branché sur le corps."
+    },
+    {
+     "id": "spider-2002",
+     "t": "Spider",
+     "y": 2002,
+     "d": "David Cronenberg",
+     "r": "Musique discrète : Howard Shore, des cordes étouffées pour un esprit qui se défait."
+    },
+    {
+     "id": "aviator-2004",
+     "t": "Aviator",
+     "y": 2004,
+     "d": "Martin Scorsese",
+     "r": "Howard Shore, avec des chansons des années 30 et 40, pour les obsessions d'Howard Hughes."
+    },
+    {
+     "id": "a-history-of-violence-2005",
+     "t": "A History of Violence",
+     "y": 2005,
+     "d": "David Cronenberg",
+     "r": "Howard Shore : un thème de western mélancolique pour une petite ville où la violence revient."
+    },
+    {
+     "id": "les-promesses-de-l-ombre-2007",
+     "t": "Les Promesses de l'ombre",
+     "y": 2007,
+     "d": "David Cronenberg",
+     "r": "Howard Shore : un violon slave et mélancolique pour la mafia russe de Londres."
+    },
+    {
+     "id": "babel-2006",
+     "t": "Babel",
+     "y": 2006,
+     "d": "Alejandro González Iñárritu",
+     "r": "Un seul morceau de Ryuichi Sakamoto, « Bibo no Aozora », pour la partie japonaise ; le reste est de Gustavo Santaolalla."
+    },
+    {
+     "id": "la-secretaire-2002",
+     "t": "La Secrétaire",
+     "y": 2002,
+     "d": "Steven Shainberg",
+     "r": "Angelo Badalamenti : un thème sensuel et joueur pour une relation de domination."
+    },
+    {
+     "id": "l-adversaire-2002",
+     "t": "L'Adversaire",
+     "y": 2002,
+     "d": "Nicole Garcia",
+     "r": "Angelo Badalamenti : des cordes sombres pour la double vie de Jean-Claude Romand."
+    },
+    {
+     "id": "twin-peaks-les-pieces-manquantes-2014",
+     "t": "Twin Peaks : les pièces manquantes",
+     "y": 2014,
+     "d": "David Lynch",
+     "r": "Angelo Badalamenti : les thèmes de Twin Peaks, dans les scènes coupées du film de 1992."
+    },
+    {
+     "id": "le-funambule-2008",
+     "t": "Le Funambule",
+     "y": 2008,
+     "d": "James Marsh",
+     "r": "Musique existante : des morceaux de Michael Nyman accompagnent la marche entre les tours jumelles."
+    },
+    {
+     "id": "sexe-mensonges-et-video-1989",
+     "t": "Sexe, mensonges et vidéo",
+     "y": 1989,
+     "d": "Steven Soderbergh",
+     "r": "Musique discrète : Cliff Martinez, ancien batteur des Red Hot Chili Peppers, des nappes calmes pour des confessions filmées."
+    },
+    {
+     "id": "barton-fink-1991",
+     "t": "Barton Fink",
+     "y": 1991,
+     "d": "Joel et Ethan Coen",
+     "r": "Musique discrète : Carter Burwell, une musique d'hôtel moite, qui suinte comme les murs."
+    },
+    {
+     "id": "the-big-lebowski-1998",
+     "t": "The Big Lebowski",
+     "y": 1998,
+     "d": "Joel et Ethan Coen",
+     "r": "Musique discrète : Carter Burwell signe peu ; le film vit de ses chansons, de Bob Dylan aux Gipsy Kings."
+    },
+    {
+     "id": "being-john-malkovich-1999",
+     "t": "Being John Malkovich",
+     "y": 1999,
+     "d": "Spike Jonze",
+     "r": "Musique discrète : Carter Burwell, une musique de marionnettiste, tendre et étrange."
+    },
+    {
+     "id": "les-equilibristes-1991",
+     "t": "Les Équilibristes",
+     "y": 1991,
+     "d": "Nikos Papatakis",
+     "r": "Bruno Coulais : une musique de cirque et de cabaret pour un écrivain et son funambule."
+    },
+    {
+     "id": "la-voix-humaine-2020",
+     "t": "La Voix humaine",
+     "y": 2020,
+     "d": "Pedro Almodóvar",
+     "r": "Court métrage, peu de musique : Alberto Iglesias, quelques motifs de cordes autour d'un monologue au téléphone."
+    },
+    {
+     "id": "strange-way-of-life-2023",
+     "t": "Strange Way of Life",
+     "y": 2023,
+     "d": "Pedro Almodóvar",
+     "r": "Court métrage, peu de musique : Alberto Iglesias, guitare et cordes pour un western intime."
+    },
+    {
+     "id": "the-wrestler-2008",
+     "t": "The Wrestler",
+     "y": 2008,
+     "d": "Darren Aronofsky",
+     "r": "Musique discrète : Clint Mansell, quelques notes de guitare ; on entend surtout du hard rock des années 80 et une chanson de Bruce Springsteen."
+    },
+    {
+     "id": "stoker-2013",
+     "t": "Stoker",
+     "y": 2013,
+     "d": "Park Chan-wook",
+     "r": "Clint Mansell, et un duo de piano écrit par Philip Glass, que jouent les deux personnages."
+    },
+    {
+     "id": "old-boy-2003",
+     "t": "Old Boy",
+     "y": 2003,
+     "d": "Park Chan-wook",
+     "r": "Jo Yeong-wook dirige la musique, avec Shim Hyun-jung et Lee Ji-soo : la valse « The Last Waltz » et Vivaldi."
+    },
+    {
+     "id": "licorice-pizza-2021",
+     "t": "Licorice Pizza",
+     "y": 2021,
+     "d": "Paul Thomas Anderson",
+     "r": "Peu de musique originale : Jonny Greenwood signe quelques morceaux ; on entend surtout des chansons des années 70."
+    },
+    {
+     "id": "prisoners-2013",
+     "t": "Prisoners",
+     "y": 2013,
+     "d": "Denis Villeneuve",
+     "r": "Musique discrète : Jóhann Jóhannsson, des cordes et un orgue funèbres, très en retrait sous la pluie de Pennsylvanie."
+    },
+    {
+     "id": "citizenfour-2014",
+     "t": "Citizenfour",
+     "y": 2014,
+     "d": "Laura Poitras",
+     "r": "Musique très discrète : Trent Reznor et Atticus Ross posent quelques nappes inquiètes sous les révélations."
+    },
+    {
+     "id": "berlin-calling-2008",
+     "t": "Berlin Calling",
+     "y": 2008,
+     "d": "Hannes Stöhr",
+     "r": "Paul Kalkbrenner joue un DJ de techno berlinois interné, et signe sa musique."
+    },
+    {
+     "id": "le-soliste-2009",
+     "t": "Le Soliste",
+     "y": 2009,
+     "d": "Joe Wright",
+     "r": "Dario Marianelli et Beethoven : un violoncelliste de génie devenu sans-abri."
+    },
+    {
+     "id": "je-suis-toujours-la-2024",
+     "t": "Je suis toujours là",
+     "y": 2024,
+     "d": "Walter Salles",
+     "r": "Peu de musique originale : Warren Ellis pose quelques nappes douces ; on entend surtout les chansons brésiliennes de l'époque."
     }
    ],
    "notes": {
@@ -5708,7 +6277,15 @@
     "le-secret-des-poignards-volants-2004": "Zhang Yimou et Shigeru Umebayashi · Musique et image ne font qu'un",
     "the-fountain-2006": "Duo Aronofsky et Mansell",
     "there-will-be-blood-2007": "Vote des compositeurs, 12e ex æquo (Jonny Greenwood) · Duo Anderson et Greenwood · Musique et image ne font qu'un",
-    "annihilation-2018": "Duo Garland, Barrow et Salisbury"
+    "annihilation-2018": "Duo Garland, Barrow et Salisbury",
+    "cours-lola-cours-1998": "Tom Tykwer, Johnny Klimek et Reinhold Heil : une techno qui bat comme le cœur de Lola qui court.",
+    "ghost-dog-la-voie-du-samourai-1999": "RZA, du Wu-Tang Clan : un hip-hop mélancolique pour un tueur qui suit le code des samouraïs.",
+    "moon-2009": "Clint Mansell : un piano en boucle et des cordes solitaires pour un homme seul sur la Lune.",
+    "interstellar-2014": "Hans Zimmer : l'orgue d'une église de Londres, immense, pour le temps qui se dilate.",
+    "whiplash-2014": "Justin Hurwitz et le jazz de big band : une batterie poussée jusqu'au sang par un professeur tyrannique.",
+    "birdman-2014": "Antonio Sánchez : presque tout le film porté par une batterie solo, improvisée en suivant les acteurs.",
+    "premier-contact-2016": "Jóhann Jóhannsson : des voix et des cordes étirées, comme une langue extraterrestre.",
+    "dune-2021": "Hans Zimmer : des chants de gorge, des cornemuses et des instruments inventés pour Arrakis."
    },
    "parties": [
     {
@@ -5719,6 +6296,7 @@
        "titre": "Bernard Herrmann",
        "ids": [
         "citizen-kane-1941",
+        "le-faux-coupable-1956",
         "sueurs-froides-1958",
         "la-mort-aux-trousses-1959",
         "psychose-1960",
@@ -5737,6 +6315,7 @@
       {
        "titre": "Georges Auric",
        "ids": [
+        "au-cur-de-la-nuit-1945",
         "la-belle-et-la-bete-1946",
         "orphee-1950",
         "lola-montes-1955",
@@ -5768,7 +6347,9 @@
        "ids": [
         "hiroshima-mon-amour-1959",
         "le-mepris-1963",
-        "le-conformiste-1970"
+        "le-conformiste-1970",
+        "garde-a-vue-1981",
+        "le-mystere-silkwood-1983"
        ]
       },
       {
@@ -5820,18 +6401,31 @@
        "ids": [
         "koyaanisqatsi-1982",
         "mishima-1985",
-        "the-hours-2002"
+        "the-hours-2002",
+        "fenetre-secrete-2004",
+        "leviathan-2014"
        ]
       },
       {
        "titre": "Howard Shore",
        "ids": [
         "videodrome-1983",
+        "after-hours-1985",
         "la-mouche-1986",
         "faux-semblants-1988",
         "le-festin-nu-1991",
+        "le-silence-des-agneaux-1991",
+        "jf-partagerait-appartement-1992",
+        "seven-1995",
         "crash-1996",
+        "the-game-1997",
+        "existenz-1999",
+        "the-cell-2000",
         "le-seigneur-des-anneaux-la-communaute-de-l-anneau-2001",
+        "spider-2002",
+        "aviator-2004",
+        "a-history-of-violence-2005",
+        "les-promesses-de-l-ombre-2007",
         "les-crimes-du-futur-2022"
        ]
       },
@@ -5840,6 +6434,7 @@
        "ids": [
         "furyo-1983",
         "le-dernier-empereur-1987",
+        "babel-2006",
         "the-revenant-2015",
         "l-innocence-2023"
        ]
@@ -5855,7 +6450,10 @@
         "lost-highway-1997",
         "une-histoire-vraie-1999",
         "mulholland-drive-2001",
+        "la-secretaire-2002",
+        "l-adversaire-2002",
         "un-long-dimanche-de-fiancailles-2004",
+        "twin-peaks-les-pieces-manquantes-2014",
         "twin-peaks-the-return-serie-2017"
        ]
       },
@@ -5874,12 +6472,14 @@
        "ids": [
         "monsieur-hire-1989",
         "la-lecon-de-piano-1993",
-        "gattaca-1997"
+        "gattaca-1997",
+        "le-funambule-2008"
        ]
       },
       {
        "titre": "Cliff Martinez",
        "ids": [
+        "sexe-mensonges-et-video-1989",
         "drive-2011",
         "spring-breakers-2012",
         "the-neon-demon-2016"
@@ -5900,7 +6500,10 @@
       {
        "titre": "Carter Burwell",
        "ids": [
+        "barton-fink-1991",
         "fargo-1996",
+        "the-big-lebowski-1998",
+        "being-john-malkovich-1999",
         "no-country-for-old-men-2007",
         "anomalisa-2015"
        ]
@@ -5915,6 +6518,7 @@
       {
        "titre": "Bruno Coulais",
        "ids": [
+        "les-equilibristes-1991",
         "microcosmos-1996",
         "le-peuple-migrateur-2001",
         "coraline-2009",
@@ -5928,7 +6532,9 @@
         "en-chair-et-en-os-1997",
         "tout-sur-ma-mere-1999",
         "volver-2006",
-        "la-piel-que-habito-2011"
+        "la-piel-que-habito-2011",
+        "la-voix-humaine-2020",
+        "strange-way-of-life-2023"
        ]
       },
       {
@@ -5945,8 +6551,10 @@
         "pi-1998",
         "requiem-for-a-dream-2000",
         "the-fountain-2006",
+        "the-wrestler-2008",
         "moon-2009",
-        "black-swan-2010"
+        "black-swan-2010",
+        "stoker-2013"
        ]
       },
       {
@@ -5961,6 +6569,7 @@
       {
        "titre": "Jo Yeong-wook",
        "ids": [
+        "old-boy-2003",
         "lady-vengeance-2005",
         "thirst-ceci-est-mon-sang-2009",
         "mademoiselle-2016",
@@ -5975,7 +6584,8 @@
         "the-master-2012",
         "phantom-thread-2017",
         "le-pouvoir-du-chien-2021",
-        "spencer-2021"
+        "spencer-2021",
+        "licorice-pizza-2021"
        ]
       },
       {
@@ -5989,6 +6599,7 @@
       {
        "titre": "Jóhann Jóhannsson",
        "ids": [
+        "prisoners-2013",
         "sicario-2015",
         "premier-contact-2016",
         "mandy-2018"
@@ -6006,7 +6617,9 @@
       {
        "titre": "Trent Reznor et Atticus Ross",
        "ids": [
+        "lost-highway-1997",
         "gone-girl-2014",
+        "citizenfour-2014",
         "challengers-2024"
        ]
       },
@@ -6298,6 +6911,8 @@
       "genghis-blues-1999",
       "la-pianiste-2001",
       "le-pianiste-2002",
+      "berlin-calling-2008",
+      "le-soliste-2009",
       "only-lovers-left-alive-2013",
       "whiplash-2014",
       "eden-2014",
@@ -6333,7 +6948,8 @@
       "annihilation-2018",
       "uncut-gems-2019",
       "challengers-2024",
-      "dahomey-2024"
+      "dahomey-2024",
+      "je-suis-toujours-la-2024"
      ]
     }
    ]
@@ -8379,7 +8995,8 @@
      "d": "Andreas Öhman",
      "r": "Les routines de Simon, qui ne supporte aucun imprévu."
     }
-   ]
+   ],
+   "cache": true
   },
   "s44-depression": {
    "films": [
@@ -8446,7 +9063,8 @@
      "d": "Pablo Larraín",
      "r": ""
     }
-   ]
+   ],
+   "cache": true
   },
   "s47-traumatismes": {
    "films": [
@@ -8548,7 +9166,8 @@
      "d": "Elem Klimov",
      "r": "Un adolescent qui ressort de la guerre avec le visage d'un vieillard."
     }
-   ]
+   ],
+   "cache": true
   },
   "s48-personnalites": {
    "films": [
@@ -8650,7 +9269,8 @@
      "d": "Todd Field",
      "r": ""
     }
-   ]
+   ],
+   "cache": true
   },
   "s49-addictions": {
    "films": [
@@ -8717,7 +9337,8 @@
      "d": "Brady Corbet",
      "r": ""
     }
-   ]
+   ],
+   "cache": true
   },
   "s50-memoire-demence": {
    "films": [
@@ -8763,7 +9384,8 @@
      "d": "David Lynch",
      "r": ""
     }
-   ]
+   ],
+   "cache": true
   },
   "s51-hopital-psychiatrique": {
    "films": [
@@ -8837,7 +9459,8 @@
      "d": "Ryan Murphy et Brad Falchuk",
      "r": "Surtout la saison 2, Asylum, dans un asile des années 1960."
     }
-   ]
+   ],
+   "cache": true
   },
   "s43-mythomanie": {
    "films": [
@@ -8890,7 +9513,8 @@
      "d": "Daniel Stamm",
      "r": ""
     }
-   ]
+   ],
+   "cache": true
   },
   "s42-troubles-alimentaires": {
    "films": [
@@ -8901,7 +9525,8 @@
      "d": "Pablo Larraín",
      "r": "Diana et la boulimie, pendant trois jours de Noël."
     }
-   ]
+   ],
+   "cache": true
   },
   "s10-cours-1-mouvements": {
    "films": [],
@@ -10011,6 +10636,1727 @@
      "y": 2023,
      "d": "Masaki Nishiura et Hideo Nakata",
      "r": "Fukushima vu depuis la salle de contrôle, jour après jour, comme la série Chernobyl."
+    }
+   ]
+  },
+  "s40-psychoses": {
+   "films": [],
+   "cache": true
+  },
+  "s53-autisme-tdah": {
+   "films": [],
+   "cache": true
+  },
+  "s45-bipolarite": {
+   "films": [],
+   "cache": true
+  },
+  "s54-sante-mentale": {
+   "titre": "Santé mentale",
+   "famille": "themes",
+   "ordre": 1.3697,
+   "sous_titre": "Dans la tête des personnages : dépression, psychoses, addictions, traumatismes, mémoire… Une sous-catégorie par trouble.",
+   "films": [
+    {
+     "id": "un-homme-d-exception-2001",
+     "t": "Un homme d'exception",
+     "y": 2001,
+     "d": "Ron Howard",
+     "r": "Le mathématicien John Nash et ses visions : on les croit vraies, comme lui."
+    },
+    {
+     "id": "spider-2002",
+     "t": "Spider",
+     "y": 2002,
+     "d": "David Cronenberg",
+     "r": "Un homme reconstitue son enfance dans un quartier de Londres ; tout se passe dans sa tête."
+    },
+    {
+     "id": "take-shelter-2011",
+     "t": "Take Shelter",
+     "y": 2011,
+     "d": "Jeff Nichols",
+     "r": "Un père fait des rêves d'apocalypse : folie qui monte ou prémonition ?"
+    },
+    {
+     "id": "clean-shaven-1993",
+     "t": "Clean, Shaven",
+     "y": 1993,
+     "d": "Lodge Kerrigan",
+     "r": "Le film qui fait le mieux entendre les voix et les bruits dans la tête ; très éprouvant."
+    },
+    {
+     "id": "repulsion-1965",
+     "t": "Répulsion",
+     "y": 1965,
+     "d": "Roman Polanski",
+     "r": "Catherine Deneuve, seule dans un appartement, et des murs qui se fissurent."
+    },
+    {
+     "id": "the-voices-2014",
+     "t": "The Voices",
+     "y": 2014,
+     "d": "Marjane Satrapi",
+     "r": "Comédie noire très colorée : le monde vu par Jerry quand il ne prend plus son traitement, puis tel qu'il est vraiment."
+    },
+    {
+     "id": "le-soliste-2009",
+     "t": "Le Soliste",
+     "y": 2009,
+     "d": "Joe Wright",
+     "r": "Histoire vraie d'un violoniste schizophrène et sans-abri ; le film est moyen, mais c'est l'un des rares à suivre la maladie au quotidien."
+    },
+    {
+     "id": "family-life-1971",
+     "t": "Family Life",
+     "y": 1971,
+     "d": "Ken Loach",
+     "r": "Une jeune femme fragile, des parents rigides et une psychiatrie qui l'écrase."
+    },
+    {
+     "id": "benny-et-joon-1993",
+     "t": "Benny & Joon",
+     "y": 1993,
+     "d": "Jeremiah Chechik",
+     "r": "Une romance douce et fantaisiste ; Johnny Depp en héritier de Buster Keaton."
+    },
+    {
+     "id": "saint-maud-2019",
+     "t": "Saint Maud",
+     "y": 2019,
+     "d": "Rose Glass",
+     "r": "Une infirmière très pieuse croit que Dieu lui parle ; horreur intime et dérangeante."
+    },
+    {
+     "id": "joker-2019",
+     "t": "Joker",
+     "y": 2019,
+     "d": "Todd Phillips",
+     "r": "Un homme isolé, au rire incontrôlable, que tout le monde laisse tomber ; on ne sait plus ce qui est réel."
+    },
+    {
+     "id": "une-fiancee-pas-comme-les-autres-2007",
+     "t": "Une fiancée pas comme les autres",
+     "y": 2007,
+     "d": "Craig Gillespie",
+     "r": "Un homme très seul présente sa fiancée, une poupée grandeur nature ; toute la ville accepte de jouer le jeu pour l'aider. Un délire raconté avec tendresse."
+    },
+    {
+     "id": "identity-2003",
+     "t": "Identity",
+     "y": 2003,
+     "d": "James Mangold",
+     "r": "Ton film : les dix inconnus nés le même jour sont les personnalités du condamné, et le psychiatre cherche laquelle est le tueur."
+    },
+    {
+     "id": "split-2016",
+     "t": "Split",
+     "y": 2016,
+     "d": "M. Night Shyamalan",
+     "r": "James McAvoy passe d'une personnalité à l'autre devant la caméra."
+    },
+    {
+     "id": "psychose-1960",
+     "t": "Psychose",
+     "y": 1960,
+     "d": "Alfred Hitchcock",
+     "r": "Norman Bates et sa mère ne font qu'un."
+    },
+    {
+     "id": "fight-club-1999",
+     "t": "Fight Club",
+     "y": 1999,
+     "d": "David Fincher",
+     "r": "Tyler Durden n'existe que dans la tête du narrateur."
+    },
+    {
+     "id": "les-trois-visages-d-eve-1957",
+     "t": "Les Trois Visages d'Ève",
+     "y": 1957,
+     "d": "Nunnally Johnson",
+     "r": "Le premier grand film sur le trouble dissociatif de l'identité ; Joanne Woodward a reçu l'Oscar."
+    },
+    {
+     "id": "l-esprit-de-cain-1992",
+     "t": "L'Esprit de Caïn",
+     "y": 1992,
+     "d": "Brian De Palma",
+     "r": "John Lithgow joue toutes les personnalités ; rêves et faux-semblants à la De Palma."
+    },
+    {
+     "id": "peur-primale-1996",
+     "t": "Peur primale",
+     "y": 1996,
+     "d": "Gregory Hoblit",
+     "r": "Edward Norton, timide et bègue, laisse surgir une autre personnalité ; la fin retourne tout."
+    },
+    {
+     "id": "perfect-blue-1997",
+     "t": "Perfect Blue",
+     "y": 1997,
+     "d": "Satoshi Kon",
+     "r": "Une chanteuse devenue actrice ne sait plus qui elle est ; animation japonaise."
+    },
+    {
+     "id": "docteur-jekyll-et-m-hyde-1931",
+     "t": "Docteur Jekyll et M. Hyde",
+     "y": 1931,
+     "d": "Rouben Mamoulian",
+     "r": "Pas une maladie mais une potion : c'est l'ancêtre de tous les films sur le double ; les transformations restent impressionnantes."
+    },
+    {
+     "id": "persona-1966",
+     "t": "Persona",
+     "y": 1966,
+     "d": "Ingmar Bergman",
+     "r": "Une actrice muette et son infirmière : deux visages qui finissent par se confondre."
+    },
+    {
+     "id": "the-double-2013",
+     "t": "The Double",
+     "y": 2013,
+     "d": "Richard Ayoade",
+     "r": "Un employé effacé voit arriver son sosie parfait, qui lui vole tout : Dostoïevski dans un bureau sans fenêtres."
+    },
+    {
+     "id": "mary-et-max-2009",
+     "t": "Mary et Max",
+     "y": 2009,
+     "d": "Adam Elliot",
+     "r": "Une amitié par lettres entre une fillette solitaire et un New-Yorkais autiste ; pâte à modeler, drôle et bouleversant."
+    },
+    {
+     "id": "the-reason-i-jump-2020",
+     "t": "The Reason I Jump",
+     "y": 2020,
+     "d": "Jerry Rothwell",
+     "r": "Documentaire sensoriel : on voit et on entend le monde comme cinq jeunes autistes."
+    },
+    {
+     "id": "mommy-2014",
+     "t": "Mommy",
+     "y": 2014,
+     "d": "Xavier Dolan",
+     "r": "Une mère et son fils hyperactif (TDAH), imprévisible et violent ; image carrée qui s'ouvre, très fort."
+    },
+    {
+     "id": "elle-s-appelle-sabine-2007",
+     "t": "Elle s'appelle Sabine",
+     "y": 2007,
+     "d": "Sandrine Bonnaire",
+     "r": "Sandrine Bonnaire filme sa sœur autiste, avant et après des années d'internement ; bouleversant."
+    },
+    {
+     "id": "temple-grandin-2010",
+     "t": "Temple Grandin",
+     "y": 2010,
+     "d": "Mick Jackson",
+     "r": "Histoire vraie d'une femme autiste qui pense en images ; Claire Danes. Téléfilm."
+    },
+    {
+     "id": "ben-x-2007",
+     "t": "Ben X",
+     "y": 2007,
+     "d": "Nic Balthazar",
+     "r": "Un adolescent autiste harcelé se réfugie dans un jeu vidéo ; les deux mondes se mélangent à l'écran."
+    },
+    {
+     "id": "hors-normes-2019",
+     "t": "Hors normes",
+     "y": 2019,
+     "d": "Olivier Nakache et Éric Toledano",
+     "r": "Deux éducateurs qui accueillent les jeunes autistes que personne ne veut prendre ; d'après des associations réelles."
+    },
+    {
+     "id": "le-monde-de-nathan-2014",
+     "t": "Le Monde de Nathan",
+     "y": 2014,
+     "d": "Morgan Matthews",
+     "r": "Un adolescent autiste doué en mathématiques, et sa mère ; tendre et juste."
+    },
+    {
+     "id": "thumbsucker-2005",
+     "t": "Thumbsucker",
+     "y": 2005,
+     "d": "Mike Mills",
+     "r": "Diagnostiqué TDAH, un adolescent prend un traitement qui le change complètement ; comédie douce-amère."
+    },
+    {
+     "id": "rain-man-1988",
+     "t": "Rain Man",
+     "y": 1988,
+     "d": "Barry Levinson",
+     "r": "Le film qui a fait connaître l'autisme ; on lui reproche aujourd'hui ses clichés (le génie des chiffres)."
+    },
+    {
+     "id": "barfi-2012",
+     "t": "Barfi!",
+     "y": 2012,
+     "d": "Anurag Basu",
+     "r": "Atypique : un Bollywood presque sans paroles, en hommage à Chaplin et Keaton, avec une héroïne autiste et un héros sourd."
+    },
+    {
+     "id": "simple-simon-2010",
+     "t": "Simple Simon",
+     "y": 2010,
+     "d": "Andreas Öhman",
+     "r": "Atypique : une comédie romantique acidulée vue par un jeune Asperger, qui se réfugie dans un tonneau transformé en fusée."
+    },
+    {
+     "id": "life-animated-2016",
+     "t": "Life, Animated",
+     "y": 2016,
+     "d": "Roger Ross Williams",
+     "r": "Atypique : un autiste qui a réappris à parler grâce aux dessins animés Disney ; documentaire mêlé de dessins."
+    },
+    {
+     "id": "stand-clear-of-the-closing-doors-2013",
+     "t": "Stand Clear of the Closing Doors",
+     "y": 2013,
+     "d": "Sam Fleischner",
+     "r": "Atypique : onze jours dans le métro, filmés à hauteur des sensations d'un garçon autiste (lumières, bruits, foule)."
+    },
+    {
+     "id": "keep-the-change-2017",
+     "t": "Keep the Change",
+     "y": 2017,
+     "d": "Rachel Israel",
+     "r": "Atypique : une comédie romantique jouée par des acteurs autistes non professionnels."
+    },
+    {
+     "id": "dina-2017",
+     "t": "Dina",
+     "y": 2017,
+     "d": "Dan Sickles et Antonio Santini",
+     "r": "Atypique : un documentaire filmé comme une comédie romantique, sur un couple neuroatypique avant son mariage."
+    },
+    {
+     "id": "mr-wolff-2016",
+     "t": "Mr. Wolff",
+     "y": 2016,
+     "d": "Gavin O'Connor",
+     "r": "Atypique : un film d'action dont le héros, comptable et tueur, est autiste ; le film lui-même est moyen."
+    },
+    {
+     "id": "swallow-2019",
+     "t": "Swallow",
+     "y": 2019,
+     "d": "Carlo Mirabella-Davis",
+     "r": "Une jeune femme au foyer se met à avaler des objets : le pica, dans une maison trop parfaite."
+    },
+    {
+     "id": "to-the-bone-2017",
+     "t": "To the Bone",
+     "y": 2017,
+     "d": "Marti Noxon",
+     "r": "Lily Collins, anorexique, dans une maison de soins ; la réalisatrice a elle-même été malade."
+    },
+    {
+     "id": "thin-2006",
+     "t": "Thin",
+     "y": 2006,
+     "d": "Lauren Greenfield",
+     "r": "Documentaire : le quotidien de quatre jeunes femmes dans une clinique spécialisée."
+    },
+    {
+     "id": "superstar-the-karen-carpenter-story-1987",
+     "t": "Superstar: The Karen Carpenter Story",
+     "y": 1987,
+     "d": "Todd Haynes",
+     "r": "Court métrage culte joué par des poupées Barbie ; jamais sorti officiellement, il circule sous le manteau."
+    },
+    {
+     "id": "black-swan-2010",
+     "t": "Black Swan",
+     "y": 2010,
+     "d": "Darren Aronofsky",
+     "r": "La quête de perfection d'une danseuse, jusque dans son corps."
+    },
+    {
+     "id": "life-is-sweet-1990",
+     "t": "Life Is Sweet",
+     "y": 1990,
+     "d": "Mike Leigh",
+     "r": "Comédie douce-amère : la boulimie cachée d'une des jumelles, au milieu d'une famille bruyante."
+    },
+    {
+     "id": "the-whale-2022",
+     "t": "The Whale",
+     "y": 2022,
+     "d": "Darren Aronofsky",
+     "r": "Un homme qui mange son chagrin, huis clos ; Brendan Fraser a reçu l'Oscar."
+    },
+    {
+     "id": "spencer-2021",
+     "t": "Spencer",
+     "y": 2021,
+     "d": "Pablo Larraín",
+     "r": "Diana et la boulimie, pendant trois jours de Noël."
+    },
+    {
+     "id": "l-adversaire-2002",
+     "t": "L'Adversaire",
+     "y": 2002,
+     "d": "Nicole Garcia",
+     "r": "Daniel Auteuil, d'après l'affaire Romand : dix-huit ans de mensonges, jusqu'au drame."
+    },
+    {
+     "id": "l-emploi-du-temps-2001",
+     "t": "L'Emploi du temps",
+     "y": 2001,
+     "d": "Laurent Cantet",
+     "r": "Inspiré de la même affaire, mais sans le drame : un mensonge qui enfle doucement."
+    },
+    {
+     "id": "the-imposter-2012",
+     "t": "The Imposter",
+     "y": 2012,
+     "d": "Bart Layton",
+     "r": "Documentaire : l'imposteur Frédéric Bourdin raconte lui-même, face à la caméra."
+    },
+    {
+     "id": "le-talentueux-mr-ripley-1999",
+     "t": "Le Talentueux Mr. Ripley",
+     "y": 1999,
+     "d": "Anthony Minghella",
+     "r": "Mentir jusqu'à prendre la vie d'un autre."
+    },
+    {
+     "id": "plein-soleil-1960",
+     "t": "Plein soleil",
+     "y": 1960,
+     "d": "René Clément",
+     "r": "Alain Delon en Ripley, dans les couleurs de la Méditerranée."
+    },
+    {
+     "id": "le-mystificateur-2003",
+     "t": "Le Mystificateur",
+     "y": 2003,
+     "d": "Billy Ray",
+     "r": "Histoire vraie de Stephen Glass, journaliste qui inventait ses reportages."
+    },
+    {
+     "id": "la-fille-du-rer-2009",
+     "t": "La Fille du RER",
+     "y": 2009,
+     "d": "André Téchiné",
+     "r": "Une fausse agression qui fait la une ; d'après une affaire de 2004."
+    },
+    {
+     "id": "arrete-moi-si-tu-peux-2002",
+     "t": "Arrête-moi si tu peux",
+     "y": 2002,
+     "d": "Steven Spielberg",
+     "r": "Histoire vraie de Frank Abagnale, faussaire et imposteur ; léger, rétro et très coloré."
+    },
+    {
+     "id": "big-fish-2003",
+     "t": "Big Fish",
+     "y": 2003,
+     "d": "Tim Burton",
+     "r": ""
+    },
+    {
+     "id": "rien-ne-va-plus-1997",
+     "t": "Rien ne va plus",
+     "y": 1997,
+     "d": "Claude Chabrol",
+     "r": ""
+    },
+    {
+     "id": "les-associes-2003",
+     "t": "Les Associés",
+     "y": 2003,
+     "d": "Ridley Scott",
+     "r": ""
+    },
+    {
+     "id": "le-retour-de-martin-guerre-1982",
+     "t": "Le Retour de Martin Guerre",
+     "y": 1982,
+     "d": "Daniel Vigne",
+     "r": ""
+    },
+    {
+     "id": "close-up-1990",
+     "t": "Close-Up",
+     "y": 1990,
+     "d": "Abbas Kiarostami",
+     "r": ""
+    },
+    {
+     "id": "the-visit-2015",
+     "t": "The Visit",
+     "y": 2015,
+     "d": "M. Night Shyamalan",
+     "r": ""
+    },
+    {
+     "id": "le-dernier-exorcisme-2010",
+     "t": "Le Dernier Exorcisme",
+     "y": 2010,
+     "d": "Daniel Stamm",
+     "r": ""
+    },
+    {
+     "id": "melancholia-2011",
+     "t": "Melancholia",
+     "y": 2011,
+     "d": "Lars von Trier",
+     "r": "La dépression de Justine, et une planète qui s'approche : elle est la seule à rester calme."
+    },
+    {
+     "id": "le-feu-follet-1963",
+     "t": "Le Feu follet",
+     "y": 1963,
+     "d": "Louis Malle",
+     "r": "Maurice Ronet, une dernière journée à Paris au son de Satie."
+    },
+    {
+     "id": "the-hours-2002",
+     "t": "The Hours",
+     "y": 2002,
+     "d": "Stephen Daldry",
+     "r": "Trois femmes, trois époques, la même journée de mélancolie ; Nicole Kidman en Virginia Woolf."
+    },
+    {
+     "id": "des-gens-comme-les-autres-1980",
+     "t": "Des gens comme les autres",
+     "y": 1980,
+     "d": "Robert Redford",
+     "r": "Un adolescent, un psychiatre et une mère glacée : un deuil qui ne se dit pas."
+    },
+    {
+     "id": "manchester-by-the-sea-2016",
+     "t": "Manchester by the Sea",
+     "y": 2016,
+     "d": "Kenneth Lonergan",
+     "r": "Un homme qu'un drame passé a figé dans le chagrin ; très beau, très triste."
+    },
+    {
+     "id": "aftersun-2022",
+     "t": "Aftersun",
+     "y": 2022,
+     "d": "Charlotte Wells",
+     "r": "Des vacances avec un père qui sourit et va mal ; on ne le comprend qu'après."
+    },
+    {
+     "id": "vice-versa-2015",
+     "t": "Vice-Versa",
+     "y": 2015,
+     "d": "Pete Docter",
+     "r": "La plus douce explication de la tristesse, et de pourquoi on en a besoin."
+    },
+    {
+     "id": "mister-babadook-2014",
+     "t": "Mister Babadook",
+     "y": 2014,
+     "d": "Jennifer Kent",
+     "r": "Le monstre, c'est le deuil et l'épuisement d'une mère : la dépression en film d'horreur."
+    },
+    {
+     "id": "synecdoche-new-york-2008",
+     "t": "Synecdoche, New York",
+     "y": 2008,
+     "d": "Charlie Kaufman",
+     "r": "Un metteur en scène hypocondriaque et déprimé construit une pièce sans fin, copie de sa propre vie ; vertigineux et atypique."
+    },
+    {
+     "id": "trois-couleurs-bleu-1993",
+     "t": "Trois couleurs : Bleu",
+     "y": 1993,
+     "d": "Krzysztof Kieślowski",
+     "r": ""
+    },
+    {
+     "id": "in-the-bedroom-2001",
+     "t": "In the Bedroom",
+     "y": 2001,
+     "d": "Todd Field",
+     "r": ""
+    },
+    {
+     "id": "drive-my-car-2021",
+     "t": "Drive My Car",
+     "y": 2021,
+     "d": "Ryūsuke Hamaguchi",
+     "r": ""
+    },
+    {
+     "id": "antichrist-2009",
+     "t": "Antichrist",
+     "y": 2009,
+     "d": "Lars von Trier",
+     "r": ""
+    },
+    {
+     "id": "dogs-don-t-wear-pants-2019",
+     "t": "Dogs Don't Wear Pants",
+     "y": 2019,
+     "d": "Jukka-Pekka Valkeapää",
+     "r": ""
+    },
+    {
+     "id": "la-haut-2009",
+     "t": "Là-haut",
+     "y": 2009,
+     "d": "Pete Docter",
+     "r": ""
+    },
+    {
+     "id": "le-dernier-voyage-de-tanya-2010",
+     "t": "Le Dernier Voyage de Tanya",
+     "y": 2010,
+     "d": "Aleksey Fedorchenko",
+     "r": ""
+    },
+    {
+     "id": "the-bothersome-man-2006",
+     "t": "The Bothersome Man",
+     "y": 2006,
+     "d": "Jens Lien",
+     "r": ""
+    },
+    {
+     "id": "jackie-2016",
+     "t": "Jackie",
+     "y": 2016,
+     "d": "Pablo Larraín",
+     "r": ""
+    },
+    {
+     "id": "les-intranquilles-2021",
+     "t": "Les Intranquilles",
+     "y": 2021,
+     "d": "Joachim Lafosse",
+     "r": "Le plus juste : une famille qui tient bon, au fil des crises d'un père peintre."
+    },
+    {
+     "id": "une-femme-sous-influence-1974",
+     "t": "Une femme sous influence",
+     "y": 1974,
+     "d": "John Cassavetes",
+     "r": "Gena Rowlands, mère au bord de la crise, sans diagnostic précis."
+    },
+    {
+     "id": "happiness-therapy-2012",
+     "t": "Happiness Therapy",
+     "y": 2012,
+     "d": "David O. Russell",
+     "r": "Comédie romantique : deux écorchés et un concours de danse ; Jennifer Lawrence a reçu l'Oscar."
+    },
+    {
+     "id": "daddy-cool-2014",
+     "t": "Daddy Cool",
+     "y": 2014,
+     "d": "Maya Forbes",
+     "r": "Mark Ruffalo, père bipolaire et attachant ; rétro et tendre."
+    },
+    {
+     "id": "aviator-2004",
+     "t": "Aviator",
+     "y": 2004,
+     "d": "Martin Scorsese",
+     "r": "Leonardo DiCaprio en Howard Hughes, que la peur des microbes finit par enfermer."
+    },
+    {
+     "id": "toc-toc-2017",
+     "t": "Toc Toc",
+     "y": 2017,
+     "d": "Vicente Villanueva",
+     "r": "Huis clos comique dans une salle d'attente ; d'après la pièce de Laurent Baffie."
+    },
+    {
+     "id": "pour-le-pire-et-pour-le-meilleur-1997",
+     "t": "Pour le pire et pour le meilleur",
+     "y": 1997,
+     "d": "James L. Brooks",
+     "r": "Jack Nicholson évite les fissures du trottoir et apporte ses couverts au restaurant."
+    },
+    {
+     "id": "copycat-1995",
+     "t": "Copycat",
+     "y": 1995,
+     "d": "Jon Amiel",
+     "r": "Sigourney Weaver, agoraphobe, enquête sans quitter son appartement."
+    },
+    {
+     "id": "sueurs-froides-1958",
+     "t": "Sueurs froides",
+     "y": 1958,
+     "d": "Alfred Hitchcock",
+     "r": "Le vertige d'un policier, qui ne peut plus monter un escalier."
+    },
+    {
+     "id": "safe-1995",
+     "t": "Safe",
+     "y": 1995,
+     "d": "Todd Haynes",
+     "r": "Julianne Moore, allergique à tout, ou angoissée par tout ?"
+    },
+    {
+     "id": "quoi-de-neuf-bob-1991",
+     "t": "Quoi de neuf, Bob ?",
+     "y": 1991,
+     "d": "Frank Oz",
+     "r": "Bill Murray, phobique collant : c'est le psychiatre qui craque."
+    },
+    {
+     "id": "room-2015",
+     "t": "Room",
+     "y": 2015,
+     "d": "Lenny Abrahamson",
+     "r": "Raconté à hauteur d'enfant ; la deuxième partie montre l'après."
+    },
+    {
+     "id": "valse-avec-bachir-2008",
+     "t": "Valse avec Bachir",
+     "y": 2008,
+     "d": "Ari Folman",
+     "r": "Animation : un ancien soldat cherche les souvenirs qu'il a effacés."
+    },
+    {
+     "id": "voyage-au-bout-de-l-enfer-1978",
+     "t": "Voyage au bout de l'enfer",
+     "y": 1978,
+     "d": "Michael Cimino",
+     "r": "La roulette russe, et une guerre qui ne finit jamais dans la tête ; trois heures."
+    },
+    {
+     "id": "les-plus-belles-annees-de-notre-vie-1946",
+     "t": "Les Plus Belles Années de notre vie",
+     "y": 1946,
+     "d": "William Wyler",
+     "r": "Le premier grand film sur le retour de guerre ; l'un des soldats a perdu ses deux mains."
+    },
+    {
+     "id": "etat-second-1993",
+     "t": "État second",
+     "y": 1993,
+     "d": "Peter Weir",
+     "r": "Jeff Bridges, survivant d'un accident d'avion qui se croit intouchable."
+    },
+    {
+     "id": "l-echelle-de-jacob-1990",
+     "t": "L'Échelle de Jacob",
+     "y": 1990,
+     "d": "Adrian Lyne",
+     "r": "Un ancien du Vietnam assailli de visions ; la fin éclaire tout."
+    },
+    {
+     "id": "taxi-driver-1976",
+     "t": "Taxi Driver",
+     "y": 1976,
+     "d": "Martin Scorsese",
+     "r": "Un ancien soldat insomniaque dans les nuits de New York."
+    },
+    {
+     "id": "rambo-1982",
+     "t": "Rambo",
+     "y": 1982,
+     "d": "Ted Kotcheff",
+     "r": "Avant les suites musclées, un vrai film sur un soldat brisé ; la fin en larmes."
+    },
+    {
+     "id": "the-machinist-2004",
+     "t": "The Machinist",
+     "y": 2004,
+     "d": "Brad Anderson",
+     "r": "Un ouvrier qui ne dort plus depuis un an, rongé par une culpabilité qu'il a enfouie."
+    },
+    {
+     "id": "le-silence-des-agneaux-1991",
+     "t": "Le Silence des agneaux",
+     "y": 1991,
+     "d": "Jonathan Demme",
+     "r": ""
+    },
+    {
+     "id": "will-hunting-1997",
+     "t": "Will Hunting",
+     "y": 1997,
+     "d": "Gus Van Sant",
+     "r": ""
+    },
+    {
+     "id": "twin-peaks-fire-walk-with-me-1992",
+     "t": "Twin Peaks : Fire Walk with Me",
+     "y": 1992,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "le-patient-anglais-1996",
+     "t": "Le Patient anglais",
+     "y": 1996,
+     "d": "Anthony Minghella",
+     "r": ""
+    },
+    {
+     "id": "mystic-river-2003",
+     "t": "Mystic River",
+     "y": 2003,
+     "d": "Clint Eastwood",
+     "r": ""
+    },
+    {
+     "id": "apocalypse-now-1979",
+     "t": "Apocalypse Now",
+     "y": 1979,
+     "d": "Francis Ford Coppola",
+     "r": ""
+    },
+    {
+     "id": "johnny-s-en-va-t-en-guerre-1971",
+     "t": "Johnny s'en va-t-en guerre",
+     "y": 1971,
+     "d": "Dalton Trumbo",
+     "r": ""
+    },
+    {
+     "id": "au-revoir-la-haut-2017",
+     "t": "Au revoir là-haut",
+     "y": 2017,
+     "d": "Albert Dupontel",
+     "r": ""
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "smile-2022",
+     "t": "Smile",
+     "y": 2022,
+     "d": "Parker Finn",
+     "r": ""
+    },
+    {
+     "id": "nurse-betty-2000",
+     "t": "Nurse Betty",
+     "y": 2000,
+     "d": "Neil LaBute",
+     "r": ""
+    },
+    {
+     "id": "leave-no-trace-2018",
+     "t": "Leave No Trace",
+     "y": 2018,
+     "d": "Debra Granik",
+     "r": ""
+    },
+    {
+     "id": "the-brutalist-2024",
+     "t": "The Brutalist",
+     "y": 2024,
+     "d": "Brady Corbet",
+     "r": ""
+    },
+    {
+     "id": "requiem-pour-un-massacre-1985",
+     "t": "Requiem pour un massacre",
+     "y": 1985,
+     "d": "Elem Klimov",
+     "r": "Un adolescent qui ressort de la guerre avec le visage d'un vieillard."
+    },
+    {
+     "id": "37-2-le-matin-1986",
+     "t": "37°2 le matin",
+     "y": 1986,
+     "d": "Jean-Jacques Beineix",
+     "r": "Béatrice Dalle en Betty, un amour fou qui bascule dans la folie."
+    },
+    {
+     "id": "il-faut-qu-on-parle-de-kevin-2011",
+     "t": "Il faut qu'on parle de Kevin",
+     "y": 2011,
+     "d": "Lynne Ramsay",
+     "r": "Une mère face à un fils sans empathie ; le rouge partout."
+    },
+    {
+     "id": "night-call-2014",
+     "t": "Night Call",
+     "y": 2014,
+     "d": "Dan Gilroy",
+     "r": "Jake Gyllenhaal, sans aucune empathie, dans les nuits de Los Angeles."
+    },
+    {
+     "id": "gone-girl-2014",
+     "t": "Gone Girl",
+     "y": 2014,
+     "d": "David Fincher",
+     "r": "Rosamund Pike, manipulatrice de génie ; tout bascule à la moitié du film."
+    },
+    {
+     "id": "jf-partagerait-appartement-1992",
+     "t": "JF partagerait appartement",
+     "y": 1992,
+     "d": "Barbet Schroeder",
+     "r": "Une colocataire qui veut devenir l'autre."
+    },
+    {
+     "id": "liaison-fatale-1987",
+     "t": "Liaison fatale",
+     "y": 1987,
+     "d": "Adrian Lyne",
+     "r": "Glenn Close, un amour obsessionnel qui devient harcèlement."
+    },
+    {
+     "id": "la-pianiste-2001",
+     "t": "La Pianiste",
+     "y": 2001,
+     "d": "Michael Haneke",
+     "r": "Isabelle Huppert, professeure de piano au désir enfermé ; dur."
+    },
+    {
+     "id": "american-psycho-2000",
+     "t": "American Psycho",
+     "y": 2000,
+     "d": "Mary Harron",
+     "r": "Un tueur en costume, narcissique et vide."
+    },
+    {
+     "id": "whiplash-2014",
+     "t": "Whiplash",
+     "y": 2014,
+     "d": "Damien Chazelle",
+     "r": ""
+    },
+    {
+     "id": "stoker-2013",
+     "t": "Stoker",
+     "y": 2013,
+     "d": "Park Chan-wook",
+     "r": ""
+    },
+    {
+     "id": "misery-1990",
+     "t": "Misery",
+     "y": 1990,
+     "d": "Rob Reiner",
+     "r": ""
+    },
+    {
+     "id": "phantom-thread-2017",
+     "t": "Phantom Thread",
+     "y": 2017,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "the-servant-1963",
+     "t": "The Servant",
+     "y": 1963,
+     "d": "Joseph Losey",
+     "r": ""
+    },
+    {
+     "id": "foxcatcher-2014",
+     "t": "Foxcatcher",
+     "y": 2014,
+     "d": "Bennett Miller",
+     "r": ""
+    },
+    {
+     "id": "creep-2014",
+     "t": "Creep",
+     "y": 2014,
+     "d": "Patrick Brice",
+     "r": ""
+    },
+    {
+     "id": "qu-est-il-arrive-a-baby-jane-1962",
+     "t": "Qu'est-il arrivé à Baby Jane ?",
+     "y": 1962,
+     "d": "Robert Aldrich",
+     "r": ""
+    },
+    {
+     "id": "le-pouvoir-du-chien-2021",
+     "t": "Le Pouvoir du chien",
+     "y": 2021,
+     "d": "Jane Campion",
+     "r": ""
+    },
+    {
+     "id": "blue-velvet-1986",
+     "t": "Blue Velvet",
+     "y": 1986,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "the-love-witch-2016",
+     "t": "The Love Witch",
+     "y": 2016,
+     "d": "Anna Biller",
+     "r": ""
+    },
+    {
+     "id": "tar-2022",
+     "t": "Tár",
+     "y": 2022,
+     "d": "Todd Field",
+     "r": ""
+    },
+    {
+     "id": "requiem-for-a-dream-2000",
+     "t": "Requiem for a Dream",
+     "y": 2000,
+     "d": "Darren Aronofsky",
+     "r": "Quatre dépendances, montées de plus en plus vite jusqu'au gouffre."
+    },
+    {
+     "id": "trainspotting-1996",
+     "t": "Trainspotting",
+     "y": 1996,
+     "d": "Danny Boyle",
+     "r": "L'héroïne à Édimbourg, avec humour noir et musique."
+    },
+    {
+     "id": "le-poison-1945",
+     "t": "Le Poison",
+     "y": 1945,
+     "d": "Billy Wilder",
+     "r": "Le premier grand film sur l'alcoolisme, et ses hallucinations."
+    },
+    {
+     "id": "drunk-2020",
+     "t": "Drunk",
+     "y": 2020,
+     "d": "Thomas Vinterberg",
+     "r": "Comédie qui tourne au drame ; Mads Mikkelsen et sa danse finale."
+    },
+    {
+     "id": "leaving-las-vegas-1995",
+     "t": "Leaving Las Vegas",
+     "y": 1995,
+     "d": "Mike Figgis",
+     "r": "Nicolas Cage a reçu l'Oscar : un amour sans sauvetage."
+    },
+    {
+     "id": "panique-a-needle-park-1971",
+     "t": "Panique à Needle Park",
+     "y": 1971,
+     "d": "Jerry Schatzberg",
+     "r": "Al Pacino, premier grand rôle : l'héroïne et l'amour, sans musique."
+    },
+    {
+     "id": "uncut-gems-2019",
+     "t": "Uncut Gems",
+     "y": 2019,
+     "d": "Josh et Benny Safdie",
+     "r": "L'addiction au jeu en apnée : deux heures de stress pur, très rapide."
+    },
+    {
+     "id": "enter-the-void-2009",
+     "t": "Enter the Void",
+     "y": 2009,
+     "d": "Gaspar Noé",
+     "r": "Un trip sous drogue dans les néons de Tokyo, vu à travers les yeux du héros."
+    },
+    {
+     "id": "le-festin-nu-1991",
+     "t": "Le Festin nu",
+     "y": 1991,
+     "d": "David Cronenberg",
+     "r": ""
+    },
+    {
+     "id": "oslo-31-aout-2011",
+     "t": "Oslo, 31 août",
+     "y": 2011,
+     "d": "Joachim Trier",
+     "r": ""
+    },
+    {
+     "id": "withnail-and-i-1987",
+     "t": "Withnail and I",
+     "y": 1987,
+     "d": "Bruce Robinson",
+     "r": ""
+    },
+    {
+     "id": "berlin-calling-2008",
+     "t": "Berlin Calling",
+     "y": 2008,
+     "d": "Hannes Stöhr",
+     "r": ""
+    },
+    {
+     "id": "jusqu-au-bout-du-monde-1991",
+     "t": "Jusqu'au bout du monde",
+     "y": 1991,
+     "d": "Wim Wenders",
+     "r": ""
+    },
+    {
+     "id": "boogie-nights-1997",
+     "t": "Boogie Nights",
+     "y": 1997,
+     "d": "Paul Thomas Anderson",
+     "r": ""
+    },
+    {
+     "id": "the-father-2020",
+     "t": "The Father",
+     "y": 2020,
+     "d": "Florian Zeller",
+     "r": "La démence vue de l'intérieur : on se perd avec lui dans l'appartement."
+    },
+    {
+     "id": "relic-2020",
+     "t": "Relic",
+     "y": 2020,
+     "d": "Natalie Erika James",
+     "r": "Horreur : une maison qui pourrit comme la mémoire de la grand-mère."
+    },
+    {
+     "id": "loin-d-elle-2006",
+     "t": "Loin d'elle",
+     "y": 2006,
+     "d": "Sarah Polley",
+     "r": "Un amour qui continue quand l'autre oublie ; très délicat."
+    },
+    {
+     "id": "memento-2000",
+     "t": "Memento",
+     "y": 2000,
+     "d": "Christopher Nolan",
+     "r": "Un homme sans mémoire immédiate, raconté à l'envers."
+    },
+    {
+     "id": "amour-2012",
+     "t": "Amour",
+     "y": 2012,
+     "d": "Michael Haneke",
+     "r": "La fin d'une vie à deux, dans un appartement parisien ; Palme d'or."
+    },
+    {
+     "id": "still-alice-2014",
+     "t": "Still Alice",
+     "y": 2014,
+     "d": "Richard Glatzer et Wash Westmoreland",
+     "r": "Julianne Moore, une linguiste qui perd ses mots."
+    },
+    {
+     "id": "l-homme-sans-passe-2002",
+     "t": "L'Homme sans passé",
+     "y": 2002,
+     "d": "Aki Kaurismäki",
+     "r": ""
+    },
+    {
+     "id": "eternal-sunshine-of-the-spotless-mind-2004",
+     "t": "Eternal Sunshine of the Spotless Mind",
+     "y": 2004,
+     "d": "Michel Gondry",
+     "r": ""
+    },
+    {
+     "id": "dark-city-1998",
+     "t": "Dark City",
+     "y": 1998,
+     "d": "Alex Proyas",
+     "r": ""
+    },
+    {
+     "id": "mulholland-drive-2001",
+     "t": "Mulholland Drive",
+     "y": 2001,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "l-annee-derniere-a-marienbad-1961",
+     "t": "L'Année dernière à Marienbad",
+     "y": 1961,
+     "d": "Alain Resnais",
+     "r": ""
+    },
+    {
+     "id": "twin-peaks-the-return-serie-2017",
+     "t": "Twin Peaks : The Return (série)",
+     "y": 2017,
+     "d": "David Lynch",
+     "r": ""
+    },
+    {
+     "id": "vol-au-dessus-d-un-nid-de-coucou-1975",
+     "t": "Vol au-dessus d'un nid de coucou",
+     "y": 1975,
+     "d": "Miloš Forman",
+     "r": "Jack Nicholson contre l'infirmière Ratched : le grand film de l'asile."
+    },
+    {
+     "id": "shutter-island-2010",
+     "t": "Shutter Island",
+     "y": 2010,
+     "d": "Martin Scorsese",
+     "r": "Leonardo DiCaprio enquête dans un asile… et l'enquêteur est le patient."
+    },
+    {
+     "id": "une-vie-volee-1999",
+     "t": "Une vie volée",
+     "y": 1999,
+     "d": "James Mangold",
+     "r": "Winona Ryder et Angelina Jolie ; personnalité borderline, années 1960."
+    },
+    {
+     "id": "shock-corridor-1963",
+     "t": "Shock Corridor",
+     "y": 1963,
+     "d": "Samuel Fuller",
+     "r": "Se faire passer pour fou… jusqu'à le devenir ; quelques scènes en couleur au milieu du noir et blanc."
+    },
+    {
+     "id": "l-echange-2008",
+     "t": "L'Échange",
+     "y": 2008,
+     "d": "Clint Eastwood",
+     "r": "Une mère qui dit que ce n'est pas son fils est internée pour folie ; histoire vraie."
+    },
+    {
+     "id": "le-cabinet-du-docteur-caligari-1920",
+     "t": "Le Cabinet du docteur Caligari",
+     "y": 1920,
+     "d": "Robert Wiene",
+     "r": "Le classique muet aux décors tordus ; la dernière scène se passe à l'asile."
+    },
+    {
+     "id": "la-tete-contre-les-murs-1959",
+     "t": "La Tête contre les murs",
+     "y": 1959,
+     "d": "Georges Franju",
+     "r": "Par le réalisateur des Yeux sans visage ; Charles Aznavour en épileptique."
+    },
+    {
+     "id": "camille-claudel-1915-2013",
+     "t": "Camille Claudel 1915",
+     "y": 2013,
+     "d": "Bruno Dumont",
+     "r": "Juliette Binoche entourée de vraies patientes ; lent et contemplatif."
+    },
+    {
+     "id": "sur-l-adamant-2023",
+     "t": "Sur l'Adamant",
+     "y": 2023,
+     "d": "Nicolas Philibert",
+     "r": "Documentaire lumineux sur une péniche parisienne ; Ours d'or à Berlin."
+    },
+    {
+     "id": "l-armee-des-12-singes-1995",
+     "t": "L'Armée des 12 singes",
+     "y": 1995,
+     "d": "Terry Gilliam",
+     "r": ""
+    },
+    {
+     "id": "ratched-serie-2020",
+     "t": "Ratched (série)",
+     "y": 2020,
+     "d": "Evan Romansky et Ryan Murphy",
+     "r": ""
+    },
+    {
+     "id": "devil-inside-2012",
+     "t": "Devil Inside",
+     "y": 2012,
+     "d": "William Brent Bell",
+     "r": ""
+    },
+    {
+     "id": "american-horror-story-serie-2011",
+     "t": "American Horror Story (série)",
+     "y": 2011,
+     "d": "Ryan Murphy et Brad Falchuk",
+     "r": "Surtout la saison 2, Asylum, dans un asile des années 1960."
+    },
+    {
+     "id": "bug-2006",
+     "t": "Bug",
+     "y": 2006,
+     "d": "William Friedkin",
+     "r": "Dans un motel, un couple se croit infesté d'insectes ; huis clos de plus en plus fou."
+    },
+    {
+     "id": "creatures-celestes-1994",
+     "t": "Créatures célestes",
+     "y": 1994,
+     "d": "Peter Jackson",
+     "r": "Deux adolescentes s'inventent un monde à elles, jusqu'au crime ; histoire vraie."
+    },
+    {
+     "id": "les-blessures-assassines-2000",
+     "t": "Les Blessures assassines",
+     "y": 2000,
+     "d": "Jean-Pierre Denis",
+     "r": "L'affaire des sœurs Papin : deux sœurs enfermées dans un monde à elles."
+    },
+    {
+     "id": "the-lighthouse-2019",
+     "t": "The Lighthouse",
+     "y": 2019,
+     "d": "Robert Eggers",
+     "r": "Deux gardiens de phare isolés perdent pied ensemble, en noir et blanc."
+    },
+    {
+     "id": "le-locataire-1976",
+     "t": "Le Locataire",
+     "y": 1976,
+     "d": "Roman Polanski",
+     "r": "Un locataire se croit persécuté par ses voisins, et devient l'ancienne locataire."
+    },
+    {
+     "id": "conversation-secrete-1974",
+     "t": "Conversation secrète",
+     "y": 1974,
+     "d": "Francis Ford Coppola",
+     "r": "Un spécialiste des écoutes finit par se croire écouté."
+    },
+    {
+     "id": "anomalisa-2015",
+     "t": "Anomalisa",
+     "y": 2015,
+     "d": "Charlie Kaufman et Duke Johnson",
+     "r": "Un homme entend tout le monde avec la même voix et voit partout le même visage (le syndrome de Fregoli), sauf chez une femme ; par Charlie Kaufman."
+    },
+    {
+     "id": "bugonia-2025",
+     "t": "Bugonia",
+     "y": 2025,
+     "d": "Yórgos Lánthimos",
+     "r": ""
+    },
+    {
+     "id": "save-the-green-planet-2003",
+     "t": "Save the Green Planet!",
+     "y": 2003,
+     "d": "Jang Joon-hwan",
+     "r": ""
+    },
+    {
+     "id": "the-truman-show-1998",
+     "t": "The Truman Show",
+     "y": 1998,
+     "d": "Peter Weir",
+     "r": ""
+    },
+    {
+     "id": "pi-1998",
+     "t": "Pi",
+     "y": 1998,
+     "d": "Darren Aronofsky",
+     "r": ""
+    },
+    {
+     "id": "blow-out-1981",
+     "t": "Blow Out",
+     "y": 1981,
+     "d": "Brian De Palma",
+     "r": ""
+    },
+    {
+     "id": "the-game-1997",
+     "t": "The Game",
+     "y": 1997,
+     "d": "David Fincher",
+     "r": ""
+    },
+    {
+     "id": "le-nombre-23-2007",
+     "t": "Le Nombre 23",
+     "y": 2007,
+     "d": "Joel Schumacher",
+     "r": ""
+    },
+    {
+     "id": "the-thing-1982",
+     "t": "The Thing",
+     "y": 1982,
+     "d": "John Carpenter",
+     "r": ""
+    },
+    {
+     "id": "under-the-silver-lake-2018",
+     "t": "Under the Silver Lake",
+     "y": 2018,
+     "d": "David Robert Mitchell",
+     "r": ""
+    },
+    {
+     "id": "l-invasion-des-profanateurs-de-sepultures-1956",
+     "t": "L'Invasion des profanateurs de sépultures",
+     "y": 1956,
+     "d": "Don Siegel",
+     "r": ""
+    },
+    {
+     "id": "fenetre-sur-cour-1954",
+     "t": "Fenêtre sur cour",
+     "y": 1954,
+     "d": "Alfred Hitchcock",
+     "r": ""
+    },
+    {
+     "id": "rosemary-s-baby-1968",
+     "t": "Rosemary's Baby",
+     "y": 1968,
+     "d": "Roman Polanski",
+     "r": ""
+    },
+    {
+     "id": "1984-1984",
+     "t": "1984",
+     "y": 1984,
+     "d": "Michael Radford",
+     "r": ""
+    },
+    {
+     "id": "sleep-2023",
+     "t": "Sleep",
+     "y": 2023,
+     "d": "Jason Yu",
+     "r": ""
+    },
+    {
+     "id": "the-witch-2015",
+     "t": "The Witch",
+     "y": 2015,
+     "d": "Robert Eggers",
+     "r": ""
+    },
+    {
+     "id": "zodiac-2007",
+     "t": "Zodiac",
+     "y": 2007,
+     "d": "David Fincher",
+     "r": ""
+    }
+   ],
+   "parties": [
+    {
+     "titre": "Schizophrénie et psychoses",
+     "aide": "Entendre des voix, voir ce qui n'existe pas, ne plus savoir ce qui est réel.",
+     "ids": [
+      "un-homme-d-exception-2001",
+      "spider-2002",
+      "take-shelter-2011",
+      "clean-shaven-1993",
+      "repulsion-1965",
+      "the-voices-2014",
+      "le-soliste-2009",
+      "family-life-1971",
+      "benny-et-joon-1993",
+      "saint-maud-2019",
+      "joker-2019",
+      "une-fiancee-pas-comme-les-autres-2007"
+     ]
+    },
+    {
+     "titre": "Identités multiples",
+     "aide": "Plusieurs personnes dans une seule tête : le trouble dissociatif de l'identité, et ses doubles.",
+     "ids": [
+      "identity-2003",
+      "split-2016",
+      "psychose-1960",
+      "fight-club-1999",
+      "les-trois-visages-d-eve-1957",
+      "l-esprit-de-cain-1992",
+      "peur-primale-1996",
+      "perfect-blue-1997",
+      "docteur-jekyll-et-m-hyde-1931",
+      "persona-1966",
+      "the-double-2013"
+     ]
+    },
+    {
+     "titre": "Autisme et trouble de l'attention/hyperactivité",
+     "aide": "L'autisme et le trouble du déficit de l'attention avec ou sans hyperactivité : d'autres façons de percevoir le monde.",
+     "ids": [
+      "mary-et-max-2009",
+      "the-reason-i-jump-2020",
+      "mommy-2014",
+      "elle-s-appelle-sabine-2007",
+      "temple-grandin-2010",
+      "ben-x-2007",
+      "hors-normes-2019",
+      "le-monde-de-nathan-2014",
+      "thumbsucker-2005",
+      "rain-man-1988",
+      "barfi-2012",
+      "simple-simon-2010",
+      "life-animated-2016",
+      "stand-clear-of-the-closing-doors-2013",
+      "keep-the-change-2017",
+      "dina-2017",
+      "mr-wolff-2016"
+     ]
+    },
+    {
+     "titre": "Troubles alimentaires",
+     "aide": "Anorexie, boulimie, compulsions : le corps au centre de la souffrance.",
+     "ids": [
+      "swallow-2019",
+      "to-the-bone-2017",
+      "thin-2006",
+      "superstar-the-karen-carpenter-story-1987",
+      "black-swan-2010",
+      "life-is-sweet-1990",
+      "the-whale-2022",
+      "spencer-2021"
+     ]
+    },
+    {
+     "titre": "Mythomanie et mensonges",
+     "aide": "Des menteurs pathologiques et des imposteurs, pris dans leurs propres histoires.",
+     "ids": [
+      "l-adversaire-2002",
+      "l-emploi-du-temps-2001",
+      "the-imposter-2012",
+      "le-talentueux-mr-ripley-1999",
+      "plein-soleil-1960",
+      "le-mystificateur-2003",
+      "la-fille-du-rer-2009",
+      "arrete-moi-si-tu-peux-2002",
+      "big-fish-2003",
+      "rien-ne-va-plus-1997",
+      "les-associes-2003",
+      "le-retour-de-martin-guerre-1982",
+      "close-up-1990",
+      "the-visit-2015",
+      "le-dernier-exorcisme-2010"
+     ]
+    },
+    {
+     "titre": "Dépression et mélancolie",
+     "aide": "La tristesse qui ne passe pas, le deuil, le vide : des films justes sur la dépression.",
+     "ids": [
+      "melancholia-2011",
+      "le-feu-follet-1963",
+      "the-hours-2002",
+      "des-gens-comme-les-autres-1980",
+      "manchester-by-the-sea-2016",
+      "aftersun-2022",
+      "vice-versa-2015",
+      "mister-babadook-2014",
+      "synecdoche-new-york-2008",
+      "trois-couleurs-bleu-1993",
+      "in-the-bedroom-2001",
+      "drive-my-car-2021",
+      "antichrist-2009",
+      "dogs-don-t-wear-pants-2019",
+      "la-haut-2009",
+      "le-dernier-voyage-de-tanya-2010",
+      "the-bothersome-man-2006",
+      "jackie-2016"
+     ]
+    },
+    {
+     "titre": "Bipolarité et sautes d'humeur",
+     "aide": "De l'euphorie à l'effondrement : vivre avec un trouble bipolaire, ou à côté.",
+     "ids": [
+      "les-intranquilles-2021",
+      "une-femme-sous-influence-1974",
+      "happiness-therapy-2012",
+      "daddy-cool-2014"
+     ]
+    },
+    {
+     "titre": "Phobies et rituels",
+     "aide": "Peurs qui enferment, rituels qu'on ne peut pas s'empêcher de faire : phobies et troubles obsessionnels compulsifs.",
+     "ids": [
+      "aviator-2004",
+      "toc-toc-2017",
+      "pour-le-pire-et-pour-le-meilleur-1997",
+      "les-associes-2003",
+      "copycat-1995",
+      "sueurs-froides-1958",
+      "safe-1995",
+      "quoi-de-neuf-bob-1991",
+      "simple-simon-2010"
+     ]
+    },
+    {
+     "titre": "Traumatismes",
+     "aide": "Après la guerre, l'accident ou la captivité : quand le passé revient sans prévenir.",
+     "ids": [
+      "room-2015",
+      "valse-avec-bachir-2008",
+      "voyage-au-bout-de-l-enfer-1978",
+      "les-plus-belles-annees-de-notre-vie-1946",
+      "etat-second-1993",
+      "l-echelle-de-jacob-1990",
+      "taxi-driver-1976",
+      "rambo-1982",
+      "the-machinist-2004",
+      "le-silence-des-agneaux-1991",
+      "will-hunting-1997",
+      "twin-peaks-fire-walk-with-me-1992",
+      "le-patient-anglais-1996",
+      "mystic-river-2003",
+      "apocalypse-now-1979",
+      "johnny-s-en-va-t-en-guerre-1971",
+      "au-revoir-la-haut-2017",
+      "the-master-2012",
+      "smile-2022",
+      "nurse-betty-2000",
+      "leave-no-trace-2018",
+      "the-brutalist-2024",
+      "requiem-pour-un-massacre-1985"
+     ]
+    },
+    {
+     "titre": "Personnalités troubles",
+     "aide": "Amours fusionnelles, manipulateurs, êtres sans empathie : les troubles de la personnalité.",
+     "ids": [
+      "37-2-le-matin-1986",
+      "il-faut-qu-on-parle-de-kevin-2011",
+      "night-call-2014",
+      "gone-girl-2014",
+      "jf-partagerait-appartement-1992",
+      "liaison-fatale-1987",
+      "la-pianiste-2001",
+      "american-psycho-2000",
+      "whiplash-2014",
+      "stoker-2013",
+      "le-silence-des-agneaux-1991",
+      "misery-1990",
+      "phantom-thread-2017",
+      "the-servant-1963",
+      "foxcatcher-2014",
+      "creep-2014",
+      "qu-est-il-arrive-a-baby-jane-1962",
+      "le-pouvoir-du-chien-2021",
+      "blue-velvet-1986",
+      "the-master-2012",
+      "the-love-witch-2016",
+      "tar-2022"
+     ]
+    },
+    {
+     "titre": "Addictions",
+     "aide": "Alcool, drogues, jeu : la dépendance vue de l'intérieur.",
+     "ids": [
+      "requiem-for-a-dream-2000",
+      "trainspotting-1996",
+      "le-poison-1945",
+      "drunk-2020",
+      "leaving-las-vegas-1995",
+      "panique-a-needle-park-1971",
+      "uncut-gems-2019",
+      "enter-the-void-2009",
+      "le-festin-nu-1991",
+      "le-feu-follet-1963",
+      "oslo-31-aout-2011",
+      "withnail-and-i-1987",
+      "berlin-calling-2008",
+      "jusqu-au-bout-du-monde-1991",
+      "the-master-2012",
+      "boogie-nights-1997",
+      "the-brutalist-2024"
+     ]
+    },
+    {
+     "titre": "Mémoire et démence",
+     "aide": "Oublier les visages, les jours, soi-même : maladie d'Alzheimer, amnésie et démence.",
+     "ids": [
+      "the-father-2020",
+      "relic-2020",
+      "loin-d-elle-2006",
+      "memento-2000",
+      "amour-2012",
+      "still-alice-2014",
+      "l-homme-sans-passe-2002",
+      "eternal-sunshine-of-the-spotless-mind-2004",
+      "dark-city-1998",
+      "mulholland-drive-2001",
+      "l-annee-derniere-a-marienbad-1961",
+      "twin-peaks-the-return-serie-2017"
+     ]
+    },
+    {
+     "titre": "Hôpital psychiatrique",
+     "aide": "Asiles, cliniques et internements : soigner, enfermer, ou les deux.",
+     "ids": [
+      "vol-au-dessus-d-un-nid-de-coucou-1975",
+      "shutter-island-2010",
+      "une-vie-volee-1999",
+      "shock-corridor-1963",
+      "l-echange-2008",
+      "le-cabinet-du-docteur-caligari-1920",
+      "la-tete-contre-les-murs-1959",
+      "camille-claudel-1915-2013",
+      "sur-l-adamant-2023",
+      "l-armee-des-12-singes-1995",
+      "une-femme-sous-influence-1974",
+      "family-life-1971",
+      "thin-2006",
+      "elle-s-appelle-sabine-2007",
+      "ratched-serie-2020",
+      "berlin-calling-2008",
+      "devil-inside-2012",
+      "happiness-therapy-2012",
+      "american-horror-story-serie-2011"
+     ]
+    },
+    {
+     "titre": "Paranoïa et folie à deux",
+     "aide": "Se croire espionné, menacé, infesté, et entraîner quelqu'un d'autre dans son délire.",
+     "sous": [
+      {
+       "titre": "Se croire surveillé",
+       "ids": [
+        "conversation-secrete-1974",
+        "blow-out-1981",
+        "the-truman-show-1998",
+        "1984-1984",
+        "under-the-silver-lake-2018",
+        "the-game-1997",
+        "fenetre-sur-cour-1954",
+        "zodiac-2007",
+        "le-nombre-23-2007"
+       ]
+      },
+      {
+       "titre": "Folie à deux",
+       "ids": [
+        "bug-2006",
+        "creatures-celestes-1994",
+        "les-blessures-assassines-2000",
+        "the-lighthouse-2019",
+        "bugonia-2025",
+        "save-the-green-planet-2003",
+        "sleep-2023",
+        "the-witch-2015"
+       ]
+      },
+      {
+       "titre": "Esprits assiégés",
+       "ids": [
+        "le-locataire-1976",
+        "the-double-2013",
+        "anomalisa-2015",
+        "pi-1998",
+        "the-machinist-2004",
+        "take-shelter-2011",
+        "clean-shaven-1993",
+        "l-armee-des-12-singes-1995",
+        "rosemary-s-baby-1968",
+        "perfect-blue-1997"
+       ]
+      },
+      {
+       "titre": "Invasions",
+       "ids": [
+        "the-thing-1982",
+        "l-invasion-des-profanateurs-de-sepultures-1956"
+       ]
+      }
+     ]
     }
    ]
   }
@@ -24483,6 +26829,87 @@
     "satire"
    ],
    "fiab": "à vérifier"
+  },
+  "pride-2014": {
+   "p": "Londres, été 1984. Pendant la grande grève des mineurs contre Margaret Thatcher, de jeunes militants gays et lesbiens décident de collecter de l'argent pour un village minier du pays de Galles. L'accueil est d'abord glacial, puis tout change. D'après une histoire vraie.",
+   "c": "Royaume-Uni",
+   "k": [
+    "comedie",
+    "histoire-vraie",
+    "amour",
+    "doux"
+   ],
+   "mv": "realisme-social-britannique",
+   "e": 6,
+   "duree": 117,
+   "av": [],
+   "th": [
+    "solidarité",
+    "grève",
+    "droits LGBT"
+   ],
+   "fiab": "à vérifier"
+  },
+  "harvey-milk-2008": {
+   "p": "San Francisco, années 1970. Harvey Milk (Sean Penn), New-Yorkais installé dans le quartier de Castro, devient la figure du mouvement gay et le premier élu ouvertement homosexuel de Californie, avant d'être assassiné en 1978 par un ancien collègue du conseil municipal.",
+   "c": "États-Unis",
+   "k": [
+    "histoire-vraie",
+    "amour",
+    "injustice"
+   ],
+   "mv": "independant-americain",
+   "e": 6,
+   "duree": 128,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "droits LGBT",
+    "élection",
+    "assassinat politique"
+   ],
+   "fiab": "à vérifier"
+  },
+  "argentina-1985-2022": {
+   "p": "1985, deux ans après la fin de la dictature. Le procureur Julio Strassera (Ricardo Darín) et son jeune adjoint Luis Moreno Ocampo doivent juger les généraux de la junte. Menacés, sans moyens, ils montent une équipe de jeunes juristes et recueillent les témoignages des victimes : le premier grand procès d'une dictature devant un tribunal civil.",
+   "c": "Argentine",
+   "k": [
+    "histoire-vraie",
+    "suspense",
+    "injustice"
+   ],
+   "mv": "argentin",
+   "e": 6,
+   "duree": 141,
+   "av": [],
+   "th": [
+    "procès",
+    "junte",
+    "témoignages"
+   ],
+   "fiab": "à vérifier"
+  },
+  "lumumba-2000": {
+   "p": "Congo, 1960. Patrice Lumumba, ancien employé des postes devenu tribun, mène son pays à l'indépendance face à la Belgique et devient Premier ministre. En quelques mois, sécession du Katanga, mutineries, Guerre froide : il est renversé, livré à ses ennemis et assassiné en janvier 1961, avec la complicité des Occidentaux.",
+   "c": "France, Belgique, Allemagne, Haïti",
+   "k": [
+    "histoire-vraie",
+    "histoire",
+    "injustice"
+   ],
+   "mv": "auteur-monde",
+   "e": 6,
+   "duree": 116,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "indépendance",
+    "assassinat politique",
+    "Guerre froide"
+   ],
+   "fiab": "à vérifier"
   }
  },
  "familles": {
@@ -25529,7 +27956,11 @@
   "l-image-manquante-2013": "52030",
   "un-homme-dans-la-foule-1957": "12241",
   "bienvenue-mister-chance-1979": "21043",
-  "sans-filtre-2022": "11233"
+  "sans-filtre-2022": "11233",
+  "pride-2014": "10036",
+  "harvey-milk-2008": "11053",
+  "argentina-1985-2022": "02242",
+  "lumumba-2000": "12232"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }

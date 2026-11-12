@@ -132,6 +132,7 @@ def run():
             page.locator("#qx").click()
 
             # Boussole : questionnaire déjà rempli → questions repliées ; « Pas vu » s'enregistre tout de suite.
+            cf.open_more(page)
             page.locator("#ccQuiz").click()
             assert page.locator("#qzPanel .qz-ok").is_visible() and page.locator('#qzPanel [data-qz="sombre"]').count() == 0
             fid = page.locator("#qzPanel [data-qzf]").first.get_attribute("data-qzf")

@@ -231,11 +231,17 @@ Thelma et Louise, Paris Is Burning, Les Fils de l'homme, Utøya 22 juillet, John
 Apocalypse Now, À l'Ouest, rien de nouveau, Voyage au bout de l'enfer, Cold War, La Favorite, Tár, Mishima,
 Citizen Kane, There Will Be Blood.
 
-Sortis de « Politique », car grand public sans être assez forts (ils restent au catalogue) : La Ligne verte,
-V pour Vendetta, Second tour, La Vague (rangé dans « Années 2000 ») et Mississippi Burning (« Avant 1990 »).
-Retirés du catalogue le jour même, jugés trop classiques : Pride, Harvey Milk, Argentina, 1985, Lumumba.
+Le 12 novembre au soir, à la demande de Licia, les films grand public jugés moyens reviennent dans la liste
+(c'est à chacun de choisir s'il les aime) : La Ligne verte, V pour Vendetta, Second tour, La Vague, Mississippi
+Burning, Pride, Harvey Milk, Argentina, 1985 et Lumumba. Le catalogue a aussi été relu en entier pour ranger dans
+« Politique » les films qui en parlent déjà : Les Roseaux sauvages, les deux OSS 117 coloniaux, La vie est belle,
+M le maudit, Import/Export, S'en fout la mort, Atlantique, The Brutalist, Les Petites Marguerites, Barbie,
+Pauvres Créatures, Alexandre Nevski, Honeyland, Maurice's Bar, La Casa Lobo, West Side Story, Shock Corridor,
+Naissance d'une nation (signalé comme film de propagande raciste, document historique), Chocolat (2016), Les Misérables
+(1934), La Règle du jeu, The Servant, Snowpiercer, Au-delà des montagnes, First Cow, Everybody in the Place, Threads,
+Un long dimanche de fiançailles, Au revoir là-haut, Chinatown.
 
-« Politique » passe de 45 à 145 films. En tête, « Courants politiques » : chaque grande famille d'idées vue
+« Politique » passe de 45 à 185 films. En tête, « Courants politiques » : chaque grande famille d'idées vue
 de l'intérieur, par ceux qui y croient, avec ses élans et ses dérives, dans l'ordre alphabétique pour n'en
 favoriser aucune, de trois à cinq films chacune : Anarchisme, Communisme, Conservatisme et monarchie,
 Démocratie libérale, Écologie, Extrême droite et fascisme, Féminisme, Libéralisme et marché, Mouvements LGBT+,
@@ -272,12 +278,11 @@ Autres grands thèmes musicaux trouvés dans le catalogue :
   Barry Lyndon, Raging Bull, Melancholia, Le Feu follet, Elephant, Funny Games, Je vous salue, Marie…
 
 Un film peut maintenant être dans plusieurs sous-catégories à la fois (voir `SOUS-CATEGORIES.md`).
-À la demande de Licia, seuls restent les films dont la musique a un vrai intérêt : 16 films rangés d'abord
-au seul nom de leur compositeur, à la musique discrète ou dans des films moyens, ont été retirés de la liste
-(Licorice Pizza, Citizenfour, Prisoners, Spider, Seven, Le Faux Coupable, Garde à vue, Le Mystère Silkwood,
-Being John Malkovich, Barton Fink, Sexe, mensonges et vidéo, La Voix humaine, Strange Way of Life,
-Je suis toujours là, Le Soliste, Berlin Calling). « Musique de film » passe de 144 à 245 films, chacun avec
-une phrase sur sa musique.
+Tous les films du catalogue signés par ces compositeurs y sont rangés (vérifié avec le générique TMDB de chaque film) ;
+quand leur musique est discrète, brève, ou n'est qu'un morceau existant, la petite note le dit d'abord (« Musique
+discrète : … », « Peu de musique originale : … », « Musique existante : … »). Exception : La Chinoise, que TMDB attribue
+à Michel Legrand sans que le générique du film le confirme. « Musique de film » passe de 144 à 282 films, chacun
+avec une phrase sur sa musique.
 
 ## Pistes pour la suite
 

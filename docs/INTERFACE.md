@@ -110,3 +110,32 @@ s'arrêtait quand on continuait de parler ; sur ordinateur, elle ne se lançait 
 
 Essai : `tests/cineclub_idees.py` simule une reconnaissance qui répète les mots comme Android,
 une pause, l'arrêt et un micro refusé. La dictée réelle reste à essayer sur le Huawei et le MateBook.
+
+## Accueil plus simple et avis de recherche (12 novembre 2026)
+
+Idées de Licia du 10 novembre, pour qu'une personne âgée ou très jeune ne se perde pas :
+
+- En-tête : « ⚙ Réglages » en haut à droite (taille, ambiance, langue, installer l'appli) ; le bouton soleil, qui
+  changeait l'écran d'un coup, est retiré (l'ambiance se choisit dans Réglages). « ← Retour » apparaît en haut à gauche
+  dès qu'on a changé d'affichage, en plus du bouton du bas. Un Retour de trop à l'accueil (navigateur ou téléphone)
+  ne fait plus quitter le site : un message propose d'appuyer encore pour le quitter.
+- Compteur : seulement « répondus » en haut ; les vus, oubliés et notés sont en tête de « Mon carnet ».
+- Santé mentale : n'est plus une catégorie à part, c'est un thème (`s54-sante-mentale`) avec une sous-catégorie par
+  trouble ; les anciennes listes sont cachées (`cache: true`) et leurs films gardés.
+- Dans le panneau d'une catégorie, toucher une liste découpée ouvre ses sous-catégories juste dessous, puis leurs
+  sous-catégories ; chaque case donne son nombre de films. Les envies et leurs nuances aussi.
+- Express, Boussole, Dérive et Ciel sont rangés derrière « ✨ Autres façons de choisir », chacun avec une phrase.
+- Visite guidée en deux bulles au lieu de trois ; l'écran du premier affichage renvoie à « Réglages ».
+- Pied de page : « 📤 Envoyer le Ciné-club à un ami » (partage du téléphone, sinon lien copié), « ✉️ Écrire à l'équipe »
+  (la boîte à idées s'ouvre, prête pour un message), et « 💛 Soutenir le Ciné-club », caché tant que `DON_URL` est vide.
+- Boutons : coins à peine arrondis et bord du bas plus marqué au lieu des pilules aux contours fins.
+
+Avis de recherche (idée 4) : dans la communauté, onglet « 🔎 Avis de recherche ». On décrit un film, une série, un épisode
+ou un documentaire dont on a oublié le titre ; pendant qu'on écrit, les films du catalogue qui ressemblent à la
+description s'affichent. Les autres membres répondent « 💡 Je crois savoir » avec un titre ; la personne est prévenue
+(compteur sur « Communauté » et sur l'onglet), peut ouvrir le film s'il est au catalogue ou le proposer s'il n'y est pas,
+puis retirer son avis. Les avis et réponses sont des messages (`type: "avis"` à tout le monde, `type: "avis-rep"` à la
+personne) : les règles Firebase actuelles suffisent. Une recherche sans résultat propose aussi de lancer un avis.
+Quand on ajoute un film, un champ « Autres indices » (cinéaste, acteur, genre, détail…) accompagne le titre et l'année.
+
+Essai : `tests/cineclub_avis.py`.

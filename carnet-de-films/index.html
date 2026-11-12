@@ -1353,6 +1353,55 @@ html.sky-on #rsheet .plf-b button{min-height:42px;}
 html.sky-on #rsheet{z-index:50;}
 @media(max-width:600px){.sky-tools{left:12px;right:12px;gap:8px;}.sky-tools h2{font-size:25px;}.sky-tools #skyClose{margin-left:auto;}.sky-search{order:3;width:100%;}.sky-tools select{order:4;max-width:100%;}.sky-caption{left:12px;right:150px;}.sky-zoom{right:12px;gap:4px;}.sky-zoom button{min-width:40px;}}
 @media(prefers-reduced-motion:reduce){.sky *{scroll-behavior:auto!important;}}
+
+/* 12 novembre : en-tête lisible. « ← Retour » en haut à gauche dès qu'on a changé d'affichage,
+   « ⚙ Réglages » en haut à droite (taille, ambiance, langue…) ; le bouton soleil, qui changeait l'écran d'un coup, est retiré. */
+.ambb{display:none!important;}
+.aab{left:auto;right:-6px;width:auto;height:40px;padding:0 13px;border-radius:8px;gap:6px;display:inline-flex;align-items:center;font:700 14.5px/1 var(--font);letter-spacing:0;white-space:nowrap;}
+.aab-ic{font-size:17px;line-height:1;}
+.aamenu{left:auto;right:-6px;top:40px;}
+.topback{position:absolute;left:-6px;top:-16px;z-index:5;height:40px;padding:0 14px;display:inline-flex;align-items:center;gap:6px;font:700 15px/1 var(--font);
+  color:var(--k-s-FFFFFF);background:var(--k-s-8A4A12);border:0;border-radius:8px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25);}
+.topback span{font-size:20px;line-height:1;}
+.topback[hidden]{display:none;}
+@media (max-width:520px){header.top{padding-top:46px;} .aab,.topback{top:-4px;} .aamenu{top:40px;}}
+/* Le compteur garde seulement « répondus » ; les vus, oubliés et notés sont dans Mon carnet. */
+.pn-st{margin:0 0 10px;font-size:14px;color:var(--fi,var(--muted));}
+/* Sous-catégories ouvertes juste sous la liste touchée, puis leurs sous-catégories juste dessous. */
+.sx-open{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:7px;padding:10px;margin:-2px 0 4px;border-radius:8px;background:var(--k-s-FFFFFF59);border:1px dashed var(--fc,var(--line));}
+.sx-open .sx-in{flex-basis:100%;display:flex;flex-wrap:wrap;gap:7px;padding:8px 0 4px 14px;border-left:3px solid var(--fc,var(--line));}
+.sx-c{display:inline-flex;align-items:center;gap:6px;font:600 14px/1.2 var(--font);color:var(--ink);background:var(--paper);border:1px solid var(--fc,var(--line));border-bottom-width:3px;border-radius:6px;padding:8px 11px;cursor:pointer;text-align:left;}
+.sx-c[aria-expanded="true"]{background:var(--fb,var(--paper));}
+.sx-c .sc{font-weight:500;color:var(--muted);}
+.sx-c.sx-all{font-weight:700;}
+.sub .sc .sx-ar{margin-left:4px;color:var(--muted);}
+@media (max-width:700px){
+  .bar .ccbar #ccMbr,.bar .ccbar #ccMe{grid-column:span 3;}
+  .bar .ccbar #ccMoreB,.bar .ccbar .ccmore{grid-column:1/-1;}
+  .bar .ccbar .ccmore .ccb{grid-column:auto;font-size:13px;padding-inline:8px;}
+}
+/* Pied de page : partager le Ciné-club, écrire à l'équipe. */
+.ccfoot{display:grid;gap:10px;margin:28px 0 8px;padding-top:16px;border-top:1px solid var(--line);}
+@media (min-width:640px){.ccfoot{grid-template-columns:1fr 1fr;}}
+.ccf-b{display:grid;gap:3px;text-align:left;padding:12px 14px;font:400 13.5px/1.3 var(--font);color:var(--muted);background:var(--paper);border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;cursor:pointer;}
+.ccf-b b{font-size:15.5px;color:var(--ink);}
+/* Autres façons de choisir un film : rangées derrière un seul bouton, chacune expliquée en une phrase. */
+.ccmore{flex-basis:100%;display:grid;gap:8px;padding:10px;border:1px dashed var(--line);border-radius:8px;}
+.ccmore[hidden]{display:none;}
+.ccm-it{display:flex;align-items:center;gap:10px;}
+.ccm-it .chip{flex:none;min-width:8.2em;justify-content:center;}
+.ccm-d{font-size:13.5px;line-height:1.3;color:var(--muted);text-align:left;}
+/* Boutons moins « appli d'IA » : plus de pilules aux contours fins, des coins à peine arrondis
+   et un bord du bas plus marqué, comme une touche ou un ticket. */
+.addq-b,.pl-open,.chip,.sub,.allb,.shb,.dr-back,.dr-clear,.tp-x,.mvx,.lst,.plb,.fsh,.shopt,.av-b,.padd,.pdel,.plf-ok,.plf-no,.cmb,.idb,.dice,.fbtn,.seg,.subp select,.totop,.aamenu button,.mini,.minis.cats .mini .sq,.c-who,.c-nom,.c-in,.np-in{border-radius:6px!important;}
+.chip,.sub,.allb,.shb,.plf-no,.shopt,.av-b,.mvx,.tp-x,.dr-back,.fbtn,.mini,.minis.cats .mini .sq,.idb{border-width:1px!important;border-bottom-width:3px!important;}
+.chip:active,.sub:active,.allb:active,.plf-no:active,.mini:active,.sx-c:active,.ccf-b:active{transform:translateY(1px);}
+
+/* Avis de recherche (communauté) */
+.cthread.avis .av-t{margin:6px 0 8px;font-style:italic;line-height:1.4;}
+.avf{display:grid;gap:8px;margin:8px 0 14px;}
+.crep.avr{display:grid;gap:6px;}
+.addq .addq-b + .addq-b{margin-top:6px;}
 </style>
 <script>
 // Ambiances : jour, crépuscule ou néon selon la hauteur du soleil (ou au choix), appliquées avant le premier affichage.
@@ -1490,7 +1539,8 @@ html.sky-on #rsheet{z-index:50;}
   <header class="top">
     <h1><span class="nvh">Ciné-club</span><span class="nlet" aria-hidden="true"><span class="nl">C</span><span class="nl">i</span><span class="nl">n</span><span class="nl">é</span><span class="nl">-</span><span class="nl">c</span><span class="nl">l</span><span class="nl">u</span><span class="nl">b</span></span></h1>
     <div class="nbulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <button type="button" class="nuitb aab" id="aab" aria-haspopup="true" aria-expanded="false" aria-controls="aamenu" aria-label="Affichage" title="Affichage">Aa</button>
+    <button type="button" class="topback" id="topBack" hidden aria-label="Revenir à l'affichage précédent"><span aria-hidden="true">←</span> Retour</button>
+    <button type="button" class="nuitb aab" id="aab" aria-haspopup="true" aria-expanded="false" aria-controls="aamenu" aria-label="Réglages : taille du texte, ambiance, langue, installer l'appli" title="Réglages"><span class="aab-ic" aria-hidden="true">⚙</span> Réglages</button>
     <div class="aamenu" id="aamenu" role="group" aria-label="Affichage" hidden>
       <button type="button" class="aa-app" id="appInstall" data-appinst="1" hidden><b>📲 Installer l'appli</b><span>Sur ton téléphone, ta tablette ou ton ordinateur</span></button>
       <p class="aa-h">Taille</p>
@@ -1516,7 +1566,7 @@ html.sky-on #rsheet{z-index:50;}
       <button type="button" class="aa-intro" data-guide="1">🧭 Revoir la visite guidée</button>
       <button type="button" class="aa-intro" data-bugbtn="1">🐞 Signaler un bug</button>
     </div>
-    <button type="button" class="nuitb ambb" id="nuitb" aria-label="Ambiance" title="Ambiance"><span id="ambIc" class="amb-ic"></span><i class="amb-a" aria-hidden="true">A</i></button>
+    <button type="button" class="nuitb ambb" id="nuitb" hidden aria-label="Ambiance" title="Ambiance"><span id="ambIc" class="amb-ic"></span><i class="amb-a" aria-hidden="true">A</i></button>
 </header>
 
   <div class="bar">
@@ -1544,6 +1594,11 @@ html.sky-on #rsheet{z-index:50;}
   <nav class="toc" id="toc" aria-label="Aller à une liste"></nav>
   <nav class="mvnav" id="mvnav" aria-label="Choisir un mouvement cinématographique" hidden></nav>
   <main id="main"><p class="notice">Chargement de la liste de films…</p></main>
+  <footer class="ccfoot" id="ccFoot">
+    <button type="button" class="ccf-b" data-shareapp="1"><b>📤 Envoyer le Ciné-club à un ami</b><span>Le lien pour l'ouvrir et l'installer sur son téléphone</span></button>
+    <button type="button" class="ccf-b" data-contact="1"><b>✉️ Écrire à l'équipe du Ciné-club</b><span>Une idée, un souci, une question</span></button>
+    <button type="button" class="ccf-b" data-don="1" hidden><b>💛 Soutenir le Ciné-club</b><span>Une cagnotte, seulement pour améliorer la plateforme</span></button>
+  </footer>
 </div>
 <section class="sky" id="sky" role="dialog" aria-modal="true" aria-labelledby="skyTitle" hidden>
   <canvas id="skyCanvas" tabindex="0" role="img" aria-label="Ciel de films. La recherche permet de choisir une étoile ; les flèches déplacent le ciel et les boutons changent le zoom."></canvas>
@@ -1570,7 +1625,7 @@ html.sky-on #rsheet{z-index:50;}
       <button type="button" class="aa-sw" data-iopt="lecture" role="switch" aria-checked="false"><b>Lecture facilitée</b><span>Lettres espacées</span></button>
     </div>
     <button type="button" class="ch-go" id="chGo">Entrer dans le cinéma ›</button>
-    <p class="ch-n">Modifiable plus tard avec « Aa ».</p>
+    <p class="ch-n">Modifiable plus tard dans « ⚙ Réglages », en haut à droite.</p>
     <button type="button" class="ch-app" id="appInstall2" data-appinst="1" hidden>📲 Installer l'appli Ciné-club</button>
   </div>
   <button type="button" class="intro-x" id="introX">Passer ›</button>
@@ -2053,6 +2108,9 @@ html.sky-on #rsheet{z-index:50;}
     }, function(){});
   }
   function unread(){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && !CC.hidden("msg", x.id, x.from); }).length; }
+  // Avis de recherche : un film dont on a oublié le titre, décrit à tout le monde ; les réponses arrivent comme des conseils.
+  function isAvis(x){ return x.type === "avis" || x.type === "avis-rep"; }
+  function unreadOf(av){ return Object.keys(MSG).filter(function(k){ var x = MSG[k]; return x.to === CC.uid && !x.lu && isAvis(x) === av && !CC.hidden("msg", x.id, x.from); }).length; }
   function comRefresh(){ if (!$("msheet").hidden) renderCom(); }
 
   // Fils de conversation : un par film et par personne.
@@ -2061,6 +2119,7 @@ html.sky-on #rsheet{z-index:50;}
     Object.keys(MSG).forEach(function(k){
       var x = MSG[k], other = x.from === CC.uid ? x.to : x.from;
       if (x.from !== CC.uid && x.to !== CC.uid && x.to !== "*") return;
+      if (isAvis(x)) return;
       if (x.to === "*" && x.from !== CC.uid && (inBulle(x.from) || me().bulle)) return;
       if (CC.hidden("msg", x.id, x.from === CC.uid ? "" : x.from)) return;
       var key = x.film + "|" + other, t = T[key] = T[key] || { key:key, film:x.film, titre:x.titre, annee:x.annee, other:other, list:[], last:"" };
@@ -2069,8 +2128,8 @@ html.sky-on #rsheet{z-index:50;}
     return Object.keys(T).map(function(k){ var t = T[k]; t.list.sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); }); return t; })
       .sort(function(a, b){ return b.last.localeCompare(a.last); });
   }
-  function markRead(){
-    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.to === CC.uid && !x.lu) { x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); } });
+  function markRead(av){
+    Object.keys(MSG).forEach(function(k){ var x = MSG[k]; if (x.to === CC.uid && !x.lu && isAvis(x) === !!av) { x.lu = true; fs.collection("messages").doc(x.id).update({ lu:true }).catch(function(){}); } });
     paintBar();
   }
 
@@ -2116,9 +2175,10 @@ html.sky-on #rsheet{z-index:50;}
   }
 
   function tabsHtml(){
-    var n = unread(), bulle = me().bulle;
+    var n = unreadOf(false), na = unreadOf(true), bulle = me().bulle;
     var t = [["membres", "Membres"], ["pourmoi", "Pour moi" + (n && !bulle ? " · " + n : "")]];
     if (!bulle) t.push(["fil", "Fil"]);
+    if (!bulle) t.push(["avis", "🔎 Avis de recherche" + (na ? " · " + na : "")]);
     if (CC.soiree) t.push(["soiree", "Soirée ciné"]);
     return '<div class="ctabs" role="tablist">' + t.map(function(x){ return '<button type="button" class="chip" role="tab" data-ctab="' + x[0] + '" aria-selected="' + (TAB === x[0]) + '" aria-pressed="' + (TAB === x[0]) + '">' + esc(x[1]) + '</button>'; }).join("") + '</div>';
   }
@@ -2144,6 +2204,88 @@ html.sky-on #rsheet{z-index:50;}
         (first.from !== CC.uid ? flagBtn("msg", first.id, first.from, first.mot).replace('class="ccflag"', 'class="ccflag lab"').replace('>⚑<', '>⚑ Signaler<') : "") + '</div></div>';
     }).join("");
   }
+  var AV = { form:false, kind:"un film", texte:"", rep:"", t:"", y:"", mot:"" }, AV_T = null;
+  var AV_KINDS = [["un film", "Un film"], ["une série", "Une série"], ["un épisode", "Un épisode"], ["un documentaire", "Un documentaire"], ["un dessin animé", "Un dessin animé"], ["un court métrage", "Un court métrage"]];
+  CC.openAvis = function(){ if (!CC.me) { openLogin(); return; } AV.form = true; CC.openCom("avis"); };
+  function avisSugg(){
+    var r = CC.findByClues ? CC.findByClues(AV.texte) : [];
+    return r.length ? '<div class="mh">Dans le catalogue, c\'est peut-être…</div><div class="mlist">' + r.map(function(f){
+      return '<button type="button" class="mfilm" data-mfilm="' + esc(f.t) + '"><span>' + esc(f.t) + (f.y ? ' <small>' + esc(f.y) + '</small>' : "") + (f.d ? ' <small>' + esc(f.d) + '</small>' : "") + '</span></button>'; }).join("") + '</div>' : "";
+  }
+  function renderAvis(){
+    if (MSGERR) return '<p class="sh-note">Les avis de recherche ne sont pas encore activés : Licia doit publier les nouvelles règles de la base (fichier « firestore.rules »).</p>';
+    var all = Object.keys(MSG).map(function(k){ return MSG[k]; });
+    var avis = all.filter(function(x){ return x.type === "avis" && !CC.hidden("msg", x.id, x.from) && (x.from === CC.uid || (!inBulle(x.from) && !isBlocked(x.from))); })
+      .sort(function(a, b){ return String(b.ajout).localeCompare(String(a.ajout)); });
+    var reps = all.filter(function(x){ return x.type === "avis-rep" && !CC.hidden("msg", x.id, x.from) && !isBlocked(x.from); })
+      .sort(function(a, b){ return String(a.ajout).localeCompare(String(b.ajout)); });
+    var h = '<p class="sh-note">Un film, une série, un épisode ou un documentaire dont le titre vous échappe ? Racontez ce dont vous vous souvenez : les autres cinéphiles vous aident à le retrouver, et vous êtes prévenu dès qu\'on vous répond.</p>';
+    h += AV.form ? '<div class="avf"><div class="ctabs" role="radiogroup" aria-label="Que cherchez-vous ?">' + AV_KINDS.map(function(k){
+        return '<button type="button" class="chip" role="radio" data-avk="' + esc(k[0]) + '" aria-checked="' + (AV.kind === k[0]) + '" aria-pressed="' + (AV.kind === k[0]) + '">' + esc(k[1]) + '</button>'; }).join("") + '</div>' +
+      '<label class="ccl"><span>Ce dont vous vous souvenez</span><textarea id="avTxt" class="ccin" maxlength="1000" rows="5" placeholder="L\'histoire, une scène, un acteur, l\'époque, le pays, la langue, les couleurs, la musique… Tout peut aider.">' + esc(AV.texte) + '</textarea></label>' +
+      '<div id="avSugg">' + avisSugg() + '</div>' +
+      '<div class="plf-b"><button type="button" class="plf-ok" data-avsend="1">Publier l\'avis de recherche</button><button type="button" class="plf-no" data-avno="1">Annuler</button></div><p class="sh-note" id="avNote"></p></div>'
+      : '<div class="plf-b"><button type="button" class="plf-ok" data-avnew="1">🔎 Lancer un avis de recherche</button></div>';
+    if (!avis.length) return h + '<p class="sh-note">Aucun avis de recherche pour l\'instant.</p>';
+    return h + avis.map(function(a){
+      var mine = a.from === CC.uid, rs = reps.filter(function(r){ return r.ref === a.id; }), open = AV.rep === a.id;
+      var head = mine ? "Votre avis de recherche" : pseudoOf(a.from) + " cherche " + (a.genre || "un film");
+      return '<div class="cthread avis"><div class="cth">' + esc(head) + '<small>' + esc(ago(a.ajout)) + '</small></div>' +
+        '<p class="av-t">« ' + esc(a.texte || a.mot || "") + ' »</p>' +
+        rs.map(function(r){
+          var by = r.from === CC.uid ? "Vous proposez" : pseudoOf(r.from) + " propose";
+          return '<div class="cmsg' + (r.from === CC.uid ? " moi" : "") + '"><b>' + esc(by) + '</b> ' + esc(r.titre || "?") + (r.annee ? " (" + esc(r.annee) + ")" : "") + (r.mot ? " : « " + esc(r.mot) + " »" : "") +
+            '<div class="plf-b">' + (r.film ? filmBtn(r.film, r.titre) : mine ? '<button type="button" class="plf-no ccsm" data-avadd="' + esc(r.id) + '">➕ Ajouter ce film au carnet</button>' : "") +
+            flagBtn("msg", r.id, r.from === CC.uid ? "" : r.from, r.titre + " " + (r.mot || "")) + '</div></div>';
+        }).join("") +
+        (open ? '<div class="crep avr"><label class="ccl"><span>Le titre, d\'après vous</span><input id="avRepT" class="ccin" maxlength="120" value="' + esc(AV.t) + '"></label>' +
+          '<label class="ccl"><span>L\'année <i>(si vous la connaissez)</i></span><input id="avRepY" class="ccin" inputmode="numeric" maxlength="4" value="' + esc(AV.y) + '"></label>' +
+          '<label class="ccl"><span>Un mot <i>(facultatif)</i></span><textarea id="avRepMot" class="ccin" maxlength="200" rows="2" placeholder="Pourquoi vous pensez à ce film">' + esc(AV.mot) + '</textarea></label>' +
+          '<div class="plf-b"><button type="button" class="plf-ok ccsm" data-avrepsend="' + esc(a.id) + '">Envoyer ma réponse</button><button type="button" class="plf-no ccsm" data-avrepno="1">Annuler</button></div><p class="sh-note" id="avRepNote"></p></div>' : "") +
+        '<div class="plf-b">' + (mine ? '<button type="button" class="plf-no ccsm" data-avdel="' + esc(a.id) + '">✓ Trouvé : retirer mon avis</button>' : open ? "" : '<button type="button" class="plf-ok ccsm" data-avrep="' + esc(a.id) + '">💡 Je crois savoir</button>') +
+        (mine ? "" : flagBtn("msg", a.id, a.from, a.texte || a.mot).replace('class="ccflag"', 'class="ccflag lab"').replace('>⚑<', '>⚑ Signaler<')) + '</div></div>';
+    }).join("");
+  }
+  function avisNote(id, m){ var n = $(id); if (n) n.textContent = m; }
+  document.addEventListener("input", function(ev){
+    var t = ev.target; if (!t || !t.id) return;
+    if (t.id === "avTxt") { AV.texte = t.value; clearTimeout(AV_T); AV_T = setTimeout(function(){ var b = $("avSugg"); if (b) b.innerHTML = avisSugg(); }, 300); }
+    else if (t.id === "avRepT") AV.t = t.value; else if (t.id === "avRepY") AV.y = t.value; else if (t.id === "avRepMot") AV.mot = t.value;
+  });
+  document.addEventListener("click", function(ev){
+    var t = ev.target.closest && ev.target.closest("[data-avopen],[data-avnew],[data-avno],[data-avk],[data-avsend],[data-avrep],[data-avrepno],[data-avrepsend],[data-avdel],[data-avadd]"); if (!t) return;
+    if (t.dataset.avopen) { CC.openAvis(); return; }
+    if (t.dataset.avnew) { AV.form = true; renderCom(); var ta = $("avTxt"); if (ta) ta.focus(); return; }
+    if (t.dataset.avno) { AV.form = false; renderCom(); return; }
+    if (t.dataset.avk) { AV.kind = t.dataset.avk; renderCom(); return; }
+    if (t.dataset.avrepno) { AV.rep = ""; renderCom(); return; }
+    if (t.dataset.avrep) { AV.rep = t.dataset.avrep; AV.t = ""; AV.y = ""; AV.mot = ""; renderCom(); var ti = $("avRepT"); if (ti) ti.focus(); return; }
+    if (t.dataset.avsend) {
+      var tx = String(AV.texte || "").trim();
+      if (tx.length < 15) { avisNote("avNote", "Racontez un peu plus ce dont vous vous souvenez."); return; }
+      t.disabled = true;
+      fs.collection("messages").add({ from:CC.uid, to:"*", type:"avis", genre:AV.kind, film:"", titre:"", annee:"", mot:tx.slice(0, 200), texte:tx.slice(0, 1000), ajout:new Date().toISOString(), lu:false })
+        .then(function(){ AV.form = false; AV.texte = ""; renderCom(); }, function(e){ t.disabled = false; avisNote("avNote", "Pas publié : " + ((e && e.code) || "réessayez dans un instant") + "."); });
+      return;
+    }
+    if (t.dataset.avrepsend) {
+      var a = MSG[t.dataset.avrepsend], tt = String(AV.t || "").trim().slice(0, 120), yy = String(AV.y || "").trim();
+      if (!a) return;
+      if (!tt) { avisNote("avRepNote", "Écrivez le titre auquel vous pensez."); return; }
+      if (yy && !/^[0-9]{4}$/.test(yy)) { avisNote("avRepNote", "L'année doit avoir quatre chiffres, ou rester vide."); return; }
+      t.disabled = true;
+      fs.collection("messages").add({ from:CC.uid, to:a.from, type:"avis-rep", ref:a.id, film:CC.findFilm ? CC.findFilm(tt, yy) : "", titre:tt, annee:yy, mot:String(AV.mot || "").trim().slice(0, 200), ajout:new Date().toISOString(), lu:false })
+        .then(function(){ AV.rep = ""; renderCom(); }, function(e){ t.disabled = false; avisNote("avRepNote", "Pas envoyé : " + ((e && e.code) || "réessayez dans un instant") + "."); });
+      return;
+    }
+    if (t.dataset.avdel) { fs.collection("messages").doc(t.dataset.avdel).delete().then(renderCom, function(){ alert("Pas retiré, réessayez dans un instant."); }); return; }
+    if (t.dataset.avadd) {
+      var r = MSG[t.dataset.avadd]; if (!r || !CC.addMissing) return;
+      var av = MSG[r.ref] || {};
+      CC.addMissing(r.titre, r.annee, "Avis de recherche : " + String(av.texte || av.mot || "").slice(0, 170));
+      t.disabled = true; t.textContent = "✓ Envoyé";
+    }
+  });
   function renderFil(){
     var F = feed();
     if (!F.length) return '<p class="sh-note">Rien de nouveau ces 30 derniers jours. Les notes, commentaires et conseils des autres membres apparaîtront ici.</p>';
@@ -2208,10 +2350,11 @@ html.sky-on #rsheet{z-index:50;}
     if (SEND && !SEND.reply) h = renderSend();
     else if (REPORT) h = renderReport();
     else {
-      if (TAB === "fil" && me().bulle) TAB = "membres";
+      if ((TAB === "fil" || TAB === "avis") && me().bulle) TAB = "membres";
       h = tabsHtml();
       if (TAB === "pourmoi") { h += renderPourMoi(); markRead(); }
       else if (TAB === "fil") h += renderFil();
+      else if (TAB === "avis") { h += renderAvis(); markRead(true); }
       else if (TAB === "soiree") h += renderSoiree();
       else h += membersHtml();
     }
@@ -2230,9 +2373,8 @@ html.sky-on #rsheet{z-index:50;}
   // ---------- Visite guidée (3 bulles), après le lever de rideau, une fois par appareil et par compte ----------
   var GKEY = "ccGuideV1" + CC.lsKey, GI = -1;
   var GSTEPS = [
-    { sel:"#toc", t:"Les catégories", d:"Touchez un carré pour ouvrir ses listes de films." },
-    { sel:".qwrap", t:"Chercher et répondre", d:"Cherchez un film ici. Sous chaque film, dites si vous l'avez vu, puis notez-le sur 10." },
-    { sel:"#ccMbr", alt:"#ccMe", t:"La communauté", d:"Les carnets des autres membres, les conseils qu'on vous envoie et, si vous préférez, « Rester dans ma bulle » dans Mon compte." }
+    { sel:".qwrap", t:"Chercher un film", d:"Écrivez ici le nom d'un film, d'un cinéaste ou d'un thème." },
+    { sel:"#toc", t:"Ou choisir une catégorie", d:"Touchez un carré : ses films s'affichent. Sous chaque film, dites si vous l'avez vu." }
   ];
   function guideShow(){
     var g = $("ccGuide"); if (!g) return;
@@ -2888,7 +3030,7 @@ html.sky-on #rsheet{z-index:50;}
     "green-border-2023":1121956, "moi-capitaine-2023":937746, "fuocoammare-2016":377151, "les-sentiers-de-la-gloire-1957":975,
     "requiem-pour-un-massacre-1985":25237, "no-other-land-2024":1232493, "les-hommes-du-president-1976":891, "network-1976":10774,
     "l-exercice-de-l-etat-2011":95448, "il-divo-2008":8832, "furyo-1983":11948, "solaris-1972":593,
-    "la-lecon-de-piano-1993":713,
+    "la-lecon-de-piano-1993":713, "pride-2014":234200, "harvey-milk-2008":10139, "argentina-1985-2022":714888, "lumumba-2000":55551,
     "la-chinoise-1967":1629, "zero-de-conduite-1933":44494, "l-an-01-1973":63172, "le-guepard-1963":1040,
     "l-anglaise-et-le-duc-2001":2894, "danton-1983":4202, "monsieur-smith-au-senat-1939":3083, "douze-hommes-en-colere-1957":389,
     "lacombe-lucien-1974":55368, "le-rebelle-1949":24650, "margin-call-2011":50839, "des-hommes-et-des-dieux-2010":46332,
@@ -3066,6 +3208,26 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   // Les autres membres qui ont répondu pour ce film (leur note, ou vu / pas vu).
   function ccSendBtn(f){ return window.CC && CC.me && !GUEST ? '<button type="button" class="chip cc-send" data-cconseil="' + esc(f.id) + '">📣 Le conseiller…</button>' : ""; }
   if (window.CC) CC.filmInfo = function(id){ var f = films[id]; return f ? { t:f.t, y:f.y } : null; };
+  // Avis de recherche : les films du catalogue qui ressemblent à ce que la personne raconte.
+  var CLUE_STOP = "dans avec pour film films serie series dont elle elles etait etaient avait avaient plus comme mais tout tous toute tres cette leur leurs quand alors apres avant entre sans sous souviens souvient rappelle rappelais personnage personnages histoire scene scenes jeune jeunes femme homme hommes femmes enfant enfants quelqu chose choses vers fois aussi encore deja bien vraiment peut etre pense crois sais savoir titre annee annees vieux ancien episode documentaire".split(" ");
+  if (window.CC) CC.findByClues = function(text){
+    var words = norm(String(text || "")).replace(/[^a-z0-9]+/g, " ").split(" ").filter(function(w){ return w.length >= 4 && CLUE_STOP.indexOf(w) < 0; });
+    words = words.filter(function(w, i){ return words.indexOf(w) === i; });
+    if (words.length < 2) return [];
+    var out = [];
+    // Un mot compte s'il apparaît dans le résumé, les thèmes, le titre, le cinéaste ou le pays (sans tenir compte du pluriel) ;
+    // il faut au moins deux mots différents pour proposer un film.
+    var stems = words.map(function(w){ return w.replace(/(s|x)$/, ""); });
+    Object.keys(films).forEach(function(id){
+      var f = films[id]; if (!f || !f.t) return;
+      var hay = norm([f.t || "", f.d || "", f.p || "", (f.th || []).join(" "), (f.k || []).join(" "), f.c || ""].join(" "));
+      var n = 0; stems.forEach(function(w){ if (hay.indexOf(w) >= 0) n++; });
+      if (n >= 2) out.push({ id:id, t:f.t, y:f.y, d:f.d || "", sc:n + (f.e || 0) / 100 });
+    });
+    return out.sort(function(a, b){ return b.sc - a.sc; }).slice(0, 5);
+  };
+  if (window.CC) CC.findFilm = function(t, y){ return findFilm(t, /^[0-9]{4}$/.test(String(y || "")) ? +y : 0) || ""; };
+  if (window.CC) CC.addMissing = function(t, y, ind){ addMissing(t, y, "", ind); };
   function mbrHtml(f){
     var P = window.CC && CC.uid ? CC.profils : null; if (!P) return "";
     var out = [];
@@ -3450,6 +3612,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     return '<div class="subs">' + underRow(items, at, block) + '</div>';
   }
   // Sommaire : une tuile par famille (icône, couleur, nombre) ; la tuile touchée ouvre ses sous-catégories. Au départ, tout est fermé.
+  var STATN = "", SX_S = "", SX_P = "";
   var TAB_KEY = "carnetOngletV1", TAB = "", TOCMAP = {}, TOCN = {}, TOCDATA = {}, TABS_X = 0;
   // Une phrase courte sur chaque tuile, pour que tout le monde comprenne ce qu'il y a dedans.
   var TILE_D = { carnet:"Ma liste, mes notes", playlists:"Les conseils des amis", mouvements:"Les grands courants", ecole:"Les films étudiés",
@@ -3512,12 +3675,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     return items.slice(0, end).join("") + block + items.slice(end).join("");
   }
   function envChips(){
-    var items = [], at = -1, sub = "";
+    var items = [], at = -1, sub = "", gf = globalFilms().filter(matchSt);
+    var nOf = function(se){ return gf.filter(function(f){ return matchShow(f, se); }).length; };
     ENVIES.forEach(function(e, i){
       var on = env1 === e.id; if (on) at = i;
-      items.push('<button type="button" class="sub env" data-e1="' + esc(e.id) + '" aria-pressed="' + on + '">' + subIc(ENV_IC[e.id]) + '<span class="sl">' + esc(e.label) + '</span></button>');
+      items.push('<button type="button" class="sub env" data-e1="' + esc(e.id) + '" aria-pressed="' + on + '">' + subIc(ENV_IC[e.id]) + '<span class="sl">' + esc(e.label) + '</span><span class="sc">' + nOf({ k:"env", e1:e.id }) + '</span></button>');
       if (on) (e.sous || []).forEach(function(x){
-        sub += '<button type="button" class="chip env nuance" data-e2="' + esc(x.id) + '" aria-pressed="' + (!!SHOW && SHOW.k === "env" && SHOW.e2 === x.id) + '">' + esc(x.label) + '</button>';
+        sub += '<button type="button" class="chip env nuance" data-e2="' + esc(x.id) + '" aria-pressed="' + (!!SHOW && SHOW.k === "env" && SHOW.e2 === x.id) + '">' + esc(x.label) + '<span class="cnt">' + nOf({ k:"env", e1:e.id, e2:x.id }) + '</span></button>';
       });
     });
     var sel = env1 ? { k:"env", e1:env1 } : null;
@@ -3571,12 +3735,18 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function navPaint(){
     var b = $("navb"); if (!b) return;
     b.hidden = NAV.i <= 0 && NAV.max <= NAV.i; document.documentElement.classList.toggle("navon", !b.hidden);
+    var tb = $("topBack"); if (tb) tb.hidden = NAV.i <= 0;
     $("navBack").disabled = NAV.i <= 0; $("navFwd").disabled = NAV.i >= NAV.max;
   }
   function navRecord(){
     if (NAV.busy || !sections.length) return;
     var st = navNow(), cur = history.state && history.state.cc ? history.state : null;
-    if (!cur) { st.i = NAV.i = 0; NAV.max = 0; st.max = 0; st.y = window.pageYOffset; try { history.replaceState(st, ""); } catch (e) {} navPaint(); return; }
+    if (!cur) {
+      st.i = NAV.i = 0; NAV.max = 0; st.max = 0; st.y = window.pageYOffset;
+      // Une étape « garde » avant l'accueil : un Retour de trop (navigateur, téléphone) reste dans le Ciné-club.
+      try { history.replaceState({ cc:1, guard:1 }, ""); history.pushState(st, ""); } catch (e) {}
+      navPaint(); return;
+    }
     if (navSig(cur) === navSig(st)) return;
     var now = Date.now(), typing = cur.q !== st.q && navSig(Object.assign({}, cur, { q:"" })) === navSig(Object.assign({}, st, { q:"" }));
     try {
@@ -3593,10 +3763,21 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   }
   var NAV_T = 0;
   function navLater(){ clearTimeout(NAV_T); NAV_T = setTimeout(navRecord, 0); }
+  var GUARD_T = 0;
+  function navGuard(){
+    if (Date.now() - GUARD_T < 4000) { GUARD_T = 0; history.back(); return; }
+    GUARD_T = Date.now();
+    var st = navNow(); st.i = NAV.i = 0; st.max = NAV.max = 0; st.y = window.pageYOffset;
+    try { history.pushState(st, ""); } catch (e) {}
+    navPaint();
+    toast("Vous êtes à l'accueil du Ciné-club. Appuyez encore sur Retour pour le quitter.");
+  }
   window.addEventListener("popstate", function(ev){
-    var st = ev.state; if (!st || !st.cc) return;
+    var st = ev.state; if (st && st.cc && st.guard) { navGuard(); return; }
+    if (!st || !st.cc) return;
     NAV.busy = true; NAV.i = st.i || 0; NAV.max = Math.max(NAV.max, st.max || 0, NAV.i); NAV.q = false;
     SHOW = st.show || null; filter = st.f || "all"; TAB = st.tab || "";
+    if (SHOW && SHOW.k === "sec" && SHOW.sp != null) SUBP[SHOW.id] = SHOW.sp;
     $("q").value = st.q || ""; $("qx").hidden = !st.q; query = norm(String(st.q || "").trim()); ADDQ = null;
     document.documentElement.classList.toggle("qon", !!query);
     document.querySelectorAll("#filters .chip").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.f === filter ? "true" : "false"); });
@@ -3605,6 +3786,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     navPaint();
   });
   $("navBack").addEventListener("click", function(){ if (NAV.i > 0) history.back(); });
+  $("topBack").addEventListener("click", function(){ if (NAV.i > 0) history.back(); });
   $("navFwd").addEventListener("click", function(){ if (NAV.i < NAV.max) history.forward(); });
   function renderToc(){
     var fa = document.activeElement, fin = fa && fa.closest && fa.closest("#toc form[data-idform]") && fa.name ? { n:fa.name, p:fa.selectionStart } : null;
@@ -3642,12 +3824,14 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     else if (f.mouvements || f.envies) {
       body = (f.mouvements ? mvChips() : envChips());
     } else {
-      body = !(TOCDATA[f.id] || []).length ? '<p class="pn-vide">Aucune liste avec ce filtre.</p>' : '<div class="subs">' + (TOCDATA[f.id] || []).map(function(x, i){
+      if (f.id === "carnet" && isMine() && STATN) body = '<p class="pn-st" id="carnetSt">' + STATN + '</p>';
+      body += !(TOCDATA[f.id] || []).length ? '<p class="pn-vide">Aucune liste avec ce filtre.</p>' : '<div class="subs">' + (TOCDATA[f.id] || []).map(function(x, i){
         var pic = x.auto === "conseils" ? '<span class="em av" style="--ec:' + tc(AV_C[i % AV_C.length]) + '">' + esc(String(x.titre || "?").charAt(0).toUpperCase()) + '</span>'
                 : subIc(SUB_IC[x.id] || SUB_AUTO[x.auto]);
-        var on = !!SHOW && SHOW.k === "sec" && SHOW.id === x.id;
-        return '<button type="button" class="sub' + (String(x.titre).length > 32 ? " wide" : "") + '" data-s="' + esc(x.id) + '" aria-pressed="' + on + '">' + pic + '<span class="sl">' + esc(x.titre).replace(/\//g, "/<wbr>") + '</span>' +
-          (x.stats ? "" : '<span class="sc">' + x.n + '</span>') + (x.np ? '<span class="nb">' + x.np + '</span>' : "") + '</button>';
+        var on = !!SHOW && SHOW.k === "sec" && SHOW.id === x.id, sx = sxSec(x.id), open = !!sx && SX_S === x.id;
+        return '<button type="button" class="sub' + (String(x.titre).length > 32 || open ? " wide" : "") + '" ' + (sx ? 'data-sx="' + esc(x.id) + '" aria-expanded="' + open + '"' : 'data-s="' + esc(x.id) + '"') + ' aria-pressed="' + on + '">' + pic + '<span class="sl">' + esc(x.titre).replace(/\//g, "/<wbr>") + '</span>' +
+          (x.stats ? "" : '<span class="sc">' + x.n + (sx ? '<span class="sx-ar" aria-hidden="true">' + (open ? "▾" : "▸") + '</span>' : "") + '</span>') + (x.np ? '<span class="nb">' + x.np + '</span>' : "") + '</button>' +
+          (open ? sxBlock(sx) : "");
       }).join("") + (f.id === "playlists" && isMine() && CCA() && PEOPLE.length ? '<button type="button" class="sub vchip" data-vmsg="1">' + subIc(["✉️", "#0E7490"]) + '<span class="sl">Valider un message reçu</span></button>' : "") +
         (f.id === "carnet" && ROLE === "proprio" && !GUEST && CCA() ? '<button type="button" class="sub vchip" data-guest="1">' + subIc(["👀", "#475569"]) + '<span class="sl">Voir comme mes amis</span></button>' : "") + '</div>' +
         ((TOCDATA[f.id] || []).length ? '<button type="button" class="allb" data-showfam="' + esc(f.id) + '"' + (SHOW && ((SHOW.k === "fam" && SHOW.id === f.id) || (SHOW.k === "all" && f.id === "epoques")) ? ' aria-pressed="true"' : "") + '>' + esc(allLabel(f)) + '</button>' : "");
@@ -3657,6 +3841,27 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<div class="pn-h"><span class="ic">' + famIcon(key) + '</span><b>' + esc(fLabel(f)) + '</b>' +
       (canRang ? '<button type="button" class="pn-x pn-r" data-ranger="1" aria-pressed="' + RANGER + '" aria-label="Changer l\'ordre" title="Changer l\'ordre">⇅ Ranger</button>' : "") +
       '<button type="button" class="pn-x" data-tback="1" aria-label="Fermer ' + esc(fLabel(f)) + '">✕</button></div>' + body + '</div>';
+  }
+  // Une liste découpée en sous-catégories : toucher son nom ouvre ses sous-catégories juste dessous,
+  // toucher une sous-catégorie qui en a d'autres les ouvre encore dessous ; une sous-catégorie sans suite affiche ses films.
+  function sxSec(id){ var s = sections.filter(function(x){ return x.id === id; })[0]; return s && !s.auto && s.parties && s.parties.length ? s : null; }
+  function sxBlock(s){
+    var SP = subMap(s), nb = {}, all = 0;
+    (s.films || []).forEach(function(f){
+      if (!matchSt(f)) return; all++;
+      var ws = SP[f.id] || [], seenK = {};
+      ws.forEach(function(w){ if (!seenK[w.k]) { seenK[w.k] = 1; nb[w.k] = (nb[w.k] || 0) + 1; } if (w.j != null) nb[w.k + "." + w.j] = (nb[w.k + "." + w.j] || 0) + 1; });
+    });
+    var h = '<div class="sx-open" role="group" aria-label="Sous-catégories de ' + esc(sTitre(s)) + '">';
+    s.parties.forEach(function(p, k){
+      if (!nb[k]) return;
+      var has = (p.sous || []).some(function(q, j){ return nb[k + "." + j]; }), key = s.id + "|" + k, open = has && SX_P === key;
+      h += '<button type="button" class="sx-c" ' + (has ? 'data-sxp="' + esc(key) + '" aria-expanded="' + open + '"' : 'data-sxl="' + esc(key) + '"') + ' title="' + esc(p.aide || "") + '">' + esc(p.titre) + ' <span class="sc">' + nb[k] + '</span>' + (has ? '<span aria-hidden="true">' + (open ? " ▾" : " ▸") + '</span>' : "") + '</button>';
+      if (open) h += '<div class="sx-in" role="group" aria-label="Dans ' + esc(p.titre) + '">' + (p.sous || []).map(function(q, j){
+          return nb[k + "." + j] ? '<button type="button" class="sx-c" data-sxl="' + esc(s.id + "|" + k + "." + j) + '">' + esc(q.titre) + ' <span class="sc">' + nb[k + "." + j] + '</span></button>' : "";
+        }).join("") + '<button type="button" class="sx-c sx-all" data-sxl="' + esc(key) + '">Tout « ' + esc(p.titre) + ' » <span class="sc">' + nb[k] + '</span></button></div>';
+    });
+    return h + '<button type="button" class="sx-c sx-all" data-sxl="' + esc(s.id + "|") + '">Toute la liste <span class="sc">' + all + '</span></button></div>';
   }
   // Après l'affichage du panneau : chaque nom qui ne tient pas sur deux lignes passe sur toute la largeur.
   var TOC_FIT = false;
@@ -4677,7 +4882,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         : '<button type="submit" class="plf-ok">' + lbl + '</button>'; };
     if (k === "amelio" || k === "bug") return hintP("Que voulez-vous proposer ?") + choix +
       '<form class="idf" data-idform="1" autocomplete="off">' +
-      '<label><span>' + (k === "bug" ? "Que s'est-il passé ?" : "Votre idée pour améliorer le Ciné-club") + '</span><textarea name="texte" maxlength="500" rows="4" placeholder="' +
+      '<label><span>' + (k === "bug" ? "Que s'est-il passé ?" : d.contact ? "Votre message pour l'équipe du Ciné-club" : "Votre idée pour améliorer le Ciné-club") + '</span><textarea name="texte" maxlength="500" rows="4" placeholder="' +
         (k === "bug" ? "Ex. : dans « Époques », le bouton « Vu » ne répond pas sur mon téléphone" : "Ex. : pouvoir trier ma liste par durée") + '">' + esc(d.texte) + '</textarea></label>' +
       prenom + (k === "bug" ? '<p class="id-n">La taille de l\'écran, l\'ambiance et le navigateur sont joints pour aider à corriger.</p>' : "") +
       envoi(k === "bug" ? "🐞 Signaler le bug" : "✨ Envoyer l'idée") + '</form><div class="idsw">' + ideesList() + '</div>';
@@ -4686,6 +4891,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<form class="idf" data-idfilm="1" autocomplete="off">' +
       '<label><span>Titre du film</span><input name="titre" maxlength="120" required></label>' +
       '<label><span>Année <i>(si vous la connaissez)</i></span><input name="annee" inputmode="numeric" maxlength="4"></label>' +
+      '<label><span>Autres indices <i>(facultatif)</i></span><input name="indices" maxlength="200" autocomplete="off" placeholder="Cinéaste, acteur, genre, pays, un détail…"></label>' +
       (ROLE === "lecteur" || GUEST ? '<label><span>Votre prénom</span><input name="nom" maxlength="30" value="' + esc(monNom()) + '"></label>' : "") +
       '<button type="submit" class="plf-ok">' + (CCM() || ROLE === "lecteur" || GUEST ? "🎬 Proposer ce film" : "🎬 Ajouter le film") + '</button></form><div class="idsw">' + ideesList() + '</div>';
     if (k !== "categorie") return hintP("Que voulez-vous proposer ?") + choix + '<div class="idsw">' + ideesList() + '</div>';
@@ -4804,7 +5010,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       var el = ff.elements, t = el.namedItem("titre").value.trim(), y = el.namedItem("annee").value.trim();
       if (!t) { setStatus("Écrivez le titre du film.", true); el.namedItem("titre").focus(); return; }
       if (y && !/^[0-9]{4}$/.test(y)) { setStatus("L'année doit avoir quatre chiffres, ou rester vide.", true); el.namedItem("annee").focus(); return; }
-      addMissing(t, y, el.namedItem("nom") ? el.namedItem("nom").value : "");
+      addMissing(t, y, el.namedItem("nom") ? el.namedItem("nom").value : "", el.namedItem("indices") ? el.namedItem("indices").value : "");
       ff.reset();
       return;
     }
@@ -4828,6 +5034,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     "s33-vengeance-aveugle":["🪃", "#9F1239"],
     "s03-couleurs":["🌈", "#C026D3"], "s04-musique":["🎵", "#0F766E"], "s27-camera-subjective":["👁️", "#92400E"], "s28-un-seul-plan":["⏱️", "#A16207"], "s29-cinema-coreen":["🇰🇷", "#1D4ED8"],
     "s34-visages-bandes":["🩹", "#B45309"], "s35-erreur-sur-la-personne":["🆔", "#6D28D9"],
+    "s36-chantage-emprise":["🕸️", "#7C2D12"], "s37-politique":["🏛️", "#1E3A8A"], "s38-rave":["🔊", "#7E22CE"], "s39-monde-de-la-fete":["🥂", "#B45309"],
+    "s53-catastrophes":["🌋", "#B91C1C"], "s54-sante-mentale":["🧠", "#4D7C0F"],
     "s40-psychoses":["🗣️", "#4338CA"], "s41-identites-multiples":["👥", "#7E22CE"], "s42-troubles-alimentaires":["🍽️", "#B45309"],
     "s43-mythomanie":["🤥", "#C2410C"], "s44-depression":["🌧️", "#475569"], "s45-bipolarite":["🎢", "#BE185D"],
     "s46-phobies-obsessions":["😰", "#0369A1"], "s47-traumatismes":["💥", "#B91C1C"], "s48-personnalites":["🎭", "#7C2D12"],
@@ -5020,16 +5228,20 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   // Recherche : un film absent s'ajoute à la base (pour toi), ou part dans les conseils à valider (pour les amis).
   function addBoxHtml(raw){
     var amis = ROLE === "lecteur" || GUEST;
-    if (!ADDQ) return '<div class="addq"><span>Pas dans la liste ?</span><button type="button" class="addq-b" data-addq="1">+ Ajouter un film manquant à la base de données</button></div>';
+    if (!ADDQ) return '<div class="addq"><span>Pas dans la liste ?</span><button type="button" class="addq-b" data-addq="1">+ Ajouter un film manquant à la base de données</button>' +
+      (window.CC && CC.openAvis && !amis ? '<button type="button" class="addq-b" data-avopen="1">🔎 Je ne connais pas le titre : lancer un avis de recherche</button>' : "") + '</div>';
     return '<form class="addq addf" data-addform="1">' +
       '<label><span>Titre du film</span><input name="titre" maxlength="120" required autocomplete="off" value="' + esc(ADDQ.titre != null ? ADDQ.titre : raw) + '"></label>' +
       '<label><span>Année <i>(si vous la connaissez)</i></span><input name="annee" inputmode="numeric" maxlength="4" autocomplete="off" value="' + esc(ADDQ.annee || "") + '"></label>' +
+      '<label><span>Autres indices <i>(facultatif)</i></span><input name="indices" maxlength="200" autocomplete="off" placeholder="Cinéaste, acteur, genre, pays, un détail…" value="' + esc(ADDQ.indices || "") + '"></label>' +
       (amis ? '<label><span>Ton prénom</span><input name="nom" maxlength="30" autocomplete="off" value="' + esc(ADDQ.nom != null ? ADDQ.nom : monNom()) + '"></label>' : "") +
       '<div class="plf-b"><button type="submit" class="plf-ok">' + (amis ? "Ajouter à mes conseils à valider" : CCM() ? "Proposer ce film à Licia" : "Ajouter à la base de données") + '</button>' +
       '<button type="button" class="plf-no" data-addno="1">Annuler</button></div></form>';
   }
-  function addMissing(t, y, nom){
+  function addMissing(t, y, nom, ind){
     t = String(t || "").trim().replace(/\s+/g, " ").slice(0, 120); if (!t) return;
+    // Les indices (cinéaste, acteur, genre, détail…) aident à reconnaître le bon film quand on l'ajoute.
+    ind = String(ind || "").trim().replace(/\s+/g, " ").slice(0, 200);
     var yy = /^[0-9]{4}$/.test(String(y || "")) ? +y : 0, ex = findFilm(t, yy);
     if (ex) { ADDQ = null; setStatus("« " + films[ex].t + " » est déjà dans le carnet."); $("q").value = films[ex].t; $("qx").hidden = false; query = norm(films[ex].t); renderAll(); return; }
     if (ROLE === "lecteur" || GUEST) {
@@ -5037,7 +5249,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (!nom) { setStatus("Écris ton prénom.", true); var ni = document.querySelector('form[data-addform] [name="nom"]'); if (ni) ni.focus(); return; }
       nom = nom.charAt(0).toUpperCase() + nom.slice(1);
       try { localStorage.setItem(MONNOM_KEY, nom); } catch (e) {}
-      addEnvoi({ pid:"_", nom:nom, t:t, y:yy || "", mot:"", libre:true });
+      addEnvoi({ pid:"_", nom:nom, t:t, y:yy || "", mot:ind, libre:true });
       ADDQ = null; renderAll(); renderEnv();
       setStatus("« " + t + " » est dans tes conseils à valider : touche « ✓ Valider mes conseils ».");
       return;
@@ -5045,12 +5257,12 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (CCM()) {
       if (!propCol || !CC.me) { setStatus("Connecte-toi d'abord (bouton en haut).", true); return; }
       ADDQ = null; renderAll(); setStatus("Envoi…");
-      propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:"", ajout:new Date().toISOString() })
+      propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:ind, ajout:new Date().toISOString() })
         .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(){ setStatus("Pas envoyé, réessaie dans un instant.", true); });
       return;
     }
     var id = (slug(t) || "film") + "-" + (yy || "sans-annee"); if (films[id]) id += "-" + Date.now().toString(36);
-    var entry = { id:id, t:t, y:yy || "", d:"", r:"" };
+    var entry = { id:id, t:t, y:yy || "", d:"", r:ind ? "Indices : " + ind : "" };
     var raw = HOSTRAW ? JSON.parse(JSON.stringify(HOSTRAW)) : { ordre:9, famille:"playlists", titre:"Films ajoutés depuis les playlists", cache:true, films:[] };
     raw.films = (raw.films || []).concat([entry]); HOSTRAW = raw;
     var f = films[id] = Object.assign({}, entry, { sid:HOST, _i:999, p:"", e:0, k:[], w:"", m:0, c:"", mv:"" });
@@ -5195,8 +5407,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var g = document.querySelector('[data-count="tout"]');
     if (g && GLOBAL) g.textContent = document.querySelectorAll("#sec-tout .film").length + " films affichés";
     // Chaque morceau reste sur une ligne ; le retour à la ligne se fait entre les morceaux.
-    var parts = ["<b>" + answered + "</b> / " + total + " répondus", "<b>" + seen + "</b> " + (seen > 1 ? "vus" : "vu"),
-      "<b>" + forgot + "</b> " + (forgot > 1 ? "oubliés" : "oublié"), "<b>" + rated + "</b> " + (rated > 1 ? "notés" : "noté")];
+    var parts = ["<b>" + answered + "</b> / " + total + " répondus"];
+    STATN = "<b>" + seen + "</b> " + (seen > 1 ? "vus" : "vu") + " · <b>" + forgot + "</b> " + (forgot > 1 ? "oubliés" : "oublié") + " · <b>" + rated + "</b> " + (rated > 1 ? "notés" : "noté");
+    var cst = $("carnetSt"); if (cst) cst.innerHTML = STATN;
     $("stats").innerHTML = total ? parts.map(function(x){ return '<span class="st">' + x + '</span>'; }).join(" · ") : "Chargement…";
     $("prog").style.width = total ? Math.round(100 * answered / total) + "%" : "0";
   }
@@ -6003,6 +6216,12 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (ec.dataset.e1) { if (env1 === ec.dataset.e1) { env1 = ""; env2 = ""; } else { env1 = ec.dataset.e1; env2 = ""; } keepToc(renderToc); return; }
       env2 = ec.dataset.e2; SHOW = { k:"env", e1:env1, e2:env2 }; showFilms(); return;
     }
+    var sxo = ev.target.closest("[data-sx]");
+    if (sxo) { SX_S = SX_S === sxo.dataset.sx ? "" : sxo.dataset.sx; SX_P = ""; keepToc(renderToc); return; }
+    var sxp = ev.target.closest("[data-sxp]");
+    if (sxp) { SX_P = SX_P === sxp.dataset.sxp ? "" : sxp.dataset.sxp; keepToc(renderToc); return; }
+    var sxl = ev.target.closest("[data-sxl]");
+    if (sxl) { var sa2 = sxl.dataset.sxl.split("|"); SUBP[sa2[0]] = sa2[1]; SHOW = { k:"sec", id:sa2[0], sp:sa2[1] }; showFilms(); return; }
     var c = ev.target.closest(".chip, .row-s, .sub"); if (!c) return;
     if (c.dataset.vmsg) { openV(""); return; }
     if (c.dataset.guest) { setGuest(true); return; }
@@ -6037,7 +6256,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     ev.preventDefault();
     var el = fm.elements, y = el.namedItem("annee").value.trim();
     if (y && !/^[0-9]{4}$/.test(y)) { setStatus("L'année doit avoir quatre chiffres, ou rester vide.", true); el.namedItem("annee").focus(); return; }
-    addMissing(el.namedItem("titre").value, y, el.namedItem("nom") ? el.namedItem("nom").value : "");
+    addMissing(el.namedItem("titre").value, y, el.namedItem("nom") ? el.namedItem("nom").value : "", el.namedItem("indices") ? el.namedItem("indices").value : "");
   });
   $("q").addEventListener("input", function(){ $("qx").hidden = !$("q").value; ADDQ = null; });
   // Chercher remplace le film tiré au hasard : il ne doit pas cacher les résultats.
@@ -6268,6 +6487,50 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   });
   $("aamenu").addEventListener("click", function(ev){ var a = ev.target.closest("[data-amb]"); if (a) AMBI.set(a.dataset.amb); });
   $("aab").addEventListener("click", function(){ ambUi(); });
+  // ---------- Pied de page : envoyer le Ciné-club à un ami, écrire à l'équipe, soutenir ----------
+  // Lien de la cagnotte (page de dons hébergée ailleurs, permise par GitHub) : le bouton s'affiche dès qu'il est rempli.
+  var DON_URL = "";
+  (function(){ var d = document.querySelector("[data-don]"); if (d && DON_URL) { d.hidden = false; d.addEventListener("click", function(){ window.open(DON_URL, "_blank", "noopener"); }); } })();
+  function appUrl(){ return location.origin + location.pathname.replace(/[^/]*$/, ""); }
+  function shareApp(btn){
+    var url = appUrl(), txt = "Viens noter des films avec moi sur le Ciné-club. Il s'installe comme une appli sur le téléphone.";
+    if (navigator.share) { navigator.share({ title:"Ciné-club", text:txt, url:url }).catch(function(){}); return; }
+    var done = function(){ toast("Lien copié : " + url + " — collez-le dans un message à votre ami."); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt + " " + url).then(done, function(){ toast("Envoyez ce lien à votre ami : " + url); });
+    else toast("Envoyez ce lien à votre ami : " + url);
+  }
+  document.addEventListener("click", function(ev){
+    var t = ev.target.closest && ev.target.closest("[data-shareapp],[data-contact]"); if (!t) return;
+    if (t.dataset.shareapp) { shareApp(t); return; }
+    // Écrire à l'équipe : la boîte à idées s'ouvre, prête pour un message.
+    IDRAFT.kind = "amelio"; IDRAFT.contact = true; TAB = "idees"; renderToc();
+    var toc = $("toc"); if (toc) toc.scrollIntoView({ block:"start", behavior:"smooth" });
+    setTimeout(function(){ var ta = document.querySelector('#toc form[data-idform] textarea'); if (ta) ta.focus({ preventScroll:true }); }, 350);
+  });
+  // ---------- Autres façons de choisir un film : derrière un seul bouton, chacune expliquée ----------
+  var CCM_D = { ccXp:"Dire vite si l'on a vu chaque film, l'un après l'autre", ccQuiz:"Quelques questions pour connaître vos goûts",
+    drToggle:"Partir d'un film aimé et voyager de film en film", skyToggle:"Tous les films en constellations, à explorer" };
+  function ccMore(){
+    var bar = document.querySelector(".ccbar"); if (!bar || $("ccMore")) return;
+    bar.insertAdjacentHTML("beforeend", '<button type="button" class="chip ccb" id="ccMoreB" aria-expanded="false" aria-controls="ccMore">✨ Autres façons de choisir ▾</button>' +
+      '<div class="ccmore" id="ccMore" role="group" aria-label="Autres façons de choisir un film" hidden></div>');
+    var box = $("ccMore");
+    ["ccXp", "ccQuiz", "drToggle", "skyToggle"].forEach(function(id){
+      var b = $(id); if (!b) return;
+      var it = document.createElement("div"); it.className = "ccm-it"; it.dataset.for = id;
+      it.appendChild(b); it.insertAdjacentHTML("beforeend", '<span class="ccm-d">' + esc(CCM_D[id]) + '</span>');
+      box.appendChild(it);
+    });
+    // La Boussole n'apparaît qu'une fois connecté : sa ligne suit, dès que le bouton change.
+    var sync = function(){ box.querySelectorAll(".ccm-it").forEach(function(it){ var b = $(it.dataset.for); it.hidden = !b || b.hidden; }); };
+    sync();
+    var mo = new MutationObserver(sync);
+    box.querySelectorAll(".ccm-it > button").forEach(function(b){ mo.observe(b, { attributes:true, attributeFilter:["hidden"] }); });
+    $("ccMoreB").addEventListener("click", function(){
+      var open = box.hidden; box.hidden = !open; this.setAttribute("aria-expanded", open); this.textContent = open ? "✨ Autres façons de choisir ▴" : "✨ Autres façons de choisir ▾";
+    });
+  }
+  (function waitMore(n){ if ($("skyToggle") && $("drToggle")) ccMore(); else if (n < 60) setTimeout(function(){ waitMore(n + 1); }, 100); })(0);
   // Un film au hasard dans tout le carnet : vus, notés, oubliés ou pas encore vus, quel que soit le filtre affiché.
   var RND = "", RND_LAST = [];
   function rndPool(){ return Object.keys(films).filter(function(id){ return films[id] && films[id].t; }); }
@@ -6854,6 +7117,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   $("main").addEventListener("change", function(ev){
     var t = ev.target; if (!t.dataset || !t.dataset.subp) return;
     SUBP[t.dataset.subp] = t.value;
+    if (SHOW && SHOW.k === "sec" && SHOW.id === t.dataset.subp) SHOW.sp = t.value;
     var sec = t.closest("section"), top = sec ? sec.getBoundingClientRect().top : 0;
     renderAll();
     var ns = document.getElementById("sec-" + t.dataset.subp);

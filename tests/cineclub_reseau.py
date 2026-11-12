@@ -2,7 +2,7 @@
 import tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from cineclub_fixture import catalogue_fixture, install_routes
+from cineclub_fixture import catalogue_fixture, install_routes, open_more
 
 
 def open_page(browser, fixture=None, url="https://cineclub.test/carnet-de-films/"):
@@ -36,6 +36,7 @@ def run():
         context, page, errors, unexpected = open_page(browser)
 
         # Mode express : un toucher par film, chaque réponse enregistrée, retour possible.
+        open_more(page)
         page.locator("#ccXp").click()
         first = page.locator("#xpBody .xp-card").get_attribute("data-film")
         page.locator('#xpBody [data-xp="9"]').click()

@@ -112,6 +112,13 @@ FIREBASE_JS = r"""
 """
 
 
+def open_more(page):
+    """Express, Boussole, Dérive et Ciel sont rangés derrière « Autres façons de choisir » (12 novembre)."""
+    page.wait_for_selector("#ccMoreB")
+    if page.locator("#ccMore").is_hidden():
+        page.locator("#ccMoreB").click()
+
+
 def install_routes(context, fixture=None, complements=None):
     """Remplacer tous les accès réseau avant de charger la page."""
     fixture = fixture or catalogue_fixture()

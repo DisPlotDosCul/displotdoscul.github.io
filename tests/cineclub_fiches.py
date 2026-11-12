@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from cineclub_fixture import ROOT, catalogue_fixture, install_routes, slug
+from cineclub_fixture import ROOT, catalogue_fixture, install_routes, open_more, slug
 
 CAPTURES = ROOT / "docs/captures/fiches"
 
@@ -135,6 +135,7 @@ def browser_checks():
             assert_no_overflow(page)
 
             # Le questionnaire garde le nom validé et les réglages d'accessibilité fonctionnent.
+            open_more(page)
             page.locator("#ccQuiz").click()
             assert "Boussole cinéma" in page.locator("#qzPanel").inner_text()
             page.locator("[data-qzclose]").click()

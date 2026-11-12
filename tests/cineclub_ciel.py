@@ -3,7 +3,7 @@ import copy
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from cineclub_fixture import ROOT, catalogue_fixture, install_routes
+from cineclub_fixture import ROOT, catalogue_fixture, install_routes, open_more
 
 
 def public_count():
@@ -25,6 +25,7 @@ def ready(page, count=None):
     if page.locator("#introX").is_visible():
         page.locator("#introX").click()
     page.locator("#intro").wait_for(state="hidden")
+    open_more(page)
     page.locator("#skyToggle").click()
     page.wait_for_function("n => document.querySelector('#skyCanvas').dataset.count === String(n)", arg=count)
     page.wait_for_function("document.querySelector('#skyCanvas').dataset.renderMs")
@@ -112,6 +113,7 @@ def run():
             page.locator("#aab").click()
             page.locator('[data-taille="grand"]').click()
             page.locator("#aab").click()
+            open_more(page)
             page.locator("#skyToggle").click()
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             assert round(canvas.bounding_box()["width"]) == width

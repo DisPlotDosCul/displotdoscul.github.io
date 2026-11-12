@@ -14,6 +14,9 @@ Depuis le 12 novembre 2026, un film peut être dans plusieurs sous-catégories (
 « Cordes et voix déformées » et « Grands compositeurs › Jerskin Fendrix »). Il est compté et affiché dans
 chacune ; sa petite note reprend la première qui le cite, ou celle de la partie choisie dans le menu.
 
+Depuis le 12 novembre, le panneau d'une catégorie ouvre aussi les sous-catégories d'une liste juste sous son nom,
+puis leurs sous-catégories, avec le nombre de films ; toucher la dernière affiche ses films.
+
 ## Données
 
 Dans `complements.json → sections → <liste>` :
