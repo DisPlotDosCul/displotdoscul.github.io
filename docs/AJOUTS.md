@@ -331,3 +331,37 @@ dans « Musique choisie, pas composée », Mr. Robot dans « Identités multiple
   Daughters of the Dust, Mon voisin Totoro, L'Éclipse, Pierrot le fou, Les Fraises sauvages.
 - Palmes d'or et Lions d'or absents du catalogue.
 - Cinéma africain, latino-américain et d'Asie du Sud-Est, peu représentés.
+
+## 14 novembre 2026 : thème « Théories du complot »
+
+40 films en 6 sous-catégories : Pyramides et anciens astronautes, Extraterrestres cachés, Complots d'État et
+mensonges officiels, Sociétés secrètes et sectes, Le monde est un décor, Quand on y croit trop.
+25 films étaient déjà au catalogue ; 15 ajoutés, identifiants, durées, pays et cinéastes vérifiés sur TMDB :
+
+| Film | Année | Cinéaste | Durée |
+|---|---|---|---|
+| Souvenirs du futur | 1970 | Harald Reinl | 83 min |
+| Rencontres du troisième type | 1977 | Steven Spielberg | 135 min |
+| L'Invasion des profanateurs | 1978 | Philip Kaufman | 115 min |
+| Invasion Los Angeles | 1988 | John Carpenter | 93 min |
+| The Vast of Night | 2019 | Andrew Patterson | 89 min |
+| Nope | 2022 | Jordan Peele | 130 min |
+| Les Trois Jours du Condor | 1975 | Sydney Pollack | 117 min |
+| Capricorn One | 1977 | Peter Hyams | 123 min |
+| I… comme Icare | 1979 | Henri Verneuil | 120 min |
+| Le Monde sur le fil (téléfilm) | 1973 | Rainer Werner Fassbinder | 205 min |
+| Le Prisonnier (série) | 1967 | Patrick McGoohan | 50 min par épisode |
+| The Wicker Man | 1973 | Robin Hardy | 93 min |
+| Kill List | 2011 | Ben Wheatley | 90 min |
+| La Neuvième Porte | 1999 | Roman Polanski | 132 min |
+| Opération Lune | 2002 | William Karel | 52 min |
+
+## 14 novembre 2026 : thème « Films historiques »
+
+52 films en 7 sous-catégories (les deux guerres mondiales découpées en 1914-1918 et 1939-1945), resserrés à la demande
+de Licia : la qualité avant la quantité (36 films corrects mais trop classiques retirés du thème, pas du catalogue) ; 14 ajoutés, identifiants, durées, pays et cinéastes vérifiés sur TMDB : L'Évangile selon saint
+Matthieu (Pasolini, 1964), Fellini Satyricon (1969), Marketa Lazarová (Vláčil, 1967), Perceval le Gallois (Rohmer, 1978),
+The Green Knight (Lowery, 2021), Ran (Kurosawa, 1985), Harakiri (Kobayashi, 1962), La Prise de pouvoir par Louis XIV
+(Rossellini, 1966), Aguirre, la colère de Dieu (Herzog, 1972), Zama (Martel, 2017), L'Assassinat de Jesse James
+(Dominik, 2007), La Grande Illusion (Renoir, 1937), Amadeus (Forman, 1984), Ivan le Terrible (Eisenstein, 1944).
+Écartés car trop sages ou peu recommandables : Naissance d'une nation, Forrest Gump, Titanic, Gladiator.

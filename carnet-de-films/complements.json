@@ -12786,6 +12786,851 @@
      ]
     }
    ]
+  },
+  "s55-complot": {
+   "famille": "themes",
+   "ordre": 1.3698,
+   "titre": "Théories du complot",
+   "sous_titre": "Pyramides, ovnis, sociétés secrètes, mondes truqués et mensonges d'État : de très bons films, souvent étranges, sur ceux qui cachent et ceux qui cherchent. Parfois le complot est vrai.",
+   "parties": [
+    {
+     "titre": "Pyramides et anciens astronautes",
+     "aide": "Civilisations anciennes, symboles et visiteurs venus d'ailleurs",
+     "ids": [
+      "souvenirs-du-futur-1970",
+      "2001-l-odyssee-de-l-espace-1968",
+      "la-montagne-sacree-1973",
+      "pi-1998"
+     ]
+    },
+    {
+     "titre": "Extraterrestres cachés",
+     "aide": "Ovnis, envahisseurs et secrets militaires",
+     "ids": [
+      "rencontres-du-troisieme-type-1977",
+      "invasion-los-angeles-1988",
+      "l-invasion-des-profanateurs-de-sepultures-1956",
+      "l-invasion-des-profanateurs-1978",
+      "the-vast-of-night-2019",
+      "nope-2022",
+      "x-files-episode-eve-1993",
+      "bugonia-2025"
+     ]
+    },
+    {
+     "titre": "Complots d'État et mensonges officiels",
+     "aide": "Assassinats, services secrets, images truquées",
+     "ids": [
+      "jfk-1991",
+      "a-cause-d-un-assassinat-1974",
+      "les-trois-jours-du-condor-1975",
+      "i-comme-icare-1979",
+      "conversation-secrete-1974",
+      "blow-out-1981",
+      "capricorn-one-1977",
+      "operation-lune-2002",
+      "les-hommes-du-president-1976",
+      "citizenfour-2014"
+     ]
+    },
+    {
+     "titre": "Sociétés secrètes et sectes",
+     "aide": "Rites, masques et gourous",
+     "ids": [
+      "eyes-wide-shut-1999",
+      "rosemary-s-baby-1968",
+      "the-wicker-man-1973",
+      "kill-list-2011",
+      "la-neuvieme-porte-1999",
+      "the-master-2012"
+     ]
+    },
+    {
+     "titre": "Le monde est un décor",
+     "aide": "Simulations, villes truquées et vies mises en scène",
+     "ids": [
+      "the-truman-show-1998",
+      "le-monde-sur-le-fil-1973",
+      "le-prisonnier-serie-1967",
+      "dark-city-1998",
+      "matrix-1999",
+      "brazil-1985",
+      "videodrome-1983"
+     ]
+    },
+    {
+     "titre": "Quand on y croit trop",
+     "aide": "Ceux qui voient des signes partout",
+     "ids": [
+      "under-the-silver-lake-2018",
+      "room-237-2012",
+      "bug-2006",
+      "eddington-2025",
+      "bugonia-2025",
+      "un-homme-d-exception-2001"
+     ]
+    }
+   ],
+   "films": [
+    {
+     "id": "souvenirs-du-futur-1970",
+     "t": "Souvenirs du futur",
+     "y": 1970,
+     "d": "Harald Reinl",
+     "r": "Le film qui a lancé l'idée des « anciens astronautes » bâtisseurs de pyramides."
+    },
+    {
+     "id": "2001-l-odyssee-de-l-espace-1968",
+     "t": "2001 : l'Odyssée de l'espace",
+     "y": 1968,
+     "d": "Stanley Kubrick",
+     "r": "Un monolithe noir enterré sur la Lune : quelqu'un a guidé l'humanité depuis la préhistoire."
+    },
+    {
+     "id": "la-montagne-sacree-1973",
+     "t": "La Montagne sacrée",
+     "y": 1973,
+     "d": "Alejandro Jodorowsky",
+     "r": "Neuf puissants guidés par un alchimiste vers une montagne sacrée : ésotérisme, pyramides et symboles."
+    },
+    {
+     "id": "pi-1998",
+     "t": "Pi",
+     "y": 1998,
+     "d": "Darren Aronofsky",
+     "r": "Un mathématicien cherche le nombre caché derrière la Bourse et la Torah ; spirales, symboles et sectes à ses trousses."
+    },
+    {
+     "id": "rencontres-du-troisieme-type-1977",
+     "t": "Rencontres du troisième type",
+     "y": 1977,
+     "d": "Steven Spielberg",
+     "r": "L'armée invente une fausse catastrophe pour cacher un atterrissage, et un homme obsédé force le barrage."
+    },
+    {
+     "id": "invasion-los-angeles-1988",
+     "t": "Invasion Los Angeles",
+     "y": 1988,
+     "d": "John Carpenter",
+     "r": "Des lunettes de soleil révèlent que les riches sont des extraterrestres et que les pubs disent « OBÉIS »."
+    },
+    {
+     "id": "l-invasion-des-profanateurs-de-sepultures-1956",
+     "t": "L'Invasion des profanateurs de sépultures",
+     "y": 1956,
+     "d": "Don Siegel",
+     "r": "La version d'origine : une petite ville remplacée par des copies, en pleine peur du communisme."
+    },
+    {
+     "id": "l-invasion-des-profanateurs-1978",
+     "t": "L'Invasion des profanateurs",
+     "y": 1978,
+     "d": "Philip Kaufman",
+     "r": "Les voisins sont remplacés par des copies venues de l'espace ; la fin la plus glaçante du genre."
+    },
+    {
+     "id": "the-vast-of-night-2019",
+     "t": "The Vast of Night",
+     "y": 2019,
+     "d": "Andrew Patterson",
+     "r": "Un son étrange à la radio, une petite ville des années 1950, presque tout passe par les voix."
+    },
+    {
+     "id": "nope-2022",
+     "t": "Nope",
+     "y": 2022,
+     "d": "Jordan Peele",
+     "r": "Un nuage immobile au-dessus d'un ranch, et l'obsession d'obtenir enfin l'image de l'ovni."
+    },
+    {
+     "id": "x-files-episode-eve-1993",
+     "t": "X-Files, épisode « Eve »",
+     "y": 1993,
+     "d": "Série de Chris Carter",
+     "r": "Mulder et Scully face à des fillettes jumelles nées d'un programme secret du gouvernement."
+    },
+    {
+     "id": "bugonia-2025",
+     "t": "Bugonia",
+     "y": 2025,
+     "d": "Yórgos Lánthimos",
+     "r": "Deux cousins enlèvent la patronne d'un laboratoire, persuadés qu'elle est une extraterrestre. Et s'ils avaient raison ?"
+    },
+    {
+     "id": "jfk-1991",
+     "t": "JFK",
+     "y": 1991,
+     "d": "Oliver Stone",
+     "r": "Le procureur Jim Garrison refait l'enquête sur l'assassinat de Kennedy ; un montage vertigineux d'archives et de fiction."
+    },
+    {
+     "id": "a-cause-d-un-assassinat-1974",
+     "t": "À cause d'un assassinat",
+     "y": 1974,
+     "d": "Alan J. Pakula",
+     "r": "Un journaliste découvre une entreprise qui recrute des tueurs politiques ; la paranoïa des années 1970."
+    },
+    {
+     "id": "les-trois-jours-du-condor-1975",
+     "t": "Les Trois Jours du Condor",
+     "y": 1975,
+     "d": "Sydney Pollack",
+     "r": "Un lecteur de la CIA, seul survivant, traqué par sa propre agence."
+    },
+    {
+     "id": "i-comme-icare-1979",
+     "t": "I… comme Icare",
+     "y": 1979,
+     "d": "Henri Verneuil",
+     "r": "Yves Montand refait l'enquête sur un assassinat présidentiel calqué sur celui de Kennedy."
+    },
+    {
+     "id": "conversation-secrete-1974",
+     "t": "Conversation secrète",
+     "y": 1974,
+     "d": "Francis Ford Coppola",
+     "r": "Un spécialiste des écoutes croit entendre un projet de meurtre et finit par démonter son propre appartement."
+    },
+    {
+     "id": "blow-out-1981",
+     "t": "Blow Out",
+     "y": 1981,
+     "d": "Brian De Palma",
+     "r": "Un ingénieur du son enregistre par hasard la preuve qu'un accident était un assassinat politique."
+    },
+    {
+     "id": "capricorn-one-1977",
+     "t": "Capricorn One",
+     "y": 1977,
+     "d": "Peter Hyams",
+     "r": "La NASA truque un voyage sur Mars en studio ; le film a nourri la rumeur des alunissages truqués."
+    },
+    {
+     "id": "operation-lune-2002",
+     "t": "Opération Lune",
+     "y": 2002,
+     "d": "William Karel",
+     "r": "Faux documentaire : Kubrick aurait filmé l'alunissage en studio. Une leçon sur la manipulation."
+    },
+    {
+     "id": "les-hommes-du-president-1976",
+     "t": "Les Hommes du président",
+     "y": 1976,
+     "d": "Alan J. Pakula",
+     "r": "Le vrai complot du Watergate, dévoilé par deux journalistes du Washington Post."
+    },
+    {
+     "id": "citizenfour-2014",
+     "t": "Citizenfour",
+     "y": 2014,
+     "d": "Laura Poitras",
+     "r": "Edward Snowden révèle la surveillance de masse, filmé dans une chambre d'hôtel de Hong Kong : un complot bien réel."
+    },
+    {
+     "id": "eyes-wide-shut-1999",
+     "t": "Eyes Wide Shut",
+     "y": 1999,
+     "d": "Stanley Kubrick",
+     "r": "Un médecin s'introduit dans une soirée masquée d'une société secrète ; la peur d'en avoir trop vu."
+    },
+    {
+     "id": "rosemary-s-baby-1968",
+     "t": "Rosemary's Baby",
+     "y": 1968,
+     "d": "Roman Polanski",
+     "r": "Les voisins si gentils sont une secte satanique, et le bébé de Rosemary leur était promis."
+    },
+    {
+     "id": "the-wicker-man-1973",
+     "t": "The Wicker Man",
+     "y": 1973,
+     "d": "Robin Hardy",
+     "r": "Un village entier ment avec le sourire, entre chansons folk et rites païens."
+    },
+    {
+     "id": "kill-list-2011",
+     "t": "Kill List",
+     "y": 2011,
+     "d": "Ben Wheatley",
+     "r": "Un contrat de tueur à gages qui mène à une secte masquée ; une fin terrible."
+    },
+    {
+     "id": "la-neuvieme-porte-1999",
+     "t": "La Neuvième Porte",
+     "y": 1999,
+     "d": "Roman Polanski",
+     "r": "Un chasseur de livres rares sur la piste d'un grimoire et d'une société occulte."
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": "Un vétéran perdu tombe sous l'emprise d'un gourou et de sa « Cause », inspirée des débuts de la scientologie."
+    },
+    {
+     "id": "the-truman-show-1998",
+     "t": "The Truman Show",
+     "y": 1998,
+     "d": "Peter Weir",
+     "r": "Toute sa vie est une émission de télévision et toute sa ville un décor ; Truman finit par toucher le mur du ciel."
+    },
+    {
+     "id": "le-monde-sur-le-fil-1973",
+     "t": "Le Monde sur le fil (téléfilm)",
+     "y": 1973,
+     "d": "Rainer Werner Fassbinder",
+     "r": "Et si notre monde était une simulation ? Fassbinder y pensait 26 ans avant Matrix."
+    },
+    {
+     "id": "le-prisonnier-serie-1967",
+     "t": "Le Prisonnier (série)",
+     "y": 1967,
+     "d": "Patrick McGoohan",
+     "r": "Un agent prisonnier d'un village balnéaire où tout le monde surveille tout le monde."
+    },
+    {
+     "id": "dark-city-1998",
+     "t": "Dark City",
+     "y": 1998,
+     "d": "Alex Proyas",
+     "r": "Une ville où il fait toujours nuit, que des êtres étranges remodèlent chaque soir pendant que tout le monde dort."
+    },
+    {
+     "id": "matrix-1999",
+     "t": "Matrix",
+     "y": 1999,
+     "d": "Lana et Lilly Wachowski",
+     "r": "Le monde n'est qu'une simulation qui endort l'humanité : la pilule rouge ou la pilule bleue."
+    },
+    {
+     "id": "brazil-1985",
+     "t": "Brazil",
+     "y": 1985,
+     "d": "Terry Gilliam",
+     "r": "Une bureaucratie folle, une erreur de frappe, et un employé rêveur broyé par le système."
+    },
+    {
+     "id": "videodrome-1983",
+     "t": "Vidéodrome",
+     "y": 1983,
+     "d": "David Cronenberg",
+     "r": "Une émission pirate qui transforme ceux qui la regardent ; derrière, un complot pour contrôler le public."
+    },
+    {
+     "id": "under-the-silver-lake-2018",
+     "t": "Under the Silver Lake",
+     "y": 2018,
+     "d": "David Robert Mitchell",
+     "r": "Un jeune homme désœuvré cherche des messages cachés dans les chansons pop et les boîtes de céréales de Los Angeles."
+    },
+    {
+     "id": "room-237-2012",
+     "t": "Room 237",
+     "y": 2012,
+     "d": "Rodney Ascher",
+     "r": "Des passionnés décortiquent Shining : génocide amérindien, Minotaure, alunissage truqué. Jusqu'où peut aller une interprétation ?"
+    },
+    {
+     "id": "bug-2006",
+     "t": "Bug",
+     "y": 2006,
+     "d": "William Friedkin",
+     "r": "Une serveuse et un ancien soldat se persuadent que l'armée leur a implanté des insectes sous la peau ; folie à deux."
+    },
+    {
+     "id": "eddington-2025",
+     "t": "Eddington",
+     "y": 2025,
+     "d": "Ari Aster",
+     "r": "Une petite ville du Nouveau-Mexique se déchire pendant le Covid, entre gourous complotistes et vidéos virales."
+    },
+    {
+     "id": "un-homme-d-exception-2001",
+     "t": "Un homme d'exception",
+     "y": 2001,
+     "d": "Ron Howard",
+     "r": "Le mathématicien John Nash croit décoder des messages soviétiques secrets dans les journaux."
+    }
+   ]
+  },
+  "s56-histoire": {
+   "famille": "themes",
+   "ordre": 1.3699,
+   "titre": "Films historiques",
+   "sous_titre": "De la Rome antique à la guerre froide : seulement des films d'histoire marquants par leur regard, leur forme ou leur audace. Pas de reconstitutions sages.",
+   "parties": [
+    {
+     "titre": "Antiquité et Moyen Âge",
+     "aide": "Rome, Jésus, chevaliers et clans",
+     "ids": [
+      "l-evangile-selon-saint-matthieu-1964",
+      "fellini-satyricon-1969",
+      "la-passion-de-jeanne-d-arc-1928",
+      "andrei-roublev-1966",
+      "marketa-lazarova-1967",
+      "perceval-le-gallois-1978",
+      "the-green-knight-2021"
+     ]
+    },
+    {
+     "titre": "Japon, Chine et Corée d'autrefois",
+     "aide": "Samouraïs, cours impériales et légendes",
+     "ids": [
+      "les-contes-de-la-lune-vague-apres-la-pluie-1953",
+      "les-sept-samourais-1954",
+      "harakiri-1962",
+      "ran-1985",
+      "the-assassin-2015"
+     ]
+    },
+    {
+     "titre": "Rois, reines et conquistadors",
+     "aide": "Du XVIe au XVIIIe siècle",
+     "ids": [
+      "ivan-le-terrible-1944",
+      "aguirre-la-colere-de-dieu-1972",
+      "la-prise-de-pouvoir-par-louis-xiv-1966",
+      "barry-lyndon-1975",
+      "amadeus-1984",
+      "zama-2017",
+      "l-anglaise-et-le-duc-2001"
+     ]
+    },
+    {
+     "titre": "Le XIXe siècle et l'Ouest américain",
+     "aide": "Révolutions, pionniers et hors-la-loi",
+     "ids": [
+      "le-guepard-1963",
+      "la-commune-paris-1871-2000",
+      "first-cow-2019",
+      "dead-man-1995",
+      "l-assassinat-de-jesse-james-2007"
+     ]
+    },
+    {
+     "titre": "Les deux guerres mondiales",
+     "aide": "Tranchées, résistance, camps et bombe",
+     "sous": [
+      {
+       "titre": "1914-1918",
+       "ids": [
+        "la-grande-illusion-1937",
+        "les-sentiers-de-la-gloire-1957",
+        "johnny-s-en-va-t-en-guerre-1971"
+       ]
+      },
+      {
+       "titre": "1939-1945",
+       "ids": [
+        "rome-ville-ouverte-1945",
+        "l-armee-des-ombres-1969",
+        "lacombe-lucien-1974",
+        "monsieur-klein-1976",
+        "requiem-pour-un-massacre-1985",
+        "furyo-1983",
+        "le-tombeau-des-lucioles-1988",
+        "le-fils-de-saul-2015",
+        "la-zone-d-interet-2023",
+        "nuit-et-brouillard-1956",
+        "shoah-1985",
+        "hiroshima-mon-amour-1959"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Révolutions, dictatures et guerre froide",
+     "aide": "De 1905 à la chute du Mur",
+     "ids": [
+      "le-cuirasse-potemkine-1925",
+      "soy-cuba-1964",
+      "memoires-du-sous-developpement-1968",
+      "le-conformiste-1970",
+      "l-homme-de-marbre-1977",
+      "la-vie-des-autres-2006",
+      "ida-2013"
+     ]
+    },
+    {
+     "titre": "Décolonisation, droits civiques et Vietnam",
+     "aide": "Alger, Kinshasa, Selma, Saïgon",
+     "ids": [
+      "la-bataille-d-alger-1966",
+      "the-black-power-mixtape-1967-1975-2011",
+      "i-am-not-your-negro-2016",
+      "voyage-au-bout-de-l-enfer-1978",
+      "apocalypse-now-1979",
+      "valse-avec-bachir-2008"
+     ]
+    }
+   ],
+   "films": [
+    {
+     "id": "l-evangile-selon-saint-matthieu-1964",
+     "t": "L'Évangile selon saint Matthieu",
+     "y": 1964,
+     "d": "Pier Paolo Pasolini",
+     "r": "La vie de Jésus jouée par des paysans du sud de l'Italie, comme un documentaire."
+    },
+    {
+     "id": "fellini-satyricon-1969",
+     "t": "Fellini Satyricon",
+     "y": 1969,
+     "d": "Federico Fellini",
+     "r": "La Rome antique comme une planète étrangère, en morceaux comme le texte d'origine."
+    },
+    {
+     "id": "la-passion-de-jeanne-d-arc-1928",
+     "t": "La Passion de Jeanne d'Arc",
+     "y": 1928,
+     "d": "Carl Theodor Dreyer",
+     "r": "Film muet : le procès et la mort de Jeanne d'Arc, presque entièrement en gros plans de visages sans maquillage, dont celui de Renée Falconetti, en larmes."
+    },
+    {
+     "id": "andrei-roublev-1966",
+     "t": "Andreï Roublev",
+     "y": 1966,
+     "d": "Andreï Tarkovski",
+     "r": "La grande fresque de Tarkovski : la Russie médiévale et la fonte d'une cloche géante."
+    },
+    {
+     "id": "marketa-lazarova-1967",
+     "t": "Marketa Lazarová",
+     "y": 1967,
+     "d": "František Vláčil",
+     "r": "Le Moyen Âge le plus sauvage jamais filmé, entre loups, neige et clans."
+    },
+    {
+     "id": "perceval-le-gallois-1978",
+     "t": "Perceval le Gallois",
+     "y": 1978,
+     "d": "Éric Rohmer",
+     "r": "La légende de Perceval dans un décor d'enluminure, dite en vers et chantée."
+    },
+    {
+     "id": "the-green-knight-2021",
+     "t": "The Green Knight",
+     "y": 2021,
+     "d": "David Lowery",
+     "r": "Une légende arthurienne du XIVe siècle filmée comme un rêve."
+    },
+    {
+     "id": "les-contes-de-la-lune-vague-apres-la-pluie-1953",
+     "t": "Les Contes de la lune vague après la pluie",
+     "y": 1953,
+     "d": "Kenji Mizoguchi",
+     "r": "Fumio Hayasaka : percussions et chants du théâtre nô pour un monde de fantômes."
+    },
+    {
+     "id": "les-sept-samourais-1954",
+     "t": "Les Sept Samouraïs",
+     "y": 1954,
+     "d": "Akira Kurosawa",
+     "r": "Fumio Hayasaka : tambours et flûtes, un thème pour les samouraïs, un autre pour les paysans."
+    },
+    {
+     "id": "harakiri-1962",
+     "t": "Harakiri",
+     "y": 1962,
+     "d": "Masaki Kobayashi",
+     "r": "Un samouraï démonte le code d'honneur qui a tué son gendre."
+    },
+    {
+     "id": "ran-1985",
+     "t": "Ran",
+     "y": 1985,
+     "d": "Akira Kurosawa",
+     "r": "Le Roi Lear chez les samouraïs, avec des armées de couleurs et un château en flammes."
+    },
+    {
+     "id": "the-assassin-2015",
+     "t": "The Assassin",
+     "y": 2015,
+     "d": "Hou Hsiao-hsien",
+     "r": "Dans la Chine du neuvième siècle, Shu Qi, formée par une nonne pour tuer, doit assassiner son cousin, gouverneur à qui elle était promise "
+    },
+    {
+     "id": "ivan-le-terrible-1944",
+     "t": "Ivan le Terrible",
+     "y": 1944,
+     "d": "Sergueï Eisenstein",
+     "r": "Le premier tsar en ombres géantes ; la suite fut interdite par Staline."
+    },
+    {
+     "id": "aguirre-la-colere-de-dieu-1972",
+     "t": "Aguirre, la colère de Dieu",
+     "y": 1972,
+     "d": "Werner Herzog",
+     "r": "Des conquistadors descendent l'Amazone ; Kinski seul sur un radeau envahi de singes."
+    },
+    {
+     "id": "la-prise-de-pouvoir-par-louis-xiv-1966",
+     "t": "La Prise de pouvoir par Louis XIV",
+     "y": 1966,
+     "d": "Roberto Rossellini",
+     "r": "Comment Louis XIV a fait du pouvoir une mise en scène."
+    },
+    {
+     "id": "barry-lyndon-1975",
+     "t": "Barry Lyndon",
+     "y": 1975,
+     "d": "Stanley Kubrick",
+     "r": "Haendel (la Sarabande), Schubert et Vivaldi pour des tableaux du XVIIIe siècle éclairés à la bougie."
+    },
+    {
+     "id": "amadeus-1984",
+     "t": "Amadeus",
+     "y": 1984,
+     "d": "Miloš Forman",
+     "r": "Salieri raconte comment sa jalousie a tué Mozart ; la musique en personnage principal."
+    },
+    {
+     "id": "zama-2017",
+     "t": "Zama",
+     "y": 2017,
+     "d": "Lucrecia Martel",
+     "r": "Un fonctionnaire colonial attend une mutation qui ne viendra jamais."
+    },
+    {
+     "id": "l-anglaise-et-le-duc-2001",
+     "t": "L'Anglaise et le Duc",
+     "y": 2001,
+     "d": "Éric Rohmer",
+     "r": "Les acteurs jouent devant des tableaux peints du Paris de la Révolution."
+    },
+    {
+     "id": "le-guepard-1963",
+     "t": "Le Guépard",
+     "y": 1963,
+     "d": "Luchino Visconti",
+     "r": "Le Technicolor des palais siciliens et un bal de trois quarts d'heure."
+    },
+    {
+     "id": "la-commune-paris-1871-2000",
+     "t": "La Commune (Paris, 1871)",
+     "y": 2000,
+     "d": "Peter Watkins",
+     "r": "La Commune de Paris rejouée par 200 amateurs, comme si deux télévisions la couvraient en direct."
+    },
+    {
+     "id": "first-cow-2019",
+     "t": "First Cow",
+     "y": 2019,
+     "d": "Kelly Reichardt",
+     "r": "Deux amis volent le lait de la seule vache de l'Oregon, vers 1820 : le capitalisme à ses débuts."
+    },
+    {
+     "id": "dead-man-1995",
+     "t": "Dead Man",
+     "y": 1995,
+     "d": "Jim Jarmusch",
+     "r": "En noir et blanc, un comptable (Johnny Depp), blessé et recherché dans l'Ouest sauvage, fuit avec un Amérindien qui le prend pour le poète William Blake "
+    },
+    {
+     "id": "l-assassinat-de-jesse-james-2007",
+     "t": "L'Assassinat de Jesse James par le lâche Robert Ford",
+     "y": 2007,
+     "d": "Andrew Dominik",
+     "r": "Le fan qui tua son idole, puis rejoua le meurtre sur scène ; images floues et neige."
+    },
+    {
+     "id": "la-grande-illusion-1937",
+     "t": "La Grande Illusion",
+     "y": 1937,
+     "d": "Jean Renoir",
+     "r": "Des prisonniers de 1914-1918 : les classes sociales comptent plus que les frontières."
+    },
+    {
+     "id": "les-sentiers-de-la-gloire-1957",
+     "t": "Les Sentiers de la gloire",
+     "y": 1957,
+     "d": "Stanley Kubrick",
+     "r": "Trois soldats fusillés pour l'exemple par un état-major qui se couvre, en 1916."
+    },
+    {
+     "id": "johnny-s-en-va-t-en-guerre-1971",
+     "t": "Johnny s'en va-t-en guerre",
+     "y": 1971,
+     "d": "Dalton Trumbo",
+     "r": "Un soldat de 1918 sans bras, sans jambes ni visage, prisonnier de son corps."
+    },
+    {
+     "id": "rome-ville-ouverte-1945",
+     "t": "Rome, ville ouverte",
+     "y": 1945,
+     "d": "Roberto Rossellini",
+     "r": "Communistes et prêtre unis contre la Gestapo, dans Rome tout juste libérée : le néoréalisme est né."
+    },
+    {
+     "id": "l-armee-des-ombres-1969",
+     "t": "L'Armée des ombres",
+     "y": 1969,
+     "d": "Jean-Pierre Melville",
+     "r": "Des résistants dans la France occupée : la peur, le secret, et les camarades qu'il faut sacrifier."
+    },
+    {
+     "id": "lacombe-lucien-1974",
+     "t": "Lacombe Lucien",
+     "y": 1974,
+     "d": "Louis Malle",
+     "r": "Un garçon de ferme devient collaborateur par hasard, en juin 1944, sans aucune conviction."
+    },
+    {
+     "id": "monsieur-klein-1976",
+     "t": "Monsieur Klein",
+     "y": 1976,
+     "d": "Joseph Losey",
+     "r": "Paris, 1942 : un marchand d'art qui rachète à bas prix les tableaux des Juifs obligés de fuir reçoit un journal juif adressé à son nom "
+    },
+    {
+     "id": "requiem-pour-un-massacre-1985",
+     "t": "Requiem pour un massacre",
+     "y": 1985,
+     "d": "Elem Klimov",
+     "r": "Un adolescent biélorusse rejoint les partisans et traverse l'horreur des massacres nazis."
+    },
+    {
+     "id": "furyo-1983",
+     "t": "Furyo",
+     "y": 1983,
+     "d": "Nagisa Ōshima",
+     "r": "Un camp japonais de prisonniers en 1942 : deux codes de l'honneur face à face."
+    },
+    {
+     "id": "le-tombeau-des-lucioles-1988",
+     "t": "Le Tombeau des lucioles",
+     "y": 1988,
+     "d": "Isao Takahata",
+     "r": "Kobe, 1945 : un adolescent et sa petite sœur survivent seuls après les bombardements américains."
+    },
+    {
+     "id": "le-fils-de-saul-2015",
+     "t": "Le Fils de Saul",
+     "y": 2015,
+     "d": "László Nemes",
+     "r": "Un prisonnier d'Auschwitz veut enterrer un enfant, filmé au plus près de son visage."
+    },
+    {
+     "id": "la-zone-d-interet-2023",
+     "t": "La Zone d'intérêt",
+     "y": 2023,
+     "d": "Jonathan Glazer",
+     "r": "La vie de famille tranquille du commandant d'Auschwitz, juste derrière le mur du camp."
+    },
+    {
+     "id": "nuit-et-brouillard-1956",
+     "t": "Nuit et Brouillard",
+     "y": 1956,
+     "d": "Alain Resnais",
+     "r": "Trente minutes sur les camps de concentration, dix ans après leur libération."
+    },
+    {
+     "id": "shoah-1985",
+     "t": "Shoah",
+     "y": 1985,
+     "d": "Claude Lanzmann",
+     "r": "Neuf heures de témoignages, sans une image d'archive, pour dire l'extermination."
+    },
+    {
+     "id": "hiroshima-mon-amour-1959",
+     "t": "Hiroshima mon amour",
+     "y": 1959,
+     "d": "Alain Resnais",
+     "r": "Giovanni Fusco et Georges Delerue : des thèmes de mémoire, et une valse pour Nevers."
+    },
+    {
+     "id": "le-cuirasse-potemkine-1925",
+     "t": "Le Cuirassé Potemkine",
+     "y": 1925,
+     "d": "Sergueï Eisenstein",
+     "r": "La mutinerie de 1905 et le massacre des escaliers d'Odessa, au montage révolutionnaire."
+    },
+    {
+     "id": "soy-cuba-1964",
+     "t": "Soy Cuba",
+     "y": 1964,
+     "d": "Mikhaïl Kalatozov",
+     "r": "La révolution cubaine en propagande soviétique, avec des plans-séquences qui semblent voler."
+    },
+    {
+     "id": "memoires-du-sous-developpement-1968",
+     "t": "Mémoires du sous-développement",
+     "y": 1968,
+     "d": "Tomás Gutiérrez Alea",
+     "r": "Un bourgeois reste à La Havane après la révolution, ni dedans ni dehors."
+    },
+    {
+     "id": "le-conformiste-1970",
+     "t": "Le Conformiste",
+     "y": 1970,
+     "d": "Bernardo Bertolucci",
+     "r": "Lumières de Vittorio Storaro, décors fascistes immenses et vides."
+    },
+    {
+     "id": "l-homme-de-marbre-1977",
+     "t": "L'Homme de marbre",
+     "y": 1977,
+     "d": "Andrzej Wajda",
+     "r": "Une cinéaste fouille les archives d'un ouvrier modèle fabriqué, puis effacé, par la propagande."
+    },
+    {
+     "id": "la-vie-des-autres-2006",
+     "t": "La Vie des autres",
+     "y": 2006,
+     "d": "Florian Henckel von Donnersmarck",
+     "r": "La surveillance de la Stasi à Berlin-Est : un espion finit par protéger ceux qu'il écoute."
+    },
+    {
+     "id": "ida-2013",
+     "t": "Ida",
+     "y": 2013,
+     "d": "Paweł Pawlikowski",
+     "r": "Une novice découvre qu'elle est juive, dans la Pologne communiste de 1962, et cherche la tombe de ses parents."
+    },
+    {
+     "id": "la-bataille-d-alger-1966",
+     "t": "La Bataille d'Alger",
+     "y": 1966,
+     "d": "Gillo Pontecorvo",
+     "r": "La lutte du FLN et la répression française dans la Casbah, filmées comme des actualités."
+    },
+    {
+     "id": "the-black-power-mixtape-1967-1975-2011",
+     "t": "The Black Power Mixtape 1967-1975",
+     "y": 2011,
+     "d": "Göran Olsson",
+     "r": "Le Black Power américain filmé par la télévision suédoise, commenté par des artistes d'aujourd'hui."
+    },
+    {
+     "id": "i-am-not-your-negro-2016",
+     "t": "I Am Not Your Negro",
+     "y": 2016,
+     "d": "Raoul Peck",
+     "r": "Les mots de James Baldwin sur le racisme américain, de Malcolm X à Ferguson."
+    },
+    {
+     "id": "voyage-au-bout-de-l-enfer-1978",
+     "t": "Voyage au bout de l'enfer",
+     "y": 1978,
+     "d": "Michael Cimino",
+     "r": "Trois ouvriers d'une ville sidérurgique partent au Vietnam, et ce qu'ils en rapportent."
+    },
+    {
+     "id": "apocalypse-now-1979",
+     "t": "Apocalypse Now",
+     "y": 1979,
+     "d": "Francis Ford Coppola",
+     "r": "Une remontée de fleuve au cœur de la guerre du Vietnam et de sa folie."
+    },
+    {
+     "id": "valse-avec-bachir-2008",
+     "t": "Valse avec Bachir",
+     "y": 2008,
+     "d": "Ari Folman",
+     "r": "Un ancien soldat israélien retrouve la mémoire du massacre de Sabra et Chatila."
+    }
+   ]
   }
  },
  "fiches": {
@@ -28042,6 +28887,590 @@
    ],
    "fiab": "à vérifier",
    "mv": "hollywood-contemporain"
+  },
+  "souvenirs-du-futur-1970": {
+   "p": "Adapté du best-seller d'Erich von Däniken : des pyramides d'Égypte aux lignes de Nazca et aux statues de l'île de Pâques, le film affirme que des visiteurs venus d'ailleurs ont aidé les civilisations anciennes. Un document d'époque qui a lancé la mode des « anciens astronautes » : à regarder comme la naissance d'une théorie, pas comme une vérité.",
+   "c": "Allemagne de l'Ouest",
+   "k": [
+    "documentaire",
+    "sf",
+    "retro"
+   ],
+   "mv": "doc-essai",
+   "e": 5,
+   "duree": 83,
+   "av": [],
+   "th": [
+    "anciens astronautes",
+    "pyramides",
+    "pseudo-science"
+   ],
+   "fiab": "à vérifier"
+  },
+  "rencontres-du-troisieme-type-1977": {
+   "p": "Roy Neary (Richard Dreyfuss), électricien de l'Indiana, croise un ovni et devient obsédé par une forme de montagne qu'il sculpte jusque dans sa purée. L'armée invente une fausse catastrophe chimique pour vider la région de Devils Tower, où les extraterrestres doivent se poser. Il force le barrage et finit par partir avec eux, sur un dialogue de cinq notes de musique.",
+   "c": "États-Unis, Royaume-Uni",
+   "k": [
+    "sf",
+    "musique",
+    "obsession"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 8,
+   "duree": 135,
+   "av": [],
+   "th": [
+    "ovnis",
+    "obsession",
+    "secret militaire"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-invasion-des-profanateurs-1978": {
+   "p": "À San Francisco, des fleurs venues de l'espace font pousser, pendant le sommeil, des copies sans émotion des habitants. Matthew (Donald Sutherland) et Elizabeth tentent de fuir une ville qui se remplit de doubles et où plus personne ne croit personne. Dernière image glaçante : Matthew pointe le doigt et pousse le cri des envahisseurs, il a été remplacé.",
+   "c": "États-Unis",
+   "k": [
+    "paranoia",
+    "horreur",
+    "sf",
+    "malaise"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 7,
+   "duree": 115,
+   "av": [],
+   "th": [
+    "doubles",
+    "conformisme",
+    "paranoïa"
+   ],
+   "fiab": "à vérifier"
+  },
+  "invasion-los-angeles-1988": {
+   "p": "Un ouvrier sans travail (Roddy Piper) trouve des lunettes de soleil qui montrent la vérité : les riches sont des extraterrestres, et les affiches disent en fait OBÉIS, CONSOMME, DORS. Une satire de l'Amérique de Reagan, avec une bagarre de rue de cinq minutes devenue culte. Il détruit l'émetteur qui cache tout et meurt en faisant un doigt d'honneur aux envahisseurs.",
+   "c": "États-Unis",
+   "k": [
+    "sf",
+    "societe",
+    "humour-absurde",
+    "violence"
+   ],
+   "mv": "independant-americain",
+   "e": 7,
+   "duree": 93,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "consommation",
+    "propagande",
+    "inégalités"
+   ],
+   "fiab": "à vérifier"
+  },
+  "the-vast-of-night-2019": {
+   "p": "Nouveau-Mexique, années 1950, un soir de match de basket. Une jeune standardiste et un animateur radio captent un son étrange ; au téléphone, un ancien militaire raconte avoir travaillé sur un projet secret. De longs plans-séquences glissent à travers la petite ville et presque tout passe par les voix. À la fin, une lumière dans le ciel les emporte.",
+   "c": "États-Unis",
+   "k": [
+    "sf",
+    "retro",
+    "suspense",
+    "contemplatif"
+   ],
+   "mv": "independant-americain",
+   "e": 7,
+   "duree": 89,
+   "av": [],
+   "th": [
+    "radio",
+    "années 1950",
+    "secret militaire"
+   ],
+   "fiab": "à vérifier"
+  },
+  "nope-2022": {
+   "p": "OJ et Em, dresseurs de chevaux pour le cinéma, remarquent un nuage qui ne bouge pas au-dessus de leur ranch : c'est une créature qui avale tout ce qui la regarde. Ils veulent la filmer pour devenir riches. Un film sur le spectacle et l'obsession de l'image impossible ; Em finit par la photographier avec un vieil appareil de fête foraine.",
+   "c": "États-Unis",
+   "k": [
+    "sf",
+    "horreur",
+    "humour-absurde",
+    "suspense"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 7,
+   "duree": 130,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "spectacle",
+    "image",
+    "animaux"
+   ],
+   "fiab": "à vérifier"
+  },
+  "les-trois-jours-du-condor-1975": {
+   "p": "Joe Turner (Robert Redford) lit des romans pour la CIA. Il revient de déjeuner : tous ses collègues ont été abattus. Traqué par sa propre agence, il découvre un plan secret pour s'emparer des champs de pétrole du Moyen-Orient. À la fin, il a tout donné au New York Times, mais un agent lui demande : « Et s'ils ne publient pas ? »",
+   "c": "États-Unis, Italie",
+   "k": [
+    "paranoia",
+    "suspense",
+    "societe"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 8,
+   "duree": 117,
+   "av": [],
+   "th": [
+    "CIA",
+    "pétrole",
+    "presse"
+   ],
+   "fiab": "à vérifier"
+  },
+  "capricorn-one-1977": {
+   "p": "La NASA ne peut pas envoyer d'hommes sur Mars : elle filme le voyage dans un studio, devant le monde entier. Quand la capsule se désintègre au retour, les trois astronautes, officiellement morts, doivent disparaître pour de bon. Ils s'évadent dans le désert pendant qu'un journaliste (Elliott Gould) remonte la piste. Le film a nourri la rumeur des alunissages truqués.",
+   "c": "États-Unis, Royaume-Uni",
+   "k": [
+    "suspense",
+    "paranoia",
+    "sf"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 6,
+   "duree": 123,
+   "av": [],
+   "th": [
+    "NASA",
+    "médias",
+    "mensonge d'État"
+   ],
+   "fiab": "à vérifier"
+  },
+  "i-comme-icare-1979": {
+   "p": "Le président d'un pays imaginaire est assassiné. Le procureur Volney (Yves Montand) refuse les conclusions de la commission d'enquête et reprend tout, dans une histoire inspirée de l'assassinat de Kennedy. Au passage, le film reconstitue l'expérience de Milgram sur l'obéissance. Volney trouve la vérité et se fait abattre juste après.",
+   "c": "France",
+   "k": [
+    "suspense",
+    "societe",
+    "paranoia"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 120,
+   "av": [],
+   "th": [
+    "assassinat politique",
+    "obéissance",
+    "enquête"
+   ],
+   "fiab": "à vérifier"
+  },
+  "le-monde-sur-le-fil-1973": {
+   "p": "Un institut a créé un ordinateur qui simule une ville entière, peuplée d'« unités » qui se croient humaines. Après la mort mystérieuse de son patron, l'ingénieur Fred Stiller comprend que son propre monde est lui aussi une simulation. Miroirs, reflets, décors des années 1970 : un ancêtre de Matrix en deux parties. Il finit par passer dans le monde « réel ».",
+   "c": "Allemagne de l'Ouest",
+   "k": [
+    "sf",
+    "couleurs",
+    "reve",
+    "paranoia"
+   ],
+   "mv": "nouveau-cinema-allemand",
+   "e": 8,
+   "duree": 205,
+   "av": [],
+   "th": [
+    "simulation",
+    "réalité",
+    "identité"
+   ],
+   "fiab": "à vérifier"
+  },
+  "le-prisonnier-serie-1967": {
+   "p": "Un agent secret démissionne et se réveille au Village, une station balnéaire charmante dont on ne peut pas sortir. On ne l'appelle plus que « Numéro 6 », et à chaque épisode un nouveau « Numéro 2 » veut savoir pourquoi il a démissionné ; une grosse boule blanche, le Rôdeur, ramène les fuyards. Le dernier épisode, délirant, révèle que Numéro 1 porte son propre visage. 17 épisodes.",
+   "c": "Royaume-Uni",
+   "k": [
+    "serie",
+    "absurde",
+    "paranoia",
+    "couleurs"
+   ],
+   "mv": "series",
+   "e": 8,
+   "duree": 50,
+   "av": [],
+   "th": [
+    "surveillance",
+    "liberté",
+    "identité"
+   ],
+   "fiab": "à vérifier",
+   "duree_episode": true
+  },
+  "the-wicker-man-1973": {
+   "p": "Un policier très chrétien (Edward Woodward) vient chercher une fillette disparue sur une île écossaise où tout le village suit un culte païen, entre chansons folk et rites de fertilité. Tout le monde lui ment avec le sourire. Le piège se referme : c'est lui le sacrifice, brûlé vif dans un homme d'osier géant.",
+   "c": "Royaume-Uni",
+   "k": [
+    "horreur",
+    "musique",
+    "malaise"
+   ],
+   "mv": "auteur-europeen",
+   "e": 7,
+   "duree": 93,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "culte païen",
+    "île",
+    "sacrifice"
+   ],
+   "fiab": "à vérifier"
+  },
+  "kill-list-2011": {
+   "p": "Jay, ancien soldat devenu tueur à gages, accepte une liste de trois cibles ; les victimes le remercient avant de mourir. La mission le mène jusqu'à une secte en tuniques et masques de paille. Dans la dernière scène, il doit se battre au couteau contre un « bossu » : c'était sa femme, qui portait leur fils.",
+   "c": "Royaume-Uni",
+   "k": [
+    "violence",
+    "horreur",
+    "malaise"
+   ],
+   "mv": "auteur-europeen",
+   "e": 6,
+   "duree": 90,
+   "av": [
+    "violence explicite",
+    "images choquantes"
+   ],
+   "th": [
+    "secte",
+    "contrat",
+    "culpabilité"
+   ],
+   "fiab": "à vérifier"
+  },
+  "la-neuvieme-porte-1999": {
+   "p": "Dean Corso (Johnny Depp), chasseur de livres rares sans scrupules, doit comparer les trois exemplaires connus d'un livre qui permettrait d'invoquer le Diable. Gravures qui diffèrent d'un livre à l'autre, bibliophiles assassinés, une mystérieuse jeune femme qui le protège. Il franchit la neuvième porte, dans une lumière blanche.",
+   "c": "Espagne, France",
+   "k": [
+    "suspense",
+    "retro",
+    "reve"
+   ],
+   "mv": "auteur-europeen",
+   "e": 6,
+   "duree": 132,
+   "av": [],
+   "th": [
+    "livres anciens",
+    "diable",
+    "occultisme"
+   ],
+   "fiab": "à vérifier"
+  },
+  "operation-lune-2002": {
+   "p": "Un faux documentaire : Henry Kissinger, Donald Rumsfeld ou la veuve de Stanley Kubrick racontent le plus sérieusement du monde que Kubrick aurait filmé en studio les premiers pas sur la Lune. Tout est monté à partir de vraies interviews détournées, avec des indices de plus en plus absurdes. Le générique de fin révèle la farce : une leçon sur la manipulation des images.",
+   "c": "France",
+   "k": [
+    "documentaire",
+    "humour-absurde",
+    "histoire"
+   ],
+   "mv": "doc-essai",
+   "e": 8,
+   "duree": 52,
+   "av": [],
+   "th": [
+    "faux documentaire",
+    "manipulation",
+    "Kubrick"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-evangile-selon-saint-matthieu-1964": {
+   "p": "La vie de Jésus racontée mot pour mot d'après l'Évangile, par un cinéaste athée et marxiste : des paysans du sud de l'Italie jouent les apôtres, la mère de Pasolini joue Marie âgée, et la musique mêle Bach et des chants africains. Un Christ en colère contre les riches, filmé caméra à l'épaule comme un documentaire. Il meurt crucifié et ressuscite dans la lumière.",
+   "c": "Italie, France",
+   "k": [
+    "noir-et-blanc",
+    "histoire",
+    "contemplatif"
+   ],
+   "mv": "modernite-europeenne",
+   "e": 8,
+   "duree": 137,
+   "av": [],
+   "th": [
+    "Jésus",
+    "pauvreté",
+    "révolte"
+   ],
+   "fiab": "à vérifier"
+  },
+  "fellini-satyricon-1969": {
+   "p": "La Rome de Néron vue comme une planète étrangère : deux étudiants errent de bordel en banquet, de labyrinthe en naufrage, parmi des visages fardés et des décors de rêve. Fellini adapte un texte antique dont il manque des morceaux, et le film garde ces trous. Il se termine sur des fresques à moitié effacées.",
+   "c": "Italie",
+   "k": [
+    "couleurs",
+    "reve",
+    "absurde"
+   ],
+   "mv": "modernite-europeenne",
+   "e": 7,
+   "duree": 135,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "Rome antique",
+    "décadence",
+    "rêve"
+   ],
+   "fiab": "à vérifier"
+  },
+  "marketa-lazarova-1967": {
+   "p": "Bohême, XIIIe siècle : deux clans de brigands s'affrontent au milieu des loups, de la neige et des chrétiens qui arrivent. Marketa, promise au couvent, est enlevée par le fils d'un chef et finit par l'aimer. Un Moyen Âge sauvage et païen, en noir et blanc, souvent cité comme le plus grand film tchèque.",
+   "c": "Tchécoslovaquie",
+   "k": [
+    "noir-et-blanc",
+    "violence",
+    "contemplatif"
+   ],
+   "mv": "nouvelle-vague-tcheque",
+   "e": 8,
+   "duree": 165,
+   "av": [
+    "violence explicite",
+    "violence sexuelle"
+   ],
+   "th": [
+    "Moyen Âge",
+    "clans",
+    "foi"
+   ],
+   "fiab": "à vérifier"
+  },
+  "perceval-le-gallois-1978": {
+   "p": "Le roman de Chrétien de Troyes joué dans un décor de théâtre : arbres en métal doré, châteaux en carton, comme une enluminure qui bouge. Les acteurs disent le texte en vers et chantent avec des musiciens. Perceval, jeune Gallois naïf, devient chevalier et passe devant le Graal sans poser la question. Le film finit sur la Passion du Christ.",
+   "c": "France, Allemagne de l'Ouest, Italie, Suisse",
+   "k": [
+    "couleurs",
+    "musique",
+    "conte"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 140,
+   "av": [],
+   "th": [
+    "chevalerie",
+    "Graal",
+    "naïveté"
+   ],
+   "fiab": "à vérifier"
+  },
+  "the-green-knight-2021": {
+   "p": "Le jour de Noël, un chevalier vert entre à la cour du roi Arthur et propose un jeu : qu'on lui donne un coup, il le rendra dans un an. Gauvain lui tranche la tête ; le chevalier la ramasse et s'en va. Un an plus tard, Gauvain part le retrouver, entre fantômes, géants et tentations. Une légende du XIVe siècle filmée comme un rêve.",
+   "c": "États-Unis, Irlande, Canada",
+   "k": [
+    "couleurs",
+    "conte",
+    "reve",
+    "contemplatif"
+   ],
+   "mv": "independant-americain",
+   "e": 7,
+   "duree": 130,
+   "av": [],
+   "th": [
+    "chevalerie",
+    "courage",
+    "légende"
+   ],
+   "fiab": "à vérifier"
+  },
+  "ran-1985": {
+   "p": "Le Roi Lear dans le Japon des samouraïs : un vieux seigneur partage son domaine entre ses trois fils, et les deux aînés le trahissent. Armées en couleurs vives, château en flammes, Dame Kaede qui orchestre la vengeance de sa famille. Le seigneur, devenu fou, meurt dans les bras de son fils cadet.",
+   "c": "Japon, France",
+   "k": [
+    "couleurs",
+    "violence",
+    "histoire"
+   ],
+   "mv": "age-dor-japonais",
+   "e": 8,
+   "duree": 162,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "pouvoir",
+    "trahison",
+    "famille"
+   ],
+   "fiab": "à vérifier"
+  },
+  "harakiri-1962": {
+   "p": "En 1630, un samouraï sans maître demande à se faire hara-kiri dans la cour d'un seigneur. Il raconte d'abord pourquoi : son gendre est venu là avant lui et a été forcé de s'ouvrir le ventre avec un sabre en bambou. Une attaque contre le code d'honneur des samouraïs, d'une grande rigueur visuelle.",
+   "c": "Japon",
+   "k": [
+    "noir-et-blanc",
+    "injustice",
+    "vengeance"
+   ],
+   "mv": "age-dor-japonais",
+   "e": 8,
+   "duree": 135,
+   "av": [
+    "suicide",
+    "violence explicite"
+   ],
+   "th": [
+    "samouraïs",
+    "honneur",
+    "hypocrisie"
+   ],
+   "fiab": "à vérifier"
+  },
+  "la-prise-de-pouvoir-par-louis-xiv-1966": {
+   "p": "À la mort de Mazarin, le jeune Louis XIV décide de gouverner seul. Il fait arrêter Fouquet, invente les habits et l'étiquette qui obligent les nobles à se ruiner à Versailles. Un film fait pour la télévision, qui montre le pouvoir comme une mise en scène : le roi mange seul devant toute la cour.",
+   "c": "France",
+   "k": [
+    "histoire",
+    "couleurs",
+    "contemplatif"
+   ],
+   "mv": "auteur-europeen",
+   "e": 7,
+   "duree": 90,
+   "av": [],
+   "th": [
+    "pouvoir",
+    "étiquette",
+    "Versailles"
+   ],
+   "fiab": "à vérifier"
+  },
+  "aguirre-la-colere-de-dieu-1972": {
+   "p": "1560, des conquistadors descendent l'Amazone à la recherche de l'Eldorado. Aguirre (Klaus Kinski) prend le commandement et s'enfonce dans la folie. Tourné pour de vrai sur le fleuve, dans la jungle. Le dernier plan : Aguirre seul sur son radeau à la dérive, au milieu des cadavres et des singes.",
+   "c": "Allemagne de l'Ouest, Pérou, Mexique",
+   "k": [
+    "folie",
+    "aventure",
+    "contemplatif"
+   ],
+   "mv": "nouveau-cinema-allemand",
+   "e": 8,
+   "duree": 94,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "conquistadors",
+    "folie",
+    "Amazonie"
+   ],
+   "fiab": "à vérifier"
+  },
+  "zama-2017": {
+   "p": "XVIIIe siècle, un fonctionnaire espagnol attend sa mutation dans un poste colonial perdu d'Amérique du Sud. Elle ne vient jamais. Bruits étranges, animaux qui traversent le cadre, humiliations : l'ennui colonial devient un cauchemar. Il finit mutilé sur une barque, peut-être sauvé par un enfant.",
+   "c": "Argentine, Brésil, Espagne",
+   "k": [
+    "absurde",
+    "contemplatif",
+    "malaise"
+   ],
+   "mv": "argentin",
+   "e": 7,
+   "duree": 115,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "colonie",
+    "attente",
+    "ennui"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-assassinat-de-jesse-james-2007": {
+   "p": "Robert Ford (Casey Affleck) admire le hors-la-loi Jesse James (Brad Pitt) depuis l'enfance, entre dans sa bande, puis le tue d'une balle dans le dos. Il rejoue ensuite le meurtre sur scène, devant le public, avant d'être lui-même assassiné. Images floues sur les bords, neige, musique de Nick Cave et Warren Ellis.",
+   "c": "États-Unis, Canada",
+   "k": [
+    "contemplatif",
+    "obsession",
+    "musique"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 8,
+   "duree": 160,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "célébrité",
+    "admiration",
+    "Ouest"
+   ],
+   "fiab": "à vérifier"
+  },
+  "la-grande-illusion-1937": {
+   "p": "Première Guerre mondiale, des officiers français prisonniers en Allemagne préparent leur évasion. Un aristocrate français et le commandant allemand de la forteresse se reconnaissent du même monde, plus que de leurs pays. L'aristocrate se sacrifie pour que Maréchal (Jean Gabin) et Rosenthal s'évadent vers la Suisse.",
+   "c": "France",
+   "k": [
+    "noir-et-blanc",
+    "histoire",
+    "doux"
+   ],
+   "mv": "realisme-poetique",
+   "e": 8,
+   "duree": 113,
+   "av": [],
+   "th": [
+    "amitié",
+    "classes sociales",
+    "prison"
+   ],
+   "fiab": "à vérifier"
+  },
+  "amadeus-1984": {
+   "p": "Vienne, fin du XVIIIe siècle. Le compositeur de la cour Salieri voit arriver Mozart, un garçon vulgaire au rire idiot qui écrit une musique divine sans effort. Jaloux, il décide de le tuer à petit feu. Mozart meurt en dictant son Requiem à Salieri. Vieux et fou, Salieri se proclame « saint patron des médiocres ».",
+   "c": "États-Unis",
+   "k": [
+    "musique",
+    "obsession",
+    "couleurs"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 8,
+   "duree": 160,
+   "av": [],
+   "th": [
+    "génie",
+    "jalousie",
+    "musique"
+   ],
+   "fiab": "à vérifier"
+  },
+  "ivan-le-terrible-1944": {
+   "p": "Le premier tsar de Russie au XVIe siècle, en ombres géantes sur les murs, regards en coin et gestes de théâtre. Staline aimait la première partie ; la seconde, en partie en couleurs, montrait un tsar paranoïaque et fut interdite. Une fresque expressionniste sur la solitude du pouvoir.",
+   "c": "Union soviétique",
+   "k": [
+    "noir-et-blanc",
+    "histoire",
+    "obsession"
+   ],
+   "mv": "montage-sovietique",
+   "e": 7,
+   "duree": 99,
+   "av": [],
+   "th": [
+    "tsar",
+    "pouvoir",
+    "paranoïa"
+   ],
+   "fiab": "à vérifier"
   }
  },
  "familles": {
@@ -29126,7 +30555,36 @@
   "captain-fantastic-2016": "20035",
   "wild-wild-country-serie-2018": "02260",
   "la-commune-paris-1871-2000": "30061",
-  "lincoln-2012": "10063"
+  "lincoln-2012": "10063",
+  "souvenirs-du-futur-1970": "31150",
+  "rencontres-du-troisieme-type-1977": "40213",
+  "l-invasion-des-profanateurs-1978": "13420",
+  "invasion-los-angeles-1988": "21250",
+  "the-vast-of-night-2019": "41320",
+  "nope-2022": "23410",
+  "les-trois-jours-du-condor-1975": "13420",
+  "capricorn-one-1977": "12430",
+  "i-comme-icare-1979": "13240",
+  "le-monde-sur-le-fil-1973": "41050",
+  "le-prisonnier-serie-1967": "31150",
+  "the-wicker-man-1973": "24310",
+  "kill-list-2011": "16300",
+  "la-neuvieme-porte-1999": "33310",
+  "operation-lune-2002": "10171",
+  "l-evangile-selon-saint-matthieu-1964": "41140",
+  "fellini-satyricon-1969": "52030",
+  "marketa-lazarova-1967": "43120",
+  "perceval-le-gallois-1978": "60130",
+  "the-green-knight-2021": "50320",
+  "ran-1985": "42220",
+  "harakiri-1962": "23410",
+  "la-prise-de-pouvoir-par-louis-xiv-1966": "40150",
+  "aguirre-la-colere-de-dieu-1972": "33130",
+  "zama-2017": "42130",
+  "l-assassinat-de-jesse-james-2007": "42121",
+  "la-grande-illusion-1937": "10261",
+  "amadeus-1984": "40231",
+  "ivan-le-terrible-1944": "52120"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
