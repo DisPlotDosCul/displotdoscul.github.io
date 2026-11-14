@@ -60,7 +60,7 @@ def run():
                 open_more(page)
                 exploration = [page.locator(f"#{bid}").bounding_box() for bid in ("ccQuiz", "skyToggle", "drToggle")]
                 assert exploration[0]["y"] > account[0]["y"]
-                assert page.locator("#ccMore .ccm-d").count() == 4
+                assert page.locator("#ccMore .ccm-d").count() == 5  # avec le Canon des artistes (14 novembre)
                 assert all(box["height"] >= 40 and box["width"] >= 44 for box in account + exploration)
                 assert page.evaluate("['ccMbr','ccMe','ccMoreB','ccQuiz','skyToggle','drToggle'].every(id => { const b = document.getElementById(id); return b.scrollWidth <= b.clientWidth + 1; })"), "un libellé est coupé"
                 page.locator("#ccMoreB").click()

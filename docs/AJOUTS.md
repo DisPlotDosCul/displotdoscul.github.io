@@ -331,3 +331,46 @@ dans « Musique choisie, pas composée », Mr. Robot dans « Identités multiple
   Daughters of the Dust, Mon voisin Totoro, L'Éclipse, Pierrot le fou, Les Fraises sauvages.
 - Palmes d'or et Lions d'or absents du catalogue.
 - Cinéma africain, latino-américain et d'Asie du Sud-Est, peu représentés.
+
+## 14 novembre 2026 : thème « Théories du complot »
+
+40 films en 6 sous-catégories : Pyramides et anciens astronautes, Extraterrestres cachés, Complots d'État et
+mensonges officiels, Sociétés secrètes et sectes, Le monde est un décor, Quand on y croit trop.
+25 films étaient déjà au catalogue ; 15 ajoutés, identifiants, durées, pays et cinéastes vérifiés sur TMDB :
+
+| Film | Année | Cinéaste | Durée |
+|---|---|---|---|
+| Souvenirs du futur | 1970 | Harald Reinl | 83 min |
+| Rencontres du troisième type | 1977 | Steven Spielberg | 135 min |
+| L'Invasion des profanateurs | 1978 | Philip Kaufman | 115 min |
+| Invasion Los Angeles | 1988 | John Carpenter | 93 min |
+| The Vast of Night | 2019 | Andrew Patterson | 89 min |
+| Nope | 2022 | Jordan Peele | 130 min |
+| Les Trois Jours du Condor | 1975 | Sydney Pollack | 117 min |
+| Capricorn One | 1977 | Peter Hyams | 123 min |
+| I… comme Icare | 1979 | Henri Verneuil | 120 min |
+| Le Monde sur le fil (téléfilm) | 1973 | Rainer Werner Fassbinder | 205 min |
+| Le Prisonnier (série) | 1967 | Patrick McGoohan | 50 min par épisode |
+| The Wicker Man | 1973 | Robin Hardy | 93 min |
+| Kill List | 2011 | Ben Wheatley | 90 min |
+| La Neuvième Porte | 1999 | Roman Polanski | 132 min |
+| Opération Lune | 2002 | William Karel | 52 min |
+
+## 14 novembre 2026 : thème « Films historiques »
+
+Tous les films historiques déjà au catalogue y sont rangés (règle de Licia : un film du catalogue va dans toutes
+les catégories qui lui correspondent), en 9 sous-catégories, les deux guerres découpées en 1914-1918 et 1939-1945 ; 14 ajoutés, identifiants, durées, pays et cinéastes vérifiés sur TMDB : L'Évangile selon saint
+Matthieu (Pasolini, 1964), Fellini Satyricon (1969), Marketa Lazarová (Vláčil, 1967), Perceval le Gallois (Rohmer, 1978),
+The Green Knight (Lowery, 2021), Ran (Kurosawa, 1985), Harakiri (Kobayashi, 1962), La Prise de pouvoir par Louis XIV
+(Rossellini, 1966), Aguirre, la colère de Dieu (Herzog, 1972), Zama (Martel, 2017), L'Assassinat de Jesse James
+(Dominik, 2007), La Grande Illusion (Renoir, 1937), Amadeus (Forman, 1984), Ivan le Terrible (Eisenstein, 1944).
+La sélection sur la qualité vaut seulement pour les films ajoutés, pas pour ceux déjà au catalogue.
+
+## 14 novembre 2026 : thème « Biographies »
+
+87 films en 7 sous-catégories : peintres, écrivains et cinéastes ; musiciens ; rois, chefs et figures politiques ;
+aventuriers et exploits ; imposteurs, criminels et faits divers ; destins hors norme ; autobiographies. Tous les films
+du catalogue qui racontent une vie vraie y sont ; 15 ajoutés, vérifiés sur TMDB : Lawrence d'Arabie, Van Gogh (Pialat),
+Ed Wood, I'm Not There, Control, Séraphine, Mr. Turner, Grizzly Man, Amy, Sugar Man, Truman Capote, Barbara (Amalric),
+Gainsbourg (Vie héroïque), Stories We Tell, Man on the Moon. Ceux qui se passent dans le passé sont aussi rangés dans
+« Films historiques ».

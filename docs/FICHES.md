@@ -86,3 +86,16 @@ nom du questionnaire et Grand confort. Aucun débordement horizontal ni erreur d
 - [ ] Les propositions signalées « à vérifier » peuvent-elles être relues par lots avant fusion ?
 
 La pull request reste en brouillon jusqu'à la relecture des données et à validation.
+
+## Où le voir (14 novembre 2026)
+
+Chaque fiche a un bouton « 📺 Où le voir » : les plateformes qui proposent le film en France, rangées en
+abonnement, gratuit, location et achat, avec leur logo. Les données viennent de JustWatch par l'API de TMDB
+(`/watch/providers`), demandées seulement quand on touche le bouton, et gardées trois jours dans le navigateur.
+Le bouton est aussi dans la fiche ouverte au hasard ou depuis le Canon des artistes.
+
+## Canon des artistes (14 novembre 2026)
+
+`carnet-de-films/canon.html` reprend l'artefact « Le Canon des artistes » (Sight and Sound cinéastes 2022, ASC 2019,
+Editors Guild 2012, New York Times 2025, par cinéaste, cités plusieurs fois). Un film présent au catalogue a un lien
+« Fiche ↗ » qui ouvre le Ciné-club sur `#film=<identifiant>`. Accès : « Autres façons de choisir » → « Canon des artistes ».

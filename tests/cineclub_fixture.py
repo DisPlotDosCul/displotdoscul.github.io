@@ -192,6 +192,9 @@ def install_routes(context, fixture=None, complements=None):
                 # Appli installable : service worker, manifeste et icônes.
                 types = {".js": "application/javascript", ".webmanifest": "application/manifest+json", ".png": "image/png"}
                 request_route.fulfill(content_type=types[local.suffix], path=local)
+            elif local.suffix in (".html", ".csv") and local.is_file():
+                # Canon des artistes (page à part) et catalogue public qu'il lit.
+                request_route.fulfill(content_type="text/html" if local.suffix == ".html" else "text/csv", path=local)
             elif url.endswith("complements.json"):
                 body = json.dumps(complements) if complements is not None else (ROOT / "carnet-de-films/complements.json").read_text()
                 request_route.fulfill(content_type="application/json", body=body)

@@ -1,0 +1,114 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Le Canon des artistes · Ciné-club</title>
+<meta name="description" content="Les meilleurs films selon les cinéastes, les directeurs photo et les monteurs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{color-scheme:light;
+  --bg:#EDEFF2; --surface:#F9FAFB; --ink:#15171C; --muted:#5B6270; --line:#D6DAE1;
+  --dir:#A3203A; --img:#A86A12; --cut:#1B6A79;
+  --dir-soft:#F4E1E5; --img-soft:#F5EAD8; --cut-soft:#DDEEF1;
+  --new:#4B3DA3; --new-soft:#E6E3F6;
+  --tab:#15171C; --tab-ink:#F9FAFB; --seen:#E3E6EB;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Instrument Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme:dark;
+    --bg:#111318; --surface:#1A1D24; --ink:#ECEEF2; --muted:#9AA1AE; --line:#2B303B;
+    --dir:#E8768B; --img:#E6AE55; --cut:#5DBBCB;
+    --dir-soft:#3A1C24; --img-soft:#3A2C16; --cut-soft:#17323A;
+    --new:#AFA3F2; --new-soft:#26223F;
+    --tab:#ECEEF2; --tab-ink:#111318; --seen:#242833;
+  }
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;}
+[hidden]{display:none!important;}
+.wrap{max-width:780px;margin:0 auto;padding-inline:16px;padding-block:20px 56px;}
+.back{display:inline-block;font:600 14px var(--body);color:var(--ink);text-decoration:none;border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;}
+.strip{height:14px;border-radius:3px;margin-top:14px;background:
+  radial-gradient(circle at 50% 50%, var(--bg) 3.2px, transparent 3.6px) 0 0/16px 14px repeat-x,
+  var(--ink);opacity:.9;}
+header{display:grid;gap:10px;margin-block:18px 22px;}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(46px,11vw,84px);line-height:.9;letter-spacing:.005em;margin:0;text-wrap:balance;}
+.lede{margin:0;max-width:62ch;color:var(--muted);font-size:15.5px;}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.tab{flex:none;font:600 14px/1 var(--body);color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:10px 15px;cursor:pointer;}
+.tab[aria-selected="true"]{background:var(--tab);color:var(--tab-ink);border-color:var(--tab);}
+.tab:focus-visible,.seen:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--cut);outline-offset:2px;}
+.about{margin:16px 0 14px;padding:14px 16px;background:var(--surface);border-radius:10px;border-left:4px solid var(--accent,var(--ink));}
+.about h2{font-family:var(--display);font-weight:800;font-size:26px;line-height:1;margin:0 0 6px;}
+.about p{margin:0;color:var(--muted);font-size:14px;max-width:66ch;}
+.tools{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:10px;}
+.tools input[type="search"]{flex:1 1 220px;min-width:0;font:15px var(--body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:9px 12px;}
+.tools label{display:flex;gap:7px;align-items:center;font-size:14px;color:var(--muted);cursor:pointer;}
+.count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;margin:0 0 8px;}
+ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);}
+.group{margin-top:26px;}
+.group:first-child{margin-top:4px;}
+.group h3{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;margin:0 0 4px;}
+.group .blurb{margin:0 0 10px;color:var(--muted);font-size:14px;max-width:64ch;}
+.part{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:30px 0 0;padding-top:12px;border-top:2px solid var(--ink);}
+.part:first-child{margin-top:0;}
+li{display:grid;grid-template-columns:62px 1fr auto;gap:12px;align-items:center;padding:11px 2px;border-bottom:1px solid var(--line);}
+li.is-seen{opacity:.55;}
+.rank{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;text-align:right;color:var(--accent,var(--ink));font-variant-numeric:tabular-nums;}
+.rank.small{font-size:20px;}
+.t{font-weight:600;font-size:16px;line-height:1.25;}
+.t a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;}
+.t .y{font-weight:400;color:var(--muted);}
+.meta{font-size:13px;color:var(--muted);margin-top:2px;}
+.meta i{font-style:normal;opacity:.85;}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+.chip{font-size:11.5px;font-weight:600;border-radius:5px;padding:2px 7px;font-variant-numeric:tabular-nums;}
+.c-dir{background:var(--dir-soft);color:var(--dir);}
+.c-img{background:var(--img-soft);color:var(--img);}
+.c-cut{background:var(--cut-soft);color:var(--cut);}
+.c-new{background:var(--new-soft);color:var(--new);}
+.c-cc{background:transparent;color:var(--ink);border:1px solid var(--line);text-decoration:none;}
+.seen{font:600 13px/1 var(--body);border:1.5px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:8px 11px;cursor:pointer;white-space:nowrap;}
+.seen[aria-pressed="true"]{background:var(--seen);color:var(--ink);border-color:var(--seen);}
+.empty{padding:28px 4px;color:var(--muted);}
+footer{margin-top:30px;font-size:13px;color:var(--muted);display:grid;gap:6px;}
+footer a{color:inherit;}
+@media (max-width:480px){
+  li{grid-template-columns:44px 1fr auto;gap:10px;}
+  .rank{font-size:27px;}
+  .rank.small{font-size:17px;}
+  .tab{padding:9px 12px;font-size:13.5px;}
+}
+</style></head><body>
+<div class="wrap">
+  <a class="back" href="./">← Ciné-club</a>
+  <div class="strip" aria-hidden="true"></div>
+  <header>
+    <h1>Le Canon des artistes</h1>
+    <p class="lede">Les meilleurs films selon ceux qui les fabriquent : les cinéastes, les directeurs de la photographie, les monteurs, et les artistes qui ont voté pour le cinéma d'après 2000.</p>
+    <div class="tabs" role="tablist" id="tabs">
+      <button class="tab" role="tab" data-v="cineastes" aria-selected="true">Cinéastes</button>
+      <button class="tab" role="tab" data-v="image" aria-selected="false">Directeurs photo</button>
+      <button class="tab" role="tab" data-v="montage" aria-selected="false">Monteurs</button>
+      <button class="tab" role="tab" data-v="siecle" aria-selected="false">Depuis 2000</button>
+      <button class="tab" role="tab" data-v="auteurs" aria-selected="false">Par cinéaste</button>
+      <button class="tab" role="tab" data-v="consensus" aria-selected="false">Cités plusieurs fois</button>
+    </div>
+  </header>
+  <section class="about" id="about"><h2></h2><p></p></section>
+  <div class="tools">
+    <input type="search" id="q" placeholder="Chercher un film ou un·e cinéaste" aria-label="Chercher un film ou un·e cinéaste">
+    <label><input type="checkbox" id="hide"> Masquer les films vus</label>
+    <label><input type="checkbox" id="onlycc"> Seulement ceux du Ciné-club</label>
+  </div>
+  <p class="count" id="count"></p>
+  <div id="list"></div>
+  <footer>
+    <div>Les étiquettes disent dans quels classements le film figure et à quel rang. « Fiche » ouvre le film dans le Ciné-club. Le bouton « Vu » est gardé dans ce navigateur.</div>
+    <div>Sources : <a href="https://letterboxd.com/sightsoundmag/list/sight-and-sounds-directors-100-greatest-films/" target="_blank" rel="noopener">Sight and Sound, sondage des cinéastes 2022 (BFI)</a> · <a href="https://theasc.com/news/asc-unveils-list-of-100-milestone-films-in-cinematography-of-the-20th-century/" target="_blank" rel="noopener">ASC, 100 films phares de la photographie du XX<sup>e</sup> siècle (2019)</a> · <a href="https://cinemontage.org/75-best-edited-films/" target="_blank" rel="noopener">Motion Picture Editors Guild, 75 films les mieux montés (2012)</a> · <a href="https://letterboxd.com/mogwai_synth/list/new-york-times-100-best-movies-of-the-21st/" target="_blank" rel="noopener">New York Times, 100 meilleurs films du XXI<sup>e</sup> siècle (2025)</a></div>
+  </footer>
+</div>
+<script src="canon-donnees.js"></script>
+<script src="canon.js"></script>
+</body></html>
