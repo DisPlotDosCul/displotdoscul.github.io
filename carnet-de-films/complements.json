@@ -13158,7 +13158,7 @@
    "famille": "themes",
    "ordre": 1.3699,
    "titre": "Films historiques",
-   "sous_titre": "De la Rome antique à la guerre froide : des films d'histoire qui sortent du lot, par leur regard, leur forme ou leur audace. Peu de reconstitutions sages.",
+   "sous_titre": "De la Rome antique à la guerre froide : seulement des films d'histoire marquants par leur regard, leur forme ou leur audace. Pas de reconstitutions sages.",
    "parties": [
     {
      "titre": "Antiquité et Moyen Âge",
@@ -13167,7 +13167,6 @@
       "l-evangile-selon-saint-matthieu-1964",
       "fellini-satyricon-1969",
       "la-passion-de-jeanne-d-arc-1928",
-      "alexandre-nevski-1938",
       "andrei-roublev-1966",
       "marketa-lazarova-1967",
       "perceval-le-gallois-1978",
@@ -13181,13 +13180,8 @@
       "les-contes-de-la-lune-vague-apres-la-pluie-1953",
       "les-sept-samourais-1954",
       "harakiri-1962",
-      "kagemusha-1980",
       "ran-1985",
-      "the-king-and-the-clown-2005",
-      "the-assassin-2015",
-      "le-dernier-empereur-1987",
-      "vivre-1994",
-      "mademoiselle-2016"
+      "the-assassin-2015"
      ]
     },
     {
@@ -13195,18 +13189,12 @@
      "aide": "Du XVIe au XVIIIe siècle",
      "ids": [
       "ivan-le-terrible-1944",
-      "la-reine-margot-1994",
-      "le-retour-de-martin-guerre-1982",
       "aguirre-la-colere-de-dieu-1972",
-      "mission-1986",
       "la-prise-de-pouvoir-par-louis-xiv-1966",
       "barry-lyndon-1975",
       "amadeus-1984",
-      "la-favorite-2018",
-      "marie-antoinette-2006",
       "zama-2017",
-      "l-anglaise-et-le-duc-2001",
-      "danton-1983"
+      "l-anglaise-et-le-duc-2001"
      ]
     },
     {
@@ -13214,15 +13202,10 @@
      "aide": "Révolutions, pionniers et hors-la-loi",
      "ids": [
       "le-guepard-1963",
-      "les-miserables-1934",
       "la-commune-paris-1871-2000",
-      "la-lecon-de-piano-1993",
       "first-cow-2019",
       "dead-man-1995",
-      "l-assassinat-de-jesse-james-2007",
-      "lincoln-2012",
-      "there-will-be-blood-2007",
-      "le-comte-de-monte-cristo-2024"
+      "l-assassinat-de-jesse-james-2007"
      ]
     },
     {
@@ -13234,17 +13217,12 @@
        "ids": [
         "la-grande-illusion-1937",
         "les-sentiers-de-la-gloire-1957",
-        "johnny-s-en-va-t-en-guerre-1971",
-        "a-l-ouest-rien-de-nouveau-2022",
-        "un-long-dimanche-de-fiancailles-2004",
-        "au-revoir-la-haut-2017",
-        "1917-2019"
+        "johnny-s-en-va-t-en-guerre-1971"
        ]
       },
       {
        "titre": "1939-1945",
        "ids": [
-        "le-dictateur-1940",
         "rome-ville-ouverte-1945",
         "l-armee-des-ombres-1969",
         "lacombe-lucien-1974",
@@ -13252,15 +13230,11 @@
         "requiem-pour-un-massacre-1985",
         "furyo-1983",
         "le-tombeau-des-lucioles-1988",
-        "la-liste-de-schindler-1993",
-        "le-pianiste-2002",
         "le-fils-de-saul-2015",
         "la-zone-d-interet-2023",
-        "inglourious-basterds-2009",
         "nuit-et-brouillard-1956",
         "shoah-1985",
-        "hiroshima-mon-amour-1959",
-        "oppenheimer-2023"
+        "hiroshima-mon-amour-1959"
        ]
       }
      ]
@@ -13273,15 +13247,9 @@
       "soy-cuba-1964",
       "memoires-du-sous-developpement-1968",
       "le-conformiste-1970",
-      "cabaret-1972",
-      "land-and-freedom-1995",
-      "le-vent-se-leve-2006",
       "l-homme-de-marbre-1977",
       "la-vie-des-autres-2006",
-      "la-mort-de-staline-2017",
-      "ida-2013",
-      "persepolis-2007",
-      "the-brutalist-2024"
+      "ida-2013"
      ]
     },
     {
@@ -13289,15 +13257,11 @@
      "aide": "Alger, Kinshasa, Selma, Saïgon",
      "ids": [
       "la-bataille-d-alger-1966",
-      "lumumba-2000",
-      "malcolm-x-1992",
-      "selma-2014",
       "the-black-power-mixtape-1967-1975-2011",
       "i-am-not-your-negro-2016",
       "voyage-au-bout-de-l-enfer-1978",
       "apocalypse-now-1979",
-      "valse-avec-bachir-2008",
-      "jfk-1991"
+      "valse-avec-bachir-2008"
      ]
     }
    ],
@@ -13322,13 +13286,6 @@
      "y": 1928,
      "d": "Carl Theodor Dreyer",
      "r": "Film muet : le procès et la mort de Jeanne d'Arc, presque entièrement en gros plans de visages sans maquillage, dont celui de Renée Falconetti, en larmes."
-    },
-    {
-     "id": "alexandre-nevski-1938",
-     "t": "Alexandre Nevski",
-     "y": 1938,
-     "d": "Sergueï Eisenstein",
-     "r": "Une épopée patriotique commandée sous Staline contre l'envahisseur germanique, sortie en 1938."
     },
     {
      "id": "andrei-roublev-1966",
@@ -13380,25 +13337,11 @@
      "r": "Un samouraï démonte le code d'honneur qui a tué son gendre."
     },
     {
-     "id": "kagemusha-1980",
-     "t": "Kagemusha, l'ombre du guerrier",
-     "y": 1980,
-     "d": "Akira Kurosawa",
-     "r": "Au seizième siècle, un voleur condamné à mort est épargné parce qu'il ressemble trait pour trait à un puissant seigneur de guerre "
-    },
-    {
      "id": "ran-1985",
      "t": "Ran",
      "y": 1985,
      "d": "Akira Kurosawa",
      "r": "Le Roi Lear chez les samouraïs, avec des armées de couleurs et un château en flammes."
-    },
-    {
-     "id": "the-king-and-the-clown-2005",
-     "t": "The King and the Clown",
-     "y": 2005,
-     "d": "Lee Joon-ik",
-     "r": "Au début du XVIe siècle, deux saltimbanques se moquent du roi Yeonsan dans leurs spectacles de rue "
     },
     {
      "id": "the-assassin-2015",
@@ -13408,27 +13351,6 @@
      "r": "Dans la Chine du neuvième siècle, Shu Qi, formée par une nonne pour tuer, doit assassiner son cousin, gouverneur à qui elle était promise "
     },
     {
-     "id": "le-dernier-empereur-1987",
-     "t": "Le Dernier Empereur",
-     "y": 1987,
-     "d": "Bernardo Bertolucci",
-     "r": "Le jaune impérial de la Cité interdite, filmé pour la première fois."
-    },
-    {
-     "id": "vivre-1994",
-     "t": "Vivre !",
-     "y": 1994,
-     "d": "Zhang Yimou",
-     "r": "Une famille chinoise ballottée par trente ans de révolutions maoïstes."
-    },
-    {
-     "id": "mademoiselle-2016",
-     "t": "Mademoiselle",
-     "y": 2016,
-     "d": "Park Chan-wook",
-     "r": "Jo Yeong-wook : une valse et des cordes raffinées pour une arnaque amoureuse."
-    },
-    {
      "id": "ivan-le-terrible-1944",
      "t": "Ivan le Terrible",
      "y": 1944,
@@ -13436,32 +13358,11 @@
      "r": "Le premier tsar en ombres géantes ; la suite fut interdite par Staline."
     },
     {
-     "id": "la-reine-margot-1994",
-     "t": "La Reine Margot",
-     "y": 1994,
-     "d": "Patrice Chéreau",
-     "r": "En 1572, Marguerite de Valois épouse le protestant Henri de Navarre pour sceller la paix "
-    },
-    {
-     "id": "le-retour-de-martin-guerre-1982",
-     "t": "Le Retour de Martin Guerre",
-     "y": 1982,
-     "d": "Daniel Vigne",
-     "r": "Dans un village des Pyrénées au seizième siècle, Martin Guerre revient après huit ans d'absence "
-    },
-    {
      "id": "aguirre-la-colere-de-dieu-1972",
      "t": "Aguirre, la colère de Dieu",
      "y": 1972,
      "d": "Werner Herzog",
      "r": "Des conquistadors descendent l'Amazone ; Kinski seul sur un radeau envahi de singes."
-    },
-    {
-     "id": "mission-1986",
-     "t": "Mission",
-     "y": 1986,
-     "d": "Roland Joffé",
-     "r": "Des jésuites défendent les Guaranis contre les colons portugais et espagnols, au XVIIIe siècle."
     },
     {
      "id": "la-prise-de-pouvoir-par-louis-xiv-1966",
@@ -13485,20 +13386,6 @@
      "r": "Salieri raconte comment sa jalousie a tué Mozart ; la musique en personnage principal."
     },
     {
-     "id": "la-favorite-2018",
-     "t": "La Favorite",
-     "y": 2018,
-     "d": "Yorgos Lanthimos",
-     "r": "Deux cousines se disputent la faveur de la reine Anne, entre tories et whigs, guerre et paix."
-    },
-    {
-     "id": "marie-antoinette-2006",
-     "t": "Marie-Antoinette",
-     "y": 2006,
-     "d": "Sofia Coppola",
-     "r": "Kirsten Dunst en jeune archiduchesse autrichienne mariée au futur Louis XVI, à Versailles : gâteaux pastel, souliers, une paire de baskets et musique new wave."
-    },
-    {
      "id": "zama-2017",
      "t": "Zama",
      "y": 2017,
@@ -13513,13 +13400,6 @@
      "r": "Les acteurs jouent devant des tableaux peints du Paris de la Révolution."
     },
     {
-     "id": "danton-1983",
-     "t": "Danton",
-     "y": 1983,
-     "d": "Andrzej Wajda",
-     "r": "Robespierre fait guillotiner Danton : la Révolution qui dévore ses enfants, vue de la Pologne de 1982."
-    },
-    {
      "id": "le-guepard-1963",
      "t": "Le Guépard",
      "y": 1963,
@@ -13527,25 +13407,11 @@
      "r": "Le Technicolor des palais siciliens et un bal de trois quarts d'heure."
     },
     {
-     "id": "les-miserables-1934",
-     "t": "Les Misérables",
-     "y": 1934,
-     "d": "Raymond Bernard",
-     "r": "Un pain volé, puis une vie entière sous la menace d'être dénoncé ; Thénardier le croit assassin à tort."
-    },
-    {
      "id": "la-commune-paris-1871-2000",
      "t": "La Commune (Paris, 1871)",
      "y": 2000,
      "d": "Peter Watkins",
      "r": "La Commune de Paris rejouée par 200 amateurs, comme si deux télévisions la couvraient en direct."
-    },
-    {
-     "id": "la-lecon-de-piano-1993",
-     "t": "La Leçon de piano",
-     "y": 1993,
-     "d": "Jane Campion",
-     "r": "Michael Nyman : le piano est la voix d'Ada, qui ne parle pas ; des airs écossais rejoués en boucle."
     },
     {
      "id": "first-cow-2019",
@@ -13569,27 +13435,6 @@
      "r": "Le fan qui tua son idole, puis rejoua le meurtre sur scène ; images floues et neige."
     },
     {
-     "id": "lincoln-2012",
-     "t": "Lincoln",
-     "y": 2012,
-     "d": "Steven Spielberg",
-     "r": "Lincoln arrache le vote de l'abolition de l'esclavage, voix par voix, en janvier 1865."
-    },
-    {
-     "id": "there-will-be-blood-2007",
-     "t": "There Will Be Blood",
-     "y": 2007,
-     "d": "Paul Thomas Anderson",
-     "r": "Un pionnier du pétrole à l'ambition sans limite, face à un jeune prédicateur."
-    },
-    {
-     "id": "le-comte-de-monte-cristo-2024",
-     "t": "Le Comte de Monte-Cristo",
-     "y": 2024,
-     "d": "Matthieu Delaporte et Alexandre de La Patellière",
-     "r": "Le jour de ses noces, le marin Edmond Dantès (Pierre Niney) est accusé à tort et enfermé au château d'If "
-    },
-    {
      "id": "la-grande-illusion-1937",
      "t": "La Grande Illusion",
      "y": 1937,
@@ -13609,41 +13454,6 @@
      "y": 1971,
      "d": "Dalton Trumbo",
      "r": "Un soldat de 1918 sans bras, sans jambes ni visage, prisonnier de son corps."
-    },
-    {
-     "id": "a-l-ouest-rien-de-nouveau-2022",
-     "t": "À l'Ouest, rien de nouveau",
-     "y": 2022,
-     "d": "Edward Berger",
-     "r": "De jeunes Allemands envoyés au massacre des tranchées, jusqu'aux dernières heures de 1918."
-    },
-    {
-     "id": "un-long-dimanche-de-fiancailles-2004",
-     "t": "Un long dimanche de fiançailles",
-     "y": 2004,
-     "d": "Jean-Pierre Jeunet",
-     "r": "Une jeune femme cherche son fiancé, condamné avec quatre soldats à être abandonné entre les tranchées en 1917."
-    },
-    {
-     "id": "au-revoir-la-haut-2017",
-     "t": "Au revoir là-haut",
-     "y": 2017,
-     "d": "Albert Dupontel",
-     "r": "Deux rescapés de 1918 montent une escroquerie aux monuments aux morts."
-    },
-    {
-     "id": "1917-2019",
-     "t": "1917",
-     "y": 2019,
-     "d": "Sam Mendes",
-     "r": "En avril 1917, deux jeunes soldats britanniques doivent traverser le no man's land pour porter un ordre qui peut sauver 1 600 hommes d'un piège allemand."
-    },
-    {
-     "id": "le-dictateur-1940",
-     "t": "Le Dictateur",
-     "y": 1940,
-     "d": "Charlie Chaplin",
-     "r": "Chaplin se moque d'Hitler en pleine guerre, et finit par un discours pour la paix."
     },
     {
      "id": "rome-ville-ouverte-1945",
@@ -13695,20 +13505,6 @@
      "r": "Kobe, 1945 : un adolescent et sa petite sœur survivent seuls après les bombardements américains."
     },
     {
-     "id": "la-liste-de-schindler-1993",
-     "t": "La Liste de Schindler",
-     "y": 1993,
-     "d": "Steven Spielberg",
-     "r": "Un industriel nazi qui sauve plus de mille Juifs en les employant dans son usine."
-    },
-    {
-     "id": "le-pianiste-2002",
-     "t": "Le Pianiste",
-     "y": 2002,
-     "d": "Roman Polanski",
-     "r": "Un pianiste juif survit au ghetto de Varsovie, caché dans les ruines."
-    },
-    {
      "id": "le-fils-de-saul-2015",
      "t": "Le Fils de Saul",
      "y": 2015,
@@ -13721,13 +13517,6 @@
      "y": 2023,
      "d": "Jonathan Glazer",
      "r": "La vie de famille tranquille du commandant d'Auschwitz, juste derrière le mur du camp."
-    },
-    {
-     "id": "inglourious-basterds-2009",
-     "t": "Inglourious Basterds",
-     "y": 2009,
-     "d": "Quentin Tarantino",
-     "r": "Une uchronie de Tarantino : un commando juif et une jeune femme veulent tuer Hitler dans un cinéma."
     },
     {
      "id": "nuit-et-brouillard-1956",
@@ -13749,13 +13538,6 @@
      "y": 1959,
      "d": "Alain Resnais",
      "r": "Giovanni Fusco et Georges Delerue : des thèmes de mémoire, et une valse pour Nevers."
-    },
-    {
-     "id": "oppenheimer-2023",
-     "t": "Oppenheimer",
-     "y": 2023,
-     "d": "Christopher Nolan",
-     "r": "Le père de la bombe atomique, de Los Alamos aux procès du maccarthysme."
     },
     {
      "id": "le-cuirasse-potemkine-1925",
@@ -13786,27 +13568,6 @@
      "r": "Lumières de Vittorio Storaro, décors fascistes immenses et vides."
     },
     {
-     "id": "cabaret-1972",
-     "t": "Cabaret",
-     "y": 1972,
-     "d": "Bob Fosse",
-     "r": "Berlin, 1931 : les nuits d'un cabaret pendant que les nazis prennent le pouvoir."
-    },
-    {
-     "id": "land-and-freedom-1995",
-     "t": "Land and Freedom",
-     "y": 1995,
-     "d": "Ken Loach",
-     "r": "Un volontaire anglais dans les milices anarchistes et marxistes de la guerre d'Espagne, trahies par Moscou."
-    },
-    {
-     "id": "le-vent-se-leve-2006",
-     "t": "Le vent se lève",
-     "y": 2006,
-     "d": "Ken Loach",
-     "r": "Deux frères dans la guerre d'indépendance irlandaise, puis dans deux camps opposés."
-    },
-    {
      "id": "l-homme-de-marbre-1977",
      "t": "L'Homme de marbre",
      "y": 1977,
@@ -13821,13 +13582,6 @@
      "r": "La surveillance de la Stasi à Berlin-Est : un espion finit par protéger ceux qu'il écoute."
     },
     {
-     "id": "la-mort-de-staline-2017",
-     "t": "La Mort de Staline",
-     "y": 2017,
-     "d": "Armando Iannucci",
-     "r": "La guerre de succession autour du cadavre de Staline, en comédie noire."
-    },
-    {
      "id": "ida-2013",
      "t": "Ida",
      "y": 2013,
@@ -13835,46 +13589,11 @@
      "r": "Une novice découvre qu'elle est juive, dans la Pologne communiste de 1962, et cherche la tombe de ses parents."
     },
     {
-     "id": "persepolis-2007",
-     "t": "Persepolis",
-     "y": 2007,
-     "d": "Marjane Satrapi et Vincent Paronnaud",
-     "r": "Une enfance iranienne, de la chute du chah à la République islamique."
-    },
-    {
-     "id": "the-brutalist-2024",
-     "t": "The Brutalist",
-     "y": 2024,
-     "d": "Brady Corbet",
-     "r": "Un architecte juif hongrois rescapé des camps tente de se reconstruire en Amérique."
-    },
-    {
      "id": "la-bataille-d-alger-1966",
      "t": "La Bataille d'Alger",
      "y": 1966,
      "d": "Gillo Pontecorvo",
      "r": "La lutte du FLN et la répression française dans la Casbah, filmées comme des actualités."
-    },
-    {
-     "id": "lumumba-2000",
-     "t": "Lumumba",
-     "y": 2000,
-     "d": "Raoul Peck",
-     "r": "Le premier chef de gouvernement du Congo indépendant, renversé puis assassiné en sept mois."
-    },
-    {
-     "id": "malcolm-x-1992",
-     "t": "Malcolm X",
-     "y": 1992,
-     "d": "Spike Lee",
-     "r": "Du petit voyou de Harlem au militant assassiné, la vie de Malcolm X."
-    },
-    {
-     "id": "selma-2014",
-     "t": "Selma",
-     "y": 2014,
-     "d": "Ava DuVernay",
-     "r": "Martin Luther King et les marches de Selma, en 1965, pour le droit de vote des Noirs."
     },
     {
      "id": "the-black-power-mixtape-1967-1975-2011",
@@ -13910,13 +13629,6 @@
      "y": 2008,
      "d": "Ari Folman",
      "r": "Un ancien soldat israélien retrouve la mémoire du massacre de Sabra et Chatila."
-    },
-    {
-     "id": "jfk-1991",
-     "t": "JFK",
-     "y": 1991,
-     "d": "Oliver Stone",
-     "r": "Un procureur conteste la thèse du tireur isolé dans la mort de Kennedy : le film qui a fait ouvrir les archives."
     }
    ]
   }
