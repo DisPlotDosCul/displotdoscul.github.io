@@ -13387,7 +13387,8 @@
       "l-evenement-2021",
       "jackie-2016",
       "the-brutalist-2024",
-      "spencer-2021"
+      "spencer-2021",
+      "l-incroyable-histoire-de-l-ile-de-la-rose-2020"
      ]
     },
     {
@@ -14425,6 +14426,13 @@
      "y": 2016,
      "d": "Mel Gibson",
      "r": "Un infirmier qui refuse de toucher une arme sauve 75 blessés à Okinawa en 1945. Histoire vraie."
+    },
+    {
+     "id": "l-incroyable-histoire-de-l-ile-de-la-rose-2020",
+     "t": "L'Incroyable Histoire de l'Île de la Rose",
+     "y": 2020,
+     "d": "Sydney Sibilia",
+     "r": "En 1968, un ingénieur bâtit une plateforme en mer et la proclame État indépendant. Histoire vraie."
     }
    ]
   }
