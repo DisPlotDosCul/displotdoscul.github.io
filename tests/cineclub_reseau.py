@@ -49,7 +49,7 @@ def run():
         page.wait_for_function("id => !__fixture.profils['test-membre'].rep[id]", arg=second)
         assert page.locator("#xpBody .xp-card").get_attribute("data-film") == second
         page.locator('#xpBody [data-xp="skip"]').click()
-        for v in ["7", "4", "vu", "9", "7", "pv", "9", "4", "7"]:
+        for v in ["7", "2", "vu", "9", "5", "pv", "9", "2", "7"]:  # Adoré 9, Bien 7, Bof 5, Pas aimé 2 (15 novembre)
             page.locator(f'#xpBody [data-xp="{v}"]').first.click()
         # Toutes les dix réponses : la récompense, avec l'affinité.
         page.locator("#xpBody .xp-reward").wait_for()
