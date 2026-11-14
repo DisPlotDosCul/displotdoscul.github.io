@@ -1506,7 +1506,20 @@ html.sky-on #rsheet{z-index:50;}
     return "#" + v.map(function(x){ var n = Math.round(fromLin(Math.max(0, Math.min(1, x)))); return (n < 16 ? "0" : "") + n.toString(16); }).join("").toUpperCase();
   }
   var AMB_CACHE = {};
+  // Jour adouci (15 novembre) : les clairs sont baissés (le blanc devient un parchemin chaud), les pastels froids
+  // (bleus, verts, violets) perdent la moitié de leur couleur ; rouges, jaunes et ors gardent toute leur chaleur.
+  function jourColor(c){
+    var key = "jour" + c; if (AMB_CACHE[key]) return AMB_CACHE[key];
+    var x = hexRgb(c), lch = rgbLch(x[0], x[1], x[2]), L = lch[0], C = lch[1], h = lch[2];
+    var warm = h <= 105 || h >= 345, L2 = L > 0.78 ? 0.78 + (L - 0.78) * 0.62 : L, C2 = C;
+    if (L > 0.78) C2 = warm ? Math.max(C, 0.018) : C * 0.45;
+    if (L > 0.78 && C < 0.02) h = 80;
+    var hex = lchHex(L2, C2, h), out = hex;
+    if (x[3] < 1) { var y = hexRgb(hex); out = "rgba(" + y[0] + "," + y[1] + "," + y[2] + "," + (+x[3].toFixed(3)) + ")"; }
+    return (AMB_CACHE[key] = out);
+  }
   function ambColor(c, th, ctx){
+    if (th === "jour") return c ? jourColor(c) : c;
     var P = AMB_P[th]; if (!P || !c) return c;
     var key = th + ctx + c; if (AMB_CACHE[key]) return AMB_CACHE[key];
     var x = hexRgb(c), lch = rgbLch(x[0], x[1], x[2]), L = lch[0], C = lch[1], h = lch[2];
@@ -1568,7 +1581,7 @@ html.sky-on #rsheet{z-index:50;}
     if (changed || force) {
       TH = th; var de = document.documentElement;
       ["jour", "crep", "neon"].forEach(function(x){ de.classList.toggle("th-" + x, x === th); });
-      st.textContent = th === "jour" ? "" : css(th);
+      st.textContent = css(th);
       var m = document.querySelector('meta[name="theme-color"]');
       if (!m) { m = document.createElement("meta"); m.name = "theme-color"; document.head.appendChild(m); }
       m.content = th === "neon" ? lchHex(0.125, 0.034, 286) : th === "crep" ? lchHex(0.27, 0.038, 290) : "#F1E4C9";
@@ -1584,7 +1597,7 @@ html.sky-on #rsheet{z-index:50;}
   document.addEventListener("visibilitychange", function(){ if (!document.hidden && MODE === "auto") apply(); });
   window.AMBI = {
     th:function(){ return TH; }, mode:function(){ return MODE; }, next:function(){ return next(Date.now()); },
-    color:function(c, ctx){ return TH === "jour" || !/^(#|rgb)/.test(String(c)) ? c : ambColor(c, TH, ctx || "s"); },
+    color:function(c, ctx){ return !/^(#|rgb)/.test(String(c)) ? c : ambColor(c, TH, ctx || "s"); },
     set:function(m){ MODE = m === "jour" || m === "crep" || m === "neon" ? m : "auto"; try { localStorage.setItem(KEY, MODE); } catch (e) {} apply(); },
     on:function(fn){ FNS.push(fn); }
   };
@@ -4078,7 +4091,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function famPal(f){
     var k = f && (f.mouvements ? "mouvements" : f.envies ? "envies" : f.id), p = k && PAL[k];
     if (!p) return null;
-    var th = window.AMBI ? AMBI.th() : "jour"; if (th === "jour") return p;
+    var th = window.AMBI ? AMBI.th() : "jour";
     if (PAL_TH[th + ":" + k]) return PAL_TH[th + ":" + k];
     var o = {}; Object.keys(p).forEach(function(x){ o[x] = x === "grad" ? p[x].replace(/#[0-9A-Fa-f]{6}/g, function(c){ return tc(c); }) : tc(p[x], x === "bord" ? "b" : "s"); });
     return (PAL_TH[th + ":" + k] = o);
