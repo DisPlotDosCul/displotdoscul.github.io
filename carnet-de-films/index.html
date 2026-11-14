@@ -1149,6 +1149,12 @@ html.ed-on .wrap{padding-bottom:65vh;}
 .fimg-g img{width:100%;height:100%;object-fit:cover;display:block;}
 .fimg-s{display:inline-block;margin-top:5px;font-size:11.5px;color:var(--muted);}
 .fimg-n{margin:0;font-size:13.5px;color:var(--muted);}
+/* Où le voir : les plateformes en France (données JustWatch, via TMDB). */
+.ouv{margin-top:8px;display:grid;gap:7px;}
+.ouv-g{display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+.ouv-g b{font:600 12.5px/1.2 var(--font);color:var(--muted);min-width:6.4em;}
+.ouv-p{display:inline-flex;align-items:center;gap:5px;padding:3px 8px 3px 3px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-size:13px;color:var(--ink);text-decoration:none;}
+.ouv-p img{width:22px;height:22px;border-radius:6px;display:block;}
 .qz-ok{margin:0;font:600 15px/1.3 var(--font);color:var(--k-s-2C6660);}
 .qz-acts{display:flex;flex-wrap:wrap;gap:8px;}
 .qz-q{display:grid;gap:6px;font-size:14.5px;}
@@ -1692,6 +1698,7 @@ html.sky-on #rsheet{z-index:50;}
   <details id="rsDetails"><summary class="fiche-av">plus…</summary><p class="why rs-p" id="rsP"></p><div class="fiche-themes" id="rsThemes"></div><p class="fiche-fiab" id="rsFiab"></p></details>
   <div class="seg rs-seg" id="rsSeg" role="group" aria-label="As-tu vu ce film ?" hidden></div>
   <div class="rs-n" id="rsN" role="group" aria-label="Ma note" hidden></div>
+  <div id="rsOuv"></div>
   <div class="rs-sky" id="rsSky" hidden></div>
   <div class="plf-b">
     <button type="button" class="plf-ok rs-go" id="rsGo">Voir la fiche ↓</button>
@@ -3383,6 +3390,53 @@ html.sky-on #rsheet{z-index:50;}
     return '<div class="fimg-g">' + IMG_SEL[id].map(function(pth){ return '<a href="https://image.tmdb.org/t/p/original' + esc(pth) + '" target="_blank" rel="noopener"><img src="https://image.tmdb.org/t/p/w500' + esc(pth) + '" alt="Image du film ' + esc(f.t) + '" loading="lazy" decoding="async"></a>'; }).join("") + '</div>' +
       '<a class="fimg-s" href="https://www.themoviedb.org/' + r.t + '/' + r.id + '" target="_blank" rel="noopener" title="Ce site utilise l\'API de TMDB sans être approuvé ni certifié par TMDB.">Images : TMDB</a>';
   }
+  // Où le voir : les plateformes qui proposent le film en France (abonnement, gratuit, location, achat).
+  // Données JustWatch, fournies par TMDB ; gardées trois jours dans ce navigateur, car les catalogues changent.
+  var OUV_OPEN = {}, OUV_P = {}, OUV_C = {}, OUV_KEY = "carnetOuVoirV1", OUV_TTL = 3 * 864e5;
+  try { OUV_C = JSON.parse(localStorage.getItem(OUV_KEY) || "{}") || {}; } catch (e) { OUV_C = {}; }
+  function ouvFresh(id){ var c = OUV_C[id]; return c && Date.now() - c.at < OUV_TTL ? c.r : null; }
+  function ouvFetch(id){
+    var f = films[id]; if (!f) return Promise.resolve(null);
+    if (ouvFresh(id)) return Promise.resolve(ouvFresh(id));
+    if (OUV_P[id]) return OUV_P[id];
+    var ident = IMG_C[id] && IMG_C[id].id ? Promise.resolve(IMG_C[id]) : (IMG_P[id] || (IMG_P[id] = tmdbFind(f).then(function(r){ IMG_C[id] = r || { p:[] }; try { localStorage.setItem(IMG_KEY, JSON.stringify(IMG_C)); } catch (e) {} return IMG_C[id]; })));
+    OUV_P[id] = ident.then(function(r){
+      if (!r || !r.id) return { none:true };
+      return fetch("https://api.themoviedb.org/3/" + r.t + "/" + r.id + "/watch/providers?api_key=" + TMDB_KEY).then(function(x){ if (!x.ok) throw Error("tmdb " + x.status); return x.json(); })
+        .then(function(j){
+          var fr = (j.results || {}).FR || {}, seen = {}, groups = [];
+          [["flatrate", "Abonnement"], ["free", "Gratuit"], ["ads", "Gratuit avec pubs"], ["rent", "Location"], ["buy", "Achat"]].forEach(function(g){
+            var l = (fr[g[0]] || []).slice().sort(function(a, b){ return (a.display_priority || 99) - (b.display_priority || 99); })
+              .filter(function(p){ var k = g[0] + p.provider_id; if (seen[k]) return false; seen[k] = 1; return true; })
+              .map(function(p){ return { n:p.provider_name, logo:p.logo_path || "" }; });
+            if (l.length) groups.push([g[1], l]);
+          });
+          return { link:fr.link || "", groups:groups, tmdb:"https://www.themoviedb.org/" + r.t + "/" + r.id + "/watch?locale=FR" };
+        });
+    }).then(function(res){ OUV_C[id] = { at:Date.now(), r:res }; try { localStorage.setItem(OUV_KEY, JSON.stringify(OUV_C)); } catch (e) {} delete OUV_P[id]; return res; },
+      function(){ delete OUV_P[id]; return null; });
+    return OUV_P[id];
+  }
+  function ouvInner(r){
+    if (!r) return '<p class="fimg-n">La recherche ne répond pas, réessaie dans un instant.</p>';
+    if (r.none) return '<p class="fimg-n">Film introuvable sur TMDB.</p>';
+    if (!r.groups.length) return '<p class="fimg-n">Sur aucune plateforme en France pour l\'instant (cinémathèque, médiathèque ou DVD).</p>';
+    var href = r.link || r.tmdb;
+    return r.groups.map(function(g){ return '<div class="ouv-g"><b>' + esc(g[0]) + '</b>' + g[1].map(function(p){
+        return '<a class="ouv-p" href="' + esc(href) + '" target="_blank" rel="noopener">' + (p.logo ? '<img src="https://image.tmdb.org/t/p/w92' + esc(p.logo) + '" alt="" loading="lazy">' : "") + esc(p.n) + '</a>'; }).join("") + '</div>'; }).join("") +
+      '<a class="fimg-s" href="' + esc(href) + '" target="_blank" rel="noopener" title="Données JustWatch, via TMDB">En France · source : JustWatch</a>';
+  }
+  function ouvBoxHtml(id){ var c = ouvFresh(id); return '<div class="ouv" data-ouvbox="' + esc(id) + '" aria-live="polite">' + (c ? ouvInner(c) : '<p class="fimg-n">Recherche des plateformes…</p>') + '</div>'; }
+  function ouvBtn(id, t){ return '<button type="button" class="fimg-b" data-ouv="' + esc(id) + '" aria-expanded="' + !!OUV_OPEN[id] + '" aria-label="Où voir ' + esc(t || "") + '">📺 ' + (OUV_OPEN[id] ? "Masquer où le voir" : "Où le voir") + '</button>' + (OUV_OPEN[id] ? ouvBoxHtml(id) : ""); }
+  document.addEventListener("click", function(ev){
+    var t = ev.target.closest && ev.target.closest("[data-ouv]"); if (!t) return;
+    var id = t.dataset.ouv; OUV_OPEN[id] = !OUV_OPEN[id];
+    t.setAttribute("aria-expanded", OUV_OPEN[id] ? "true" : "false"); t.textContent = "📺 " + (OUV_OPEN[id] ? "Masquer où le voir" : "Où le voir");
+    var box = t.nextElementSibling && t.nextElementSibling.classList.contains("ouv") ? t.nextElementSibling : null;
+    if (!OUV_OPEN[id]) { if (box) box.remove(); return; }
+    if (!box) { t.insertAdjacentHTML("afterend", ouvBoxHtml(id)); box = t.nextElementSibling; }
+    if (!ouvFresh(id)) ouvFetch(id).then(function(r){ document.querySelectorAll('.ouv[data-ouvbox="' + CSS.escape(id) + '"]').forEach(function(b){ b.innerHTML = ouvInner(r); }); });
+  });
   function imgBoxHtml(id){ return '<div class="fimg" data-imgbox="' + esc(id) + '" aria-live="polite">' + (IMG_C[id] ? imgInner(id, IMG_C[id]) : '<p class="fimg-n">Images du film…</p>') + '</div>'; }
   function tmdbFind(f){
     var fixe = TMDB_FIXE[f.id], fixeTv = typeof fixe === "string" && fixe.indexOf("tv/") === 0;
@@ -3533,7 +3587,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<div class="acts"><button type="button" class="lst" data-l="1" aria-pressed="' + !!LISTE[f.id] + '">' + (LISTE[f.id] ? "✓ Ma liste" : "+ Ma liste") + '</button>' + plb +
       '<button type="button" class="fsh ico" data-fshare="1" aria-label="Partager ' + esc(f.t) + '" title="Partager">↗</button>' +
       '<button type="button" class="cmb" data-com="1" aria-expanded="' + (OPEN_COM === f.sid + "|" + f.id) + '" aria-label="Commenter ' + esc(f.t) + '" title="Commenter">💬</button></div></div>' + plc + comForm(f) +
-      '<button type="button" class="fimg-b" data-img="' + esc(f.id) + '" aria-expanded="' + !!IMG_OPEN[f.id] + '" aria-label="Images du film ' + esc(f.t) + '">🎞 ' + (IMG_OPEN[f.id] ? "Masquer les images" : "Images du film") + '</button>' + (IMG_OPEN[f.id] ? imgBoxHtml(f.id) : "");
+      '<button type="button" class="fimg-b" data-img="' + esc(f.id) + '" aria-expanded="' + !!IMG_OPEN[f.id] + '" aria-label="Images du film ' + esc(f.t) + '">🎞 ' + (IMG_OPEN[f.id] ? "Masquer les images" : "Images du film") + '</button>' + (IMG_OPEN[f.id] ? imgBoxHtml(f.id) : "") + ouvBtn(f.id, f.t);
   }
 
   function dureeTexte(f){
@@ -6893,6 +6947,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       it.appendChild(b); it.insertAdjacentHTML("beforeend", '<span class="ccm-d">' + esc(CCM_D[id]) + '</span>');
       box.appendChild(it);
     });
+    box.insertAdjacentHTML("beforeend", '<div class="ccm-it" data-for="ccCanon"><a class="chip ccb" id="ccCanon" href="canon.html" style="text-decoration:none">🏆 Canon des artistes</a><span class="ccm-d">Les classements des cinéastes, directeurs photo et monteurs</span></div>');
     // La Boussole n'apparaît qu'une fois connecté : sa ligne suit, dès que le bouton change.
     var sync = function(){ box.querySelectorAll(".ccm-it").forEach(function(it){ var b = $(it.dataset.for); it.hidden = !b || b.hidden; }); };
     sync();
@@ -6920,6 +6975,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     $("rs-h").textContent = f.t;
     rsMeta();
     $("rsP").textContent = f.p || DESC[id] || f.r || "";
+    $("rsOuv").innerHTML = ouvBtn(id, f.t);
     $("rsDetails").open = false;
     var av = Array.isArray(f.av) ? f.av.filter(Boolean).join(" · ") : String(f.av || "").trim();
     $("rsAv").innerHTML = av ? '<details class="fiche-av"><summary>Contenus sensibles</summary><p>' + esc(av) + '</p></details>' : "";
@@ -7521,6 +7577,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (HASH_DONE || !sections.length) return;
     var h = ""; try { h = decodeURIComponent((location.hash || "").slice(1)).replace(/^sec-/, ""); } catch (e) {}
     if (!h || h === "invite") { HASH_DONE = true; return; }
+    // Lien vers un film (depuis le Canon des artistes : …#film=mulholland-drive-2001) : sa fiche s'ouvre.
+    if (/^film=/.test(h)) {
+      var fid = h.slice(5); if (!films[fid]) return;
+      HASH_DONE = true;
+      setTimeout(function(){ pickRandom({ ids:[fid], label:"Canon des artistes" }); $("rsK").textContent = "🏆 Depuis le Canon des artistes"; $("rsAgain").hidden = true; }, 60);
+      return;
+    }
     if (!sections.some(function(s){ return s.id === h && !s.cache; })) return;
     HASH_DONE = true;
     setTimeout(function(){
