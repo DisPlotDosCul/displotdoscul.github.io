@@ -365,3 +365,12 @@ The Green Knight (Lowery, 2021), Ran (Kurosawa, 1985), Harakiri (Kobayashi, 1962
 (Rossellini, 1966), Aguirre, la colère de Dieu (Herzog, 1972), Zama (Martel, 2017), L'Assassinat de Jesse James
 (Dominik, 2007), La Grande Illusion (Renoir, 1937), Amadeus (Forman, 1984), Ivan le Terrible (Eisenstein, 1944).
 La sélection sur la qualité vaut seulement pour les films ajoutés, pas pour ceux déjà au catalogue.
+
+## 14 novembre 2026 : thème « Biographies »
+
+87 films en 7 sous-catégories : peintres, écrivains et cinéastes ; musiciens ; rois, chefs et figures politiques ;
+aventuriers et exploits ; imposteurs, criminels et faits divers ; destins hors norme ; autobiographies. Tous les films
+du catalogue qui racontent une vie vraie y sont ; 15 ajoutés, vérifiés sur TMDB : Lawrence d'Arabie, Van Gogh (Pialat),
+Ed Wood, I'm Not There, Control, Séraphine, Mr. Turner, Grizzly Man, Amy, Sugar Man, Truman Capote, Barbara (Amalric),
+Gainsbourg (Vie héroïque), Stories We Tell, Man on the Moon. Ceux qui se passent dans le passé sont aussi rangés dans
+« Films historiques ».

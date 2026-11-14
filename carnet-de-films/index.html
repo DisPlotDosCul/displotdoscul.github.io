@@ -3389,7 +3389,12 @@ html.sky-on #rsheet{z-index:50;}
     "l-evangile-selon-saint-matthieu-1964":24192, "fellini-satyricon-1969":11163, "marketa-lazarova-1967":25904, "perceval-le-gallois-1978":75733,
     "the-green-knight-2021":559907, "ran-1985":11645, "harakiri-1962":14537, "la-prise-de-pouvoir-par-louis-xiv-1966":69912,
     "aguirre-la-colere-de-dieu-1972":2000, "zama-2017":326382, "l-assassinat-de-jesse-james-2007":4512, "la-grande-illusion-1937":777,
-    "amadeus-1984":279, "ivan-le-terrible-1944":9797 };
+    "amadeus-1984":279, "ivan-le-terrible-1944":9797,
+    // Biographies (14 novembre 2026), identifiants vérifiés sur TMDB.
+    "lawrence-d-arabie-1962":947, "van-gogh-1991":4734, "ed-wood-1994":522, "i-m-not-there-2007":3902, "control-2007":5708,
+    "seraphine-2008":14415, "mr-turner-2014":245700, "grizzly-man-2005":501, "amy-2015":331781, "sugar-man-2012":84334,
+    "truman-capote-2005":398, "barbara-2017":451618, "gainsbourg-vie-heroique-2010":31900, "stories-we-tell-2012":128216,
+    "man-on-the-moon-1999":1850 };
   try { localStorage.removeItem("carnetImagesV1"); localStorage.removeItem("carnetImagesV2"); } catch (e) {}
   try { IMG_C = JSON.parse(localStorage.getItem(IMG_KEY) || "{}") || {}; } catch (e) { IMG_C = {}; }
   var IMG_SEL = {};
@@ -4283,11 +4288,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       var items = [].slice.call(g.children).filter(function(s){ return s.classList.contains("sub"); });
       var cut = items.filter(function(s){
         if (s.classList.contains("wide") || s.classList.contains("vchip")) return false;
-        var l = s.querySelector(".sl"); return !!l && (l.scrollHeight > l.clientHeight + 1 || l.scrollWidth > l.clientWidth + 1);
+        var l = s.querySelector(".sl"); return !!l && (l.scrollHeight > l.clientHeight + 4 || l.scrollWidth > l.clientWidth + 1);
       });
       if (!cut.length) return;
       // Beaucoup de noms trop longs : toute la liste passe sur une colonne, plus simple à lire.
-      if (cut.length * 3 > items.length) { g.classList.add("liste"); return; }
+      // Sur ordinateur (trois colonnes), on garde la grille : une vue d'ensemble sans tout faire défiler (14 novembre).
+      var ncol = getComputedStyle(g).gridTemplateColumns.split(" ").length || 2;
+      if (cut.length * 3 > items.length && ncol < 3) { g.classList.add("liste"); return; }
       cut.forEach(function(s){ s.classList.add("wide"); });
       // Sans changer l'ordre : une case restée seule sur sa ligne avant un nom long prend aussi toute la ligne.
       var cols = getComputedStyle(g).gridTemplateColumns.split(" ").length || 2, row = [];
@@ -5454,7 +5461,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     "s43-mythomanie":["🤥", "#C2410C"], "s44-depression":["🌧️", "#475569"], "s45-bipolarite":["🎢", "#BE185D"],
     "s46-phobies-obsessions":["😰", "#0369A1"], "s47-traumatismes":["💥", "#B91C1C"], "s48-personnalites":["🎭", "#7C2D12"],
     "s49-addictions":["🍷", "#881337"], "s50-memoire-demence":["🧩", "#15803D"], "s51-hopital-psychiatrique":["🏥", "#1D4ED8"],
-    "s52-paranoia":["🧿", "#4D7C0F"], "s55-complot":["🛸", "#4338CA"], "s56-histoire":["🏺", "#92400E"], "s53-autisme-tdah":["♾️", "#A16207"],
+    "s52-paranoia":["🧿", "#4D7C0F"], "s55-complot":["🛸", "#4338CA"], "s56-histoire":["🏺", "#92400E"], "s57-biographies":["👤", "#0F766E"], "s53-autisme-tdah":["♾️", "#A16207"],
     "real-france":["🥖", "#1D4ED8"], "real-europe":["🏰", "#6D28D9"], "real-amerique-nord":["🗽", "#0F766E"], "real-asie":["🏮", "#C53030"], "real-monde":["🌍", "#15803D"],
     "dec-avant-1920":["🎞️", "#8B5E34"], "dec-1920":["🎩", "#334155"], "dec-1930":["📻", "#92400E"], "dec-1940":["🎷", "#A16207"],
     "dec-1950":["📺", "#0E7490"], "dec-1960":["🌼", "#C2410C"], "dec-1970":["🕺", "#7E22CE"], "dec-1980":["📼", "#BE185D"],

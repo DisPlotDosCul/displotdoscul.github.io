@@ -13322,7 +13322,9 @@
       "fanny-et-alexandre-1982",
       "there-will-be-blood-2007",
       "l-etreinte-du-serpent-2015",
-      "titanic-1997"
+      "titanic-1997",
+      "van-gogh-1991",
+      "mr-turner-2014"
      ]
     },
     {
@@ -13339,7 +13341,8 @@
         "a-l-ouest-rien-de-nouveau-2022",
         "un-long-dimanche-de-fiancailles-2004",
         "au-revoir-la-haut-2017",
-        "1917-2019"
+        "1917-2019",
+        "lawrence-d-arabie-1962"
        ]
       },
       {
@@ -13388,7 +13391,13 @@
       "jackie-2016",
       "the-brutalist-2024",
       "spencer-2021",
-      "l-incroyable-histoire-de-l-ile-de-la-rose-2020"
+      "l-incroyable-histoire-de-l-ile-de-la-rose-2020",
+      "seraphine-2008",
+      "ed-wood-1994",
+      "truman-capote-2005",
+      "control-2007",
+      "gainsbourg-vie-heroique-2010",
+      "man-on-the-moon-1999"
      ]
     },
     {
@@ -14433,6 +14442,817 @@
      "y": 2020,
      "d": "Sydney Sibilia",
      "r": "En 1968, un ingénieur bâtit une plateforme en mer et la proclame État indépendant. Histoire vraie."
+    },
+    {
+     "id": "seraphine-2008",
+     "t": "Séraphine",
+     "y": 2008,
+     "d": "Martin Provost",
+     "r": "Une femme de ménage qui peignait la nuit avec ses propres couleurs."
+    },
+    {
+     "id": "ed-wood-1994",
+     "t": "Ed Wood",
+     "y": 1994,
+     "d": "Tim Burton",
+     "r": "Le « plus mauvais cinéaste du monde » et son amitié avec Bela Lugosi."
+    },
+    {
+     "id": "truman-capote-2005",
+     "t": "Truman Capote",
+     "y": 2005,
+     "d": "Bennett Miller",
+     "r": "Capote se lie avec un tueur pour écrire De sang-froid, et attend sa pendaison."
+    },
+    {
+     "id": "control-2007",
+     "t": "Control",
+     "y": 2007,
+     "d": "Anton Corbijn",
+     "r": "Ian Curtis de Joy Division, en noir et blanc, par le photographe du groupe."
+    },
+    {
+     "id": "gainsbourg-vie-heroique-2010",
+     "t": "Gainsbourg (Vie héroïque)",
+     "y": 2010,
+     "d": "Joann Sfar",
+     "r": "La vie de Gainsbourg en conte, suivi par une marionnette géante à son image."
+    },
+    {
+     "id": "man-on-the-moon-1999",
+     "t": "Man on the Moon",
+     "y": 1999,
+     "d": "Miloš Forman",
+     "r": "Andy Kaufman, le comique dont personne ne savait quand il plaisantait."
+    },
+    {
+     "id": "van-gogh-1991",
+     "t": "Van Gogh",
+     "y": 1991,
+     "d": "Maurice Pialat",
+     "r": "Les deux derniers mois de Van Gogh, sans légende ni génie qui crie."
+    },
+    {
+     "id": "mr-turner-2014",
+     "t": "Mr. Turner",
+     "y": 2014,
+     "d": "Mike Leigh",
+     "r": "Le peintre Turner, qui grogne et crache sur ses toiles ; chaque plan est un tableau."
+    },
+    {
+     "id": "lawrence-d-arabie-1962",
+     "t": "Lawrence d'Arabie",
+     "y": 1962,
+     "d": "David Lean",
+     "r": "Un officier excentrique unit les tribus arabes ; le désert filmé comme jamais."
+    }
+   ]
+  },
+  "s57-biographies": {
+   "famille": "themes",
+   "ordre": 1.37,
+   "titre": "Biographies",
+   "sous_titre": "Des vies vraies : artistes, musiciens, chefs, aventuriers, imposteurs et destins hors norme. Tous les films du catalogue qui racontent une vie, et quelques portraits marquants ajoutés.",
+   "parties": [
+    {
+     "titre": "Peintres, écrivains et cinéastes",
+     "aide": "Créateurs au travail, génies et ratés",
+     "ids": [
+      "andrei-roublev-1966",
+      "van-gogh-1991",
+      "mr-turner-2014",
+      "seraphine-2008",
+      "camille-claudel-1915-2013",
+      "daaaaaali-2023",
+      "mishima-1985",
+      "truman-capote-2005",
+      "ed-wood-1994",
+      "pina-2011",
+      "chocolat-2016",
+      "man-on-the-moon-1999"
+     ]
+    },
+    {
+     "titre": "Musiciens",
+     "aide": "Chanteurs, compositeurs et disques oubliés",
+     "ids": [
+      "amadeus-1984",
+      "superstar-the-karen-carpenter-story-1987",
+      "genghis-blues-1999",
+      "24-hour-party-people-2002",
+      "control-2007",
+      "i-m-not-there-2007",
+      "le-soliste-2009",
+      "gainsbourg-vie-heroique-2010",
+      "sugar-man-2012",
+      "amy-2015",
+      "barbara-2017"
+     ]
+    },
+    {
+     "titre": "Rois, chefs et figures politiques",
+     "aide": "Couronnes, révoltes et combats",
+     "ids": [
+      "la-passion-de-jeanne-d-arc-1928",
+      "ivan-le-terrible-1944",
+      "lawrence-d-arabie-1962",
+      "gandhi-1982",
+      "le-dernier-empereur-1987",
+      "malcolm-x-1992",
+      "lumumba-2000",
+      "l-anglaise-et-le-duc-2001",
+      "marie-antoinette-2006",
+      "harvey-milk-2008",
+      "hunger-2008",
+      "il-divo-2008",
+      "lincoln-2012",
+      "selma-2014",
+      "jackie-2016",
+      "judas-and-the-black-messiah-2021",
+      "spencer-2021",
+      "oppenheimer-2023",
+      "je-suis-toujours-la-2024",
+      "we-steal-secrets-la-verite-sur-wikileaks-2013",
+      "the-internet-s-own-boy-l-histoire-d-aaron-swartz-2014"
+     ]
+    },
+    {
+     "titre": "Aventuriers et exploits",
+     "aide": "Mer, montagne, vide et nature sauvage",
+     "ids": [
+      "le-grand-bleu-1988",
+      "une-histoire-vraie-1999",
+      "la-mort-suspendue-2003",
+      "grizzly-man-2005",
+      "into-the-wild-2007",
+      "le-funambule-2008",
+      "kon-tiki-2012",
+      "the-walk-rever-plus-haut-2015",
+      "free-solo-2018",
+      "becoming-cousteau-2021",
+      "fire-of-love-2022",
+      "l-incroyable-histoire-de-l-ile-de-la-rose-2020"
+     ]
+    },
+    {
+     "titre": "Imposteurs, criminels et faits divers",
+     "aide": "Doubles vies, mensonges et crimes vrais",
+     "ids": [
+      "le-faux-coupable-1956",
+      "le-retour-de-martin-guerre-1982",
+      "close-up-1990",
+      "les-affranchis-1990",
+      "creatures-celestes-1994",
+      "les-blessures-assassines-2000",
+      "arrete-moi-si-tu-peux-2002",
+      "l-adversaire-2002",
+      "le-mystificateur-2003",
+      "zodiac-2007",
+      "l-echange-2008",
+      "the-imposter-2012",
+      "foxcatcher-2014",
+      "l-assassinat-de-jesse-james-2007",
+      "killers-of-the-flower-moon-2023"
+     ]
+    },
+    {
+     "titre": "Destins hors norme",
+     "aide": "Corps, esprit et courage",
+     "ids": [
+      "les-trois-visages-d-eve-1957",
+      "elephant-man-1980",
+      "raging-bull-1980",
+      "le-mystere-silkwood-1983",
+      "un-homme-d-exception-2001",
+      "le-pianiste-2002",
+      "aviator-2004",
+      "le-scaphandre-et-le-papillon-2007",
+      "temple-grandin-2010",
+      "tu-ne-tueras-point-2016",
+      "dark-waters-2019",
+      "hors-normes-2019",
+      "une-vie-cachee-2019"
+     ]
+    },
+    {
+     "titre": "Autobiographies",
+     "aide": "Des cinéastes racontent leur propre vie",
+     "ids": [
+      "persepolis-2007",
+      "valse-avec-bachir-2008",
+      "stories-we-tell-2012"
+     ]
+    }
+   ],
+   "films": [
+    {
+     "id": "andrei-roublev-1966",
+     "t": "Andreï Roublev",
+     "y": 1966,
+     "d": "Andreï Tarkovski",
+     "r": "La grande fresque de Tarkovski : la Russie médiévale et la fonte d'une cloche géante."
+    },
+    {
+     "id": "van-gogh-1991",
+     "t": "Van Gogh",
+     "y": 1991,
+     "d": "Maurice Pialat",
+     "r": "Les deux derniers mois de Van Gogh, sans légende ni génie qui crie."
+    },
+    {
+     "id": "mr-turner-2014",
+     "t": "Mr. Turner",
+     "y": 2014,
+     "d": "Mike Leigh",
+     "r": "Le peintre Turner, qui grogne et crache sur ses toiles ; chaque plan est un tableau."
+    },
+    {
+     "id": "seraphine-2008",
+     "t": "Séraphine",
+     "y": 2008,
+     "d": "Martin Provost",
+     "r": "Une femme de ménage qui peignait la nuit avec ses propres couleurs."
+    },
+    {
+     "id": "camille-claudel-1915-2013",
+     "t": "Camille Claudel 1915",
+     "y": 2013,
+     "d": "Bruno Dumont",
+     "r": "Juliette Binoche entourée de vraies patientes ; lent et contemplatif."
+    },
+    {
+     "id": "daaaaaali-2023",
+     "t": "Daaaaaalí !",
+     "y": 2023,
+     "d": "Quentin Dupieux",
+     "r": "Une journaliste essaie d'interviewer Salvador Dalí, joué tour à tour par plusieurs acteurs, et le projet ne cesse de lui échapper, d'un rêve à l'autre."
+    },
+    {
+     "id": "mishima-1985",
+     "t": "Mishima",
+     "y": 1985,
+     "d": "Paul Schrader",
+     "r": "L'écrivain Yukio Mishima, jusqu'à sa tentative de coup d'État nationaliste et son suicide en 1970."
+    },
+    {
+     "id": "truman-capote-2005",
+     "t": "Truman Capote",
+     "y": 2005,
+     "d": "Bennett Miller",
+     "r": "Capote se lie avec un tueur pour écrire De sang-froid, et attend sa pendaison."
+    },
+    {
+     "id": "ed-wood-1994",
+     "t": "Ed Wood",
+     "y": 1994,
+     "d": "Tim Burton",
+     "r": "Le « plus mauvais cinéaste du monde » et son amitié avec Bela Lugosi."
+    },
+    {
+     "id": "pina-2011",
+     "t": "Pina",
+     "y": 2011,
+     "d": "Wim Wenders",
+     "r": "Documentaire en relief de Wim Wenders : les danseurs de Pina Bausch interprètent ses chorégraphies dans les rues, les usines et les forêts de Wuppertal."
+    },
+    {
+     "id": "chocolat-2016",
+     "t": "Chocolat",
+     "y": 2016,
+     "d": "Roschdy Zem",
+     "r": "Le premier artiste noir de la scène française, clown vedette de la Belle Époque, puis rejeté."
+    },
+    {
+     "id": "man-on-the-moon-1999",
+     "t": "Man on the Moon",
+     "y": 1999,
+     "d": "Miloš Forman",
+     "r": "Andy Kaufman, le comique dont personne ne savait quand il plaisantait."
+    },
+    {
+     "id": "amadeus-1984",
+     "t": "Amadeus",
+     "y": 1984,
+     "d": "Miloš Forman",
+     "r": "Salieri raconte comment sa jalousie a tué Mozart ; la musique en personnage principal."
+    },
+    {
+     "id": "superstar-the-karen-carpenter-story-1987",
+     "t": "Superstar: The Karen Carpenter Story",
+     "y": 1987,
+     "d": "Todd Haynes",
+     "r": "La chanteuse des Carpenters racontée avec des poupées Barbie, sur ses propres chansons."
+    },
+    {
+     "id": "genghis-blues-1999",
+     "t": "Genghis Blues",
+     "y": 1999,
+     "d": "Roko Belic",
+     "r": "Un bluesman aveugle de San Francisco apprend seul le chant diphonique de Touva et part y concourir."
+    },
+    {
+     "id": "24-hour-party-people-2002",
+     "t": "24 Hour Party People",
+     "y": 2002,
+     "d": "Michael Winterbottom",
+     "r": "Manchester, l'Haçienda et l'arrivée de l'acid house."
+    },
+    {
+     "id": "control-2007",
+     "t": "Control",
+     "y": 2007,
+     "d": "Anton Corbijn",
+     "r": "Ian Curtis de Joy Division, en noir et blanc, par le photographe du groupe."
+    },
+    {
+     "id": "i-m-not-there-2007",
+     "t": "I'm Not There",
+     "y": 2007,
+     "d": "Todd Haynes",
+     "r": "Bob Dylan joué par six acteurs, dont Cate Blanchett ; un portrait en morceaux."
+    },
+    {
+     "id": "le-soliste-2009",
+     "t": "Le Soliste",
+     "y": 2009,
+     "d": "Joe Wright",
+     "r": "Dario Marianelli et Beethoven : un violoncelliste de génie devenu sans-abri."
+    },
+    {
+     "id": "gainsbourg-vie-heroique-2010",
+     "t": "Gainsbourg (Vie héroïque)",
+     "y": 2010,
+     "d": "Joann Sfar",
+     "r": "La vie de Gainsbourg en conte, suivi par une marionnette géante à son image."
+    },
+    {
+     "id": "sugar-man-2012",
+     "t": "Sugar Man",
+     "y": 2012,
+     "d": "Malik Bendjelloul",
+     "r": "Un chanteur oublié aux États-Unis, star en Afrique du Sud sans le savoir."
+    },
+    {
+     "id": "amy-2015",
+     "t": "Amy",
+     "y": 2015,
+     "d": "Asif Kapadia",
+     "r": "Amy Winehouse en images d'archives, de la jeune fille drôle à la chute."
+    },
+    {
+     "id": "barbara-2017",
+     "t": "Barbara",
+     "y": 2017,
+     "d": "Mathieu Amalric",
+     "r": "Un faux biopic de Barbara, où l'actrice et la vraie chanteuse se confondent."
+    },
+    {
+     "id": "la-passion-de-jeanne-d-arc-1928",
+     "t": "La Passion de Jeanne d'Arc",
+     "y": 1928,
+     "d": "Carl Theodor Dreyer",
+     "r": "Film muet : le procès et la mort de Jeanne d'Arc, presque entièrement en gros plans de visages sans maquillage, dont celui de Renée Falconetti, en larmes."
+    },
+    {
+     "id": "ivan-le-terrible-1944",
+     "t": "Ivan le Terrible",
+     "y": 1944,
+     "d": "Sergueï Eisenstein",
+     "r": "Le premier tsar en ombres géantes ; la suite fut interdite par Staline."
+    },
+    {
+     "id": "lawrence-d-arabie-1962",
+     "t": "Lawrence d'Arabie",
+     "y": 1962,
+     "d": "David Lean",
+     "r": "Un officier excentrique unit les tribus arabes ; le désert filmé comme jamais."
+    },
+    {
+     "id": "gandhi-1982",
+     "t": "Gandhi",
+     "y": 1982,
+     "d": "Richard Attenborough",
+     "r": "Gandhi et la désobéissance civile non violente, de l'Afrique du Sud à l'indépendance de l'Inde."
+    },
+    {
+     "id": "le-dernier-empereur-1987",
+     "t": "Le Dernier Empereur",
+     "y": 1987,
+     "d": "Bernardo Bertolucci",
+     "r": "Le jaune impérial de la Cité interdite, filmé pour la première fois."
+    },
+    {
+     "id": "malcolm-x-1992",
+     "t": "Malcolm X",
+     "y": 1992,
+     "d": "Spike Lee",
+     "r": "Du petit voyou de Harlem au militant assassiné, la vie de Malcolm X."
+    },
+    {
+     "id": "lumumba-2000",
+     "t": "Lumumba",
+     "y": 2000,
+     "d": "Raoul Peck",
+     "r": "Le premier chef de gouvernement du Congo indépendant, renversé puis assassiné en sept mois."
+    },
+    {
+     "id": "l-anglaise-et-le-duc-2001",
+     "t": "L'Anglaise et le Duc",
+     "y": 2001,
+     "d": "Éric Rohmer",
+     "r": "Les acteurs jouent devant des tableaux peints du Paris de la Révolution."
+    },
+    {
+     "id": "marie-antoinette-2006",
+     "t": "Marie-Antoinette",
+     "y": 2006,
+     "d": "Sofia Coppola",
+     "r": "Kirsten Dunst en jeune archiduchesse autrichienne mariée au futur Louis XVI, à Versailles : gâteaux pastel, souliers, une paire de baskets et musique new wave."
+    },
+    {
+     "id": "harvey-milk-2008",
+     "t": "Harvey Milk",
+     "y": 2008,
+     "d": "Gus Van Sant",
+     "r": "Le premier élu ouvertement gay de Californie, de sa campagne à son assassinat."
+    },
+    {
+     "id": "hunger-2008",
+     "t": "Hunger",
+     "y": 2008,
+     "d": "Steve McQueen",
+     "r": "La grève de la faim de Bobby Sands, militant de l'IRA, jusqu'au bout de son corps."
+    },
+    {
+     "id": "il-divo-2008",
+     "t": "Il Divo",
+     "y": 2008,
+     "d": "Paolo Sorrentino",
+     "r": "Une Rome politique stylisée comme un clip, néons et costumes sombres."
+    },
+    {
+     "id": "lincoln-2012",
+     "t": "Lincoln",
+     "y": 2012,
+     "d": "Steven Spielberg",
+     "r": "Lincoln arrache le vote de l'abolition de l'esclavage, voix par voix, en janvier 1865."
+    },
+    {
+     "id": "selma-2014",
+     "t": "Selma",
+     "y": 2014,
+     "d": "Ava DuVernay",
+     "r": "Martin Luther King et les marches de Selma, en 1965, pour le droit de vote des Noirs."
+    },
+    {
+     "id": "jackie-2016",
+     "t": "Jackie",
+     "y": 2016,
+     "d": "Pablo Larraín",
+     "r": "Mica Levi : des cordes qui glissent et se tordent, le chagrin qui fait perdre l'équilibre."
+    },
+    {
+     "id": "judas-and-the-black-messiah-2021",
+     "t": "Judas and the Black Messiah",
+     "y": 2021,
+     "d": "Shaka King",
+     "r": "Un indicateur du FBI infiltre les Black Panthers de Chicago et livre leur jeune leader, Fred Hampton."
+    },
+    {
+     "id": "spencer-2021",
+     "t": "Spencer",
+     "y": 2021,
+     "d": "Pablo Larraín",
+     "r": "Jonny Greenwood : un quatuor baroque qui déraille peu à peu en jazz libre, comme Diana."
+    },
+    {
+     "id": "oppenheimer-2023",
+     "t": "Oppenheimer",
+     "y": 2023,
+     "d": "Christopher Nolan",
+     "r": "Le père de la bombe atomique, de Los Alamos aux procès du maccarthysme."
+    },
+    {
+     "id": "je-suis-toujours-la-2024",
+     "t": "Je suis toujours là",
+     "y": 2024,
+     "d": "Walter Salles",
+     "r": "Une mère de cinq enfants face à la disparition de son mari, enlevé par la dictature brésilienne."
+    },
+    {
+     "id": "we-steal-secrets-la-verite-sur-wikileaks-2013",
+     "t": "We Steal Secrets : la vérité sur WikiLeaks",
+     "y": 2013,
+     "d": "Alex Gibney",
+     "r": "WikiLeaks et Julian Assange, des grandes fuites de 2010 jusqu'à l'ambassade d'Équateur."
+    },
+    {
+     "id": "the-internet-s-own-boy-l-histoire-d-aaron-swartz-2014",
+     "t": "The Internet's Own Boy : l'histoire d'Aaron Swartz",
+     "y": 2014,
+     "d": "Brian Knappenberger",
+     "r": "Aaron Swartz, génie d'Internet et militant du savoir libre, poursuivi jusqu'au suicide par la justice américaine."
+    },
+    {
+     "id": "le-grand-bleu-1988",
+     "t": "Le Grand Bleu",
+     "y": 1988,
+     "d": "Luc Besson",
+     "r": "L'apnée selon Luc Besson : Jacques Mayol et Enzo Molinari, toujours plus profond."
+    },
+    {
+     "id": "une-histoire-vraie-1999",
+     "t": "Une histoire vraie",
+     "y": 1999,
+     "d": "David Lynch",
+     "r": "Angelo Badalamenti : violon country et guitare paisible pour un voyage en tondeuse à gazon."
+    },
+    {
+     "id": "la-mort-suspendue-2003",
+     "t": "La Mort suspendue",
+     "y": 2003,
+     "d": "Kevin Macdonald",
+     "r": "Documentaire joué : en 1985, deux jeunes alpinistes anglais réussissent l'ascension du Siula Grande, au Pérou, puis un accident dans la descente les sépare."
+    },
+    {
+     "id": "grizzly-man-2005",
+     "t": "Grizzly Man",
+     "y": 2005,
+     "d": "Werner Herzog",
+     "r": "Un homme qui vivait avec les grizzlis, tué par l'un d'eux ; Herzog monte ses images."
+    },
+    {
+     "id": "into-the-wild-2007",
+     "t": "Into the Wild",
+     "y": 2007,
+     "d": "Sean Penn",
+     "r": "Emile Hirsch, jeune diplômé américain, donne ses économies, brûle ses derniers billets et part vers l'Alaska, où il s'installe dans un vieux bus abandonné."
+    },
+    {
+     "id": "le-funambule-2008",
+     "t": "Le Funambule",
+     "y": 2008,
+     "d": "James Marsh",
+     "r": "Musique existante : des morceaux de Michael Nyman accompagnent la marche entre les tours jumelles."
+    },
+    {
+     "id": "kon-tiki-2012",
+     "t": "Kon-Tiki",
+     "y": 2012,
+     "d": "Joachim Rønning et Espen Sandberg",
+     "r": "Cent jours sur un radeau, au milieu du Pacifique."
+    },
+    {
+     "id": "the-walk-rever-plus-haut-2015",
+     "t": "The Walk : Rêver plus haut",
+     "y": 2015,
+     "d": "Robert Zemeckis",
+     "r": ""
+    },
+    {
+     "id": "free-solo-2018",
+     "t": "Free Solo",
+     "y": 2018,
+     "d": "Jimmy Chin et Elizabeth Chai Vasarhelyi",
+     "r": "Documentaire : Alex Honnold se prépare pendant des mois à gravir sans corde ni assurage les 900 mètres de la paroi d'El Capitan, dans le parc de Yosemite."
+    },
+    {
+     "id": "becoming-cousteau-2021",
+     "t": "Becoming Cousteau",
+     "y": 2021,
+     "d": "Liz Garbus",
+     "r": ""
+    },
+    {
+     "id": "fire-of-love-2022",
+     "t": "Fire of Love",
+     "y": 2022,
+     "d": "Sara Dosa",
+     "r": "Katia et Maurice Krafft, volcanologues amoureux, morts au mont Unzen en 1991."
+    },
+    {
+     "id": "l-incroyable-histoire-de-l-ile-de-la-rose-2020",
+     "t": "L'Incroyable Histoire de l'Île de la Rose",
+     "y": 2020,
+     "d": "Sydney Sibilia",
+     "r": "En 1968, un ingénieur bâtit une plateforme en mer et la proclame État indépendant. Histoire vraie."
+    },
+    {
+     "id": "le-faux-coupable-1956",
+     "t": "Le Faux Coupable",
+     "y": 1956,
+     "d": "Alfred Hitchcock",
+     "r": "Un musicien pris pour un braqueur : l'injustice vécue de l'intérieur, d'après une histoire vraie."
+    },
+    {
+     "id": "le-retour-de-martin-guerre-1982",
+     "t": "Le Retour de Martin Guerre",
+     "y": 1982,
+     "d": "Daniel Vigne",
+     "r": "Dans un village des Pyrénées au seizième siècle, Martin Guerre revient après huit ans d'absence "
+    },
+    {
+     "id": "close-up-1990",
+     "t": "Close-Up",
+     "y": 1990,
+     "d": "Abbas Kiarostami",
+     "r": "Un homme se fait passer pour le cinéaste Mohsen Makhmalbaf auprès d'une famille de Téhéran "
+    },
+    {
+     "id": "les-affranchis-1990",
+     "t": "Les Affranchis",
+     "y": 1990,
+     "d": "Martin Scorsese",
+     "r": "Henry Hill (Ray Liotta) raconte trente ans dans la mafia new-yorkaise, de ses débuts adolescent aux côtés de Robert De Niro et Joe Pesci jusqu'à la chute."
+    },
+    {
+     "id": "creatures-celestes-1994",
+     "t": "Créatures célestes",
+     "y": 1994,
+     "d": "Peter Jackson",
+     "r": "Deux adolescentes s'inventent un monde à elles, jusqu'au crime ; histoire vraie."
+    },
+    {
+     "id": "les-blessures-assassines-2000",
+     "t": "Les Blessures assassines",
+     "y": 2000,
+     "d": "Jean-Pierre Denis",
+     "r": "L'affaire des sœurs Papin : deux sœurs enfermées dans un monde à elles."
+    },
+    {
+     "id": "arrete-moi-si-tu-peux-2002",
+     "t": "Arrête-moi si tu peux",
+     "y": 2002,
+     "d": "Steven Spielberg",
+     "r": "Histoire vraie de Frank Abagnale, faussaire et imposteur ; léger, rétro et très coloré."
+    },
+    {
+     "id": "l-adversaire-2002",
+     "t": "L'Adversaire",
+     "y": 2002,
+     "d": "Nicole Garcia",
+     "r": "Angelo Badalamenti : des cordes sombres pour la double vie de Jean-Claude Romand."
+    },
+    {
+     "id": "le-mystificateur-2003",
+     "t": "Le Mystificateur",
+     "y": 2003,
+     "d": "Billy Ray",
+     "r": "Histoire vraie de Stephen Glass, journaliste qui inventait ses reportages."
+    },
+    {
+     "id": "zodiac-2007",
+     "t": "Zodiac",
+     "y": 2007,
+     "d": "David Fincher",
+     "r": "À San Francisco à la fin des années 1960, Jake Gyllenhaal, dessinateur de presse, se passionne pour les lettres codées d'un tueur en série "
+    },
+    {
+     "id": "l-echange-2008",
+     "t": "L'Échange",
+     "y": 2008,
+     "d": "Clint Eastwood",
+     "r": "Une mère qui dit que ce n'est pas son fils est internée pour folie ; histoire vraie."
+    },
+    {
+     "id": "the-imposter-2012",
+     "t": "The Imposter",
+     "y": 2012,
+     "d": "Bart Layton",
+     "r": "Documentaire : l'imposteur Frédéric Bourdin raconte lui-même, face à la caméra."
+    },
+    {
+     "id": "foxcatcher-2014",
+     "t": "Foxcatcher",
+     "y": 2014,
+     "d": "Bennett Miller",
+     "r": "Un champion olympique de lutte accepte l'invitation d'un milliardaire étrange qui veut former une équipe dans son domaine."
+    },
+    {
+     "id": "l-assassinat-de-jesse-james-2007",
+     "t": "L'Assassinat de Jesse James par le lâche Robert Ford",
+     "y": 2007,
+     "d": "Andrew Dominik",
+     "r": "Le fan qui tua son idole, puis rejoua le meurtre sur scène ; images floues et neige."
+    },
+    {
+     "id": "killers-of-the-flower-moon-2023",
+     "t": "Killers of the Flower Moon",
+     "y": 2023,
+     "d": "Martin Scorsese",
+     "r": "Les Osages, enrichis par le pétrole, assassinés un à un pour leur fortune : une histoire vraie des années 1920."
+    },
+    {
+     "id": "les-trois-visages-d-eve-1957",
+     "t": "Les Trois Visages d'Ève",
+     "y": 1957,
+     "d": "Nunnally Johnson",
+     "r": "Le premier grand film sur le trouble dissociatif de l'identité ; Joanne Woodward a reçu l'Oscar."
+    },
+    {
+     "id": "elephant-man-1980",
+     "t": "Elephant Man",
+     "y": 1980,
+     "d": "David Lynch",
+     "r": "John Merrick cache son visage sous une cagoule de toile."
+    },
+    {
+     "id": "raging-bull-1980",
+     "t": "Raging Bull",
+     "y": 1980,
+     "d": "Martin Scorsese",
+     "r": "L'intermezzo de Cavalleria rusticana, de Mascagni, au ralenti sur un boxeur qui danse seul sur le ring."
+    },
+    {
+     "id": "le-mystere-silkwood-1983",
+     "t": "Le Mystère Silkwood",
+     "y": 1983,
+     "d": "Mike Nichols",
+     "r": "Une ouvrière qui dénonce la sécurité d'une usine de plutonium."
+    },
+    {
+     "id": "un-homme-d-exception-2001",
+     "t": "Un homme d'exception",
+     "y": 2001,
+     "d": "Ron Howard",
+     "r": "Le mathématicien John Nash et ses visions : on les croit vraies, comme lui."
+    },
+    {
+     "id": "le-pianiste-2002",
+     "t": "Le Pianiste",
+     "y": 2002,
+     "d": "Roman Polanski",
+     "r": "Un pianiste juif survit au ghetto de Varsovie, caché dans les ruines."
+    },
+    {
+     "id": "aviator-2004",
+     "t": "Aviator",
+     "y": 2004,
+     "d": "Martin Scorsese",
+     "r": "Howard Shore, avec des chansons des années 30 et 40, pour les obsessions d'Howard Hughes."
+    },
+    {
+     "id": "le-scaphandre-et-le-papillon-2007",
+     "t": "Le Scaphandre et le Papillon",
+     "y": 2007,
+     "d": "Julian Schnabel",
+     "r": "Mathieu Amalric, rédacteur en chef du magazine Elle paralysé par un accident vasculaire cérébral, dicte un livre en clignant d'une paupière, à l'hôpital de Berck."
+    },
+    {
+     "id": "temple-grandin-2010",
+     "t": "Temple Grandin",
+     "y": 2010,
+     "d": "Mick Jackson",
+     "r": "Histoire vraie d'une femme autiste qui pense en images ; Claire Danes. Téléfilm."
+    },
+    {
+     "id": "tu-ne-tueras-point-2016",
+     "t": "Tu ne tueras point",
+     "y": 2016,
+     "d": "Mel Gibson",
+     "r": "Un infirmier qui refuse de toucher une arme sauve 75 blessés à Okinawa en 1945. Histoire vraie."
+    },
+    {
+     "id": "dark-waters-2019",
+     "t": "Dark Waters",
+     "y": 2019,
+     "d": "Todd Haynes",
+     "r": "Un géant de la chimie qui cache un poison, et des autorités qui laissent faire."
+    },
+    {
+     "id": "hors-normes-2019",
+     "t": "Hors normes",
+     "y": 2019,
+     "d": "Olivier Nakache et Éric Toledano",
+     "r": "Deux éducateurs qui accueillent les jeunes autistes que personne ne veut prendre ; d'après des associations réelles."
+    },
+    {
+     "id": "une-vie-cachee-2019",
+     "t": "Une vie cachée",
+     "y": 2019,
+     "d": "Terrence Malick",
+     "r": "Un paysan catholique autrichien refuse de prêter serment à Hitler, jusqu'au bout."
+    },
+    {
+     "id": "persepolis-2007",
+     "t": "Persepolis",
+     "y": 2007,
+     "d": "Marjane Satrapi et Vincent Paronnaud",
+     "r": "Une enfance iranienne, de la chute du chah à la République islamique."
+    },
+    {
+     "id": "valse-avec-bachir-2008",
+     "t": "Valse avec Bachir",
+     "y": 2008,
+     "d": "Ari Folman",
+     "r": "Un ancien soldat israélien retrouve la mémoire du massacre de Sabra et Chatila."
+    },
+    {
+     "id": "stories-we-tell-2012",
+     "t": "Stories We Tell",
+     "y": 2012,
+     "d": "Sarah Polley",
+     "r": "Une cinéaste découvre un secret de famille, et chacun raconte sa version."
     }
    ]
   }
@@ -30275,6 +31095,301 @@
     "paranoïa"
    ],
    "fiab": "à vérifier"
+  },
+  "lawrence-d-arabie-1962": {
+   "p": "T. E. Lawrence (Peter O'Toole), jeune officier britannique excentrique, unit les tribus arabes contre l'Empire ottoman pendant la Première Guerre mondiale. Le désert filmé en 70 mm, des mirages, une allumette soufflée qui devient un lever de soleil. Il finit trahi par les accords entre la France et l'Angleterre, et perdu entre deux mondes.",
+   "c": "Royaume-Uni",
+   "k": [
+    "aventure",
+    "histoire",
+    "contemplatif"
+   ],
+   "mv": "hollywood-classique",
+   "e": 9,
+   "duree": 227,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "désert",
+    "identité",
+    "guerre"
+   ],
+   "fiab": "à vérifier"
+  },
+  "van-gogh-1991": {
+   "p": "Les deux derniers mois de Vincent van Gogh (Jacques Dutronc) à Auvers-sur-Oise, en 1890. Pas de génie torturé qui crie : un homme fatigué, drôle parfois, qui peint, boit, danse au bal et aime la fille de son médecin. Il se tire une balle et meurt deux jours plus tard, presque sans bruit.",
+   "c": "France",
+   "k": [
+    "contemplatif",
+    "larmes",
+    "couleurs"
+   ],
+   "mv": "auteur-francais",
+   "e": 8,
+   "duree": 158,
+   "av": [
+    "suicide"
+   ],
+   "th": [
+    "peinture",
+    "solitude",
+    "adieux"
+   ],
+   "fiab": "à vérifier"
+  },
+  "ed-wood-1994": {
+   "p": "Hollywood, années 1950 : Ed Wood (Johnny Depp), « le plus mauvais cinéaste de tous les temps », tourne des films fauchés avec une bande de marginaux et Bela Lugosi, vieux Dracula drogué et oublié. Une déclaration d'amour en noir et blanc aux ratés passionnés. Il finit sur le tournage de Plan 9 from Outer Space, persuadé de faire un chef-d'œuvre.",
+   "c": "États-Unis",
+   "k": [
+    "noir-et-blanc",
+    "humour-absurde",
+    "doux"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 8,
+   "duree": 127,
+   "av": [],
+   "th": [
+    "cinéma",
+    "amitié",
+    "échec"
+   ],
+   "fiab": "à vérifier"
+  },
+  "i-m-not-there-2007": {
+   "p": "Bob Dylan joué par six acteurs différents, dont un enfant noir, Christian Bale et Cate Blanchett, sans jamais dire son nom. Chaque époque a son style : couleur, noir et blanc, western. Un portrait éclaté d'un homme qui change sans cesse de visage.",
+   "c": "États-Unis, Allemagne",
+   "k": [
+    "musique",
+    "reve",
+    "noir-et-blanc"
+   ],
+   "mv": "independant-americain",
+   "e": 8,
+   "duree": 135,
+   "av": [],
+   "th": [
+    "Bob Dylan",
+    "identité",
+    "métamorphoses"
+   ],
+   "fiab": "à vérifier"
+  },
+  "control-2007": {
+   "p": "Ian Curtis, chanteur de Joy Division, à Macclesfield à la fin des années 1970 : un mariage trop tôt, la scène, les crises d'épilepsie, un amour ailleurs. Filmé en noir et blanc par le photographe du groupe. Il se pend à 23 ans, la veille de la première tournée américaine.",
+   "c": "Royaume-Uni",
+   "k": [
+    "noir-et-blanc",
+    "musique",
+    "larmes"
+   ],
+   "mv": "auteur-europeen",
+   "e": 8,
+   "duree": 119,
+   "av": [
+    "suicide"
+   ],
+   "th": [
+    "Joy Division",
+    "épilepsie",
+    "jeunesse"
+   ],
+   "fiab": "à vérifier"
+  },
+  "seraphine-2008": {
+   "p": "Senlis, 1912 : une femme de ménage peint la nuit, avec des couleurs qu'elle fabrique elle-même, des fleurs qui ressemblent à des flammes. Un collectionneur allemand la découvre. Séraphine Louis (Yolande Moreau) sombre dans la folie et finit ses jours à l'asile, assise sous un arbre.",
+   "c": "France, Belgique",
+   "k": [
+    "contemplatif",
+    "couleurs",
+    "larmes"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 125,
+   "av": [],
+   "th": [
+    "peinture",
+    "folie",
+    "nature"
+   ],
+   "fiab": "à vérifier"
+  },
+  "mr-turner-2014": {
+   "p": "Les vingt-cinq dernières années du peintre William Turner (Timothy Spall), qui grogne plus qu'il ne parle, crache sur ses toiles et se fait attacher au mât d'un bateau pour peindre une tempête. Chaque plan ressemble à un de ses tableaux. Il meurt en disant : « Le soleil est Dieu. »",
+   "c": "Royaume-Uni",
+   "k": [
+    "couleurs",
+    "contemplatif",
+    "humour-absurde"
+   ],
+   "mv": "realisme-social-britannique",
+   "e": 7,
+   "duree": 150,
+   "av": [],
+   "th": [
+    "peinture",
+    "lumière",
+    "vieillesse"
+   ],
+   "fiab": "à vérifier"
+  },
+  "grizzly-man-2005": {
+   "p": "Timothy Treadwell a passé treize étés au milieu des grizzlis d'Alaska, en se filmant lui-même et en leur parlant comme à des amis. En 2003, un ours l'a tué avec sa compagne. Herzog monte ses images et donne son avis : la nature n'est pas une amie, c'est « le chaos et le meurtre ».",
+   "c": "États-Unis",
+   "k": [
+    "documentaire",
+    "nature",
+    "obsession"
+   ],
+   "mv": "doc-essai",
+   "e": 8,
+   "duree": 103,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "ours",
+    "nature",
+    "folie"
+   ],
+   "fiab": "à vérifier"
+  },
+  "amy-2015": {
+   "p": "La vie d'Amy Winehouse racontée seulement avec des images d'archives et des vidéos de ses proches : la jeune fille drôle qui chante le jazz, le succès, les paparazzis, l'alcool, un père qui en profite. Elle meurt à 27 ans. Oscar du meilleur documentaire.",
+   "c": "Royaume-Uni",
+   "k": [
+    "documentaire",
+    "musique",
+    "larmes"
+   ],
+   "mv": "doc-observation",
+   "e": 8,
+   "duree": 127,
+   "av": [
+    "drogue"
+   ],
+   "th": [
+    "célébrité",
+    "addiction",
+    "jazz"
+   ],
+   "fiab": "à vérifier"
+  },
+  "sugar-man-2012": {
+   "p": "Rodriguez, chanteur de Detroit, a sorti deux disques au début des années 1970 et n'a rien vendu. Sans qu'il le sache, il est devenu une star en Afrique du Sud, où on le croit mort. Deux fans partent à sa recherche : il est vivant, ouvrier en bâtiment, et vient enfin chanter devant des milliers de personnes.",
+   "c": "Suède, Royaume-Uni",
+   "k": [
+    "documentaire",
+    "musique",
+    "doux"
+   ],
+   "mv": "doc-observation",
+   "e": 8,
+   "duree": 86,
+   "av": [],
+   "th": [
+    "musique",
+    "oubli",
+    "renaissance"
+   ],
+   "fiab": "à vérifier"
+  },
+  "truman-capote-2005": {
+   "p": "Truman Capote (Philip Seymour Hoffman) part au Kansas écrire sur le meurtre d'une famille. Il se lie avec un des tueurs, le fait parler, et attend sa pendaison pour pouvoir finir son livre, De sang-froid. Le chef-d'œuvre est fini, mais l'écrivain ne s'en remettra jamais.",
+   "c": "États-Unis, Canada",
+   "k": [
+    "obsession",
+    "malaise",
+    "histoire-vraie"
+   ],
+   "mv": "independant-americain",
+   "e": 8,
+   "duree": 110,
+   "av": [],
+   "th": [
+    "écriture",
+    "manipulation",
+    "culpabilité"
+   ],
+   "fiab": "à vérifier"
+  },
+  "barbara-2017": {
+   "p": "Une actrice (Jeanne Balibar) prépare le rôle de la chanteuse Barbara pour un film, et le cinéaste (Mathieu Amalric) est obsédé par son modèle. Vraies archives et scènes jouées se mélangent jusqu'à ne plus savoir qui est qui. Un faux biopic sur la façon dont on fabrique un biopic.",
+   "c": "France",
+   "k": [
+    "musique",
+    "reve",
+    "couleurs"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 97,
+   "av": [],
+   "th": [
+    "chanteuse",
+    "cinéma",
+    "double"
+   ],
+   "fiab": "à vérifier"
+  },
+  "gainsbourg-vie-heroique-2010": {
+   "p": "La vie de Serge Gainsbourg vue par un auteur de bande dessinée : l'enfant juif sous l'Occupation, la peinture, les chansons, Bardot, Birkin, l'alcool. Il est suivi partout par « la Gueule », une marionnette géante à son image, sa part sombre. Un conte plus qu'une biographie.",
+   "c": "France",
+   "k": [
+    "musique",
+    "conte",
+    "couleurs"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 130,
+   "av": [],
+   "th": [
+    "chanson",
+    "double",
+    "provocation"
+   ],
+   "fiab": "à vérifier"
+  },
+  "stories-we-tell-2012": {
+   "p": "La cinéaste Sarah Polley enquête sur sa mère, morte quand elle avait onze ans, en interrogeant toute sa famille. Chacun raconte sa version. Elle découvre que son père n'est pas son père biologique. Un documentaire sur la façon dont chacun se raconte, avec de faux films de famille tournés pour l'occasion.",
+   "c": "Canada",
+   "k": [
+    "documentaire",
+    "famille",
+    "larmes"
+   ],
+   "mv": "doc-essai",
+   "e": 8,
+   "duree": 109,
+   "av": [],
+   "th": [
+    "secret",
+    "mémoire",
+    "famille"
+   ],
+   "fiab": "à vérifier"
+  },
+  "man-on-the-moon-1999": {
+   "p": "Andy Kaufman (Jim Carrey), comique qui ne voulait pas faire rire : il lit un livre entier sur scène, se bat contre des femmes au catch, s'invente un double odieux. Personne ne sait quand il plaisante. Atteint d'un cancer, il meurt à 35 ans, et beaucoup ont cru à une dernière blague.",
+   "c": "États-Unis",
+   "k": [
+    "humour-absurde",
+    "comedie",
+    "larmes"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 7,
+   "duree": 118,
+   "av": [],
+   "th": [
+    "comédie",
+    "provocation",
+    "mensonge"
+   ],
+   "fiab": "à vérifier"
   }
  },
  "familles": {
@@ -31388,7 +32503,22 @@
   "l-assassinat-de-jesse-james-2007": "42121",
   "la-grande-illusion-1937": "10261",
   "amadeus-1984": "40231",
-  "ivan-le-terrible-1944": "52120"
+  "ivan-le-terrible-1944": "52120",
+  "lawrence-d-arabie-1962": "52120",
+  "van-gogh-1991": "40231",
+  "ed-wood-1994": "40141",
+  "i-m-not-there-2007": "60130",
+  "control-2007": "41140",
+  "seraphine-2008": "40231",
+  "mr-turner-2014": "60121",
+  "grizzly-man-2005": "21160",
+  "amy-2015": "30151",
+  "sugar-man-2012": "30133",
+  "truman-capote-2005": "23230",
+  "barbara-2017": "50131",
+  "gainsbourg-vie-heroique-2010": "40132",
+  "stories-we-tell-2012": "20152",
+  "man-on-the-moon-1999": "20251"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
