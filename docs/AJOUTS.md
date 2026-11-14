@@ -358,10 +358,10 @@ mensonges officiels, Sociétés secrètes et sectes, Le monde est un décor, Qua
 
 ## 14 novembre 2026 : thème « Films historiques »
 
-52 films en 7 sous-catégories (les deux guerres mondiales découpées en 1914-1918 et 1939-1945), resserrés à la demande
-de Licia : la qualité avant la quantité (36 films corrects mais trop classiques retirés du thème, pas du catalogue) ; 14 ajoutés, identifiants, durées, pays et cinéastes vérifiés sur TMDB : L'Évangile selon saint
+Tous les films historiques déjà au catalogue y sont rangés (règle de Licia : un film du catalogue va dans toutes
+les catégories qui lui correspondent), en 9 sous-catégories, les deux guerres découpées en 1914-1918 et 1939-1945 ; 14 ajoutés, identifiants, durées, pays et cinéastes vérifiés sur TMDB : L'Évangile selon saint
 Matthieu (Pasolini, 1964), Fellini Satyricon (1969), Marketa Lazarová (Vláčil, 1967), Perceval le Gallois (Rohmer, 1978),
 The Green Knight (Lowery, 2021), Ran (Kurosawa, 1985), Harakiri (Kobayashi, 1962), La Prise de pouvoir par Louis XIV
 (Rossellini, 1966), Aguirre, la colère de Dieu (Herzog, 1972), Zama (Martel, 2017), L'Assassinat de Jesse James
 (Dominik, 2007), La Grande Illusion (Renoir, 1937), Amadeus (Forman, 1984), Ivan le Terrible (Eisenstein, 1944).
-Écartés car trop sages ou peu recommandables : Naissance d'une nation, Forrest Gump, Titanic, Gladiator.
+La sélection sur la qualité vaut seulement pour les films ajoutés, pas pour ceux déjà au catalogue.
