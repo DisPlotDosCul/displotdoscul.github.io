@@ -1162,6 +1162,7 @@ html.ed-on .wrap{padding-bottom:65vh;}
 .qz-q{display:grid;gap:6px;font-size:14.5px;}
 .qz-q small{color:var(--muted);}
 .qz-o{display:flex;flex-wrap:wrap;gap:6px;}
+.qz-o .chip{flex:1 1 auto;justify-content:center;}
 .qz-o .chip{padding:7px 11px;font-size:13.5px;}
 .qz-o .chip[aria-pressed="true"]{background:var(--k-s-F9E3A8);color:var(--k-s-4A3300);border-color:var(--k-b-C8963A);font-weight:600;}
 .qz-h{font:700 13px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
@@ -4645,9 +4646,11 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       return '<div class="qz-q"><span>' + esc(f.t) + ' <small>' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</small></span><div class="qz-o">' + b("9", "Adoré") + b("7", "Bien") + b("5", "Bof") + b("2", "Pas aimé") + b("pv", "Pas vu") + '</div></div>';
     }).join("") + '<div class="nt-b"><button type="button" class="plf-no" data-qzmore="1">🎲 D\'autres films</button></div>';
   }
+  function qz5(opt, k){ return opt(k, 1, "J'adore") + opt(k, 0.5, "J'aime bien") + opt(k, 0, "Ça dépend") + opt(k, -0.5, "Bof") + opt(k, -1, "Pas pour moi"); }
   function qzHtml(){
     var q = QZ, saved = (window.CC && CC.me && CC.me.quiz) || null;
     var opt = function(k, v, l){ return '<button type="button" class="chip" data-qz="' + k + '" data-v="' + v + '" aria-pressed="' + (String(q[k]) === String(v)) + '">' + l + '</button>'; };
+    // Cinq réponses (15 novembre) : « Ça dépend » revenait trop souvent et n'apprenait rien.
     var n = Object.keys(answers).filter(function(id){ return answers[id] && answers[id].note10; }).length;
     var head = '<div class="nt-h"><b>Boussole cinéma</b><button type="button" class="nt-x" data-qzclose="1" aria-label="Fermer">✕</button></div>';
     var foot = '<div class="qz-acts"><button type="button" class="chip" data-qzxp="1">⚡ Mode express</button><button type="button" class="chip" data-qzimp="1">📥 Importer Letterboxd ou IMDb</button></div>' +
@@ -4658,11 +4661,11 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<div class="qz-acts"><button type="button" class="chip" data-qzmode="q2">' + (qz2Done(saved) ? "↻ Affiner encore" : "＋ Affiner mes goûts") + '</button><button type="button" class="chip" data-qzmode="q1">↻ Refaire le premier questionnaire</button></div>' +
       qzFilmsHtml() + foot;
     if (mode === "q2") return head + '<div class="qz-h">Pour affiner</div>' +
-      QZ_Q2.map(function(x){ return '<div class="qz-q"><span>' + esc(x[1]) + '</span><div class="qz-o">' + opt(x[0], 1, "J'adore") + opt(x[0], 0, "Ça dépend") + opt(x[0], -1, "Pas pour moi") + '</div></div>'; }).join("") +
+      QZ_Q2.map(function(x){ return '<div class="qz-q"><span>' + esc(x[1]) + '</span><div class="qz-o">' + qz5(opt, x[0]) + '</div></div>'; }).join("") +
       '<div class="nt-b"><button type="button" class="plf-ok" data-qzsave="1">Enregistrer</button>' + (qzDone(saved) ? '<button type="button" class="plf-no" data-qzmode="fait">Retour</button>' : "") + '</div>';
     return head +
-      QZ_Q.map(function(x){ return '<div class="qz-q"><span>' + esc(x[1]) + '</span><div class="qz-o">' + opt(x[0], 1, "J'adore") + opt(x[0], 0, "Ça dépend") + opt(x[0], -1, "Pas pour moi") + '</div></div>'; }).join("") +
-      '<div class="qz-q"><span>Au cinéma, je cherche surtout…</span><div class="qz-o">' + opt("sens", -1, "À passer un bon moment") + opt("sens", 0, "Les deux") + opt("sens", 1, "À être bouleversé·e, à réfléchir") + '</div></div>' +
+      QZ_Q.map(function(x){ return '<div class="qz-q"><span>' + esc(x[1]) + '</span><div class="qz-o">' + qz5(opt, x[0]) + '</div></div>'; }).join("") +
+      '<div class="qz-q"><span>Au cinéma, je cherche surtout…</span><div class="qz-o">' + opt("sens", -1, "À passer un bon moment") + opt("sens", -0.5, "Plutôt un bon moment") + opt("sens", 0, "Les deux") + opt("sens", 0.5, "Plutôt être ému·e") + opt("sens", 1, "À être bouleversé·e, à réfléchir") + '</div></div>' +
       '<div class="nt-b"><button type="button" class="plf-ok" data-qzsave="1">Enregistrer</button>' + (qzDone(saved) ? '<button type="button" class="plf-no" data-qzmode="fait">Retour</button>' : "") + '</div>' +
       qzFilmsHtml() + foot;
   }
