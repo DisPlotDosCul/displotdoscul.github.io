@@ -2716,7 +2716,8 @@ html.sky-on #rsheet{z-index:50;}
       return '<button type="button" class="chip" data-soi="' + esc(u) + '" aria-pressed="' + on + '"' + (!on && SOI.length >= 4 ? " disabled" : "") + '>' + (on ? "✓ " : "") + esc(P[u].pseudo) + '</button>'; }).join("") + '</div>' : '<p class="sh-note">Pas encore d\'autre membre.</p>');
     if (!SOI.length) return h + '<p class="sh-note">Choisis une à quatre personnes.</p>';
     var r = CC.soiree(SOI);
-    var faible = (r.faible || []).map(function(x){ return '<p class="sh-note soi-warn">On connaît encore peu les goûts ' + (x.name === "Toi" ? "de toi" : "de " + esc(x.name)) + ' (' + x.n + ' film' + (x.n > 1 ? "s" : "") + ' noté' + (x.n > 1 ? "s" : "") + (x.q ? ", questionnaire fait" : ", pas de questionnaire") + ') : quelques notes de plus dans Express rendront ces propositions plus justes.</p>'; }).join("");
+    var faible = (r.faible || []).map(function(x){ if (x.cache) return '<p class="sh-note soi-warn">Les notes de ' + esc(x.name) + ' ne te sont pas visibles (son carnet est réservé à ses amis) : le site ne peut pas tenir compte de ses goûts. Demandez-vous en ami, ou qu\'elle ouvre son carnet dans Mon compte.</p>';
+      return '<p class="sh-note soi-warn">On connaît encore peu les goûts ' + (x.name === "Toi" ? "de toi" : "de " + esc(x.name)) + ' (' + x.n + ' film' + (x.n > 1 ? "s" : "") + ' noté' + (x.n > 1 ? "s" : "") + (x.q ? ", questionnaire fait" : ", pas de questionnaire") + ') : quelques notes de plus dans Express rendront ces propositions plus justes.</p>'; }).join("");
     return h + faible + '<div class="mh">À voir ensemble</div><div class="mlist">' + r.films.map(function(f){
       return '<button type="button" class="mfilm soi-f" data-mfilm="' + esc(f.t) + '"><span>' + esc(f.t) + (f.y ? ' <small>' + esc(f.y) + '</small>' : "") + '<small class="soi-est">' + f.est.map(function(x, i){ return esc(r.names[i]) + " " + Math.round(x); }).join(" · ") + '</small></span></button>';
     }).join("") + '</div><p class="sh-note">Des films qu\'aucun de vous n\'a vus. Le chiffre est l\'estimation du site pour chacun, sur 10.</p>';
@@ -5153,7 +5154,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
 
   // ---- Soirée ciné : des films qu'aucun de vous n'a vus, et que tout le monde devrait aimer ----
   if (window.CC) CC.soiree = function(uids){
-    var P = CC.profils || {}, people = [{ u:CC.uid, name:"Toi", rep:myRep(), quiz:(CC.me && CC.me.quiz) || null }].concat(uids.filter(function(u){ return P[u]; }).map(function(u){ return { u:u, name:P[u].pseudo || "?", rep:P[u].rep || {}, quiz:P[u].quiz || null }; }));
+    var P = CC.profils || {}, people = [{ u:CC.uid, name:"Toi", rep:myRep(), quiz:(CC.me && CC.me.quiz) || null }].concat(uids.filter(function(u){ return P[u]; }).map(function(u){ return { u:u, name:P[u].pseudo || "?", rep:P[u].rep || {}, quiz:P[u].quiz || null, cache:!!(P[u].cache && P[u].cache.rep) }; }));
     people.forEach(function(p){ p.m = tasteModel(p.rep, p.quiz); });
     var out = [];
     Object.keys(films).forEach(function(id){
@@ -5168,7 +5169,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     });
     out.sort(function(a, b){ return b.s - a.s || (a.id < b.id ? -1 : 1); });
     return { names:people.map(function(p){ return p.name; }), films:out.slice(0, 12),
-      faible:people.filter(function(p){ return !p.m || p.m.conf < .55; }).map(function(p){ return { name:p.name, n:p.m ? p.m.n : 0, q:!!(p.quiz && Object.keys(p.quiz).length) }; }) };
+      faible:people.filter(function(p){ return !p.m || p.m.conf < .55; }).map(function(p){ return { name:p.name, n:p.m ? p.m.n : 0, q:!!(p.quiz && Object.keys(p.quiz).length), cache:!!p.cache }; }) };
   };
   if (window.CC) CC.taste = { compare:compareReps, pct:boussolePct, rated:ratedCount };
 
