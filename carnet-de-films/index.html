@@ -1435,6 +1435,12 @@ html.sky-on #rsheet{z-index:50;}
 .feedchip .fc-n{margin-left:6px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;display:inline-grid;place-items:center;font:700 12px/1 var(--font);color:var(--k-s-FFFFFF);background:var(--vu);}
 .feedchip .fc-n[hidden]{display:none;}
 .ccmore-w{justify-content:center;margin:16px 0 4px;}
+/* 15 novembre : l'avancée des notes tout en haut, avec le mode Express à droite. */
+.topstats{display:grid;gap:6px;margin:0 0 14px;}
+.ts-row{display:flex;align-items:center;gap:10px;}
+.ts-row .stats{flex:1;min-width:0;}
+.ts-row #ccXp{flex:none;min-height:34px;padding:4px 12px;font-size:13px;}
+.topstats .progress{height:5px;}
 .ccmore-w #ccMoreB{min-width:min(100%,320px);justify-content:center;}
 .ccmore-w .ccmore{margin-top:4px;}
 @media (max-width:640px){
@@ -1619,6 +1625,10 @@ html.sky-on #rsheet{z-index:50;}
 </script>
 
 <div class="wrap">
+  <div class="topstats" id="topStats">
+    <div class="ts-row"><div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div></div>
+    <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+  </div>
   <header class="top">
     <h1><span class="nvh">Ciné-club</span><span class="nlet" aria-hidden="true"><span class="nl">C</span><span class="nl">i</span><span class="nl">n</span><span class="nl">é</span><span class="nl">-</span><span class="nl">c</span><span class="nl">l</span><span class="nl">u</span><span class="nl">b</span></span></h1>
     <div class="nbulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -1654,8 +1664,6 @@ html.sky-on #rsheet{z-index:50;}
 
   <div class="bar">
     <div class="ccbar"><button type="button" class="chip ccb" id="ccMbr" hidden>👥 Communauté</button><button type="button" class="chip ccb" id="ccMe">👤 Se connecter</button><button type="button" class="chip ccb feedchip" id="feedCard" title="Les derniers films notés, conseillés et cherchés par les membres" hidden>📰 Quoi de neuf<span class="fc-n" id="feedN" hidden></span></button><button type="button" class="chip ccb" id="ccQuiz" data-tx="btn.boussole" aria-label="Boussole cinéma" hidden>🧭 Boussole</button></div>
-    <div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
-    <div class="progress" aria-hidden="true"><i id="prog"></i></div>
     <label class="hint hint-q" for="q"><span class="fl" aria-hidden="true">↓</span> <span data-tx="recherche.aide">Chercher un film, un cinéaste ou un thème</span></label>
     <div class="row-tools">
       <div class="qwrap"><div class="qsug" id="qSug" role="listbox" aria-label="Suggestions de films" hidden></div><input type="search" id="q" data-txph="recherche.champ" placeholder="Film, cinéaste, thème…" aria-label="Chercher un film, un·e cinéaste ou un thème"><button type="button" class="qx" id="qx" aria-label="Effacer la recherche" hidden>✕</button></div>
@@ -4695,7 +4703,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   window.CCTX = function(k, d){ var v = APP.t && APP.t[k]; return typeof v === "string" && v.trim() ? v : d; };
   function appCopy(x){ x = x || {}; return { t:Object.assign({}, x.t || {}), c:JSON.parse(JSON.stringify(x.c || {})), o:JSON.parse(JSON.stringify(x.o || {})) }; }
   var ED_TOP = [["header", "Titre du site", function(){ return [document.querySelector("header.top")]; }], ["bar", "Boutons, recherche et filtres", function(){ return [document.querySelector(".bar")]; }], ["toc", "Catégories", function(){ return [$("toc"), $("mvnav")]; }]];
-  var ED_BAR = [["comptes", "Boutons (communauté, compte…)", function(){ return [document.querySelector(".ccbar")]; }], ["compteurs", "Compteurs", function(){ return [document.querySelector(".stats"), document.querySelector(".progress")]; }],
+  var ED_BAR = [["comptes", "Boutons (communauté, compte…)", function(){ return [document.querySelector(".ccbar")]; }], 
     ["recherche", "Recherche", function(){ return [document.querySelector(".hint-q"), document.querySelector(".row-tools")]; }], ["filtres", "Filtres", function(){ return [$("envies"), $("mvinfo")]; }]];
   var ED_COL = [["--bg", "Fond de la page"], ["--paper", "Fond des cartes"], ["--ink", "Texte"], ["--muted", "Texte secondaire"], ["--line", "Bordures"], ["--vu", "Couleur « Vu »"], ["--gold", "Étoiles et doré"]];
   function edOrder(list, saved){ var keys = list.map(function(x){ return x[0]; }), o = (saved || []).filter(function(k){ return keys.indexOf(k) >= 0; }); keys.forEach(function(k){ if (o.indexOf(k) < 0) o.push(k); }); return o; }
@@ -4971,7 +4979,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (ev.key === "Escape") xpClose();
     else if (!XP.reward && /^[1-4]$/.test(ev.key) && !/^(INPUT|TEXTAREA)$/.test(ev.target.tagName)) xpAnswer({ "1":"pv", "2":"9", "3":"7", "4":"4" }[ev.key]);
   });
-  document.querySelector(".ccbar #ccMe").insertAdjacentHTML("afterend", '<button type="button" class="chip ccb" id="ccXp" data-tx="btn.express" aria-label="Mode express : vu ou pas vu, en un toucher">⚡ Express</button>');
+  document.querySelector("#topStats .ts-row").insertAdjacentHTML("beforeend", '<button type="button" class="chip ccb" id="ccXp" data-tx="btn.express" aria-label="Mode express : vu ou pas vu, en un toucher">⚡ Express</button>');
   $("ccXp").addEventListener("click", xpOpen);
 
   // ---- Invitation « Compare-toi à moi » : le lien emporte une partie de mes notes, sans compte ni identifiant ----
@@ -7010,7 +7018,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     toc.insertAdjacentHTML("afterend", '<div class="ccbar ccmore-w" id="ccMoreW">' + '<button type="button" class="chip ccb" id="ccMoreB" aria-expanded="false" aria-controls="ccMore">✨ Autres façons de choisir ▾</button>' +
       '<div class="ccmore" id="ccMore" role="group" aria-label="Autres façons de choisir un film" hidden></div></div>');
     var box = $("ccMore");
-    ["ccXp", "ccQuiz", "drToggle", "skyToggle"].forEach(function(id){
+    ["ccQuiz", "drToggle", "skyToggle"].forEach(function(id){
       var b = $(id); if (!b) return;
       var it = document.createElement("div"); it.className = "ccm-it"; it.dataset.for = id;
       it.appendChild(b); it.insertAdjacentHTML("beforeend", '<span class="ccm-d">' + esc(CCM_D[id]) + '</span>');
