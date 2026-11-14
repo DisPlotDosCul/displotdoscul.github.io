@@ -40,3 +40,12 @@ Musique de film (9 sous-catégories depuis le 12 novembre, dont « Grands compos
 acrobates, Films qui émeuvent, Fins à rebondissement, Malaise et folie, Liste cauchemar, Danse, Mer et apnée,
 Erreur sur la personne, Politique (12 sous-catégories depuis le 12 novembre, dont « Courants politiques »), Cinéma coréen, Vengeance aveugle, Paranoïa et folie à deux, et les trois
 listes de l'École de cinéma (par courant). Rave, Le monde de la fête et Sous la menace avaient déjà les leurs.
+
+## Par réalisateurs (14 novembre 2026)
+
+Grande catégorie demandée par Licia, faite au chargement à partir de tous les films (base, compléments, ajouts des membres),
+comme les époques. Chaque cinéaste qui a au moins deux films devient une sous-catégorie, rangée dans la liste de sa région
+(le premier pays le plus fréquent de ses films) : France, Reste de l'Europe, États-Unis et Canada, Asie, Ailleurs dans le monde.
+Dans chaque région, les cinéastes vont du plus présent au moins présent. Les noms sont rapprochés sans accents
+(Yórgos Lánthimos = Yorgos Lanthimos) ; un prénom seul suivi d'un nom reste un duo (« Joel et Ethan Coen »),
+deux noms complets comptent pour chacun (« Jean-Pierre Jeunet et Marc Caro »).

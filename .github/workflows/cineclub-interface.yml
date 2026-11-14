@@ -4,6 +4,7 @@ on:
     paths:
       - carnet-de-films/**
       - tests/cineclub_interface.py
+      - tests/cineclub_realisateurs.py
       - tests/cineclub_fixture.py
       - .github/workflows/cineclub-interface.yml
 permissions:
@@ -23,6 +24,8 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Vérifier les commandes avec des membres fictifs
         run: python tests/cineclub_interface.py
+      - name: Vérifier la catégorie Par réalisateurs
+        run: python tests/cineclub_realisateurs.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -3955,7 +3955,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   var TAB_KEY = "carnetOngletV1", TAB = "", TOCMAP = {}, TOCN = {}, TOCDATA = {}, TABS_X = 0;
   // Une phrase courte sur chaque tuile, pour que tout le monde comprenne ce qu'il y a dedans.
   var TILE_D = { carnet:"Ma liste, mes notes", playlists:"Les conseils des amis", mouvements:"Les grands courants", ecole:"Les films étudiés",
-    cours:"Parler de cinéma", themes:"Cirque, mer, malaise…", epoques:"Des classiques à 2026", envies:"Frissons, rire, mer…" };
+    cours:"Parler de cinéma", themes:"Cirque, mer, malaise…", epoques:"Des classiques à 2026", realisateurs:"Lynch, Almodóvar, Bong…", envies:"Frissons, rire, mer…" };
   var ENV_FAM = { id:"envies", envies:true, label:"Rechercher par envies", aide:"Choisis ce dont tu as envie : les films qui correspondent s'affichent plus bas.",
     fond:"#F8D2C6", bord:"#E59A86", encre:"#9A3B27" };
   var SVGA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
@@ -3970,6 +3970,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     epoques: '<circle cx="12.5" cy="12" r="8"' + F + ' stroke="none"/><path d="M4.5 12a8 8 0 1 0 2.35-5.65L4.5 8.7"/><path d="M4.5 4.4v4.3h4.3"/><path d="M12.5 7.6V12l3 2"/>',
     envies: '<circle cx="11" cy="13" r="8"' + F + '/><circle cx="8.3" cy="11.4" r="1.15"' + FF + '/><circle cx="13.7" cy="11.4" r="1.15"' + FF + '/><path d="M7.7 15.1c1.8 2.1 4.8 2.1 6.6 0"/><path d="M19.6 1.6l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"' + FF + '/>',
     sante: '<path d="M13.6 3c-4.4 0-7.9 3.2-7.9 7.3 0 2 .8 3.7 2.1 4.9V21h7.1v-2.5h2.3a2 2 0 0 0 2-2v-2.3l1.7-.5c.4-.1.6-.6.4-1l-1.9-3.5C19.1 5.5 16.7 3 13.6 3z"' + F + '/><path d="M12.4 12.6s-2.5-1.4-2.5-3.3a1.35 1.35 0 0 1 2.5-.7 1.35 1.35 0 0 1 2.5.7c0 1.9-2.5 3.3-2.5 3.3z"' + FF + '/>',
+    realisateurs: '<path d="M4 9.5h12.5v9.2a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 18.7z"' + F + '/><path d="M3.6 9.5 15.4 4.8l1 2.5L4.6 12"/><path d="M7.6 8.1l2.2 2M11.4 6.6l2.2 2"/><path d="M16.5 12.6l4-2.2v7.4l-4-2.2"/>',
     autres: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"' + F + '/>',
     idees: '<path d="M12 2.8a6.3 6.3 0 0 0-3.8 11.3c.8.6 1.2 1.4 1.2 2.4v.5h5.2v-.5c0-1 .4-1.8 1.2-2.4A6.3 6.3 0 0 0 12 2.8z"' + F + '/><path d="M9.6 19.4h4.8M10.6 21.6h2.8"/><path d="M12 7.2v3.4M10.4 9.4l1.6 1.2 1.6-1.2"/>'
   };
@@ -3982,6 +3983,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     cours:{fond:"#CAF1EE", bord:"#46C6CD", encre:"#00474A", ic:"#057176", grad:"linear-gradient(135deg,#CAF1EE 0%,#DAF2DC 100%)"},
     themes:{fond:"#FCE3CF", bord:"#E79E6B", encre:"#602D00", ic:"#974C00", grad:"linear-gradient(135deg,#FCE3CF 0%,#FBEDC0 100%)"},
     epoques:{fond:"#F8E8B2", bord:"#C7B05A", encre:"#4A3C00", ic:"#766202", grad:"linear-gradient(135deg,#F8E8B2 0%,#FBE2C9 100%)"},
+    realisateurs:{fond:"#E3E8F8", bord:"#93A5DE", encre:"#1E2E66", ic:"#3B4FA0", grad:"linear-gradient(135deg,#E3E8F8 0%,#E9E1F4 100%)"},
     envies:{fond:"#F6E0F6", bord:"#D9A3D0", encre:"#4E1F47", ic:"#8E4088", grad:"linear-gradient(135deg,#FDD5DD 0%,#F1DCF4 55%,#DCE6F4 100%)"},
     sante:{fond:"#E7EFCB", bord:"#A7B85A", encre:"#34400A", ic:"#58690F", grad:"linear-gradient(135deg,#E7EFCB 0%,#D6ECE3 100%)"},
     idees:{fond:"#FFF0C2", bord:"#E3B341", encre:"#553A00", ic:"#946300", grad:"linear-gradient(135deg,#FFF0C2 0%,#FDE3CB 100%)"}
@@ -4001,7 +4003,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function famFond(f, d){ var p = famPal(f); return p ? p.fond : tc(hexc(f.fond, d)); }
   function famIcon(id){ return SVGA + (ICONS[id] || ICONS.autres) + '</svg>'; }
   var UNITES = { carnet:["liste", "listes"], playlists:["ami", "amis"], mouvements:["famille", "familles"], ecole:["période", "périodes"],
-    cours:["cours", "cours"], themes:["thème", "thèmes"], epoques:["décennie", "décennies"], envies:["envie", "envies"] };
+    cours:["cours", "cours"], themes:["thème", "thèmes"], epoques:["décennie", "décennies"], realisateurs:["région", "régions"], envies:["envie", "envies"] };
   function unite(id, n){ var u = UNITES[id] || ["liste", "listes"]; return n + " " + (n > 1 ? u[1] : u[0]); }
   function famStyle(f){ var p = famPal(f) || { fond:tc(hexc(f.fond, "#FFF9F6")), bord:tc(hexc(f.bord, "#E8DAD4"), "b"), encre:tc(hexc(f.encre, "#5F5260")) };
     return "--fb:" + p.fond + ";--fc:" + p.bord + ";--fi:" + p.encre + ";--fic:" + (p.ic || p.encre) + (p.grad ? ";--fg:" + p.grad : ""); }
@@ -4246,6 +4248,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   // Sous chaque grande catégorie de l'accueil : une phrase courte, pour savoir ce qu'il y a dedans et donner envie d'y aller.
   var CAT_D = { carnet:["Mes notes, ma liste et mes stats", "Ses notes et ses coups de cœur"], playlists:"Les pépites conseillées par les amis",
     envies:"Rire, frissonner ou pleurer ?", mouvements:"Nouvelle Vague, giallo, Ghibli…", themes:"Cirque, vengeance, cauchemars…",
+    realisateurs:"Lynch, Almodóvar, Bong Joon-ho…",
     sante:"Dans la tête des personnages", epoques:"Du muet à aujourd'hui, par décennie", cours:"Petites leçons pour mieux regarder",
     ecole:"Ce qu'on montre en école de cinéma" };
   function catDesc(k){ var d = CAT_D[k]; return Array.isArray(d) ? (isMine() ? d[0] : d[1]) : (d || ""); }
@@ -5371,7 +5374,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var tx = document.querySelector('#toc form[data-idform] textarea'); $("toc").scrollIntoView({ block:"start" }); if (tx) tx.focus({ preventScroll:true });
   });
   // Mini-icônes des sous-catégories : une image parlante, dans une pastille de couleur.
-  var MINI_L = { idees:"Idées", carnet:"Carnet", playlists:"Playlists", mouvements:"Courants", ecole:"École", cours:"Cours", themes:"Thèmes", epoques:"Époques", envies:"Envies", sante:"Santé mentale" };
+  var MINI_L = { idees:"Idées", carnet:"Carnet", playlists:"Playlists", mouvements:"Courants", ecole:"École", cours:"Cours", themes:"Thèmes", epoques:"Époques", realisateurs:"Réalisateurs", envies:"Envies", sante:"Santé mentale" };
   // Mini-icônes des sous-catégories : un symbole connu de tous, ramené à une seule couleur qui évoque le contenu.
   var SUB_IC = {
     "ma-liste":["🔖", "#C2410C"], "s00-pour-toi":["🎁", "#BE185D"], "s26-ta-vie":["🪞", "#15803D"], "s16-classement":["⭐", "#A16207"],
@@ -5388,6 +5391,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     "s46-phobies-obsessions":["😰", "#0369A1"], "s47-traumatismes":["💥", "#B91C1C"], "s48-personnalites":["🎭", "#7C2D12"],
     "s49-addictions":["🍷", "#881337"], "s50-memoire-demence":["🧩", "#15803D"], "s51-hopital-psychiatrique":["🏥", "#1D4ED8"],
     "s52-paranoia":["🧿", "#4D7C0F"], "s53-autisme-tdah":["♾️", "#A16207"],
+    "real-france":["🥖", "#1D4ED8"], "real-europe":["🏰", "#6D28D9"], "real-amerique-nord":["🗽", "#0F766E"], "real-asie":["🏮", "#C53030"], "real-monde":["🌍", "#15803D"],
     "dec-avant-1920":["🎞️", "#8B5E34"], "dec-1920":["🎩", "#334155"], "dec-1930":["📻", "#92400E"], "dec-1940":["🎷", "#A16207"],
     "dec-1950":["📺", "#0E7490"], "dec-1960":["🌼", "#C2410C"], "dec-1970":["🕺", "#7E22CE"], "dec-1980":["📼", "#BE185D"],
     "dec-1990":["💾", "#1D4ED8"], "dec-2000":["💿", "#0F766E"], "dec-2010":["📱", "#B91C1C"], "dec-2020":["🎧", "#4D7C0F"],
@@ -7633,6 +7637,59 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   $("rsGo").addEventListener("click",function(){rimeClose(false);});
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&RIME.open&&!$("rsheet").hidden){$("rsheet").hidden=true;rimeClose(true);}});
 
+  // Par réalisateurs : chaque cinéaste d'au moins deux films devient une sous-catégorie, dans la liste de sa région
+  // (le pays le plus fréquent de ses films). « Joel et Ethan Coen » reste un duo ; « Jeunet et Caro » compte pour chacun.
+  var REAL_R = [
+    ["real-france", "France", "Les cinéastes français et leurs films, de Godard à Dupieux.", /^(France|Belgique|Luxembourg|Suisse|Monaco)/],
+    ["real-europe", "Reste de l'Europe", "Royaume-Uni, Italie, Espagne, pays nordiques, Europe de l'Est…", /^(Royaume-Uni|Irlande|Italie|Espagne|Portugal|Allemagne|Autriche|Pays-Bas|Danemark|Suède|Norvège|Finlande|Islande|Pologne|Hongrie|Roumanie|Grèce|Tchéco|République tchèque|Slovaquie|Union soviétique|Russie|Ukraine|Lettonie|Lituanie|Estonie|Macédoine|Serbie|Yougoslavie|Croatie|Bosnie|Bulgarie|Géorgie|Arménie)/],
+    ["real-amerique-nord", "États-Unis et Canada", "Hollywood, le cinéma indépendant américain et le Québec.", /^(États-Unis|Canada)/],
+    ["real-asie", "Asie", "Japon, Corée, Chine, Hong Kong, Taïwan, Iran, Inde…", /^(Japon|Corée|Chine|Hong Kong|Taïwan|Thaïlande|Inde|Iran|Kazakhstan|Malaisie|Cambodge|Vietnam|Philippines|Indonésie|Turquie|Israël|Palestine|Liban)/],
+    ["real-monde", "Ailleurs dans le monde", "Amérique latine, Afrique, Océanie…", /./]
+  ];
+  function realKey(n){ return String(n).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\s+/g, " ").trim(); }
+  function realNames(d){
+    d = String(d || "").replace(/^Série (de|d') ?/i, "").replace(/\s*\(.*?\)\s*/g, " ").trim();
+    if (!d) return [];
+    var parts = d.split(/\s*,\s*|\s+et\s+|\s*&\s*/).map(function(x){ return x.trim(); }).filter(function(x){ return x && !/^d'autres$/i.test(x); }), out = [];
+    for (var i = 0; i < parts.length; i++) {
+      // Un prénom seul (« Joel », « Lana ») va avec le nom qui suit : un duo de frères ou de sœurs.
+      if (parts[i].indexOf(" ") < 0 && i + 1 < parts.length) { out.push(parts[i] + " et " + parts[i + 1]); i++; }
+      else out.push(parts[i]);
+    }
+    return out;
+  }
+  function realSurname(n){ var w = n.split(" "); return realKey(w[w.length - 1]); }
+  function realSections(){
+    var by = {};
+    Object.keys(films).forEach(function(id){
+      var f = films[id];
+      realNames(f.d).forEach(function(n){
+        var k = realKey(n), o = by[k] || (by[k] = { forms:{}, ids:[], pays:{} });
+        if (o.ids.indexOf(id) >= 0) return;
+        o.forms[n] = (o.forms[n] || 0) + 1; o.ids.push(id);
+        var c = String(f.c || "").split(",")[0].trim(); if (c) o.pays[c] = (o.pays[c] || 0) + 1;
+      });
+    });
+    var groups = {};
+    Object.keys(by).forEach(function(k){
+      var o = by[k]; if (o.ids.length < 2) return;
+      var name = Object.keys(o.forms).sort(function(a, b){ return (o.forms[b] - o.forms[a]) || (b.length - a.length); })[0];
+      var pays = Object.keys(o.pays).sort(function(a, b){ return o.pays[b] - o.pays[a]; })[0] || "";
+      var r = REAL_R.filter(function(x){ return x[3].test(pays); })[0];
+      (groups[r[0]] = groups[r[0]] || []).push({ titre:name, aide:o.ids.length + " films dans le carnet", ids:o.ids });
+    });
+    REAL_R.forEach(function(r, i){
+      var ps = groups[r[0]]; if (!ps) return;
+      ps.sort(function(a, b){ return (b.ids.length - a.ids.length) || realSurname(a.titre).localeCompare(realSurname(b.titre), "fr"); });
+      var seen = {}, list = [];
+      ps.forEach(function(p){ p.ids.forEach(function(id){ if (!seen[id]) { seen[id] = 1; list.push(films[id]); } }); });
+      var sid = r[0];
+      sections.push({ id:sid, famille:"realisateurs", ordre:i + 1, titre:r[1], sous_titre:r[2], parties:ps,
+        films:list.map(function(f, j){ return Object.assign({}, f, { sid:sid, _i:j }); }) });
+      SECT[sid] = "Par réalisateurs " + r[1];
+    });
+  }
+
   function setSections(docs){
     FICHE = {}; var envs = null, fams = null, mouvs = null, secDocs = [];
     RANG = null;
@@ -7653,10 +7710,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     });
     // Ordre du sommaire et des listes : mes films, ceux des amis, puis par sujet, par période, et enfin pour comprendre le cinéma (courants, école, cours).
     // « Envies » reste la dernière case.
-    var FORDER = ["carnet", "playlists", "themes", "sante", "epoques", "mouvements", "ecole", "cours"];
+    var FORDER = ["carnet", "playlists", "themes", "sante", "epoques", "realisateurs", "mouvements", "ecole", "cours"];
     FAMS = (fams || []).filter(function(f){ return f && f.id; }).slice();
     if (!FAMS.some(function(f){ return f.mouvements; }))
       FAMS.push({ id:"mouvements", mouvements:true, label:"Mouvements et courants", aide:"Le cinéma par grands mouvements : choisis une période, puis un courant.", fond:"#D5ECEA", bord:"#8FC3BE", encre:"#2C6660" });
+    // Par réalisateurs : une catégorie faite à partir de tous les films (cinéastes d'au moins deux films), rangés par région.
+    if (!FAMS.some(function(f){ return f.id === "realisateurs"; }))
+      FAMS.push({ id:"realisateurs", label:"Par réalisateurs", aide:"Les cinéastes qui ont au moins deux films dans le carnet : choisis une région, puis un nom." });
     FORDER_DEF = FORDER;
     FAMS = rankBy(FAMS, RANG && Array.isArray(RANG.familles) ? RANG.familles : FORDER);
     FAM_OF = {};
@@ -7710,6 +7770,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       });
       sections.sort(secCmp);
     }
+    if (FAM_OF.realisateurs) { realSections(); sections.sort(secCmp); }
     AUTO = {}; RANK = false; HASLIST = false; PEOPLE = [];
     sections.forEach(function(s){
       if (s.auto === "classement") RANK = true;
