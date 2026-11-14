@@ -355,3 +355,13 @@ mensonges officiels, Sociétés secrètes et sectes, Le monde est un décor, Qua
 | Kill List | 2011 | Ben Wheatley | 90 min |
 | La Neuvième Porte | 1999 | Roman Polanski | 132 min |
 | Opération Lune | 2002 | William Karel | 52 min |
+
+## 14 novembre 2026 : thème « Films historiques »
+
+88 films en 7 sous-catégories (les deux guerres mondiales découpées en 1914-1918 et 1939-1945). 74 étaient déjà
+au catalogue ; 14 ajoutés, identifiants, durées, pays et cinéastes vérifiés sur TMDB : L'Évangile selon saint
+Matthieu (Pasolini, 1964), Fellini Satyricon (1969), Marketa Lazarová (Vláčil, 1967), Perceval le Gallois (Rohmer, 1978),
+The Green Knight (Lowery, 2021), Ran (Kurosawa, 1985), Harakiri (Kobayashi, 1962), La Prise de pouvoir par Louis XIV
+(Rossellini, 1966), Aguirre, la colère de Dieu (Herzog, 1972), Zama (Martel, 2017), L'Assassinat de Jesse James
+(Dominik, 2007), La Grande Illusion (Renoir, 1937), Amadeus (Forman, 1984), Ivan le Terrible (Eisenstein, 1944).
+Écartés car trop sages ou peu recommandables : Naissance d'une nation, Forrest Gump, Titanic, Gladiator.

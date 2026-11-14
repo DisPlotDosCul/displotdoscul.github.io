@@ -13153,6 +13153,772 @@
      "r": "Le mathématicien John Nash croit décoder des messages soviétiques secrets dans les journaux."
     }
    ]
+  },
+  "s56-histoire": {
+   "famille": "themes",
+   "ordre": 1.3699,
+   "titre": "Films historiques",
+   "sous_titre": "De la Rome antique à la guerre froide : des films d'histoire qui sortent du lot, par leur regard, leur forme ou leur audace. Peu de reconstitutions sages.",
+   "parties": [
+    {
+     "titre": "Antiquité et Moyen Âge",
+     "aide": "Rome, Jésus, chevaliers et clans",
+     "ids": [
+      "l-evangile-selon-saint-matthieu-1964",
+      "fellini-satyricon-1969",
+      "la-passion-de-jeanne-d-arc-1928",
+      "alexandre-nevski-1938",
+      "andrei-roublev-1966",
+      "marketa-lazarova-1967",
+      "perceval-le-gallois-1978",
+      "the-green-knight-2021"
+     ]
+    },
+    {
+     "titre": "Japon, Chine et Corée d'autrefois",
+     "aide": "Samouraïs, cours impériales et légendes",
+     "ids": [
+      "les-contes-de-la-lune-vague-apres-la-pluie-1953",
+      "les-sept-samourais-1954",
+      "harakiri-1962",
+      "kagemusha-1980",
+      "ran-1985",
+      "the-king-and-the-clown-2005",
+      "the-assassin-2015",
+      "le-dernier-empereur-1987",
+      "vivre-1994",
+      "mademoiselle-2016"
+     ]
+    },
+    {
+     "titre": "Rois, reines et conquistadors",
+     "aide": "Du XVIe au XVIIIe siècle",
+     "ids": [
+      "ivan-le-terrible-1944",
+      "la-reine-margot-1994",
+      "le-retour-de-martin-guerre-1982",
+      "aguirre-la-colere-de-dieu-1972",
+      "mission-1986",
+      "la-prise-de-pouvoir-par-louis-xiv-1966",
+      "barry-lyndon-1975",
+      "amadeus-1984",
+      "la-favorite-2018",
+      "marie-antoinette-2006",
+      "zama-2017",
+      "l-anglaise-et-le-duc-2001",
+      "danton-1983"
+     ]
+    },
+    {
+     "titre": "Le XIXe siècle et l'Ouest américain",
+     "aide": "Révolutions, pionniers et hors-la-loi",
+     "ids": [
+      "le-guepard-1963",
+      "les-miserables-1934",
+      "la-commune-paris-1871-2000",
+      "la-lecon-de-piano-1993",
+      "first-cow-2019",
+      "dead-man-1995",
+      "l-assassinat-de-jesse-james-2007",
+      "lincoln-2012",
+      "there-will-be-blood-2007",
+      "le-comte-de-monte-cristo-2024"
+     ]
+    },
+    {
+     "titre": "Les deux guerres mondiales",
+     "aide": "Tranchées, résistance, camps et bombe",
+     "sous": [
+      {
+       "titre": "1914-1918",
+       "ids": [
+        "la-grande-illusion-1937",
+        "les-sentiers-de-la-gloire-1957",
+        "johnny-s-en-va-t-en-guerre-1971",
+        "a-l-ouest-rien-de-nouveau-2022",
+        "un-long-dimanche-de-fiancailles-2004",
+        "au-revoir-la-haut-2017",
+        "1917-2019"
+       ]
+      },
+      {
+       "titre": "1939-1945",
+       "ids": [
+        "le-dictateur-1940",
+        "rome-ville-ouverte-1945",
+        "l-armee-des-ombres-1969",
+        "lacombe-lucien-1974",
+        "monsieur-klein-1976",
+        "requiem-pour-un-massacre-1985",
+        "furyo-1983",
+        "le-tombeau-des-lucioles-1988",
+        "la-liste-de-schindler-1993",
+        "le-pianiste-2002",
+        "le-fils-de-saul-2015",
+        "la-zone-d-interet-2023",
+        "inglourious-basterds-2009",
+        "nuit-et-brouillard-1956",
+        "shoah-1985",
+        "hiroshima-mon-amour-1959",
+        "oppenheimer-2023"
+       ]
+      }
+     ]
+    },
+    {
+     "titre": "Révolutions, dictatures et guerre froide",
+     "aide": "De 1905 à la chute du Mur",
+     "ids": [
+      "le-cuirasse-potemkine-1925",
+      "soy-cuba-1964",
+      "memoires-du-sous-developpement-1968",
+      "le-conformiste-1970",
+      "cabaret-1972",
+      "land-and-freedom-1995",
+      "le-vent-se-leve-2006",
+      "l-homme-de-marbre-1977",
+      "la-vie-des-autres-2006",
+      "la-mort-de-staline-2017",
+      "ida-2013",
+      "persepolis-2007",
+      "the-brutalist-2024"
+     ]
+    },
+    {
+     "titre": "Décolonisation, droits civiques et Vietnam",
+     "aide": "Alger, Kinshasa, Selma, Saïgon",
+     "ids": [
+      "la-bataille-d-alger-1966",
+      "lumumba-2000",
+      "malcolm-x-1992",
+      "selma-2014",
+      "the-black-power-mixtape-1967-1975-2011",
+      "i-am-not-your-negro-2016",
+      "voyage-au-bout-de-l-enfer-1978",
+      "apocalypse-now-1979",
+      "valse-avec-bachir-2008",
+      "jfk-1991"
+     ]
+    }
+   ],
+   "films": [
+    {
+     "id": "l-evangile-selon-saint-matthieu-1964",
+     "t": "L'Évangile selon saint Matthieu",
+     "y": 1964,
+     "d": "Pier Paolo Pasolini",
+     "r": "La vie de Jésus jouée par des paysans du sud de l'Italie, comme un documentaire."
+    },
+    {
+     "id": "fellini-satyricon-1969",
+     "t": "Fellini Satyricon",
+     "y": 1969,
+     "d": "Federico Fellini",
+     "r": "La Rome antique comme une planète étrangère, en morceaux comme le texte d'origine."
+    },
+    {
+     "id": "la-passion-de-jeanne-d-arc-1928",
+     "t": "La Passion de Jeanne d'Arc",
+     "y": 1928,
+     "d": "Carl Theodor Dreyer",
+     "r": "Film muet : le procès et la mort de Jeanne d'Arc, presque entièrement en gros plans de visages sans maquillage, dont celui de Renée Falconetti, en larmes."
+    },
+    {
+     "id": "alexandre-nevski-1938",
+     "t": "Alexandre Nevski",
+     "y": 1938,
+     "d": "Sergueï Eisenstein",
+     "r": "Une épopée patriotique commandée sous Staline contre l'envahisseur germanique, sortie en 1938."
+    },
+    {
+     "id": "andrei-roublev-1966",
+     "t": "Andreï Roublev",
+     "y": 1966,
+     "d": "Andreï Tarkovski",
+     "r": "La grande fresque de Tarkovski : la Russie médiévale et la fonte d'une cloche géante."
+    },
+    {
+     "id": "marketa-lazarova-1967",
+     "t": "Marketa Lazarová",
+     "y": 1967,
+     "d": "František Vláčil",
+     "r": "Le Moyen Âge le plus sauvage jamais filmé, entre loups, neige et clans."
+    },
+    {
+     "id": "perceval-le-gallois-1978",
+     "t": "Perceval le Gallois",
+     "y": 1978,
+     "d": "Éric Rohmer",
+     "r": "La légende de Perceval dans un décor d'enluminure, dite en vers et chantée."
+    },
+    {
+     "id": "the-green-knight-2021",
+     "t": "The Green Knight",
+     "y": 2021,
+     "d": "David Lowery",
+     "r": "Une légende arthurienne du XIVe siècle filmée comme un rêve."
+    },
+    {
+     "id": "les-contes-de-la-lune-vague-apres-la-pluie-1953",
+     "t": "Les Contes de la lune vague après la pluie",
+     "y": 1953,
+     "d": "Kenji Mizoguchi",
+     "r": "Fumio Hayasaka : percussions et chants du théâtre nô pour un monde de fantômes."
+    },
+    {
+     "id": "les-sept-samourais-1954",
+     "t": "Les Sept Samouraïs",
+     "y": 1954,
+     "d": "Akira Kurosawa",
+     "r": "Fumio Hayasaka : tambours et flûtes, un thème pour les samouraïs, un autre pour les paysans."
+    },
+    {
+     "id": "harakiri-1962",
+     "t": "Harakiri",
+     "y": 1962,
+     "d": "Masaki Kobayashi",
+     "r": "Un samouraï démonte le code d'honneur qui a tué son gendre."
+    },
+    {
+     "id": "kagemusha-1980",
+     "t": "Kagemusha, l'ombre du guerrier",
+     "y": 1980,
+     "d": "Akira Kurosawa",
+     "r": "Au seizième siècle, un voleur condamné à mort est épargné parce qu'il ressemble trait pour trait à un puissant seigneur de guerre "
+    },
+    {
+     "id": "ran-1985",
+     "t": "Ran",
+     "y": 1985,
+     "d": "Akira Kurosawa",
+     "r": "Le Roi Lear chez les samouraïs, avec des armées de couleurs et un château en flammes."
+    },
+    {
+     "id": "the-king-and-the-clown-2005",
+     "t": "The King and the Clown",
+     "y": 2005,
+     "d": "Lee Joon-ik",
+     "r": "Au début du XVIe siècle, deux saltimbanques se moquent du roi Yeonsan dans leurs spectacles de rue "
+    },
+    {
+     "id": "the-assassin-2015",
+     "t": "The Assassin",
+     "y": 2015,
+     "d": "Hou Hsiao-hsien",
+     "r": "Dans la Chine du neuvième siècle, Shu Qi, formée par une nonne pour tuer, doit assassiner son cousin, gouverneur à qui elle était promise "
+    },
+    {
+     "id": "le-dernier-empereur-1987",
+     "t": "Le Dernier Empereur",
+     "y": 1987,
+     "d": "Bernardo Bertolucci",
+     "r": "Le jaune impérial de la Cité interdite, filmé pour la première fois."
+    },
+    {
+     "id": "vivre-1994",
+     "t": "Vivre !",
+     "y": 1994,
+     "d": "Zhang Yimou",
+     "r": "Une famille chinoise ballottée par trente ans de révolutions maoïstes."
+    },
+    {
+     "id": "mademoiselle-2016",
+     "t": "Mademoiselle",
+     "y": 2016,
+     "d": "Park Chan-wook",
+     "r": "Jo Yeong-wook : une valse et des cordes raffinées pour une arnaque amoureuse."
+    },
+    {
+     "id": "ivan-le-terrible-1944",
+     "t": "Ivan le Terrible",
+     "y": 1944,
+     "d": "Sergueï Eisenstein",
+     "r": "Le premier tsar en ombres géantes ; la suite fut interdite par Staline."
+    },
+    {
+     "id": "la-reine-margot-1994",
+     "t": "La Reine Margot",
+     "y": 1994,
+     "d": "Patrice Chéreau",
+     "r": "En 1572, Marguerite de Valois épouse le protestant Henri de Navarre pour sceller la paix "
+    },
+    {
+     "id": "le-retour-de-martin-guerre-1982",
+     "t": "Le Retour de Martin Guerre",
+     "y": 1982,
+     "d": "Daniel Vigne",
+     "r": "Dans un village des Pyrénées au seizième siècle, Martin Guerre revient après huit ans d'absence "
+    },
+    {
+     "id": "aguirre-la-colere-de-dieu-1972",
+     "t": "Aguirre, la colère de Dieu",
+     "y": 1972,
+     "d": "Werner Herzog",
+     "r": "Des conquistadors descendent l'Amazone ; Kinski seul sur un radeau envahi de singes."
+    },
+    {
+     "id": "mission-1986",
+     "t": "Mission",
+     "y": 1986,
+     "d": "Roland Joffé",
+     "r": "Des jésuites défendent les Guaranis contre les colons portugais et espagnols, au XVIIIe siècle."
+    },
+    {
+     "id": "la-prise-de-pouvoir-par-louis-xiv-1966",
+     "t": "La Prise de pouvoir par Louis XIV",
+     "y": 1966,
+     "d": "Roberto Rossellini",
+     "r": "Comment Louis XIV a fait du pouvoir une mise en scène."
+    },
+    {
+     "id": "barry-lyndon-1975",
+     "t": "Barry Lyndon",
+     "y": 1975,
+     "d": "Stanley Kubrick",
+     "r": "Haendel (la Sarabande), Schubert et Vivaldi pour des tableaux du XVIIIe siècle éclairés à la bougie."
+    },
+    {
+     "id": "amadeus-1984",
+     "t": "Amadeus",
+     "y": 1984,
+     "d": "Miloš Forman",
+     "r": "Salieri raconte comment sa jalousie a tué Mozart ; la musique en personnage principal."
+    },
+    {
+     "id": "la-favorite-2018",
+     "t": "La Favorite",
+     "y": 2018,
+     "d": "Yorgos Lanthimos",
+     "r": "Deux cousines se disputent la faveur de la reine Anne, entre tories et whigs, guerre et paix."
+    },
+    {
+     "id": "marie-antoinette-2006",
+     "t": "Marie-Antoinette",
+     "y": 2006,
+     "d": "Sofia Coppola",
+     "r": "Kirsten Dunst en jeune archiduchesse autrichienne mariée au futur Louis XVI, à Versailles : gâteaux pastel, souliers, une paire de baskets et musique new wave."
+    },
+    {
+     "id": "zama-2017",
+     "t": "Zama",
+     "y": 2017,
+     "d": "Lucrecia Martel",
+     "r": "Un fonctionnaire colonial attend une mutation qui ne viendra jamais."
+    },
+    {
+     "id": "l-anglaise-et-le-duc-2001",
+     "t": "L'Anglaise et le Duc",
+     "y": 2001,
+     "d": "Éric Rohmer",
+     "r": "Les acteurs jouent devant des tableaux peints du Paris de la Révolution."
+    },
+    {
+     "id": "danton-1983",
+     "t": "Danton",
+     "y": 1983,
+     "d": "Andrzej Wajda",
+     "r": "Robespierre fait guillotiner Danton : la Révolution qui dévore ses enfants, vue de la Pologne de 1982."
+    },
+    {
+     "id": "le-guepard-1963",
+     "t": "Le Guépard",
+     "y": 1963,
+     "d": "Luchino Visconti",
+     "r": "Le Technicolor des palais siciliens et un bal de trois quarts d'heure."
+    },
+    {
+     "id": "les-miserables-1934",
+     "t": "Les Misérables",
+     "y": 1934,
+     "d": "Raymond Bernard",
+     "r": "Un pain volé, puis une vie entière sous la menace d'être dénoncé ; Thénardier le croit assassin à tort."
+    },
+    {
+     "id": "la-commune-paris-1871-2000",
+     "t": "La Commune (Paris, 1871)",
+     "y": 2000,
+     "d": "Peter Watkins",
+     "r": "La Commune de Paris rejouée par 200 amateurs, comme si deux télévisions la couvraient en direct."
+    },
+    {
+     "id": "la-lecon-de-piano-1993",
+     "t": "La Leçon de piano",
+     "y": 1993,
+     "d": "Jane Campion",
+     "r": "Michael Nyman : le piano est la voix d'Ada, qui ne parle pas ; des airs écossais rejoués en boucle."
+    },
+    {
+     "id": "first-cow-2019",
+     "t": "First Cow",
+     "y": 2019,
+     "d": "Kelly Reichardt",
+     "r": "Deux amis volent le lait de la seule vache de l'Oregon, vers 1820 : le capitalisme à ses débuts."
+    },
+    {
+     "id": "dead-man-1995",
+     "t": "Dead Man",
+     "y": 1995,
+     "d": "Jim Jarmusch",
+     "r": "En noir et blanc, un comptable (Johnny Depp), blessé et recherché dans l'Ouest sauvage, fuit avec un Amérindien qui le prend pour le poète William Blake "
+    },
+    {
+     "id": "l-assassinat-de-jesse-james-2007",
+     "t": "L'Assassinat de Jesse James par le lâche Robert Ford",
+     "y": 2007,
+     "d": "Andrew Dominik",
+     "r": "Le fan qui tua son idole, puis rejoua le meurtre sur scène ; images floues et neige."
+    },
+    {
+     "id": "lincoln-2012",
+     "t": "Lincoln",
+     "y": 2012,
+     "d": "Steven Spielberg",
+     "r": "Lincoln arrache le vote de l'abolition de l'esclavage, voix par voix, en janvier 1865."
+    },
+    {
+     "id": "there-will-be-blood-2007",
+     "t": "There Will Be Blood",
+     "y": 2007,
+     "d": "Paul Thomas Anderson",
+     "r": "Un pionnier du pétrole à l'ambition sans limite, face à un jeune prédicateur."
+    },
+    {
+     "id": "le-comte-de-monte-cristo-2024",
+     "t": "Le Comte de Monte-Cristo",
+     "y": 2024,
+     "d": "Matthieu Delaporte et Alexandre de La Patellière",
+     "r": "Le jour de ses noces, le marin Edmond Dantès (Pierre Niney) est accusé à tort et enfermé au château d'If "
+    },
+    {
+     "id": "la-grande-illusion-1937",
+     "t": "La Grande Illusion",
+     "y": 1937,
+     "d": "Jean Renoir",
+     "r": "Des prisonniers de 1914-1918 : les classes sociales comptent plus que les frontières."
+    },
+    {
+     "id": "les-sentiers-de-la-gloire-1957",
+     "t": "Les Sentiers de la gloire",
+     "y": 1957,
+     "d": "Stanley Kubrick",
+     "r": "Trois soldats fusillés pour l'exemple par un état-major qui se couvre, en 1916."
+    },
+    {
+     "id": "johnny-s-en-va-t-en-guerre-1971",
+     "t": "Johnny s'en va-t-en guerre",
+     "y": 1971,
+     "d": "Dalton Trumbo",
+     "r": "Un soldat de 1918 sans bras, sans jambes ni visage, prisonnier de son corps."
+    },
+    {
+     "id": "a-l-ouest-rien-de-nouveau-2022",
+     "t": "À l'Ouest, rien de nouveau",
+     "y": 2022,
+     "d": "Edward Berger",
+     "r": "De jeunes Allemands envoyés au massacre des tranchées, jusqu'aux dernières heures de 1918."
+    },
+    {
+     "id": "un-long-dimanche-de-fiancailles-2004",
+     "t": "Un long dimanche de fiançailles",
+     "y": 2004,
+     "d": "Jean-Pierre Jeunet",
+     "r": "Une jeune femme cherche son fiancé, condamné avec quatre soldats à être abandonné entre les tranchées en 1917."
+    },
+    {
+     "id": "au-revoir-la-haut-2017",
+     "t": "Au revoir là-haut",
+     "y": 2017,
+     "d": "Albert Dupontel",
+     "r": "Deux rescapés de 1918 montent une escroquerie aux monuments aux morts."
+    },
+    {
+     "id": "1917-2019",
+     "t": "1917",
+     "y": 2019,
+     "d": "Sam Mendes",
+     "r": "En avril 1917, deux jeunes soldats britanniques doivent traverser le no man's land pour porter un ordre qui peut sauver 1 600 hommes d'un piège allemand."
+    },
+    {
+     "id": "le-dictateur-1940",
+     "t": "Le Dictateur",
+     "y": 1940,
+     "d": "Charlie Chaplin",
+     "r": "Chaplin se moque d'Hitler en pleine guerre, et finit par un discours pour la paix."
+    },
+    {
+     "id": "rome-ville-ouverte-1945",
+     "t": "Rome, ville ouverte",
+     "y": 1945,
+     "d": "Roberto Rossellini",
+     "r": "Communistes et prêtre unis contre la Gestapo, dans Rome tout juste libérée : le néoréalisme est né."
+    },
+    {
+     "id": "l-armee-des-ombres-1969",
+     "t": "L'Armée des ombres",
+     "y": 1969,
+     "d": "Jean-Pierre Melville",
+     "r": "Des résistants dans la France occupée : la peur, le secret, et les camarades qu'il faut sacrifier."
+    },
+    {
+     "id": "lacombe-lucien-1974",
+     "t": "Lacombe Lucien",
+     "y": 1974,
+     "d": "Louis Malle",
+     "r": "Un garçon de ferme devient collaborateur par hasard, en juin 1944, sans aucune conviction."
+    },
+    {
+     "id": "monsieur-klein-1976",
+     "t": "Monsieur Klein",
+     "y": 1976,
+     "d": "Joseph Losey",
+     "r": "Paris, 1942 : un marchand d'art qui rachète à bas prix les tableaux des Juifs obligés de fuir reçoit un journal juif adressé à son nom "
+    },
+    {
+     "id": "requiem-pour-un-massacre-1985",
+     "t": "Requiem pour un massacre",
+     "y": 1985,
+     "d": "Elem Klimov",
+     "r": "Un adolescent biélorusse rejoint les partisans et traverse l'horreur des massacres nazis."
+    },
+    {
+     "id": "furyo-1983",
+     "t": "Furyo",
+     "y": 1983,
+     "d": "Nagisa Ōshima",
+     "r": "Un camp japonais de prisonniers en 1942 : deux codes de l'honneur face à face."
+    },
+    {
+     "id": "le-tombeau-des-lucioles-1988",
+     "t": "Le Tombeau des lucioles",
+     "y": 1988,
+     "d": "Isao Takahata",
+     "r": "Kobe, 1945 : un adolescent et sa petite sœur survivent seuls après les bombardements américains."
+    },
+    {
+     "id": "la-liste-de-schindler-1993",
+     "t": "La Liste de Schindler",
+     "y": 1993,
+     "d": "Steven Spielberg",
+     "r": "Un industriel nazi qui sauve plus de mille Juifs en les employant dans son usine."
+    },
+    {
+     "id": "le-pianiste-2002",
+     "t": "Le Pianiste",
+     "y": 2002,
+     "d": "Roman Polanski",
+     "r": "Un pianiste juif survit au ghetto de Varsovie, caché dans les ruines."
+    },
+    {
+     "id": "le-fils-de-saul-2015",
+     "t": "Le Fils de Saul",
+     "y": 2015,
+     "d": "László Nemes",
+     "r": "Un prisonnier d'Auschwitz veut enterrer un enfant, filmé au plus près de son visage."
+    },
+    {
+     "id": "la-zone-d-interet-2023",
+     "t": "La Zone d'intérêt",
+     "y": 2023,
+     "d": "Jonathan Glazer",
+     "r": "La vie de famille tranquille du commandant d'Auschwitz, juste derrière le mur du camp."
+    },
+    {
+     "id": "inglourious-basterds-2009",
+     "t": "Inglourious Basterds",
+     "y": 2009,
+     "d": "Quentin Tarantino",
+     "r": "Une uchronie de Tarantino : un commando juif et une jeune femme veulent tuer Hitler dans un cinéma."
+    },
+    {
+     "id": "nuit-et-brouillard-1956",
+     "t": "Nuit et Brouillard",
+     "y": 1956,
+     "d": "Alain Resnais",
+     "r": "Trente minutes sur les camps de concentration, dix ans après leur libération."
+    },
+    {
+     "id": "shoah-1985",
+     "t": "Shoah",
+     "y": 1985,
+     "d": "Claude Lanzmann",
+     "r": "Neuf heures de témoignages, sans une image d'archive, pour dire l'extermination."
+    },
+    {
+     "id": "hiroshima-mon-amour-1959",
+     "t": "Hiroshima mon amour",
+     "y": 1959,
+     "d": "Alain Resnais",
+     "r": "Giovanni Fusco et Georges Delerue : des thèmes de mémoire, et une valse pour Nevers."
+    },
+    {
+     "id": "oppenheimer-2023",
+     "t": "Oppenheimer",
+     "y": 2023,
+     "d": "Christopher Nolan",
+     "r": "Le père de la bombe atomique, de Los Alamos aux procès du maccarthysme."
+    },
+    {
+     "id": "le-cuirasse-potemkine-1925",
+     "t": "Le Cuirassé Potemkine",
+     "y": 1925,
+     "d": "Sergueï Eisenstein",
+     "r": "La mutinerie de 1905 et le massacre des escaliers d'Odessa, au montage révolutionnaire."
+    },
+    {
+     "id": "soy-cuba-1964",
+     "t": "Soy Cuba",
+     "y": 1964,
+     "d": "Mikhaïl Kalatozov",
+     "r": "La révolution cubaine en propagande soviétique, avec des plans-séquences qui semblent voler."
+    },
+    {
+     "id": "memoires-du-sous-developpement-1968",
+     "t": "Mémoires du sous-développement",
+     "y": 1968,
+     "d": "Tomás Gutiérrez Alea",
+     "r": "Un bourgeois reste à La Havane après la révolution, ni dedans ni dehors."
+    },
+    {
+     "id": "le-conformiste-1970",
+     "t": "Le Conformiste",
+     "y": 1970,
+     "d": "Bernardo Bertolucci",
+     "r": "Lumières de Vittorio Storaro, décors fascistes immenses et vides."
+    },
+    {
+     "id": "cabaret-1972",
+     "t": "Cabaret",
+     "y": 1972,
+     "d": "Bob Fosse",
+     "r": "Berlin, 1931 : les nuits d'un cabaret pendant que les nazis prennent le pouvoir."
+    },
+    {
+     "id": "land-and-freedom-1995",
+     "t": "Land and Freedom",
+     "y": 1995,
+     "d": "Ken Loach",
+     "r": "Un volontaire anglais dans les milices anarchistes et marxistes de la guerre d'Espagne, trahies par Moscou."
+    },
+    {
+     "id": "le-vent-se-leve-2006",
+     "t": "Le vent se lève",
+     "y": 2006,
+     "d": "Ken Loach",
+     "r": "Deux frères dans la guerre d'indépendance irlandaise, puis dans deux camps opposés."
+    },
+    {
+     "id": "l-homme-de-marbre-1977",
+     "t": "L'Homme de marbre",
+     "y": 1977,
+     "d": "Andrzej Wajda",
+     "r": "Une cinéaste fouille les archives d'un ouvrier modèle fabriqué, puis effacé, par la propagande."
+    },
+    {
+     "id": "la-vie-des-autres-2006",
+     "t": "La Vie des autres",
+     "y": 2006,
+     "d": "Florian Henckel von Donnersmarck",
+     "r": "La surveillance de la Stasi à Berlin-Est : un espion finit par protéger ceux qu'il écoute."
+    },
+    {
+     "id": "la-mort-de-staline-2017",
+     "t": "La Mort de Staline",
+     "y": 2017,
+     "d": "Armando Iannucci",
+     "r": "La guerre de succession autour du cadavre de Staline, en comédie noire."
+    },
+    {
+     "id": "ida-2013",
+     "t": "Ida",
+     "y": 2013,
+     "d": "Paweł Pawlikowski",
+     "r": "Une novice découvre qu'elle est juive, dans la Pologne communiste de 1962, et cherche la tombe de ses parents."
+    },
+    {
+     "id": "persepolis-2007",
+     "t": "Persepolis",
+     "y": 2007,
+     "d": "Marjane Satrapi et Vincent Paronnaud",
+     "r": "Une enfance iranienne, de la chute du chah à la République islamique."
+    },
+    {
+     "id": "the-brutalist-2024",
+     "t": "The Brutalist",
+     "y": 2024,
+     "d": "Brady Corbet",
+     "r": "Un architecte juif hongrois rescapé des camps tente de se reconstruire en Amérique."
+    },
+    {
+     "id": "la-bataille-d-alger-1966",
+     "t": "La Bataille d'Alger",
+     "y": 1966,
+     "d": "Gillo Pontecorvo",
+     "r": "La lutte du FLN et la répression française dans la Casbah, filmées comme des actualités."
+    },
+    {
+     "id": "lumumba-2000",
+     "t": "Lumumba",
+     "y": 2000,
+     "d": "Raoul Peck",
+     "r": "Le premier chef de gouvernement du Congo indépendant, renversé puis assassiné en sept mois."
+    },
+    {
+     "id": "malcolm-x-1992",
+     "t": "Malcolm X",
+     "y": 1992,
+     "d": "Spike Lee",
+     "r": "Du petit voyou de Harlem au militant assassiné, la vie de Malcolm X."
+    },
+    {
+     "id": "selma-2014",
+     "t": "Selma",
+     "y": 2014,
+     "d": "Ava DuVernay",
+     "r": "Martin Luther King et les marches de Selma, en 1965, pour le droit de vote des Noirs."
+    },
+    {
+     "id": "the-black-power-mixtape-1967-1975-2011",
+     "t": "The Black Power Mixtape 1967-1975",
+     "y": 2011,
+     "d": "Göran Olsson",
+     "r": "Le Black Power américain filmé par la télévision suédoise, commenté par des artistes d'aujourd'hui."
+    },
+    {
+     "id": "i-am-not-your-negro-2016",
+     "t": "I Am Not Your Negro",
+     "y": 2016,
+     "d": "Raoul Peck",
+     "r": "Les mots de James Baldwin sur le racisme américain, de Malcolm X à Ferguson."
+    },
+    {
+     "id": "voyage-au-bout-de-l-enfer-1978",
+     "t": "Voyage au bout de l'enfer",
+     "y": 1978,
+     "d": "Michael Cimino",
+     "r": "Trois ouvriers d'une ville sidérurgique partent au Vietnam, et ce qu'ils en rapportent."
+    },
+    {
+     "id": "apocalypse-now-1979",
+     "t": "Apocalypse Now",
+     "y": 1979,
+     "d": "Francis Ford Coppola",
+     "r": "Une remontée de fleuve au cœur de la guerre du Vietnam et de sa folie."
+    },
+    {
+     "id": "valse-avec-bachir-2008",
+     "t": "Valse avec Bachir",
+     "y": 2008,
+     "d": "Ari Folman",
+     "r": "Un ancien soldat israélien retrouve la mémoire du massacre de Sabra et Chatila."
+    },
+    {
+     "id": "jfk-1991",
+     "t": "JFK",
+     "y": 1991,
+     "d": "Oliver Stone",
+     "r": "Un procureur conteste la thèse du tireur isolé dans la mort de Kennedy : le film qui a fait ouvrir les archives."
+    }
+   ]
   }
  },
  "fiches": {
@@ -28710,6 +29476,289 @@
     "Kubrick"
    ],
    "fiab": "à vérifier"
+  },
+  "l-evangile-selon-saint-matthieu-1964": {
+   "p": "La vie de Jésus racontée mot pour mot d'après l'Évangile, par un cinéaste athée et marxiste : des paysans du sud de l'Italie jouent les apôtres, la mère de Pasolini joue Marie âgée, et la musique mêle Bach et des chants africains. Un Christ en colère contre les riches, filmé caméra à l'épaule comme un documentaire. Il meurt crucifié et ressuscite dans la lumière.",
+   "c": "Italie, France",
+   "k": [
+    "noir-et-blanc",
+    "histoire",
+    "contemplatif"
+   ],
+   "mv": "modernite-europeenne",
+   "e": 8,
+   "duree": 137,
+   "av": [],
+   "th": [
+    "Jésus",
+    "pauvreté",
+    "révolte"
+   ],
+   "fiab": "à vérifier"
+  },
+  "fellini-satyricon-1969": {
+   "p": "La Rome de Néron vue comme une planète étrangère : deux étudiants errent de bordel en banquet, de labyrinthe en naufrage, parmi des visages fardés et des décors de rêve. Fellini adapte un texte antique dont il manque des morceaux, et le film garde ces trous. Il se termine sur des fresques à moitié effacées.",
+   "c": "Italie",
+   "k": [
+    "couleurs",
+    "reve",
+    "absurde"
+   ],
+   "mv": "modernite-europeenne",
+   "e": 7,
+   "duree": 135,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "Rome antique",
+    "décadence",
+    "rêve"
+   ],
+   "fiab": "à vérifier"
+  },
+  "marketa-lazarova-1967": {
+   "p": "Bohême, XIIIe siècle : deux clans de brigands s'affrontent au milieu des loups, de la neige et des chrétiens qui arrivent. Marketa, promise au couvent, est enlevée par le fils d'un chef et finit par l'aimer. Un Moyen Âge sauvage et païen, en noir et blanc, souvent cité comme le plus grand film tchèque.",
+   "c": "Tchécoslovaquie",
+   "k": [
+    "noir-et-blanc",
+    "violence",
+    "contemplatif"
+   ],
+   "mv": "nouvelle-vague-tcheque",
+   "e": 8,
+   "duree": 165,
+   "av": [
+    "violence explicite",
+    "violence sexuelle"
+   ],
+   "th": [
+    "Moyen Âge",
+    "clans",
+    "foi"
+   ],
+   "fiab": "à vérifier"
+  },
+  "perceval-le-gallois-1978": {
+   "p": "Le roman de Chrétien de Troyes joué dans un décor de théâtre : arbres en métal doré, châteaux en carton, comme une enluminure qui bouge. Les acteurs disent le texte en vers et chantent avec des musiciens. Perceval, jeune Gallois naïf, devient chevalier et passe devant le Graal sans poser la question. Le film finit sur la Passion du Christ.",
+   "c": "France, Allemagne de l'Ouest, Italie, Suisse",
+   "k": [
+    "couleurs",
+    "musique",
+    "conte"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 140,
+   "av": [],
+   "th": [
+    "chevalerie",
+    "Graal",
+    "naïveté"
+   ],
+   "fiab": "à vérifier"
+  },
+  "the-green-knight-2021": {
+   "p": "Le jour de Noël, un chevalier vert entre à la cour du roi Arthur et propose un jeu : qu'on lui donne un coup, il le rendra dans un an. Gauvain lui tranche la tête ; le chevalier la ramasse et s'en va. Un an plus tard, Gauvain part le retrouver, entre fantômes, géants et tentations. Une légende du XIVe siècle filmée comme un rêve.",
+   "c": "États-Unis, Irlande, Canada",
+   "k": [
+    "couleurs",
+    "conte",
+    "reve",
+    "contemplatif"
+   ],
+   "mv": "independant-americain",
+   "e": 7,
+   "duree": 130,
+   "av": [],
+   "th": [
+    "chevalerie",
+    "courage",
+    "légende"
+   ],
+   "fiab": "à vérifier"
+  },
+  "ran-1985": {
+   "p": "Le Roi Lear dans le Japon des samouraïs : un vieux seigneur partage son domaine entre ses trois fils, et les deux aînés le trahissent. Armées en couleurs vives, château en flammes, Dame Kaede qui orchestre la vengeance de sa famille. Le seigneur, devenu fou, meurt dans les bras de son fils cadet.",
+   "c": "Japon, France",
+   "k": [
+    "couleurs",
+    "violence",
+    "histoire"
+   ],
+   "mv": "age-dor-japonais",
+   "e": 8,
+   "duree": 162,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "pouvoir",
+    "trahison",
+    "famille"
+   ],
+   "fiab": "à vérifier"
+  },
+  "harakiri-1962": {
+   "p": "En 1630, un samouraï sans maître demande à se faire hara-kiri dans la cour d'un seigneur. Il raconte d'abord pourquoi : son gendre est venu là avant lui et a été forcé de s'ouvrir le ventre avec un sabre en bambou. Une attaque contre le code d'honneur des samouraïs, d'une grande rigueur visuelle.",
+   "c": "Japon",
+   "k": [
+    "noir-et-blanc",
+    "injustice",
+    "vengeance"
+   ],
+   "mv": "age-dor-japonais",
+   "e": 8,
+   "duree": 135,
+   "av": [
+    "suicide",
+    "violence explicite"
+   ],
+   "th": [
+    "samouraïs",
+    "honneur",
+    "hypocrisie"
+   ],
+   "fiab": "à vérifier"
+  },
+  "la-prise-de-pouvoir-par-louis-xiv-1966": {
+   "p": "À la mort de Mazarin, le jeune Louis XIV décide de gouverner seul. Il fait arrêter Fouquet, invente les habits et l'étiquette qui obligent les nobles à se ruiner à Versailles. Un film fait pour la télévision, qui montre le pouvoir comme une mise en scène : le roi mange seul devant toute la cour.",
+   "c": "France",
+   "k": [
+    "histoire",
+    "couleurs",
+    "contemplatif"
+   ],
+   "mv": "auteur-europeen",
+   "e": 7,
+   "duree": 90,
+   "av": [],
+   "th": [
+    "pouvoir",
+    "étiquette",
+    "Versailles"
+   ],
+   "fiab": "à vérifier"
+  },
+  "aguirre-la-colere-de-dieu-1972": {
+   "p": "1560, des conquistadors descendent l'Amazone à la recherche de l'Eldorado. Aguirre (Klaus Kinski) prend le commandement et s'enfonce dans la folie. Tourné pour de vrai sur le fleuve, dans la jungle. Le dernier plan : Aguirre seul sur son radeau à la dérive, au milieu des cadavres et des singes.",
+   "c": "Allemagne de l'Ouest, Pérou, Mexique",
+   "k": [
+    "folie",
+    "aventure",
+    "contemplatif"
+   ],
+   "mv": "nouveau-cinema-allemand",
+   "e": 8,
+   "duree": 94,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "conquistadors",
+    "folie",
+    "Amazonie"
+   ],
+   "fiab": "à vérifier"
+  },
+  "zama-2017": {
+   "p": "XVIIIe siècle, un fonctionnaire espagnol attend sa mutation dans un poste colonial perdu d'Amérique du Sud. Elle ne vient jamais. Bruits étranges, animaux qui traversent le cadre, humiliations : l'ennui colonial devient un cauchemar. Il finit mutilé sur une barque, peut-être sauvé par un enfant.",
+   "c": "Argentine, Brésil, Espagne",
+   "k": [
+    "absurde",
+    "contemplatif",
+    "malaise"
+   ],
+   "mv": "argentin",
+   "e": 7,
+   "duree": 115,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "colonie",
+    "attente",
+    "ennui"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-assassinat-de-jesse-james-2007": {
+   "p": "Robert Ford (Casey Affleck) admire le hors-la-loi Jesse James (Brad Pitt) depuis l'enfance, entre dans sa bande, puis le tue d'une balle dans le dos. Il rejoue ensuite le meurtre sur scène, devant le public, avant d'être lui-même assassiné. Images floues sur les bords, neige, musique de Nick Cave et Warren Ellis.",
+   "c": "États-Unis, Canada",
+   "k": [
+    "contemplatif",
+    "obsession",
+    "musique"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 8,
+   "duree": 160,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "célébrité",
+    "admiration",
+    "Ouest"
+   ],
+   "fiab": "à vérifier"
+  },
+  "la-grande-illusion-1937": {
+   "p": "Première Guerre mondiale, des officiers français prisonniers en Allemagne préparent leur évasion. Un aristocrate français et le commandant allemand de la forteresse se reconnaissent du même monde, plus que de leurs pays. L'aristocrate se sacrifie pour que Maréchal (Jean Gabin) et Rosenthal s'évadent vers la Suisse.",
+   "c": "France",
+   "k": [
+    "noir-et-blanc",
+    "histoire",
+    "doux"
+   ],
+   "mv": "realisme-poetique",
+   "e": 8,
+   "duree": 113,
+   "av": [],
+   "th": [
+    "amitié",
+    "classes sociales",
+    "prison"
+   ],
+   "fiab": "à vérifier"
+  },
+  "amadeus-1984": {
+   "p": "Vienne, fin du XVIIIe siècle. Le compositeur de la cour Salieri voit arriver Mozart, un garçon vulgaire au rire idiot qui écrit une musique divine sans effort. Jaloux, il décide de le tuer à petit feu. Mozart meurt en dictant son Requiem à Salieri. Vieux et fou, Salieri se proclame « saint patron des médiocres ».",
+   "c": "États-Unis",
+   "k": [
+    "musique",
+    "obsession",
+    "couleurs"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 8,
+   "duree": 160,
+   "av": [],
+   "th": [
+    "génie",
+    "jalousie",
+    "musique"
+   ],
+   "fiab": "à vérifier"
+  },
+  "ivan-le-terrible-1944": {
+   "p": "Le premier tsar de Russie au XVIe siècle, en ombres géantes sur les murs, regards en coin et gestes de théâtre. Staline aimait la première partie ; la seconde, en partie en couleurs, montrait un tsar paranoïaque et fut interdite. Une fresque expressionniste sur la solitude du pouvoir.",
+   "c": "Union soviétique",
+   "k": [
+    "noir-et-blanc",
+    "histoire",
+    "obsession"
+   ],
+   "mv": "montage-sovietique",
+   "e": 7,
+   "duree": 99,
+   "av": [],
+   "th": [
+    "tsar",
+    "pouvoir",
+    "paranoïa"
+   ],
+   "fiab": "à vérifier"
   }
  },
  "familles": {
@@ -29809,7 +30858,21 @@
   "the-wicker-man-1973": "24310",
   "kill-list-2011": "16300",
   "la-neuvieme-porte-1999": "33310",
-  "operation-lune-2002": "10171"
+  "operation-lune-2002": "10171",
+  "l-evangile-selon-saint-matthieu-1964": "41140",
+  "fellini-satyricon-1969": "52030",
+  "marketa-lazarova-1967": "43120",
+  "perceval-le-gallois-1978": "60130",
+  "the-green-knight-2021": "50320",
+  "ran-1985": "42220",
+  "harakiri-1962": "23410",
+  "la-prise-de-pouvoir-par-louis-xiv-1966": "40150",
+  "aguirre-la-colere-de-dieu-1972": "33130",
+  "zama-2017": "42130",
+  "l-assassinat-de-jesse-james-2007": "42121",
+  "la-grande-illusion-1937": "10261",
+  "amadeus-1984": "40231",
+  "ivan-le-terrible-1944": "52120"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
