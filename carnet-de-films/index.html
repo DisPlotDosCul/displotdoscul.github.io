@@ -1084,7 +1084,8 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 .xp-card h3{margin:6px 0 0;font:600 21px/1.2 var(--font);}
 .xp-meta{margin:0;font-size:13.5px;color:var(--muted);}
 .xp-btns{display:grid;gap:8px;}
-.xp-seen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+.xp-seen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;}
+@media (max-width:420px){.xp-seen{grid-template-columns:repeat(2,minmax(0,1fr));}}
 .xp-b{min-height:54px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font:600 16px/1.1 var(--font);cursor:pointer;}
 .xp-b.no{min-height:50px;}
 .xp-syn{margin:0;max-width:34em;font-size:13px;line-height:1.35;color:var(--muted);}
@@ -2715,7 +2716,8 @@ html.sky-on #rsheet{z-index:50;}
       return '<button type="button" class="chip" data-soi="' + esc(u) + '" aria-pressed="' + on + '"' + (!on && SOI.length >= 4 ? " disabled" : "") + '>' + (on ? "✓ " : "") + esc(P[u].pseudo) + '</button>'; }).join("") + '</div>' : '<p class="sh-note">Pas encore d\'autre membre.</p>');
     if (!SOI.length) return h + '<p class="sh-note">Choisis une à quatre personnes.</p>';
     var r = CC.soiree(SOI);
-    return h + '<div class="mh">À voir ensemble</div><div class="mlist">' + r.films.map(function(f){
+    var faible = (r.faible || []).map(function(x){ return '<p class="sh-note soi-warn">On connaît encore peu les goûts ' + (x.name === "Toi" ? "de toi" : "de " + esc(x.name)) + ' (' + x.n + ' film' + (x.n > 1 ? "s" : "") + ' noté' + (x.n > 1 ? "s" : "") + (x.q ? ", questionnaire fait" : ", pas de questionnaire") + ') : quelques notes de plus dans Express rendront ces propositions plus justes.</p>'; }).join("");
+    return h + faible + '<div class="mh">À voir ensemble</div><div class="mlist">' + r.films.map(function(f){
       return '<button type="button" class="mfilm soi-f" data-mfilm="' + esc(f.t) + '"><span>' + esc(f.t) + (f.y ? ' <small>' + esc(f.y) + '</small>' : "") + '<small class="soi-est">' + f.est.map(function(x, i){ return esc(r.names[i]) + " " + Math.round(x); }).join(" · ") + '</small></span></button>';
     }).join("") + '</div><p class="sh-note">Des films qu\'aucun de vous n\'a vus. Le chiffre est l\'estimation du site pour chacun, sur 10.</p>';
   }
@@ -4639,7 +4641,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     return '<div class="qz-h">Des films à noter</div>' + ids.map(function(id){
       var f = films[id], a = answers[id] || {}, cur = a.etat === "pas_vu" ? "pv" : a.note10 ? String(a.note10) : "";
       var b = function(v, l){ return '<button type="button" class="chip" data-qzf="' + esc(id) + '" data-v="' + v + '" aria-pressed="' + (cur === v) + '">' + l + '</button>'; };
-      return '<div class="qz-q"><span>' + esc(f.t) + ' <small>' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</small></span><div class="qz-o">' + b("9", "Adoré") + b("7", "Bien") + b("4", "Bof") + b("pv", "Pas vu") + '</div></div>';
+      return '<div class="qz-q"><span>' + esc(f.t) + ' <small>' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</small></span><div class="qz-o">' + b("9", "Adoré") + b("7", "Bien") + b("5", "Bof") + b("2", "Pas aimé") + b("pv", "Pas vu") + '</div></div>';
     }).join("") + '<div class="nt-b"><button type="button" class="plf-no" data-qzmore="1">🎲 D\'autres films</button></div>';
   }
   function qzHtml(){
@@ -4831,15 +4833,27 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   }
   function titleOf(id, rep){ var f = films[id]; return f ? f.t : ((rep || {})[id] || {}).titre || id; }
   // Ce que le site sait du goût de quelqu'un : une moyenne et le poids de chaque trait (mots-clés, courant, pays, cinéaste, famille…).
-  function tasteModel(rep){
+  // Goûts d'une personne, pour la Soirée ciné (15 novembre) : ses notes ET son questionnaire de la Boussole,
+  // comme pour ses propres estimations. Sans rien, on reste neutre (avant : l'estimation du catalogue, faite pour Licia).
+  function tasteModel(rep, quiz){
     var ids = Object.keys(rep || {}).filter(function(id){ return rep[id] && rep[id].note10 && films[id]; });
-    if (ids.length < 3) return null;
-    var mu = ids.reduce(function(s, id){ return s + rep[id].note10; }, 0) / ids.length, W = {}, N = {};
+    var q = quiz && typeof quiz === "object" && Object.keys(quiz).length ? quiz : null;
+    if (!ids.length && !q) return null;
+    // Moyenne tirée vers 6,5 tant qu'il y a peu de notes.
+    var mu = (ids.reduce(function(s, id){ return s + rep[id].note10; }, 0) + 6.5 * 3) / (ids.length + 3), W = {}, N = {};
     ids.forEach(function(id){ var r = rep[id].note10 - mu; rFeats(films[id]).forEach(function(x){ W[x] = (W[x] || 0) + r; N[x] = (N[x] || 0) + 1; }); });
-    return { mu:mu, W:W, N:N };
+    if (q) {
+      var prior = function(x, v){ if (!v) return; W[x] = (W[x] || 0) + v * 2 * 3; N[x] = (N[x] || 0) + 3; };
+      Object.keys(RFAC).forEach(function(fa){ prior("fa|" + fa, +q[fa] || 0); });
+      prior("an|1", +q.anciens || 0); prior("mo|1", +q.monde || 0); prior("k|contemplatif", +q.lent || 0);
+      if (+q.sens) { prior("fa|reflexion", +q.sens); prior("k|larmes", +q.sens); prior("fa|frisson", -q.sens * .5); }
+      (typeof QZ_Q2 !== "undefined" && QZ_Q2 || []).forEach(function(x){ prior("k|" + x[2], +q[x[0]] || 0); });
+    }
+    // Confiance : 0 sans information, proche de 1 avec une trentaine de notes (le questionnaire vaut 8 notes).
+    return { mu:mu, W:W, N:N, n:ids.length, conf:1 - Math.exp(-(ids.length + (q ? 8 : 0)) / 15) };
   }
   function tastePredict(m, f){
-    if (!m) return f.e || 6.5;
+    if (!m) return 6.5;
     var s = 0, k = 0; rFeats(f).forEach(function(x){ if (N_(m, x)) { s += m.W[x] / (m.N[x] + 2); k++; } });
     return Math.max(1, Math.min(10, m.mu + (k ? 1.6 * s / Math.sqrt(k) : 0)));
   }
@@ -4853,7 +4867,19 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (!seed) { seed = String(Math.random()).slice(2, 8); try { sessionStorage.setItem("ccXpSeed", seed); } catch (e) {} }
     var free = Object.keys(films).filter(function(id){ var a = mine[id]; return films[id].t && !(a && (a.etat || a.note10)); });
     var tie = function(id){ return skyHash(seed + id) / 4294967296; };
-    var known = free.slice().sort(function(a, b){ return (seenBy[b] || 0) - (seenBy[a] || 0) || tie(a) - tie(b); });
+    // Films qu'on a le plus de chances d'avoir vus (15 novembre) : les films connus et grand public d'abord, puis le site
+    // apprend des réponses (« Pas vu » sur des films muets ? il en propose moins), pour récolter de vrais avis plutôt que des « Pas vu ».
+    var nM = Object.keys(P).length || 1, G = {};
+    Object.keys(mine).forEach(function(id){ var a = mine[id], f = films[id]; if (!a || !f) return; var v = a.etat === "pas_vu" ? 0 : (repSeen(a) || a.note10) ? 1 : -1; if (v < 0) return;
+      rFeats(f).forEach(function(x){ if (/^(k|d|c)\|/.test(x)) return; var g = G[x] || (G[x] = [0, 0]); g[0] += v; g[1]++; }); });
+    var POP = /^(hollywood|nouvel-hollywood|ghibli)/, POPK = { comedie:1, aventure:1, sf:1, suspense:1, animation:1, doux:1, amour:1 };
+    var pseen = function(id){
+      var f = films[id], base = (POP.test(f.mv || "") ? .55 : .3) + ((f.k || []).some(function(k){ return POPK[k]; }) ? .1 : 0) + ((f.k || []).indexOf("noir-et-blanc") >= 0 ? -.12 : 0) + ((+f.y || 2000) >= 1975 ? .08 : -.05);
+      base += .3 * (seenBy[id] || 0) / nM;
+      var s0 = 0, w0 = 0; rFeats(f).forEach(function(x){ var g = G[x]; if (g) { s0 += (g[0] + base * 2) / (g[1] + 2); w0++; } });
+      return w0 ? (base + 2 * s0 / w0) / 3 : base;
+    };
+    var known = free.slice().sort(function(a, b){ return pseen(b) - pseen(a) || tie(a) - tie(b); });
     var vari = function(id){ var a = notes[id] || []; if (a.length < 2) return 0; var m = a.reduce(function(s, x){ return s + x; }, 0) / a.length; return a.reduce(function(s, x){ return s + (x - m) * (x - m); }, 0) / a.length; };
     var split = free.filter(function(id){ return (notes[id] || []).length >= 2; }).sort(function(a, b){ return vari(b) - vari(a) || tie(a) - tie(b); });
     var out = [], used = {};
@@ -4910,7 +4936,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<button type="button" class="xp-list" data-xplist="1" aria-pressed="' + !!LISTE[id] + '" aria-label="' + (LISTE[id] ? "Retirer de ma liste" : "Ajouter à ma liste") + '" title="' + (LISTE[id] ? "Dans ma liste" : "Ajouter à ma liste") + '">' + (LISTE[id] ? "✓" : "+") + '</button></div>' +
       '<h3>' + esc(f.t) + '</h3><p class="xp-meta">' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</p>' + (xpSyn(f) ? '<p class="xp-syn">' + esc(xpSyn(f)) + '</p>' : "") + '</div>' +
       '<div class="xp-btns"><button type="button" class="xp-b no" data-xp="pv">Pas vu</button>' +
-      '<div class="xp-seen"><button type="button" class="xp-b" data-xp="9">Adoré</button><button type="button" class="xp-b" data-xp="7">Bien</button><button type="button" class="xp-b" data-xp="4">Pas aimé</button></div></div>' +
+      '<div class="xp-seen"><button type="button" class="xp-b" data-xp="9" title="Près de 10">Adoré</button><button type="button" class="xp-b" data-xp="7">Bien</button><button type="button" class="xp-b" data-xp="5">Bof</button><button type="button" class="xp-b" data-xp="2" title="Près de 0">Pas aimé</button></div></div>' +
       '<div class="xp-small"><button type="button" data-xpundo="1"' + (XP.hist.length ? "" : " disabled") + '>← Annuler</button><button type="button" data-xp="vu">Vu, sans avis</button><button type="button" data-xp="ou">Vu mais oublié</button><button type="button" data-xpn="1" aria-expanded="' + !!XP.notes + '">Noter /10</button><button type="button" data-xp="skip">Passer</button></div>' +
       (XP.notes ? '<div class="xp-n10" role="group" aria-label="Vu, avec une note sur 10">' + notes + '</div>' : "");
   }
@@ -4947,6 +4973,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       XP.hist.push({ id:id, prev:prev, i:XP.i });
     } else XP.hist.push({ id:id, skip:true, i:XP.i });
     XP.i++;
+    if (v !== "skip" && XP.n % 5 === 0 && !XP.invite) { XP.q = XP.q.slice(0, XP.i).concat(xpOrder().filter(function(id){ return XP.q.slice(0, XP.i).indexOf(id) < 0; })); }
     if (XP.n && XP.n % 10 === 0 && v !== "skip") XP.reward = true;
     xpRender();
   }
@@ -5126,18 +5153,22 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
 
   // ---- Soirée ciné : des films qu'aucun de vous n'a vus, et que tout le monde devrait aimer ----
   if (window.CC) CC.soiree = function(uids){
-    var P = CC.profils || {}, people = [{ u:CC.uid, name:"Toi", rep:myRep() }].concat(uids.filter(function(u){ return P[u]; }).map(function(u){ return { u:u, name:P[u].pseudo || "?", rep:P[u].rep || {} }; }));
-    people.forEach(function(p){ p.m = tasteModel(p.rep); });
+    var P = CC.profils || {}, people = [{ u:CC.uid, name:"Toi", rep:myRep(), quiz:(CC.me && CC.me.quiz) || null }].concat(uids.filter(function(u){ return P[u]; }).map(function(u){ return { u:u, name:P[u].pseudo || "?", rep:P[u].rep || {}, quiz:P[u].quiz || null }; }));
+    people.forEach(function(p){ p.m = tasteModel(p.rep, p.quiz); });
     var out = [];
     Object.keys(films).forEach(function(id){
       var f = films[id]; if (!f.t) return;
       if (people.some(function(p){ var x = p.rep[id]; return x && (repSeen(x) || x.etat === "oublie"); })) return;
-      var est = people.map(function(p){ return tastePredict(p.m, f); }), m = est.reduce(function(s, x){ return s + x; }, 0) / est.length;
-      var sd = Math.sqrt(est.reduce(function(s, x){ return s + (x - m) * (x - m); }, 0) / est.length);
-      out.push({ id:id, t:f.t, y:f.y, d:f.d, s:m - .6 * sd, est:est });
+      var est = people.map(function(p){ return tastePredict(p.m, f); });
+      // Chacun est compté par rapport à sa propre moyenne (une personne généreuse ne pèse pas plus) ;
+      // la personne la moins convaincue compte double, pour un film qui plaise à tout le monde.
+      var rel = people.map(function(p, i){ return p.m ? (est[i] - p.m.mu) * (0.4 + 0.6 * p.m.conf) : 0; });
+      var mean = rel.reduce(function(s, x){ return s + x; }, 0) / rel.length, low = Math.min.apply(null, rel);
+      out.push({ id:id, t:f.t, y:f.y, d:f.d, s:(mean + low) / 2 + .02 * (f.e || 0) / 10, est:est });
     });
     out.sort(function(a, b){ return b.s - a.s || (a.id < b.id ? -1 : 1); });
-    return { names:people.map(function(p){ return p.name; }), films:out.slice(0, 12) };
+    return { names:people.map(function(p){ return p.name; }), films:out.slice(0, 12),
+      faible:people.filter(function(p){ return !p.m || p.m.conf < .55; }).map(function(p){ return { name:p.name, n:p.m ? p.m.n : 0, q:!!(p.quiz && Object.keys(p.quiz).length) }; }) };
   };
   if (window.CC) CC.taste = { compare:compareReps, pct:boussolePct, rated:ratedCount };
 

@@ -64,3 +64,16 @@ fictif ; aucune donnée réelle n'est utilisée.
 - [ ] La rime lointaine est-elle la bonne porte d'entrée parmi les cinq approches ?
 - [ ] Trois propositions à la fois et une phrase par rapprochement conviennent-elles ?
 - [ ] Le changement de pays, d'époque ou de mouvement ouvre-t-il assez le choix ?
+
+## Soirée ciné qui respecte les goûts de chacun (15 novembre 2026)
+
+Problème vu par Licia : une soirée avec sa mère proposait des films à son goût à elle, malgré dix minutes de mode Express.
+Causes : la Soirée utilisait un modèle simplifié qui ignorait le questionnaire de la Boussole et reprenait, en dessous de
+trois notes, l'estimation du catalogue (faite pour Licia) ; « Pas aimé » valait 4/10 ; Express proposait d'abord les films
+pointus du club, souvent pas vus, donc sans avis.
+- La Soirée lit les notes **et** le questionnaire de chaque personne ; sans rien, elle reste neutre (6,5).
+- Chacun compte par rapport à sa propre moyenne, et la personne la moins convaincue compte double : un film doit plaire à tous.
+- Un message signale quand on connaît encore peu les goûts de quelqu'un.
+- Boutons : Adoré (9), Bien (7), Bof (5), Pas aimé (2) ; la note sur 10 reste disponible.
+- Express propose d'abord les films qu'on a le plus de chances d'avoir vus (connus, grand public), et apprend des réponses
+  toutes les cinq réponses (beaucoup de « Pas vu » sur les films anciens ? il en propose moins).
