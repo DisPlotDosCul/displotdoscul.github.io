@@ -1149,6 +1149,7 @@ html.ed-on .wrap{padding-bottom:65vh;}
 .fimg-g img{width:100%;height:100%;object-fit:cover;display:block;}
 .fimg-s{display:inline-block;margin-top:5px;font-size:11.5px;color:var(--muted);}
 .fimg-n{margin:0;font-size:13.5px;color:var(--muted);}
+.env-ls{flex-basis:100%;margin:6px 0 0;font:600 12.5px/1.2 var(--font);color:var(--muted);}
 /* Où le voir : les plateformes en France (données JustWatch, via TMDB). */
 .ouv{margin-top:8px;display:grid;gap:7px;}
 .ouv-g{display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
@@ -4095,7 +4096,15 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       });
     });
     var sel = env1 ? { k:"env", e1:env1 } : null;
-    var block = sub ? '<div class="env-sub in-g" role="group" aria-label="Préciser l\'envie">' + sub + allSelB(sel) + '</div>' : "";
+    // Listes choisies à la main pour cette envie (anciens thèmes-humeurs), avec leurs sous-catégories.
+    var lc = env1 ? (TOCDATA.envsel || []).filter(function(x){ var sc = sections.filter(function(y){ return y.id === x.id; })[0]; return sc && sc.envSel === env1; }) : [];
+    var lch = lc.map(function(x){
+      var sx = sxSec(x.id), open = !!sx && SX_S === x.id, on = !!SHOW && SHOW.k === "sec" && SHOW.id === x.id;
+      return '<button type="button" class="chip env nuance lsel" ' + (sx ? 'data-sx="' + esc(x.id) + '" aria-expanded="' + open + '"' : 'data-s="' + esc(x.id) + '"') + ' aria-pressed="' + on + '">📋 ' + esc(x.titre) +
+        '<span class="cnt">' + x.n + (sx ? (open ? " ▾" : " ▸") : "") + '</span></button>' + (open ? sxBlock(sx) : "");
+    }).join("");
+    var block = sub || lch ? '<div class="env-sub in-g" role="group" aria-label="Préciser l\'envie">' + sub + allSelB(sel) +
+      (lch ? '<p class="env-ls">Listes choisies</p>' + lch : "") + '</div>' : "";
     return '<div class="subs">' + underRow(items, at, block) + '</div>';
   }
   function allSelB(sel){
@@ -4111,7 +4120,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (f.mouvements) { if (MOUVS.length) fams.push(f); }
       else if (view !== "global" && (TOCMAP[f.id] || sections.some(function(s){ return s.famille === f.id && !s.cache; }))) fams.push(f);
     });
-    if (view !== "global") Object.keys(TOCMAP).forEach(function(fid){ if (!FAM_OF[fid]) fams.push({ id:fid, label:"Autres listes" }); });
+    if (view !== "global") Object.keys(TOCMAP).forEach(function(fid){ if (!FAM_OF[fid] && fid !== "envsel") fams.push({ id:fid, label:"Autres listes" }); });
     if (ENVIES.length) {
       var ord = RANG && Array.isArray(RANG.familles) ? RANG.familles : null, ep = ord ? ord.indexOf("envies") : -1;
       if (ep < 0) fams.push(ENV_FAM);
@@ -5574,7 +5583,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     // Sommaire : une ligne par famille de listes, avec sa couleur ; seules les listes affichées y figurent.
     TOCN = {}; TOCDATA = {};
     function addChip(s, n){
-      var fid = famOf(s) ? s.famille : "_";
+      var fid = s.envSel ? "envsel" : famOf(s) ? s.famille : "_";
       if (!tocMap[fid]) { tocMap[fid] = []; tocFam.push(fid); }
       TOCN[fid] = (TOCN[fid] || 0) + 1;
       var np = s.auto === "conseils" ? propsOf(String(s.prenom || "")).length : 0;
@@ -7726,6 +7735,48 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     ["real-asie", "Asie", "Japon, Corée, Chine, Hong Kong, Taïwan, Iran, Inde…", /^(Japon|Corée|Chine|Hong Kong|Taïwan|Thaïlande|Inde|Iran|Kazakhstan|Malaisie|Cambodge|Vietnam|Philippines|Indonésie|Turquie|Israël|Palestine|Liban)/],
     ["real-monde", "Ailleurs dans le monde", "Amérique latine, Afrique, Océanie…", /./]
   ];
+
+  // Envies = humeur (ce qu'on veut ressentir), Thèmes = sujet (de quoi parle le film), choix de Licia du 14 novembre 2026.
+  // Les envies qui étaient des sujets (Mer, Histoires vraies, Formats à part, Corps et performance) deviennent des thèmes ;
+  // les thèmes qui étaient des humeurs (Films qui émeuvent, Rêve et étrangeté, Fins à rebondissement, Malaise et folie,
+  // Couleurs vives) se retrouvent dans leur envie, comme « listes choisies », avec leurs sous-catégories.
+  var ENV_SUJETS = { mer:1, reel:1, format:1, corps:1 };
+  var ENV_GAGNE = { etrange:[{ id:"transformations", label:"Corps qui se transforme" }], personnages:[{ id:"visages", label:"Visages et masques" }, { id:"exploits", label:"Exploits et dépassement" }] };
+  var ENV_SEL = { "s25-nouveau-emotion":"emotion", "s05-etrange":"etrange", "s23-nouveau-quatrieme-dimension":"etrange", "s24-nouveau-malaise":"malaise", "s03-couleurs":"images" };
+  // Mots-clés des anciennes envies-sujets : leurs films rejoignent un thème (sous-catégorie du même nom).
+  var SUJET_SEC = { plongee:"s22-nouveau-mer", sirenes:"s22-nouveau-mer", ocean:"s22-nouveau-mer", iles:"s22-nouveau-mer", danse:"s21-nouveau-danse", cirque:"s20-nouveau-cirque",
+    animation:"auto-formats", muet:"auto-formats", court:"auto-formats", serie:"auto-formats", documentaire:"auto-formats", "histoire-vraie":"auto-vraies", histoire:"auto-vraies" };
+  var SUJET_NEW = { "auto-formats":["Formats à part", "Animation, muet, courts métrages, séries et documentaires.", ["🎞️", "#1D4ED8"]],
+    "auto-vraies":["Histoires vraies", "Des films tirés de faits réels, de la petite histoire à la grande.", ["🌍", "#15803D"]] };
+  function envHumeurs(list){
+    var lab = {};
+    list.forEach(function(e){ (e.sous || []).forEach(function(x){ lab[x.id] = x.label; }); });
+    return list.filter(function(e){ return e && !ENV_SUJETS[e.id]; }).map(function(e){
+      var add = (ENV_GAGNE[e.id] || []).filter(function(x){ return !(e.sous || []).some(function(y){ return y.id === x.id; }); });
+      return add.length ? Object.assign({}, e, { sous:(e.sous || []).concat(add) }) : e;
+    });
+  }
+  function sujetsEnThemes(envLabels){
+    var byId = {}; sections.forEach(function(x){ byId[x.id] = x; });
+    Object.keys(SUJET_NEW).forEach(function(id, i){
+      if (byId[id]) return;
+      var n = SUJET_NEW[id]; byId[id] = { id:id, famille:"themes", ordre:1.3 + i / 1000, titre:n[0], sous_titre:n[1], films:[], parties:[], auto_sujet:true };
+      sections.push(byId[id]); SUB_IC[id] = n[2];
+    });
+    Object.keys(films).forEach(function(fid){
+      var f = films[fid];
+      (f.k || []).forEach(function(k){
+        var s = byId[SUJET_SEC[k]]; if (!s) return;
+        if (!s.films.some(function(x){ return x.id === fid; })) s.films.push(Object.assign({}, f, { sid:s.id, _i:s.films.length }));
+        var t = envLabels[k] || k, ps = s.parties || (s.parties = []), p = ps.filter(function(x){ return x.titre === t; })[0];
+        if (!p) { p = { titre:t, ids:[] }; ps.push(p); }
+        if (p.ids && p.ids.indexOf(fid) < 0) p.ids.push(fid);
+      });
+    });
+    sections.forEach(function(x){ if (x.auto_sujet || x._subm) x._subm = null; SECT[x.id] = SECT[x.id] || "Par thème " + x.titre; });
+    // Les thèmes-humeurs passent dans leur envie ; la liste cauchemar de Licia rejoint son carnet.
+    sections.forEach(function(x){ if (ENV_SEL[x.id]) x.envSel = ENV_SEL[x.id]; if (x.id === "s08-liste-cauchemar") x.famille = "carnet"; });
+  }
   function realKey(n){ return String(n).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\s+/g, " ").trim(); }
   function realNames(d){
     d = String(d || "").replace(/^Série (de|d') ?/i, "").replace(/\s*\(.*?\)\s*/g, " ").trim();
@@ -7804,7 +7855,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     MOUVS = rankBy(mouvs || [], RANG && RANG.listes && RANG.listes.mouvements); MV_OF = {}; MV_INFO = {};
     MOUVS.forEach(function(g){ (g.sous || []).forEach(function(s){ MV_OF[s.id] = g.id; MV_INFO[s.id] = s; }); });
     if (mv1 && !MOUVS.some(function(g){ return g.id === mv1; })) { mv1 = ""; mv2 = ""; }
-    ENVIES = rankBy(envs || [], RANG && RANG.listes && RANG.listes.envies); ENV_OF = {}; LABEL_OF = {};
+    ENVIES = rankBy(envHumeurs(envs || []), RANG && RANG.listes && RANG.listes.envies); ENV_OF = {}; LABEL_OF = {};
     ENVIES.forEach(function(e){ LABEL_OF[e.id] = e.label; (e.sous || []).forEach(function(s){ ENV_OF[s.id] = e.id; LABEL_OF[s.id] = e.label + " " + s.label; }); });
     if (env1 && !ENVIES.some(function(e){ return e.id === env1; })) { env1 = ""; env2 = ""; }
     if (window.CC) CC.playlists = secDocs.filter(function(d){ return d.x.auto === "conseils"; }).map(function(d){ return { prenom:String(d.x.prenom), titre:d.x.titre || "" }; });
@@ -7850,6 +7901,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       });
       sections.sort(secCmp);
     }
+    var envLab = {}; (envs || []).forEach(function(e){ (e.sous || []).forEach(function(x){ envLab[x.id] = x.label; }); });
+    sujetsEnThemes(envLab); sections.sort(secCmp);
     if (FAM_OF.realisateurs) { realSections(); sections.sort(secCmp); }
     AUTO = {}; RANK = false; HASLIST = false; PEOPLE = [];
     sections.forEach(function(s){

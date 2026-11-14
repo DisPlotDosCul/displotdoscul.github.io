@@ -191,3 +191,18 @@ Sinon : Communauté › Membres › le membre › « Relier ».
 Vérifié par `tests/cineclub_confidentialite.py` (faux Firestore qui suit les filtres des requêtes) et par
 `tests/regles_firestore.mjs` (60 cas dans l'émulateur Firestore, avec le vrai fichier `firestore.rules`).
 
+
+## Envies = humeur, Thèmes = sujet (14 novembre 2026)
+
+Choix de Licia : les **envies** disent ce qu'on veut ressentir, les **thèmes** de quoi parle le film.
+- Envies retirées car ce sont des sujets : Mer (ses films rejoignent « Mer et apnée »), Corps et performance
+  (Danse et Cirque rejoignent leurs thèmes ; « Corps qui se transforme » passe dans Étrange et rêve, « Visages et
+  masques » et « Exploits et dépassement » dans Personnages fascinants), Histoires vraies et Formats à part
+  (deviennent deux thèmes construits à partir des mots-clés).
+- Thèmes devenus des « listes choisies » dans leur envie, avec leurs sous-catégories : Films qui émeuvent (Émotion
+  et larmes), Rêve et étrangeté et Fins à rebondissement (Étrange et rêve), Malaise et folie (Malaise), Couleurs vives
+  (Belles images). La Liste cauchemar rejoint le carnet de Licia.
+- Fait dans le code au chargement (`envHumeurs`, `sujetsEnThemes`) : rien à changer dans Firebase.
+
+Sur ordinateur, les listes d'une catégorie restent en grille de trois colonnes (elles passaient sur une seule colonne
+à cause d'une mesure trop stricte de la hauteur des noms).
