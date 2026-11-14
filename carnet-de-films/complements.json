@@ -12786,6 +12786,373 @@
      ]
     }
    ]
+  },
+  "s55-complot": {
+   "famille": "themes",
+   "ordre": 1.3698,
+   "titre": "Théories du complot",
+   "sous_titre": "Pyramides, ovnis, sociétés secrètes, mondes truqués et mensonges d'État : de très bons films, souvent étranges, sur ceux qui cachent et ceux qui cherchent. Parfois le complot est vrai.",
+   "parties": [
+    {
+     "titre": "Pyramides et anciens astronautes",
+     "aide": "Civilisations anciennes, symboles et visiteurs venus d'ailleurs",
+     "ids": [
+      "souvenirs-du-futur-1970",
+      "2001-l-odyssee-de-l-espace-1968",
+      "la-montagne-sacree-1973",
+      "pi-1998"
+     ]
+    },
+    {
+     "titre": "Extraterrestres cachés",
+     "aide": "Ovnis, envahisseurs et secrets militaires",
+     "ids": [
+      "rencontres-du-troisieme-type-1977",
+      "invasion-los-angeles-1988",
+      "l-invasion-des-profanateurs-de-sepultures-1956",
+      "l-invasion-des-profanateurs-1978",
+      "the-vast-of-night-2019",
+      "nope-2022",
+      "x-files-episode-eve-1993",
+      "bugonia-2025"
+     ]
+    },
+    {
+     "titre": "Complots d'État et mensonges officiels",
+     "aide": "Assassinats, services secrets, images truquées",
+     "ids": [
+      "jfk-1991",
+      "a-cause-d-un-assassinat-1974",
+      "les-trois-jours-du-condor-1975",
+      "i-comme-icare-1979",
+      "conversation-secrete-1974",
+      "blow-out-1981",
+      "capricorn-one-1977",
+      "operation-lune-2002",
+      "les-hommes-du-president-1976",
+      "citizenfour-2014"
+     ]
+    },
+    {
+     "titre": "Sociétés secrètes et sectes",
+     "aide": "Rites, masques et gourous",
+     "ids": [
+      "eyes-wide-shut-1999",
+      "rosemary-s-baby-1968",
+      "the-wicker-man-1973",
+      "kill-list-2011",
+      "la-neuvieme-porte-1999",
+      "the-master-2012"
+     ]
+    },
+    {
+     "titre": "Le monde est un décor",
+     "aide": "Simulations, villes truquées et vies mises en scène",
+     "ids": [
+      "the-truman-show-1998",
+      "le-monde-sur-le-fil-1973",
+      "le-prisonnier-serie-1967",
+      "dark-city-1998",
+      "matrix-1999",
+      "brazil-1985",
+      "videodrome-1983"
+     ]
+    },
+    {
+     "titre": "Quand on y croit trop",
+     "aide": "Ceux qui voient des signes partout",
+     "ids": [
+      "under-the-silver-lake-2018",
+      "room-237-2012",
+      "bug-2006",
+      "eddington-2025",
+      "bugonia-2025",
+      "un-homme-d-exception-2001"
+     ]
+    }
+   ],
+   "films": [
+    {
+     "id": "souvenirs-du-futur-1970",
+     "t": "Souvenirs du futur",
+     "y": 1970,
+     "d": "Harald Reinl",
+     "r": "Le film qui a lancé l'idée des « anciens astronautes » bâtisseurs de pyramides."
+    },
+    {
+     "id": "2001-l-odyssee-de-l-espace-1968",
+     "t": "2001 : l'Odyssée de l'espace",
+     "y": 1968,
+     "d": "Stanley Kubrick",
+     "r": "Un monolithe noir enterré sur la Lune : quelqu'un a guidé l'humanité depuis la préhistoire."
+    },
+    {
+     "id": "la-montagne-sacree-1973",
+     "t": "La Montagne sacrée",
+     "y": 1973,
+     "d": "Alejandro Jodorowsky",
+     "r": "Neuf puissants guidés par un alchimiste vers une montagne sacrée : ésotérisme, pyramides et symboles."
+    },
+    {
+     "id": "pi-1998",
+     "t": "Pi",
+     "y": 1998,
+     "d": "Darren Aronofsky",
+     "r": "Un mathématicien cherche le nombre caché derrière la Bourse et la Torah ; spirales, symboles et sectes à ses trousses."
+    },
+    {
+     "id": "rencontres-du-troisieme-type-1977",
+     "t": "Rencontres du troisième type",
+     "y": 1977,
+     "d": "Steven Spielberg",
+     "r": "L'armée invente une fausse catastrophe pour cacher un atterrissage, et un homme obsédé force le barrage."
+    },
+    {
+     "id": "invasion-los-angeles-1988",
+     "t": "Invasion Los Angeles",
+     "y": 1988,
+     "d": "John Carpenter",
+     "r": "Des lunettes de soleil révèlent que les riches sont des extraterrestres et que les pubs disent « OBÉIS »."
+    },
+    {
+     "id": "l-invasion-des-profanateurs-de-sepultures-1956",
+     "t": "L'Invasion des profanateurs de sépultures",
+     "y": 1956,
+     "d": "Don Siegel",
+     "r": "La version d'origine : une petite ville remplacée par des copies, en pleine peur du communisme."
+    },
+    {
+     "id": "l-invasion-des-profanateurs-1978",
+     "t": "L'Invasion des profanateurs",
+     "y": 1978,
+     "d": "Philip Kaufman",
+     "r": "Les voisins sont remplacés par des copies venues de l'espace ; la fin la plus glaçante du genre."
+    },
+    {
+     "id": "the-vast-of-night-2019",
+     "t": "The Vast of Night",
+     "y": 2019,
+     "d": "Andrew Patterson",
+     "r": "Un son étrange à la radio, une petite ville des années 1950, presque tout passe par les voix."
+    },
+    {
+     "id": "nope-2022",
+     "t": "Nope",
+     "y": 2022,
+     "d": "Jordan Peele",
+     "r": "Un nuage immobile au-dessus d'un ranch, et l'obsession d'obtenir enfin l'image de l'ovni."
+    },
+    {
+     "id": "x-files-episode-eve-1993",
+     "t": "X-Files, épisode « Eve »",
+     "y": 1993,
+     "d": "Série de Chris Carter",
+     "r": "Mulder et Scully face à des fillettes jumelles nées d'un programme secret du gouvernement."
+    },
+    {
+     "id": "bugonia-2025",
+     "t": "Bugonia",
+     "y": 2025,
+     "d": "Yórgos Lánthimos",
+     "r": "Deux cousins enlèvent la patronne d'un laboratoire, persuadés qu'elle est une extraterrestre. Et s'ils avaient raison ?"
+    },
+    {
+     "id": "jfk-1991",
+     "t": "JFK",
+     "y": 1991,
+     "d": "Oliver Stone",
+     "r": "Le procureur Jim Garrison refait l'enquête sur l'assassinat de Kennedy ; un montage vertigineux d'archives et de fiction."
+    },
+    {
+     "id": "a-cause-d-un-assassinat-1974",
+     "t": "À cause d'un assassinat",
+     "y": 1974,
+     "d": "Alan J. Pakula",
+     "r": "Un journaliste découvre une entreprise qui recrute des tueurs politiques ; la paranoïa des années 1970."
+    },
+    {
+     "id": "les-trois-jours-du-condor-1975",
+     "t": "Les Trois Jours du Condor",
+     "y": 1975,
+     "d": "Sydney Pollack",
+     "r": "Un lecteur de la CIA, seul survivant, traqué par sa propre agence."
+    },
+    {
+     "id": "i-comme-icare-1979",
+     "t": "I… comme Icare",
+     "y": 1979,
+     "d": "Henri Verneuil",
+     "r": "Yves Montand refait l'enquête sur un assassinat présidentiel calqué sur celui de Kennedy."
+    },
+    {
+     "id": "conversation-secrete-1974",
+     "t": "Conversation secrète",
+     "y": 1974,
+     "d": "Francis Ford Coppola",
+     "r": "Un spécialiste des écoutes croit entendre un projet de meurtre et finit par démonter son propre appartement."
+    },
+    {
+     "id": "blow-out-1981",
+     "t": "Blow Out",
+     "y": 1981,
+     "d": "Brian De Palma",
+     "r": "Un ingénieur du son enregistre par hasard la preuve qu'un accident était un assassinat politique."
+    },
+    {
+     "id": "capricorn-one-1977",
+     "t": "Capricorn One",
+     "y": 1977,
+     "d": "Peter Hyams",
+     "r": "La NASA truque un voyage sur Mars en studio ; le film a nourri la rumeur des alunissages truqués."
+    },
+    {
+     "id": "operation-lune-2002",
+     "t": "Opération Lune",
+     "y": 2002,
+     "d": "William Karel",
+     "r": "Faux documentaire : Kubrick aurait filmé l'alunissage en studio. Une leçon sur la manipulation."
+    },
+    {
+     "id": "les-hommes-du-president-1976",
+     "t": "Les Hommes du président",
+     "y": 1976,
+     "d": "Alan J. Pakula",
+     "r": "Le vrai complot du Watergate, dévoilé par deux journalistes du Washington Post."
+    },
+    {
+     "id": "citizenfour-2014",
+     "t": "Citizenfour",
+     "y": 2014,
+     "d": "Laura Poitras",
+     "r": "Edward Snowden révèle la surveillance de masse, filmé dans une chambre d'hôtel de Hong Kong : un complot bien réel."
+    },
+    {
+     "id": "eyes-wide-shut-1999",
+     "t": "Eyes Wide Shut",
+     "y": 1999,
+     "d": "Stanley Kubrick",
+     "r": "Un médecin s'introduit dans une soirée masquée d'une société secrète ; la peur d'en avoir trop vu."
+    },
+    {
+     "id": "rosemary-s-baby-1968",
+     "t": "Rosemary's Baby",
+     "y": 1968,
+     "d": "Roman Polanski",
+     "r": "Les voisins si gentils sont une secte satanique, et le bébé de Rosemary leur était promis."
+    },
+    {
+     "id": "the-wicker-man-1973",
+     "t": "The Wicker Man",
+     "y": 1973,
+     "d": "Robin Hardy",
+     "r": "Un village entier ment avec le sourire, entre chansons folk et rites païens."
+    },
+    {
+     "id": "kill-list-2011",
+     "t": "Kill List",
+     "y": 2011,
+     "d": "Ben Wheatley",
+     "r": "Un contrat de tueur à gages qui mène à une secte masquée ; une fin terrible."
+    },
+    {
+     "id": "la-neuvieme-porte-1999",
+     "t": "La Neuvième Porte",
+     "y": 1999,
+     "d": "Roman Polanski",
+     "r": "Un chasseur de livres rares sur la piste d'un grimoire et d'une société occulte."
+    },
+    {
+     "id": "the-master-2012",
+     "t": "The Master",
+     "y": 2012,
+     "d": "Paul Thomas Anderson",
+     "r": "Un vétéran perdu tombe sous l'emprise d'un gourou et de sa « Cause », inspirée des débuts de la scientologie."
+    },
+    {
+     "id": "the-truman-show-1998",
+     "t": "The Truman Show",
+     "y": 1998,
+     "d": "Peter Weir",
+     "r": "Toute sa vie est une émission de télévision et toute sa ville un décor ; Truman finit par toucher le mur du ciel."
+    },
+    {
+     "id": "le-monde-sur-le-fil-1973",
+     "t": "Le Monde sur le fil (téléfilm)",
+     "y": 1973,
+     "d": "Rainer Werner Fassbinder",
+     "r": "Et si notre monde était une simulation ? Fassbinder y pensait 26 ans avant Matrix."
+    },
+    {
+     "id": "le-prisonnier-serie-1967",
+     "t": "Le Prisonnier (série)",
+     "y": 1967,
+     "d": "Patrick McGoohan",
+     "r": "Un agent prisonnier d'un village balnéaire où tout le monde surveille tout le monde."
+    },
+    {
+     "id": "dark-city-1998",
+     "t": "Dark City",
+     "y": 1998,
+     "d": "Alex Proyas",
+     "r": "Une ville où il fait toujours nuit, que des êtres étranges remodèlent chaque soir pendant que tout le monde dort."
+    },
+    {
+     "id": "matrix-1999",
+     "t": "Matrix",
+     "y": 1999,
+     "d": "Lana et Lilly Wachowski",
+     "r": "Le monde n'est qu'une simulation qui endort l'humanité : la pilule rouge ou la pilule bleue."
+    },
+    {
+     "id": "brazil-1985",
+     "t": "Brazil",
+     "y": 1985,
+     "d": "Terry Gilliam",
+     "r": "Une bureaucratie folle, une erreur de frappe, et un employé rêveur broyé par le système."
+    },
+    {
+     "id": "videodrome-1983",
+     "t": "Vidéodrome",
+     "y": 1983,
+     "d": "David Cronenberg",
+     "r": "Une émission pirate qui transforme ceux qui la regardent ; derrière, un complot pour contrôler le public."
+    },
+    {
+     "id": "under-the-silver-lake-2018",
+     "t": "Under the Silver Lake",
+     "y": 2018,
+     "d": "David Robert Mitchell",
+     "r": "Un jeune homme désœuvré cherche des messages cachés dans les chansons pop et les boîtes de céréales de Los Angeles."
+    },
+    {
+     "id": "room-237-2012",
+     "t": "Room 237",
+     "y": 2012,
+     "d": "Rodney Ascher",
+     "r": "Des passionnés décortiquent Shining : génocide amérindien, Minotaure, alunissage truqué. Jusqu'où peut aller une interprétation ?"
+    },
+    {
+     "id": "bug-2006",
+     "t": "Bug",
+     "y": 2006,
+     "d": "William Friedkin",
+     "r": "Une serveuse et un ancien soldat se persuadent que l'armée leur a implanté des insectes sous la peau ; folie à deux."
+    },
+    {
+     "id": "eddington-2025",
+     "t": "Eddington",
+     "y": 2025,
+     "d": "Ari Aster",
+     "r": "Une petite ville du Nouveau-Mexique se déchire pendant le Covid, entre gourous complotistes et vidéos virales."
+    },
+    {
+     "id": "un-homme-d-exception-2001",
+     "t": "Un homme d'exception",
+     "y": 2001,
+     "d": "Ron Howard",
+     "r": "Le mathématicien John Nash croit décoder des messages soviétiques secrets dans les journaux."
+    }
+   ]
   }
  },
  "fiches": {
@@ -28042,6 +28409,307 @@
    ],
    "fiab": "à vérifier",
    "mv": "hollywood-contemporain"
+  },
+  "souvenirs-du-futur-1970": {
+   "p": "Adapté du best-seller d'Erich von Däniken : des pyramides d'Égypte aux lignes de Nazca et aux statues de l'île de Pâques, le film affirme que des visiteurs venus d'ailleurs ont aidé les civilisations anciennes. Un document d'époque qui a lancé la mode des « anciens astronautes » : à regarder comme la naissance d'une théorie, pas comme une vérité.",
+   "c": "Allemagne de l'Ouest",
+   "k": [
+    "documentaire",
+    "sf",
+    "retro"
+   ],
+   "mv": "doc-essai",
+   "e": 5,
+   "duree": 83,
+   "av": [],
+   "th": [
+    "anciens astronautes",
+    "pyramides",
+    "pseudo-science"
+   ],
+   "fiab": "à vérifier"
+  },
+  "rencontres-du-troisieme-type-1977": {
+   "p": "Roy Neary (Richard Dreyfuss), électricien de l'Indiana, croise un ovni et devient obsédé par une forme de montagne qu'il sculpte jusque dans sa purée. L'armée invente une fausse catastrophe chimique pour vider la région de Devils Tower, où les extraterrestres doivent se poser. Il force le barrage et finit par partir avec eux, sur un dialogue de cinq notes de musique.",
+   "c": "États-Unis, Royaume-Uni",
+   "k": [
+    "sf",
+    "musique",
+    "obsession"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 8,
+   "duree": 135,
+   "av": [],
+   "th": [
+    "ovnis",
+    "obsession",
+    "secret militaire"
+   ],
+   "fiab": "à vérifier"
+  },
+  "l-invasion-des-profanateurs-1978": {
+   "p": "À San Francisco, des fleurs venues de l'espace font pousser, pendant le sommeil, des copies sans émotion des habitants. Matthew (Donald Sutherland) et Elizabeth tentent de fuir une ville qui se remplit de doubles et où plus personne ne croit personne. Dernière image glaçante : Matthew pointe le doigt et pousse le cri des envahisseurs, il a été remplacé.",
+   "c": "États-Unis",
+   "k": [
+    "paranoia",
+    "horreur",
+    "sf",
+    "malaise"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 7,
+   "duree": 115,
+   "av": [],
+   "th": [
+    "doubles",
+    "conformisme",
+    "paranoïa"
+   ],
+   "fiab": "à vérifier"
+  },
+  "invasion-los-angeles-1988": {
+   "p": "Un ouvrier sans travail (Roddy Piper) trouve des lunettes de soleil qui montrent la vérité : les riches sont des extraterrestres, et les affiches disent en fait OBÉIS, CONSOMME, DORS. Une satire de l'Amérique de Reagan, avec une bagarre de rue de cinq minutes devenue culte. Il détruit l'émetteur qui cache tout et meurt en faisant un doigt d'honneur aux envahisseurs.",
+   "c": "États-Unis",
+   "k": [
+    "sf",
+    "societe",
+    "humour-absurde",
+    "violence"
+   ],
+   "mv": "independant-americain",
+   "e": 7,
+   "duree": 93,
+   "av": [
+    "violence explicite"
+   ],
+   "th": [
+    "consommation",
+    "propagande",
+    "inégalités"
+   ],
+   "fiab": "à vérifier"
+  },
+  "the-vast-of-night-2019": {
+   "p": "Nouveau-Mexique, années 1950, un soir de match de basket. Une jeune standardiste et un animateur radio captent un son étrange ; au téléphone, un ancien militaire raconte avoir travaillé sur un projet secret. De longs plans-séquences glissent à travers la petite ville et presque tout passe par les voix. À la fin, une lumière dans le ciel les emporte.",
+   "c": "États-Unis",
+   "k": [
+    "sf",
+    "retro",
+    "suspense",
+    "contemplatif"
+   ],
+   "mv": "independant-americain",
+   "e": 7,
+   "duree": 89,
+   "av": [],
+   "th": [
+    "radio",
+    "années 1950",
+    "secret militaire"
+   ],
+   "fiab": "à vérifier"
+  },
+  "nope-2022": {
+   "p": "OJ et Em, dresseurs de chevaux pour le cinéma, remarquent un nuage qui ne bouge pas au-dessus de leur ranch : c'est une créature qui avale tout ce qui la regarde. Ils veulent la filmer pour devenir riches. Un film sur le spectacle et l'obsession de l'image impossible ; Em finit par la photographier avec un vieil appareil de fête foraine.",
+   "c": "États-Unis",
+   "k": [
+    "sf",
+    "horreur",
+    "humour-absurde",
+    "suspense"
+   ],
+   "mv": "hollywood-contemporain",
+   "e": 7,
+   "duree": 130,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "spectacle",
+    "image",
+    "animaux"
+   ],
+   "fiab": "à vérifier"
+  },
+  "les-trois-jours-du-condor-1975": {
+   "p": "Joe Turner (Robert Redford) lit des romans pour la CIA. Il revient de déjeuner : tous ses collègues ont été abattus. Traqué par sa propre agence, il découvre un plan secret pour s'emparer des champs de pétrole du Moyen-Orient. À la fin, il a tout donné au New York Times, mais un agent lui demande : « Et s'ils ne publient pas ? »",
+   "c": "États-Unis, Italie",
+   "k": [
+    "paranoia",
+    "suspense",
+    "societe"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 8,
+   "duree": 117,
+   "av": [],
+   "th": [
+    "CIA",
+    "pétrole",
+    "presse"
+   ],
+   "fiab": "à vérifier"
+  },
+  "capricorn-one-1977": {
+   "p": "La NASA ne peut pas envoyer d'hommes sur Mars : elle filme le voyage dans un studio, devant le monde entier. Quand la capsule se désintègre au retour, les trois astronautes, officiellement morts, doivent disparaître pour de bon. Ils s'évadent dans le désert pendant qu'un journaliste (Elliott Gould) remonte la piste. Le film a nourri la rumeur des alunissages truqués.",
+   "c": "États-Unis, Royaume-Uni",
+   "k": [
+    "suspense",
+    "paranoia",
+    "sf"
+   ],
+   "mv": "nouvel-hollywood",
+   "e": 6,
+   "duree": 123,
+   "av": [],
+   "th": [
+    "NASA",
+    "médias",
+    "mensonge d'État"
+   ],
+   "fiab": "à vérifier"
+  },
+  "i-comme-icare-1979": {
+   "p": "Le président d'un pays imaginaire est assassiné. Le procureur Volney (Yves Montand) refuse les conclusions de la commission d'enquête et reprend tout, dans une histoire inspirée de l'assassinat de Kennedy. Au passage, le film reconstitue l'expérience de Milgram sur l'obéissance. Volney trouve la vérité et se fait abattre juste après.",
+   "c": "France",
+   "k": [
+    "suspense",
+    "societe",
+    "paranoia"
+   ],
+   "mv": "auteur-francais",
+   "e": 7,
+   "duree": 120,
+   "av": [],
+   "th": [
+    "assassinat politique",
+    "obéissance",
+    "enquête"
+   ],
+   "fiab": "à vérifier"
+  },
+  "le-monde-sur-le-fil-1973": {
+   "p": "Un institut a créé un ordinateur qui simule une ville entière, peuplée d'« unités » qui se croient humaines. Après la mort mystérieuse de son patron, l'ingénieur Fred Stiller comprend que son propre monde est lui aussi une simulation. Miroirs, reflets, décors des années 1970 : un ancêtre de Matrix en deux parties. Il finit par passer dans le monde « réel ».",
+   "c": "Allemagne de l'Ouest",
+   "k": [
+    "sf",
+    "couleurs",
+    "reve",
+    "paranoia"
+   ],
+   "mv": "nouveau-cinema-allemand",
+   "e": 8,
+   "duree": 205,
+   "av": [],
+   "th": [
+    "simulation",
+    "réalité",
+    "identité"
+   ],
+   "fiab": "à vérifier"
+  },
+  "le-prisonnier-serie-1967": {
+   "p": "Un agent secret démissionne et se réveille au Village, une station balnéaire charmante dont on ne peut pas sortir. On ne l'appelle plus que « Numéro 6 », et à chaque épisode un nouveau « Numéro 2 » veut savoir pourquoi il a démissionné ; une grosse boule blanche, le Rôdeur, ramène les fuyards. Le dernier épisode, délirant, révèle que Numéro 1 porte son propre visage. 17 épisodes.",
+   "c": "Royaume-Uni",
+   "k": [
+    "serie",
+    "absurde",
+    "paranoia",
+    "couleurs"
+   ],
+   "mv": "series",
+   "e": 8,
+   "duree": 50,
+   "av": [],
+   "th": [
+    "surveillance",
+    "liberté",
+    "identité"
+   ],
+   "fiab": "à vérifier",
+   "duree_episode": true
+  },
+  "the-wicker-man-1973": {
+   "p": "Un policier très chrétien (Edward Woodward) vient chercher une fillette disparue sur une île écossaise où tout le village suit un culte païen, entre chansons folk et rites de fertilité. Tout le monde lui ment avec le sourire. Le piège se referme : c'est lui le sacrifice, brûlé vif dans un homme d'osier géant.",
+   "c": "Royaume-Uni",
+   "k": [
+    "horreur",
+    "musique",
+    "malaise"
+   ],
+   "mv": "auteur-europeen",
+   "e": 7,
+   "duree": 93,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "culte païen",
+    "île",
+    "sacrifice"
+   ],
+   "fiab": "à vérifier"
+  },
+  "kill-list-2011": {
+   "p": "Jay, ancien soldat devenu tueur à gages, accepte une liste de trois cibles ; les victimes le remercient avant de mourir. La mission le mène jusqu'à une secte en tuniques et masques de paille. Dans la dernière scène, il doit se battre au couteau contre un « bossu » : c'était sa femme, qui portait leur fils.",
+   "c": "Royaume-Uni",
+   "k": [
+    "violence",
+    "horreur",
+    "malaise"
+   ],
+   "mv": "auteur-europeen",
+   "e": 6,
+   "duree": 90,
+   "av": [
+    "violence explicite",
+    "images choquantes"
+   ],
+   "th": [
+    "secte",
+    "contrat",
+    "culpabilité"
+   ],
+   "fiab": "à vérifier"
+  },
+  "la-neuvieme-porte-1999": {
+   "p": "Dean Corso (Johnny Depp), chasseur de livres rares sans scrupules, doit comparer les trois exemplaires connus d'un livre qui permettrait d'invoquer le Diable. Gravures qui diffèrent d'un livre à l'autre, bibliophiles assassinés, une mystérieuse jeune femme qui le protège. Il franchit la neuvième porte, dans une lumière blanche.",
+   "c": "Espagne, France",
+   "k": [
+    "suspense",
+    "retro",
+    "reve"
+   ],
+   "mv": "auteur-europeen",
+   "e": 6,
+   "duree": 132,
+   "av": [],
+   "th": [
+    "livres anciens",
+    "diable",
+    "occultisme"
+   ],
+   "fiab": "à vérifier"
+  },
+  "operation-lune-2002": {
+   "p": "Un faux documentaire : Henry Kissinger, Donald Rumsfeld ou la veuve de Stanley Kubrick racontent le plus sérieusement du monde que Kubrick aurait filmé en studio les premiers pas sur la Lune. Tout est monté à partir de vraies interviews détournées, avec des indices de plus en plus absurdes. Le générique de fin révèle la farce : une leçon sur la manipulation des images.",
+   "c": "France",
+   "k": [
+    "documentaire",
+    "humour-absurde",
+    "histoire"
+   ],
+   "mv": "doc-essai",
+   "e": 8,
+   "duree": 52,
+   "av": [],
+   "th": [
+    "faux documentaire",
+    "manipulation",
+    "Kubrick"
+   ],
+   "fiab": "à vérifier"
   }
  },
  "familles": {
@@ -29126,7 +29794,22 @@
   "captain-fantastic-2016": "20035",
   "wild-wild-country-serie-2018": "02260",
   "la-commune-paris-1871-2000": "30061",
-  "lincoln-2012": "10063"
+  "lincoln-2012": "10063",
+  "souvenirs-du-futur-1970": "31150",
+  "rencontres-du-troisieme-type-1977": "40213",
+  "l-invasion-des-profanateurs-1978": "13420",
+  "invasion-los-angeles-1988": "21250",
+  "the-vast-of-night-2019": "41320",
+  "nope-2022": "23410",
+  "les-trois-jours-du-condor-1975": "13420",
+  "capricorn-one-1977": "12430",
+  "i-comme-icare-1979": "13240",
+  "le-monde-sur-le-fil-1973": "41050",
+  "le-prisonnier-serie-1967": "31150",
+  "the-wicker-man-1973": "24310",
+  "kill-list-2011": "16300",
+  "la-neuvieme-porte-1999": "33310",
+  "operation-lune-2002": "10171"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }

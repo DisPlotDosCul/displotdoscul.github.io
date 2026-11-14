@@ -331,3 +331,27 @@ dans « Musique choisie, pas composée », Mr. Robot dans « Identités multiple
   Daughters of the Dust, Mon voisin Totoro, L'Éclipse, Pierrot le fou, Les Fraises sauvages.
 - Palmes d'or et Lions d'or absents du catalogue.
 - Cinéma africain, latino-américain et d'Asie du Sud-Est, peu représentés.
+
+## 14 novembre 2026 : thème « Théories du complot »
+
+40 films en 6 sous-catégories : Pyramides et anciens astronautes, Extraterrestres cachés, Complots d'État et
+mensonges officiels, Sociétés secrètes et sectes, Le monde est un décor, Quand on y croit trop.
+25 films étaient déjà au catalogue ; 15 ajoutés, identifiants, durées, pays et cinéastes vérifiés sur TMDB :
+
+| Film | Année | Cinéaste | Durée |
+|---|---|---|---|
+| Souvenirs du futur | 1970 | Harald Reinl | 83 min |
+| Rencontres du troisième type | 1977 | Steven Spielberg | 135 min |
+| L'Invasion des profanateurs | 1978 | Philip Kaufman | 115 min |
+| Invasion Los Angeles | 1988 | John Carpenter | 93 min |
+| The Vast of Night | 2019 | Andrew Patterson | 89 min |
+| Nope | 2022 | Jordan Peele | 130 min |
+| Les Trois Jours du Condor | 1975 | Sydney Pollack | 117 min |
+| Capricorn One | 1977 | Peter Hyams | 123 min |
+| I… comme Icare | 1979 | Henri Verneuil | 120 min |
+| Le Monde sur le fil (téléfilm) | 1973 | Rainer Werner Fassbinder | 205 min |
+| Le Prisonnier (série) | 1967 | Patrick McGoohan | 50 min par épisode |
+| The Wicker Man | 1973 | Robin Hardy | 93 min |
+| Kill List | 2011 | Ben Wheatley | 90 min |
+| La Neuvième Porte | 1999 | Roman Polanski | 132 min |
+| Opération Lune | 2002 | William Karel | 52 min |
