@@ -769,7 +769,7 @@ body.vide .hint-q{display:block;}
 .sub{grid-template-columns:30px minmax(0,1fr) auto;gap:7px;}
 .sub .em{width:30px;height:30px;}
 .sub .emo{font-size:17px;}
-.sub .sl{-webkit-line-clamp:2;line-height:1.2;}
+.sub .sl{-webkit-line-clamp:3;line-height:1.2;}
 .sub.wide .sl{-webkit-line-clamp:3;}
 .sub .sc{justify-self:end;font:600 12.5px/1 var(--font);color:var(--muted);}
 .panel .mv-sub,.panel .env-sub{padding:10px;gap:8px;border-radius:18px;}
@@ -1391,7 +1391,7 @@ html.sky-on #rsheet{z-index:50;}
 /* Sous-catégories ouvertes juste sous la liste touchée, puis leurs sous-catégories juste dessous. */
 .sx-open{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:7px;padding:10px;margin:-2px 0 4px;border-radius:8px;background:var(--k-s-FFFFFF59);border:1px dashed var(--fc,var(--line));}
 .sx-open .sx-in{flex-basis:100%;display:flex;flex-wrap:wrap;gap:7px;padding:8px 0 4px 14px;border-left:3px solid var(--fc,var(--line));}
-.sx-c{display:inline-flex;align-items:center;gap:6px;font:600 14px/1.2 var(--font);color:var(--ink);background:var(--paper);border:1px solid var(--fc,var(--line));border-bottom-width:3px;border-radius:6px;padding:8px 11px;cursor:pointer;text-align:left;}
+.sx-c{display:inline-flex;align-items:center;gap:6px;font:600 14px/1.2 var(--font);color:var(--ink);background:var(--paper);border:1px solid var(--fc,var(--line));border-radius:6px;padding:8px 11px;cursor:pointer;text-align:left;}
 .sx-c[aria-expanded="true"]{background:var(--fb,var(--paper));}
 .sx-c .sc{font-weight:500;color:var(--muted);}
 .sx-c.sx-all{font-weight:700;}
@@ -1404,7 +1404,7 @@ html.sky-on #rsheet{z-index:50;}
 /* Pied de page : partager le Ciné-club, écrire à l'équipe. */
 .ccfoot{display:grid;gap:10px;margin:28px 0 8px;padding-top:16px;border-top:1px solid var(--line);}
 @media (min-width:640px){.ccfoot{grid-template-columns:1fr 1fr;}}
-.ccf-b{display:grid;gap:3px;text-align:left;padding:12px 14px;font:400 13.5px/1.3 var(--font);color:var(--muted);background:var(--paper);border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;cursor:pointer;}
+.ccf-b{display:grid;gap:3px;text-align:left;padding:12px 14px;font:400 13.5px/1.3 var(--font);color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:8px;cursor:pointer;}
 .ccf-b b{font-size:15.5px;color:var(--ink);}
 /* Autres façons de choisir un film : rangées derrière un seul bouton, chacune expliquée en une phrase. */
 .ccmore{flex-basis:100%;display:grid;gap:8px;padding:10px;border:1px dashed var(--line);border-radius:8px;}
@@ -1415,7 +1415,21 @@ html.sky-on #rsheet{z-index:50;}
 /* Boutons moins « appli d'IA » : plus de pilules aux contours fins, des coins à peine arrondis
    et un bord du bas plus marqué, comme une touche ou un ticket. */
 .addq-b,.pl-open,.chip,.sub,.allb,.shb,.dr-back,.dr-clear,.tp-x,.mvx,.lst,.plb,.fsh,.shopt,.av-b,.padd,.pdel,.plf-ok,.plf-no,.cmb,.idb,.dice,.fbtn,.seg,.subp select,.totop,.aamenu button,.mini,.minis.cats .mini .sq,.c-who,.c-nom,.c-in,.np-in{border-radius:6px!important;}
-.chip,.sub,.allb,.shb,.plf-no,.shopt,.av-b,.mvx,.tp-x,.dr-back,.fbtn,.mini,.minis.cats .mini .sq,.idb{border-width:1px!important;border-bottom-width:3px!important;}
+.chip,.sub,.allb,.shb,.plf-no,.shopt,.av-b,.mvx,.tp-x,.dr-back,.fbtn,.mini,.minis.cats .mini .sq,.idb{border-width:1px!important;}
+/* 14 novembre : bords réguliers sur les quatre côtés (le bord du bas épais faisait brouillon) ; le relief vient
+   d'une ombre douce, la même partout, et d'un léger soulèvement au survol. */
+.chip,.sub,.allb,.shb,.plf-no,.shopt,.av-b,.mvx,.tp-x,.dr-back,.fbtn,.mini,.minis.cats .mini .sq,.idb,.sx-c,.ccf-b,.feedcard{
+  box-shadow:0 1px 2px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.05);transition:box-shadow .15s ease,transform .15s ease,border-color .15s ease;}
+@media (hover:hover){.chip:hover,.sub:hover,.allb:hover,.mini:hover,.sx-c:hover,.ccf-b:hover,.feedcard:hover{box-shadow:0 2px 4px rgba(0,0,0,.1),0 6px 14px rgba(0,0,0,.08);transform:translateY(-1px);}}
+@media (prefers-reduced-motion:reduce){.chip:hover,.sub:hover,.allb:hover,.mini:hover,.sx-c:hover,.ccf-b:hover,.feedcard:hover{transform:none;}}
+/* Harmonie générale (14 novembre) : un seul arrondi pour tous les boutons, des bords pleins et fins ;
+   le pointillé est gardé seulement pour les cadres qui regroupent (sous-catégories, nuances, séparateurs). */
+.addq-b,.pl-open,.chip,.sub,.allb,.shb,.dr-back,.dr-clear,.tp-x,.mvx,.lst,.plb,.fsh,.shopt,.av-b,.padd,.pdel,.plf-ok,.plf-no,.cmb,.idb,.dice,.fbtn,.seg,.totop,.aamenu button,.mini,.minis.cats .mini .sq,.sx-c,.ccf-b,.feedcard,.more,.nt-clear,.com-back{border-radius:8px!important;}
+.chip.env.nuance,#envies .chip.env.nuance,.chip.vchip,.sub.vchip,.row-s.vchip,.lst,.plb,.fsh,.cmb,.addq-b,.pl-open,.more,.nt-clear,.dr-images button,.aamenu .aa-intro,.plc .chip.autre-p{border-style:solid!important;border-width:1px!important;}
+.chip.env.nuance,.chip.vchip,.sub.vchip,.more,.nt-clear,.aamenu .aa-intro{border-color:var(--line)!important;}
+.idb,.dice{border-style:solid!important;}
+.sub .sl{-webkit-hyphens:auto;hyphens:auto;}
+.bar .ccbar #ccMbr[hidden]~#ccMe{grid-column:1/-1!important;}
 .chip:active,.sub:active,.allb:active,.plf-no:active,.mini:active,.sx-c:active,.ccf-b:active{transform:translateY(1px);}
 
 /* Avis de recherche (communauté) */
@@ -1432,7 +1446,7 @@ html.sky-on #rsheet{z-index:50;}
 .com-top b{font:600 20px/1.2 var(--font-title,var(--font));}
 .com-back{height:40px;padding:0 14px;display:inline-flex;align-items:center;gap:6px;font:700 15px/1 var(--font);color:var(--k-s-FFFFFF);background:var(--k-s-8A4A12);border:0;border-radius:8px;cursor:pointer;}
 .com-back span{font-size:20px;line-height:1;}
-.feedcard{display:flex;align-items:center;gap:12px;width:100%;margin:10px 0 2px;padding:11px 14px;text-align:left;font:400 13.5px/1.3 var(--font);color:var(--muted);background:var(--paper);border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;cursor:pointer;}
+.feedcard{display:flex;align-items:center;gap:12px;width:100%;margin:10px 0 2px;padding:11px 14px;text-align:left;font:400 13.5px/1.3 var(--font);color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:8px;cursor:pointer;}
 .feedcard[hidden]{display:none;}
 .feedcard b{display:block;font-size:15.5px;color:var(--ink);}
 .feedcard .fc-ic{font-size:24px;line-height:1;}
@@ -4314,6 +4328,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     });
   }
   new MutationObserver(function(){ if (TOC_FIT) { TOC_FIT = false; fitSubs(); } }).observe(document.getElementById("toc"), { childList:true });
+  // Les noms sont mesurés avec la vraie police : on recommence une fois les polices chargées (sinon des cases s'élargissaient pour rien).
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ try { renderToc(); } catch (e) {} });
   var FIT_T = null, FIT_W = window.innerWidth;
   // Sur téléphone, le clavier qui s'ouvre change seulement la hauteur de l'écran : on ne redessine pas,
   // sinon le champ touché est remplacé et le clavier se referme aussitôt.
@@ -8270,7 +8286,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   }, true);
 
   // Contours en tirets lumineux : ils glissent parfois d'une fraction de pixel, s'arrêtent, repartent dans l'autre sens. On ne sait jamais s'ils bougent.
-  var ANT_SEL = ".idb, .dice, #ccMe, .panel .env-sub", NS = "http://www.w3.org/2000/svg", ANTS_L = [];
+  var ANT_SEL = ".idb, .panel .env-sub", NS = "http://www.w3.org/2000/svg", ANTS_L = [];
   function antsSetup(){
     if (!on()) return;
     document.querySelectorAll(ANT_SEL).forEach(function(el){
