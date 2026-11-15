@@ -1300,7 +1300,7 @@ body:not(.vide) .minis.cats .mini .ic svg{width:20px;height:20px;}
 body:not(.vide) .minis.cats .mini .ml{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 body:not(.vide) .minis.cats .mini .md{display:none;}
 body:not(.vide) #toc > .hint{display:none;}
-body:not(.vide) #toc .idb{display:none;}
+body:not(.vide) #toc .idb,body:not(.vide) #ideeW .idb{display:none;}
 body:not(.vide) .toc{margin-top:8px;}
 #filters{flex-wrap:wrap;}
 .ch-g button{min-width:0;overflow:hidden;}
@@ -1442,9 +1442,19 @@ html.sky-on #rsheet{z-index:50;}
 /* 15 novembre : l'avancée des notes tout en haut, avec le mode Express à droite. */
 .topstats{display:grid;gap:6px;margin:0 0 14px;}
 .ts-row{display:flex;align-items:center;gap:10px;}
-.ts-row .stats{flex:1;min-width:0;}
-.ts-row #ccXp{flex:none;min-height:34px;padding:4px 12px;font-size:13px;}
+.ts-main{flex:1;min-width:0;display:grid;gap:6px;}
+.ts-row #ccXp{flex:none;min-height:36px;padding:4px 12px;font-size:13px;}
 .topstats .progress{height:5px;}
+@media (min-width:641px){
+  .ts-row{gap:16px;}
+  .ts-row #ccXp{min-height:46px;padding:8px 22px;font-size:16px;}
+  /* Communauté, Mon compte et Quoi de neuf au centre */
+  .bar .ccbar{justify-content:center;}
+}
+@media (max-width:640px){ header.top{margin-bottom:16px;} }
+/* Réglages : à la hauteur du titre, plus collé sous le bouton Express. */
+.topstats{margin-bottom:18px;}
+header.top .nuitb.aab{top:4px;}
 .ccmore-w #ccMoreB{min-width:min(100%,320px);justify-content:center;}
 .ccmore-w .ccmore{margin-top:4px;}
 @media (max-width:640px){
@@ -1630,8 +1640,8 @@ html.sky-on #rsheet{z-index:50;}
 
 <div class="wrap">
   <div class="topstats" id="topStats">
-    <div class="ts-row"><div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div></div>
-    <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+    <div class="ts-row"><div class="ts-main"><div class="stats"><span id="stats">Chargement…</span><span class="status" id="status"></span></div>
+    <div class="progress" aria-hidden="true"><i id="prog"></i></div></div></div>
   </div>
   <header class="top">
     <h1><span class="nvh">Ciné-club</span><span class="nlet" aria-hidden="true"><span class="nl">C</span><span class="nl">i</span><span class="nl">n</span><span class="nl">é</span><span class="nl">-</span><span class="nl">c</span><span class="nl">l</span><span class="nl">u</span><span class="nl">b</span></span></h1>
@@ -4296,7 +4306,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         (act ? '<span class="mdot" aria-hidden="true"></span>' : "") + '</button>';
     }).join("") + '</div>';
     var top = !f && !SHOW && !query ? '<p class="hint">Catégories</p>' : "";
-    if (!f) { el.innerHTML = top + minis + ideeBtn(); return; }
+    if (!f) { el.innerHTML = top + minis; ideeOut(true); return; }
+    ideeOut(false);
     var canRang = ROLE === "proprio" && !GUEST && !f.idees && CCA();
     if (f.idees) body = ideesHtml();
     else if (RANGER && canRang) body = rangerHtml(f, fams);
@@ -5411,6 +5422,15 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     return formUrl({ prenom:idClean(idPrenom(), 30), titre:"💡 " + t.l + " : " + nom, mot:films ? "Films : " + films : "" });
   }
   function idLink(){ var a = document.querySelector("#toc [data-idsend]"); if (a) a.href = ideeUrl(); }
+  // 15 novembre : la Boîte à idées est sous « Autres façons de choisir » (hors du sommaire, qui se redessine souvent).
+  function ideeOut(on){
+    var w = $("ideeW"); if (!w) { $("toc").insertAdjacentHTML("afterend", '<div id="ideeW"></div>'); w = $("ideeW"); var m = $("ccMoreW"); if (m) m.after(w); }
+    w.innerHTML = on ? ideeBtn() : "";
+  }
+  document.addEventListener("click", function(ev){
+    var t = ev.target.closest && ev.target.closest("#ideeW [data-tile]"); if (!t) return;
+    TAB = "idees"; renderToc(); $("toc").scrollIntoView({ block:"start", behavior:"smooth" });
+  });
   function ideeBtn(){
     var n = Object.keys(IDEES).length;
     return '<button type="button" class="idb" data-tile="idees" style="' + famStyle(IDEES_FAM) + '"><span class="ic">' + famIcon("idees") + '</span>' +
@@ -5490,7 +5510,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (ID_EDIT && TAB === "idees" && document.querySelector('#toc [data-idedit="' + CSS.escape(ID_EDIT) + '"] textarea, #toc form[data-idedit] input')) { ID_LATER = true; return; }
     ID_LATER = false;
     if (TAB === "idees") { var w = document.querySelector("#toc .idsw"); if (w) { w.innerHTML = ideesList(); return; } }
-    if (!TAB) { var b = document.querySelector("#toc .idb"); if (b) b.outerHTML = ideeBtn(); }
+    if (!TAB) ideeOut(true);
   }
   function idFocus(name){ var i = document.querySelector('#toc form[data-idform] [name="' + name + '"]'); if (i) i.focus(); }
   function idCheck(){
