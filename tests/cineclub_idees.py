@@ -136,7 +136,7 @@ def run():
             page.locator("#ccQuiz").click()
             assert page.locator("#qzPanel .qz-ok").is_visible() and page.locator('#qzPanel [data-qz="sombre"]').count() == 0
             fid = page.locator("#qzPanel [data-qzf]").first.get_attribute("data-qzf")
-            assert page.locator("#qzPanel [data-qzf]").count() == 40
+            assert page.locator("#qzPanel [data-qzf]").count() == 50  # Adoré, Bien, Bof, Pas aimé, Pas vu (15 novembre)
             page.locator(f'#qzPanel [data-qzf="{fid}"][data-v="pv"]').click()
             page.wait_for_function("id => (__fixture.profils['test-membre'].rep[id] || {}).etat === 'pas_vu'", arg=fid)
             page.locator('#qzPanel [data-qzmode="q2"]').click()
@@ -146,7 +146,7 @@ def run():
             page.locator("#qzPanel [data-qzclose]").click()
 
             # Boîte à idées : modifier une suggestion, ajouter un film.
-            page.locator("#toc .idb").first.click()
+            page.locator("#ideeW .idb").first.click()  # sous « Autres façons de choisir » (15 novembre)
             page.locator('#toc [data-idkind="amelio"]').click()
             page.locator("#toc form[data-idform] textarea").fill("Une idée à corriger")
             page.locator("#toc form[data-idform] button[type=submit]").click()
