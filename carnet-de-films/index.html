@@ -1084,6 +1084,8 @@ section[data-auto="classement"] .stars button{transform:scale(.88);}
 .xp-card h3{margin:6px 0 0;font:600 21px/1.2 var(--font);}
 .xp-meta{margin:0;font-size:13.5px;color:var(--muted);}
 .xp-btns{display:grid;gap:8px;}
+.xp-more{border:0;background:none;padding:0 2px;font-family:var(--font);font-size:inherit;font-weight:600;color:var(--vu-ink,var(--vu));text-decoration:underline;text-underline-offset:2px;cursor:pointer;}
+.xp-syn-full{max-height:40vh;overflow:auto;}
 .xp-seen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;}
 @media (max-width:420px){.xp-seen{grid-template-columns:repeat(2,minmax(0,1fr));}}
 .xp-b{min-height:54px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font:600 16px/1.1 var(--font);cursor:pointer;}
@@ -4931,6 +4933,13 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (t.length > 150) { t = t.slice(0, 150); t = t.slice(0, t.lastIndexOf(" ")).replace(/[,;:\s]+$/, "") + "…"; }
     return t;
   }
+  // « plus… » : le résumé entier, pour qui est intrigué (15 novembre).
+  function xpSynHtml(f){
+    var sh = xpSyn(f); if (!sh) return "";
+    var full = String(f.p || DESC[f.id] || "").replace(/\s+/g, " ").trim(), more = full.length > sh.replace(/…$/, "").length + 5;
+    if (XP.full === f.id && more) return '<p class="xp-syn xp-syn-full">' + esc(full) + ' <button type="button" class="xp-more" data-xpmore="1">moins</button></p>';
+    return '<p class="xp-syn">' + esc(sh) + (more ? ' <button type="button" class="xp-more" data-xpmore="1">plus…</button>' : "") + '</p>';
+  }
   function xpCardHtml(){
     var id = XP.q[XP.i], f = id && films[id];
     if (!f) return '<div class="xp-reward"><p class="xp-big">C\'est tout pour l\'instant !</p><p class="xp-note">Tu as répondu à tous les films proposés. Ta boussole est précise à ' + boussolePct(ratedCount()) + ' %.</p>' + xpRewardHtml().replace(/<button type="button" class="xp-main alt" data-xpgo="1">Continuer<\/button>/, "") + '</div>';
@@ -4938,7 +4947,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     var notes = ""; for (var n = 1; n <= 10; n++) notes += '<button type="button" data-xp="' + n + '" aria-label="Vu, noté ' + n + ' sur 10">' + n + '</button>';
     return '<div class="xp-card" data-film="' + esc(id) + '"><div class="xp-pw"><div class="xp-poster" data-id="' + esc(id) + '"><span>' + esc(f.t) + '</span></div>' +
       '<button type="button" class="xp-list" data-xplist="1" aria-pressed="' + !!LISTE[id] + '" aria-label="' + (LISTE[id] ? "Retirer de ma liste" : "Ajouter à ma liste") + '" title="' + (LISTE[id] ? "Dans ma liste" : "Ajouter à ma liste") + '">' + (LISTE[id] ? "✓" : "+") + '</button></div>' +
-      '<h3>' + esc(f.t) + '</h3><p class="xp-meta">' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</p>' + (xpSyn(f) ? '<p class="xp-syn">' + esc(xpSyn(f)) + '</p>' : "") + '</div>' +
+      '<h3>' + esc(f.t) + '</h3><p class="xp-meta">' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</p>' + xpSynHtml(f) + '</div>' +
       '<div class="xp-btns"><button type="button" class="xp-b no" data-xp="pv">Pas vu</button>' +
       '<div class="xp-seen"><button type="button" class="xp-b" data-xp="9" title="Près de 10">Adoré</button><button type="button" class="xp-b" data-xp="7">Bien</button><button type="button" class="xp-b" data-xp="5">Bof</button><button type="button" class="xp-b" data-xp="2" title="Près de 0">Pas aimé</button></div></div>' +
       '<div class="xp-small"><button type="button" data-xpundo="1"' + (XP.hist.length ? "" : " disabled") + '>← Annuler</button><button type="button" data-xp="vu">Vu, sans avis</button><button type="button" data-xp="ou">Vu mais oublié</button><button type="button" data-xpn="1" aria-expanded="' + !!XP.notes + '">Noter /10</button><button type="button" data-xp="skip">Passer</button></div>' +
@@ -4991,6 +5000,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (t.dataset.xpclose) { xpClose(); return; }
     if (t.dataset.xp) { xpAnswer(t.dataset.xp); return; }
     if (t.dataset.xpn) { XP.notes = !XP.notes; xpRender(); return; }
+    if (t.dataset.xpmore) { var cid = XP.q[XP.i]; XP.full = XP.full === cid ? "" : cid; xpRender(); return; }
     if (t.dataset.xplist) {
       var lid = XP.q[XP.i]; if (!lid) return;
       if (LISTE[lid]) delete LISTE[lid]; else LISTE[lid] = new Date().toISOString();
