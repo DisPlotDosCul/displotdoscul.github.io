@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Vaut le coût ? — le vrai prix d'un logement</title>
+<title>Le vrai prix du loyer — loyer + énergie + trajets</title>
 <meta name="description" content="Compare des logements à louer sur leur coût réel par mois : loyer, énergie estimée par le DPE, transport et temps de trajet. Gratuit, sans inscription.">
-<meta property="og:title" content="Vaut le coût ? — le vrai prix d'un logement">
+<meta property="og:title" content="Le vrai prix du loyer">
 <meta property="og:description" content="Loyer + énergie + transport + temps de trajet : quel logement coûte vraiment le moins cher ?">
 <meta name="theme-color" content="#2F6B62">
 <style>
@@ -68,7 +68,7 @@ footer ul{margin:4px 0;padding-left:18px}
 <body>
 <main>
 <header>
- <h1>Vaut le <span>coût</span> ?</h1>
+ <h1>Le vrai prix <span>du loyer</span></h1>
  <div class="bar">
   <button class="main" id="add">+ Logement</button>
   <button id="share">Partager</button>
@@ -221,7 +221,7 @@ $("#reset").onclick=()=>{if(!S.items.some(x=>num(x.loyer))||confirmReset()){uid=
 let armed=false;function confirmReset(){if(armed){armed=false;return true}armed=true;toast("Touche encore pour tout vider");setTimeout(()=>armed=false,2500);return false}
 $("#share").onclick=async()=>{
  const url=location.origin+location.pathname+"#"+btoa(unescape(encodeURIComponent(JSON.stringify(S))));
- try{if(navigator.share){await navigator.share({title:"Vaut le coût ?",url});return}}catch(e){if(e.name==="AbortError")return}
+ try{if(navigator.share){await navigator.share({title:"Le vrai prix du loyer",url});return}}catch(e){if(e.name==="AbortError")return}
  try{await navigator.clipboard.writeText(url);toast("Lien copié")}catch(e){prompt("Lien à copier",url)}
 };
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),1800)}
