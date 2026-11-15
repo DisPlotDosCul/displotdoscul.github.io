@@ -4648,7 +4648,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       return '<div class="qz-q"><span>' + esc(f.t) + ' <small>' + esc([f.y, f.d].filter(Boolean).join(" · ")) + '</small></span><div class="qz-o">' + b("9", "Adoré") + b("7", "Bien") + b("5", "Bof") + b("2", "Pas aimé") + b("pv", "Pas vu") + '</div></div>';
     }).join("") + '<div class="nt-b"><button type="button" class="plf-no" data-qzmore="1">🎲 D\'autres films</button></div>';
   }
-  function qz5(opt, k){ return opt(k, 1, "J'adore") + opt(k, 0.5, "J'aime bien") + opt(k, 0, "Ça dépend") + opt(k, -0.5, "Bof") + opt(k, -1, "Pas pour moi"); }
+  // Réponses qui disent quand et à quelle condition (15 novembre), avec les deux avis tranchés aux extrémités.
+  function qz5(opt, k){ return opt(k, 1, "J'adore") + opt(k, 0.6, "Souvent, avec plaisir") + opt(k, 0.2, "De temps en temps") + opt(k, -0.4, "Rarement, il faut qu'il soit exceptionnel") + opt(k, -1, "Pas pour moi"); }
   function qzHtml(){
     var q = QZ, saved = (window.CC && CC.me && CC.me.quiz) || null;
     var opt = function(k, v, l){ return '<button type="button" class="chip" data-qz="' + k + '" data-v="' + v + '" aria-pressed="' + (String(q[k]) === String(v)) + '">' + l + '</button>'; };
