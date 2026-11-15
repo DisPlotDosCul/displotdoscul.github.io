@@ -4883,7 +4883,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     Object.keys(P).forEach(function(u){ var r = (P[u] || {}).rep || {}; Object.keys(r).forEach(function(id){ if (repSeen(r[id])) seenBy[id] = (seenBy[id] || 0) + 1; if (r[id].note10) (notes[id] = notes[id] || []).push(r[id].note10); }); });
     var seed = ""; try { seed = sessionStorage.getItem("ccXpSeed") || ""; } catch (e) {}
     if (!seed) { seed = String(Math.random()).slice(2, 8); try { sessionStorage.setItem("ccXpSeed", seed); } catch (e) {} }
-    var free = Object.keys(films).filter(function(id){ var a = mine[id]; return films[id].t && !(a && (a.etat || a.note10)); });
+    var free = Object.keys(films).filter(function(id){ var a = mine[id]; return films[id].t && !xpEpisode(films[id]) && !(a && (a.etat || a.note10)); });
     var tie = function(id){ return skyHash(seed + id) / 4294967296; };
     // Films qu'on a le plus de chances d'avoir vus (15 novembre) : les films connus et grand public d'abord, puis le site
     // apprend des réponses (« Pas vu » sur des films muets ? il en propose moins), pour récolter de vrais avis plutôt que des « Pas vu ».
@@ -4916,12 +4916,14 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   //  · lui plaira-t-il ? (ses notes et sa Boussole : on s'oriente vers les catégories qu'elle aime, on lâche celles qu'elle n'aime pas) ;
   //  · que nous apprendrait-il ? (une catégorie encore jamais essayée vaut le coup d'être tentée de temps en temps).
   // On évite aussi d'enchaîner deux films du même cinéaste ou du même courant.
+  // Épisodes et morceaux de saison : pas dans Express (on se souvient d'une série, rarement d'un épisode) ; les séries entières restent.
+  function xpEpisode(f){ return /épisode|, saison \d/i.test(String(f.t || "")); }
   var XW = { mv:3, an:1.5, mo:1.5, dec:1, fa:1, k:.4 };
   function xpNext(){
     var mine = myRep(), P = (window.CC && CC.profils) || {}, nM = Object.keys(P).length || 1, seenBy = {};
     Object.keys(P).forEach(function(u){ var r = (P[u] || {}).rep || {}; Object.keys(r).forEach(function(id){ if (repSeen(r[id])) seenBy[id] = (seenBy[id] || 0) + 1; }); });
     var shown = {}; (XP.q || []).forEach(function(id){ shown[id] = 1; });
-    var free = Object.keys(films).filter(function(id){ var a = mine[id]; return films[id].t && !shown[id] && !(a && (a.etat || a.note10)); });
+    var free = Object.keys(films).filter(function(id){ var a = mine[id]; return films[id].t && !shown[id] && !xpEpisode(films[id]) && !(a && (a.etat || a.note10)); });
     if (!free.length) return null;
     var G = {}, T = {}, nAns = 0, nNote = 0;
     Object.keys(mine).forEach(function(id){
