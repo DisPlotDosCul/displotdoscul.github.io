@@ -77,3 +77,12 @@ pointus du club, souvent pas vus, donc sans avis.
 - Boutons : Adoré (9), Bien (7), Bof (5), Pas aimé (2) ; la note sur 10 reste disponible.
 - Express propose d'abord les films qu'on a le plus de chances d'avoir vus (connus, grand public), et apprend des réponses
   toutes les cinq réponses (beaucoup de « Pas vu » sur les films anciens ? il en propose moins).
+
+## Express qui s'adapte (15 novembre 2026)
+
+Chaque film est choisi au moment de l'afficher (`xpNext`), selon trois questions : l'a-t-on sans doute vu (films connus
+au départ, puis ce que les « Vu » et « Pas vu » apprennent, surtout par courant, époque et pays) ; va-t-il plaire (notes
+et Boussole : on va vers les catégories aimées, on quitte celles qui ne plaisent pas) ; que nous apprendrait-il (une
+catégorie jamais essayée est tentée de temps en temps). Au début, on cherche surtout des films vus ; le goût pèse de plus
+en plus avec les notes. Simulation : une personne qui ne connaît que Hollywood et n'aime que les comédies passe de 4 films
+vus sur 10 au départ à 6 et 7 sur 10 ensuite, avec surtout des comédies.

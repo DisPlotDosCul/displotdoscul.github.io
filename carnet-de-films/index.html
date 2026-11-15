@@ -4898,6 +4898,55 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     return out;
   }
 
+
+  // ---- Mode express, choix au fur et à mesure (15 novembre) ----
+  // Pour chaque film pas encore proposé, trois questions :
+  //  · l'a-t-elle sans doute vu ? (films connus au départ, puis ce que ses « Vu » et « Pas vu » apprennent par genre, époque, pays) ;
+  //  · lui plaira-t-il ? (ses notes et sa Boussole : on s'oriente vers les catégories qu'elle aime, on lâche celles qu'elle n'aime pas) ;
+  //  · que nous apprendrait-il ? (une catégorie encore jamais essayée vaut le coup d'être tentée de temps en temps).
+  // On évite aussi d'enchaîner deux films du même cinéaste ou du même courant.
+  var XW = { mv:3, an:1.5, mo:1.5, dec:1, fa:1, k:.4 };
+  function xpNext(){
+    var mine = myRep(), P = (window.CC && CC.profils) || {}, nM = Object.keys(P).length || 1, seenBy = {};
+    Object.keys(P).forEach(function(u){ var r = (P[u] || {}).rep || {}; Object.keys(r).forEach(function(id){ if (repSeen(r[id])) seenBy[id] = (seenBy[id] || 0) + 1; }); });
+    var shown = {}; (XP.q || []).forEach(function(id){ shown[id] = 1; });
+    var free = Object.keys(films).filter(function(id){ var a = mine[id]; return films[id].t && !shown[id] && !(a && (a.etat || a.note10)); });
+    if (!free.length) return null;
+    var G = {}, T = {}, nAns = 0, nNote = 0;
+    Object.keys(mine).forEach(function(id){
+      var a = mine[id], f = films[id]; if (!a || !f) return;
+      var seen = a.etat === "pas_vu" ? 0 : (repSeen(a) || a.note10 || a.etat === "oublie") ? 1 : -1; if (seen < 0) return; nAns++;
+      if (a.note10) nNote++;
+      rFeats(f).forEach(function(x){
+        if (!/^(d|c)\|/.test(x)) { var g = G[x] || (G[x] = [0, 0]); g[0] += seen; g[1]++; }
+        if (a.note10) { var t = T[x] || (T[x] = [0, 0]); t[0] += a.note10; t[1]++; }
+      });
+    });
+    var m = tasteModel(mine, (window.CC && CC.me && CC.me.quiz) || null);
+    var POP = /^(hollywood|nouvel-hollywood|ghibli)/, POPK = { comedie:1, aventure:1, sf:1, suspense:1, animation:1, doux:1, amour:1 };
+    var last = (XP.q || []).slice(-2).map(function(id){ return films[id] || {}; });
+    var best = null, bestS = -1e9, seed = XP.seed || (XP.seed = String(Math.random()).slice(2, 8));
+    free.forEach(function(id){
+      var f = films[id], fs = rFeats(f), ks = f.k || [];
+      var base = (POP.test(f.mv || "") ? .55 : .3) + (ks.some(function(k){ return POPK[k]; }) ? .1 : 0) + (ks.indexOf("noir-et-blanc") >= 0 ? -.12 : 0) + ((+f.y || 2000) >= 1975 ? .08 : -.05) + .3 * (seenBy[id] || 0) / nM;
+      // Chaque type d'indice pèse selon ce qu'il dit des films qu'on a vus : le courant (Hollywood, cinéma d'auteur…) beaucoup, un mot-clé peu.
+      var s0 = 0, w0 = 0; fs.forEach(function(x){ var g = G[x]; if (!g) return; var w = XW[x.split("|")[0]] || .5, c = Math.min(1, g[1] / 3); s0 += w * c * (g[0] + base) / (g[1] + 1); w0 += w * c; });
+      var pseen = w0 ? (base * 1.5 + s0) / (1.5 + w0) : base;
+      // Goût : estimation de son modèle, ramenée entre 0 et 1 (neutre tant qu'on ne sait rien).
+      var like = m ? Math.max(0, Math.min(1, .5 + (tastePredict(m, f) - m.mu) / 4)) : .5;
+      // Découverte : moyenne de 1/(1+n) sur ses catégories (famille de goût, courant, mots-clés).
+      var ex = 0, en = 0; fs.forEach(function(x){ if (/^(fa|mv|k)\|/.test(x)) { var g = G[x]; ex += 1 / (1 + (g ? g[1] : 0)); en++; } });
+      ex = en ? ex / en : 1;
+      // Au début, on cherche surtout des films vus ; ensuite le goût et la découverte pèsent davantage.
+      var wl = Math.min(.4, nNote / 40), we = nAns < 8 ? .05 : .15;
+      var sc = (1 - wl - we) * pseen + wl * like + we * ex;
+      if (last.some(function(l){ return l.d && l.d === f.d; })) sc -= .08;
+      if (last.length === 2 && last.every(function(l){ return l.mv && l.mv === f.mv; })) sc -= .03;
+      sc += (skyHash(seed + id) / 4294967296) * .06;
+      if (sc > bestS) { bestS = sc; best = id; }
+    });
+    return best;
+  }
   // ---- Mode express ----
   var XP = { q:[], i:0, hist:[], n:0, invite:null, reward:false }, XP_GUEST = "ccXpInviteV1";
   document.body.insertAdjacentHTML("beforeend", '<section class="xp" id="xp" role="dialog" aria-modal="true" aria-labelledby="xpTitle" hidden><div class="xp-wrap">' +
@@ -4967,7 +5016,9 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   }
   function xpOpen(){
     if (!$("rsheet").hidden) $("rsClose").click();
-    XP.q = xpOrder(XP.invite ? XP.invite.order : null); XP.i = 0; XP.hist = []; XP.reward = false;
+    XP.i = 0; XP.hist = []; XP.reward = false; XP.seen = {};
+    // Invitation : l'ordre de la personne qui invite ; sinon, chaque film est choisi au fur et à mesure (xpNext).
+    XP.q = XP.invite ? xpOrder(XP.invite.order) : [xpNext(), xpNext()].filter(Boolean);
     $("xp").hidden = false; document.documentElement.classList.add("xp-on"); document.querySelector(".wrap").inert = true; xpRender();
     var b = $("xpBody").querySelector(".xp-b"); if (b) b.focus({ preventScroll:true });
   }
@@ -4987,7 +5038,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       XP.hist.push({ id:id, prev:prev, i:XP.i });
     } else XP.hist.push({ id:id, skip:true, i:XP.i });
     XP.i++;
-    if (v !== "skip" && XP.n % 5 === 0 && !XP.invite) { XP.q = XP.q.slice(0, XP.i).concat(xpOrder().filter(function(id){ return XP.q.slice(0, XP.i).indexOf(id) < 0; })); }
+    if (!XP.invite) { XP.q = XP.q.slice(0, XP.i); [0, 1].forEach(function(){ var nx = xpNext(); if (nx) XP.q.push(nx); }); }
     if (XP.n && XP.n % 10 === 0 && v !== "skip") XP.reward = true;
     xpRender();
   }
