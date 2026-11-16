@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '17 4 * * 1'
   push:
-    branches: [logement/commerces-data]
+    branches: [logement/commerces-data, logement/ameliorations]
     paths:
       - logement/outils/commerces.py
       - .github/workflows/logement-commerces.yml
@@ -34,4 +34,4 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add logement/commerces.json
           git diff --cached --quiet || git commit -m "Cap Logement : commerces d'Île-de-France mis à jour"
-          git push
+          git pull --rebase -q origin "${GITHUB_REF_NAME}" && git push
