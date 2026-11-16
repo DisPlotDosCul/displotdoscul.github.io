@@ -4,7 +4,7 @@ Format : {"maj": date, "c": {code: libellé}, "s": [[lat, lon, code, nom], ...]}
 import json, sys, time, re, urllib.parse, urllib.request, datetime
 
 S, W, N, E = 48.40, 1.40, 49.20, 2.95
-ROWS, COLS = 4, 4
+ROWS, COLS = 6, 6
 EP = ["https://overpass-api.de/api/interpreter", "https://maps.mail.ru/osm/tools/overpass/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]
 LOWGYM = re.compile(r"basic.?fit|on ?air|fitness ?park|keep ?cool|l.?orange ?bleue|neoness|cmg", re.I)
 CHEAPWEAR = re.compile(r"primark|kiabi|tati\b|g[ée]mo|la halle|zeeman|takko|action", re.I)
@@ -16,7 +16,7 @@ def ask(q):
         for u in EP:
             try:
                 req = urllib.request.Request(u, data=data, headers={"User-Agent": "CapLogement/1.0 (displotdoscul.github.io)"})
-                with urllib.request.urlopen(req, timeout=300) as r:
+                with urllib.request.urlopen(req, timeout=200) as r:
                     return json.load(r)
             except Exception as e:
                 print("  échec", u, e, file=sys.stderr)
@@ -73,7 +73,7 @@ for i in range(ROWS):
         s = S + (N - S) * i / ROWS; n = S + (N - S) * (i + 1) / ROWS
         w = W + (E - W) * j / COLS; e = W + (E - W) * (j + 1) / COLS
         bb = f"{s},{w},{n},{e}"
-        q = (f'[out:json][timeout:280];('
+        q = (f'[out:json][timeout:170];('
              f'nwr({bb})[amenity~"^(restaurant|fast_food|cafe|bar|pub|pharmacy|library|cinema|theatre|arts_centre|post_office|doctors|dancing_school)$"];'
              f'nwr({bb})[shop~"^(bakery|pastry|laundry|books|cheese|seafood|wine|florist|second_hand|charity|doityourself|hardware|herbalist|tobacco|newsagent)$"];'
              f'nwr({bb})[shop=clothes][name~"primark|kiabi|tati|gémo|gemo|la halle|zeeman|takko",i];'
