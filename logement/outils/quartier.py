@@ -28,7 +28,7 @@ def code(t):
     sp = t.get("sport", "")
     full = " ".join([n, t.get("brand", ""), t.get("operator", "")])
     if SOLID.search(full) or t.get("social_facility") == "food_bank": return "sol"
-    if a == "restaurant": return "cro" if re.search(r"crous|resto ?u\b|restaurant universitaire", full, re.I) else "res"
+    if a == "restaurant": return "cro" if re.search(r"\bcrous\b|resto ?u\b|restaurant universitaire|\bru\b", full, re.I) else "res"
     if a == "fast_food": return "fas"
     if a == "cafe": return "caf"
     if a in ("bar", "pub"): return "bar"
