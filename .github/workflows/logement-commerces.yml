@@ -1,0 +1,37 @@
+name: Cap Logement — commerces d'Île-de-France
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * 1'
+  push:
+    branches: [logement/commerces-data]
+    paths:
+      - logement/outils/commerces.py
+      - .github/workflows/logement-commerces.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: logement-commerces
+  cancel-in-progress: false
+
+jobs:
+  commerces:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Télécharger les commerces (OpenStreetMap)
+        run: python logement/outils/commerces.py
+      - name: Enregistrer
+        run: |
+          git config user.name "Cap Logement"
+          git config user.email "actions@users.noreply.github.com"
+          git add logement/commerces.json
+          git diff --cached --quiet || git commit -m "Cap Logement : commerces d'Île-de-France mis à jour"
+          git push
