@@ -1,0 +1,37 @@
+name: Cap Logement — vie de quartier
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '47 4 * * 1'
+  push:
+    branches: [logement/commerces-data]
+    paths:
+      - logement/outils/quartier.py
+      - .github/workflows/logement-quartier.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: logement-quartier
+  cancel-in-progress: false
+
+jobs:
+  quartier:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Télécharger les lieux de quartier (OpenStreetMap)
+        run: python logement/outils/quartier.py
+      - name: Enregistrer
+        run: |
+          git config user.name "Cap Logement"
+          git config user.email "actions@users.noreply.github.com"
+          git add logement/quartier.json
+          git diff --cached --quiet || git commit -m "Cap Logement : quartier d'Île-de-France mis à jour"
+          git push
