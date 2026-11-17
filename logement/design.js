@@ -86,6 +86,22 @@ function run(){
  try{foldSubs()}catch(e){}
  try{if(page!=="calculateur"){limit($("#toi"));limit($("ol#rank"))}}catch(e){}
  try{if(page==="index"||page==="")indexBar()}catch(e){}
+ try{shareBtn()}catch(e){}
+}
+
+/* ---------- Bouton Partager (lien de l'accueil, jamais la page privée) ---------- */
+function shareBtn(){
+ if(window.top!==window||!document.body||$("#shareB"))return;
+ var url=location.origin+"/logement/";
+ var pw=$("#pwaB"),left=pw?Math.round(pw.getBoundingClientRect().right)+8:12;
+ document.body.insertAdjacentHTML("beforeend",'<button id="shareB" type="button" aria-label="Partager l’appli" title="Partager l’appli" style="position:fixed;left:'+left+'px;bottom:12px;z-index:99;font:600 14px system-ui,sans-serif;padding:8px 12px;border:0;border-radius:7px;background:#2F6B62;color:#fff;box-shadow:0 2px 0 rgba(0,0,0,.35);cursor:pointer">🔗 Partager</button>');
+ var b=$("#shareB");
+ function flash(t){var o=b.textContent;b.textContent=t;setTimeout(function(){b.textContent=o},1800)}
+ b.addEventListener("click",function(){
+  if(navigator.share){navigator.share({title:"Cap Logement",url:url}).catch(function(){});return}
+  try{navigator.clipboard.writeText(url).then(function(){flash("✓ Lien copié")},function(){prompt("Lien à copier :",url)})}catch(e){prompt("Lien à copier :",url)}
+ });
+ addEventListener("appinstalled",function(){b.style.left="12px"});
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",run);else run();
 })();
