@@ -5461,10 +5461,33 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         '<button type="button" data-iddel="' + esc(x.id) + '"' + (del ? ' class="sur"' : "") + '>' + (del ? "Retirer pour de bon ?" : "✕ Retirer") + '</button></div>'
         : !wait && idCanEdit(x) ? '<div class="idc-b"><button type="button" data-idedit="' + esc(x.id) + '">✎ Modifier</button></div>' : "") + '</div>';
   }
+  // Films proposés par quelqu'un qui n'a pas de playlist (souvent Licia elle-même, quand le catalogue a refusé
+  // l'ajout) : sans cela, ils restaient invisibles. Affichés en tête de la Boîte à idées pour l'administratrice.
+  function orphProps(){
+    return Object.keys(PROPS).filter(function(k){ var pid = PROPS[k].prenom; return !PEOPLE.some(function(p){ return p.id === pid; }); })
+      .sort(function(a, b){ return String(PROPS[b].ajout).localeCompare(String(PROPS[a].ajout)); });
+  }
+  function orphHtml(){
+    if (!(window.CC && CC.admin)) return "";
+    var ks = orphProps(); if (!ks.length) return "";
+    return '<p class="ids-h">Films en attente d\'ajout · ' + ks.length + '</p><div class="ids">' + ks.map(function(k){
+      var x = PROPS[k];
+      return '<div class="idc"><div class="idc-t">🎬 ' + esc(x.titre || "?") + (x.annee ? " (" + esc(x.annee) + ")" : "") + '</div>' +
+        (x.mot ? '<div class="idc-m">' + esc(x.mot) + '</div>' : "") +
+        '<div class="idc-b"><button type="button" data-orpha="' + esc(k) + '">➕ Ajouter au catalogue</button><button type="button" data-orphd="' + esc(k) + '">Retirer</button></div></div>';
+    }).join("") + '</div>';
+  }
+  document.addEventListener("click", function(ev){
+    var a = ev.target.closest && ev.target.closest("[data-orpha],[data-orphd]"); if (!a) return;
+    var k = a.dataset.orpha || a.dataset.orphd, x = PROPS[k]; if (!x) return;
+    if (a.dataset.orphd) { delProposal(k); renderToc(); return; }
+    delete PROPS[k]; if (propCol) propCol.doc(k).delete().catch(function(){});
+    addMissing(x.titre, x.annee, "", x.mot || ""); renderToc();
+  });
   function ideesList(){
     var list = Object.keys(IDEES).map(function(k){ return Object.assign({ id:k }, IDEES[k]); })
       .sort(function(a, b){ return String(b.ajout).localeCompare(String(a.ajout)); });
-    var pend = idLect() ? idPending() : [], h = '<p class="ids-h">Déjà proposé' + (list.length ? " · " + list.length : "") + '</p>' +
+    var pend = idLect() ? idPending() : [], h = orphHtml() + '<p class="ids-h">Déjà proposé' + (list.length ? " · " + list.length : "") + '</p>' +
       ((window.CC && CC.admin) || idMe() ? '<div class="idc-b"><button type="button" data-idcopy="1">📋 Tout copier</button></div>' : "") + '<div class="ids">';
     if (!list.length && !pend.length) h += '<p class="id-n">Rien pour l\'instant. La vôtre sera la première !</p>';
     pend.forEach(function(x){ h += ideeCard(x, true); });
@@ -5885,7 +5908,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       var code = errCode(e);
       var propose = function(){
         return propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ uid:CC.uid, prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:ind, ajout:new Date().toISOString() }).then(function(){
-          setStatus("« " + t + " » n'a pas pu entrer dans le catalogue (" + code + ") : il est gardé dans tes propositions (Communauté › Playlists › ta playlist).", true);
+          setStatus("« " + t + " » n'a pas pu entrer dans le catalogue (" + code + ") : il est gardé dans la Boîte à idées, en haut : « Films en attente d'ajout ».", true);
         }, function(e2){ setStatus("Pas enregistré (" + code + " puis " + errCode(e2) + ") : envoie-moi ce message pour que je corrige.", true); });
       };
       if (ajCol && CC.me) {
