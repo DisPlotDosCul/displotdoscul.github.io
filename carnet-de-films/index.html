@@ -2130,6 +2130,7 @@ header.top .nuitb.aab{top:4px;}
         '<div class="plf-b"><button type="button" class="plf-ok" id="ccSave">Entrer</button><button type="button" class="plf-no" id="ccOut">Se déconnecter</button></div>';
     } else {
       h = '<h3>' + esc(CC.me.pseudo) + '</h3><p class="sh-note">Connecté' + (CC.user && CC.user.email ? " avec " + esc(CC.user.email) : "") + (CC.admin ? " · tu gères le carnet" : "") + '</p>' +
+        (CC.admin ? '<p class="sh-note"><button type="button" class="chip" id="admTest">🔧 Tester l\'accès administratrice</button> <span id="admRes"></span></p>' : "") +
         '<label class="ccl"><span>Changer de pseudo</span><input type="text" id="ccPseudo" class="ccin" maxlength="30" value="' + esc(CC.me.pseudo) + '"></label>' +
         '<label class="ccl"><span>Mes goûts en une phrase</span><textarea id="ccGouts" class="ccin" maxlength="140" rows="2" placeholder="Par exemple : le cinéma qui dérange et les films d\'animation">' + esc(CC.me.gouts || "") + '</textarea></label>' +
         '<label class="ccl"><span>Le nom de ma playlist <i>(facultatif)</i></span><input type="text" id="ccPlT" class="ccin" maxlength="60" placeholder="' + esc(CC.me.pseudo) + '" value="' + esc(CC.me.plTitre || "") + '"></label>' +
@@ -2943,6 +2944,19 @@ header.top .nuitb.aab{top:4px;}
     }, 700);
   }
   // Message clair quand Firebase refuse une écriture réservée à l'administratrice (catégories, rangement, apparence du site).
+  // Test de l'accès administratrice (20 novembre) : ce que Firebase voit de la connexion, et une écriture d'essai.
+  document.addEventListener("click", function(ev){
+    if (!(ev.target.closest && ev.target.closest("#admTest"))) return;
+    var out = $("admRes"), u = firebase.auth().currentUser; if (!out || !u) return;
+    out.textContent = "Test…";
+    u.getIdToken(true).then(function(){ return u.getIdTokenResult(); }).then(function(t){
+      var c = t.claims || {}, info = "jeton : " + (c.email || "?") + (c.email_verified ? " (vérifiée)" : " (NON vérifiée)") + " · connexion " + ((c.firebase || {}).sign_in_provider || "?");
+      return firebase.firestore().collection("films").doc("rangement-test").set({ test:new Date().toISOString() }).then(function(){
+        out.textContent = "✓ Firebase accepte (" + info + "). Réessaie de ranger les catégories.";
+        firebase.firestore().collection("films").doc("rangement-test").delete().catch(function(){});
+      }, function(e){ out.textContent = "✗ Refusé : " + errCode(e) + " — " + info; });
+    }).catch(function(e){ out.textContent = "✗ " + errCode(e); });
+  });
   function adminErr(what, e){
     var code = (e && e.code) || "";
     if (/permission/.test(code)) return what + " : Firebase refuse l'écriture. Les règles publiées dans la console Firebase ne reconnaissent pas ce compte comme administratrice (code " + code + ").";
