@@ -3454,7 +3454,7 @@ header.top .nuitb.aab{top:4px;}
     "l-evangile-selon-saint-matthieu-1964":24192, "fellini-satyricon-1969":11163, "marketa-lazarova-1967":25904, "perceval-le-gallois-1978":75733,
     "the-green-knight-2021":559907, "ran-1985":11645, "harakiri-1962":14537, "la-prise-de-pouvoir-par-louis-xiv-1966":69912,
     "aguirre-la-colere-de-dieu-1972":2000, "zama-2017":326382, "l-assassinat-de-jesse-james-2007":4512, "la-grande-illusion-1937":777,
-    "amadeus-1984":279, "ivan-le-terrible-1944":9797,
+    "amadeus-1984":279, "ivan-le-terrible-1944":9797, "faust-une-legende-allemande-1926":10728,
     // Biographies (14 novembre 2026), identifiants vérifiés sur TMDB.
     "lawrence-d-arabie-1962":947, "van-gogh-1991":4734, "ed-wood-1994":522, "i-m-not-there-2007":3902, "control-2007":5708,
     "seraphine-2008":14415, "mr-turner-2014":245700, "grizzly-man-2005":501, "amy-2015":331781, "sugar-man-2012":84334,
@@ -5860,10 +5860,10 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       // le film part dans les propositions, comme avant, pour que Licia l'ajoute.
       var fid = (slug(t) || "film") + "-" + (yy || "sans-annee"); if (films[fid]) fid += "-" + Date.now().toString(36);
       ADDQ = null; $("q").value = t; $("qx").hidden = false; query = norm(t); renderAll(); setStatus("Enregistrement…");
-      var prop = function(){ return propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:ind, ajout:new Date().toISOString() })
-        .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(){ setStatus("Pas envoyé, réessaie dans un instant.", true); }); };
+      var prop = function(){ return propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ uid:CC.uid, prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:ind, ajout:new Date().toISOString() })
+        .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(e){ setStatus("Pas envoyé (" + errCode(e) + "), réessaie dans un instant.", true); }); };
       if (!ajCol) { prop(); return; }
-      ajCol.doc(fid).set({ fid:fid, t:t, y:yy ? String(yy) : "", d:"", mot:ind, ajout:new Date().toISOString() })
+      ajCol.doc(fid).set({ uid:CC.uid, fid:fid, t:t, y:yy ? String(yy) : "", d:"", mot:ind, ajout:new Date().toISOString() })
         .then(function(){ setStatus("« " + t + " » est dans la base : tout le monde peut le trouver."); }, prop);
       return;
     }
@@ -5883,11 +5883,17 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       // Écriture refusée dans le catalogue : le film est gardé dans les propositions pour ne pas le perdre,
       // et le code d'erreur s'affiche pour savoir d'où vient le refus (souvent des règles Firebase pas à jour).
       var code = errCode(e);
-      if (propCol && CC.me) {
-        return propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:"", ajout:new Date().toISOString() }).then(function(){
-          setStatus("« " + t + " » n'a pas pu entrer dans la base (" + code + ") : il est gardé dans les propositions de la boîte à idées.", true);
-        }, function(e2){ setStatus("Pas enregistré (" + errCode(e2) + "), réessaie dans un instant.", true); });
+      var propose = function(){
+        return propCol.doc(CC.pid() + "__" + Date.now().toString(36)).set({ uid:CC.uid, prenom:CC.pid(), titre:t, annee:yy ? String(yy) : "", mot:ind, ajout:new Date().toISOString() }).then(function(){
+          setStatus("« " + t + " » n'a pas pu entrer dans le catalogue (" + code + ") : il est gardé dans tes propositions (Communauté › Playlists › ta playlist).", true);
+        }, function(e2){ setStatus("Pas enregistré (" + code + " puis " + errCode(e2) + ") : envoie-moi ce message pour que je corrige.", true); });
+      };
+      if (ajCol && CC.me) {
+        return ajCol.doc(id).set({ uid:CC.uid, fid:id, t:t, y:yy ? String(yy) : "", d:"", mot:ind, ajout:new Date().toISOString() }).then(function(){
+          setStatus("« " + t + " » est dans « Films ajoutés par les membres » (le catalogue a refusé : " + code + ").");
+        }, function(){ return propCol ? propose() : setStatus("Pas enregistré (" + code + "), réessaie dans un instant.", true); });
       }
+      if (propCol && CC.me) return propose();
       setStatus("Pas enregistré (" + code + "), réessaie dans un instant.", true);
     });
   }
