@@ -1444,6 +1444,11 @@ html.sky-on #rsheet{z-index:50;}
 .ajc-m,.ajc-p{font-size:13px;color:var(--muted);}
 .ajc-a{display:flex;gap:6px;flex-wrap:wrap;}
 .ajc-f textarea{width:100%;font:14px/1.4 var(--font);padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);}
+.ajnote{margin:6px 0;font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.fab-x{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;font:700 14px/1 var(--font);padding:12px 16px;border-radius:999px!important;
+  background:var(--ink);color:var(--paper);border:0;box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer;}
+/* Sur ordinateur, une fiche dépliée prend toute la largeur (le résumé ne reste plus coincé à gauche). */
+@media (min-width:641px){ .film:has(.xtra:not([hidden])){grid-template-columns:1fr;} }
 .feedchip{position:relative;}
 .feedchip .fc-n{margin-left:6px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;display:inline-grid;place-items:center;font:700 12px/1 var(--font);color:var(--k-s-FFFFFF);background:var(--vu);}
 .feedchip .fc-n[hidden]{display:none;}
@@ -2940,7 +2945,7 @@ header.top .nuitb.aab{top:4px;}
     clearTimeout(RANG_T);
     RANG_T = setTimeout(function(){
       if (!catCol) { setStatus("Pas enregistré : connecte-toi d'abord (bouton en haut).", true); return; }
-      catCol.doc("rangement").set(RANG).then(function(){ setStatus("Nouvel ordre enregistré"); }, function(e){ setStatus(adminErr("Ordre pas enregistré", e), true); });
+      adminWrite(function(){ return catCol.doc("rangement").set(RANG); }).then(function(){ setStatus("Nouvel ordre enregistré"); }, function(e){ setStatus(adminErr("Ordre pas enregistré", e), true); });
     }, 700);
   }
   // Message clair quand Firebase refuse une écriture réservée à l'administratrice (catégories, rangement, apparence du site).
@@ -2957,6 +2962,15 @@ header.top .nuitb.aab{top:4px;}
       }, function(e){ out.textContent = "✗ Refusé : " + errCode(e) + " — " + info; });
     }).catch(function(e){ out.textContent = "✗ " + errCode(e); });
   });
+  // Écriture réservée à l'administratrice : si Firebase refuse, on renouvelle la connexion (jeton) et on réessaie une fois.
+  // Un jeton pas encore à jour expliquait des refus « une fois sur deux ».
+  function adminWrite(fn){
+    return fn().catch(function(e){
+      var u = firebase.auth().currentUser;
+      if (!u || !/permission/.test((e && e.code) || "")) throw e;
+      return u.getIdToken(true).then(function(){ return fn(); });
+    });
+  }
   function adminErr(what, e){
     var code = (e && e.code) || "";
     if (/permission/.test(code)) return what + " : Firebase refuse l'écriture. Les règles publiées dans la console Firebase ne reconnaissent pas ce compte comme administratrice (code " + code + ").";
@@ -3673,10 +3687,12 @@ header.top .nuitb.aab{top:4px;}
     var detailId = "fiche-" + encodeURIComponent(mk), themes = Array.isArray(f.th) ? f.th.filter(Boolean) : [];
     var avertissements = Array.isArray(f.av) ? f.av.filter(Boolean).join(" · ") : String(f.av || "").trim();
     var av = avertissements ? '<details class="fiche-av"><summary>Contenus sensibles</summary><p>' + esc(avertissements) + '</p></details>' : "";
+    var ajx = f.aj && window.CC && f.aj === CC.uid ? (((CC.ajouts && CC.ajouts()) || []).filter(function(x){ return x.id === f.id; })[0] || null) : null;
+    var ajn = ajx && !ajx.verif && !ajx.ok ? '<div class="ajnote">Tu as ajouté ce film : est-ce le bon ? <button type="button" class="chip" data-ajyes="' + esc(f.id) + '">✓ Oui</button><button type="button" class="chip" data-ajgo="' + esc(f.id) + '">✗ Non, à corriger</button></div>' : "";
     return '<div class="info"><div class="th"><div class="t">' + esc(f.t) + '</div>' +
 est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       '<button type="button" class="more" data-more="' + esc(mk) + '" aria-expanded="' + mo + '" aria-controls="' + esc(detailId) + '" aria-label="Détails de ' + esc(f.t) + '">' + (mo ? "moins" : "plus…") + '</button></div>' +
-      (!cmp && meta.length ? '<div class="m">' + meta.join(" · ") + '</div>' : "") + (!cmp ? av : "") +
+      (!cmp && meta.length ? '<div class="m">' + meta.join(" · ") + '</div>' : "") + ajn + (!cmp ? av : "") +
       // Le résumé reste visible sur toutes les fiches ; seule « Mes films notés » le replie derrière « plus… ».
       (!cmp ? text : "") +
       '<div class="xtra" id="' + esc(detailId) + '"' + (mo ? "" : " hidden") + '>' +
@@ -4834,7 +4850,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       if (!catCol) { setStatus("Pas enregistré : connecte-toi d'abord.", true); return; }
       var data = appCopy(APP); Object.keys(data.t).forEach(function(k){ data.t[k] = String(data.t[k] || "").trim().slice(0, 300); if (!data.t[k]) delete data.t[k]; });
       setStatus("Enregistrement…");
-      catCol.doc("apparence").set(data).then(function(){ APP_SAVED = appCopy(data); APP = appCopy(data); edPaint(); setStatus("Modifications enregistrées pour tout le monde."); }, function(e){ setStatus(adminErr("Pas enregistré", e), true); });
+      adminWrite(function(){ return catCol.doc("apparence").set(data); }).then(function(){ APP_SAVED = appCopy(data); APP = appCopy(data); edPaint(); setStatus("Modifications enregistrées pour tout le monde."); }, function(e){ setStatus(adminErr("Pas enregistré", e), true); });
     }
   });
   document.addEventListener("input", function(ev){
@@ -5963,7 +5979,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
           var tm = { id:d.id, t:r.t, titre:d.title || d.name || "", orig:d.original_title || d.original_name || "", an:String(d.release_date || d.first_air_date || "").slice(0, 4),
             d:dirs.slice(0, 3).join(" et "), c:(d.production_countries || []).map(function(c){ return c.name; }).slice(0, 3).join(", "),
             duree:d.runtime || ((d.episode_run_time || [])[0] || 0), p:String(ov || "").slice(0, 900), poster:d.poster_path || "", imdb:(d.external_ids || {}).imdb_id || d.imdb_id || "" };
-          return ajCol.doc(fid).set({ tmdb:tm, d:tm.d }, { merge:true }).then(function(){ return tm; }, function(){ return tm; });
+          return firebase.firestore().collection("ajouts").doc(fid).set({ tmdb:tm, d:tm.d }, { merge:true }).then(function(){ return tm; }, function(){ return tm; });
         });
       });
     }).catch(function(){ return null; });
@@ -5987,8 +6003,11 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
           '<button type="button" class="chip" data-ajyes="' + esc(x.id) + '">✓ Oui, c\'est lui</button><button type="button" class="chip" data-ajno="' + esc(x.id) + '">✗ Non, à corriger</button>') + '</div>') +
       '</div></div>';
   }
+  var AJ_TRY = {};
+  function ajFill(list){ list.forEach(function(x){ if (!x.tmdb && !AJ_TRY[x.id] && x.t) { AJ_TRY[x.id] = 1; ajEnrich(x.id, x.t, /^[0-9]{4}$/.test(String(x.y || "")) ? +x.y : 0, x.mot || ""); } }); }
   function ajPanelHtml(){
     var admin = window.CC && CC.admin, h = "", mine = ajMine();
+    ajFill(mine.concat(admin ? ajTodo() : []));
     if (mine.length) h += '<div class="ajp"><p class="ajp-h">À vérifier par toi · ' + mine.length + '</p>' + mine.map(function(x){ return ajCard(x, false); }).join("") + '</div>';
     if (admin) { var todo = ajTodo(); if (todo.length) h += '<div class="ajp"><p class="ajp-h">À valider · ' + todo.length + ' <button type="button" class="chip" data-ajall="1">✓ Tout valider</button></p>' + todo.map(function(x){ return ajCard(x, true); }).join("") + '</div>'; }
     return h;
@@ -5996,6 +6015,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   // La validation par Licia passe par la collection brute : sinon l'identifiant de l'autrice serait remplacé par le sien.
   function ajSet(id, data, msg){ if (!ajCol) return; var ref = data.ok ? firebase.firestore().collection("ajouts").doc(id) : ajCol.doc(id); ref.set(data, { merge:true }).then(function(){ if (msg) setStatus(msg); }, function(e){ setStatus("Pas enregistré (" + errCode(e) + ").", true); }); }
   document.addEventListener("click", function(ev){
+    var g = ev.target.closest && ev.target.closest("[data-ajgo]");
+    if (g) { AJV = { open:g.dataset.ajgo, txt:"" }; TAB = "idees"; renderToc(); $("toc").scrollIntoView({ block:"start", behavior:"smooth" }); return; }
     var b = ev.target.closest && ev.target.closest("[data-ajok],[data-ajall],[data-ajyes],[data-ajno],[data-ajsend],[data-ajmic]"); if (!b) return;
     var now = new Date().toISOString();
     if (b.dataset.ajok) { ajSet(b.dataset.ajok, { ok:true, valide:now }, "Validé."); return; }
@@ -6021,6 +6042,15 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     }
   });
   document.addEventListener("input", function(ev){ if (ev.target.dataset && ev.target.dataset.ajtxt) AJV.txt = ev.target.value; });
+
+  // Toujours un moyen de sortir (20 novembre) : quand une liste, une recherche ou une catégorie est ouverte,
+  // un bouton « ✕ Fermer » reste en bas à droite de l'écran.
+  document.body.insertAdjacentHTML("beforeend", '<button type="button" class="fab-x" id="fabX" hidden aria-label="Fermer et revenir à l\'accueil">✕ Fermer</button>');
+  setInterval(function(){ var b = $("fabX"); if (!b) return; var on = !!(SHOW || TAB || query); if (b.hidden === on) b.hidden = !on; }, 400);
+  $("fabX").addEventListener("click", function(){
+    if (query) { $("q").value = ""; query = ""; var qx = $("qx"); if (qx) qx.hidden = true; }
+    SHOW = null; TAB = ""; renderToc(); renderAll(); window.scrollTo({ top:0, behavior:"smooth" });
+  });
   function errCode(e){ return String((e && (e.code || e.message)) || "erreur inconnue").slice(0, 60); }
   // Une liste de la page : son HTML, son nombre de films, et si elle s'affiche avec les filtres du moment.
   var FRZ = { key:"", l:{}, n:{} };
@@ -8433,7 +8463,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
           var tm = x.tmdb || {};
           if (tm.id && !TMDB_FIXE[x.fid]) TMDB_FIXE[x.fid] = tm.t === "tv" ? "tv/" + tm.id : tm.id;
           var etat = x.ok ? "" : x.verif === "ko" ? " · ⚠️ à corriger" : x.verif === "ok" ? "" : " · à vérifier";
-          return { id:x.fid, t:String(x.t), y:/^[0-9]{4}$/.test(String(x.y || "")) ? +x.y : "", d:String(x.d || tm.d || ""), p:String(tm.p || ""), c:String(tm.c || ""), duree:+tm.duree || 0,
+          return { id:x.fid, t:String(tm.titre || x.t), y:/^[0-9]{4}$/.test(String(tm.an || x.y || "")) ? +(tm.an || x.y) : "", d:String(x.d || tm.d || ""), p:String(tm.p || ""), c:String(tm.c || ""), duree:+tm.duree || 0,
             r:"Ajouté par " + who + (x.mot ? " · Indices : " + x.mot : "") + etat, aj:x.uid || "" }; });
       return [{ id:"ajouts-membres", data:function(){ return { titre:"Films ajoutés par les membres", famille:"playlists", ordre:9.1,
         sous_titre:"Les films que les membres ont ajoutés à la base. Licia les range ensuite dans les bonnes catégories.", films:fl }; } }];
