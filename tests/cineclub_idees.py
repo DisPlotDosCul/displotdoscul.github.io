@@ -180,8 +180,6 @@ def run():
             page.wait_for_timeout(300)
             page.mouse.wheel(0, 2500)
             page.wait_for_timeout(400)
-            more = page.evaluate("Array.from(document.querySelectorAll('#main .more')).findIndex(b => { const r = b.getBoundingClientRect(); return r.top > 80 && r.bottom < innerHeight - 260; })")
-            page.locator("#main .more").nth(more).click()
             idx = page.evaluate("Array.from(document.querySelectorAll('#main .mvb')).findIndex(b => { const r = b.getBoundingClientRect(); return r.top > 40 && r.bottom < innerHeight - 40; })")
             before = page.evaluate("pageYOffset")
             page.locator("#main .mvb").nth(idx).click()
