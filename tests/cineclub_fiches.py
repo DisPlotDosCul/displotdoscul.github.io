@@ -102,17 +102,15 @@ def browser_checks():
                 row = search(page, "A History of Violence")
                 assert row.get_attribute("data-id") == "a-history-of-violence-2005"
                 assert "96 minutes" in row.locator(".m").inner_text()
-                assert row.locator(".xtra").is_hidden()
+                assert row.locator(".more").count() == 0
+                assert row.locator(".xtra").is_visible()
                 page.locator("#q").blur()
                 page.screenshot(path=CAPTURES / f"{device}-{theme}.png", full_page=True, animations="disabled")
-                row.locator(".more").click()
-                assert row.locator(".xtra").is_visible()
                 assert "identité" in row.locator(".fiche-themes").inner_text()
                 row.locator(".fiche-av summary").click()
                 assert "violence sexuelle" in row.locator(".fiche-av p").inner_text()
                 assert_no_overflow(page)
                 page.screenshot(path=CAPTURES / f"{device}-{theme}-details.png", full_page=True, animations="disabled")
-                row.locator(".more").click()
 
             # Une valeur vide dans Firebase doit aussi prendre la priorité.
             row = search(page, "1917")
@@ -120,7 +118,6 @@ def browser_checks():
             row = page.locator('#main .film[data-id="1917-2019"]')
             assert "121 minutes" in row.locator(".m").inner_text()
             assert row.locator(".fiche-av").count() == 0
-            row.locator(".more").click()
             assert row.locator(".fiche-themes").count() == 0
             assert row.locator(".fiche-fiab").count() == 0
 
