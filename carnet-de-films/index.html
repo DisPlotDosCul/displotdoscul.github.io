@@ -1435,6 +1435,15 @@ html.sky-on #rsheet{z-index:50;}
 .sub .sl{-webkit-hyphens:auto;hyphens:auto;}
 .bar .ccbar #ccMbr[hidden]~#ccMe{grid-column:1/-1!important;}
 /* 15 novembre : « Quoi de neuf » rangé avec Communauté et Mon compte ; « Autres façons de choisir » sous les catégories. */
+.ajp{margin:12px 0;display:grid;gap:8px;}
+.ajp-h{margin:0;font:700 14px/1.3 var(--font);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.ajc{display:flex;gap:10px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);}
+.ajc img,.ajc-np{width:54px;height:80px;object-fit:cover;border-radius:4px;flex:none;display:grid;place-items:center;background:var(--line);}
+.ajc-b{min-width:0;display:grid;gap:4px;flex:1;}
+.ajc-t{font-weight:700;font-size:14.5px;}
+.ajc-m,.ajc-p{font-size:13px;color:var(--muted);}
+.ajc-a{display:flex;gap:6px;flex-wrap:wrap;}
+.ajc-f textarea{width:100%;font:14px/1.4 var(--font);padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);}
 .feedchip{position:relative;}
 .feedchip .fc-n{margin-left:6px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;display:inline-grid;place-items:center;font:700 12px/1 var(--font);color:var(--k-s-FFFFFF);background:var(--vu);}
 .feedchip .fc-n[hidden]{display:none;}
@@ -2068,7 +2077,7 @@ header.top .nuitb.aab{top:4px;}
   function plain(name, inject){
     var c = fs.collection(name);
     function wd(r){ return { id:r.id, get:function(){ return r.get(); },
-      set:function(d){ var x = clean(d); if (inject) x.uid = CC.uid; return r.set(x).catch(mapErr); },
+      set:function(d, o){ var x = clean(d); if (inject) x.uid = CC.uid; return (o ? r.set(x, o) : r.set(x)).catch(mapErr); },
       update:function(d){ return r.update(clean(d)).catch(mapErr); },
       delete:function(){ return r.delete().catch(mapErr); } }; }
     function wq(q){ return { limit:function(){ return wq(q); }, onSnapshot:function(a, b){ return q.onSnapshot(a, b); }, doc:function(id){ return wd(c.doc(id)); } }; }
@@ -3948,7 +3957,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       (fam ? '<div class="s-kick" style="color:' + famInk(fam) + '">' + famIcon(fam.id) + esc(fLabel(fam)) + '</div>' : "") +
       '<h2>' + esc(sTitre(s)) + '</h2>' +
       '<div class="n" data-count="' + esc(s.id) + '"></div>' + subHtml + '</div>' + (empty ? '<p class="vide">' + esc(empty) + '</p>' : body) +
-      (s.auto === "conseils" ? plExtraHtml(s) : "") + '</section>';
+      (s.auto === "conseils" ? plExtraHtml(s) : "") + (s.id === "ajouts-membres" ? ajPanelHtml() : "") + '</section>';
   }
 
   // Mes statistiques : tes chiffres, ton top 20, tes notes par pays et par mouvement, les mouvements à explorer.
@@ -5487,7 +5496,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
   function ideesList(){
     var list = Object.keys(IDEES).map(function(k){ return Object.assign({ id:k }, IDEES[k]); })
       .sort(function(a, b){ return String(b.ajout).localeCompare(String(a.ajout)); });
-    var pend = idLect() ? idPending() : [], h = orphHtml() + '<p class="ids-h">Déjà proposé' + (list.length ? " · " + list.length : "") + '</p>' +
+    var pend = idLect() ? idPending() : [], h = ajPanelHtml() + orphHtml() + '<p class="ids-h">Déjà proposé' + (list.length ? " · " + list.length : "") + '</p>' +
       ((window.CC && CC.admin) || idMe() ? '<div class="idc-b"><button type="button" data-idcopy="1">📋 Tout copier</button></div>' : "") + '<div class="ids">';
     if (!list.length && !pend.length) h += '<p class="id-n">Rien pour l\'instant. La vôtre sera la première !</p>';
     pend.forEach(function(x){ h += ideeCard(x, true); });
@@ -5887,7 +5896,8 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         .then(function(){ setStatus("« " + t + " » est proposé : Licia pourra l'ajouter au carnet."); }, function(e){ setStatus("Pas envoyé (" + errCode(e) + "), réessaie dans un instant.", true); }); };
       if (!ajCol) { prop(); return; }
       ajCol.doc(fid).set({ uid:CC.uid, fid:fid, t:t, y:yy ? String(yy) : "", d:"", mot:ind, ajout:new Date().toISOString() })
-        .then(function(){ setStatus("« " + t + " » est dans la base : tout le monde peut le trouver."); }, prop);
+        .then(function(){ setStatus("« " + t + " » est dans la base. Recherche de sa fiche…"); return ajEnrich(fid, t, yy, ind).then(function(tm){
+          setStatus(tm ? "« " + t + " » : trouvé « " + tm.titre + " » (" + tm.an + (tm.d ? ", " + tm.d : "") + "). Vérifie que c'est le bon dans « Films ajoutés par les membres »." : "« " + t + " » est dans la base (pas trouvé sur TMDB : Licia complétera la fiche)."); }); }, prop);
       return;
     }
     var id = (slug(t) || "film") + "-" + (yy || "sans-annee"); if (films[id]) id += "-" + Date.now().toString(36);
@@ -5913,13 +5923,90 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       };
       if (ajCol && CC.me) {
         return ajCol.doc(id).set({ uid:CC.uid, fid:id, t:t, y:yy ? String(yy) : "", d:"", mot:ind, ajout:new Date().toISOString() }).then(function(){
-          setStatus("« " + t + " » est dans « Films ajoutés par les membres » (le catalogue a refusé : " + code + ").");
+          setStatus("« " + t + " » est dans « Films ajoutés par les membres ». Recherche de sa fiche…"); ajEnrich(id, t, yy, ind);
         }, function(){ return propCol ? propose() : setStatus("Pas enregistré (" + code + "), réessaie dans un instant.", true); });
       }
       if (propCol && CC.me) return propose();
       setStatus("Pas enregistré (" + code + "), réessaie dans un instant.", true);
     });
   }
+
+  // ---- Films ajoutés : fiche remplie toute seule, vérifiée par la personne, validée par Licia (20 novembre) ----
+  // À l'ajout, le site cherche le film sur TMDB (titre, année, indices) et enregistre : identifiant, titre original,
+  // cinéaste, pays, durée, résumé, affiche et lien IMDb. La personne qui l'a ajouté confirme « c'est bien lui » ou écrit
+  // (ou dicte) ce qui ne va pas : sa remarque part aussi dans la Boîte à idées. Licia valide ensuite, un par un ou tous d'un coup.
+  function ajEnrich(fid, t, y, ind){
+    if (!ajCol) return Promise.resolve(null);
+    var f = { id:fid, t:t, y:y || "", d:ind || "", k:[] };
+    return tmdbFind(f).then(function(r){
+      if (!r || !r.id) return null;
+      var base = "https://api.themoviedb.org/3/" + r.t + "/" + r.id + "?api_key=" + TMDB_KEY;
+      var get = function(lang){ return fetch(base + "&language=" + lang + "&append_to_response=credits,external_ids").then(function(x){ return x.ok ? x.json() : null; }); };
+      return get("fr-FR").then(function(d){
+        if (!d) return null;
+        return (d.overview ? Promise.resolve(d.overview) : get("en-US").then(function(e){ return (e && e.overview) || ""; })).then(function(ov){
+          var dirs = ((d.credits || {}).crew || []).filter(function(c){ return c.job === "Director"; }).map(function(c){ return c.name; }).concat((d.created_by || []).map(function(c){ return c.name; }));
+          var tm = { id:d.id, t:r.t, titre:d.title || d.name || "", orig:d.original_title || d.original_name || "", an:String(d.release_date || d.first_air_date || "").slice(0, 4),
+            d:dirs.slice(0, 3).join(" et "), c:(d.production_countries || []).map(function(c){ return c.name; }).slice(0, 3).join(", "),
+            duree:d.runtime || ((d.episode_run_time || [])[0] || 0), p:String(ov || "").slice(0, 900), poster:d.poster_path || "", imdb:(d.external_ids || {}).imdb_id || d.imdb_id || "" };
+          return ajCol.doc(fid).set({ tmdb:tm, d:tm.d }, { merge:true }).then(function(){ return tm; }, function(){ return tm; });
+        });
+      });
+    }).catch(function(){ return null; });
+  }
+  var AJV = { open:"", txt:"" };
+  function ajMine(){ var me = window.CC && CC.uid; return ((window.CC && CC.ajouts && CC.ajouts()) || []).filter(function(x){ return me && x.uid === me && !x.verif && !x.ok; }); }
+  function ajTodo(){ return ((window.CC && CC.ajouts && CC.ajouts()) || []).filter(function(x){ return !x.ok; }); }
+  function ajCard(x, admin){
+    var tm = x.tmdb || {}, P = (window.CC && CC.profils) || {}, who = (P[x.uid] && P[x.uid].pseudo) || "un membre";
+    var info = tm.id ? esc(tm.titre || x.t) + (tm.an ? " (" + esc(tm.an) + ")" : "") + (tm.d ? " · " + esc(tm.d) : "") + (tm.c ? " · " + esc(tm.c) : "") + (tm.duree ? " · " + tm.duree + " min" : "")
+      : esc(x.t) + (x.y ? " (" + esc(x.y) + ")" : "") + " · pas trouvé sur TMDB";
+    var links = tm.id ? ' <a href="https://www.themoviedb.org/' + tm.t + "/" + tm.id + '" target="_blank" rel="noopener">TMDB</a>' : "";
+    var open = AJV.open === x.id;
+    return '<div class="ajc">' + (tm.poster ? '<img src="https://image.tmdb.org/t/p/w92' + esc(tm.poster) + '" alt="" loading="lazy">' : '<span class="ajc-np">🎬</span>') +
+      '<div class="ajc-b"><div class="ajc-t">' + info + '</div>' +
+      '<div class="ajc-m">' + (admin ? "Ajouté par " + esc(who) + (x.verif === "ok" ? " · ✓ confirmé" : x.verif === "ko" ? " · ⚠️ « " + esc(x.correction || "") + " »" : " · pas encore confirmé") : "Tu l'as ajouté : est-ce bien ce film ?") + links + '</div>' +
+      (tm.p ? '<div class="ajc-p">' + esc(tm.p.length > 220 ? tm.p.slice(0, 220) + "…" : tm.p) + '</div>' : "") +
+      (open ? '<div class="ajc-f"><textarea data-ajtxt="' + esc(x.id) + '" rows="3" maxlength="600" placeholder="Ce qui ne va pas : mauvais film, mauvaise année, image fausse, le vrai titre…">' + esc(AJV.txt) + '</textarea>' +
+        '<div class="ajc-a">' + (SR ? '<button type="button" class="chip" data-ajmic="' + esc(x.id) + '">🎙️ Dicter</button>' : "") + '<button type="button" class="chip" data-ajsend="' + esc(x.id) + '">Envoyer la correction</button></div></div>' :
+        '<div class="ajc-a">' + (admin ? '<button type="button" class="chip" data-ajok="' + esc(x.id) + '">✓ Valider</button>' :
+          '<button type="button" class="chip" data-ajyes="' + esc(x.id) + '">✓ Oui, c\'est lui</button><button type="button" class="chip" data-ajno="' + esc(x.id) + '">✗ Non, à corriger</button>') + '</div>') +
+      '</div></div>';
+  }
+  function ajPanelHtml(){
+    var admin = window.CC && CC.admin, h = "", mine = ajMine();
+    if (mine.length) h += '<div class="ajp"><p class="ajp-h">À vérifier par toi · ' + mine.length + '</p>' + mine.map(function(x){ return ajCard(x, false); }).join("") + '</div>';
+    if (admin) { var todo = ajTodo(); if (todo.length) h += '<div class="ajp"><p class="ajp-h">À valider · ' + todo.length + ' <button type="button" class="chip" data-ajall="1">✓ Tout valider</button></p>' + todo.map(function(x){ return ajCard(x, true); }).join("") + '</div>'; }
+    return h;
+  }
+  // La validation par Licia passe par la collection brute : sinon l'identifiant de l'autrice serait remplacé par le sien.
+  function ajSet(id, data, msg){ if (!ajCol) return; var ref = data.ok ? firebase.firestore().collection("ajouts").doc(id) : ajCol.doc(id); ref.set(data, { merge:true }).then(function(){ if (msg) setStatus(msg); }, function(e){ setStatus("Pas enregistré (" + errCode(e) + ").", true); }); }
+  document.addEventListener("click", function(ev){
+    var b = ev.target.closest && ev.target.closest("[data-ajok],[data-ajall],[data-ajyes],[data-ajno],[data-ajsend],[data-ajmic]"); if (!b) return;
+    var now = new Date().toISOString();
+    if (b.dataset.ajok) { ajSet(b.dataset.ajok, { ok:true, valide:now }, "Validé."); return; }
+    if (b.dataset.ajall) { var td = ajTodo(); td.forEach(function(x){ ajSet(x.id, { ok:true, valide:now }); }); setStatus(td.length + " film" + (td.length > 1 ? "s validés." : " validé.")); return; }
+    if (b.dataset.ajyes) { ajSet(b.dataset.ajyes, { verif:"ok", verifDate:now }, "Merci ! C'est confirmé."); return; }
+    if (b.dataset.ajno) { AJV = { open:b.dataset.ajno, txt:"" }; renderAll(); var ta = document.querySelector('[data-ajtxt="' + CSS.escape(b.dataset.ajno) + '"]'); if (ta) ta.focus(); return; }
+    if (b.dataset.ajmic) {
+      var ta2 = document.querySelector('[data-ajtxt="' + CSS.escape(b.dataset.ajmic) + '"]'); if (!SR || !ta2) return;
+      var rec = new SR(); rec.lang = "fr-FR"; rec.interimResults = false; b.textContent = "🎙️ J'écoute…";
+      rec.onresult = function(e){ var t = Array.prototype.map.call(e.results, function(r){ return r[0].transcript; }).join(" "); ta2.value = (ta2.value ? ta2.value + " " : "") + t; AJV.txt = ta2.value; };
+      rec.onend = function(){ b.textContent = "🎙️ Dicter"; }; try { rec.start(); } catch (e) {}
+      return;
+    }
+    if (b.dataset.ajsend) {
+      var id = b.dataset.ajsend, ta3 = document.querySelector('[data-ajtxt="' + CSS.escape(id) + '"]'), txt = String(ta3 ? ta3.value : "").trim().slice(0, 600);
+      if (!txt) { setStatus("Écris ou dicte ce qui ne va pas.", true); return; }
+      var x = ((CC.ajouts && CC.ajouts()) || []).filter(function(y){ return y.id === id; })[0] || {};
+      ajSet(id, { verif:"ko", correction:txt, verifDate:now }, "Merci ! La correction est envoyée.");
+      // Aussi dans la Boîte à idées, pour Licia (et pour Claude quand elle lui transmet les idées).
+      if (window.CC && CC.uid) firebase.firestore().collection("idees").doc(CC.uid + "__" + Date.now().toString(36)).set({ uid:CC.uid, kind:"bug", nom:"Film à corriger : " + (x.t || id),
+        texte:"Film ajouté « " + (x.t || id) + "» (" + id + ") : " + txt, prenom:(CC.me && CC.me.pseudo) || "", ajout:now }).catch(function(){});
+      AJV = { open:"", txt:"" }; renderAll(); return;
+    }
+  });
+  document.addEventListener("input", function(ev){ if (ev.target.dataset && ev.target.dataset.ajtxt) AJV.txt = ev.target.value; });
   function errCode(e){ return String((e && (e.code || e.message)) || "erreur inconnue").slice(0, 60); }
   // Une liste de la page : son HTML, son nombre de films, et si elle s'affiche avec les filtres du moment.
   var FRZ = { key:"", l:{}, n:{} };
@@ -6156,7 +6243,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
     if (!(CCM() && CC.me && pid === CC.pid() && ajCol && plCol && tt)) { proposeFilm0(pid, t, y, mot); return; }
     var ex = findFilm(tt, yy), fid = ex || ((slug(tt) || "film") + "-" + (yy || "sans-annee")), now = new Date().toISOString(), p = person(pid);
     DRAFT[pid] = { open:false }; setStatus("Enregistrement…");
-    (ex ? Promise.resolve() : ajCol.doc(fid).set({ fid:fid, t:tt, y:yy ? String(yy) : "", d:"", mot:"", ajout:now }))
+    (ex ? Promise.resolve() : ajCol.doc(fid).set({ uid:CC.uid, fid:fid, t:tt, y:yy ? String(yy) : "", d:"", mot:"", ajout:now }).then(function(){ ajEnrich(fid, tt, yy, ""); }))
       .then(function(){ return plCol.doc(pid + "__" + fid).set({ prenom:pid, film:fid, titre:ex ? films[ex].t : tt, annee:yy || (ex && films[ex].y) || 0, ajout:now, mot:String(mot || "").slice(0, 200) }); })
       .then(function(){ keepSection(p.sid, renderAll); setStatus("« " + tt + " » est dans ta playlist" + (ex ? "." : " et dans la base.")); }, function(){ proposeFilm0(pid, t, y, mot); });
   }
@@ -8074,7 +8161,7 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
         var x = Object.assign({}, d.x); x.id = d.id;
         x.films = (x.films || []).map(function(f, i){
           var fi = FICHE[f.id] || {};
-          return Object.assign({}, f, { sid:d.id, _i:i, p:f.p || fi.p || "", e:fi.e || 0, k:fi.k || [], w:fi.w || "", m:fi.m || 0, c:fi.c || "", mv:fi.mv || "", duree:fi.duree || 0, duree_episode:!!fi.duree_episode, av:fi.av || [], th:fi.th || [], fiab:fi.fiab || "" });
+          return Object.assign({}, f, { sid:d.id, _i:i, p:f.p || fi.p || "", e:fi.e || 0, k:fi.k || [], w:fi.w || "", m:fi.m || 0, c:fi.c || f.c || "", mv:fi.mv || "", duree:fi.duree || f.duree || 0, duree_episode:!!fi.duree_episode, av:fi.av || [], th:fi.th || [], fiab:fi.fiab || "" });
         });
         return x;
       })
@@ -8329,7 +8416,11 @@ est + (ro ? '<span class="ro">' + ro + '</span>' : "") +
       var P = (window.CC && CC.profils) || {}, seen = {};
       var fl = AJ.slice().sort(function(a, b){ return String(a.ajout || "").localeCompare(String(b.ajout || "")); }).filter(function(x){ if (!x.fid || !x.t || seen[x.fid]) return false; seen[x.fid] = 1; return true; })
         .map(function(x){ var who = (P[x.uid] && P[x.uid].pseudo) || "un membre";
-          return { id:x.fid, t:String(x.t), y:/^[0-9]{4}$/.test(String(x.y || "")) ? +x.y : "", d:String(x.d || ""), r:"Ajouté par " + who + (x.mot ? " · Indices : " + x.mot : ""), aj:x.uid || "" }; });
+          var tm = x.tmdb || {};
+          if (tm.id && !TMDB_FIXE[x.fid]) TMDB_FIXE[x.fid] = tm.t === "tv" ? "tv/" + tm.id : tm.id;
+          var etat = x.ok ? "" : x.verif === "ko" ? " · ⚠️ à corriger" : x.verif === "ok" ? "" : " · à vérifier";
+          return { id:x.fid, t:String(x.t), y:/^[0-9]{4}$/.test(String(x.y || "")) ? +x.y : "", d:String(x.d || tm.d || ""), p:String(tm.p || ""), c:String(tm.c || ""), duree:+tm.duree || 0,
+            r:"Ajouté par " + who + (x.mot ? " · Indices : " + x.mot : "") + etat, aj:x.uid || "" }; });
       return [{ id:"ajouts-membres", data:function(){ return { titre:"Films ajoutés par les membres", famille:"playlists", ordre:9.1,
         sous_titre:"Les films que les membres ont ajoutés à la base. Licia les range ensuite dans les bonnes catégories.", films:fl }; } }];
     }

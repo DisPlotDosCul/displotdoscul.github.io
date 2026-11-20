@@ -24,6 +24,16 @@ def open_page(browser, deny, change=None):
     context = browser.new_context(service_workers="block", viewport={"width": 390, "height": 820}, has_touch=True, is_mobile=True)
     context.add_init_script("window.__fixtureDeny = " + json.dumps(deny) + ";")
     unexpected = install_routes(context, fixture=(change or (lambda f: f))(fixture()))
+    def tmdb(route):
+        u = route.request.url
+        if "/search/" in u:
+            route.fulfill(content_type="application/json", body=json.dumps({"results": [{"id": 4242, "title": "Un film imaginaire du test", "release_date": "2021-03-01", "vote_count": 10}]}))
+        else:
+            route.fulfill(content_type="application/json", body=json.dumps({"id": 4242, "title": "Un film imaginaire du test", "original_title": "An Imaginary Test Film",
+                "release_date": "2021-03-01", "runtime": 101, "overview": "Un résumé du film.", "poster_path": "/x.jpg", "production_countries": [{"name": "France"}],
+                "credits": {"crew": [{"job": "Director", "name": "Une Cinéaste"}]}, "external_ids": {"imdb_id": "tt0000001"}, "images": {}}))
+    context.route("**/api.themoviedb.org/**", tmdb)
+    context.route("**/image.tmdb.org/**", lambda r: r.fulfill(content_type="image/png", body=b""))
     page = context.new_page()
     errors = []
     page.on("pageerror", lambda e: errors.append(str(e)))
@@ -146,6 +156,11 @@ def run():
         page.wait_for_function("(__fixture.ajouts || {})['un-film-imaginaire-du-test-2021'] && __fixture.ajouts['un-film-imaginaire-du-test-2021'].uid === 'test-membre'")
         page.wait_for_function("window.CC && CC.filmInfo && CC.filmInfo('un-film-imaginaire-du-test-2021')")
         assert not page.evaluate("Object.keys(__fixture.propositions || {}).length")
+        # Fiche remplie depuis TMDB, et carte « est-ce bien ce film ? » dans la Boîte à idées (20 novembre).
+        page.wait_for_function("!!(__fixture.ajouts['un-film-imaginaire-du-test-2021'].tmdb || {}).id", timeout=8000)
+        tm = page.evaluate("__fixture.ajouts['un-film-imaginaire-du-test-2021'].tmdb")
+        assert tm["duree"] == 101 and "Un résumé" in tm["p"] and tm["d"] == "Une Cinéaste", tm
+        assert page.evaluate("__fixture.ajouts['un-film-imaginaire-du-test-2021'].t") == "Un film imaginaire du test"
 
         # Ma playlist : elle s'ouvre depuis Mon compte ; un film absent de la base y entre directement.
         page.locator("#q").fill("")
