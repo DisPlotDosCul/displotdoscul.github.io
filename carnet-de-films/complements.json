@@ -10068,6 +10068,13 @@
      "y": 1944,
      "d": "Billy Wilder",
      "r": "Film noir (États-Unis, 1940–1958)"
+    },
+    {
+     "id": "faust-une-legende-allemande-1926",
+     "t": "Faust, une légende allemande",
+     "y": 1926,
+     "d": "F. W. Murnau",
+     "r": "Le pacte avec Méphisto, ses ailes noires au-dessus de la ville : l'expressionnisme à son sommet."
     }
    ],
    "parties": [
@@ -10099,7 +10106,8 @@
       "nosferatu-le-vampire-1922",
       "metropolis-1927",
       "l-aurore-1927",
-      "m-le-maudit-1931"
+      "m-le-maudit-1931",
+      "faust-une-legende-allemande-1926"
      ]
     },
     {
@@ -31390,6 +31398,29 @@
     "mensonge"
    ],
    "fiab": "à vérifier"
+  },
+  "faust-une-legende-allemande-1926": {
+   "p": "Film muet : pour sauver sa ville de la peste, le vieux docteur Faust signe un pacte avec le démon Méphisto, qui lui rend sa jeunesse. Il séduit la jeune Gretchen, puis l'abandonne ; elle est condamnée au bûcher pour la mort de son enfant. Faust revient mourir avec elle dans les flammes, et l'amour rompt le pacte. Des ombres géantes, un démon qui couvre la ville de ses ailes : l'un des sommets visuels du muet.",
+   "c": "Allemagne",
+   "k": [
+    "muet",
+    "noir-et-blanc",
+    "conte",
+    "reve",
+    "horreur"
+   ],
+   "mv": "expressionnisme",
+   "e": 8,
+   "duree": 107,
+   "av": [
+    "images choquantes"
+   ],
+   "th": [
+    "pacte",
+    "jeunesse",
+    "damnation"
+   ],
+   "fiab": "à vérifier"
   }
  },
  "familles": {
@@ -32518,7 +32549,8 @@
   "barbara-2017": "50131",
   "gainsbourg-vie-heroique-2010": "40132",
   "stories-we-tell-2012": "20152",
-  "man-on-the-moon-1999": "20251"
+  "man-on-the-moon-1999": "20251",
+  "faust-une-legende-allemande-1926": "52120"
  },
  "familles_ordre": "esthetique,sombre,frisson,reflexion,relations (dixièmes, total 10)"
 }
