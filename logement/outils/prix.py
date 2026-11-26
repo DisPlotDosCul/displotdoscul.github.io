@@ -16,7 +16,10 @@ from collections import defaultdict
 API = "https://prices.openfoodfacts.org/api/v1"
 BOX = (48.1, 49.25, 1.45, 3.56)  # Île-de-France (lat min, lat max, lon min, lon max)
 MOIS = 18
-MIN_ENS, MIN_MAG, K = 15, 20, 40
+MIN_ENS, MIN_MAG, K = 100, 20, 40
+# Enseignes sans code-barres comparables (marques propres) : repère national Radin Malin, 18 nov. 2026 (écart à Lidl), recalé sur E.Leclerc
+REPERES = {"Lidl": 0.0, "Aldi": 0.6}
+RM_LECLERC = 2.8
 REF = ["Carrefour", "Carrefour Market", "Intermarché", "Système U", "Auchan"]
 UA = {"User-Agent": "CapLogement/1.0 (displotdoscul.github.io)"}
 
@@ -91,6 +94,9 @@ def main(out):
     base = math.exp(sum(math.log(x) for x in ref) / len(ref))
     E = {e: {"i": round(100 * gm(R) / base, 1), "n": len(R), "mag": sum(1 for lid in ratios if ens_of(idf[lid]) == e)}
          for e, R in ens_r.items() if len(R) >= MIN_ENS}
+    if "E.Leclerc" in E:
+        for e, g in REPERES.items():
+            if e not in E: E[e] = {"i": round(E["E.Leclerc"]["i"] * (1 + g / 100) / (1 + RM_LECLERC / 100), 1), "n": 0, "mag": 0, "rep": "Radin Malin, nov. 2026"}
     M = {}
     for lid, R in ratios.items():
         if len(R) < MIN_MAG: continue
