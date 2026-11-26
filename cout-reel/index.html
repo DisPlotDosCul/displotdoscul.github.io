@@ -10,9 +10,9 @@
 <meta name="theme-color" content="#2F6B62">
 <style>
 :root{--bg:#EEF2F0;--surface:#F8FAF9;--ink:#1F2B29;--muted:#66746F;--line:#D3DCD8;--accent:#2F6B62;--soft:#DCE9E5;--bad:#B23A3A;
- --c1:#2F6B62;--c2:#C8873A;--c3:#5B7DB1;--c4:#9C5B8F;color-scheme:light}
+ --c1:#2F6B62;--c2:#C8873A;--c3:#5B7DB1;--c4:#9C5B8F;--c5:#6E8B3D;color-scheme:light}
 @media (prefers-color-scheme:dark){:root{--bg:#141B1A;--surface:#1B2322;--ink:#E5EEEB;--muted:#8E9C98;--line:#33403D;--accent:#86C7B8;--soft:#22312E;--bad:#E57B7B;
- --c1:#86C7B8;--c2:#E0A862;--c3:#8FAEDD;--c4:#C891BC;color-scheme:dark}}
+ --c1:#86C7B8;--c2:#E0A862;--c3:#8FAEDD;--c4:#C891BC;--c5:#A9C77A;color-scheme:dark}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,sans-serif;padding:14px 12px 60px}
 main{max-width:980px;margin:0 auto}
@@ -56,6 +56,8 @@ input[type=number]{text-align:right;font-variant-numeric:tabular-nums}
 .sum .big{font-size:1.15rem;font-weight:800;color:var(--ink)}
 .sum .big span:first-child{color:var(--ink)}
 .hint{font-size:.75rem;color:var(--muted)}
+details#habD{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:12px}
+details#habD>summary{cursor:pointer;font-weight:700}
 details#reg{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:12px}
 details#reg summary{cursor:pointer;font-weight:700}
 details#reg .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px 18px;margin-top:10px}
@@ -77,6 +79,7 @@ footer ul{margin:4px 0;padding-left:18px}
 </header>
 
 <section id="podium" aria-live="polite"></section>
+<details id="habD" open><summary>Mes habitudes et mon budget</summary><div id="hab"></div></details>
 <section id="cards"></section>
 
 <details id="reg">
@@ -106,6 +109,8 @@ footer ul{margin:4px 0;padding-left:18px}
  <ul>
   <li>Énergie : montant estimé affiché dans l'annonce (DPE — diagnostic de performance énergétique), sinon estimation depuis la classe et la surface.</li>
   <li>« Normal » = usage standard du DPE (19 °C). « Beaucoup » = +30 %.</li>
+  <li>Habitudes : nombre × prix moyen à Paris pour la gamme choisie (€ pas cher, €€ moyen, €€€ cher) × prix du quartier du logement.</li>
+  <li>Budget : loyer + énergie + transport + habitudes. Le temps n'est pas compté dans le budget.</li>
   <li>Temps : heures passées en trajet × la valeur que tu donnes à ton heure. Mets 0 pour l'ignorer.</li>
   <li>Tout reste dans ton navigateur. Rien n'est envoyé.</li>
  </ul>
@@ -114,18 +119,154 @@ footer ul{margin:4px 0;padding-left:18px}
 <div id="toast"></div>
 
 <script>
+/* ---------- Habitudes (quoi × combien × où) et arbitrage du budget ----------
+   Prix de base = moyenne Paris, en 3 gammes (pas cher / moyen / cher), puis × prix du quartier.
+   Repères : café au comptoir ≈ 1,50 €, café ≈ 2,70 € (moyenne Paris), Starbucks caffè latte Tall 5,20 € (avril 2026),
+   menu fast-food ≈ 12 €, resto pas cher 18 € (12-30), pinte 7 € (5-10), ciné 13 € (Numbeo Paris), piscine municipale de Paris 3,50 € (paris.fr 2026).
+   Courses : panier « célibataire » UFC-Que Choisir ≈ 204 €/mois × indice de l'enseigne (prix.json, relevés Open Prices).
+   Le reste : estimations. Un prix tapé à la main compte comme « exact ». */
+window.HAB=(()=>{
+const W=4.33;
+const T={};
+[["caf","☕","Café","caf",[1.5,2.7,5.2],"cafe"],
+ ["vie","🥐","Viennoiserie","bou",[1.1,1.4,2.4],null],
+ ["san","🥪","Sandwich, formule midi","bou",[5.5,8,11],"dehors"],
+ ["fas","🍔","Fast-food, kebab","fas",[8,12,15],"dehors"],
+ ["res","🍽️","Resto","res",[12,18,30],"dehors"],
+ ["liv","🛵","Repas livré",null,[15,22,32],"livr"],
+ ["bar","🍺","Verre en bar","bar",[5,7,10],"sorties"],
+ ["cin","🎬","Ciné","cin",[7,12,15.5],"culture"],
+ ["spe","🎭","Spectacle, expo","the",[10,20,35],"culture"],
+ ["pis","🏊","Piscine","pis",[2,3.5,7],"sport"],
+ ["esc","🧗","Escalade","esc",[12,17,21],"sport"],
+ ["dan","💃","Cours danse, yoga","dan",[10,17,25],"sport"],
+ ["lav","🫧","Laverie","lav",[5,7.5,10],null],
+ ["crs","🛒","Courses (panier du mois)",null,[180,204,240],"courses"]
+].forEach(([k,e,l,q,p,f])=>T[k]={k,e,l,q,p,f});
+const ORDER=Object.keys(T);
+const GL=["Discount","Supermarché","Supérette, Monoprix"];
+/* Courses : gammes = discount / grande surface moyenne / supérette de centre-ville, d'après les indices relevés */
+function setCourses(E){if(!E)return;const g=k=>E[k]&&(E[k].n>=100||E[k].rep)?E[k].i:null,av=a=>{a=a.filter(x=>x);return a.length?a.reduce((s,v)=>s+v,0)/a.length:null};
+ const lo=av([g("Lidl"),g("Aldi")]),hi=av([g("Monoprix"),g("Franprix"),g("Carrefour City")]);if(lo)T.crs.p[0]=Math.round(204*lo)/100;if(hi)T.crs.p[2]=Math.round(204*hi)/100;T.crs.rel="relevé"}
+/* Enseignes au prix connu */
+const CH=[[/starbucks/i,["caf"],5.2,"latte Tall, avril 2026","relevé"],
+ [/mc ?donald/i,["fas"],12,"menu moyen à Paris, nov. 2026","relevé"],
+ [/^piscine/i,["pis"],3.5,"tarif Ville de Paris 2026","exact",1]];
+function chain(name,t,paris){for(const c of CH){if(!c[1].includes(t)||!c[0].test(name||""))continue;if(c[5]&&!paris)continue;return {p:c[2],s:c[3],rel:c[4]}}return null}
+const gOf=(t,p)=>{const a=T[t].p;let b=0;a.forEach((v,i)=>{if(Math.abs(v-p)<Math.abs(a[b]-p))b=i});return b};
+const per=h=>h.n*(h.u==="sem"?W:1);
+const mois=(h,p)=>p*per(h);
+const fq=h=>h.n+(h.u==="sem"?" / sem":" / mois");
+const G=g=>"€".repeat(g+1);
+const PR={ind:["🔒","Indispensable"],red:["✂️","Réductible"],sup:["🗑️","Supprimable"]},PRN={ind:"red",red:"sup",sup:"ind"};
+const eur=v=>Math.round(v).toLocaleString("fr-FR")+" €";
+const eur2=v=>(Math.round(v*100)/100).toLocaleString("fr-FR",{minimumFractionDigits:v%1?2:0,maximumFractionDigits:2})+" €";
+const esc=t=>String(t==null?"":t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const newId=()=>"h"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+
+/* Leviers : pour chaque habitude non indispensable, une seule option retenue à la fois */
+function levers(H,price){const L=[];
+ H.forEach(h=>{if(h.pr==="ind")return;const p0=price(h),m0=mois(h,p0.p);if(!m0)return;
+  if(h.g>0){const h2=Object.assign({},h,{g:h.g-1,_cheap:1}),m=mois(h2,price(h2).p);if(m0-m>=1)L.push({id:h.id+":g",hid:h.id,k:"g",tier:0,l:`${T[h.t].e} ${T[h.t].l} : gamme ${G(h.g)} → ${G(h.g-1)}`,save:m0-m,h2})}
+  const h3=h.u==="sem"?(h.n>1?Object.assign({},h,{n:h.n-1}):Object.assign({},h,{u:"mois",n:2})):h.n>1?Object.assign({},h,{n:h.n-1}):null;
+  if(h3){const m=mois(h3,price(h3).p);if(m0-m>=1)L.push({id:h.id+":n",hid:h.id,k:"n",tier:2,l:`${T[h.t].e} ${T[h.t].l} : ${fq(h)} → ${fq(h3)}`,save:m0-m,h2:h3})}
+  if(h.pr==="sup")L.push({id:h.id+":x",hid:h.id,k:"x",tier:1,l:`${T[h.t].e} ${T[h.t].l} : arrêter`,save:m0,h2:null})});
+ return L}
+/* Plan proposé : d'abord moins cher (on garde l'habitude), puis ce qui est supprimable, puis moins souvent */
+function plan(L,gap){const pick=new Map();let got=0;
+ [...L].sort((a,b)=>a.tier-b.tier||b.save-a.save).forEach(l=>{if(got>=gap||pick.has(l.hid))return;pick.set(l.hid,l.id);got+=l.save});
+ return [...pick.values()]}
+
+const CSS=`.hbL{display:grid;gap:6px;margin:6px 0}
+.hbH{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--surface)}
+.hbH .hbN{font-weight:600;flex:1 1 120px;min-width:0}
+.hbH .hbN small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.hbH .hbM{font-weight:700;font-variant-numeric:tabular-nums;min-width:52px;text-align:right}
+.hbH button,.hbX button,.hbA button,.hbS button{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);padding:4px 8px;cursor:pointer;line-height:1.2}
+.hbH button[aria-pressed="true"],.hbX button[aria-pressed="true"],.hbS button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.hbH .hbQ{display:inline-flex;align-items:center;gap:3px}.hbH .hbQ b{min-width:16px;text-align:center}
+.hbH .hbG{display:inline-flex}.hbH .hbG button{border-radius:0;margin-left:-1px}.hbH .hbG button:first-child{border-radius:8px 0 0 8px}.hbH .hbG button:last-child{border-radius:0 8px 8px 0}
+.hbH button.hbD{border:0;color:var(--muted);font-size:16px;padding:2px 4px}
+.hbA{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0}
+.hbA button.on{border-color:var(--accent);color:var(--accent);font-weight:700}
+.hbK{font-size:11.5px;color:var(--muted);margin:2px 0 8px}
+.hbB{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 4px;font-weight:600}
+.hbB input{font:inherit;width:110px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.hbS{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.hbR{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin-top:6px;background:var(--surface)}
+.hbR .hbT{display:flex;justify-content:space-between;gap:8px;font-variant-numeric:tabular-nums;margin:2px 0}
+.hbR .hbT b.neg{color:var(--bad)}.hbR .hbT b.pos{color:var(--accent)}
+.hbX{display:grid;gap:5px;margin:6px 0}
+.hbX button{text-align:left;display:flex;justify-content:space-between;gap:8px;width:100%}
+.hbX button i{font-style:normal;font-size:11px;color:var(--accent);margin-left:6px}
+.hbX button[aria-pressed="true"] i{color:var(--surface)}
+.hbR .hbOk{font-weight:700;color:var(--accent);margin:4px 0}
+/*p*/.hbW{margin-top:8px}.hbP2{margin:6px 0 10px}.hbP2 p.l{margin:0 0 4px}.hbLi{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:6px;font-size:13px}.hbLi button{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);padding:3px 8px;cursor:pointer}.hbLi button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}.hbLi input{font:inherit;width:84px;padding:4px 6px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}.hbLi a{color:var(--accent)}
+.hbR button.hbKeep{font:inherit;font-weight:700;border:0;border-radius:9px;background:var(--accent);color:var(--surface);padding:8px 12px;cursor:pointer;margin-top:4px}`;
+function css(){if(document.getElementById("hbCss"))return;const s=document.createElement("style");s.id="hbCss";s.textContent=CSS;document.head.appendChild(s)}
+
+/* o = {hab(), setHab(a), bud(), setBud(v), sel(), setSel(id), totals() → [{id,name,base,price(h)}], applied(hid,lever) facultatif, change()} */
+let SIM={},addOpen=false;
+function ui(el,o){if(!el)return;css();const H=o.hab(),TT=o.totals(),bud=o.bud();
+ let cur=TT.find(x=>x.id===o.sel())||TT.slice().sort((a,b)=>(a.base+sumH(a))-(b.base+sumH(b)))[0];
+ function sumH(t){return H.reduce((s,h)=>s+mois(h,t.price(h).p),0)}
+ const pr=h=>cur?cur.price(h):{p:T[h.t].p[h.g],rel:"estimé",src:"gamme "+G(h.g)};
+ const rows=H.map(h=>{const t=T[h.t],p=pr(h),m=mois(h,p.p);
+  return `<div class="hbH" data-h="${h.id}"><span class="hbN">${t.e} ${esc(t.l)}<small>${eur2(p.p)} · ${esc(p.rel)}${p.src?" · "+esc(p.src):""}</small></span>
+  <span class="hbQ"><button type="button" data-a="m" aria-label="Moins souvent">−</button><b>${h.n}</b><button type="button" data-a="p" aria-label="Plus souvent">+</button><button type="button" data-a="u">${h.u==="sem"?"/ sem":"/ mois"}</button></span>
+  <span class="hbG">${[0,1,2].map(g=>`<button type="button" data-a="g" data-g="${g}" aria-pressed="${h.g===g}" title="${h.t==="crs"?GL[g]:["Pas cher","Moyen","Cher"][g]}">${G(g)}</button>`).join("")}</span>
+  <button type="button" data-a="pr" title="${PR[h.pr][1]}">${PR[h.pr][0]}</button>
+  <span class="hbM">${eur(m)}</span><button type="button" class="hbD" data-a="x" aria-label="Retirer">×</button></div>`}).join("");
+ const used=new Set(H.map(h=>h.t).concat(o.skip||[]));
+ let html=`<div class="hbL">${rows}</div>${H.length?`<p class="hbK">${Object.values(PR).map(x=>x[0]+" "+x[1].toLowerCase()).join(" · ")} : touche pour changer</p>`:""}
+ <div class="hbA"><button type="button" class="hbP${addOpen?" on":""}">+ Habitude</button>${addOpen?ORDER.map(k=>`<button type="button" data-t="${k}"${used.has(k)?' disabled style="opacity:.45"':""}>${T[k].e} ${esc(T[k].l)}</button>`).join(""):""}</div>
+ <label class="hbB">Mon budget / mois, tout compris <input type="number" inputmode="decimal" id="hbBud" value="${bud||""}" placeholder="ex. 900"> €</label>`;
+ if(bud>0&&TT.length){
+  if(TT.length>1)html+=`<div class="hbS">${TT.map(t=>`<button type="button" data-s="${esc(t.id)}" aria-pressed="${t===cur}">${esc(t.name)}</button>`).join("")}</div>`;
+  const tot=cur.base+sumH(cur),gap=tot-bud,L=levers(H,cur.price),sim=SIM[cur.id]||(SIM[cur.id]={}),prop=gap>0?plan(L,gap):[];
+  if(!Object.keys(sim).length&&gap>0&&!sim._set)prop.forEach(id=>{const l=L.find(x=>x.id===id);sim[l.hid]=id});
+  const chosen=L.filter(l=>sim[l.hid]===l.id),saved=chosen.reduce((s,l)=>s+l.save,0),after=tot-saved;
+  html+=`<div class="hbR"><div class="hbT"><span>Total à ${esc(cur.name)}</span><b>${eur(tot)}</b></div><div class="hbT"><span>Budget</span><b>${eur(bud)}</b></div>
+  <div class="hbT"><span>${gap>0?"Au-dessus":"Marge"}</span><b class="${gap>0?"neg":"pos"}">${gap>0?"+":""}${eur(Math.abs(gap))}</b></div>`;
+  if(gap<=0)html+=`<p class="hbOk">Dans ton budget : aucun choix nécessaire.</p>`;
+  if(L.length){html+=(gap>0?"":`<details><summary>Si tu veux quand même économiser</summary>`)+`<div class="hbX">${L.sort((a,b)=>b.save-a.save).map(l=>`<button type="button" data-l="${l.id}" aria-pressed="${sim[l.hid]===l.id}"><span>${esc(l.l)}${prop.includes(l.id)?"<i>proposé</i>":""}</span><b>−${eur(l.save)}</b></button>`).join("")}</div>`+(gap>0?"":"</details>");
+   if(chosen.length)html+=`<div class="hbT"><span>Avec ces choix</span><b class="${after>bud?"neg":"pos"}">${eur(after)} · ${after>bud?"encore +"+eur(after-bud):"reste "+eur(bud-after)}</b></div><button type="button" class="hbKeep">Garder ces choix</button>`;
+   else if(gap>0)html+=`<p class="hbK">Touche les choix à faire.</p>`}
+  else if(gap>0)html+=`<p class="hbK">${H.length?"Marque une habitude ✂️ réductible ou 🗑️ supprimable pour voir les choix possibles.":"Ajoute tes habitudes pour voir les choix possibles."}</p>`;
+  html+=`</div>`}
+ el.innerHTML=html;
+ const set=(id,f)=>{const a=o.hab().map(h=>h.id===id?f(Object.assign({},h)):h).filter(Boolean);o.setHab(a);SIM={};o.change()};
+ el.querySelectorAll(".hbH button").forEach(b=>b.addEventListener("click",()=>{const id=b.closest(".hbH").dataset.h,a=b.dataset.a;
+  if(a==="x"){set(id,()=>null);return}
+  set(id,h=>{if(a==="m")h.n=Math.max(1,h.n-1);if(a==="p")h.n=Math.min(30,h.n+1);if(a==="u")h.u=h.u==="sem"?"mois":"sem";if(a==="g"){h.g=+b.dataset.g;delete h.nm;if(o.dropPlace)o.dropPlace(h.id)}if(a==="pr")h.pr=PRN[h.pr];return h})}));
+ el.querySelector(".hbP").addEventListener("click",()=>{addOpen=!addOpen;ui(el,o)});
+ el.querySelectorAll(".hbA button[data-t]").forEach(b=>b.addEventListener("click",()=>{addOpen=false;const t=b.dataset.t;
+  o.setHab(o.hab().concat([{id:newId(),t,n:t==="caf"?2:1,u:["caf","vie","san","bar","pis","esc","dan"].includes(t)?"sem":"mois",g:1,pr:"red"}]));SIM={};o.change()}));
+ const bi=el.querySelector("#hbBud");bi.addEventListener("change",()=>{o.setBud(parseFloat(String(bi.value).replace(",","."))||0);SIM={};o.change()});
+ el.querySelectorAll(".hbS button").forEach(b=>b.addEventListener("click",()=>{o.setSel(b.dataset.s);o.change()}));
+ el.querySelectorAll(".hbX button").forEach(b=>b.addEventListener("click",()=>{const L=levers(o.hab(),cur.price),l=L.find(x=>x.id===b.dataset.l),sim=SIM[cur.id]=SIM[cur.id]||{};sim._set=1;
+  if(sim[l.hid]===l.id)delete sim[l.hid];else sim[l.hid]=l.id;ui(el,o)}));
+ const kb=el.querySelector(".hbKeep");if(kb)kb.addEventListener("click",()=>{const sim=SIM[cur.id]||{},L=levers(o.hab(),cur.price);
+  const a=o.hab().map(h=>{const l=L.find(x=>x.id===sim[h.id]);if(!l)return h;if(!l.h2)return null;const h2=Object.assign({},l.h2);if(h2._cheap){delete h2._cheap;delete h2.nm;if(o.dropPlace)o.dropPlace(h.id)}return h2}).filter(Boolean);
+  o.setHab(a);SIM={};o.change()})}
+return {T,ORDER,setCourses,GL,chain,gOf,mois,per,levers,plan,ui,eur,eur2,G}})();
+
+</script>
+<script>
 (()=>{
 const KEY="vaut-le-cout-v1";
 const DPE={A:["#1B8A4B",50],B:["#4DA54A",90],C:["#A6C33A",145],D:["#E8D02E",215],E:["#F0A532",290],F:["#E8693A",375],G:["#D4282C",480]};
 const ELEC_COEF=1.9; // énergie primaire → finale pour l'électricité (DPE)
-const COL=["var(--c1)","var(--c2)","var(--c3)","var(--c4)"];
-const LAB=["Loyer","Énergie","Transport","Temps"];
+const COL=["var(--c1)","var(--c2)","var(--c3)","var(--c5)","var(--c4)"];
+const LAB=["Loyer","Énergie","Transport","Habitudes","Temps"];
+const QF={"-1":.9,"0":1,"1":1.15};
+const hp=(h,x)=>({p:HAB.T[h.t].p[h.g]*QF[x.qf||0],rel:HAB.T[h.t].rel||"estimé",src:(h.t==="crs"?HAB.GL[h.g]:"gamme "+HAB.G(h.g))+(x.qf>0?" · quartier plus cher":x.qf<0?" · quartier moins cher":"")});
 const $=s=>document.querySelector(s);
 const eur=n=>Math.round(n).toLocaleString("fr-FR")+" €";
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let uid=0;
-const blank=i=>({id:++uid,nom:"Logement "+i,loyer:"",mode:"montant",emin:"",emax:"",classe:"D",surface:"",min:"",ar:5});
-let S={items:[blank(1),blank(2)],navigo:"90.80",navCustom:60,kwh:0.2,vtime:10,heat:1};
+const blank=i=>({id:++uid,nom:"Logement "+i,loyer:"",mode:"montant",emin:"",emax:"",classe:"D",surface:"",min:"",ar:5,qf:0});
+let S={items:[blank(1),blank(2)],navigo:"90.80",navCustom:60,kwh:0.2,vtime:10,heat:1,hab:[],bud:0,habSel:null};
 
 function load(){
  try{
@@ -150,7 +291,8 @@ function calc(x){
  const transport=ar>0&&mn>0?navigo():0;
  const heures=mn*2*ar*52/12/60;
  const temps=heures*num(S.vtime);
- return {parts:[loyer,energie,transport,temps],heures,total:loyer+energie+transport+temps};
+ const hab=(S.hab||[]).reduce((s,h)=>s+HAB.mois(h,hp(h,x).p),0);
+ return {parts:[loyer,energie,transport,hab,temps],heures,money:loyer+energie+transport+hab,total:loyer+energie+transport+hab+temps};
 }
 
 function card(x,i){
@@ -158,6 +300,7 @@ function card(x,i){
  el.innerHTML=`
  <div class="ch"><input data-k="nom" value="${esc(x.nom)}" aria-label="Nom"><button class="x" data-del title="Retirer">×</button></div>
  <label class="f">Loyer charges comprises<input type="number" inputmode="decimal" data-k="loyer" value="${esc(x.loyer)}" placeholder="€/mois"></label>
+ ${(S.hab||[]).length?`<div class="f">Prix du quartier<div class="seg">${[[-1,"−"],[0,"="],[1,"+"]].map(([v,l])=>`<button data-qf="${v}" class="${(x.qf||0)===v?"on":""}" title="${v<0?"Moins cher":v>0?"Plus cher":"Moyen"}">${l}</button>`).join("")}</div></div>`:""}
  <div class="seg" data-seg>
   <button data-mode="montant" class="${x.mode==="montant"?"on":""}">Montant DPE</button>
   <button data-mode="classe" class="${x.mode==="classe"?"on":""}">Classe DPE</button>
@@ -178,8 +321,8 @@ function card(x,i){
  return el;
 }
 function sumHtml(r){
- return LAB.map((l,i)=>`<div><span>${l}${i===3&&r.heures?` · ${Math.round(r.heures)} h`:""}</span><span>${eur(r.parts[i])}</span></div>`).join("")
-  +`<div class="big"><span>Coût réel</span><span>${eur(r.total)}/mois</span></div>`;
+ return LAB.map((l,i)=>i===3&&!(S.hab||[]).length?"":`<div><span>${l}${i===4&&r.heures?` · ${Math.round(r.heures)} h`:""}</span><span>${eur(r.parts[i])}</span></div>`).join("")
+  +`<div class="big"><span>Coût réel</span><span>${eur(r.total)}/mois</span></div>`+(num(S.bud)>0?`<div><span>Reste sur ton budget</span><span style="color:${r.money>num(S.bud)?"var(--bad)":"var(--accent)"};font-weight:700">${r.money>num(S.bud)?"−":"+"}${eur(Math.abs(num(S.bud)-r.money))}</span></div>`:"");
 }
 function renderCards(){
  const c=$("#cards");c.innerHTML="";
@@ -192,14 +335,17 @@ function update(){
  const filled=res.filter(o=>o.r.parts[0]>0).sort((a,b)=>a.r.total-b.r.total);
  document.querySelectorAll(".card").forEach(c=>c.classList.toggle("top",filled.length>1&&+c.dataset.id===filled[0].x.id));
  const p=$("#podium");
- if(!filled.length){p.innerHTML=`<div class="hint">Entre un loyer pour voir le classement.</div>`;return}
+ if(!filled.length){p.innerHTML=`<div class="hint">Entre un loyer pour voir le classement.</div>`;save();renderHab();return}
  const max=Math.max(...filled.map(o=>o.r.total))||1,best=filled[0].r.total;
  p.innerHTML=filled.map((o,i)=>`<div class="row"><span class="name">${esc(o.x.nom)}</span>
   <span class="stack" style="width:${(o.r.total/max*100).toFixed(1)}%">${o.r.parts.map((v,j)=>`<i style="width:${(v/o.r.total*100||0).toFixed(1)}%;background:${COL[j]}"></i>`).join("")}</span>
   <span class="tot">${eur(o.r.total)}${i===0&&filled.length>1?`<span class="best">le moins cher</span>`:i>0?`<span class="diff">+${eur((o.r.total-best)*12)}/an</span>`:""}</span></div>`).join("")
-  +`<div class="legend">${LAB.map((l,j)=>`<span><b style="background:${COL[j]}"></b>${l}</span>`).join("")}</div>`;
- save();
+  +`<div class="legend">${LAB.map((l,j)=>j===3&&!(S.hab||[]).length?"":`<span><b style="background:${COL[j]}"></b>${l}</span>`).join("")}</div>`;
+ save();renderHab();
 }
+fetch("../logement/prix.json").then(r=>r.ok?r.json():null).then(j=>{if(j&&j.enseignes){HAB.setCourses(j.enseignes);renderCards()}}).catch(()=>{});
+function renderHab(){HAB.ui($("#hab"),{hab:()=>S.hab||[],setHab:a=>{S.hab=a;save()},bud:()=>num(S.bud),setBud:v=>{S.bud=v;save()},sel:()=>S.habSel,setSel:id=>{S.habSel=id;save()},
+ totals:()=>S.items.filter(x=>num(x.loyer)>0).map(x=>{const r=calc(x);return {id:String(x.id),name:x.nom,base:r.money-r.parts[3],price:h=>hp(h,x)}}),change:()=>renderCards()})}
 
 const cards=$("#cards");
 cards.addEventListener("input",e=>{
@@ -214,6 +360,7 @@ cards.addEventListener("click",e=>{
   c.querySelectorAll("[data-mode]").forEach(b=>b.classList.toggle("on",b===e.target));
   c.querySelectorAll("[data-p]").forEach(d=>{const on=d.dataset.p===x.mode;d.hidden=!on;d.style.display=on?(d.dataset.p==="classe"?"grid":"block"):"none"});
   update();return}
+ if(e.target.dataset.qf!=null){x.qf=+e.target.dataset.qf;e.target.parentNode.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b===e.target));update();return}
  if(e.target.dataset.c){x.classe=e.target.dataset.c;c.querySelectorAll("[data-c]").forEach(b=>b.classList.toggle("on",b===e.target));update()}
 });
 $("#add").onclick=()=>{S.items.push(blank(S.items.length+1));renderCards();const l=cards.lastElementChild;l.scrollIntoView({behavior:"smooth",block:"center"});l.querySelector('[data-k="loyer"]').focus()};
